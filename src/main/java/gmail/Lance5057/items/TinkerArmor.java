@@ -20,7 +20,7 @@ public class TinkerArmor extends ItemArmor
 	@Override 
 	@SideOnly(Side.CLIENT) public void registerIcons(IIconRegister par1IconRegister) 
 	{ 
-		String itemName = "tinkersdefense:textures/armor/TinkerArmor.png";
+		String itemName = "tinkersdefense:textures/armor/TinkerArmor";
 		this.itemIcon = par1IconRegister.registerIcon(itemName); 
 	}
 	

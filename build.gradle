@@ -23,13 +23,21 @@ sourceSets
 {
 main
 {
-java { srcDirs = ["$projectDir/src/main/java"] }
-resources { srcDirs = ["$projectDir/src/main/resources"] }
+java 
+	{ 
+	srcDirs = ["$projectDir/src/main/java"] 
+	}
+resources 
+	{
+	srcDirs = ["$projectDir/src/main/resources"]
+	exclude '**/Thumbs.db' // cause I'm tired of picking them out like nasty olives in an otherwise decent pizza
+	}
+
 }
 }
 
-archivesBaseName = "1.7.10"
-version = "in_development"
+archivesBaseName = "Tinkers-Defense"
+version = "1.1"
 minecraft.version = "1.7.10-10.13.2.1277"
 
 dependencies {

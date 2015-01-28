@@ -3,6 +3,7 @@ package gmail.Lance5057.com;
 
 
 
+
 import static net.minecraft.util.EnumChatFormatting.DARK_RED;
 import static net.minecraft.util.EnumChatFormatting.GOLD;
 import static net.minecraft.util.EnumChatFormatting.LIGHT_PURPLE;
@@ -247,7 +248,7 @@ public void init(FMLInitializationEvent e)
 
 	    // Tool Materials: id, name, harvestlevel, durability, speed, damage, handlemodifier, reinforced, shoddy, style color, primary color for block use
 	  //Dogbearium
-	    TConstructClientRegistry.addMaterialRenderMapping(201, "tinker", "Dogbearium", true);
+	    TConstructClientRegistry.addMaterialRenderMapping(203, "tinker", "Dogbearium", true);
 	    TConstructRegistry.addToolMaterial(203, "Dogbearium", 4, 600, 800, 2, 1.6F, 0, -2f, DARK_RED.toString(), 0x754200);
 	    TinkerTools.registerPatternMaterial("DogbeariumIngot", 2, "Dogbearium");
 	    TConstructRegistry.addDefaultToolPartMaterial(203);	    
