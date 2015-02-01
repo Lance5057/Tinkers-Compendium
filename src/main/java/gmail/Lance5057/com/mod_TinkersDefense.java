@@ -198,8 +198,8 @@ public void preInit(FMLPreInitializationEvent e)
     GameRegistry.registerTileEntity(TileEntity_CrestMount.class, "Tile_CrestMount");
     GameRegistry.registerBlock(block_CrestMount, "Block_CrestMount");
     
-    item_TinkerArmor = new TinkerArmor(ArmorMaterial.IRON, 4, 1).setUnlocalizedName("Tinker_Armor");
-    GameRegistry.registerItem(item_TinkerArmor,"Tinker Armor");
+    //item_TinkerArmor = new TinkerArmor(ArmorMaterial.IRON, 4, 1).setUnlocalizedName("Tinker_Armor");
+    //GameRegistry.registerItem(item_TinkerArmor,"Tinker Armor");
 }
 
 @EventHandler
@@ -248,7 +248,7 @@ public void init(FMLInitializationEvent e)
 
 	    // Tool Materials: id, name, harvestlevel, durability, speed, damage, handlemodifier, reinforced, shoddy, style color, primary color for block use
 	  //Dogbearium
-	    TConstructClientRegistry.addMaterialRenderMapping(203, "tinker", "Dogbearium", true);
+	    TConstructClientRegistry.addMaterialRenderMapping(203, "tinker", "dogbearium", true);
 	    TConstructRegistry.addToolMaterial(203, "Dogbearium", 4, 600, 800, 2, 1.6F, 0, -2f, DARK_RED.toString(), 0x754200);
 	    TinkerTools.registerPatternMaterial("DogbeariumIngot", 2, "Dogbearium");
 	    TConstructRegistry.addDefaultToolPartMaterial(203);	    
