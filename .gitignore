@@ -60,6 +60,6 @@ $RECYCLE.BIN/
 
 # Exclude eclipse build folder
 /eclipse/*
-
-#Exclude bin folder
 /bin/*
+/.gradle/*
+/.settings/*
