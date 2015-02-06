@@ -5,33 +5,11 @@
  R4wk, ZeuX, IngisKahn, bspkrs
  MCP Data version : unknown
 ****************************
-:downloadClient SKIPPED
-:downloadServer SKIPPED
-:getVersionJson
-:extractUserDev UP-TO-DATE
-:mergeJars SKIPPED
-:applyBinPatches SKIPPED
-:downloadMcpTools SKIPPED
-:extractMcpData UP-TO-DATE
-:genSrgs SKIPPED
-:deobfBinJar SKIPPED
-:compileApiJava UP-TO-DATE
-:processApiResources UP-TO-DATE
-:apiClasses UP-TO-DATE
-:sourceMainJava UP-TO-DATE
-:compileJava UP-TO-DATE
-:processResources
-:classes
-:jar
-:compileTestJava UP-TO-DATE
-:processTestResources UP-TO-DATE
-:testClasses UP-TO-DATE
-:test UP-TO-DATE
-:reobf
-:assemble
-:check UP-TO-DATE
-:build
+:eclipseClasspath
+:eclipseJdt
+:eclipseProject
+:eclipse
 
 BUILD SUCCESSFUL
 
-Total time: 40.356 secs
+Total time: 35.126 secs

@@ -4,11 +4,6 @@
 // Keep in mind that you still need to fill in some blanks
 // - ZeuX
 
-
-
-
-
-
 package gmail.Lance5057.blocks;
 
 import net.minecraft.client.model.ModelBase;
@@ -35,24 +30,28 @@ public class ModelCrestMount extends ModelBase
       ShieldMount.setTextureSize(32, 32);
       ShieldMount.mirror = true;
       setRotation(ShieldMount, 0F, 0F, 0F);
+      
       Base = new ModelRenderer(this, 0, 6);
       Base.addBox(0F, 0F, 0F, 4, 4, 4);
       Base.setRotationPoint(-2F, 20F, -2F);
       Base.setTextureSize(32, 32);
       Base.mirror = true;
       setRotation(Base, 0F, 0F, 0F);
+      
       SwordMount1 = new ModelRenderer(this, 0, 0);
       SwordMount1.addBox(-5F, 0F, -2F, 10, 2, 4);
       SwordMount1.setRotationPoint(0F, 22F, 0F);
       SwordMount1.setTextureSize(32, 32);
       SwordMount1.mirror = true;
       setRotation(SwordMount1, 0F, 0.7853982F, 0F);
+      
       SwordMount2 = new ModelRenderer(this, 0, 0);
       SwordMount2.addBox(-5F, 0F, -2F, 10, 2, 4);
       SwordMount2.setRotationPoint(0F, 22F, 0F);
       SwordMount2.setTextureSize(32, 32);
       SwordMount2.mirror = true;
       setRotation(SwordMount2, 0F, -0.7853982F, 0F);
+      
       SwordMount3 = new ModelRenderer(this, 0, 0);
       SwordMount3.addBox(-5F, 0F, -2F, 10, 2, 4);
       SwordMount3.setRotationPoint(0F, 21.9F, 0F);
