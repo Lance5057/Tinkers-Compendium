@@ -11,15 +11,15 @@ import gmail.Lance5057.blocks.TileEntity_CrestMount;
 import gmail.Lance5057.items.AeonSteelIngot;
 import gmail.Lance5057.items.DogbeariumIngot;
 import gmail.Lance5057.items.QueensGoldIngot;
-import gmail.Lance5057.items.TinkerArmor;
 import gmail.Lance5057.proxy.CommonProxy;
+import gmail.Lance5057.proxy.Handler_CrestMount;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
@@ -34,18 +34,26 @@ import tconstruct.smeltery.TinkerSmeltery;
 import tconstruct.tools.TinkerTools;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
+import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.common.registry.GameRegistry;
-import net.minecraftforge.common.config.*;
 
 @Mod(modid="tinkersdefense", version="1.0")
 public class mod_TinkersDefense
 {
 public static String MODID = "tinkersdefense";
 public static String VERSION = "1.0";
+
+private static int modGuiIndex = 0;
+public static final int GUI_ITEM_INV = modGuiIndex++;
+
+@Instance("tinkersdefense")
+public static mod_TinkersDefense instance = new mod_TinkersDefense();
 
 public static CreativeTabs tabName = new CreativeTabs("tabName")
 {
@@ -54,6 +62,8 @@ public Item getTabIconItem()
 return Items.arrow;
 }
 };
+
+public static SimpleNetworkWrapper network;
 
 public static Item item_AeonSteelIngot;
 public static Block block_AeonSteelBlock;
@@ -83,9 +93,16 @@ public static Item item_TinkerArmor;
 @SidedProxy(clientSide = "gmail.Lance5057.proxy.ClientProxy", serverSide = "gmail.Lance5057.proxy.CommonProxy")
 public static CommonProxy proxy;
 
+
+
+
 @EventHandler
 public void preInit(FMLPreInitializationEvent e)
 {
+	//Network
+	network = NetworkRegistry.INSTANCE.newSimpleChannel("tDefense");
+	Handler_CrestMount.INSTANCE.ordinal();
+	
 	//Renderers
 	proxy.registerRenderers();
 	
@@ -192,11 +209,19 @@ public void preInit(FMLPreInitializationEvent e)
       		.setBlockName("CrestMount")
       		.setCreativeTab(tabName);	
     
-    GameRegistry.registerTileEntity(TileEntity_CrestMount.class, "Tile_CrestMount");
-    GameRegistry.registerBlock(block_CrestMount, "Block_CrestMount");
+    
     
     //item_TinkerArmor = new TinkerArmor(ArmorMaterial.IRON, 4, 1).setUnlocalizedName("Tinker_Armor");
     //GameRegistry.registerItem(item_TinkerArmor,"Tinker Armor");
+}
+
+@EventHandler
+public void load(FMLInitializationEvent evt)
+{
+	GameRegistry.registerTileEntity(TileEntity_CrestMount.class, "Tile_CrestMount");
+    GameRegistry.registerBlock(block_CrestMount, "Block_CrestMount");
+    NetworkRegistry.INSTANCE.registerGuiHandler(mod_TinkersDefense.instance, new CommonProxy());
+    MinecraftForge.EVENT_BUS.register(this);
 }
 
 @EventHandler
@@ -267,6 +292,7 @@ public void init(FMLInitializationEvent e)
 	    TConstructRegistry.addToolRecipe(tool_roundShield, TinkerTools.largePlate, TinkerTools.toolRod, TinkerTools.frypanHead);
 
 	    TConstructRegistry.addToolRecipe(tool_heaterShield, TinkerTools.largePlate, TinkerTools.toughRod, TinkerTools.largePlate, TinkerTools.toughBinding);
+	    
 }
 
 @EventHandler

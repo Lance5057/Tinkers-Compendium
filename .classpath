@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src/main/java"/>
-	<classpathentry excluding="assets/tinker/textures/blocks/" kind="src" path="src/main/resources"/>
+	<classpathentry kind="src" path="src/main/resources"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="src/api/java"/>
 	<classpathentry exported="true" kind="lib" path="C:/Users/T/.gradle/caches/minecraft/net/minecraftforge/forge/1.7.10-10.13.2.1277/forgeSrc-1.7.10-10.13.2.1277.jar" sourcepath="C:/Users/T/.gradle/caches/minecraft/net/minecraftforge/forge/1.7.10-10.13.2.1277/forgeSrc-1.7.10-10.13.2.1277-sources.jar"/>
@@ -65,8 +65,7 @@
 	<classpathentry exported="true" kind="lib" path="C:/Users/T/Desktop/Minecraft Modding/1.7.10/Tinkers-Defense/libs/1.7.10-Battlegear-Bin-1.0.6.3.jar"/>
 	<classpathentry exported="true" kind="lib" path="C:/Users/T/Desktop/Minecraft Modding/1.7.10/Tinkers-Defense/libs/Mantle-1.7.10-0.3.2.DEV.GITBORK-deobf.jar"/>
 	<classpathentry exported="true" kind="lib" path="C:/Users/T/Desktop/Minecraft Modding/1.7.10/Tinkers-Defense/libs/TConstruct-1.7.10-1.8.2.DEV.GITBORK-deobf.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/T/Desktop/Minecraft Modding/1.7.10/Tinkers-Defense/libs/TConstruct-1.7.10-1.8.2.DEV.GITBORK-lib.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/T/Desktop/Minecraft Modding/1.7.10/Tinkers-Defense/libs/TConstruct-1.7.10-1.8.2.DEV.GITBORK-sources.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/T/Desktop/Minecraft Modding/1.7.10/Tinkers-Defense/libs/TConstruct-1.7.10-1.8.2.DEV.GITBORK-lib.jar" sourcepath="libs/TConstruct-1.7.10-1.8.2.DEV.GITBORK-sources.jar"/>
 	<classpathentry exported="true" kind="lib" path="C:/Users/T/.gradle/caches/minecraft/net/minecraftforge/forge/1.7.10-10.13.2.1277/start"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

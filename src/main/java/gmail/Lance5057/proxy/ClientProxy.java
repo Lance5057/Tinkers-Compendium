@@ -2,10 +2,10 @@ package gmail.Lance5057.proxy;
 
 import gmail.Lance5057.blocks.Renderer_CrestMount;
 import gmail.Lance5057.blocks.TileEntity_CrestMount;
-import gmail.Lance5057.proxy.CommonProxy;
 import gmail.Lance5057.items.ModelTinkerArmor;
-import gmail.Lance5057.items.TinkerArmor;
 import net.minecraft.client.model.ModelBiped;
+import net.minecraft.world.World;
+import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.client.registry.ClientRegistry;
 
 
@@ -16,6 +16,11 @@ public class ClientProxy extends CommonProxy {
         public void registerRenderers() {
                 // This is for rendering entities and so forth later on
         	ClientRegistry.bindTileEntitySpecialRenderer(TileEntity_CrestMount.class, new Renderer_CrestMount());
+        }
+        @Override
+        public World getClientWorld()
+        {
+        return FMLClientHandler.instance().getClient().theWorld;
         }
         
         public void registerTileEntitySpecialRenderer()
