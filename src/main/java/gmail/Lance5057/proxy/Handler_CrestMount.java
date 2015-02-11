@@ -19,11 +19,6 @@ import cpw.mods.fml.common.network.internal.FMLProxyPacket;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-/**
-* Handles the packet wrangling for CrestMount
-* @author cpw
-*
-*/
 public enum Handler_CrestMount {
 INSTANCE;
 /**
@@ -58,10 +53,10 @@ protected void channelRead0(ChannelHandlerContext ctx, Message_CrestMount msg) t
 {
 	World world = mod_TinkersDefense.proxy.getClientWorld();
 	TileEntity te = world.getTileEntity(msg.x, msg.y, msg.z);
-//	if (te instanceof TileEntity_CrestMount)
-//		{
-//			((TileEntity_CrestMount) te).handlePacketData(msg.type, msg.items);
-//		}
+	if (te instanceof TileEntity_CrestMount)
+		{
+			((TileEntity_CrestMount) te).handlePacketData(msg.items);
+		}
 	}
 }
 /**

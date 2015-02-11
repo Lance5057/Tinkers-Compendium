@@ -1,21 +1,21 @@
 package gmail.Lance5057.blocks;
 
+import gmail.Lance5057.com.mod_TinkersDefense;
+import gmail.Lance5057.gui.Container_CrestMount;
+import gmail.Lance5057.proxy.Handler_CrestMount;
+
 import java.util.Iterator;
 import java.util.List;
 
-import gmail.Lance5057.com.mod_TinkersDefense;
-import gmail.Lance5057.proxy.Handler_CrestMount;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.ContainerChest;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.InventoryLargeChest;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.Packet;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.world.World;
 
 public class TileEntity_CrestMount extends TileEntity implements IInventory{
 
@@ -24,6 +24,12 @@ public class TileEntity_CrestMount extends TileEntity implements IInventory{
 	private int facing;
 	private int numUsingPlayers;
 	private int ticksSinceSync;
+	private boolean inventoryTouched;
+	
+	public TileEntity_CrestMount()
+	{
+		super();
+	}
 	
 	@Override
 	public int getSizeInventory() {
@@ -33,6 +39,12 @@ public class TileEntity_CrestMount extends TileEntity implements IInventory{
 	@Override
 	public ItemStack getStackInSlot(int slot) {
 		return inventory[slot];
+	}
+	
+	@Override
+	public void markDirty()
+	{
+		super.markDirty();
 	}
 
 	@Override
@@ -92,7 +104,15 @@ public class TileEntity_CrestMount extends TileEntity implements IInventory{
 
 	@Override
 	public boolean isUseableByPlayer(EntityPlayer player) {
-		return true;
+		 if (worldObj == null)
+		 {
+		 return true;
+		 }
+		 if (worldObj.getTileEntity(xCoord, yCoord, zCoord) != this)
+		 {
+		 return false;
+		 }
+		 return player.getDistanceSq((double) xCoord + 0.5D, (double) yCoord + 0.5D, (double) zCoord + 0.5D) <= 64D;
 	}
 
 	@Override
@@ -126,33 +146,35 @@ public class TileEntity_CrestMount extends TileEntity implements IInventory{
 	@Override
 	   public void updateEntity()
 	    {
-	        super.updateEntity();
-	        ++this.ticksSinceSync;
-	        float f;
-
-	        if (!this.worldObj.isRemote && this.numUsingPlayers != 0 && (this.ticksSinceSync + this.xCoord + this.yCoord + this.zCoord) % 200 == 0)
-	        {
-	            this.numUsingPlayers = 0;
-	            f = 5.0F;
-	            List list = this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, AxisAlignedBB.getBoundingBox((double)((float)this.xCoord - f), (double)((float)this.yCoord - f), (double)((float)this.zCoord - f), (double)((float)(this.xCoord + 1) + f), (double)((float)(this.yCoord + 1) + f), (double)((float)(this.zCoord + 1) + f)));
-	            Iterator iterator = list.iterator();
-
-	            while (iterator.hasNext())
-	            {
-	                EntityPlayer entityplayer = (EntityPlayer)iterator.next();
-
-	                if (entityplayer.openContainer instanceof ContainerChest)
-	                {
-	                    IInventory iinventory = ((ContainerChest)entityplayer.openContainer).getLowerChestInventory();
-
-	                    if (iinventory == this || iinventory instanceof InventoryLargeChest && ((InventoryLargeChest)iinventory).isPartOfLargeChest(this))
-	                    {
-	                        ++this.numUsingPlayers;
-	                    }
-	                }
-	            }
-	        }
-	    }
+		super.updateEntity();
+		// Resynchronize clients with the server state
+		if (worldObj != null && !this.worldObj.isRemote && this.numUsingPlayers != 0 && (this.ticksSinceSync + this.xCoord + this.yCoord + this.zCoord) % 200 == 0)
+		{
+		this.numUsingPlayers = 0;
+		float var1 = 5.0F;
+		@SuppressWarnings("unchecked")
+		List<EntityPlayer> var2 = this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, AxisAlignedBB.getBoundingBox((double)((float)this.xCoord - var1), (double)((float)this.yCoord - var1), (double)((float)this.zCoord - var1), (double)((float)(this.xCoord + 1) + var1), (double)((float)(this.yCoord + 1) + var1), (double)((float)(this.zCoord + 1) + var1)));
+		Iterator<EntityPlayer> var3 = var2.iterator();
+		while (var3.hasNext())
+		{
+		EntityPlayer var4 = var3.next();
+		if (var4.openContainer instanceof Container_CrestMount)
+		{
+		++this.numUsingPlayers;
+		}
+		}
+		}
+		if (worldObj != null && !worldObj.isRemote && ticksSinceSync < 0)
+		{
+		worldObj.addBlockEvent(xCoord, yCoord, zCoord, mod_TinkersDefense.block_CrestMount, 3, ((numUsingPlayers << 3) & 0xF8));
+		}
+		if (!worldObj.isRemote && inventoryTouched)
+		{
+		inventoryTouched = false;
+		}
+		this.ticksSinceSync++;
+		
+		}
 	
 	@Override
 	public boolean isItemValidForSlot(int p_94041_1_, ItemStack itemstack) {
@@ -174,6 +196,29 @@ public class TileEntity_CrestMount extends TileEntity implements IInventory{
 	{
 		return Handler_CrestMount.getPacket(this);
 	}
+	
+	 public void handlePacketData(int[] intData)
+	 {
+	 TileEntity_CrestMount te = this;
+	 if (intData != null)
+	 {
+	 int pos = 0;
+	 for (int i = 0; i < te.inventory.length; i++)
+	 {
+	 if (intData[pos + 2] != 0)
+	 {
+	 Item it = Item.getItemById(intData[pos]);
+	 ItemStack is = new ItemStack(it, intData[pos], intData[pos]);
+	 te.inventory[i] = is;
+	 }
+	 else
+	 {
+	 te.inventory[i] = null;
+	 }
+	 pos += 3;
+	 }
+	 }
+	 }
 	
 	 public void readFromNBT(NBTTagCompound p_145839_1_)
 	    {
