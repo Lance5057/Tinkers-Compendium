@@ -1,10 +1,8 @@
 package gmail.Lance5057.proxy;
 
 import gmail.Lance5057.blocks.Renderer_CrestMount;
-import gmail.Lance5057.blocks.TileEntity_CrestMount;
-import gmail.Lance5057.gui.Container_CrestMount;
-import gmail.Lance5057.gui.Gui_CrestMount;
 import gmail.Lance5057.items.ModelTinkerArmor;
+import gmail.Lance5057.tileentities.TileEntity_CrestMount;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
@@ -48,7 +46,8 @@ public class ClientProxy extends CommonProxy {
         TileEntity te = world.getTileEntity(x, y, z);
         if (te != null && te instanceof TileEntity_CrestMount)
         {
-			return new Gui_CrestMount((Container_CrestMount) new Container_CrestMount(player.inventory, new TileEntity_CrestMount()));
+        	return null;
+			//return new Gui_CrestMount((Container_CrestMount) new Container_CrestMount(player.inventory, new TileEntity_CrestMount()));
         }
         else
         {

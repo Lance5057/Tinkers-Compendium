@@ -7,12 +7,11 @@ import gmail.Lance5057.blocks.AeonSteelBlock;
 import gmail.Lance5057.blocks.CrestMount;
 import gmail.Lance5057.blocks.DogbeariumBlock;
 import gmail.Lance5057.blocks.QueensGoldBlock;
-import gmail.Lance5057.blocks.TileEntity_CrestMount;
 import gmail.Lance5057.items.AeonSteelIngot;
 import gmail.Lance5057.items.DogbeariumIngot;
 import gmail.Lance5057.items.QueensGoldIngot;
 import gmail.Lance5057.proxy.CommonProxy;
-import gmail.Lance5057.proxy.Handler_CrestMount;
+import gmail.Lance5057.tileentities.TileEntity_CrestMount;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
@@ -101,7 +100,7 @@ public void preInit(FMLPreInitializationEvent e)
 {
 	//Network
 	network = NetworkRegistry.INSTANCE.newSimpleChannel("tDefense");
-	Handler_CrestMount.INSTANCE.ordinal();
+	//Handler_CrestMount.INSTANCE.ordinal();
 	
 	//Renderers
 	proxy.registerRenderers();
