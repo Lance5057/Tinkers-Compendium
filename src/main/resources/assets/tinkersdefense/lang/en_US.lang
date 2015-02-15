@@ -18,3 +18,6 @@ material.dogbearium.ability=Serrated
 tool.roundshield=Round Shield
 tool.heatershield=Heater Shield
 
+fluid.moltenAeonsteel.name=Molten Aeon Steel
+fluid.moltenQueensGold.name=Molten Queen's Gold
+fluid.moltenDogbearium.name=Molten Dogbearium

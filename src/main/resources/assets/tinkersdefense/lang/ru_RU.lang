@@ -18,6 +18,10 @@ material.dogbearium.ability=Зазубренность
 tool.roundshield=круглый щит
 tool.heatershield=рыцарский щит
 
+fluid.moltenAeonsteel.name=Расплавленная сталь вечности
+fluid.moltenQueensGold.name=Расплавленное золото королевы
+fluid.moltenDogbearium.name=Расплавленный догберий
+
 # Custom Stuff
 material.dogbearium.display=Догбериевая
 toolpart.material.dogbearium=Догбериевый
