@@ -10,7 +10,7 @@ import net.minecraft.tileentity.TileEntity;
 public class TileEntity_CrestMount extends TileEntity implements IInventory
 {
 	public static int invSize = 4;
-	private ItemStack[] inventory = new ItemStack[invSize];
+	public ItemStack[] inventory = new ItemStack[invSize];
 	
 	
 	private final String name = "Crest Inventory";
@@ -145,5 +145,4 @@ public class TileEntity_CrestMount extends TileEntity implements IInventory
 				}
 			}
 		}
-
 }
