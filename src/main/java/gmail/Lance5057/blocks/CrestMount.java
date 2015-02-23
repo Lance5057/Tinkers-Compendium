@@ -45,7 +45,7 @@ public class CrestMount extends BlockContainer {
                     return false;
             }
     //code to open gui explained later
-    player.openGui(mod_TinkersDefense.instance, mod_TinkersDefense.GUI_ITEM_INV, world, x, y, z);
+    player.openGui(mod_TinkersDefense.instance, mod_TinkersDefense.GUI_ITEM_INV, player.worldObj, x, y, z);
             return true;
     }
     
