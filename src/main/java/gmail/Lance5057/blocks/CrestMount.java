@@ -23,8 +23,6 @@ import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.world.World;
 
 public class CrestMount extends BlockContainer {
-	 //Treat it like a normal block here. The Block Bounds are a good idea - the first three are X Y and Z of the botton-left corner,
-    //And the second three are the top-right corner.
     public CrestMount() {
             super(Material.iron);
             this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
