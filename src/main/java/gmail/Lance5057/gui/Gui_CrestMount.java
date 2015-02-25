@@ -11,6 +11,7 @@ import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
@@ -30,10 +31,10 @@ private static final ResourceLocation iconLocation = new ResourceLocation("TileE
 /** The inventory to render on screen */
 private final TileEntity_CrestMount inventory;
 
-public Gui_CrestMount(Container_CrestMount Container_CrestMount)
+public Gui_CrestMount(InventoryPlayer invPlayer, TileEntity_CrestMount te_crest)
 {
-super(Container_CrestMount);
-this.inventory = Container_CrestMount.inventory;
+super(new Container_CrestMount(invPlayer, te_crest));
+this.inventory = te_crest;
 }
 
 /**

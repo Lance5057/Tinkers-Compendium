@@ -6,6 +6,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.common.util.Constants;
 
 public class TileEntity_CrestMount extends TileEntity implements IInventory
 {
@@ -55,7 +56,7 @@ public class TileEntity_CrestMount extends TileEntity implements IInventory
 		
 		if (stack != null)
 		{
-			setInventorySlotContents(slot, null);
+			setInventorySlotContents(slot, stack);
 		}
 		return stack;
 	}
@@ -111,35 +112,39 @@ public class TileEntity_CrestMount extends TileEntity implements IInventory
 	public void writeToNBT(NBTTagCompound compound)
 	{
 		super.writeToNBT(compound);
-		NBTTagList items = new NBTTagList();
-
-		for (int i = 0; i < getSizeInventory(); ++i)
-		{
-			if (getStackInSlot(i) != null)
-			{
-				NBTTagCompound item = new NBTTagCompound();
-				item.setByte("Slot", (byte) i);
-				getStackInSlot(i).writeToNBT(item);
-				items.appendTag(item);
-			}
-		}
-		compound.setTag("Items", items);
+		writeInventoryToNBT(compound);
 	}
 	
 	@Override
 	 public void readFromNBT(NBTTagCompound compound) 
 	 {
 		super.readFromNBT(compound);
-			NBTTagList items = compound.getTagList("Items", compound.getId());
-			for (int i = 0; i < items.tagCount(); ++i) 
-			{
-				NBTTagCompound item = items.getCompoundTagAt(i);
-				byte slot = item.getByte("Slot");
-				
-				if (slot >= 0 && slot < getSizeInventory()) 
-				{
-					inventory[slot] = ItemStack.loadItemStackFromNBT(item);
-				}
+			readInventoryFromNBT(compound);
+		}
+	
+	public void readInventoryFromNBT(NBTTagCompound tags) {
+		NBTTagList nbttaglist = tags.getTagList("Items", Constants.NBT.TAG_COMPOUND);
+		for (int iter = 0; iter < nbttaglist.tagCount(); iter++) {
+			NBTTagCompound tagList = (NBTTagCompound) nbttaglist.getCompoundTagAt(iter);
+			byte slotID = tagList.getByte("Slot");
+			if (slotID >= 0 && slotID < inventory.length) {
+				inventory[slotID] = ItemStack.loadItemStackFromNBT(tagList);
 			}
 		}
+	}
+
+
+public void writeInventoryToNBT(NBTTagCompound tags) {
+		NBTTagList nbttaglist = new NBTTagList();
+		for (int iter = 0; iter < inventory.length; iter++) {
+			if (inventory[iter] != null) {
+				NBTTagCompound tagList = new NBTTagCompound();
+				tagList.setByte("Slot", (byte) iter);
+				inventory[iter].writeToNBT(tagList);
+				nbttaglist.appendTag(tagList);
+			}
+		}
+
+		tags.setTag("Items", nbttaglist);
+	}
 }

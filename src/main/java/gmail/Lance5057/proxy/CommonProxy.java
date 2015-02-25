@@ -43,7 +43,7 @@ public class CommonProxy implements IGuiHandler {
 			if (ID == mod_TinkersDefense.GUI_ITEM_INV)
 			{
 			// Use the player's held item to create the inventory
-				return new Container_CrestMount(player, player.inventory, new TileEntity_CrestMount());
+				return new Container_CrestMount(player.inventory, (TileEntity_CrestMount)world.getTileEntity(x, y, z));
 			}
 			return null;
 		}
@@ -55,8 +55,8 @@ public class CommonProxy implements IGuiHandler {
 			if (ID == mod_TinkersDefense.GUI_ITEM_INV)
 			{
 			// We have to cast the new container as our custom class
-			// and pass in currently held item for the inventory
-	        	return new Gui_CrestMount((Container_CrestMount) new Container_CrestMount(player, player.inventory, new TileEntity_CrestMount()));
+
+				return new Gui_CrestMount(player.inventory, (TileEntity_CrestMount)world.getTileEntity(x, y, z));
 			}
 			return null;
 		}

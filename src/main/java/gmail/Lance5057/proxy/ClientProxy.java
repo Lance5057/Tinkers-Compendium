@@ -35,10 +35,4 @@ public class ClientProxy extends CommonProxy
 	        } 
         		return tutChest; //default, if whenever you should have passed on a wrong id
         } 
-        
-        @Override
-        public EntityPlayer getPlayerEntity(MessageContext ctx) 
-        {
-        	return (ctx.side.isClient() ? Minecraft.getMinecraft().thePlayer : super.getPlayerEntity(ctx));
-        }
 }
