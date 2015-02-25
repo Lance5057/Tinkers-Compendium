@@ -8,6 +8,7 @@ import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import cpw.mods.fml.common.network.IGuiHandler;
+import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 
 public class CommonProxy implements IGuiHandler {
 
@@ -20,6 +21,10 @@ public class CommonProxy implements IGuiHandler {
         {
         	
         }
+        
+        public EntityPlayer getPlayerEntity(MessageContext ctx) {
+        	return ctx.getServerHandler().playerEntity;
+        	}
         
         public ModelBiped getArmorModel(int id)
         { 

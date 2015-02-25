@@ -4,7 +4,7 @@
 	<classpathentry kind="src" path="src/main/resources"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="src/api/java"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/T/.gradle/caches/minecraft/net/minecraftforge/forge/1.7.10-10.13.2.1277/forgeSrc-1.7.10-10.13.2.1277.jar" sourcepath="C:/Users/T/.gradle/caches/minecraft/net/minecraftforge/forge/1.7.10-10.13.2.1277/forgeSrc-1.7.10-10.13.2.1277-sources.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/T/.gradle/caches/minecraft/net/minecraftforge/forge/1.7.10-10.13.2.1291/forgeSrc-1.7.10-10.13.2.1291.jar" sourcepath="C:/Users/T/.gradle/caches/minecraft/net/minecraftforge/forge/1.7.10-10.13.2.1291/forgeSrc-1.7.10-10.13.2.1291-sources.jar"/>
 	<classpathentry exported="true" kind="lib" path="C:/Users/T/.gradle/caches/modules-2/files-2.1/net.minecraft/launchwrapper/1.11/9c0592c6e1e9ea296a70948081bd4cc84dda1289/launchwrapper-1.11.jar" sourcepath="C:/Users/T/.gradle/caches/modules-2/files-2.1/net.minecraft/launchwrapper/1.11/ea64c0bce5e9f465cd56566530133331568d2157/launchwrapper-1.11-sources.jar"/>
 	<classpathentry exported="true" kind="lib" path="C:/Users/T/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/1.3.9/40719ea6961c0cb6afaeb6a921eaa1f6afd4cfdf/jsr305-1.3.9.jar"/>
 	<classpathentry exported="true" kind="lib" path="C:/Users/T/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm-debug-all/5.0.3/f9e364ae2a66ce2a543012a4668856e84e5dab74/asm-debug-all-5.0.3.jar" sourcepath="C:/Users/T/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm-debug-all/5.0.3/f0f24f6666c1a15c7e202e91610476bd4ce59368/asm-debug-all-5.0.3-sources.jar"/>
@@ -62,10 +62,11 @@
 	<classpathentry exported="true" kind="lib" path="C:/Users/T/.gradle/caches/modules-2/files-2.1/org.lwjgl.lwjgl/lwjgl-platform/2.9.1/2d12c83fdfbc04ecabf02c7bc8cc54d034f0daac/lwjgl-platform-2.9.1-natives-osx.jar"/>
 	<classpathentry exported="true" kind="lib" path="C:/Users/T/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/17.0/9c6ef172e8de35fd8d4d8783e4821e57cdef7445/guava-17.0.jar" sourcepath="C:/Users/T/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/17.0/7ca0efbeb87ca845b5d7a0ac9c21a4b7b95f7b28/guava-17.0-sources.jar"/>
 	<classpathentry exported="true" kind="lib" path="C:/Users/T/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-lang3/3.3.2/90a3822c38ec8c996e84c16a3477ef632cbc87a3/commons-lang3-3.3.2.jar" sourcepath="C:/Users/T/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-lang3/3.3.2/d2a489573c0ed2c4942b3660decad5d65087b406/commons-lang3-3.3.2-sources.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/T/Desktop/Minecraft Modding/1.7.10/Tinkers-Defense/libs/1.7.10-Battlegear-Bin-1.0.6.3.jar"/>
 	<classpathentry exported="true" kind="lib" path="C:/Users/T/Desktop/Minecraft Modding/1.7.10/Tinkers-Defense/libs/Mantle-1.7.10-0.3.2.DEV.GITBORK-deobf.jar"/>
 	<classpathentry exported="true" kind="lib" path="C:/Users/T/Desktop/Minecraft Modding/1.7.10/Tinkers-Defense/libs/TConstruct-1.7.10-1.8.2.DEV.GITBORK-deobf.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/T/Desktop/Minecraft Modding/1.7.10/Tinkers-Defense/libs/TConstruct-1.7.10-1.8.2.DEV.GITBORK-lib.jar" sourcepath="libs/TConstruct-1.7.10-1.8.2.DEV.GITBORK-sources.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/T/.gradle/caches/minecraft/net/minecraftforge/forge/1.7.10-10.13.2.1277/start"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/T/Desktop/Minecraft Modding/1.7.10/Tinkers-Defense/libs/TConstruct-1.7.10-1.8.2.DEV.GITBORK-lib.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/T/Desktop/Minecraft Modding/1.7.10/Tinkers-Defense/libs/TConstruct-1.7.10-1.8.2.DEV.GITBORK-sources.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/T/.gradle/caches/minecraft/net/minecraftforge/forge/1.7.10-10.13.2.1291/start"/>
+	<classpathentry kind="lib" path="libs/1.7.10-Battlegear-Bin-1.0.6.3.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

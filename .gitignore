@@ -63,3 +63,4 @@ $RECYCLE.BIN/
 /bin/*
 /.gradle/*
 /.settings/*
+/bin/

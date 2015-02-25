@@ -212,6 +212,9 @@ public void preInit(FMLPreInitializationEvent e)
     
     //item_TinkerArmor = new TinkerArmor(ArmorMaterial.IRON, 4, 1).setUnlocalizedName("Tinker_Armor");
     //GameRegistry.registerItem(item_TinkerArmor,"Tinker Armor");
+    
+    
+//network.registerMessage(messageHandler, requestMessageType, discriminator, side);
 }
 
 @EventHandler
@@ -228,11 +231,14 @@ public void init(FMLInitializationEvent e)
 {
 	System.out.print(MODID);
 	 PatternBuilder pb = PatternBuilder.instance;
+	 
+	 //Aeonsteel
 	    pb.registerMaterialSet("AeonSteel", new ItemStack(TinkerTools.toolShard, 1, 10), new ItemStack(TinkerTools.toolRod, 1, 10), 10);
-	 // Tool Materials: id, name, harvestlevel, durability, speed, damage, handlemodifier, reinforced, shoddy, style color, primary color for block use
-	   //Aeonsteel
+	 
 	    TConstructClientRegistry.addMaterialRenderMapping(201, "tinker", "aeonsteel", true);
-	    TConstructRegistry.addToolMaterial(201, "AeonSteel", 4, 822, 1100, 3, 1.6F, 2, 0f, LIGHT_PURPLE.toString(), 0xb565e6);
+	    
+	 // Tool Materials: id, name, harvestlevel, durability, speed, damage, handlemodifier, reinforced, shoddy, style color, primary color for block use
+		TConstructRegistry.addToolMaterial(201, "AeonSteel", 4, 822, 1100, 3, 1.6F, 2, 0f, LIGHT_PURPLE.toString(), 0xb565e6);
 	    TinkerTools.registerPatternMaterial("AeonSteelIngot", 2, "AeonSteel");
 	    TConstructRegistry.addDefaultToolPartMaterial(201);	    
 

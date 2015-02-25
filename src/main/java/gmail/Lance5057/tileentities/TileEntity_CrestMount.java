@@ -14,7 +14,6 @@ public class TileEntity_CrestMount extends TileEntity implements IInventory
 	
 	
 	private final String name = "Crest Inventory";
-	private final String tagName = "Crest InvTag";
 	
 	@Override
 	public int getSizeInventory() {
@@ -108,9 +107,10 @@ public class TileEntity_CrestMount extends TileEntity implements IInventory
 		return true;
 	}
 	
-
+	@Override
 	public void writeToNBT(NBTTagCompound compound)
 	{
+		super.writeToNBT(compound);
 		NBTTagList items = new NBTTagList();
 
 		for (int i = 0; i < getSizeInventory(); ++i)
@@ -123,19 +123,16 @@ public class TileEntity_CrestMount extends TileEntity implements IInventory
 				items.appendTag(item);
 			}
 		}
-
-		// We're storing our items in a custom tag list using our 'tagName' from above
-		// to prevent potential conflicts
-		compound.setTag(tagName, items);
+		compound.setTag("Items", items);
 	}
 	
+	@Override
 	 public void readFromNBT(NBTTagCompound compound) 
 	 {
-			// now you must include the NBTBase type ID when getting the list; NBTTagCompound's ID is 10
-			NBTTagList items = compound.getTagList(tagName, compound.getId());
+		super.readFromNBT(compound);
+			NBTTagList items = compound.getTagList("Items", compound.getId());
 			for (int i = 0; i < items.tagCount(); ++i) 
 			{
-				// tagAt(int) has changed to getCompoundTagAt(int)
 				NBTTagCompound item = items.getCompoundTagAt(i);
 				byte slot = item.getByte("Slot");
 				

@@ -1,57 +1,43 @@
 package gmail.Lance5057.network;
 
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import gmail.Lance5057.com.mod_TinkersDefense;
 import gmail.Lance5057.tileentities.TileEntity_CrestMount;
 import io.netty.buffer.ByteBuf;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
+import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
+import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 
 public class Message_CrestMount implements IMessage
-{
-	public int x,y,z;
-	public int[] inv;
+{	
+	private int id;
 	
 	Message_CrestMount() {}
 	
-	Message_CrestMount(TileEntity_CrestMount te)
+	Message_CrestMount(int id)
 	{
-		this.x = te.xCoord;
-		this.y = te.yCoord;
-		this.z = te.zCoord;
-		
-		inv = new int[te.invSize*3];
-		for(int i = 0; i<te.invSize; i+=3)
-		{
-			if(te.inventory[i]!=null)
-			{
-				inv[i] = Item.getIdFromItem(te.inventory[i].getItem());
-				inv[i+1] = te.inventory[i].getItemDamage();
-				inv[i+2] = te.inventory[i].stackSize;
-			}
-		}
+		this.id = id;
 	}
 
 	@Override
 	public void fromBytes(ByteBuf buf) {
-		x = buf.readInt();
-		y = buf.readInt();
-		z = buf.readInt();
-		
-		for(int i = 0; i<inv.length; i++)
-		{
-			inv[i] = buf.readInt();
-		}
+		id = buf.readInt();
 	}
 
 	@Override
 	public void toBytes(ByteBuf buf) {
-		buf.writeInt(x);
-		buf.writeInt(y);
-		buf.writeInt(z);
-		
-		for(int i = 0; i<inv.length; i++)
-		{
-			buf.writeInt(inv[i]);
-		}
+		buf.writeInt(id);
 	}
-
+	
+	public static class Handler implements IMessageHandler<Message_CrestMount, IMessage> 
+	{
+	@Override
+	public IMessage onMessage(Message_CrestMount message, MessageContext ctx)
+	{
+		EntityPlayer player = mod_TinkersDefense.proxy.getPlayerEntity(ctx);
+		player.openGui(mod_TinkersDefense.instance, message.id, player.worldObj, (int) player.posX, (int) player.posY, (int) player.posZ);
+		return null;
+	}
+}
 }

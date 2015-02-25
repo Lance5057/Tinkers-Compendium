@@ -19,31 +19,12 @@ public class Container_CrestMount extends Container
 	this.inventory = TileEntity_CrestMount;
 
 	int i;
-
-	// ITEM INVENTORY - you'll need to adjust the slot locations to match your texture file
-	// I have them set vertically in columns of 4 to the right of the player model
+	
 	for (i = 0; i < TileEntity_CrestMount.invSize; ++i)
 	{
-	// You can make a custom Slot if you need different behavior,
-	// such as only certain item types can be put into this slot
-	// We made a custom slot to prevent our inventory-storing item
-	// from being stored within itself, but if you want to allow that and
-	// you followed my advice at the end of the above step, then you
-	// could get away with using the vanilla Slot class
 	this.addSlotToContainer(new Slot(this.inventory, i, 80 + (18 * (int)(i/4)), 8 + (18*(i%4))));
 	}
 
-	// If you want, you can add ARMOR SLOTS here as well, but you need to
-	// make a public version of SlotArmor. I won't be doing that in this tutorial.
-	/*
-	for (i = 0; i < 4; ++i)
-	{
-	// These are the standard positions for survival inventory layout
-	this.addSlotToContainer(new SlotArmor(this.player, inventoryPlayer, inventoryPlayer.getSizeInventory() - 1 - i, 8, 8 + i * 18, i));
-	}
-	*/
-
-	// PLAYER INVENTORY - uses default locations for standard inventory texture file
 	for (i = 0; i < 3; ++i)
 	{
 	for (int j = 0; j < 9; ++j)
@@ -52,7 +33,6 @@ public class Container_CrestMount extends Container
 	}
 	}
 
-	// PLAYER ACTION BAR - uses default locations for standard action bar texture file
 	for (i = 0; i < 9; ++i)
 	{
 	this.addSlotToContainer(new Slot(inventoryPlayer, i, 8 + i * 18, 142));
@@ -61,8 +41,7 @@ public class Container_CrestMount extends Container
 	
 	@Override
 	public boolean canInteractWith(EntityPlayer player) {
-	// be sure to return the inventory's isUseableByPlayer method
-	// if you defined special behavior there:
+
 	return inventory.isUseableByPlayer(player);
 	}
 
