@@ -42,24 +42,21 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-@Mod(modid="tinkersdefense", version="1.0")
+@Mod(modid = Reference.MOD_ID, version = Reference.VERSION, name = Reference.MOD_NAME)
 public class mod_TinkersDefense
 {
-public static String MODID = "tinkersdefense";
-public static String VERSION = "1.0";
 
 private static int modGuiIndex = 0;
 public static final int GUI_ITEM_INV = modGuiIndex++;
 
-@Instance("tinkersdefense")
+@Instance(Reference.MOD_ID)
 public static mod_TinkersDefense instance = new mod_TinkersDefense();
 
 public static CreativeTabs tabName = new CreativeTabs("tabName")
 {
-public Item getTabIconItem()
-{
-return Items.arrow;
-}
+
+public Item getTabIconItem() { return Items.arrow; }
+
 };
 
 public static SimpleNetworkWrapper network;
