@@ -5,6 +5,8 @@ import gmail.Lance5057.tileentities.TileEntity_CrestMount;
 
 import javax.swing.plaf.basic.BasicComboBoxUI.KeyHandler;
 
+import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RenderHelper;
@@ -26,7 +28,7 @@ private float ySize_lo;
 
 /** ResourceLocation takes 2 parameters: ModId, path to texture at the location:
 * "src/minecraft/assets/modid/" */
-private static final ResourceLocation iconLocation = new ResourceLocation("TileEntity_CrestMountmod", "textures/gui/TileEntity_CrestMount.png");
+private static final ResourceLocation iconLocation = new ResourceLocation("tinkersdefense", "textures/gui/crest_mount.png");
 
 /** The inventory to render on screen */
 private final TileEntity_CrestMount inventory;
@@ -35,6 +37,34 @@ public Gui_CrestMount(InventoryPlayer invPlayer, TileEntity_CrestMount te_crest)
 {
 super(new Container_CrestMount(invPlayer, te_crest));
 this.inventory = te_crest;
+
+
+}
+
+@Override
+public void initGui()
+{
+	super.initGui();
+	//ScaledResolution resolution = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
+	this.buttonList.add(new GuiButton(1,this.guiLeft + 61, this.guiTop + 10, 16, 16,"Flip"));
+	this.buttonList.add(new GuiButton(2,this.guiLeft + 16, this.guiTop + 16, 16, 16,"Flip"));
+	this.buttonList.add(new GuiButton(3,this.guiLeft + 16, this.guiTop + 32, 16, 16,"Flip"));
+	this.buttonList.add(new GuiButton(4,this.guiLeft + 16, this.guiTop + 48, 16, 16,"Flip"));
+}
+
+@Override
+protected void actionPerformed(GuiButton button)
+{
+	for(int i = 1; i<5; i++)
+	{
+	 if(button.id == i)
+	 {
+		 if(inventory.flip[i-1]==false)
+			 inventory.flip[i-1]=true;
+		 else
+			 inventory.flip[i-1]=false;
+	 }
+	}
 }
 
 /**
@@ -52,9 +82,7 @@ this.ySize_lo = (float)par2;
 */
 protected void drawGuiContainerForegroundLayer(int par1, int par2)
 {
-	String s = inventory.hasCustomInventoryName() ? inventory.getInventoryName() : I18n.format(inventory.getInventoryName());
-	this.fontRendererObj.drawString(s, this.xSize / 2 - this.fontRendererObj.getStringWidth(s) / 2, 0, 4210752);
-	this.fontRendererObj.drawString(I18n.format("container.inventory"), 26, this.ySize - 96 + 4, 4210752);
+	
 }
 
 /**

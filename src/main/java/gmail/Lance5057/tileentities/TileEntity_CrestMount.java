@@ -5,16 +5,48 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.Packet;
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.Constants;
 
 public class TileEntity_CrestMount extends TileEntity implements IInventory
 {
 	public static int invSize = 4;
-	public ItemStack[] inventory = new ItemStack[invSize];
-	
+	public ItemStack[] inventory;
+	public boolean[] flip; 
 	
 	private final String name = "Crest Inventory";
+	
+	public TileEntity_CrestMount()
+	{
+		super();
+		inventory = new ItemStack[invSize];
+		flip = new boolean[4];
+	}
+	
+	@Override
+	public void updateEntity()
+	{
+		super.updateEntity();
+		if (worldObj.isRemote)
+		{
+			markDirty();
+		}
+	}
+	
+	@Override
+	public Packet getDescriptionPacket() {
+	    NBTTagCompound tag = new NBTTagCompound();
+	    writeToNBT(tag);
+	    return new S35PacketUpdateTileEntity(xCoord, yCoord, zCoord, 0, tag);
+	}
+	
+	@Override
+	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
+	    readFromNBT(pkt.func_148857_g());
+	}
 	
 	@Override
 	public int getSizeInventory() {
@@ -112,13 +144,23 @@ public class TileEntity_CrestMount extends TileEntity implements IInventory
 	public void writeToNBT(NBTTagCompound compound)
 	{
 		super.writeToNBT(compound);
-		writeInventoryToNBT(compound);
+		compound.setBoolean("flip_1", flip[0]);
+		compound.setBoolean("flip_2", flip[1]);
+		compound.setBoolean("flip_3", flip[2]);
+		compound.setBoolean("flip_4", flip[3]);
+		
+		writeInventoryToNBT(compound);	
 	}
 	
 	@Override
 	 public void readFromNBT(NBTTagCompound compound) 
 	 {
 		super.readFromNBT(compound);
+		flip[0] = compound.getBoolean("flip_1");
+		flip[1] = compound.getBoolean("flip_2");
+		flip[2] = compound.getBoolean("flip_3");
+		flip[3] = compound.getBoolean("flip_4");
+		
 			readInventoryFromNBT(compound);
 		}
 	
