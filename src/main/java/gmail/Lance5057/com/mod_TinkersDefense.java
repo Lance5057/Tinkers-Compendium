@@ -94,20 +94,29 @@ public static CommonProxy proxy;
 
 @EventHandler
 public void preInit(FMLPreInitializationEvent e)
-{
-	//Network
-	network = NetworkRegistry.INSTANCE.newSimpleChannel("tDefense");
-	//Handler_CrestMount.INSTANCE.ordinal();
+{	
 	
 	//Renderers
 	proxy.registerRenderers();
+	
+    block_CrestMount = new CrestMount()
+		.setHardness(4.0F)
+		.setStepSound(Block.soundTypeMetal)
+		.setBlockName("CrestMount")
+		.setCreativeTab(tabName);	
+	
+	GameRegistry.registerBlock(block_CrestMount, "Block_CrestMount");
+	GameRegistry.registerTileEntity(TileEntity_CrestMount.class, "Tile_CrestMount");
+    
+    NetworkRegistry.INSTANCE.registerGuiHandler(mod_TinkersDefense.instance, new CommonProxy());
+    MinecraftForge.EVENT_BUS.register(this);
 	
 	//AeonSteel
 	item_AeonSteelIngot = new AeonSteelIngot()
 		.setCreativeTab(tabName)
 		.setMaxStackSize(64)
 		.setUnlocalizedName("AeonSteelIngot")
-		.setTextureName(MODID+":AeonSteelIngot");
+		.setTextureName(Reference.MOD_ID+":AeonSteelIngot");
 	
 	GameRegistry.registerItem(item_AeonSteelIngot, "AeonSteel Ingot");
 	
@@ -116,7 +125,7 @@ public void preInit(FMLPreInitializationEvent e)
 		.setStepSound(Block.soundTypeMetal)
 		.setBlockName("AeonSteelBlock")
 		.setCreativeTab(tabName)
-		.setBlockTextureName(MODID+":AeonSteelBlock");	
+		.setBlockTextureName(Reference.MOD_ID+":AeonSteelBlock");	
 	
     GameRegistry.registerBlock(block_AeonSteelBlock, "aeonsteelblock");
     
@@ -136,7 +145,7 @@ public void preInit(FMLPreInitializationEvent e)
 		.setCreativeTab(tabName)
 		.setMaxStackSize(64)
 		.setUnlocalizedName("QueensGoldIngot")
-		.setTextureName(MODID+":QueensGoldIngot");
+		.setTextureName(Reference.MOD_ID+":QueensGoldIngot");
 	
 	GameRegistry.registerItem(item_QueensGoldIngot, "Queen's Gold Ingot");
 	
@@ -145,7 +154,7 @@ public void preInit(FMLPreInitializationEvent e)
 	.setStepSound(Block.soundTypeMetal)
 	.setBlockName("QueensGoldBlock")
 	.setCreativeTab(tabName)
-	.setBlockTextureName(MODID+":QueensGoldBlock");	
+	.setBlockTextureName(Reference.MOD_ID+":QueensGoldBlock");	
 
 	GameRegistry.registerBlock(block_QueensGoldBlock, "QueensGoldblock");
 	
@@ -166,7 +175,7 @@ public void preInit(FMLPreInitializationEvent e)
   		.setCreativeTab(tabName)
   		.setMaxStackSize(64)
   		.setUnlocalizedName("DogbeariumIngot")
-  		.setTextureName(MODID+":DogbeariumIngot");
+  		.setTextureName(Reference.MOD_ID+":DogbeariumIngot");
   	
   	GameRegistry.registerItem(item_DogbeariumIngot, "DogbeariumIngot");
   	
@@ -175,7 +184,7 @@ public void preInit(FMLPreInitializationEvent e)
   		.setStepSound(Block.soundTypeMetal)
   		.setBlockName("DogbeariumBlock")
   		.setCreativeTab(tabName)
-  		.setBlockTextureName(MODID+":DogbeariumBlock");	
+  		.setBlockTextureName(Reference.MOD_ID+":DogbeariumBlock");	
   	
       GameRegistry.registerBlock(block_DogbeariumBlock, "Dogbeariumblock");
       
@@ -199,12 +208,7 @@ public void preInit(FMLPreInitializationEvent e)
     TConstructRegistry.addItemToDirectory("Round Shield", tool_roundShield);
     TConstructRegistry.addItemToDirectory("Heater Shield", tool_heaterShield);   
     
-    block_CrestMount = new CrestMount()
-      		.setHardness(4.0F)
-      		.setStepSound(Block.soundTypeMetal)
-      		.setBlockName("CrestMount")
-      		.setCreativeTab(tabName);	
-    
+
     
     
     //item_TinkerArmor = new TinkerArmor(ArmorMaterial.IRON, 4, 1).setUnlocalizedName("Tinker_Armor");
@@ -215,18 +219,9 @@ public void preInit(FMLPreInitializationEvent e)
 }
 
 @EventHandler
-public void load(FMLInitializationEvent evt)
-{
-	GameRegistry.registerTileEntity(TileEntity_CrestMount.class, "Tile_CrestMount");
-    GameRegistry.registerBlock(block_CrestMount, "Block_CrestMount");
-    NetworkRegistry.INSTANCE.registerGuiHandler(mod_TinkersDefense.instance, new CommonProxy());
-    MinecraftForge.EVENT_BUS.register(this);
-}
-
-@EventHandler
 public void init(FMLInitializationEvent e)
 {
-	System.out.print(MODID);
+	System.out.print(Reference.MOD_ID);
 	 PatternBuilder pb = PatternBuilder.instance;
 	 
 	 //Aeonsteel

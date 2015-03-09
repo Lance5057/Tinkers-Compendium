@@ -63,6 +63,9 @@ protected void actionPerformed(GuiButton button)
 			 inventory.flip[i-1]=true;
 		 else
 			 inventory.flip[i-1]=false;
+		 
+		 inventory.getWorldObj().markBlockForUpdate(inventory.xCoord, inventory.yCoord, inventory.zCoord);
+		 inventory.markDirty();
 	 }
 	}
 }
