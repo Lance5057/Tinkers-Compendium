@@ -10,6 +10,7 @@ import gmail.Lance5057.blocks.QueensGoldBlock;
 import gmail.Lance5057.items.AeonSteelIngot;
 import gmail.Lance5057.items.DogbeariumIngot;
 import gmail.Lance5057.items.QueensGoldIngot;
+import gmail.Lance5057.network.PacketHandler;
 import gmail.Lance5057.proxy.CommonProxy;
 import gmail.Lance5057.tileentities.TileEntity_CrestMount;
 import net.minecraft.block.Block;
@@ -59,7 +60,7 @@ public Item getTabIconItem() { return Items.arrow; }
 
 };
 
-public static SimpleNetworkWrapper network;
+public static final SimpleNetworkWrapper INSTANCE = NetworkRegistry.INSTANCE.newSimpleChannel(Reference.MOD_ID);
 
 public static Item item_AeonSteelIngot;
 public static Block block_AeonSteelBlock;
@@ -95,6 +96,7 @@ public static CommonProxy proxy;
 @EventHandler
 public void preInit(FMLPreInitializationEvent e)
 {	
+	PacketHandler.init();
 	
 	//Renderers
 	proxy.registerRenderers();

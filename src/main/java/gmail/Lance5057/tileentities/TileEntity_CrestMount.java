@@ -23,17 +23,20 @@ public class TileEntity_CrestMount extends TileEntity implements IInventory
 	{
 		super();
 		inventory = new ItemStack[invSize];
+		flip = new boolean[4];
 	}
 	
 	@Override
 	public void updateEntity()
 	{
 		super.updateEntity();
-		if (worldObj.isRemote)
-		{
-			
-			
-		}
+//		if (!worldObj.isRemote)
+//		{
+			 
+			 getWorldObj().markBlockForUpdate(xCoord, yCoord, zCoord);
+			 markDirty();
+//			
+//		}
 	}
 	
 	@Override
@@ -159,7 +162,7 @@ public class TileEntity_CrestMount extends TileEntity implements IInventory
 	 public void readFromNBT(NBTTagCompound compound) 
 	 {
 		super.readFromNBT(compound);
-		flip = new boolean[4];
+		
 		flip[0] = compound.getBoolean("flip_1");
 		flip[1] = compound.getBoolean("flip_2");
 		flip[2] = compound.getBoolean("flip_3");

@@ -1,6 +1,8 @@
 package gmail.Lance5057.gui;
 
+import gmail.Lance5057.com.mod_TinkersDefense;
 import gmail.Lance5057.containers.Container_CrestMount;
+import gmail.Lance5057.network.Message_CrestMount;
 import gmail.Lance5057.tileentities.TileEntity_CrestMount;
 
 import javax.swing.plaf.basic.BasicComboBoxUI.KeyHandler;
@@ -21,16 +23,11 @@ import org.lwjgl.opengl.GL12;
 
 public class Gui_CrestMount extends GuiContainer
 {
-/** x and y size of the inventory window in pixels. Defined as float, passed as int
-* These are used for drawing the player model. */
 private float xSize_lo;
 private float ySize_lo;
 
-/** ResourceLocation takes 2 parameters: ModId, path to texture at the location:
-* "src/minecraft/assets/modid/" */
 private static final ResourceLocation iconLocation = new ResourceLocation("tinkersdefense", "textures/gui/crest_mount.png");
 
-/** The inventory to render on screen */
 private final TileEntity_CrestMount inventory;
 
 public Gui_CrestMount(InventoryPlayer invPlayer, TileEntity_CrestMount te_crest)
@@ -45,11 +42,10 @@ this.inventory = te_crest;
 public void initGui()
 {
 	super.initGui();
-	//ScaledResolution resolution = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
-	this.buttonList.add(new GuiButton(1,this.guiLeft + 61, this.guiTop + 10, 16, 16,"Flip"));
-	this.buttonList.add(new GuiButton(2,this.guiLeft + 16, this.guiTop + 16, 16, 16,"Flip"));
-	this.buttonList.add(new GuiButton(3,this.guiLeft + 16, this.guiTop + 32, 16, 16,"Flip"));
-	this.buttonList.add(new GuiButton(4,this.guiLeft + 16, this.guiTop + 48, 16, 16,"Flip"));
+	this.buttonList.add(new GuiButton(1,this.guiLeft + 60, this.guiTop + 10, 18, 18,"Flip"));
+	this.buttonList.add(new GuiButton(2,this.guiLeft + 94, this.guiTop + 10, 18, 18,"Flip"));
+	this.buttonList.add(new GuiButton(3,this.guiLeft + 78, this.guiTop + 10, 18, 18,"Flip"));
+	this.buttonList.add(new GuiButton(4,this.guiLeft + 77, this.guiTop + 64, 18, 18,"Flip"));
 }
 
 @Override
@@ -64,15 +60,11 @@ protected void actionPerformed(GuiButton button)
 		 else
 			 inventory.flip[i-1]=false;
 		 
-		 inventory.getWorldObj().markBlockForUpdate(inventory.xCoord, inventory.yCoord, inventory.zCoord);
-		 inventory.markDirty();
+		 mod_TinkersDefense.INSTANCE.sendToServer(new Message_CrestMount(inventory.xCoord, inventory.yCoord, inventory.zCoord, inventory.flip));
 	 }
 	}
 }
 
-/**
-* Draws the screen and all the components in it.
-*/
 public void drawScreen(int par1, int par2, float par3)
 {
 super.drawScreen(par1, par2, par3);
@@ -80,17 +72,11 @@ this.xSize_lo = (float)par1;
 this.ySize_lo = (float)par2;
 }
 
-/**
-* Draw the foreground layer for the GuiContainer (everything in front of the items)
-*/
 protected void drawGuiContainerForegroundLayer(int par1, int par2)
 {
 	
 }
 
-/**
-* Draw the background layer for the GuiContainer (everything behind the items)
-*/
 protected void drawGuiContainerBackgroundLayer(float par1, int par2, int par3)
 {
 GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
