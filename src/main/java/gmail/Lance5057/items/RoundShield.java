@@ -1,37 +1,39 @@
-package gmail.Lance5057.com;
+package gmail.Lance5057.items;
 
 import java.util.List;
+import java.util.Random;
 
 import mods.battlegear2.api.ISheathed;
 import mods.battlegear2.api.shield.IArrowCatcher;
 import mods.battlegear2.api.shield.IArrowDisplay;
 import mods.battlegear2.api.shield.IShield;
+import mods.battlegear2.api.shield.ShieldType;
+import mods.battlegear2.utils.BattlegearConfig;
+import cpw.mods.fml.relauncher.*;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.IProjectile;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.potion.*;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.IIcon;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
-import tconstruct.library.tools.AbilityHelper;
-import tconstruct.library.tools.HarvestTool;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import tconstruct.library.tools.*;
 import tconstruct.tools.TinkerTools;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
-
-public class HeaterShield extends HarvestTool implements IShield, ISheathed, IArrowCatcher, IArrowDisplay
+public class RoundShield extends HarvestTool implements IShield, ISheathed, IArrowCatcher, IArrowDisplay
 {
 	int induceDamage = 0;
-public HeaterShield()
+public RoundShield()
 {
 super(0);
-this.setUnlocalizedName("heatershield");
+this.setUnlocalizedName("roundshield");
 }
 @Override
 public Item getHeadItem ()
@@ -41,17 +43,12 @@ return TinkerTools.largePlate;
 @Override
 public Item getHandleItem ()
 {
-return TinkerTools.toughRod;
+return TinkerTools.toolRod;
 }
 @Override
 public Item getAccessoryItem ()
 {
-return TinkerTools.largePlate;
-}
-@Override
-public Item getExtraItem ()
-{
-	return TinkerTools.toughBinding;
+return TinkerTools.frypanHead;
 }
 @Override
 public int durabilityTypeAccessory ()
@@ -80,14 +77,9 @@ return 1.4f;
 }
 @SideOnly(Side.CLIENT)
 @Override
-public int getRenderPasses (int metadata)
-{
-return 10;
-}
-@Override
 public int getPartAmount ()
 {
-return 4;
+return 3;
 }
 @Override
 public String getIconSuffix (int partType)
@@ -101,9 +93,7 @@ return "_shield_face_broken";
 case 2:
 return "_shield_edge";
 case 3:
-return "_shield_face_other";
-case 4:
-return "_shield_binding";
+return "_shield_boss";
 default:
 return "";
 }
@@ -116,7 +106,7 @@ return "_shield_effect";
 @Override
 public String getDefaultFolder ()
 {
-return "heatershield";
+return "shield";
 }
 /* tool_TinkerShield specific */
 @Override
@@ -202,7 +192,7 @@ public float getBlockAngle(ItemStack arg0) {
 @Override
 public float getDamageDecayRate(ItemStack shield, float amount) 
 {
-	return 0;
+	return 2;
 }
 @Override
 public float getDamageReduction(ItemStack arg0, DamageSource arg1) {
@@ -212,15 +202,15 @@ public float getDamageReduction(ItemStack arg0, DamageSource arg1) {
 public float getDecayRate(ItemStack stack) 
 {
 	NBTTagCompound tags = stack.getTagCompound();
-	float recovery = tags.getCompoundTag("InfiTool").getInteger("MiningSpeed") / 1.5f;
-	return 10f / recovery;
+	float recovery = tags.getCompoundTag("InfiTool").getInteger("MiningSpeed");
+	return 10f / recovery * 2;
 }
 @Override
 public float getRecoveryRate(ItemStack stack) 
 {
 	NBTTagCompound tags = stack.getTagCompound();
-	float recovery = tags.getCompoundTag("InfiTool").getInteger("MiningSpeed") / 1.5f;
-	return 10f / recovery;
+	float recovery = tags.getCompoundTag("InfiTool").getInteger("MiningSpeed");
+	return 10f / recovery * 2;
 }
 
 @Override
@@ -231,7 +221,7 @@ public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlaye
 	super.addInformation(par1ItemStack, par2EntityPlayer, par3List, par4);
 	par3List.add("");
 	par3List.add(EnumChatFormatting.DARK_GREEN+
-	ItemStack.field_111284_a.format( 1F / (10f / (tags.getCompoundTag("InfiTool").getInteger("MiningSpeed")/1.5f)) / 20F)+
+	ItemStack.field_111284_a.format( 1F / (10f / tags.getCompoundTag("InfiTool").getInteger("MiningSpeed") * 2) / 20F)+
 	StatCollector.translateToLocal("attribute.shield.block.time"));
 	int arrowCount = getArrowCount(par1ItemStack);
 	if(arrowCount > 0)

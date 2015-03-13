@@ -1,6 +1,6 @@
 package gmail.Lance5057.network;
 
-import gmail.Lance5057.com.mod_TinkersDefense;
+import gmail.Lance5057.TinkersDefense;
 import cpw.mods.fml.relauncher.Side;
 
 public class PacketHandler {
@@ -8,7 +8,7 @@ public class PacketHandler {
 	
 	public static void init()
 	{
-	mod_TinkersDefense.INSTANCE.registerMessage(Handler_CrestMount.class, Message_CrestMount.class,id++,Side.SERVER);
+	TinkersDefense.INSTANCE.registerMessage(Handler_CrestMount.class, Message_CrestMount.class,id++,Side.SERVER);
 
 	}
 }

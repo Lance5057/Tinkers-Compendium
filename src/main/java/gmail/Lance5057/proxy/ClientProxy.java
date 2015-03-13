@@ -1,18 +1,19 @@
 package gmail.Lance5057.proxy;
 
-import gmail.Lance5057.blocks.Renderer_CrestMount;
-import gmail.Lance5057.containers.Container_CrestMount;
-import gmail.Lance5057.gui.Gui_CrestMount;
+import gmail.Lance5057.TinkersDefense;
 import gmail.Lance5057.items.ModelTinkerArmor;
+import gmail.Lance5057.items.RoundShield;
+import gmail.Lance5057.models.Renderer_ArmorAnvil;
+import gmail.Lance5057.models.Renderer_CrestMount;
+import gmail.Lance5057.models.Renderer_JewelersBench;
+import gmail.Lance5057.tileentities.TileEntity_ArmorAnvil;
 import gmail.Lance5057.tileentities.TileEntity_CrestMount;
-import net.minecraft.client.Minecraft;
+import gmail.Lance5057.tileentities.TileEntity_JewelersBench;
 import net.minecraft.client.model.ModelBiped;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.World;
-import cpw.mods.fml.client.FMLClientHandler;
+import net.minecraftforge.client.MinecraftForgeClient;
+import tconstruct.client.FlexibleToolRenderer;
+import tconstruct.library.tools.ToolCore;
 import cpw.mods.fml.client.registry.ClientRegistry;
-import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 
 
 public class ClientProxy extends CommonProxy 
@@ -21,7 +22,13 @@ public class ClientProxy extends CommonProxy
 	
         @Override
         public void registerRenderers() {
+        	FlexibleToolRenderer renderer = new FlexibleToolRenderer();
+        	MinecraftForgeClient.registerItemRenderer(TinkersDefense.tool_roundShield, renderer);
+        	MinecraftForgeClient.registerItemRenderer(TinkersDefense.tool_heaterShield, renderer);
+        	
         	ClientRegistry.bindTileEntitySpecialRenderer(TileEntity_CrestMount.class, new Renderer_CrestMount());
+        	ClientRegistry.bindTileEntitySpecialRenderer(TileEntity_ArmorAnvil.class, new Renderer_ArmorAnvil());
+        	ClientRegistry.bindTileEntitySpecialRenderer(TileEntity_JewelersBench.class, new Renderer_JewelersBench());
         }
         
         @Override

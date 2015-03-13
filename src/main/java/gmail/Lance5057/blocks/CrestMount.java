@@ -4,7 +4,7 @@ import static net.minecraftforge.common.util.ForgeDirection.EAST;
 import static net.minecraftforge.common.util.ForgeDirection.NORTH;
 import static net.minecraftforge.common.util.ForgeDirection.SOUTH;
 import static net.minecraftforge.common.util.ForgeDirection.WEST;
-import gmail.Lance5057.com.mod_TinkersDefense;
+import gmail.Lance5057.TinkersDefense;
 import gmail.Lance5057.tileentities.TileEntity_CrestMount;
 
 import java.util.Random;
@@ -43,7 +43,7 @@ public class CrestMount extends BlockContainer {
                     return false;
             }
     //code to open gui explained later
-    player.openGui(mod_TinkersDefense.instance, mod_TinkersDefense.GUI_ITEM_INV, player.worldObj, x, y, z);
+    player.openGui(TinkersDefense.instance, TinkersDefense.GUI_ITEM_INV, player.worldObj, x, y, z);
             return true;
     }
     

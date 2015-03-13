@@ -1,18 +1,27 @@
-package gmail.Lance5057.com;
+package gmail.Lance5057;
 
 import static net.minecraft.util.EnumChatFormatting.DARK_RED;
 import static net.minecraft.util.EnumChatFormatting.GOLD;
 import static net.minecraft.util.EnumChatFormatting.LIGHT_PURPLE;
 import gmail.Lance5057.blocks.AeonSteelBlock;
+import gmail.Lance5057.blocks.ArmorAnvil;
 import gmail.Lance5057.blocks.CrestMount;
 import gmail.Lance5057.blocks.DogbeariumBlock;
+import gmail.Lance5057.blocks.JewelersBench;
 import gmail.Lance5057.blocks.QueensGoldBlock;
 import gmail.Lance5057.items.AeonSteelIngot;
 import gmail.Lance5057.items.DogbeariumIngot;
+import gmail.Lance5057.items.HeaterShield;
 import gmail.Lance5057.items.QueensGoldIngot;
+import gmail.Lance5057.items.RoundShield;
+import gmail.Lance5057.liquids.moltenAeonsteelFluid;
+import gmail.Lance5057.liquids.moltenDogbeariumFluid;
+import gmail.Lance5057.liquids.moltenQueensGoldFluid;
 import gmail.Lance5057.network.PacketHandler;
 import gmail.Lance5057.proxy.CommonProxy;
+import gmail.Lance5057.tileentities.TileEntity_ArmorAnvil;
 import gmail.Lance5057.tileentities.TileEntity_CrestMount;
+import gmail.Lance5057.tileentities.TileEntity_JewelersBench;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
@@ -45,14 +54,14 @@ import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 @Mod(modid = Reference.MOD_ID, version = Reference.VERSION, name = Reference.MOD_NAME)
-public class mod_TinkersDefense
+public class TinkersDefense
 {
 
 private static int modGuiIndex = 0;
 public static final int GUI_ITEM_INV = modGuiIndex++;
 
 @Instance(Reference.MOD_ID)
-public static mod_TinkersDefense instance = new mod_TinkersDefense();
+public static TinkersDefense instance = new TinkersDefense();
 
 public static CreativeTabs tabName = new CreativeTabs("tabName")
 {
@@ -85,6 +94,8 @@ public static ToolCore tool_roundShield;
 public static ToolCore tool_heaterShield;
 
 public static Block block_CrestMount;
+public static Block block_ArmorAnvil;
+public static Block block_JewelersBench;
 
 public static Item item_TinkerArmor;
 
@@ -99,8 +110,7 @@ public void preInit(FMLPreInitializationEvent e)
 {	
 	PacketHandler.init();
 	
-	//Renderers
-	proxy.registerRenderers();
+	
 	
     block_CrestMount = new CrestMount()
 		.setHardness(4.0F)
@@ -110,8 +120,26 @@ public void preInit(FMLPreInitializationEvent e)
 	
 	GameRegistry.registerBlock(block_CrestMount, "Block_CrestMount");
 	GameRegistry.registerTileEntity(TileEntity_CrestMount.class, "Tile_CrestMount");
+	
+    block_ArmorAnvil = new ArmorAnvil()
+		.setHardness(4.0F)
+		.setStepSound(Block.soundTypeAnvil)
+		.setBlockName("ArmorAnvil")
+		.setCreativeTab(tabName);	
+	
+	GameRegistry.registerBlock(block_ArmorAnvil, "Block_ArmorAnvil");
+	GameRegistry.registerTileEntity(TileEntity_ArmorAnvil.class, "Tile_ArmorAnvil");
+	
+    block_JewelersBench = new JewelersBench()
+		.setHardness(4.0F)
+		.setStepSound(Block.soundTypeWood)
+		.setBlockName("JewelersBench")
+		.setCreativeTab(tabName);	
+	
+	GameRegistry.registerBlock(block_JewelersBench, "Block_JewelersBench");
+	GameRegistry.registerTileEntity(TileEntity_JewelersBench.class, "Tile_JewelersBench");
     
-    NetworkRegistry.INSTANCE.registerGuiHandler(mod_TinkersDefense.instance, new CommonProxy());
+    NetworkRegistry.INSTANCE.registerGuiHandler(TinkersDefense.instance, new CommonProxy());
     MinecraftForge.EVENT_BUS.register(this);
 	
 	//AeonSteel
@@ -209,9 +237,10 @@ public void preInit(FMLPreInitializationEvent e)
     GameRegistry.registerItem(tool_roundShield, "Round Shield");
     GameRegistry.registerItem(tool_heaterShield, "Heater Shield");
     TConstructRegistry.addItemToDirectory("Round Shield", tool_roundShield);
-    TConstructRegistry.addItemToDirectory("Heater Shield", tool_heaterShield);   
+    TConstructRegistry.addItemToDirectory("Heater Shield", tool_heaterShield);  
     
-
+    //Renderers
+  	proxy.registerRenderers();
     
     
     //item_TinkerArmor = new TinkerArmor(ArmorMaterial.IRON, 4, 1).setUnlocalizedName("Tinker_Armor");

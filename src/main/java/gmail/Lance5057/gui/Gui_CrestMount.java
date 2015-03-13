@@ -1,6 +1,6 @@
 package gmail.Lance5057.gui;
 
-import gmail.Lance5057.com.mod_TinkersDefense;
+import gmail.Lance5057.TinkersDefense;
 import gmail.Lance5057.containers.Container_CrestMount;
 import gmail.Lance5057.network.Message_CrestMount;
 import gmail.Lance5057.tileentities.TileEntity_CrestMount;
@@ -61,7 +61,7 @@ protected void actionPerformed(GuiButton button)
 		 else
 			 inventory.flip[i-1]=false;
 		 
-		 mod_TinkersDefense.INSTANCE.sendToServer(new Message_CrestMount(inventory.xCoord, inventory.yCoord, inventory.zCoord, inventory.flip));
+		 TinkersDefense.INSTANCE.sendToServer(new Message_CrestMount(inventory.xCoord, inventory.yCoord, inventory.zCoord, inventory.flip));
 	 }
 	}
 }

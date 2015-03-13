@@ -15,6 +15,10 @@ tile.MoltenDogbearium.name=Molten Dogbearium
 material.dogbearium=Dogbearium
 material.dogbearium.ability=Serrated
 
+tile.CrestMount.name=Crest Mount
+tile.ArmorAnvil.name=Armor Anvil
+tile.JewelersBench.name=Jeweler's Bench
+
 tool.roundshield=Round Shield
 tool.heatershield=Heater Shield
 
@@ -22,5 +26,5 @@ fluid.moltenAeonsteel.name=Molten Aeon Steel
 fluid.moltenQueensGold.name=Molten Queen's Gold
 fluid.moltenDogbearium.name=Molten Dogbearium
 
-gui.toolstation.roundshield.name = "Round Shield"
-gui.toolstation.roundshield.desc = "A simple shield with average durability and average defense."
+gui.toolstation.roundshield.name=Round Shield
+gui.toolstation.roundshield.desc=A simple shield with average durability and average defense.

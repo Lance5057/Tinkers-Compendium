@@ -1,4 +1,4 @@
-package gmail.Lance5057.blocks;
+package gmail.Lance5057.models;
 
 import gmail.Lance5057.tileentities.TileEntity_CrestMount;
 import net.minecraft.block.Block;

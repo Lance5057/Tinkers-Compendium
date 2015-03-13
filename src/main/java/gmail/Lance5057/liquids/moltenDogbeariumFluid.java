@@ -1,4 +1,4 @@
-package gmail.Lance5057.com;
+package gmail.Lance5057.liquids;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -10,20 +10,20 @@ import net.minecraft.util.IIcon;
 import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fluids.Fluid;
 
-public class moltenQueensGoldFluid
+public class moltenDogbeariumFluid
   extends BlockFluidClassic
 {
   private IIcon stillIcon;
   private IIcon flowingIcon;
-  private String stillIconTexture = "molten_QueensGold";
-  private String flowIconTexture = "molten_QueensGold_flow";
+  private String stillIconTexture = "molten_Dogbearium";
+  private String flowIconTexture = "molten_Dogbearium_flow";
   
-  public moltenQueensGoldFluid(Fluid fluid)
+  public moltenDogbeariumFluid(Fluid fluid)
   {
     super(fluid, Material.lava);
     setLightLevel(100.0F);
     setHardness(1.0F);
-    setBlockName("MoltenQueensGold");
+    setBlockName("MoltenDogbearium");
     
     this.stillIconTexture = ("tinkersdefense:" + stillIconTexture);
     this.flowIconTexture = ("tinkersdefense:" + flowIconTexture);

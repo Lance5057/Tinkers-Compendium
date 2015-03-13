@@ -1,4 +1,4 @@
-package gmail.Lance5057.com;
+package gmail.Lance5057;
 
 public class Reference
 {

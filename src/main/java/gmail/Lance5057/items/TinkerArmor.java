@@ -1,6 +1,6 @@
 package gmail.Lance5057.items;
 
-import gmail.Lance5057.com.mod_TinkersDefense;
+import gmail.Lance5057.TinkersDefense;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
@@ -41,11 +41,11 @@ public class TinkerArmor extends ItemArmor
 				int type = ((ItemArmor)itemStack.getItem()).armorType;
 				if(type == 1 || type == 3)
 				{ 
-					armorModel = mod_TinkersDefense.proxy.getArmorModel(0);
+					armorModel = TinkersDefense.proxy.getArmorModel(0);
 				}
 				else
 				{ 
-					armorModel = mod_TinkersDefense.proxy.getArmorModel(1); 
+					armorModel = TinkersDefense.proxy.getArmorModel(1); 
 					}
 				
 			} 

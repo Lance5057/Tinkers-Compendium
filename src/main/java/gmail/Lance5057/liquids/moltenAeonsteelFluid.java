@@ -1,4 +1,4 @@
-package gmail.Lance5057.com;
+package gmail.Lance5057.liquids;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
