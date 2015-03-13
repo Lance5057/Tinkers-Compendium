@@ -23,7 +23,8 @@ public class Message_CrestMount implements IMessage
 		this.x = x;
 		this.y = y;
 		this.z = z;
-		System.arraycopy(flip, 0, this.flip, 0, flip.length);
+		this.flip = flip;
+		//System.arraycopy(flip, 0, this.flip, 0, flip.length);
 		
 	}
 	

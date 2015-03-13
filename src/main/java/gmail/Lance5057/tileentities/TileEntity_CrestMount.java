@@ -33,8 +33,8 @@ public class TileEntity_CrestMount extends TileEntity implements IInventory
 //		if (!worldObj.isRemote)
 //		{
 			 
-			 getWorldObj().markBlockForUpdate(xCoord, yCoord, zCoord);
-			 markDirty();
+//			 getWorldObj().markBlockForUpdate(xCoord, yCoord, zCoord);
+//			 markDirty();
 //			
 //		}
 	}

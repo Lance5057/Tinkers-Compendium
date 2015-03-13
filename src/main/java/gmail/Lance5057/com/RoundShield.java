@@ -27,7 +27,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import tconstruct.library.tools.*;
 import tconstruct.tools.TinkerTools;
-public class RoundShield extends HarvestTool implements IShield, ISheathed, IArrowCatcher, IArrowDisplay
+public class RoundShield extends Shield implements IShield, ISheathed, IArrowCatcher, IArrowDisplay
 {
 	int induceDamage = 0;
 public RoundShield()

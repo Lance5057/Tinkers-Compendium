@@ -42,10 +42,11 @@ this.inventory = te_crest;
 public void initGui()
 {
 	super.initGui();
-	this.buttonList.add(new GuiButton(1,this.guiLeft + 60, this.guiTop + 10, 18, 18,"Flip"));
-	this.buttonList.add(new GuiButton(2,this.guiLeft + 94, this.guiTop + 10, 18, 18,"Flip"));
-	this.buttonList.add(new GuiButton(3,this.guiLeft + 78, this.guiTop + 10, 18, 18,"Flip"));
-	this.buttonList.add(new GuiButton(4,this.guiLeft + 77, this.guiTop + 64, 18, 18,"Flip"));
+	this.buttonList.add(new GuiButton(1,this.guiLeft + 61, this.guiTop + 8, 18, 18,"Flip"));
+	this.buttonList.add(new GuiButton(3,this.guiLeft + 79, this.guiTop + 8, 18, 18,"Flip"));
+	this.buttonList.add(new GuiButton(2,this.guiLeft + 97, this.guiTop + 8, 18, 18,"Flip"));
+	
+	this.buttonList.add(new GuiButton(4,this.guiLeft + 79, this.guiTop + 63, 18, 18,"Flip"));
 }
 
 @Override

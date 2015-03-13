@@ -19,6 +19,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -298,7 +299,7 @@ public void init(FMLInitializationEvent e)
 public void postInit(FMLPostInitializationEvent e)
 {
     TConstructClientRegistry.toolButtons.add(TConstructClientRegistry.toolButtons.size(),
-    		new ToolGuiElement(1, 0, 0, new int[] { 9, 0, 4, 0 }, new int[] { 2, 3, 2, 0 }, "Round Shield", "A simple shield with average durability and average defense.", "tinkersdefense", "textures/gui/icons.png"));
+    		new ToolGuiElement(1, 0, 0, new int[] { 9, 0, 4, 0 }, new int[] { 2, 3, 2, 0 }, StatCollector.translateToLocal("gui.toolstation.roundshield.name"), StatCollector.translateToLocal("gui.toolstation.roundshield.desc"), "tinkersdefense", "textures/gui/icons.png"));
     TConstructClientRegistry.tierTwoButtons.add(TConstructClientRegistry.tierTwoButtons.size(),
     	    new ToolGuiElement(5, 0, 0, new int[] { 9, 8, 9, 9 }, new int[] { 2, 3, 2, 3 }, "Heater Shield", "An advanced shield with high durability and high defense.", "tinkersdefense", "textures/gui/icons.png"));
 }

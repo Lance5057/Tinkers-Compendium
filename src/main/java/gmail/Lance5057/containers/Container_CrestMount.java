@@ -12,10 +12,10 @@ public class Container_CrestMount extends Container
 	
 	public Container_CrestMount(InventoryPlayer inventoryPlayer, TileEntity_CrestMount TileEntity_CrestMount)
 	{
-		addSlotToContainer(new Slot(TileEntity_CrestMount, 0, 0, 0));
-		addSlotToContainer(new Slot(TileEntity_CrestMount, 1, 0, 16));
-		addSlotToContainer(new Slot(TileEntity_CrestMount, 2, 0, 32));
-		addSlotToContainer(new Slot(TileEntity_CrestMount, 3, 0, 48));
+		addSlotToContainer(new Slot(TileEntity_CrestMount, 0, 62, 28));
+		addSlotToContainer(new Slot(TileEntity_CrestMount, 1, 98, 28));
+		addSlotToContainer(new Slot(TileEntity_CrestMount, 2, 80, 28));
+		addSlotToContainer(new Slot(TileEntity_CrestMount, 3, 80, 46));
 		
 		for (int x = 0; x < 9; x++)
 		{
