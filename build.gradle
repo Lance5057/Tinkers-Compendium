@@ -60,4 +60,6 @@ processResources
     from(sourceSets.main.resources.srcDirs) {
         exclude 'mcmod.info'
     }
+	
+	exclude '**/Thumbs.db' // cause I'm tired of picking them out like nasty olives in an otherwise decent pizza
 }
