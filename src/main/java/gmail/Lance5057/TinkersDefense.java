@@ -330,7 +330,7 @@ public void postInit(FMLPostInitializationEvent e)
     TConstructClientRegistry.toolButtons.add(TConstructClientRegistry.toolButtons.size(),
     		new ToolGuiElement(1, 0, 0, new int[] { 9, 0, 4, 0 }, new int[] { 2, 3, 2, 0 }, StatCollector.translateToLocal("gui.toolstation.roundshield.name"), StatCollector.translateToLocal("gui.toolstation.roundshield.desc"), "tinkersdefense", "textures/gui/icons.png"));
     TConstructClientRegistry.tierTwoButtons.add(TConstructClientRegistry.tierTwoButtons.size(),
-    	    new ToolGuiElement(5, 0, 0, new int[] { 9, 8, 9, 9 }, new int[] { 2, 3, 2, 3 }, "Heater Shield", "An advanced shield with high durability and high defense.", "tinkersdefense", "textures/gui/icons.png"));
+    	    new ToolGuiElement(5, 0, 0, new int[] { 9, 8, 9, 9 }, new int[] { 2, 3, 2, 3 }, StatCollector.translateToLocal("gui.toolstation.heatershield.name"), StatCollector.translateToLocal("gui.toolstation.heatershield.desc"), "tinkersdefense", "textures/gui/icons.png"));
 }
 
 public void castMolten(Fluid fluid, int ID)

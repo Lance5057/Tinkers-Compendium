@@ -18,6 +18,8 @@ import net.minecraftforge.client.IItemRenderer;
 
 import org.lwjgl.opengl.GL11;
 
+import tconstruct.library.tools.ToolCore;
+
 public class Renderer_CrestMount extends TileEntitySpecialRenderer
 {
 	//private RenderItem itemRenderer;
@@ -97,6 +99,13 @@ public class Renderer_CrestMount extends TileEntitySpecialRenderer
             	GL11.glRotatef(180, 0, 0, 1);
             	GL11.glTranslatef(-0.8f, 0.2f, 0);
             }
+            
+            if(tileEntity.getStackInSlot(0).getItem() instanceof ToolCore)
+            {
+                GL11.glRotatef(90F, 0.0F, 0.0F, 1.0F);
+                GL11.glTranslatef(-0.505f, -0.32f, 0);
+            }
+            
             RenderManager.instance.renderEntityWithPosYaw(entItem, 0.4f/*up - down*/, -0.3f/*left - right*/, 0.23f, 0, 0);         
             RenderItem.renderInFrame = false;
             GL11.glPopMatrix();
@@ -120,6 +129,13 @@ public class Renderer_CrestMount extends TileEntitySpecialRenderer
             	GL11.glRotatef(180, 0, 0, 1);
             	GL11.glTranslatef(0.2f, -0.8f, 0);
             }
+            
+            if(tileEntity.getStackInSlot(1).getItem() instanceof ToolCore)
+            {
+                GL11.glRotatef(90F, 0.0F, 0.0F, 1.0F);
+                GL11.glTranslatef(0.5f, -0.325f, 0);
+            }
+            
             RenderManager.instance.renderEntityWithPosYaw(entItem2, -0.1, 0.2, 0.23, 0, 0);           
             RenderItem.renderInFrame = false;
             GL11.glPopMatrix();
@@ -146,6 +162,13 @@ public class Renderer_CrestMount extends TileEntitySpecialRenderer
             	GL11.glRotatef(180, 0, 0, 1);
             	GL11.glTranslatef(-0.5f, -0.5f, 0);
             }
+            
+            if(tileEntity.getStackInSlot(2).getItem() instanceof ToolCore)
+            {
+                GL11.glRotatef(90F, 0.0F, 0.0F, 1.0F);
+                GL11.glTranslatef(-0.1125f, -0.5125f, 0);
+            }
+            
             RenderManager.instance.renderEntityWithPosYaw(entItem3, 0.3, 0.1, 0.16, 0, 0);           
             RenderItem.renderInFrame = false;
             GL11.glPopMatrix();
@@ -168,6 +191,8 @@ public class Renderer_CrestMount extends TileEntitySpecialRenderer
             	GL11.glRotatef(180, 0, 0, 1);
             	GL11.glTranslatef(0.0f, 1.0f, 0);
             }
+            
+            
             RenderManager.instance.renderEntityWithPosYaw(entItem4, 0, -0.7, -0.01, 0, 0); 
             RenderItem.renderInFrame = false;
             GL11.glPopMatrix();
