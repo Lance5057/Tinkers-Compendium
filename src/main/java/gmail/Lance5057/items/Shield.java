@@ -2,15 +2,22 @@ package gmail.Lance5057.items;
 
 import tconstruct.library.tools.ToolCore;
 import cpw.mods.fml.relauncher.*;
+import mods.battlegear2.api.IEnchantable;
+import mods.battlegear2.api.ISheathed;
+import mods.battlegear2.api.shield.IArrowCatcher;
+import mods.battlegear2.api.shield.IArrowDisplay;
+import mods.battlegear2.api.shield.IShield;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.IProjectile;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.*;
+import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 
-public abstract class Shield extends ToolCore
+public class Shield extends ToolCore implements IShield, ISheathed, IArrowCatcher, IArrowDisplay
 {
 public Shield(int baseDamage)
 {
@@ -95,26 +102,112 @@ return web;
 @SideOnly(Side.CLIENT)
 public void onUpdate (ItemStack stack, World world, Entity entity, int par4, boolean par5)
 {
-super.onUpdate(stack, world, entity, par4, par5);
-if (entity instanceof EntityPlayerSP)
-{
-EntityPlayerSP player = (EntityPlayerSP) entity;
-ItemStack usingItem = player.getItemInUse();
-if (usingItem != null && usingItem.getItem() == this)
-{
-player.movementInput.moveForward *= 2.5F;
-player.movementInput.moveStrafe *= 2.5F;
-}
-}
+	super.onUpdate(stack, world, entity, par4, par5);
+	if (entity instanceof EntityPlayerSP)
+	{
+		EntityPlayerSP player = (EntityPlayerSP) entity;
+		ItemStack usingItem = player.getItemInUse();
+		if (usingItem != null && usingItem.getItem() == this)
+		{
+			player.movementInput.moveForward *= 2.5F;
+			player.movementInput.moveStrafe *= 2.5F;
+		}
+	}
 }
 @Override
 public String[] getTraits ()
 {
-return new String[] { "Shield", "melee" };
+return new String[] { "shield", "melee" };
 }
 public static Material[] web = new Material[] { Material.web, Material.cloth, Material.coral, Material.cake };
 public static Material[] none = new Material[0];
+
 protected String getHarvestType() {
+	// TODO Auto-generated method stub
+	return null;
+}
+@Override
+public int getArrowCount(ItemStack arg0) {
+	// TODO Auto-generated method stub
+	return 0;
+}
+@Override
+public void setArrowCount(ItemStack arg0, int arg1) {
+	// TODO Auto-generated method stub
+	
+}
+@Override
+public boolean catchArrow(ItemStack arg0, EntityPlayer arg1, IProjectile arg2) {
+	// TODO Auto-generated method stub
+	return false;
+}
+@Override
+public boolean sheatheOnBack(ItemStack item) {
+	// TODO Auto-generated method stub
+	return false;
+}
+@Override
+public void blockAnimation(EntityPlayer arg0, float arg1) {
+	// TODO Auto-generated method stub
+	
+}
+@Override
+public boolean canBlock(ItemStack arg0, DamageSource arg1) {
+	// TODO Auto-generated method stub
+	return false;
+}
+@Override
+public int getBashTimer(ItemStack arg0) {
+	// TODO Auto-generated method stub
+	return 0;
+}
+@Override
+public float getBlockAngle(ItemStack arg0) {
+	// TODO Auto-generated method stub
+	return 0;
+}
+@Override
+public float getDamageDecayRate(ItemStack arg0, float arg1) {
+	// TODO Auto-generated method stub
+	return 0;
+}
+@Override
+public float getDamageReduction(ItemStack arg0, DamageSource arg1) {
+	// TODO Auto-generated method stub
+	return 0;
+}
+@Override
+public float getDecayRate(ItemStack arg0) {
+	// TODO Auto-generated method stub
+	return 0;
+}
+@Override
+public float getRecoveryRate(ItemStack arg0) {
+	// TODO Auto-generated method stub
+	return 0;
+}
+@Override
+public Item getAccessoryItem() {
+	// TODO Auto-generated method stub
+	return null;
+}
+@Override
+public String getDefaultFolder() {
+	// TODO Auto-generated method stub
+	return null;
+}
+@Override
+public String getEffectSuffix() {
+	// TODO Auto-generated method stub
+	return null;
+}
+@Override
+public Item getHeadItem() {
+	// TODO Auto-generated method stub
+	return null;
+}
+@Override
+public String getIconSuffix(int arg0) {
 	// TODO Auto-generated method stub
 	return null;
 }

@@ -9,6 +9,8 @@ import gmail.Lance5057.tileentities.TileEntity_CrestMount;
 
 import java.util.Random;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -106,8 +108,10 @@ public class CrestMount extends BlockContainer {
     }
    
     //This is the icon to use for showing the block in your hand.
-    public void registerIcons(IIconRegister icon) {
-            this.blockIcon = icon.registerIcon("tinkersdefense:textures/items/QueensGoldIngot.png");
+    @SideOnly(Side.CLIENT)
+    @Override
+    public void registerBlockIcons(IIconRegister icon) {
+            this.blockIcon = icon.registerIcon("tinkersdefense:Item_CrestMount");
     }
 
 	@Override

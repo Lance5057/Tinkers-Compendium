@@ -16,8 +16,8 @@ material.dogbearium=Dogbearium
 material.dogbearium.ability=Serrated
 
 tile.CrestMount.name=Crest Mount
-tile.ArmorAnvil.name=Armor Anvil
-tile.JewelersBench.name=Jeweler's Bench
+tile.ArmorAnvil.name=Armor Anvil (WIP)
+tile.JewelersBench.name=Jeweler's Bench (WIP)
 
 tool.roundshield=Round Shield
 tool.heatershield=Heater Shield
@@ -31,3 +31,5 @@ gui.toolstation.roundshield.desc=A simple shield with average durability and ave
 
 gui.toolstation.heatershield.name=Heater Shield
 gui.toolstation.heatershield.desc=A simple shield with high durability and high defense.
+
+item.Crest_Feathers.name=Crest of Feathers

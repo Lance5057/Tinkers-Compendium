@@ -3,15 +3,19 @@ package gmail.Lance5057;
 import static net.minecraft.util.EnumChatFormatting.DARK_RED;
 import static net.minecraft.util.EnumChatFormatting.GOLD;
 import static net.minecraft.util.EnumChatFormatting.LIGHT_PURPLE;
+import gmail.Lance5057.armor.blocks.ArmorAnvil;
 import gmail.Lance5057.blocks.AeonSteelBlock;
-import gmail.Lance5057.blocks.ArmorAnvil;
 import gmail.Lance5057.blocks.CrestMount;
 import gmail.Lance5057.blocks.DogbeariumBlock;
 import gmail.Lance5057.blocks.JewelersBench;
 import gmail.Lance5057.blocks.QueensGoldBlock;
 import gmail.Lance5057.items.AeonSteelIngot;
+import gmail.Lance5057.items.Crest_Feathers;
 import gmail.Lance5057.items.DogbeariumIngot;
 import gmail.Lance5057.items.HeaterShield;
+import gmail.Lance5057.items.Item_Cloth;
+import gmail.Lance5057.items.Item_Glowthread;
+import gmail.Lance5057.items.Item_Thread;
 import gmail.Lance5057.items.QueensGoldIngot;
 import gmail.Lance5057.items.RoundShield;
 import gmail.Lance5057.liquids.moltenAeonsteelFluid;
@@ -98,6 +102,13 @@ public static Block block_ArmorAnvil;
 public static Block block_JewelersBench;
 
 public static Item item_TinkerArmor;
+public static Item item_Crest_Feathers;
+public static Item item_Crest_Blades;
+
+public static Item item_thread;
+public static Item item_glowthread;
+public static Item item_cloth;
+
 
 @SidedProxy(clientSide = "gmail.Lance5057.proxy.ClientProxy", serverSide = "gmail.Lance5057.proxy.CommonProxy")
 public static CommonProxy proxy;
@@ -234,11 +245,32 @@ public void preInit(FMLPreInitializationEvent e)
     tool_roundShield = new RoundShield();
     tool_heaterShield = new HeaterShield();
     
+	item_Crest_Feathers = new Item()
+	.setCreativeTab(tabName)
+	.setMaxStackSize(1)
+	.setUnlocalizedName("Crest_Feathers")
+	.setTextureName(Reference.MOD_ID+":Crest_feather");
+	
+	GameRegistry.registerItem(item_Crest_Feathers, "Crest of Feathers");
+	GameRegistry.addRecipe(new ItemStack(item_Crest_Feathers), new Object[] {"---", "f-f","-o-", 'f', Items.feather, 'o', Items.iron_ingot});
+	
+	item_Crest_Blades = new Item()
+	.setCreativeTab(tabName)
+	.setMaxStackSize(1)
+	.setUnlocalizedName("Crest_Blades")
+	.setTextureName(Reference.MOD_ID+":Crest_blades");
+	
+	GameRegistry.registerItem(item_Crest_Blades, "Crest of Blades");
+	GameRegistry.addRecipe(new ItemStack(item_Crest_Blades), new Object[] {"---", "f-f","-o-", 'f', Items.iron_sword, 'o', Items.diamond});
+
     GameRegistry.registerItem(tool_roundShield, "Round Shield");
     GameRegistry.registerItem(tool_heaterShield, "Heater Shield");
     TConstructRegistry.addItemToDirectory("Round Shield", tool_roundShield);
     TConstructRegistry.addItemToDirectory("Heater Shield", tool_heaterShield);  
     
+    GameRegistry.registerItem(item_thread = new Item_Thread(), "thread");
+    GameRegistry.registerItem(item_glowthread = new Item_Glowthread(), "glowthread");
+    GameRegistry.registerItem(item_cloth = new Item_Cloth(), "cloth");
     //Renderers
   	proxy.registerRenderers();
     

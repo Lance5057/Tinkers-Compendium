@@ -1,5 +1,7 @@
-package gmail.Lance5057.blocks;
+package gmail.Lance5057.armor.blocks;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import gmail.Lance5057.tileentities.TileEntity_ArmorAnvil;
 import gmail.Lance5057.tileentities.TileEntity_CrestMount;
 import net.minecraft.block.Block;
@@ -34,9 +36,10 @@ public class ArmorAnvil extends Block implements ITileEntityProvider
 	}
 	
 	//This is the icon to use for showing the block in your hand.
-	public void registerIcons(IIconRegister icon) {
-		//TODO fix the icon
-	        this.blockIcon = icon.registerIcon("tinkersdefense:textures/items/QueensGoldIngot.png");
+    @SideOnly(Side.CLIENT)
+    @Override
+    public void registerBlockIcons(IIconRegister icon) {
+	        this.blockIcon = icon.registerIcon("tinkersdefense:WIP");
 	}
 	
 	@Override

@@ -25,7 +25,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 
-public class HeaterShield extends HarvestTool implements IShield, ISheathed, IArrowCatcher, IArrowDisplay
+public class HeaterShield extends Shield 
 {
 	int induceDamage = 0;
 public HeaterShield()
