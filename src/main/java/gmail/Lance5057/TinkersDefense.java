@@ -18,6 +18,7 @@ import gmail.Lance5057.items.Item_Glowthread;
 import gmail.Lance5057.items.Item_Thread;
 import gmail.Lance5057.items.QueensGoldIngot;
 import gmail.Lance5057.items.RoundShield;
+import gmail.Lance5057.items.TD_Patterns;
 import gmail.Lance5057.liquids.moltenAeonsteelFluid;
 import gmail.Lance5057.liquids.moltenDogbeariumFluid;
 import gmail.Lance5057.liquids.moltenQueensGoldFluid;
@@ -41,11 +42,17 @@ import tconstruct.TConstruct;
 import tconstruct.library.TConstructRegistry;
 import tconstruct.library.client.TConstructClientRegistry;
 import tconstruct.library.client.ToolGuiElement;
+import tconstruct.library.crafting.FluidType;
+import tconstruct.library.crafting.LiquidCasting;
 import tconstruct.library.crafting.PatternBuilder;
 import tconstruct.library.crafting.Smeltery;
+import tconstruct.library.crafting.StencilBuilder;
+import tconstruct.library.tools.DynamicToolPart;
 import tconstruct.library.tools.ToolCore;
+import tconstruct.library.util.IPattern;
 import tconstruct.smeltery.TinkerSmeltery;
 import tconstruct.tools.TinkerTools;
+import tconstruct.tools.items.Pattern;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -108,6 +115,12 @@ public static Item item_Crest_Blades;
 public static Item item_thread;
 public static Item item_glowthread;
 public static Item item_cloth;
+
+public static Item rivets;
+public static Item clasp;
+
+public static Pattern woodPattern;
+public static Pattern metalPattern;
 
 
 @SidedProxy(clientSide = "gmail.Lance5057.proxy.ClientProxy", serverSide = "gmail.Lance5057.proxy.CommonProxy")
@@ -271,6 +284,30 @@ public void preInit(FMLPreInitializationEvent e)
     GameRegistry.registerItem(item_thread = new Item_Thread(), "thread");
     GameRegistry.registerItem(item_glowthread = new Item_Glowthread(), "glowthread");
     GameRegistry.registerItem(item_cloth = new Item_Cloth(), "cloth");
+    
+	woodPattern = new TD_Patterns("pattern_", "Pattern");
+	metalPattern = new TD_Patterns("cast_", "MetalPattern");
+	
+	GameRegistry.registerItem(woodPattern, "woodPattern");
+	TConstructRegistry.addItemToDirectory("woodPattern", woodPattern);
+	
+	rivets = new DynamicToolPart("_rivets", "rivets");
+	
+	clasp = new DynamicToolPart("_clasp", "clasp");
+
+	GameRegistry.registerItem(rivets, "rivets");
+	TConstructRegistry.addItemToDirectory("rivets",rivets);
+	
+	GameRegistry.registerItem(clasp, "clasp");
+	TConstructRegistry.addItemToDirectory("clasp",clasp);
+	
+	TConstructRegistry.addItemStackToDirectory("rivets Pattern", new ItemStack(woodPattern, 1, 0));
+	TConstructRegistry.addItemStackToDirectory("clasp Pattern", new ItemStack(woodPattern, 1, 1));
+	
+	//ItemStack metalCast = new ItemStack(patternOutputs[i], 1, liquidDamage[iterTwo]);
+    tableCasting.addCastingRecipe(metalCast, new FluidStack(fs, fluidAmount), cast, 50);
+    Smeltery.addMelting(FluidType.getFluidType(fs), metalCast, 0, 1000);
+
     //Renderers
   	proxy.registerRenderers();
     
@@ -354,6 +391,14 @@ public void init(FMLInitializationEvent e)
 
 	    TConstructRegistry.addToolRecipe(tool_heaterShield, TinkerTools.largePlate, TinkerTools.toughRod, TinkerTools.largePlate, TinkerTools.toughBinding);
 	    
+		StencilBuilder.registerStencil(50, woodPattern, 0); // rivets
+		StencilBuilder.registerStencil(51, woodPattern, 1); // spike
+		
+		PatternBuilder.instance.addToolPattern(woodPattern);
+
+		buildParts(rivets, 0);
+		buildParts(clasp, 1);
+
 }
 
 @EventHandler
@@ -394,4 +439,27 @@ public void castMolten(Fluid fluid, int ID)
 
     
 }
+
+public void buildParts(Item item, int meta)
+{
+	int[] nonMetals = { 0, 1, 3, 4, 5, 6, 7, 8, 9, 17 };
+	int[] liquidDamage = new int[] { 2, 13, 10, 11, 12, 14, 15, 6, 16, 18 };
+	
+	for (int mat = 0; mat < nonMetals.length; mat++)
+	{
+				 TConstructRegistry.addPartMapping(woodPattern, meta, mat, new ItemStack(item, 1, mat));
+	}
+
+	LiquidCasting tableCasting = TConstructRegistry.getTableCasting();
+	
+	for (int iterTwo = 0; iterTwo < TinkerSmeltery.liquids.length; iterTwo++) {
+        Fluid fs = TinkerSmeltery.liquids[iterTwo].getFluid();
+        int fluidAmount = metalPattern.getPatternCost(cast) * TConstruct.ingotLiquidValue / 2;
+        ItemStack metalCast = new ItemStack(patternOutputs[i], 1, liquidDamage[iterTwo]);
+        tableCasting.addCastingRecipe(metalCast, new FluidStack(fs, fluidAmount), cast, 50);
+        Smeltery.addMelting(FluidType.getFluidType(fs), metalCast, 0, fluidAmount);
+    }
+}
+
+
 }
