@@ -9,7 +9,7 @@ import tconstruct.tools.items.Pattern;
 import tconstruct.util.Reference;
 
 public class TD_Patterns extends Pattern {
-	 private static final String[] patternName = new String[] {"rivets","clasp"};
+	 private static final String[] patternName = new String[] {"rivets","clasp","armorplate"};
 
 	    public TD_Patterns(String patternType, String name) {
 	        super(patternName, getPatternNames(patternName, patternType), "patterns/");
@@ -41,6 +41,7 @@ public class TD_Patterns extends Pattern {
 	        {
 	            case 0: return 1; //rivets
 	            case 1: return 2; //clasp
+	            case 2: return 8; //armorplate
 	        }
 	        return 0;
 	    }
