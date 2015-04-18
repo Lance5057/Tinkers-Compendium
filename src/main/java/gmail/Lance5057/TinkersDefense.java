@@ -4,21 +4,21 @@ import static net.minecraft.util.EnumChatFormatting.DARK_RED;
 import static net.minecraft.util.EnumChatFormatting.GOLD;
 import static net.minecraft.util.EnumChatFormatting.LIGHT_PURPLE;
 import gmail.Lance5057.armor.blocks.ArmorAnvil;
+import gmail.Lance5057.armor.tools.Item_Cloth;
+import gmail.Lance5057.armor.tools.Item_Glowthread;
+import gmail.Lance5057.armor.tools.Item_Thread;
 import gmail.Lance5057.blocks.AeonSteelBlock;
 import gmail.Lance5057.blocks.CrestMount;
 import gmail.Lance5057.blocks.DogbeariumBlock;
 import gmail.Lance5057.blocks.JewelersBench;
 import gmail.Lance5057.blocks.QueensGoldBlock;
 import gmail.Lance5057.items.AeonSteelIngot;
-import gmail.Lance5057.items.Crest_Feathers;
 import gmail.Lance5057.items.DogbeariumIngot;
-import gmail.Lance5057.items.HeaterShield;
-import gmail.Lance5057.items.Item_Cloth;
-import gmail.Lance5057.items.Item_Glowthread;
-import gmail.Lance5057.items.Item_Thread;
 import gmail.Lance5057.items.QueensGoldIngot;
-import gmail.Lance5057.items.RoundShield;
 import gmail.Lance5057.items.TD_Patterns;
+import gmail.Lance5057.items.tools.HeaterShield;
+import gmail.Lance5057.items.tools.RoundShield;
+import gmail.Lance5057.items.tools.TinkerWrench;
 import gmail.Lance5057.liquids.moltenAeonsteelFluid;
 import gmail.Lance5057.liquids.moltenDogbeariumFluid;
 import gmail.Lance5057.liquids.moltenQueensGoldFluid;
@@ -49,7 +49,6 @@ import tconstruct.library.crafting.Smeltery;
 import tconstruct.library.crafting.StencilBuilder;
 import tconstruct.library.tools.DynamicToolPart;
 import tconstruct.library.tools.ToolCore;
-import tconstruct.library.util.IPattern;
 import tconstruct.smeltery.TinkerSmeltery;
 import tconstruct.tools.TinkerTools;
 import tconstruct.tools.items.Pattern;
@@ -103,6 +102,7 @@ public static Block moltenDogbeariumBlock;
 
 public static ToolCore tool_roundShield;
 public static ToolCore tool_heaterShield;
+public static ToolCore tool_wrench;
 
 public static Block block_CrestMount;
 public static Block block_ArmorAnvil;
@@ -258,6 +258,8 @@ public void preInit(FMLPreInitializationEvent e)
     tool_roundShield = new RoundShield();
     tool_heaterShield = new HeaterShield();
     
+    tool_wrench = new TinkerWrench();
+    
 	item_Crest_Feathers = new Item()
 	.setCreativeTab(tabName)
 	.setMaxStackSize(1)
@@ -278,8 +280,10 @@ public void preInit(FMLPreInitializationEvent e)
 
     GameRegistry.registerItem(tool_roundShield, "Round Shield");
     GameRegistry.registerItem(tool_heaterShield, "Heater Shield");
+    GameRegistry.registerItem(tool_wrench,"Tinker Wrench");
     TConstructRegistry.addItemToDirectory("Round Shield", tool_roundShield);
     TConstructRegistry.addItemToDirectory("Heater Shield", tool_heaterShield);  
+    TConstructRegistry.addItemToDirectory("Tinker Wrench", tool_wrench);
     
     GameRegistry.registerItem(item_thread = new Item_Thread(), "thread");
     GameRegistry.registerItem(item_glowthread = new Item_Glowthread(), "glowthread");
@@ -379,6 +383,8 @@ public void init(FMLInitializationEvent e)
 	    TConstructRegistry.addToolRecipe(tool_roundShield, TinkerTools.largePlate, TinkerTools.toolRod, TinkerTools.frypanHead);
 
 	    TConstructRegistry.addToolRecipe(tool_heaterShield, TinkerTools.largePlate, TinkerTools.toughRod, TinkerTools.largePlate, TinkerTools.toughBinding);
+	    
+	    TConstructRegistry.addToolRecipe(tool_wrench, TinkerTools.handGuard, TinkerTools.toolRod, TinkerTools.binding);
 	    
 		StencilBuilder.registerStencil(50, woodPattern, 0); // rivets
 		StencilBuilder.registerStencil(51, woodPattern, 1); // spike

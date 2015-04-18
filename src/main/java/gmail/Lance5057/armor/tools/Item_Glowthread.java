@@ -1,4 +1,4 @@
-package gmail.Lance5057.items;
+package gmail.Lance5057.armor.tools;
 
 import gmail.Lance5057.TinkersDefense;
 

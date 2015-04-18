@@ -1,4 +1,4 @@
-package gmail.Lance5057.items;
+package gmail.Lance5057.items.tools;
 
 import tconstruct.library.tools.ToolCore;
 import cpw.mods.fml.relauncher.*;

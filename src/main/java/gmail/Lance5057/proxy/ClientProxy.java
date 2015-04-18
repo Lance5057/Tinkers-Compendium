@@ -2,7 +2,7 @@ package gmail.Lance5057.proxy;
 
 import gmail.Lance5057.TinkersDefense;
 import gmail.Lance5057.items.ModelTinkerArmor;
-import gmail.Lance5057.items.RoundShield;
+import gmail.Lance5057.items.tools.RoundShield;
 import gmail.Lance5057.models.Renderer_ArmorAnvil;
 import gmail.Lance5057.models.Renderer_CrestMount;
 import gmail.Lance5057.models.Renderer_JewelersBench;
@@ -25,6 +25,7 @@ public class ClientProxy extends CommonProxy
         	FlexibleToolRenderer renderer = new FlexibleToolRenderer();
         	MinecraftForgeClient.registerItemRenderer(TinkersDefense.tool_roundShield, renderer);
         	MinecraftForgeClient.registerItemRenderer(TinkersDefense.tool_heaterShield, renderer);
+        	MinecraftForgeClient.registerItemRenderer(TinkersDefense.tool_wrench, renderer);
         	
         	ClientRegistry.bindTileEntitySpecialRenderer(TileEntity_CrestMount.class, new Renderer_CrestMount());
         	ClientRegistry.bindTileEntitySpecialRenderer(TileEntity_ArmorAnvil.class, new Renderer_ArmorAnvil());
