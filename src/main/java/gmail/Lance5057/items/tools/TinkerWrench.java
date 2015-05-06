@@ -26,93 +26,98 @@ import tconstruct.tools.TinkerTools;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-
-public class TinkerWrench extends Weapon implements IToolWrench
-{
+public class TinkerWrench extends Weapon implements IToolWrench {
 	int induceDamage = 0;
-	
-	public TinkerWrench()
-	{
-	super(0);
-	this.setUnlocalizedName("tinkerwrench");
+
+	public TinkerWrench() {
+		super(0);
+		this.setUnlocalizedName("tinkerwrench");
 	}
+
 	@Override
-	public Item getHeadItem ()
-	{
-	return TinkerTools.handGuard;
+	public Item getHeadItem() {
+		return TinkerTools.handGuard;
 	}
+
 	@Override
-	public Item getHandleItem ()
-	{
-	return TinkerTools.toolRod;
+	public Item getHandleItem() {
+		return TinkerTools.toolRod;
 	}
+
 	@Override
-	public Item getAccessoryItem ()
-	{
-	return TinkerTools.binding;
+	public Item getAccessoryItem() {
+		return TinkerTools.binding;
 	}
+
 	@Override
-	public int durabilityTypeAccessory ()
-	{
-	return 2;
+	public int durabilityTypeAccessory() {
+		return 2;
 	}
+
 	@Override
-	public float getRepairCost ()
-	{
-	return 1.0f;
+	public float getRepairCost() {
+		return 1.0f;
 	}
+
 	@Override
-	public float getDurabilityModifier ()
-	{
-	return 2.5f;
+	public float getDurabilityModifier() {
+		return 0.1f;
 	}
+
 	@Override
-	public float getDamageModifier ()
-	{
-	return 0.4f;
+	public float getDamageModifier() {
+		return 0.4f;
 	}
+
 	@SideOnly(Side.CLIENT)
 	@Override
-	public int getPartAmount ()
-	{
-	return 3;
+	public int getPartAmount() {
+		return 3;
 	}
+
 	@Override
-	public String getIconSuffix (int partType)
-	{
-	switch (partType)
-	{
-	case 0:
-	return "_wrench_head";
-	case 1:
-	return "_wrench_head_broken";
-	case 2:
-	return "_wrench_handle";
-	case 3:
-	return "_wrench_binding";
-	default:
-	return "";
+	public String getIconSuffix(int partType) {
+		switch (partType) {
+		case 0:
+			return "_wrench_head";
+		case 1:
+			return "_wrench_head_broken";
+		case 2:
+			return "_wrench_handle";
+		case 3:
+			return "_wrench_binding";
+		default:
+			return "";
+		}
 	}
-	}
+
 	@Override
-	public String getEffectSuffix ()
-	{
-	return "_wrench_effect";
+	public String getEffectSuffix() {
+		return "_wrench_effect";
 	}
+
 	@Override
-	public String getDefaultFolder ()
-	{
-	return "wrench";
+	public String getDefaultFolder() {
+		return "wrench";
 	}
+
 	@Override
-	public boolean canWrench(EntityPlayer player, int x, int y, int z) 
-	{
-		return true;
+	public boolean canWrench(EntityPlayer player, int x, int y, int z) {
+		NBTTagCompound tags = player.inventory.getCurrentItem()
+				.getTagCompound().getCompoundTag("InfiTool");
+
+		if (!tags.getBoolean("Broken")) {
+			return true;
+		}
+		return false;
 	}
+
 	@Override
-	public void wrenchUsed(EntityPlayer player, int x, int y, int z) 
-	{
+	public void wrenchUsed(EntityPlayer player, int x, int y, int z) {
+
 		player.swingItem();
-		AbilityHelper.damageTool(player.getCurrentEquippedItem(), 1, player, false);
+		AbilityHelper.damageTool(player.inventory.getCurrentItem(), 1, player,
+				false);
+
 	}
 }
