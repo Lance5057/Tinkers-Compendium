@@ -4,6 +4,8 @@ import static net.minecraft.util.EnumChatFormatting.DARK_RED;
 import static net.minecraft.util.EnumChatFormatting.GOLD;
 import static net.minecraft.util.EnumChatFormatting.LIGHT_PURPLE;
 import gmail.Lance5057.armor.blocks.ArmorAnvil;
+import gmail.Lance5057.armor.items.Sheath;
+import gmail.Lance5057.armor.items.TinkerArmor;
 import gmail.Lance5057.armor.tools.Item_Cloth;
 import gmail.Lance5057.armor.tools.Item_Glowthread;
 import gmail.Lance5057.armor.tools.Item_Thread;
@@ -12,6 +14,7 @@ import gmail.Lance5057.blocks.CrestMount;
 import gmail.Lance5057.blocks.DogbeariumBlock;
 import gmail.Lance5057.blocks.JewelersBench;
 import gmail.Lance5057.blocks.QueensGoldBlock;
+import gmail.Lance5057.events.TDEventHandler;
 import gmail.Lance5057.items.AeonSteelIngot;
 import gmail.Lance5057.items.DogbeariumIngot;
 import gmail.Lance5057.items.QueensGoldIngot;
@@ -24,18 +27,20 @@ import gmail.Lance5057.liquids.moltenDogbeariumFluid;
 import gmail.Lance5057.liquids.moltenQueensGoldFluid;
 import gmail.Lance5057.modifiers.TDefenseActiveToolMod;
 import gmail.Lance5057.modifiers.modifierDaze;
+import gmail.Lance5057.modifiers.shields.modifierCrestofFeathers;
+import gmail.Lance5057.modifiers.shields.modifierCrestofMirrors;
 import gmail.Lance5057.network.PacketHandler;
 import gmail.Lance5057.proxy.CommonProxy;
 import gmail.Lance5057.tileentities.TileEntity_ArmorAnvil;
 import gmail.Lance5057.tileentities.TileEntity_CrestMount;
 import gmail.Lance5057.tileentities.TileEntity_JewelersBench;
-import mantle.lib.client.MantleClientRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.MinecraftForge;
@@ -52,7 +57,6 @@ import tconstruct.library.crafting.ModifyBuilder;
 import tconstruct.library.crafting.PatternBuilder;
 import tconstruct.library.crafting.Smeltery;
 import tconstruct.library.crafting.StencilBuilder;
-import tconstruct.library.crafting.ToolBuilder;
 import tconstruct.library.tools.DynamicToolPart;
 import tconstruct.library.tools.ToolCore;
 import tconstruct.smeltery.TinkerSmeltery;
@@ -81,14 +85,18 @@ public class TinkersDefense {
 	public static CreativeTabs tabName = new CreativeTabs("tabName") {
 
 		public Item getTabIconItem() {
-			return Items.arrow;
+	        return TinkersDefense.tabIcon;
 		}
 
 	};
+	
+	public static TDEventHandler TDevents;
 
 	public static final SimpleNetworkWrapper INSTANCE = NetworkRegistry.INSTANCE
 			.newSimpleChannel(Reference.MOD_ID);
 
+	public static Item tabIcon;
+	
 	public static Item item_AeonSteelIngot;
 	public static Block block_AeonSteelBlock;
 
@@ -116,6 +124,8 @@ public class TinkersDefense {
 	public static Block block_JewelersBench;
 
 	public static Item item_TinkerArmor;
+	public static Item item_Sheath;
+	
 	public static Item item_Crest_Feathers;
 	public static Item item_Crest_Blades;
 
@@ -135,9 +145,10 @@ public class TinkersDefense {
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent e) {
 		PacketHandler.init();
+		TDevents = new TDEventHandler();
 
 		block_CrestMount = new CrestMount().setHardness(4.0F)
-				.setStepSound(Block.soundTypeMetal).setBlockName("CrestMount")
+				.setStepSound(Block.soundTypeStone).setBlockName("CrestMount")
 				.setCreativeTab(tabName);
 
 		GameRegistry.registerBlock(block_CrestMount, "Block_CrestMount");
@@ -168,7 +179,9 @@ public class TinkersDefense {
 		NetworkRegistry.INSTANCE.registerGuiHandler(TinkersDefense.instance,
 				new CommonProxy());
 		MinecraftForge.EVENT_BUS.register(this);
-
+		
+		tabIcon = new Item().setMaxStackSize(1).setCreativeTab(tabName).setUnlocalizedName("tabIcon").setTextureName(Reference.MOD_ID + ":Icon");
+		GameRegistry.registerItem(tabIcon, "tabIcon");
 		// AeonSteel
 		item_AeonSteelIngot = new AeonSteelIngot().setCreativeTab(tabName)
 				.setMaxStackSize(64).setUnlocalizedName("AeonSteelIngot")
@@ -311,9 +324,12 @@ public class TinkersDefense {
 		// Renderers
 		proxy.registerRenderers();
 
-		// item_TinkerArmor = new TinkerArmor(ArmorMaterial.IRON, 4,
-		// 1).setUnlocalizedName("Tinker_Armor");
-		// GameRegistry.registerItem(item_TinkerArmor,"Tinker Armor");
+		 item_TinkerArmor = new TinkerArmor(ArmorMaterial.IRON, 4,
+		 1).setUnlocalizedName("Tinker_Armor");
+		 GameRegistry.registerItem(item_TinkerArmor,"Tinker Armor");
+		
+		item_Sheath = new Sheath().setUnlocalizedName("Sheath");
+		GameRegistry.registerItem(item_Sheath, "Sheath");
 
 		// network.registerMessage(messageHandler, requestMessageType,
 		// discriminator, side);
@@ -322,16 +338,33 @@ public class TinkersDefense {
 	@EventHandler
 	public void init(FMLInitializationEvent e) {
 		System.out.print(Reference.MOD_ID);
+		
+		
 		PatternBuilder pb = PatternBuilder.instance;
 		
-		ModifyBuilder.registerModifier(new modifierDaze("Daze", 5, new ItemStack[] { new ItemStack(Blocks.light_weighted_pressure_plate), new ItemStack(Items.potionitem,1,8202)},
+		ModifyBuilder.registerModifier(new modifierDaze("Daze", 18, new ItemStack[] { new ItemStack(Blocks.light_weighted_pressure_plate), new ItemStack(Items.potionitem,1,8202)},
 				new int[] {1,0}));
+		
+		ModifyBuilder.registerModifier(new modifierCrestofFeathers("Crest of Feathers", 19, new ItemStack[] { new ItemStack(item_Crest_Feathers)},
+				new int[] {1}));
+		
+		ModifyBuilder.registerModifier(new modifierCrestofMirrors("Crest of Mirrors", 20, new ItemStack[] { new ItemStack(Blocks.glass_pane)},
+				new int[] {1}));
 		TConstructRegistry.registerActiveToolMod(new TDefenseActiveToolMod());
 		
 		for (ToolCore tool : TConstructRegistry.getToolMapping())
         {
-			TConstructClientRegistry.addEffectRenderMapping(tool, 19, "tinkersdefense", "daze", false);
-			System.out.println("test");
+			TConstructClientRegistry.addEffectRenderMapping(tool, 18, "tinkersdefense", "daze", true);
+        }
+		//TODO clean this mess up
+		for (ToolCore tool : TConstructRegistry.getToolMapping())
+        {
+			TConstructClientRegistry.addEffectRenderMapping(tool, 19, "tinkersdefense", "crest_feather", true);
+        }
+		
+		for (ToolCore tool : TConstructRegistry.getToolMapping())
+        {
+			TConstructClientRegistry.addEffectRenderMapping(tool, 20, "tinkersdefense", "crest_mirrors", true);
         }
 		
 		TConstructClientRegistry.toolButtons
