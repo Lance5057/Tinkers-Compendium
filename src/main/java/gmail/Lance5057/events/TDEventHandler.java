@@ -38,23 +38,29 @@ public class TDEventHandler {
 				{
 					EntityFireball ent = (EntityFireball) event.source.getSourceOfDamage();
 					//EntityFireball newEnt = new EntityFireball();
-//					Vec3 playerlook = event.getPlayer().getLookVec();
+					Vec3 playerlook = event.getPlayer().getLookVec();
 					
-					ent.attackEntityFrom(DamageSource.generic, 1);
+					//ent.attackEntityFrom(, 1);
 					
-//					
-//					//ent.setBeenAttacked();
-//					
-//					ent.motionX = playerlook.xCoord;
-//					ent.motionY = playerlook.yCoord;
-//					ent.motionZ = playerlook.zCoord;
-//					ent.accelerationX = ent.motionX * 0.1D;
-//					ent.accelerationY = ent.motionY * 0.1D;
-//					ent.accelerationZ = ent.motionZ * 0.1D;
-//					
-//	                ent.shootingEntity = event.getPlayer();
 					
-					//ent.setDead();
+					//ent.setBeenAttacked();
+					
+					ent.motionX = playerlook.xCoord;
+					ent.motionY = playerlook.yCoord;
+					ent.motionZ = playerlook.zCoord;
+					ent.accelerationX = ent.motionX * 0.1D;
+					ent.accelerationY = ent.motionY * 0.1D;
+					ent.accelerationZ = ent.motionZ * 0.1D;
+					
+	                ent.shootingEntity = event.getPlayer();
+	                
+	                ent.motionX += ent.accelerationX*2;
+	                ent.motionY += ent.accelerationY*2;
+	                ent.motionZ += ent.accelerationZ*2;
+	                
+	                //ent.
+					
+					ent.setDead();
 					
 					event.getPlayer().addChatComponentMessage(new ChatComponentText("Nom"));
 				}
