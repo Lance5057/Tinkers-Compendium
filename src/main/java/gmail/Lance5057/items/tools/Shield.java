@@ -116,7 +116,7 @@ public class Shield extends ToolCore implements IShield, ISheathed,
 
 	@Override
 	public String[] getTraits() {
-		return new String[] { "shield", "melee" };
+		return new String[] { "shield", "blocking" };
 	}
 
 	public static Material[] web = new Material[] { Material.web,

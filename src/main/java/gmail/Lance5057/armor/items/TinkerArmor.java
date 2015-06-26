@@ -20,24 +20,25 @@ public class TinkerArmor extends ItemArmor {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister par1IconRegister) {
-		String itemName = "tinkersdefense:textures/armor/Sheath";
+		String itemName = "tinkersdefense:textures/armor/ChainArmor";
 		this.itemIcon = par1IconRegister.registerIcon(itemName);
 	}
 
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot,
 			String type) {
-		return "tinkersdefense:textures/armor/Sheath.png";
+		return "tinkersdefense:textures/armor/ChainArmor.png";
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public ModelBiped getArmorModel(EntityLivingBase entityLiving,
-			ItemStack itemStack, int armorSlot) {
+			ItemStack itemStack, int armorSlot) 
+	{
 		
-		return ClientProxy.sheath;
-//		ModelBiped armorModel = null;
-//		if (itemStack != null) {
+//		return ClientProxy.chain;
+		ModelBiped armorModel = ClientProxy.chain;
+		if (itemStack != null) {
 //			if (itemStack.getItem() instanceof TinkerArmor) {
 //				int type = ((ItemArmor) itemStack.getItem()).armorType;
 //				if (type == 1 || type == 3) {
@@ -47,7 +48,7 @@ public class TinkerArmor extends ItemArmor {
 //				}
 //
 //			}
-//			if (armorModel != null) {
+			if (armorModel != null) {
 //				armorModel.bipedHead.showModel = armorSlot == 0;
 //				armorModel.bipedHeadwear.showModel = armorSlot == 0;
 //				armorModel.bipedBody.showModel = armorSlot == 1
@@ -58,20 +59,20 @@ public class TinkerArmor extends ItemArmor {
 //						|| armorSlot == 3;
 //				armorModel.bipedLeftLeg.showModel = armorSlot == 2
 //						|| armorSlot == 3;
-//				armorModel.isSneak = entityLiving.isSneaking();
-//				armorModel.isRiding = entityLiving.isRiding();
-//				armorModel.isChild = entityLiving.isChild();
-//				armorModel.heldItemRight = entityLiving.getHeldItem() != null ? 1
-//						: 0;
-//
-//				if (entityLiving instanceof EntityPlayer) {
-//					armorModel.aimedBow = ((EntityPlayer) entityLiving)
-//							.getItemInUseDuration() > 2;
-//				}
-//				return armorModel;
-//			}
-//		}
-//		return armorModel;
+				armorModel.isSneak = entityLiving.isSneaking();
+				armorModel.isRiding = entityLiving.isRiding();
+				armorModel.isChild = entityLiving.isChild();
+				armorModel.heldItemRight = entityLiving.getHeldItem() != null ? 1
+						: 0;
+
+				if (entityLiving instanceof EntityPlayer) {
+					armorModel.aimedBow = ((EntityPlayer) entityLiving)
+							.getItemInUseDuration() > 2;
+				}
+				return armorModel;
+			}
+		}
+		return armorModel;
 	}
 
 }

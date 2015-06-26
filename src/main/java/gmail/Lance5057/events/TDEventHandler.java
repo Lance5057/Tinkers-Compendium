@@ -6,6 +6,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityFireball;
 import net.minecraft.entity.projectile.EntityLargeFireball;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Vec3;
@@ -64,6 +66,18 @@ public class TDEventHandler {
 					
 					event.getPlayer().addChatComponentMessage(new ChatComponentText("Nom"));
 				}
+			}
+			
+			if(tags.hasKey("Crest of Legends"))
+			{
+				event.getPlayer().addPotionEffect(new PotionEffect(Potion.fireResistance.getId(),4,30));
+				event.getPlayer().addPotionEffect(new PotionEffect(Potion.moveSpeed.getId(),4,30));
+				event.getPlayer().addPotionEffect(new PotionEffect(Potion.resistance.getId(),4,30));
+			}
+			
+			if(tags.hasKey("Crest of Vampires"))
+			{
+				event.getPlayer().heal(event.ammount/tags.getInteger("Crest of Vampires"));
 			}
 		}
 	}

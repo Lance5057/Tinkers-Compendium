@@ -1,6 +1,7 @@
 package gmail.Lance5057.proxy;
 
 import gmail.Lance5057.TinkersDefense;
+import gmail.Lance5057.armor.renderers.ModelChainArmor;
 import gmail.Lance5057.armor.renderers.ModelSheath;
 import gmail.Lance5057.armor.renderers.ModelTinkerArmor;
 import gmail.Lance5057.models.Renderer_ArmorAnvil;
@@ -17,6 +18,7 @@ import cpw.mods.fml.client.registry.ClientRegistry;
 public class ClientProxy extends CommonProxy {
 	private static final ModelTinkerArmor tutChest = new ModelTinkerArmor(1.0f);
 	public static final ModelSheath sheath = new ModelSheath();
+	public static final ModelChainArmor chain = new ModelChainArmor(0.1f);
 	
 	@Override
 	public void registerRenderers() {

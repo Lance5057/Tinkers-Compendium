@@ -1,18 +1,21 @@
 package gmail.Lance5057.modifiers.shields;
 
-import tconstruct.modifiers.tools.ItemModTypeFilter;
+import java.util.Arrays;
+import java.util.List;
+
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import tconstruct.library.tools.ToolCore;
+import tconstruct.modifiers.tools.ModBoolean;
 
-public class modifierCrestofMirrors extends ItemModTypeFilter
+public class modifierCrestofMirrors extends ModBoolean 
 {
     String tooltipName;
-    int max = 5;
     String guiType;
 
     public modifierCrestofMirrors(String type, int effect, ItemStack[] items, int[] values)
     {
-        super(effect, "Crest of Mirrors", items, values);
+    	super(items, effect, "Mirrors", "\u00A7", "");
         tooltipName = "\u00A7bCrest of Mirrors";
         guiType = type;
     }
@@ -20,68 +23,42 @@ public class modifierCrestofMirrors extends ItemModTypeFilter
     @Override
     protected boolean canModify (ItemStack tool, ItemStack[] input)
     {
-        NBTTagCompound tags = tool.getTagCompound().getCompoundTag("InfiTool");
-        if (!tags.hasKey(key))
-            return tags.getInteger("Modifiers") > 0 && matchingAmount(input) <= max;
-
-        if (matchingAmount(input) > max)
-            return false;
-
-        int keyPair[] = tags.getIntArray(key);
-        if (keyPair[0] + matchingAmount(input) <= keyPair[1])
+    	if (tool.getItem() instanceof ToolCore)
+        {
+    		List list = Arrays.asList(((ToolCore)tool.getItem()).getTraits());
+    		if (list.contains("shield"))
+    		{
+    			
+    			NBTTagCompound tags = tool.getTagCompound().getCompoundTag("InfiTool");
+            
+            if (tags.hasKey(key))
+                return false;
+            
             return true;
-
-        else if (keyPair[0] == keyPair[1])
-            return tags.getInteger("Modifiers") > 0;
-
-        else
-            return false;
+    		}
+        }
+    	return false;
+        
     }
 
     @Override
     public void modify (ItemStack[] input, ItemStack tool)
     {
-        NBTTagCompound tags = tool.getTagCompound().getCompoundTag("InfiTool");
-        int increase = matchingAmount(input);
-        if (tags.hasKey(key))
-        {
-            int[] keyPair = tags.getIntArray(key);
-
-            if (keyPair[0] % max == 0)
-            {
-                keyPair[0] += increase;
-                keyPair[1] += max;
-                tags.setIntArray(key, keyPair);
-
-                int modifiers = tags.getInteger("Modifiers");
-                modifiers -= 1;
-                tags.setInteger("Modifiers", modifiers);
-            }
-            else
-            {
-                keyPair[0] += increase;
-                tags.setIntArray(key, keyPair);
-            }
-            updateModTag(tool, keyPair);
-
-        }
-        else
-        {
-            int modifiers = tags.getInteger("Modifiers");
-            modifiers -= 1;
-            tags.setInteger("Modifiers", modifiers);
-            String modName = "\u00A76" + guiType + " (" + increase + "/" + max + ")";
-            int tooltipIndex = addToolTip(tool, tooltipName, modName);
-            int[] keyPair = new int[] { increase, max, tooltipIndex };
-            tags.setIntArray(key, keyPair);
-        }
+    	NBTTagCompound tags = tool.getTagCompound().getCompoundTag("InfiTool");
+        tags.setBoolean(key, true);
+        
+        int modifiers = tags.getInteger("Modifiers");
+        modifiers -= 1;
+        tags.setInteger("Modifiers", modifiers);
+        
+        addToolTip(tool, "\u00A7b" + tooltipName, "\u00A7b" + key);
     }
 
     void updateModTag (ItemStack tool, int[] keys)
     {
         NBTTagCompound tags = tool.getTagCompound().getCompoundTag("InfiTool");
         String tip = "ModifierTip" + keys[2];
-        String modName = "\u00A76" + guiType + " (" + keys[0] + "/" + keys[1] + ")";
+        String modName = "\u00A7b" + guiType;
         tags.setString(tip, modName);
     }
 }

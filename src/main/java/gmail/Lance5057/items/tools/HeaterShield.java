@@ -185,13 +185,11 @@ public class HeaterShield extends Shield {
 
 	@Override
 	public int getBashTimer(ItemStack arg0) {
-		// TODO Auto-generated method stub
 		return 10;
 	}
 
 	@Override
 	public float getBlockAngle(ItemStack arg0) {
-		// TODO Auto-generated method stub
 		return 60;
 	}
 
@@ -242,17 +240,7 @@ public class HeaterShield extends Shield {
 	}
 
 	@Override
-	protected Material[] getEffectiveMaterials() {
-		return materials;
-	}
-
-	static Material[] materials = new Material[] { Material.rock,
-			Material.iron, Material.ice, Material.glass, Material.piston,
-			Material.anvil, Material.circuits };
-
-	@Override
 	protected String getHarvestType() {
-		// TODO Auto-generated method stub
-		return "pickaxe";
+		return "shield";
 	}
 }

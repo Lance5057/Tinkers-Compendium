@@ -44,6 +44,8 @@ import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.common.config.Property;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
@@ -91,6 +93,8 @@ public class TinkersDefense {
 	};
 	
 	public static TDEventHandler TDevents;
+	
+	public static TD_Config config;
 
 	public static final SimpleNetworkWrapper INSTANCE = NetworkRegistry.INSTANCE
 			.newSimpleChannel(Reference.MOD_ID);
@@ -145,7 +149,9 @@ public class TinkersDefense {
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent e) {
 		PacketHandler.init();
-		TDevents = new TDEventHandler();
+		//TDevents = new TDEventHandler();
+		config = new TD_Config(e);
+		
 
 		block_CrestMount = new CrestMount().setHardness(4.0F)
 				.setStepSound(Block.soundTypeStone).setBlockName("CrestMount")
@@ -342,30 +348,23 @@ public class TinkersDefense {
 		
 		PatternBuilder pb = PatternBuilder.instance;
 		
-		ModifyBuilder.registerModifier(new modifierDaze("Daze", 18, new ItemStack[] { new ItemStack(Blocks.light_weighted_pressure_plate), new ItemStack(Items.potionitem,1,8202)},
+		ModifyBuilder.registerModifier(new modifierDaze("Daze", config.DazeID, new ItemStack[] { new ItemStack(Blocks.light_weighted_pressure_plate), new ItemStack(Items.potionitem,1,8202)},
 				new int[] {1,0}));
 		
-		ModifyBuilder.registerModifier(new modifierCrestofFeathers("Crest of Feathers", 19, new ItemStack[] { new ItemStack(item_Crest_Feathers)},
+		ModifyBuilder.registerModifier(new modifierCrestofFeathers("Crest of Feathers", config.CrestFeathersID, new ItemStack[] { new ItemStack(item_Crest_Feathers)},
 				new int[] {1}));
 		
-		ModifyBuilder.registerModifier(new modifierCrestofMirrors("Crest of Mirrors", 20, new ItemStack[] { new ItemStack(Blocks.glass_pane)},
+		ModifyBuilder.registerModifier(new modifierCrestofMirrors("Crest of Mirrors", config.CrestMirrorsID, new ItemStack[] { new ItemStack(Blocks.glass_pane)},
 				new int[] {1}));
 		TConstructRegistry.registerActiveToolMod(new TDefenseActiveToolMod());
 		
 		for (ToolCore tool : TConstructRegistry.getToolMapping())
         {
-			TConstructClientRegistry.addEffectRenderMapping(tool, 18, "tinkersdefense", "daze", true);
+			TConstructClientRegistry.addEffectRenderMapping(tool, config.DazeID, "tinker", "daze", true);
+			TConstructClientRegistry.addEffectRenderMapping(tool, config.CrestFeathersID, "tinker", "feathers", true);
+			TConstructClientRegistry.addEffectRenderMapping(tool, config.CrestMirrorsID, "tinker", "mirrors", true);
         }
-		//TODO clean this mess up
-		for (ToolCore tool : TConstructRegistry.getToolMapping())
-        {
-			TConstructClientRegistry.addEffectRenderMapping(tool, 19, "tinkersdefense", "crest_feather", true);
-        }
-		
-		for (ToolCore tool : TConstructRegistry.getToolMapping())
-        {
-			TConstructClientRegistry.addEffectRenderMapping(tool, 20, "tinkersdefense", "crest_mirrors", true);
-        }
+
 		
 		TConstructClientRegistry.toolButtons
 				.add(TConstructClientRegistry.toolButtons.size(),
@@ -401,16 +400,16 @@ public class TinkersDefense {
 				TinkerTools.toolShard, 1, 10), new ItemStack(
 				TinkerTools.toolRod, 1, 10), 10);
 
-		TConstructClientRegistry.addMaterialRenderMapping(201, "tinker",
+		TConstructClientRegistry.addMaterialRenderMapping(config.AeonsteelMatID, "tinker",
 				"aeonsteel", true);
 
 		// Tool Materials: id, name, harvestlevel, durability, speed, damage,
 		// handlemodifier, reinforced, shoddy, style color, primary color for
 		// block use
-		TConstructRegistry.addToolMaterial(201, "AeonSteel", 4, 822, 1100, 3,
+		TConstructRegistry.addToolMaterial(config.AeonsteelMatID, "AeonSteel", 4, 822, 1100, 3,
 				1.6F, 2, 0f, LIGHT_PURPLE.toString(), 0xb565e6);
 		TinkerTools.registerPatternMaterial("AeonSteelIngot", 2, "AeonSteel");
-		TConstructRegistry.addDefaultToolPartMaterial(201);
+		TConstructRegistry.addDefaultToolPartMaterial(config.AeonsteelMatID);
 
 		Smeltery.addMelting(new ItemStack(item_AeonSteelIngot, 1, 0),
 				block_AeonSteelBlock, 0, 500, new FluidStack(moltenAeonsteel,
@@ -429,24 +428,24 @@ public class TinkersDefense {
 						new FluidStack(moltenAeonsteel,
 								TConstruct.ingotLiquidValue * 9), 100);
 
-		castMolten(moltenAeonsteel, 201);
+		castMolten(moltenAeonsteel, config.AeonsteelMatID);
 
 		PatternBuilder.instance.registerFullMaterial(new ItemStack(
 				item_AeonSteelIngot, 1, 0), 2, "Aeonsteel", new ItemStack(
-				TinkerTools.toolShard, 1, 201), new ItemStack(
-				TinkerTools.toolRod, 1, 201), 201);
+				TinkerTools.toolShard, 1, config.AeonsteelMatID), new ItemStack(
+				TinkerTools.toolRod, 1, config.AeonsteelMatID), config.AeonsteelMatID);
 
 		Smeltery.addAlloyMixing(new FluidStack(moltenAeonsteel, 144),
 				new FluidStack[] {
 						new FluidStack(TinkerSmeltery.moltenAlumiteFluid, 144),
 						new FluidStack(TinkerSmeltery.moltenCobaltFluid, 144) });
 		// Queen's Gold
-		TConstructClientRegistry.addMaterialRenderMapping(202, "tinker",
+		TConstructClientRegistry.addMaterialRenderMapping(config.QueensGoldMatID, "tinker",
 				"queensgold", true);
-		TConstructRegistry.addToolMaterial(202, "QueensGold", 3, 100, 500, 2,
+		TConstructRegistry.addToolMaterial(config.QueensGoldMatID, "QueensGold", 3, 100, 500, 2,
 				1.0F, 0, 0f, GOLD.toString(), 0xeaee57);
 		TinkerTools.registerPatternMaterial("QueensGoldIngot", 2, "QueensGold");
-		TConstructRegistry.addDefaultToolPartMaterial(202);
+		TConstructRegistry.addDefaultToolPartMaterial(config.QueensGoldMatID);
 
 		Smeltery.addMelting(new ItemStack(item_QueensGoldIngot, 1, 0),
 				block_QueensGoldBlock, 0, 500, new FluidStack(moltenQueensGold,
@@ -464,12 +463,12 @@ public class TinkersDefense {
 				new FluidStack(moltenQueensGold,
 						TConstruct.ingotLiquidValue * 9), 100);
 
-		castMolten(moltenQueensGold, 202);
+		castMolten(moltenQueensGold, config.QueensGoldMatID);
 
 		PatternBuilder.instance.registerFullMaterial(new ItemStack(
 				item_QueensGoldIngot, 1, 0), 2, "QueensGold", new ItemStack(
-				TinkerTools.toolShard, 1, 202), new ItemStack(
-				TinkerTools.toolRod, 1, 202), 202);
+				TinkerTools.toolShard, 1, config.QueensGoldMatID), new ItemStack(
+				TinkerTools.toolRod, 1, config.QueensGoldMatID), config.QueensGoldMatID);
 
 		Smeltery.addAlloyMixing(
 				new FluidStack(moltenQueensGold, 144 * 8),
@@ -477,16 +476,13 @@ public class TinkersDefense {
 						new FluidStack(TinkerSmeltery.moltenGoldFluid, 144 * 8),
 						new FluidStack(TinkerSmeltery.moltenEmeraldFluid, 80) });
 
-		// Tool Materials: id, name, harvestlevel, durability, speed, damage,
-		// handlemodifier, reinforced, shoddy, style color, primary color for
-		// block use
 		// Dogbearium
-		TConstructClientRegistry.addMaterialRenderMapping(203, "tinker",
+		TConstructClientRegistry.addMaterialRenderMapping(config.DogbeariumMatID, "tinker",
 				"dogbearium", true);
-		TConstructRegistry.addToolMaterial(203, "Dogbearium", 4, 600, 800, 2,
+		TConstructRegistry.addToolMaterial(config.DogbeariumMatID, "Dogbearium", 4, 600, 800, 2,
 				1.6F, 0, -2f, DARK_RED.toString(), 0x754200);
 		TinkerTools.registerPatternMaterial("DogbeariumIngot", 2, "Dogbearium");
-		TConstructRegistry.addDefaultToolPartMaterial(203);
+		TConstructRegistry.addDefaultToolPartMaterial(config.DogbeariumMatID);
 
 		Smeltery.addMelting(new ItemStack(item_DogbeariumIngot, 1, 0),
 				block_DogbeariumBlock, 0, 500, new FluidStack(moltenDogbearium,
@@ -504,12 +500,12 @@ public class TinkersDefense {
 				new FluidStack(moltenDogbearium,
 						TConstruct.ingotLiquidValue * 9), 100);
 
-		castMolten(moltenDogbearium, 203);
+		castMolten(moltenDogbearium, config.DogbeariumMatID);
 
 		PatternBuilder.instance.registerFullMaterial(new ItemStack(
 				item_DogbeariumIngot, 1, 0), 2, "Dogbearium", new ItemStack(
-				TinkerTools.toolShard, 1, 203), new ItemStack(
-				TinkerTools.toolRod, 1, 203), 203);
+				TinkerTools.toolShard, 1, config.DogbeariumMatID), new ItemStack(
+				TinkerTools.toolRod, 1, config.DogbeariumMatID), config.DogbeariumMatID);
 
 		Smeltery.addAlloyMixing(new FluidStack(moltenDogbearium, 144 * 2),
 				new FluidStack[] {
@@ -530,7 +526,7 @@ public class TinkersDefense {
 				TinkerTools.toolRod, TinkerTools.binding);
 
 		StencilBuilder.registerStencil(50, woodPattern, 0); // rivets
-		StencilBuilder.registerStencil(51, woodPattern, 1); // spike
+		StencilBuilder.registerStencil(51, woodPattern, 1); // clasp
 		StencilBuilder.registerStencil(52, woodPattern, 2); // armorplate
 
 		PatternBuilder.instance.addToolPattern(woodPattern);
@@ -549,11 +545,6 @@ public class TinkersDefense {
 
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent e) {
-//		ItemStack ironlongsword = ToolBuilder.instance.buildTool(new ItemStack(TinkerTools.swordBlade, 1, 6), new ItemStack(TinkerTools.toolRod, 1, 2), new ItemStack(TinkerTools.handGuard, 1, 10), "");
-//        MantleClientRegistry.registerManualIcon("ironlongsword", ironlongsword);
-//
-//        TConstructClientRegistry.registerManualModifier("dazemod", ironlongsword.copy(), new ItemStack(Items.fermented_spider_eye));
-// 
 
 	}
 

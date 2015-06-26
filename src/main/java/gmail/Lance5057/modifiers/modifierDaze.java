@@ -1,7 +1,11 @@
 package gmail.Lance5057.modifiers;
 
+import java.util.Arrays;
+import java.util.List;
+
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import tconstruct.library.tools.ToolCore;
 import tconstruct.modifiers.tools.ItemModTypeFilter;
 
 public class modifierDaze extends ItemModTypeFilter
@@ -20,21 +24,27 @@ public class modifierDaze extends ItemModTypeFilter
     @Override
     protected boolean canModify (ItemStack tool, ItemStack[] input)
     {
-        NBTTagCompound tags = tool.getTagCompound().getCompoundTag("InfiTool");
-        if (!tags.hasKey(key))
-            return tags.getInteger("Modifiers") > 0 && matchingAmount(input) <= max;
+    	if (tool.getItem() instanceof ToolCore)
+        {
+    		List list = Arrays.asList(((ToolCore)tool.getItem()).getTraits());
+    		if (list.contains("weapon"))
+    		{
+		        NBTTagCompound tags = tool.getTagCompound().getCompoundTag("InfiTool");
+		        if (!tags.hasKey(key))
+		            return tags.getInteger("Modifiers") > 0 && matchingAmount(input) <= max;
+		
+		        if (matchingAmount(input) > max)
+		            return false;
+		
+		        int keyPair[] = tags.getIntArray(key);
+		        if (keyPair[0] + matchingAmount(input) <= keyPair[1])
+		            return true;
+		
+		        else if (keyPair[0] == keyPair[1])
+		            return tags.getInteger("Modifiers") > 0;
+    		}
+        }
 
-        if (matchingAmount(input) > max)
-            return false;
-
-        int keyPair[] = tags.getIntArray(key);
-        if (keyPair[0] + matchingAmount(input) <= keyPair[1])
-            return true;
-
-        else if (keyPair[0] == keyPair[1])
-            return tags.getInteger("Modifiers") > 0;
-
-        else
             return false;
     }
 
