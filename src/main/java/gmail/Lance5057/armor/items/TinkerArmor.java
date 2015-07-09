@@ -20,14 +20,14 @@ public class TinkerArmor extends ItemArmor {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister par1IconRegister) {
-		String itemName = "tinkersdefense:textures/armor/TinkerArmor";
+		String itemName = "tinkersdefense:textures/armor/ChainArmor";
 		this.itemIcon = par1IconRegister.registerIcon(itemName);
 	}
 
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot,
 			String type) {
-		return "tinkersdefense:textures/armor/TinkerArmor.png";
+		return "tinkersdefense:textures/armor/ChainArmor.png";
 	}
 
 	@Override
@@ -37,7 +37,7 @@ public class TinkerArmor extends ItemArmor {
 	{
 		
 //		return ClientProxy.chain;
-		ModelBiped armorModel = ClientProxy.tutChest;
+		ModelBiped armorModel = ClientProxy.chain;
 		if (itemStack != null) {
 //			if (itemStack.getItem() instanceof TinkerArmor) {
 //				int type = ((ItemArmor) itemStack.getItem()).armorType;

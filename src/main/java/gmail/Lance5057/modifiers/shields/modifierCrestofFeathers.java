@@ -12,7 +12,7 @@ public class modifierCrestofFeathers extends ItemModTypeFilter
 
     public modifierCrestofFeathers(String type, int effect, ItemStack[] items, int[] values)
     {
-        super(effect, "Feathers", items, values);
+        super(effect, "Crest of Feathers", items, values);
         tooltipName = "\u00A7fCrest of Feathers";
         guiType = type;
     }

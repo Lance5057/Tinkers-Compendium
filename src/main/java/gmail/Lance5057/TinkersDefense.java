@@ -3,8 +3,7 @@ package gmail.Lance5057;
 import static net.minecraft.util.EnumChatFormatting.DARK_RED;
 import static net.minecraft.util.EnumChatFormatting.GOLD;
 import static net.minecraft.util.EnumChatFormatting.LIGHT_PURPLE;
-import gmail.Lance5057.armor.items.ChainArmor;
-import gmail.Lance5057.armor.items.ClothArmor;
+import gmail.Lance5057.armor.blocks.ArmorAnvil;
 import gmail.Lance5057.armor.items.Sheath;
 import gmail.Lance5057.armor.items.TinkerArmor;
 import gmail.Lance5057.armor.tools.Item_Cloth;
@@ -13,13 +12,11 @@ import gmail.Lance5057.armor.tools.Item_Thread;
 import gmail.Lance5057.blocks.AeonSteelBlock;
 import gmail.Lance5057.blocks.CrestMount;
 import gmail.Lance5057.blocks.DogbeariumBlock;
-import gmail.Lance5057.blocks.FinishingAnvil;
 import gmail.Lance5057.blocks.JewelersBench;
 import gmail.Lance5057.blocks.QueensGoldBlock;
 import gmail.Lance5057.events.TDEventHandler;
 import gmail.Lance5057.items.AeonSteelIngot;
 import gmail.Lance5057.items.DogbeariumIngot;
-import gmail.Lance5057.items.Injector;
 import gmail.Lance5057.items.QueensGoldIngot;
 import gmail.Lance5057.items.TD_Patterns;
 import gmail.Lance5057.items.tools.HeaterShield;
@@ -31,23 +28,20 @@ import gmail.Lance5057.liquids.moltenQueensGoldFluid;
 import gmail.Lance5057.modifiers.TDefenseActiveToolMod;
 import gmail.Lance5057.modifiers.modifierDaze;
 import gmail.Lance5057.modifiers.shields.modifierCrestofFeathers;
-import gmail.Lance5057.modifiers.shields.modifierCrestofLegends;
 import gmail.Lance5057.modifiers.shields.modifierCrestofMirrors;
 import gmail.Lance5057.network.PacketHandler;
 import gmail.Lance5057.proxy.CommonProxy;
-import gmail.Lance5057.tileentities.TileEntity_FinishingAnvil;
+import gmail.Lance5057.tileentities.TileEntity_ArmorAnvil;
 import gmail.Lance5057.tileentities.TileEntity_CrestMount;
 import gmail.Lance5057.tileentities.TileEntity_JewelersBench;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
@@ -85,8 +79,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 public class TinkersDefense {
 
 	private static int modGuiIndex = 0;
-	public static final int GUI_CREST_INV = modGuiIndex++;
-	public static final int GUI_ANVIL_INV = modGuiIndex++;
+	public static final int GUI_ITEM_INV = modGuiIndex++;
 
 	@Instance(Reference.MOD_ID)
 	public static TinkersDefense instance = new TinkersDefense();
@@ -135,23 +128,20 @@ public class TinkersDefense {
 	public static Block block_JewelersBench;
 
 	public static Item item_TinkerArmor;
-	public static Item item_ChainArmor;
-	public static Item item_ClothArmor;
 	public static Item item_Sheath;
+	
+	public static Item item_Crest_Feathers;
+	public static Item item_Crest_Blades;
 
 	public static Item item_thread;
 	public static Item item_glowthread;
 	public static Item item_cloth;
-	
-	public static Item item_relic;
 
 	public static Pattern woodPattern;
 	public static Pattern metalPattern;
 
 	public static DynamicToolPart partRivet;
 	public static DynamicToolPart partArmorplate;
-	
-	public static Injector tcInject;
 
 	@SidedProxy(clientSide = "gmail.Lance5057.proxy.ClientProxy", serverSide = "gmail.Lance5057.proxy.CommonProxy")
 	public static CommonProxy proxy;
@@ -176,12 +166,12 @@ public class TinkersDefense {
 						new ItemStack(TinkerTools.toughRod, 1, 1), 'i',
 						new ItemStack(TinkerTools.toolRod, 1, 1) });
 
-		block_ArmorAnvil = new FinishingAnvil().setHardness(4.0F)
+		block_ArmorAnvil = new ArmorAnvil().setHardness(4.0F)
 				.setStepSound(Block.soundTypeAnvil).setBlockName("ArmorAnvil")
 				.setCreativeTab(tabName);
 
 		GameRegistry.registerBlock(block_ArmorAnvil, "Block_ArmorAnvil");
-		GameRegistry.registerTileEntity(TileEntity_FinishingAnvil.class,
+		GameRegistry.registerTileEntity(TileEntity_ArmorAnvil.class,
 				"Tile_ArmorAnvil");
 
 		block_JewelersBench = new JewelersBench().setHardness(4.0F)
@@ -198,13 +188,6 @@ public class TinkersDefense {
 		
 		tabIcon = new Item().setMaxStackSize(1).setCreativeTab(tabName).setUnlocalizedName("tabIcon").setTextureName(Reference.MOD_ID + ":Icon");
 		GameRegistry.registerItem(tabIcon, "tabIcon");
-		
-		item_relic = new Item().setCreativeTab(tabName).setMaxStackSize(1)
-				.setUnlocalizedName("AncientRelic")
-				.setTextureName(Reference.MOD_ID + ":AncientRelic");
-		
-		GameRegistry.registerItem(item_relic, "Ancient Relic");
-		
 		// AeonSteel
 		item_AeonSteelIngot = new AeonSteelIngot().setCreativeTab(tabName)
 				.setMaxStackSize(64).setUnlocalizedName("AeonSteelIngot")
@@ -298,6 +281,24 @@ public class TinkersDefense {
 
 		tool_wrench = new TinkerWrench();
 
+		item_Crest_Feathers = new Item().setCreativeTab(tabName)
+				.setMaxStackSize(1).setUnlocalizedName("Crest_Feathers")
+				.setTextureName(Reference.MOD_ID + ":Crest_feather");
+
+		GameRegistry.registerItem(item_Crest_Feathers, "Crest of Feathers");
+		GameRegistry.addRecipe(new ItemStack(item_Crest_Feathers),
+				new Object[] { "---", "f-f", "-o-", 'f', Items.feather, 'o',
+						Items.iron_ingot });
+
+		item_Crest_Blades = new Item().setCreativeTab(tabName)
+				.setMaxStackSize(1).setUnlocalizedName("Crest_Blades")
+				.setTextureName(Reference.MOD_ID + ":Crest_blades");
+
+		GameRegistry.registerItem(item_Crest_Blades, "Crest of Blades");
+		GameRegistry.addRecipe(new ItemStack(item_Crest_Blades),
+				new Object[] { "---", "f-f", "-o-", 'f', Items.iron_sword, 'o',
+						Items.diamond });
+
 		GameRegistry.registerItem(tool_roundShield, "Round Shield");
 		GameRegistry.registerItem(tool_heaterShield, "Heater Shield");
 		GameRegistry.registerItem(tool_wrench, "Tinker Wrench");
@@ -332,14 +333,6 @@ public class TinkersDefense {
 		 item_TinkerArmor = new TinkerArmor(ArmorMaterial.IRON, 4,
 		 1).setUnlocalizedName("Tinker_Armor");
 		 GameRegistry.registerItem(item_TinkerArmor,"Tinker Armor");
-		 
-		 item_ChainArmor = new ChainArmor(ArmorMaterial.IRON, 4,
-				 1).setUnlocalizedName("Chain_Armor");
-		 GameRegistry.registerItem(item_ChainArmor,"Chain Armor");
-		 
-		 item_ClothArmor = new ClothArmor(ArmorMaterial.IRON, 4,
-				 1).setUnlocalizedName("Cloth_Armor");
-				 GameRegistry.registerItem(item_ClothArmor,"Cloth Armor");
 		
 		item_Sheath = new Sheath().setUnlocalizedName("Sheath");
 		GameRegistry.registerItem(item_Sheath, "Sheath");
@@ -352,25 +345,17 @@ public class TinkersDefense {
 	public void init(FMLInitializationEvent e) {
 		System.out.print(Reference.MOD_ID);
 		
-		//tcInject = new Injector();
-		//GameRegistry.registerItem(tcInject, "debugger");
-		
-		
 		
 		PatternBuilder pb = PatternBuilder.instance;
 		
 		ModifyBuilder.registerModifier(new modifierDaze("Daze", config.DazeID, new ItemStack[] { new ItemStack(Blocks.light_weighted_pressure_plate), new ItemStack(Items.potionitem,1,8202)},
 				new int[] {1,0}));
 		
-		ModifyBuilder.registerModifier(new modifierCrestofFeathers("Crest of Feathers", config.CrestFeathersID, new ItemStack[] { new ItemStack(Items.feather)},
+		ModifyBuilder.registerModifier(new modifierCrestofFeathers("Crest of Feathers", config.CrestFeathersID, new ItemStack[] { new ItemStack(item_Crest_Feathers)},
 				new int[] {1}));
 		
 		ModifyBuilder.registerModifier(new modifierCrestofMirrors("Crest of Mirrors", config.CrestMirrorsID, new ItemStack[] { new ItemStack(Blocks.glass_pane)},
 				new int[] {1}));
-		
-		ModifyBuilder.registerModifier(new modifierCrestofLegends("Crest of Legends", config.CrestLegendsID, new ItemStack[] { new ItemStack(item_relic)},
-				new int[] {1}));
-		
 		TConstructRegistry.registerActiveToolMod(new TDefenseActiveToolMod());
 		
 		for (ToolCore tool : TConstructRegistry.getToolMapping())
@@ -378,7 +363,6 @@ public class TinkersDefense {
 			TConstructClientRegistry.addEffectRenderMapping(tool, config.DazeID, "tinker", "daze", true);
 			TConstructClientRegistry.addEffectRenderMapping(tool, config.CrestFeathersID, "tinker", "feathers", true);
 			TConstructClientRegistry.addEffectRenderMapping(tool, config.CrestMirrorsID, "tinker", "mirrors", true);
-			TConstructClientRegistry.addEffectRenderMapping(tool, config.CrestLegendsID, "tinker", "legends", true);
         }
 
 		
