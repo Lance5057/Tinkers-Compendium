@@ -13,6 +13,7 @@ public class TD_Config
 	public int DazeID;
 	public int CrestFeathersID;
 	public int CrestMirrorsID;
+	public int CrestLegendsID;
 	
 	public TD_Config(FMLPreInitializationEvent e)
 	{
@@ -27,6 +28,7 @@ public class TD_Config
 		DazeID = config.get("Modifier Configs", "Daze ID", 18).getInt();
 		CrestFeathersID = config.get("Modifier Configs", "Crest of Feathers ID", 19).getInt();
 		CrestMirrorsID = config.get("Modifier Configs", "Crest of Mirrors ID", 20).getInt();
+		CrestLegendsID = config.get("Modifier Configs", "Crest of Legends ID", 21).getInt();
 		
 		config.save();
 	}
