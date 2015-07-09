@@ -1,8 +1,8 @@
 package gmail.Lance5057.items.tools;
 
+import cpw.mods.fml.common.Optional;
 import tconstruct.library.tools.ToolCore;
 import cpw.mods.fml.relauncher.*;
-import mods.battlegear2.api.IEnchantable;
 import mods.battlegear2.api.ISheathed;
 import mods.battlegear2.api.shield.IArrowCatcher;
 import mods.battlegear2.api.shield.IArrowDisplay;
@@ -16,6 +16,14 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.*;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
+
+
+@Optional.InterfaceList({
+    @Optional.Interface(modid = "battlegear2", iface = "mods.battlegear2.api.ISheathed"),
+    @Optional.Interface(modid = "battlegear2", iface = "mods.battlegear2.api.shield.IArrowCatcher"),
+    @Optional.Interface(modid = "battlegear2", iface = "mods.battlegear2.api.shield.IArrowDisplay"),
+    @Optional.Interface(modid = "battlegear2", iface = "mods.battlegear2.api.shield.IShield")
+})
 
 public class Shield extends ToolCore implements IShield, ISheathed,
 		IArrowCatcher, IArrowDisplay {
@@ -129,18 +137,21 @@ public class Shield extends ToolCore implements IShield, ISheathed,
 	}
 
 	@Override
+	@Optional.Method(modid = "battlegear2")
 	public int getArrowCount(ItemStack arg0) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
+	@Optional.Method(modid = "battlegear2")
 	public void setArrowCount(ItemStack arg0, int arg1) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
+	@Optional.Method(modid = "battlegear2")
 	public boolean catchArrow(ItemStack arg0, EntityPlayer arg1,
 			IProjectile arg2) {
 		// TODO Auto-generated method stub
@@ -148,60 +159,70 @@ public class Shield extends ToolCore implements IShield, ISheathed,
 	}
 
 	@Override
+	@Optional.Method(modid = "battlegear2")
 	public boolean sheatheOnBack(ItemStack item) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
+	@Optional.Method(modid = "battlegear2")
 	public void blockAnimation(EntityPlayer arg0, float arg1) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
+	@Optional.Method(modid = "battlegear2")
 	public boolean canBlock(ItemStack arg0, DamageSource arg1) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
+	@Optional.Method(modid = "battlegear2")
 	public int getBashTimer(ItemStack arg0) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
+	@Optional.Method(modid = "battlegear2")
 	public float getBlockAngle(ItemStack arg0) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
+	@Optional.Method(modid = "battlegear2")
 	public float getDamageDecayRate(ItemStack arg0, float arg1) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
+	@Optional.Method(modid = "battlegear2")
 	public float getDamageReduction(ItemStack arg0, DamageSource arg1) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
+	@Optional.Method(modid = "battlegear2")
 	public float getDecayRate(ItemStack arg0) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
+	@Optional.Method(modid = "battlegear2")
 	public float getRecoveryRate(ItemStack arg0) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
+	
 	public Item getAccessoryItem() {
 		// TODO Auto-generated method stub
 		return null;

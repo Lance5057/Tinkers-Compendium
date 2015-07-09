@@ -1,5 +1,6 @@
 package gmail.Lance5057.modifiers.shields;
 
+import gmail.Lance5057.items.tools.Shield;
 import tconstruct.modifiers.tools.ItemModTypeFilter;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -20,16 +21,11 @@ public class modifierCrestofLegends extends ItemModTypeFilter
     protected boolean canModify (ItemStack tool, ItemStack[] input)
     {
         NBTTagCompound tags = tool.getTagCompound().getCompoundTag("InfiTool");
-
-        int keyPair[] = tags.getIntArray(key);
-        if (keyPair[0] + matchingAmount(input) <= keyPair[1])
-            return true;
-
-        else if (keyPair[0] == keyPair[1])
+        
+        if(tool.getItem() instanceof Shield)
             return tags.getInteger("Modifiers") > 0;
-
-        else
-            return false;
+        
+        return false;
     }
 
     @Override
