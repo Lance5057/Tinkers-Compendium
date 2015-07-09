@@ -12,22 +12,22 @@ import net.minecraft.item.ItemStack;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class TinkerArmor extends ItemArmor {
-	public TinkerArmor(ArmorMaterial par2EnumArmorMaterial, int par3, int par4) {
+public class ClothArmor extends ItemArmor {
+	public ClothArmor(ArmorMaterial par2EnumArmorMaterial, int par3, int par4) {
 		super(par2EnumArmorMaterial, par3, par4);
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister par1IconRegister) {
-		String itemName = "tinkersdefense:textures/armor/TinkerArmor";
+		String itemName = "tinkersdefense:textures/armor/ClothArmor";
 		this.itemIcon = par1IconRegister.registerIcon(itemName);
 	}
 
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot,
 			String type) {
-		return "tinkersdefense:textures/armor/TinkerArmor.png";
+		return "tinkersdefense:textures/armor/ChainArmor.png";
 	}
 
 	@Override
@@ -37,7 +37,7 @@ public class TinkerArmor extends ItemArmor {
 	{
 		
 //		return ClientProxy.chain;
-		ModelBiped armorModel = ClientProxy.tutChest;
+		ModelBiped armorModel = ClientProxy.chain;
 		if (itemStack != null) {
 //			if (itemStack.getItem() instanceof TinkerArmor) {
 //				int type = ((ItemArmor) itemStack.getItem()).armorType;

@@ -5,7 +5,7 @@ import static net.minecraftforge.common.util.ForgeDirection.NORTH;
 import static net.minecraftforge.common.util.ForgeDirection.SOUTH;
 import static net.minecraftforge.common.util.ForgeDirection.WEST;
 import gmail.Lance5057.TinkersDefense;
-import gmail.Lance5057.tileentities.TileEntity_CrestMount;
+import gmail.Lance5057.tileentities.TileEntity_FinishingAnvil;
 
 import java.util.Random;
 
@@ -24,8 +24,8 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.world.World;
 
-public class CrestMount extends BlockContainer {
-    public CrestMount() {
+public class FinishingAnvil extends BlockContainer {
+    public FinishingAnvil() {
             super(Material.iron);
             this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
     }
@@ -45,7 +45,7 @@ public class CrestMount extends BlockContainer {
                     return false;
             }
     //code to open gui explained later
-    player.openGui(TinkersDefense.instance, TinkersDefense.GUI_CREST_INV, player.worldObj, x, y, z);
+    player.openGui(TinkersDefense.instance, TinkersDefense.GUI_ANVIL_INV, player.worldObj, x, y, z);
             return true;
     }
     
@@ -111,12 +111,12 @@ public class CrestMount extends BlockContainer {
     @SideOnly(Side.CLIENT)
     @Override
     public void registerBlockIcons(IIconRegister icon) {
-            this.blockIcon = icon.registerIcon("tinkersdefense:Item_CrestMount");
+            this.blockIcon = icon.registerIcon("tinkersdefense:WIP");
     }
 
 	@Override
 	public TileEntity createNewTileEntity(World w, int md) {
-		TileEntity_CrestMount te = new TileEntity_CrestMount();
+		TileEntity_FinishingAnvil te = new TileEntity_FinishingAnvil();
         return te;
 	}
 	

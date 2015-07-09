@@ -3,7 +3,9 @@ package gmail.Lance5057.proxy;
 import gmail.Lance5057.TinkersDefense;
 import gmail.Lance5057.containers.Container_CrestMount;
 import gmail.Lance5057.gui.Gui_CrestMount;
+import gmail.Lance5057.gui.Gui_FinishingAnvil;
 import gmail.Lance5057.tileentities.TileEntity_CrestMount;
+import gmail.Lance5057.tileentities.TileEntity_FinishingAnvil;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
@@ -40,7 +42,7 @@ public class CommonProxy implements IGuiHandler {
 		public Object getServerGuiElement(int ID, EntityPlayer player,
 				World world, int x, int y, int z) {
 			// Hooray, no 'magic' numbers - we know exactly which Gui this refers to
-			if (ID == TinkersDefense.GUI_ITEM_INV)
+			if (ID == TinkersDefense.GUI_CREST_INV)
 			{
 			// Use the player's held item to create the inventory
 				return new Container_CrestMount(player.inventory, (TileEntity_CrestMount)world.getTileEntity(x, y, z));
@@ -52,11 +54,13 @@ public class CommonProxy implements IGuiHandler {
 		public Object getClientGuiElement(int ID, EntityPlayer player,
 				World world, int x, int y, int z) 
 		{
-			if (ID == TinkersDefense.GUI_ITEM_INV)
+			if (ID == TinkersDefense.GUI_CREST_INV)
 			{
-			// We have to cast the new container as our custom class
-
 				return new Gui_CrestMount(player.inventory, (TileEntity_CrestMount)world.getTileEntity(x, y, z));
+			}
+			if (ID == TinkersDefense.GUI_ANVIL_INV)
+			{
+				return new Gui_FinishingAnvil(player.inventory, (TileEntity_FinishingAnvil)world.getTileEntity(x, y, z));
 			}
 			return null;
 		}

@@ -4,16 +4,15 @@ import tconstruct.modifiers.tools.ItemModTypeFilter;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
-public class modifierCrestofFeathers extends ItemModTypeFilter
+public class modifierCrestofLegends extends ItemModTypeFilter
 {
     String tooltipName;
-    int max = 5;
     String guiType;
 
-    public modifierCrestofFeathers(String type, int effect, ItemStack[] items, int[] values)
+    public modifierCrestofLegends(String type, int effect, ItemStack[] items, int[] values)
     {
-        super(effect, "Feathers", items, values);
-        tooltipName = "\u00A7fCrest of Feathers";
+        super(effect, "Legends", items, values);
+        tooltipName = "\u00A7fCrest of Legends";
         guiType = type;
     }
 
@@ -21,11 +20,6 @@ public class modifierCrestofFeathers extends ItemModTypeFilter
     protected boolean canModify (ItemStack tool, ItemStack[] input)
     {
         NBTTagCompound tags = tool.getTagCompound().getCompoundTag("InfiTool");
-        if (!tags.hasKey(key))
-            return tags.getInteger("Modifiers") > 0 && matchingAmount(input) <= max;
-
-        if (matchingAmount(input) > max)
-            return false;
 
         int keyPair[] = tags.getIntArray(key);
         if (keyPair[0] + matchingAmount(input) <= keyPair[1])
@@ -47,21 +41,6 @@ public class modifierCrestofFeathers extends ItemModTypeFilter
         {
             int[] keyPair = tags.getIntArray(key);
 
-            if (keyPair[0] % max == 0)
-            {
-                keyPair[0] += increase;
-                keyPair[1] += max;
-                tags.setIntArray(key, keyPair);
-
-                int modifiers = tags.getInteger("Modifiers");
-                modifiers -= 1;
-                tags.setInteger("Modifiers", modifiers);
-            }
-            else
-            {
-                keyPair[0] += increase;
-                tags.setIntArray(key, keyPair);
-            }
             updateModTag(tool, keyPair);
 
         }
@@ -70,10 +49,8 @@ public class modifierCrestofFeathers extends ItemModTypeFilter
             int modifiers = tags.getInteger("Modifiers");
             modifiers -= 1;
             tags.setInteger("Modifiers", modifiers);
-            String modName = "\u00A76" + guiType + " (" + increase + "/" + max + ")";
+            String modName = "\u00A76" + guiType;
             int tooltipIndex = addToolTip(tool, tooltipName, modName);
-            int[] keyPair = new int[] { increase, max, tooltipIndex };
-            tags.setIntArray(key, keyPair);
         }
     }
 

@@ -1,21 +1,18 @@
 package gmail.Lance5057.containers;
 
-import gmail.Lance5057.tileentities.TileEntity_CrestMount;
+import gmail.Lance5057.tileentities.TileEntity_FinishingAnvil;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
-public class Container_CrestMount extends Container
+public class Container_FinishingAnvil extends Container
 {
-	
-	public Container_CrestMount(InventoryPlayer inventoryPlayer, TileEntity_CrestMount te)
+	public Container_FinishingAnvil(InventoryPlayer inventoryPlayer, TileEntity_FinishingAnvil te)
 	{
-		addSlotToContainer(new Slot(te, 0, 62, 28));
-		addSlotToContainer(new Slot(te, 1, 98, 28));
-		addSlotToContainer(new Slot(te, 2, 80, 28));
-		addSlotToContainer(new Slot(te, 3, 80, 46));
+		addSlotToContainer(new Slot(te, 0, 26, 32));
+		addSlotToContainer(new Slot(te, 1, 62, 28));
 		
 		for (int x = 0; x < 9; x++)
 		{
@@ -32,8 +29,8 @@ public class Container_CrestMount extends Container
 	}
 	
 	@Override
-	public boolean canInteractWith(EntityPlayer player) {
-
+	public boolean canInteractWith(EntityPlayer p_75145_1_) 
+	{
 		return true;
 	}
 
@@ -43,4 +40,3 @@ public class Container_CrestMount extends Container
 		return null;
 	}
 }
-
