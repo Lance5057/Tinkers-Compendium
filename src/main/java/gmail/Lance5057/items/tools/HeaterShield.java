@@ -1,5 +1,7 @@
 package gmail.Lance5057.items.tools;
 
+import gmail.Lance5057.TinkersDefense;
+
 import java.util.List;
 
 import mods.battlegear2.api.ISheathed;
@@ -34,7 +36,7 @@ public class HeaterShield extends Shield {
 
 	@Override
 	public Item getHeadItem() {
-		return TinkerTools.largePlate;
+		return TinkersDefense.partArmorplate;
 	}
 
 	@Override
@@ -44,7 +46,7 @@ public class HeaterShield extends Shield {
 
 	@Override
 	public Item getAccessoryItem() {
-		return TinkerTools.largePlate;
+		return TinkersDefense.partArmorplate;
 	}
 
 	@Override
@@ -111,22 +113,22 @@ public class HeaterShield extends Shield {
 		return "heatershield";
 	}
 
-	/* tool_TinkerShield specific */
-	@Override
-	public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player,
-			Entity entity) {
-		if (AbilityHelper.onLeftClickEntity(stack, player, entity, this)) {
-			entity.hurtResistantTime += 7;
-			/*
-			 * if (entity instanceof EntityLiving) { EntityLiving living =
-			 * (EntityLiving) entity; if (living.getHealth() <= 0) {
-			 * 
-			 * } }
-			 */
-			// if (entity.getHealth() <= 0)
-		}
-		return true;
-	}
+//	/* tool_TinkerShield specific */
+//	@Override
+//	public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player,
+//			Entity entity) {
+//		if (AbilityHelper.onLeftClickEntity(stack, player, entity, this)) {
+//			entity.hurtResistantTime += 7;
+//			/*
+//			 * if (entity instanceof EntityLiving) { EntityLiving living =
+//			 * (EntityLiving) entity; if (living.getHealth() <= 0) {
+//			 * 
+//			 * } }
+//			 */
+//			// if (entity.getHealth() <= 0)
+//		}
+//		return true;
+//	}
 
 	@Override
 	public void onUpdate(ItemStack stack, World world, Entity entity, int par4,
@@ -134,91 +136,7 @@ public class HeaterShield extends Shield {
 		super.onUpdate(stack, world, entity, par4, par5);
 
 	}
-
-	@Override
-	public int getArrowCount(ItemStack stack) {
-		if (stack.hasTagCompound() && stack.getTagCompound().hasKey("arrows")) {
-			return stack.getTagCompound().getShort("arrows");
-		} else
-			return 0;
-	}
-
-	@Override
-	public void setArrowCount(ItemStack stack, int count) {
-		if (!stack.hasTagCompound()) {
-			stack.setTagCompound(new NBTTagCompound());
-		}
-		// Should never happen, you would need A LOT of arrows for this to
-		// happen
-		if (count > Short.MAX_VALUE) {
-			count = Short.MAX_VALUE;
-		}
-		stack.getTagCompound().setShort("arrows", (short) count);
-	}
-
-	@Override
-	public boolean catchArrow(ItemStack shield, EntityPlayer player,
-			IProjectile arrow) {
-		if (arrow instanceof EntityArrow) {
-			setArrowCount(shield, getArrowCount(shield) + 1);
-			player.setArrowCountInEntity(player.getArrowCountInEntity() - 1);
-			((EntityArrow) arrow).setDead();
-			return true;
-		}
-		return false;
-	}
-
-	@Override
-	public boolean sheatheOnBack(ItemStack arg0) {
-		return true;
-	}
-
-	@Override
-	public void blockAnimation(EntityPlayer player, float dmg) {
-		player.worldObj.playSoundAtEntity(player, "battlegear2:shield", 1, 1);
-	}
-
-	@Override
-	public boolean canBlock(ItemStack shield, DamageSource source) {
-		return !source.isUnblockable();
-	}
-
-	@Override
-	public int getBashTimer(ItemStack arg0) {
-		return 10;
-	}
-
-	@Override
-	public float getBlockAngle(ItemStack arg0) {
-		return 60;
-	}
-
-	@Override
-	public float getDamageDecayRate(ItemStack shield, float amount) {
-		return 0;
-	}
-
-	@Override
-	public float getDamageReduction(ItemStack arg0, DamageSource arg1) {
-		return 1f;
-	}
-
-	@Override
-	public float getDecayRate(ItemStack stack) {
-		NBTTagCompound tags = stack.getTagCompound();
-		float recovery = tags.getCompoundTag("InfiTool").getInteger(
-				"MiningSpeed") / 1.5f;
-		return 10f / recovery;
-	}
-
-	@Override
-	public float getRecoveryRate(ItemStack stack) {
-		NBTTagCompound tags = stack.getTagCompound();
-		float recovery = tags.getCompoundTag("InfiTool").getInteger(
-				"MiningSpeed") / 1.5f;
-		return 10f / recovery;
-	}
-
+	
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack par1ItemStack,

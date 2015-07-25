@@ -13,7 +13,9 @@ import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.IProjectile;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.item.*;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 
@@ -132,123 +134,130 @@ public class Shield extends ToolCore implements IShield, ISheathed,
 	public static Material[] none = new Material[0];
 
 	protected String getHarvestType() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	@Optional.Method(modid = "battlegear2")
-	public int getArrowCount(ItemStack arg0) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int getArrowCount(ItemStack stack) {
+		if (stack.hasTagCompound() && stack.getTagCompound().hasKey("arrows")) {
+			return stack.getTagCompound().getShort("arrows");
+		} else
+			return 0;
 	}
 
 	@Override
 	@Optional.Method(modid = "battlegear2")
-	public void setArrowCount(ItemStack arg0, int arg1) {
-		// TODO Auto-generated method stub
+	public void setArrowCount(ItemStack stack, int count) {
+		if (!stack.hasTagCompound()) {
+			stack.setTagCompound(new NBTTagCompound());
+		}
+		// Should never happen, you would need A LOT of arrows for this to
+		// happen
+		if (count > Short.MAX_VALUE) {
+			count = Short.MAX_VALUE;
+		}
+		stack.getTagCompound().setShort("arrows", (short) count);
 
 	}
 
 	@Override
 	@Optional.Method(modid = "battlegear2")
-	public boolean catchArrow(ItemStack arg0, EntityPlayer arg1,
-			IProjectile arg2) {
-		// TODO Auto-generated method stub
+	public boolean catchArrow(ItemStack shield, EntityPlayer player,
+			IProjectile arrow) {
+		if (arrow instanceof EntityArrow) {
+			setArrowCount(shield, getArrowCount(shield) + 1);
+			player.setArrowCountInEntity(player.getArrowCountInEntity() - 1);
+			((EntityArrow) arrow).setDead();
+			return true;
+		}
 		return false;
 	}
+
 
 	@Override
 	@Optional.Method(modid = "battlegear2")
 	public boolean sheatheOnBack(ItemStack item) {
-		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override
 	@Optional.Method(modid = "battlegear2")
-	public void blockAnimation(EntityPlayer arg0, float arg1) {
-		// TODO Auto-generated method stub
-
+	public void blockAnimation(EntityPlayer player, float dmg) {
+		player.worldObj.playSoundAtEntity(player, "battlegear2:shield", 1, 1);
 	}
 
 	@Override
 	@Optional.Method(modid = "battlegear2")
-	public boolean canBlock(ItemStack arg0, DamageSource arg1) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean canBlock(ItemStack shield, DamageSource source) {
+		return !source.isUnblockable();
 	}
 
 	@Override
 	@Optional.Method(modid = "battlegear2")
 	public int getBashTimer(ItemStack arg0) {
-		// TODO Auto-generated method stub
-		return 0;
+		return 10;
 	}
 
 	@Override
 	@Optional.Method(modid = "battlegear2")
 	public float getBlockAngle(ItemStack arg0) {
-		// TODO Auto-generated method stub
-		return 0;
+		return 60;
 	}
 
 	@Override
 	@Optional.Method(modid = "battlegear2")
-	public float getDamageDecayRate(ItemStack arg0, float arg1) {
-		// TODO Auto-generated method stub
+	public float getDamageDecayRate(ItemStack shield, float amount) {
 		return 0;
 	}
 
 	@Override
 	@Optional.Method(modid = "battlegear2")
 	public float getDamageReduction(ItemStack arg0, DamageSource arg1) {
-		// TODO Auto-generated method stub
-		return 0;
+		return 1f;
 	}
 
 	@Override
 	@Optional.Method(modid = "battlegear2")
-	public float getDecayRate(ItemStack arg0) {
-		// TODO Auto-generated method stub
-		return 0;
+	public float getDecayRate(ItemStack stack) {
+		NBTTagCompound tags = stack.getTagCompound();
+		float recovery = tags.getCompoundTag("InfiTool").getInteger(
+				"MiningSpeed") / 1.5f;
+		return 10f / recovery;
 	}
 
 	@Override
 	@Optional.Method(modid = "battlegear2")
-	public float getRecoveryRate(ItemStack arg0) {
-		// TODO Auto-generated method stub
-		return 0;
+	public float getRecoveryRate(ItemStack stack) {
+		NBTTagCompound tags = stack.getTagCompound();
+		float recovery = tags.getCompoundTag("InfiTool").getInteger(
+				"MiningSpeed") / 1.5f;
+		return 10f / recovery;
 	}
 
 	@Override
 	
 	public Item getAccessoryItem() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public String getDefaultFolder() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public String getEffectSuffix() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public Item getHeadItem() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public String getIconSuffix(int arg0) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 }

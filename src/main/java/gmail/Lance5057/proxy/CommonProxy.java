@@ -2,6 +2,7 @@ package gmail.Lance5057.proxy;
 
 import gmail.Lance5057.TinkersDefense;
 import gmail.Lance5057.containers.Container_CrestMount;
+import gmail.Lance5057.containers.Container_FinishingAnvil;
 import gmail.Lance5057.gui.Gui_CrestMount;
 import gmail.Lance5057.gui.Gui_FinishingAnvil;
 import gmail.Lance5057.tileentities.TileEntity_CrestMount;
@@ -47,6 +48,12 @@ public class CommonProxy implements IGuiHandler {
 			// Use the player's held item to create the inventory
 				return new Container_CrestMount(player.inventory, (TileEntity_CrestMount)world.getTileEntity(x, y, z));
 			}
+			if (ID == TinkersDefense.GUI_ANVIL_INV)
+			{
+			// Use the player's held item to create the inventory
+				return new Container_FinishingAnvil(player.inventory, (TileEntity_FinishingAnvil)world.getTileEntity(x, y, z));
+			}
+			
 			return null;
 		}
 

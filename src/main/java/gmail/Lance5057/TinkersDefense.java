@@ -148,8 +148,8 @@ public class TinkersDefense {
 	public static Pattern woodPattern;
 	public static Pattern metalPattern;
 
-	public static DynamicToolPart partRivet;
-	public static DynamicToolPart partArmorplate;
+	public static Item partRivet;
+	public static Item partArmorplate;
 	
 	public static Injector tcInject;
 
@@ -346,16 +346,32 @@ public class TinkersDefense {
 
 		// network.registerMessage(messageHandler, requestMessageType,
 		// discriminator, side);
+		
+
 	}
 
 	@EventHandler
 	public void init(FMLInitializationEvent e) {
 		System.out.print(Reference.MOD_ID);
 		
-		//tcInject = new Injector();
-		//GameRegistry.registerItem(tcInject, "debugger");
+		tcInject = new Injector(0);
+		GameRegistry.registerItem(tcInject, "debugger");
 		
-		
+		StencilBuilder.registerStencil(50, woodPattern, 0); // rivets
+		StencilBuilder.registerStencil(51, woodPattern, 1); // clasp
+		StencilBuilder.registerStencil(52, woodPattern, 2); // armorplate
+
+		PatternBuilder.instance.addToolPattern(woodPattern);
+
+		partRivet = new DynamicToolPart("_rivets", "Rivets");
+		GameRegistry.registerItem(partRivet, "RivetPart");
+
+		partArmorplate = new DynamicToolPart("_armorplate", "Armor Plate");
+		GameRegistry.registerItem(partArmorplate, "ArmorPlatePart");
+
+		buildParts(partRivet, 0);
+		// buildParts(clasp, 1);
+		buildParts(partArmorplate, 2);
 		
 		PatternBuilder pb = PatternBuilder.instance;
 		
@@ -531,31 +547,17 @@ public class TinkersDefense {
 
 		// Shields
 		TConstructRegistry.addToolRecipe(tool_roundShield,
-				TinkerTools.largePlate, TinkerTools.toolRod,
+				partArmorplate, TinkerTools.toolRod,
 				TinkerTools.frypanHead);
 
 		TConstructRegistry.addToolRecipe(tool_heaterShield,
-				TinkerTools.largePlate, TinkerTools.toughRod,
-				TinkerTools.largePlate, TinkerTools.toughBinding);
+				partArmorplate, TinkerTools.toughRod,
+				partArmorplate, TinkerTools.toughBinding);
 
 		TConstructRegistry.addToolRecipe(tool_wrench, TinkerTools.handGuard,
 				TinkerTools.toolRod, TinkerTools.binding);
 
-		StencilBuilder.registerStencil(50, woodPattern, 0); // rivets
-		StencilBuilder.registerStencil(51, woodPattern, 1); // clasp
-		StencilBuilder.registerStencil(52, woodPattern, 2); // armorplate
 
-		PatternBuilder.instance.addToolPattern(woodPattern);
-
-		partRivet = new DynamicToolPart("_rivets", "Rivets");
-		GameRegistry.registerItem(partRivet, "RivetPart");
-
-		partArmorplate = new DynamicToolPart("_armorplate", "Armor Plate");
-		GameRegistry.registerItem(partArmorplate, "ArmorPlatePart");
-
-		buildParts(partRivet, 0);
-		// buildParts(clasp, 1);
-		buildParts(partArmorplate, 2);
 
 	}
 
