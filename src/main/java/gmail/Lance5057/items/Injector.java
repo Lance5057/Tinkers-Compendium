@@ -16,10 +16,10 @@ public class Injector extends ToolCore
 		// TODO Auto-generated constructor stub
 	}
 
-	int headsIndex;
-	int accessoryIndex;
-	int handleIndex;
-	int extraIndex;
+	String[] heads;
+	String[] accessorys;
+	String[] handles;
+	String[] extras;
 	
 	@Override
 	public void registerIcons(IIconRegister iconRegister)

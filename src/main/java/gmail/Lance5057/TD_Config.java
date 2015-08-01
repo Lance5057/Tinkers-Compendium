@@ -1,5 +1,7 @@
 package gmail.Lance5057;
 
+import java.util.Vector;
+
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;

@@ -13,11 +13,10 @@ import net.minecraft.world.World;
 import cpw.mods.fml.common.network.IGuiHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 
-public class CommonProxy implements IGuiHandler {
-
-        // Client stuff
-        public void registerRenderers() {
-                // Nothing here as the server doesn't render graphics or entities!
+public class CommonProxy implements IGuiHandler 
+{
+        public void registerRenderers() 
+        {
         }
         
         public void registerTileEntitySpecialRenderer()
@@ -25,9 +24,10 @@ public class CommonProxy implements IGuiHandler {
         	
         }
         
-        public EntityPlayer getPlayerEntity(MessageContext ctx) {
+        public EntityPlayer getPlayerEntity(MessageContext ctx) 
+        {
         	return ctx.getServerHandler().playerEntity;
-        	}
+        }
         
         public ModelBiped getArmorModel(int id)
         { 
@@ -41,16 +41,14 @@ public class CommonProxy implements IGuiHandler {
 
 		@Override
 		public Object getServerGuiElement(int ID, EntityPlayer player,
-				World world, int x, int y, int z) {
-			// Hooray, no 'magic' numbers - we know exactly which Gui this refers to
+				World world, int x, int y, int z) 
+		{
 			if (ID == TinkersDefense.GUI_CREST_INV)
 			{
-			// Use the player's held item to create the inventory
 				return new Container_CrestMount(player.inventory, (TileEntity_CrestMount)world.getTileEntity(x, y, z));
 			}
 			if (ID == TinkersDefense.GUI_ANVIL_INV)
 			{
-			// Use the player's held item to create the inventory
 				return new Container_FinishingAnvil(player.inventory, (TileEntity_FinishingAnvil)world.getTileEntity(x, y, z));
 			}
 			
