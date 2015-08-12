@@ -354,9 +354,6 @@ public class TinkersDefense {
 	public void init(FMLInitializationEvent e) {
 		System.out.print(Reference.MOD_ID);
 		
-		tcInject = new Injector(0);
-		GameRegistry.registerItem(tcInject, "debugger");
-		
 		StencilBuilder.registerStencil(50, woodPattern, 0); // rivets
 		StencilBuilder.registerStencil(51, woodPattern, 1); // clasp
 		StencilBuilder.registerStencil(52, woodPattern, 2); // armorplate
@@ -428,9 +425,9 @@ public class TinkersDefense {
 		
 
 		// Aeonsteel
-		pb.registerMaterialSet("AeonSteel", new ItemStack(
+		pb.registerMaterialSet("aeonsteel", new ItemStack(
 				TinkerTools.toolShard, 1, 10), new ItemStack(
-				TinkerTools.toolRod, 1, 10), 10);
+				TinkerTools.toolRod, 1, 10), config.AeonsteelMatID);
 
 		TConstructClientRegistry.addMaterialRenderMapping(config.AeonsteelMatID, "tinker",
 				"aeonsteel", true);
@@ -471,7 +468,13 @@ public class TinkersDefense {
 				new FluidStack[] {
 						new FluidStack(TinkerSmeltery.moltenAlumiteFluid, 144),
 						new FluidStack(TinkerSmeltery.moltenCobaltFluid, 144) });
+		
+		
 		// Queen's Gold
+		pb.registerMaterialSet("queensgold", new ItemStack(
+				TinkerTools.toolShard, 1, 10), new ItemStack(
+				TinkerTools.toolRod, 1, 10), config.QueensGoldMatID);
+		
 		TConstructClientRegistry.addMaterialRenderMapping(config.QueensGoldMatID, "tinker",
 				"queensgold", true);
 		TConstructRegistry.addToolMaterial(config.QueensGoldMatID, "QueensGold", 3, 100, 500, 2,
@@ -509,6 +512,10 @@ public class TinkersDefense {
 						new FluidStack(TinkerSmeltery.moltenEmeraldFluid, 80) });
 
 		// Dogbearium
+		pb.registerMaterialSet("dogbearium", new ItemStack(
+				TinkerTools.toolShard, 1, 10), new ItemStack(
+				TinkerTools.toolRod, 1, 10), config.DogbeariumMatID);
+		
 		TConstructClientRegistry.addMaterialRenderMapping(config.DogbeariumMatID, "tinker",
 				"dogbearium", true);
 		TConstructRegistry.addToolMaterial(config.DogbeariumMatID, "Dogbearium", 4, 600, 800, 2,
@@ -557,8 +564,8 @@ public class TinkersDefense {
 		TConstructRegistry.addToolRecipe(tool_wrench, TinkerTools.handGuard,
 				TinkerTools.toolRod, TinkerTools.binding);
 
-
-
+		tcInject = new Injector(0);
+		GameRegistry.registerItem(tcInject, "debugger");
 	}
 
 	@EventHandler

@@ -17,6 +17,8 @@ public class TD_Config
 	public int CrestMirrorsID;
 	public int CrestLegendsID;
 	
+	public int MaterialIndex;
+	
 	public TD_Config(FMLPreInitializationEvent e)
 	{
 		Configuration config = new Configuration(e.getSuggestedConfigurationFile());
@@ -31,6 +33,10 @@ public class TD_Config
 		CrestFeathersID = config.get("Modifier Configs", "Crest of Feathers ID", 19).getInt();
 		CrestMirrorsID = config.get("Modifier Configs", "Crest of Mirrors ID", 20).getInt();
 		CrestLegendsID = config.get("Modifier Configs", "Crest of Legends ID", 21).getInt();
+		
+		MaterialIndex = config.get("Material Index", "Highest material ID -\n TDefense - 204\n MFR - 1001\n ExtraTIC - 1024", 204).getInt();
+		
+		
 		
 		config.save();
 	}

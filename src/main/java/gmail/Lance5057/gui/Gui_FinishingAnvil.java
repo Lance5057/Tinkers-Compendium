@@ -18,6 +18,7 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 
 public class Gui_FinishingAnvil extends GuiContainer
@@ -26,6 +27,7 @@ public class Gui_FinishingAnvil extends GuiContainer
 	private float ySize_lo;
 	
 	private ItemStack bigCopy;
+	private Boolean isNull = true;
 	private ItemStack editItem;
 	private RenderItem bigRender = new RenderItem_FinishingAnvil(this);
 	
@@ -34,9 +36,16 @@ public class Gui_FinishingAnvil extends GuiContainer
 	
 	private int leftButtonPosX = 0;
 	private int leftButtonPosY = 0;
-	private int xIcon_one, yIcon_one;
-	private int xIcon_two, yIcon_two;
-	private int xIcon_three, yIcon_three;
+	private int xLIcon_one, yLIcon_one;
+	private int xLIcon_two, yLIcon_two;
+	private int xLIcon_three, yLIcon_three;
+	private int leftSelect = 0;
+	
+	private int rightButtonPosX = 0;
+	private int rightButtonPosY = 2;
+	private int xRIcon_one, yRIcon_one;
+	private int xRIcon_two, yRIcon_two;
+	private int xRIcon_three, yRIcon_three;
 	
 	private static final ResourceLocation iconLocation = new ResourceLocation("tinkersdefense", "textures/gui/finishinganvil.png");
 
@@ -60,26 +69,80 @@ public class Gui_FinishingAnvil extends GuiContainer
 		
 		this.buttonList.add(new GuiButton(7 ,this.guiLeft+120, this.guiTop+10, 10, 10,"▲"));
 		this.buttonList.add(new GuiButton(8 ,this.guiLeft+120, this.guiTop+59, 10, 10,"▼"));
+		
+		this.buttonList.add(new GuiButton(9 ,this.guiLeft+130, this.guiTop+10, 20, 20,""));
+		this.buttonList.add(new GuiButton(10 ,this.guiLeft+130, this.guiTop+30, 20, 20,""));
+		this.buttonList.add(new GuiButton(11 ,this.guiLeft+130, this.guiTop+50, 20, 20,""));
 
-		//((GuiButton)this.buttonList.get(0)).displayString = "9";
 	}
 
 	@Override
 	protected void actionPerformed(GuiButton button)
 	{
+		NBTTagCompound tags = bigCopy.getTagCompound().getCompoundTag("InfiTool");
 		switch(button.id)
 		{
 		case 1: if(this.leftButtonPosX > 0) this.leftButtonPosX--; break;
 		case 2: this.leftButtonPosX++; break;
+		
+		case 3: 
+			inventory.inventory[0] = null;
+			inventory.inventory[0] = bigCopy;
+		break;
+		
+		case 4: leftSelect = 0; break;
+		case 5: leftSelect = 1; break;
+		case 6: leftSelect = 2; break;
+		
+		case 7: if(this.rightButtonPosX > 0) this.rightButtonPosX--; break;
+		case 8: this.rightButtonPosX++; break;
+		
+		case 9: 
+			if(bigCopy.getTagCompound().getCompoundTag("InfiTool").hasKey("RenderHead"))
+			{
+				bigCopy.getTagCompound().getCompoundTag("InfiTool").setInteger("RenderHead", bigCopy.getTagCompound().getCompoundTag("InfiTool").getInteger("Head") * rightButtonPosX + 1);
+			}
+			break;
+			
+		case 10:
+		if(tags.hasKey("RenderHead"))
+		{
+			int test = tags.getInteger("Head");
+			int test2 = test + ((rightButtonPosX + 1) * TinkersDefense.config.MaterialIndex);
+			//bigCopy.getTagCompound().getCompoundTag("InfiTool").setInteger("Head", bigCopy.getTagCompound().getCompoundTag("InfiTool").getInteger("Head") + ((rightButtonPosX + 1) * TinkersDefense.config.MaterialIndex));
+			bigCopy.getTagCompound().getCompoundTag("InfiTool").setInteger("RenderHead", bigCopy.getTagCompound().getCompoundTag("InfiTool").getInteger("Head") + ((rightButtonPosX + 1) * TinkersDefense.config.MaterialIndex));
+		}
+		break;
+		
+		case 11:
+			if(tags.hasKey("RenderHead"))
+			{
+				tags.setInteger("RenderHead", tags.getInteger("Head") * (rightButtonPosX + 3));
+				tags.setInteger("Head", tags.getInteger("Head") * (rightButtonPosX + 3));
+
+			}
+			break;
 		}
 	}
 	public void drawScreen(int par1, int par2, float par3)
 	{
-		if(inventory.getStackInSlot(0) != null //&&
+		if(bigCopy != null)
+		if(bigCopy.getTagCompound().getCompoundTag("InfiTool").hasKey("RenderHead"))
+		{
+			((GuiButton)this.buttonList.get(2)).displayString = Integer.toString(bigCopy.getTagCompound().getCompoundTag("InfiTool").getInteger("RenderHead"));
+		}
+		
+		if(inventory.getStackInSlot(0) != null && isNull == true
 				/*inventory.getStackInSlot(0).getItem() != this.bigCopy*/)
+		{
 					this.bigCopy = inventory.getStackInSlot(0).copy();
-		else
+					isNull = false;
+		}
+		else if(inventory.getStackInSlot(0) == null)
+		{
 			this.bigCopy = null;
+			isNull = true;
+		}
 		super.drawScreen(par1, par2, par3);
 		this.xSize_lo = (float)par1;
 		this.ySize_lo = (float)par2;
@@ -89,12 +152,19 @@ public class Gui_FinishingAnvil extends GuiContainer
 	{
 		this.forGui = new ResourceLocation("tinkersdefense", "textures/gui/finishinganvil.png");
 		
-		this.xIcon_one = 0;
-		this.yIcon_one = 176;
-		this.xIcon_two = 0;
-		this.yIcon_two = 176;
-		this.xIcon_three = 0;
-		this.yIcon_three = 176;
+		this.xLIcon_one = 0;
+		this.yLIcon_one = 176;
+		this.xLIcon_two = 0;
+		this.yLIcon_two = 176;
+		this.xLIcon_three = 0;
+		this.yLIcon_three = 176;
+		
+		this.xRIcon_one = 0;
+		this.yRIcon_one = 176;
+		this.xRIcon_two = 0;
+		this.yRIcon_two = 176;
+		this.xRIcon_three = 0;
+		this.yRIcon_three = 176;
 		
 		if(inventory.getStackInSlot(0) != null)
 		{
@@ -106,20 +176,34 @@ public class Gui_FinishingAnvil extends GuiContainer
 				
 				GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 				this.forGui = new ResourceLocation("tinkersdefense","textures/gui/"+((ToolCore)editItem.getItem()).getDefaultFolder()+".png");
-				this.xIcon_one = 16;
-				this.yIcon_one = 0;
-				this.xIcon_two = 32;
-				this.yIcon_two = 0;
-				this.xIcon_three = 48;
-				this.yIcon_three = 0;
+				this.xLIcon_one = 32;
+				this.yLIcon_one = 0;
+				this.xLIcon_two = 48;
+				this.yLIcon_two = 0;
+				this.xLIcon_three = 64;
+				this.yLIcon_three = 0;
+				
+				this.xRIcon_one = 0;
+				this.yRIcon_one = 0;
+				this.xRIcon_two = 16;
+				this.yRIcon_two = 0;
+				this.xRIcon_three = 32;
+				this.yRIcon_three = 0;
 			}
 		}
 		
 		this.mc.getTextureManager().bindTexture(this.forGui);
-		this.drawTexturedModalRect(7,12,this.xIcon_one+(this.leftButtonPosX*16),this.yIcon_one+(this.leftButtonPosY*16),16,16);
-		this.drawTexturedModalRect(7,32,this.xIcon_two+(this.leftButtonPosX*16),this.yIcon_two+(this.leftButtonPosY*16),16,16);
-		this.drawTexturedModalRect(7,52,this.xIcon_three+(this.leftButtonPosX*16),this.yIcon_three+(this.leftButtonPosY*16),16,16);
+		if(inventory.getStackInSlot(0) != null)
+			this.drawTexturedModalRect(7,12 + (leftSelect * 20),16,0,16,16);
+		
+		this.drawTexturedModalRect(7,12,this.xLIcon_one+(this.leftButtonPosX*16),this.yLIcon_one+(this.leftButtonPosY*16),16,16);
+		this.drawTexturedModalRect(7,32,this.xLIcon_two+(this.leftButtonPosX*16),this.yLIcon_two+(this.leftButtonPosY*16),16,16);
+		this.drawTexturedModalRect(7,52,this.xLIcon_three+(this.leftButtonPosX*16),this.yLIcon_three+(this.leftButtonPosY*16),16,16);
 
+		this.drawTexturedModalRect(132,12,this.xRIcon_one+(this.rightButtonPosX*16),this.yRIcon_one+(this.rightButtonPosY*16),16,16);
+		this.drawTexturedModalRect(132,32,this.xRIcon_two+(this.rightButtonPosX*16),this.yRIcon_two+(this.rightButtonPosY*16),16,16);
+		this.drawTexturedModalRect(132,52,this.xRIcon_three+(this.rightButtonPosX*16),this.yRIcon_three+(this.rightButtonPosY*16),16,16);
+		
 		bigRender.renderItemAndEffectIntoGUI(fontRendererObj, this.mc.getTextureManager(), bigCopy, 23, 5);
 
 	}
