@@ -3,13 +3,13 @@ package gmail.Lance5057;
 import static net.minecraft.util.EnumChatFormatting.DARK_RED;
 import static net.minecraft.util.EnumChatFormatting.GOLD;
 import static net.minecraft.util.EnumChatFormatting.LIGHT_PURPLE;
+import parts.Item_Cloth;
+import parts.Item_Glowthread;
+import parts.Item_Thread;
 import gmail.Lance5057.armor.items.ChainArmor;
 import gmail.Lance5057.armor.items.ClothArmor;
 import gmail.Lance5057.armor.items.Sheath;
 import gmail.Lance5057.armor.items.TinkerArmor;
-import gmail.Lance5057.armor.tools.Item_Cloth;
-import gmail.Lance5057.armor.tools.Item_Glowthread;
-import gmail.Lance5057.armor.tools.Item_Thread;
 import gmail.Lance5057.blocks.AeonSteelBlock;
 import gmail.Lance5057.blocks.CrestMount;
 import gmail.Lance5057.blocks.DogbeariumBlock;
@@ -597,7 +597,7 @@ public class TinkersDefense {
 				TConstructRegistry.getItemStack("swordBladeCast"), 50);
 		TConstructRegistry.instance.getTableCasting().addCastingRecipe(
 				new ItemStack(TinkerTools.fullGuard, 1, ID),
-				new FluidStack(fluid, (int) (144 * 1.0D)),
+				new FluidStack(fluid, (int) (144 * 3.0D)),
 				TConstructRegistry.getItemStack("fullGuardCast"), 50);
 		TConstructRegistry.instance.getTableCasting().addCastingRecipe(
 				new ItemStack(TinkerTools.wideGuard, 1, ID),

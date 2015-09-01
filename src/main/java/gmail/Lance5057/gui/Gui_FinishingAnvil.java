@@ -4,11 +4,13 @@ import gmail.Lance5057.TinkersDefense;
 import gmail.Lance5057.containers.Container_CrestMount;
 import gmail.Lance5057.containers.Container_FinishingAnvil;
 import gmail.Lance5057.network.Message_CrestMount;
+import gmail.Lance5057.network.Message_FinishingAnvil;
 import gmail.Lance5057.tileentities.TileEntity_CrestMount;
 import gmail.Lance5057.tileentities.TileEntity_FinishingAnvil;
 
 import org.lwjgl.opengl.GL11;
 
+import tconstruct.library.TConstructRegistry;
 import tconstruct.library.tools.ToolCore;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -47,12 +49,22 @@ public class Gui_FinishingAnvil extends GuiContainer
 	private int xRIcon_two, yRIcon_two;
 	private int xRIcon_three, yRIcon_three;
 	
+	String[] renders;
+	
+	NBTTagCompound tags;
+	
 	private static final ResourceLocation iconLocation = new ResourceLocation("tinkersdefense", "textures/gui/finishinganvil.png");
 
 	public Gui_FinishingAnvil(InventoryPlayer invPlayer, TileEntity_FinishingAnvil te)
 	{
 		super(new Container_FinishingAnvil(invPlayer, te));
 		this.inventory = te;
+		
+		renders = new String[4];
+		renders[0] = "Head";
+		renders[1] = "Accessory";
+		renders[2] = "Handle";
+		renders[3] = "Extra";
 	}
 
 	@Override
@@ -79,63 +91,61 @@ public class Gui_FinishingAnvil extends GuiContainer
 	@Override
 	protected void actionPerformed(GuiButton button)
 	{
-		NBTTagCompound tags = bigCopy.getTagCompound().getCompoundTag("InfiTool");
+		if(tags != null)
 		switch(button.id)
 		{
 		case 1: if(this.leftButtonPosX > 0) this.leftButtonPosX--; break;
-		case 2: this.leftButtonPosX++; break;
+		case 2: if(this.leftButtonPosX+2 < ((ToolCore)bigCopy.getItem()).getPartAmount() - 1) this.leftButtonPosX++; break;
 		
 		case 3: 
-			inventory.inventory[0] = null;
-			inventory.inventory[0] = bigCopy;
+			 TinkersDefense.INSTANCE.sendToServer(new Message_FinishingAnvil(inventory.xCoord, inventory.yCoord, inventory.zCoord, this.bigCopy));
 		break;
 		
-		case 4: leftSelect = 0; break;
-		case 5: leftSelect = 1; break;
-		case 6: leftSelect = 2; break;
+		case 4: leftSelect = 0; rightButtonPosY = 2; break;
+		case 5: leftSelect = 1; rightButtonPosY = 3; break;
+		case 6: leftSelect = 2; rightButtonPosY = 4; break;
 		
 		case 7: if(this.rightButtonPosX > 0) this.rightButtonPosX--; break;
 		case 8: this.rightButtonPosX++; break;
 		
 		case 9: 
-			if(bigCopy.getTagCompound().getCompoundTag("InfiTool").hasKey("RenderHead"))
+			if(tags.hasKey("Render"+renders[leftSelect]))
 			{
-				bigCopy.getTagCompound().getCompoundTag("InfiTool").setInteger("RenderHead", bigCopy.getTagCompound().getCompoundTag("InfiTool").getInteger("Head") * rightButtonPosX + 1);
+				tags.setInteger("Render"+renders[leftSelect], bigCopy.getTagCompound().getCompoundTag("InfiTool").getInteger(renders[leftSelect]) + ((rightButtonPosX) * TinkersDefense.config.MaterialIndex));
+				if(rightButtonPosX > 0)
+					tags.setInteger(renders[leftSelect]+"Color", TConstructRegistry.getMaterial(tags.getInteger(renders[leftSelect])).primaryColor());
+				else
+					tags.removeTag(renders[leftSelect]+"Color");
 			}
 			break;
 			
 		case 10:
-		if(tags.hasKey("RenderHead"))
+		if(tags.hasKey("Render"+renders[leftSelect]))
 		{
-			int test = tags.getInteger("Head");
-			int test2 = test + ((rightButtonPosX + 1) * TinkersDefense.config.MaterialIndex);
-			//bigCopy.getTagCompound().getCompoundTag("InfiTool").setInteger("Head", bigCopy.getTagCompound().getCompoundTag("InfiTool").getInteger("Head") + ((rightButtonPosX + 1) * TinkersDefense.config.MaterialIndex));
-			bigCopy.getTagCompound().getCompoundTag("InfiTool").setInteger("RenderHead", bigCopy.getTagCompound().getCompoundTag("InfiTool").getInteger("Head") + ((rightButtonPosX + 1) * TinkersDefense.config.MaterialIndex));
+			tags.setInteger("Render"+renders[leftSelect], bigCopy.getTagCompound().getCompoundTag("InfiTool").getInteger(renders[leftSelect]) + ((rightButtonPosX + 1) * TinkersDefense.config.MaterialIndex));
+			tags.setInteger(renders[leftSelect]+"Color", TConstructRegistry.getMaterial(tags.getInteger(renders[leftSelect])).primaryColor());
 		}
 		break;
 		
 		case 11:
-			if(tags.hasKey("RenderHead"))
+			if(tags.hasKey("Render"+renders[leftSelect]))
 			{
-				tags.setInteger("RenderHead", tags.getInteger("Head") * (rightButtonPosX + 3));
-				tags.setInteger("Head", tags.getInteger("Head") * (rightButtonPosX + 3));
-
+				tags.setInteger("Render"+renders[leftSelect], bigCopy.getTagCompound().getCompoundTag("InfiTool").getInteger(renders[leftSelect]) + ((rightButtonPosX + 2) * TinkersDefense.config.MaterialIndex));
+				tags.setInteger(renders[leftSelect]+"Color", TConstructRegistry.getMaterial(tags.getInteger(renders[leftSelect])).primaryColor());
 			}
 			break;
 		}
 	}
 	public void drawScreen(int par1, int par2, float par3)
 	{
-		if(bigCopy != null)
-		if(bigCopy.getTagCompound().getCompoundTag("InfiTool").hasKey("RenderHead"))
-		{
-			((GuiButton)this.buttonList.get(2)).displayString = Integer.toString(bigCopy.getTagCompound().getCompoundTag("InfiTool").getInteger("RenderHead"));
-		}
+		
 		
 		if(inventory.getStackInSlot(0) != null && isNull == true
 				/*inventory.getStackInSlot(0).getItem() != this.bigCopy*/)
 		{
 					this.bigCopy = inventory.getStackInSlot(0).copy();
+					if(bigCopy.hasTagCompound() && bigCopy.getTagCompound().hasKey("InfiTool"))
+						tags = bigCopy.getTagCompound().getCompoundTag("InfiTool");
 					isNull = false;
 		}
 		else if(inventory.getStackInSlot(0) == null)
@@ -143,6 +153,7 @@ public class Gui_FinishingAnvil extends GuiContainer
 			this.bigCopy = null;
 			isNull = true;
 		}
+		
 		super.drawScreen(par1, par2, par3);
 		this.xSize_lo = (float)par1;
 		this.ySize_lo = (float)par2;
@@ -215,5 +226,10 @@ public class Gui_FinishingAnvil extends GuiContainer
 	int k = ((this.width - this.xSize) / 2);
 	int l = (this.height - this.ySize) / 2;
 	this.drawTexturedModalRect(k, l, 0, 0, this.xSize+80, this.ySize);
+	}
+	
+	protected void injectIcons()
+	{
+		
 	}
 }

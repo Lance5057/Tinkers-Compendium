@@ -3,7 +3,11 @@ package gmail.Lance5057.armor.renderers;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.util.ResourceLocation;
+
 import org.lwjgl.opengl.GL11;
+
+import cpw.mods.fml.client.FMLClientHandler;
 
 /**
  * ModelBiped - Either Mojang or a mod author
@@ -28,14 +32,33 @@ public class ModelSheath extends ModelBiped {
 
     @Override
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) { 
+    	
+    	GL11.glPushMatrix();
         this.shape10.render(f5);
         GL11.glPushMatrix();
+        GL11.glColor3d(0, 0, 1.0);
         GL11.glTranslatef(this.shape9.offsetX, this.shape9.offsetY, this.shape9.offsetZ);
         GL11.glTranslatef(this.shape9.rotationPointX * f5, this.shape9.rotationPointY * f5, this.shape9.rotationPointZ * f5);
         GL11.glScaled(0.65D, 0.65D, 0.5D);
         GL11.glTranslatef(-this.shape9.offsetX, -this.shape9.offsetY, -this.shape9.offsetZ);
         GL11.glTranslatef(-this.shape9.rotationPointX * f5, -this.shape9.rotationPointY * f5, -this.shape9.rotationPointZ * f5);
         this.shape9.render(f5);
+        GL11.glPopMatrix();
+        
+        FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation("tinkersdefense:textures/armor/Sheath/_sheath_filigree.png"));
+        GL11.glPushMatrix();
+        
+        
+        GL11.glColor3d(1.0, 1.0, 0);
+        this.shape10.render(f5);
+        GL11.glTranslatef(this.shape9.offsetX, this.shape9.offsetY, this.shape9.offsetZ);
+        GL11.glTranslatef(this.shape9.rotationPointX * f5, this.shape9.rotationPointY * f5, this.shape9.rotationPointZ * f5);
+        GL11.glScaled(0.65D, 0.65D, 0.5D);
+        GL11.glTranslatef(-this.shape9.offsetX, -this.shape9.offsetY, -this.shape9.offsetZ);
+        GL11.glTranslatef(-this.shape9.rotationPointX * f5, -this.shape9.rotationPointY * f5, -this.shape9.rotationPointZ * f5);
+        this.shape9.render(f5);
+        GL11.glPopMatrix();
+        
         GL11.glPopMatrix();
     }
 

@@ -15,7 +15,7 @@ public class Sheath extends AccessoryCore implements IAccessoryModel
 {
 
 	public Sheath() {
-		super("tinkersdefense:textures/armor/Sheath");
+		super("tinkersdefense:textures/armor/Sheath/_sheath_base");
 	}
 
 	@Override
@@ -34,10 +34,10 @@ public class Sheath extends AccessoryCore implements IAccessoryModel
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot,
 			String type) {
-		return "tinkersdefense:textures/armor/Sheath.png";
+		return "tinkersdefense:textures/armor/Sheath/_sheath_base.png";
 	}
 	
-	ResourceLocation texture = new ResourceLocation("tinkersdefense", "textures/armor/Sheath.png");
+	ResourceLocation texture = new ResourceLocation("tinkersdefense", "textures/armor/Sheath/_sheath_base.png");
 	
 	@Override
     @SideOnly(Side.CLIENT)
