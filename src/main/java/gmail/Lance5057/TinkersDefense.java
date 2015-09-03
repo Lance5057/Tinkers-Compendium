@@ -3,13 +3,13 @@ package gmail.Lance5057;
 import static net.minecraft.util.EnumChatFormatting.DARK_RED;
 import static net.minecraft.util.EnumChatFormatting.GOLD;
 import static net.minecraft.util.EnumChatFormatting.LIGHT_PURPLE;
-import parts.Item_Cloth;
-import parts.Item_Glowthread;
-import parts.Item_Thread;
 import gmail.Lance5057.armor.items.ChainArmor;
 import gmail.Lance5057.armor.items.ClothArmor;
 import gmail.Lance5057.armor.items.Sheath;
 import gmail.Lance5057.armor.items.TinkerArmor;
+import gmail.Lance5057.armor.parts.Item_Cloth;
+import gmail.Lance5057.armor.parts.Item_Glowthread;
+import gmail.Lance5057.armor.parts.Item_Thread;
 import gmail.Lance5057.blocks.AeonSteelBlock;
 import gmail.Lance5057.blocks.CrestMount;
 import gmail.Lance5057.blocks.DogbeariumBlock;
@@ -35,23 +35,19 @@ import gmail.Lance5057.modifiers.shields.modifierCrestofLegends;
 import gmail.Lance5057.modifiers.shields.modifierCrestofMirrors;
 import gmail.Lance5057.network.PacketHandler;
 import gmail.Lance5057.proxy.CommonProxy;
-import gmail.Lance5057.tileentities.TileEntity_FinishingAnvil;
 import gmail.Lance5057.tileentities.TileEntity_CrestMount;
+import gmail.Lance5057.tileentities.TileEntity_FinishingAnvil;
 import gmail.Lance5057.tileentities.TileEntity_JewelersBench;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.config.Configuration;
-import net.minecraftforge.common.config.Property;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
@@ -129,7 +125,8 @@ public class TinkersDefense {
 	public static ToolCore tool_roundShield;
 	public static ToolCore tool_heaterShield;
 	public static ToolCore tool_wrench;
-
+	public static ToolCore tool_sheath;
+	
 	public static Block block_CrestMount;
 	public static Block block_ArmorAnvil;
 	public static Block block_JewelersBench;
@@ -137,7 +134,7 @@ public class TinkersDefense {
 	public static Item item_TinkerArmor;
 	public static Item item_ChainArmor;
 	public static Item item_ClothArmor;
-	public static Item item_Sheath;
+	
 
 	public static Item item_thread;
 	public static Item item_glowthread;
@@ -150,6 +147,9 @@ public class TinkersDefense {
 
 	public static Item partRivet;
 	public static Item partArmorplate;
+	public static Item partClasp;
+	public static Item partCloth;
+	public static Item partChainmaille;
 	
 	public static Injector tcInject;
 
@@ -297,14 +297,17 @@ public class TinkersDefense {
 		tool_heaterShield = new HeaterShield();
 
 		tool_wrench = new TinkerWrench();
+		tool_sheath = new Sheath();
 
 		GameRegistry.registerItem(tool_roundShield, "Round Shield");
 		GameRegistry.registerItem(tool_heaterShield, "Heater Shield");
 		GameRegistry.registerItem(tool_wrench, "Tinker Wrench");
+		GameRegistry.registerItem(tool_sheath, "Sheath");
 		TConstructRegistry.addItemToDirectory("Round Shield", tool_roundShield);
 		TConstructRegistry.addItemToDirectory("Heater Shield",
 				tool_heaterShield);
 		TConstructRegistry.addItemToDirectory("Tinker Wrench", tool_wrench);
+		TConstructRegistry.addItemToDirectory("Tinker Sheath", tool_wrench);
 
 		GameRegistry.registerItem(item_thread = new Item_Thread(), "thread");
 		GameRegistry.registerItem(item_glowthread = new Item_Glowthread(),
@@ -341,8 +344,8 @@ public class TinkersDefense {
 				 1).setUnlocalizedName("Cloth_Armor");
 				 GameRegistry.registerItem(item_ClothArmor,"Cloth Armor");
 		
-		item_Sheath = new Sheath().setUnlocalizedName("Sheath");
-		GameRegistry.registerItem(item_Sheath, "Sheath");
+		//tool_Sheath = new Sheath().setUnlocalizedName("Sheath");
+		
 
 		// network.registerMessage(messageHandler, requestMessageType,
 		// discriminator, side);
@@ -357,18 +360,31 @@ public class TinkersDefense {
 		StencilBuilder.registerStencil(50, woodPattern, 0); // rivets
 		StencilBuilder.registerStencil(51, woodPattern, 1); // clasp
 		StencilBuilder.registerStencil(52, woodPattern, 2); // armorplate
+		StencilBuilder.registerStencil(53, woodPattern, 3); // cloth
+		StencilBuilder.registerStencil(54, woodPattern, 4);	// chainmaille
 
 		PatternBuilder.instance.addToolPattern(woodPattern);
 
 		partRivet = new DynamicToolPart("_rivets", "Rivets");
 		GameRegistry.registerItem(partRivet, "RivetPart");
+		
+		partClasp = new DynamicToolPart("_clasp", "Clasp");
+		GameRegistry.registerItem(partClasp, "ClaspPart");
 
 		partArmorplate = new DynamicToolPart("_armorplate", "Armor Plate");
 		GameRegistry.registerItem(partArmorplate, "ArmorPlatePart");
+		
+		partCloth = new DynamicToolPart("_cloth", "Cloth");
+		GameRegistry.registerItem(partCloth, "clothPart");
 
+		partChainmaille = new DynamicToolPart("_chainmaille", "Chainmaille");
+		GameRegistry.registerItem(partChainmaille, "chainmaillePart");
+		
 		buildParts(partRivet, 0);
-		// buildParts(clasp, 1);
+		buildParts(partClasp, 1);
 		buildParts(partArmorplate, 2);
+		buildParts(partCloth, 3);
+		buildParts(partChainmaille, 4);
 		
 		PatternBuilder pb = PatternBuilder.instance;
 		
@@ -563,8 +579,11 @@ public class TinkersDefense {
 
 		TConstructRegistry.addToolRecipe(tool_wrench, TinkerTools.handGuard,
 				TinkerTools.toolRod, TinkerTools.binding);
+		
+		//Armor
+		TConstructRegistry.addToolRecipe(tool_sheath, partArmorplate,TinkerTools.toolRod, partCloth, partClasp);
 
-		tcInject = new Injector(0);
+		tcInject = new Injector(0,TinkerTools.broadsword);
 		GameRegistry.registerItem(tcInject, "debugger");
 	}
 
@@ -705,5 +724,17 @@ public class TinkersDefense {
 					fluidAmount);
 		}
 	}
+	
+	public static int[] hexToRGB(String hex)
+	{
+		int color[] = new int[3];
+		
+		color[0] = Integer.parseUnsignedInt(hex.substring(0, 2), 16);
+		color[1] = Integer.parseUnsignedInt(hex.substring(2, 4), 16);
+		color[2] = Integer.parseUnsignedInt(hex.substring(4, 6), 16);
+		
+		return color;
+	}
 
 }
+

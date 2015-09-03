@@ -1,4 +1,4 @@
-package parts;
+package gmail.Lance5057.armor.parts;
 
 import gmail.Lance5057.TinkersDefense;
 
@@ -10,23 +10,23 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 
-public class Item_Glowthread extends Item 
+public class Item_Cloth extends Item 
 {
 	public IIcon[] icons = new IIcon[16];
 	public static final String[] colors = new String[] {"black", "red", "green", "brown", "blue", "purple", "cyan", "silver", "grey", "pink", "lime", "yellow", "lightBlue", "magenta", "orange", "white"};
 	
-	public Item_Glowthread()
+	public Item_Cloth()
 	{
 		super();
 		this.setHasSubtypes(true);
-		this.setUnlocalizedName("GlowThread");
+		this.setUnlocalizedName("Cloth");
 		this.setCreativeTab(TinkersDefense.tabName);
 	}
 	
 	@Override
 	public void registerIcons(IIconRegister reg) {
 	    for (int i = 0; i < 16; i ++) {
-	        this.icons[i] = reg.registerIcon("tinkersdefense:" + colors[i] + "_glowthread" );
+	        this.icons[i] = reg.registerIcon("tinkersdefense:" + colors[i] + "_cloth" );
 	    }
 	}
 	

@@ -18,7 +18,7 @@ import cpw.mods.fml.client.registry.ClientRegistry;
 
 public class ClientProxy extends CommonProxy {
 	public static final ModelTinkerArmor tutChest = new ModelTinkerArmor(1.0f);
-	public static final ModelSheath sheath = new ModelSheath();
+	//public static final ModelSheath sheath = new ModelSheath();
 	public static final ModelChainArmor chain = new ModelChainArmor(0.1f);
 	public static final ModelClothArmor cloth = new ModelClothArmor();
 	

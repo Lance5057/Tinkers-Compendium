@@ -1,4 +1,4 @@
-package parts;
+package gmail.Lance5057.armor.parts;
 
 import gmail.Lance5057.TinkersDefense;
 

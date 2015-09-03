@@ -2,7 +2,10 @@ package gmail.Lance5057.items;
 
 import gmail.Lance5057.TinkersDefense;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -13,66 +16,44 @@ import tconstruct.tools.TinkerTools;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.Item;
 import net.minecraft.util.IIcon;
+import net.minecraft.util.ResourceLocation;
 
 public class Injector extends ToolCore
 {
 
-	public Injector(int baseDamage) {
+	ToolCore tool;
+	
+	public Injector(int baseDamage, ToolCore tool) {
 		super(baseDamage);
+		this.tool = tool;
 	}
 
-	String[] heads;
-	String[] accessorys;
-	String[] handles;
-	String[] extras;
+	List<String> heads = new ArrayList<String>();
+	List<String> accessorys= new ArrayList<String>();
+	List<String> handles = new ArrayList<String>();
+	List<String> extras = new ArrayList<String>();
 	
 	protected void loadHeads(IIconRegister iconRegister)
-	{		
-		heads = new String[9];
-		accessorys = new String[10];
-		handles = new String[2];
-		
-		heads[0] = "_tapered_blade";
-		heads[1] = "_dull_blade";
-		heads[2] = "_glass_blade";
-		heads[3] = "_plumed_blade";
-		heads[4] = "_spiked_blade";
-		heads[5] = "_widebase_blade";	
-		heads[6] = "_mace_blade";
-		heads[7] = "_elusive_blade";
-		heads[8] = "_repulsive_blade";
-		
-		accessorys[0] = "_straight_guard";
-		accessorys[1] = "_basket_guard";
-		accessorys[2] = "_curved_guard";
-		accessorys[3] = "_extended_guard";
-		accessorys[4] = "_legendary_guard";
-		accessorys[5] = "_queens_guard";
-		accessorys[6] = "_square_guard";
-		accessorys[7] = "_no_guard";
-		accessorys[8] = "_elusive_guard";
-		accessorys[9] = "_repulsive_guard";
-		
-		handles[0] = "_ornate_handle";
-		handles[1] = "_thick_handle";
-		
+	{				
 		IIcon origHead = TinkerTools.broadsword.headIcons.get(-1);
 		IIcon origAccessory = TinkerTools.broadsword.accessoryIcons.get(-1);
 		IIcon origHandle = TinkerTools.broadsword.handleIcons.get(-1);
 		
-		
-		for(int i = 0; i<heads.length; i++)
+		//File[] icons = new File("tinkersdefense:items/" + tool.getDefaultFolder()).listFiles();
+		ResourceLocation icons = new ResourceLocation("tinkersdefense", tool.getDefaultFolder());
+		String test = icons.toString();
+		for(int i = 0; i<heads.size(); i++)
 		{
 			PatternBuilder pb = PatternBuilder.instance;
 			for(Map.Entry<String, MaterialSet> entry : pb.materialSets.entrySet())
 			{
 				String icon = "tinkersdefense:";
-		        icon += TinkerTools.broadsword.getDefaultFolder() + "/" + entry.getKey().toLowerCase() + "/" + heads[i];
+		        icon += TinkerTools.broadsword.getDefaultFolder() + "/" + entry.getKey().toLowerCase() + "/" + heads.get(i);
 		        //toolIcons[i] = icon;
 		        headStrings.put(entry.getValue().materialID+(TinkersDefense.config.MaterialIndex*(i+1)), icon);
 			}
 			
-			addIcons(headStrings, headIcons, iconRegister, heads[i], false);
+			addIcons(headStrings, headIcons, iconRegister, heads.get(i), false);
 			
 			for(int j = (i+1)*TinkersDefense.config.MaterialIndex; j<TinkersDefense.config.MaterialIndex + ((i+1)*TinkersDefense.config.MaterialIndex); j++)
 			{
@@ -86,18 +67,18 @@ public class Injector extends ToolCore
 			TinkerTools.broadsword.headIcons.putAll(headIcons);
 		}
 		
-		for(int i = 0; i<accessorys.length; i++)
+		for(int i = 0; i<accessorys.size(); i++)
 		{
 			PatternBuilder pb = PatternBuilder.instance;
 			for(Map.Entry<String, MaterialSet> entry : pb.materialSets.entrySet())
 			{
 				String icon = "tinkersdefense:";
-		        icon += TinkerTools.broadsword.getDefaultFolder() + "/" + entry.getKey().toLowerCase() + "/" + accessorys[i];
+		        icon += TinkerTools.broadsword.getDefaultFolder() + "/" + entry.getKey().toLowerCase() + "/" + accessorys.get(i);
 		        //toolIcons[i] = icon;
 		        accessoryStrings.put(entry.getValue().materialID+(TinkersDefense.config.MaterialIndex*(i+1)), icon);
 			}
 			
-			addIcons(accessoryStrings, accessoryIcons, iconRegister, accessorys[i], false);
+			addIcons(accessoryStrings, accessoryIcons, iconRegister, accessorys.get(i), false);
 			
 			for(int j = (i+1)*TinkersDefense.config.MaterialIndex; j<TinkersDefense.config.MaterialIndex + ((i+1)*TinkersDefense.config.MaterialIndex); j++)
 			{
@@ -111,18 +92,18 @@ public class Injector extends ToolCore
 			TinkerTools.broadsword.accessoryIcons.putAll(accessoryIcons);
 		}
 		
-		for(int i = 0; i<handles.length; i++)
+		for(int i = 0; i<handles.size(); i++)
 		{
 			PatternBuilder pb = PatternBuilder.instance;
 			for(Map.Entry<String, MaterialSet> entry : pb.materialSets.entrySet())
 			{
 				String icon = "tinkersdefense:";
-		        icon += TinkerTools.broadsword.getDefaultFolder() + "/" + entry.getKey().toLowerCase() + "/" + handles[i];
+		        icon += TinkerTools.broadsword.getDefaultFolder() + "/" + entry.getKey().toLowerCase() + "/" + handles.get(i);
 		        //toolIcons[i] = icon;
 		        handleStrings.put(entry.getValue().materialID+(TinkersDefense.config.MaterialIndex*(i+1)), icon);
 			}
 			
-			addIcons(handleStrings, handleIcons, iconRegister, handles[i], false);
+			addIcons(handleStrings, handleIcons, iconRegister, handles.get(i), false);
 			
 			for(int j = (i+1)*TinkersDefense.config.MaterialIndex; j<TinkersDefense.config.MaterialIndex + ((i+1)*TinkersDefense.config.MaterialIndex); j++)
 			{
