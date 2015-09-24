@@ -46,7 +46,7 @@ public class RoundShield extends Shield {
 
 	@Override
 	public Item getAccessoryItem() {
-		return TinkerTools.binding;
+		return TinkerTools.frypanHead;
 	}
 
 	@Override
@@ -74,7 +74,6 @@ public class RoundShield extends Shield {
 		return 0f;
 	}
 
-	@SideOnly(Side.CLIENT)
 	@Override
 	public int getPartAmount() {
 		return 3;

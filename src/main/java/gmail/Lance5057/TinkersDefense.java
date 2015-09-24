@@ -25,11 +25,13 @@ import gmail.Lance5057.items.TD_Patterns;
 import gmail.Lance5057.items.tools.HeaterShield;
 import gmail.Lance5057.items.tools.RoundShield;
 import gmail.Lance5057.items.tools.TinkerWrench;
+import gmail.Lance5057.items.tools.TinkerZweihander;
 import gmail.Lance5057.liquids.moltenAeonsteelFluid;
 import gmail.Lance5057.liquids.moltenDogbeariumFluid;
 import gmail.Lance5057.liquids.moltenQueensGoldFluid;
 import gmail.Lance5057.modifiers.TDefenseActiveToolMod;
 import gmail.Lance5057.modifiers.modifierDaze;
+import gmail.Lance5057.modifiers.shields.modifierCrestofBlades;
 import gmail.Lance5057.modifiers.shields.modifierCrestofFeathers;
 import gmail.Lance5057.modifiers.shields.modifierCrestofLegends;
 import gmail.Lance5057.modifiers.shields.modifierCrestofMirrors;
@@ -126,6 +128,7 @@ public class TinkersDefense {
 	public static ToolCore tool_heaterShield;
 	public static ToolCore tool_wrench;
 	public static ToolCore tool_sheath;
+	public static ToolCore tool_zweihander;
 	
 	public static Block block_CrestMount;
 	public static Block block_ArmorAnvil;
@@ -298,17 +301,24 @@ public class TinkersDefense {
 
 		tool_wrench = new TinkerWrench();
 		tool_sheath = new Sheath();
+		
+		tool_zweihander = new TinkerZweihander(0);
 
+		//Register Tools
 		GameRegistry.registerItem(tool_roundShield, "Round Shield");
 		GameRegistry.registerItem(tool_heaterShield, "Heater Shield");
 		GameRegistry.registerItem(tool_wrench, "Tinker Wrench");
 		GameRegistry.registerItem(tool_sheath, "Sheath");
+		GameRegistry.registerItem(tool_zweihander, "Zweihander");
+		
+		//Add Tools to TiCo directory
 		TConstructRegistry.addItemToDirectory("Round Shield", tool_roundShield);
-		TConstructRegistry.addItemToDirectory("Heater Shield",
-				tool_heaterShield);
+		TConstructRegistry.addItemToDirectory("Heater Shield", tool_heaterShield);
 		TConstructRegistry.addItemToDirectory("Tinker Wrench", tool_wrench);
-		TConstructRegistry.addItemToDirectory("Tinker Sheath", tool_wrench);
+		TConstructRegistry.addItemToDirectory("Sheath", tool_sheath);
+		TConstructRegistry.addItemToDirectory("Zweihander", tool_zweihander);
 
+		//Register Items
 		GameRegistry.registerItem(item_thread = new Item_Thread(), "thread");
 		GameRegistry.registerItem(item_glowthread = new Item_Glowthread(),
 				"glowthread");
@@ -400,6 +410,8 @@ public class TinkersDefense {
 		ModifyBuilder.registerModifier(new modifierCrestofLegends("Crest of Legends", config.CrestLegendsID, new ItemStack[] { new ItemStack(item_relic)},
 				new int[] {1}));
 		
+		ModifyBuilder.registerModifier(new modifierCrestofBlades("Crest of Blades", config.CrestBladesID, new ItemStack[] { new ItemStack(Items.iron_sword)},new int[] {1}));
+		
 		TConstructRegistry.registerActiveToolMod(new TDefenseActiveToolMod());
 		
 		for (ToolCore tool : TConstructRegistry.getToolMapping())
@@ -408,6 +420,7 @@ public class TinkersDefense {
 			TConstructClientRegistry.addEffectRenderMapping(tool, config.CrestFeathersID, "tinker", "feathers", true);
 			TConstructClientRegistry.addEffectRenderMapping(tool, config.CrestMirrorsID, "tinker", "mirrors", true);
 			TConstructClientRegistry.addEffectRenderMapping(tool, config.CrestLegendsID, "tinker", "legends", true);
+			TConstructClientRegistry.addEffectRenderMapping(tool, config.CrestBladesID, "tinker", "blades", true);
         }
 
 		
@@ -575,10 +588,15 @@ public class TinkersDefense {
 
 		TConstructRegistry.addToolRecipe(tool_heaterShield,
 				partArmorplate, TinkerTools.toughRod,
-				partArmorplate, TinkerTools.toughBinding);
+				partArmorplate, partRivet);
 
+		// Wrench
 		TConstructRegistry.addToolRecipe(tool_wrench, TinkerTools.handGuard,
 				TinkerTools.toolRod, TinkerTools.binding);
+		
+		//Zweihander
+		TConstructRegistry.addToolRecipe(tool_zweihander, TinkerTools.largeSwordBlade,
+				TinkerTools.toughRod, TinkerTools.wideGuard, TinkerTools.swordBlade);
 		
 		//Armor
 		TConstructRegistry.addToolRecipe(tool_sheath, partArmorplate,TinkerTools.toolRod, partCloth, partClasp);

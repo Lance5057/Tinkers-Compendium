@@ -31,6 +31,8 @@ public class ClientProxy extends CommonProxy {
 				TinkersDefense.tool_heaterShield, renderer);
 		MinecraftForgeClient.registerItemRenderer(TinkersDefense.tool_wrench,
 				renderer);
+		MinecraftForgeClient.registerItemRenderer(TinkersDefense.tool_zweihander,
+				renderer);
 
 		ClientRegistry.bindTileEntitySpecialRenderer(
 				TileEntity_CrestMount.class, new Renderer_CrestMount());

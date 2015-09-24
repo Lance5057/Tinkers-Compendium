@@ -51,7 +51,7 @@ public class HeaterShield extends Shield {
 
 	@Override
 	public Item getExtraItem() {
-		return TinkerTools.toughBinding;
+		return TinkersDefense.partRivet;
 	}
 
 	@Override
@@ -79,7 +79,6 @@ public class HeaterShield extends Shield {
 		return 1.4f;
 	}
 
-	@SideOnly(Side.CLIENT)
 	@Override
 	public int getPartAmount() {
 		return 4;

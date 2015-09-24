@@ -69,7 +69,6 @@ public class TinkerWrench extends Weapon implements IToolWrench {
 		return 0.4f;
 	}
 
-	@SideOnly(Side.CLIENT)
 	@Override
 	public int getPartAmount() {
 		return 3;

@@ -6,16 +6,16 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
-public class modifierCrestofFeathers extends ItemModTypeFilter
+public class modifierCrestofBlades extends ItemModTypeFilter
 {
     String tooltipName;
-    int max = 10;
+    int max = 5;
     String guiType;
 
-    public modifierCrestofFeathers(String type, int effect, ItemStack[] items, int[] values)
+    public modifierCrestofBlades(String type, int effect, ItemStack[] items, int[] values)
     {
-        super(effect, "Feathers", items, values);
-        tooltipName = "\u00A7fCrest of Feathers";
+        super(effect, "Blades", items, values);
+        tooltipName = "\u00A7fBlades";
         guiType = type;
     }
 
@@ -33,8 +33,8 @@ public class modifierCrestofFeathers extends ItemModTypeFilter
         if (keyPair[0] + matchingAmount(input) <= keyPair[1])
             return true;
 
-        else if (keyPair[0] == keyPair[1])
-            return tags.getInteger("Modifiers") > 0;
+//        else if (keyPair[0] == keyPair[1])
+//            return tags.getInteger("Modifiers") > 0;
 
         else
             return false;
@@ -80,33 +80,6 @@ public class modifierCrestofFeathers extends ItemModTypeFilter
             tags.setIntArray(key, keyPair);
         }
         
-        int miningSpeed = tags.getInteger("MiningSpeed");
-        int boost = 8 + ((current - 1) / 50 * 2);
-        Item temp = tool.getItem();
-        if (temp instanceof ToolCore)
-        {
-            ToolCore toolcore = (ToolCore) temp;
-            if (toolcore.durabilityTypeHandle() == 2)
-                boost += 2;
-            if (toolcore.durabilityTypeAccessory() == 2)
-                boost += 2;
-            if (toolcore.durabilityTypeExtra() == 2)
-                boost += 2;
-        }
-        miningSpeed += (increase * boost);
-        tags.setInteger("MiningSpeed", miningSpeed);
-
-        String[] type = { "MiningSpeed2", "MiningSpeedHandle", "MiningSpeedExtra" };
-
-        for (int i = 0; i < 3; i++)
-        {
-            if (tags.hasKey(type[i]))
-            {
-                int speed = tags.getInteger(type[i]);
-                speed += (increase * boost);
-                tags.setInteger(type[i], speed);
-            }
-        }
     }
 
     void updateModTag (ItemStack tool, int[] keys)
