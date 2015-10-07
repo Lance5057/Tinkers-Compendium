@@ -1,0 +1,35 @@
+itemGroup.tabName=Tinkers' Defense
+item.AeonSteelIngot.name=Lingot d'acier éternel
+tile.AeonSteelBlock.name=Bloc d'acier éternel
+tile.MoltenAeonSteel.name=Acier éternel fondu
+material.aeonsteel=Acier éternel
+
+item.QueensGoldIngot.name=Lingot d'or de la reine
+tile.QueensGoldBlock.name=Bloc d'or de la reine
+tile.MoltenQueensGold.name=Or de la reine fondu
+material.queensgold=Or de la reine
+
+item.DogbeariumIngot.name=Lingot de dogbearium
+tile.DogbeariumBlock.name=Bloc de Dogbearium
+tile.MoltenDogbearium.name=Dogbearium fondu
+material.dogbearium=Dogbearium
+material.dogbearium.ability=Dentelé
+
+tile.CrestMount.name=Mont de crête
+tile.ArmorAnvil.name=Enclume d'armure (WIP)
+tile.JewelersBench.name=Atelier du bijoutier (WIP)
+
+tool.roundshield=Bouclier rond
+tool.heatershield=Bouclier d'écusson
+
+fluid.moltenAeonsteel.name=Acier éternel fondu
+fluid.moltenQueensGold.name=Or de la reine fondu
+fluid.moltenDogbearium.name=Dogbearium fondu
+
+gui.toolstation.roundshield.name=Bouclier rond
+gui.toolstation.roundshield.desc=Une protection simple avec une durabilité et une défense moyenne.
+
+gui.toolstation.heatershield.name=Bouclier d'écusson
+gui.toolstation.heatershield.desc=Une protection simple avec une durabilité et une défense élevé.
+
+item.Crest_Feathers.name=Crête de plumes
