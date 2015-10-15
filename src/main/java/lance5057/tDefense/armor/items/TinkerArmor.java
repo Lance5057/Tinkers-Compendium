@@ -36,7 +36,7 @@ public class TinkerArmor extends ItemArmor {
 	{
 		
 //		return ClientProxy.chain;
-		ModelBiped armorModel = ClientProxy.tutChest;
+		ModelBiped armorModel = ClientProxy.mask;
 		if (itemStack != null) {
 //			if (itemStack.getItem() instanceof TinkerArmor) {
 //				int type = ((ItemArmor) itemStack.getItem()).armorType;

@@ -3,6 +3,7 @@ package lance5057.tDefense.proxy;
 import lance5057.tDefense.TinkersDefense;
 import lance5057.tDefense.armor.renderers.ModelChainArmor;
 import lance5057.tDefense.armor.renderers.ModelClothArmor;
+import lance5057.tDefense.armor.renderers.ModelMask;
 import lance5057.tDefense.armor.renderers.ModelTinkerArmor;
 import lance5057.tDefense.core.blocks.crestMount.Renderer_CrestMount;
 import lance5057.tDefense.core.blocks.crestMount.TileEntity_CrestMount;
@@ -20,6 +21,8 @@ public class ClientProxy extends CommonProxy {
 	//public static final ModelSheath sheath = new ModelSheath();
 	public static final ModelChainArmor chain = new ModelChainArmor(0.1f);
 	public static final ModelClothArmor cloth = new ModelClothArmor();
+	
+	public static final ModelMask mask = new ModelMask(null);
 	
 	@Override
 	public void registerRenderers() {
@@ -46,11 +49,11 @@ public class ClientProxy extends CommonProxy {
 	public ModelBiped getArmorModel(int id) {
 		switch (id) {
 		case 0:
-			return tutChest;
+			return cloth;
 		default:
 			break;
 		}
-		return tutChest; // default, if whenever you should have passed on a
+		return cloth; // default, if whenever you should have passed on a
 							// wrong id
 	}
 }

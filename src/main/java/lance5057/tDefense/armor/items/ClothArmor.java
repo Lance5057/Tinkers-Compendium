@@ -26,7 +26,7 @@ public class ClothArmor extends ItemArmor {
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot,
 			String type) {
-		return "tinkersdefense:textures/armor/ChainArmor.png";
+		return "tinkersdefense:textures/armor/ClothArmor.png";
 	}
 
 	@Override
@@ -35,7 +35,7 @@ public class ClothArmor extends ItemArmor {
 			ItemStack itemStack, int armorSlot) {
 
 		// return ClientProxy.chain;
-		ModelBiped armorModel = ClientProxy.chain;
+		ModelBiped armorModel = ClientProxy.cloth;
 		if (itemStack != null) {
 			// if (itemStack.getItem() instanceof TinkerArmor) {
 			// int type = ((ItemArmor) itemStack.getItem()).armorType;

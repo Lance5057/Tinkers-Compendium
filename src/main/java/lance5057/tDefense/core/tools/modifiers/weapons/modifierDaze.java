@@ -1,4 +1,4 @@
-package lance5057.tDefense.core.tools.modifiers;
+package lance5057.tDefense.core.tools.modifiers.weapons;
 
 import java.util.Arrays;
 import java.util.List;

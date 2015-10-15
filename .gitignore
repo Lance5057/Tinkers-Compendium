@@ -64,3 +64,12 @@ $RECYCLE.BIN/
 /.gradle/*
 /.settings/*
 /bin/
+
+
+# Exclude Gimp files (lots of memory)
+/Gimp files/*
+
+/libs/*
+/jars/*
+/build/*
+/Models/*
