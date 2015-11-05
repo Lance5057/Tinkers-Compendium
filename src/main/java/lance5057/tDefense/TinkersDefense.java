@@ -3,11 +3,16 @@ package lance5057.tDefense;
 import static net.minecraft.util.EnumChatFormatting.DARK_RED;
 import static net.minecraft.util.EnumChatFormatting.GOLD;
 import static net.minecraft.util.EnumChatFormatting.LIGHT_PURPLE;
+import lance5057.tDefense.armor.ArmorCore;
+import lance5057.tDefense.armor.events.ArmorRenderEvent;
 import lance5057.tDefense.armor.items.ChainArmor;
 import lance5057.tDefense.armor.items.ClothArmor;
 import lance5057.tDefense.armor.items.Mask;
 import lance5057.tDefense.armor.items.Sheath;
-import lance5057.tDefense.armor.items.TinkerArmor;
+import lance5057.tDefense.armor.items.heavy.TinkersBreastplate;
+import lance5057.tDefense.armor.items.heavy.TinkersGrieves;
+import lance5057.tDefense.armor.items.heavy.TinkersHelm;
+import lance5057.tDefense.armor.items.heavy.TinkersSabatons;
 import lance5057.tDefense.armor.parts.Item_Cloth;
 import lance5057.tDefense.armor.parts.Item_Glowthread;
 import lance5057.tDefense.armor.parts.Item_Thread;
@@ -26,15 +31,10 @@ import lance5057.tDefense.core.liquids.moltenQueensGoldFluid;
 import lance5057.tDefense.core.network.PacketHandler;
 import lance5057.tDefense.core.tools.HeaterShield;
 import lance5057.tDefense.core.tools.RoundShield;
+import lance5057.tDefense.core.tools.Shears;
 import lance5057.tDefense.core.tools.TinkerWrench;
 import lance5057.tDefense.core.tools.TinkerZweihander;
-import lance5057.tDefense.core.tools.modifiers.TDefenseActiveToolMod;
-import lance5057.tDefense.core.tools.modifiers.shields.modifierCrestofBlades;
-import lance5057.tDefense.core.tools.modifiers.shields.modifierCrestofFeathers;
-import lance5057.tDefense.core.tools.modifiers.shields.modifierCrestofLegends;
-import lance5057.tDefense.core.tools.modifiers.shields.modifierCrestofMirrors;
-import lance5057.tDefense.core.tools.modifiers.weapons.modifierDaze;
-import lance5057.tDefense.core.tools.modifiers.weapons.modifierTorchArrow;
+import lance5057.tDefense.core.tools.modifiers.Modifiers;
 import lance5057.tDefense.finishingAnvil.blocks.finishingAnvil.FinishingAnvil;
 import lance5057.tDefense.finishingAnvil.blocks.finishingAnvil.TileEntity_FinishingAnvil;
 import lance5057.tDefense.proxy.CommonProxy;
@@ -42,8 +42,6 @@ import lance5057.tDefense.tileentities.TileEntity_JewelersBench;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.ItemStack;
@@ -58,7 +56,6 @@ import tconstruct.library.client.TConstructClientRegistry;
 import tconstruct.library.client.ToolGuiElement;
 import tconstruct.library.crafting.FluidType;
 import tconstruct.library.crafting.LiquidCasting;
-import tconstruct.library.crafting.ModifyBuilder;
 import tconstruct.library.crafting.PatternBuilder;
 import tconstruct.library.crafting.Smeltery;
 import tconstruct.library.crafting.StencilBuilder;
@@ -97,6 +94,7 @@ public class TinkersDefense {
 	};
 	
 	public static TDEventHandler TDevents;
+	public static ArmorRenderEvent AREvent;
 	
 	public static TD_Config config;
 
@@ -104,6 +102,8 @@ public class TinkersDefense {
 			.newSimpleChannel(Reference.MOD_ID);
 
 	public static Item tabIcon;
+	
+	public static Modifiers mods;
 	
 	public static Item item_AeonSteelIngot;
 	public static Block block_AeonSteelBlock;
@@ -129,22 +129,24 @@ public class TinkersDefense {
 	public static ToolCore tool_sheath;
 	public static ToolCore tool_mask;
 	public static ToolCore tool_zweihander;
+	public static ToolCore tool_shears;
 	
 	public static Block block_CrestMount;
 	public static Block block_ArmorAnvil;
 	public static Block block_JewelersBench;
 
-	public static Item item_TinkerArmor;
+	public static ToolCore armor_TinkerHelm;
+	public static Item item_TinkerBreastplate;
+	public static Item item_TinkerGrieves;
+	public static Item item_TinkerSabatons;
+	
 	public static Item item_ChainArmor;
 	public static Item item_ClothArmor;
 	
-
 	public static Item item_thread;
 	public static Item item_glowthread;
 	public static Item item_cloth;
 	
-	public static Item item_relic;
-
 	public static Pattern woodPattern;
 	public static Pattern metalPattern;
 
@@ -162,8 +164,15 @@ public class TinkersDefense {
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent e) {
 		PacketHandler.init();
-		//TDevents = new TDEventHandler();
+		TDevents = new TDEventHandler();
+		
+		AREvent = new ArmorRenderEvent();
+		MinecraftForge.EVENT_BUS.register(AREvent);
+		
 		config = new TD_Config(e);
+		mods = new Modifiers();
+		
+		mods.init();
 		
 
 		block_CrestMount = new CrestMount().setHardness(4.0F)
@@ -202,11 +211,8 @@ public class TinkersDefense {
 		tabIcon = new Item().setMaxStackSize(1).setCreativeTab(tabName).setUnlocalizedName("tabIcon").setTextureName(Reference.MOD_ID + ":Icon");
 		GameRegistry.registerItem(tabIcon, "tabIcon");
 		
-		item_relic = new Item().setCreativeTab(tabName).setMaxStackSize(1)
-				.setUnlocalizedName("AncientRelic")
-				.setTextureName(Reference.MOD_ID + ":AncientRelic");
 		
-		GameRegistry.registerItem(item_relic, "Ancient Relic");
+		
 		
 		// AeonSteel
 		item_AeonSteelIngot = new Item().setCreativeTab(tabName)
@@ -299,27 +305,35 @@ public class TinkersDefense {
 		tool_roundShield = new RoundShield();
 		tool_heaterShield = new HeaterShield();
 
+		tool_shears = new Shears();
 		tool_wrench = new TinkerWrench();
 		tool_sheath = new Sheath();
 		tool_mask = new Mask();
 		
 		tool_zweihander = new TinkerZweihander(0);
-
+		
+		armor_TinkerHelm = new TinkersHelm();
+		
 		//Register Tools
+		
 		GameRegistry.registerItem(tool_roundShield, "Round Shield");
 		GameRegistry.registerItem(tool_heaterShield, "Heater Shield");
+		GameRegistry.registerItem(tool_shears, "Tinker Shears");
 		GameRegistry.registerItem(tool_wrench, "Tinker Wrench");
 		GameRegistry.registerItem(tool_sheath, "Sheath");
 		GameRegistry.registerItem(tool_mask, "Mask");
 		GameRegistry.registerItem(tool_zweihander, "Zweihander");
+		GameRegistry.registerItem(armor_TinkerHelm,"tinkerhelm");
 		
 		//Add Tools to TiCo directory
 		TConstructRegistry.addItemToDirectory("Round Shield", tool_roundShield);
 		TConstructRegistry.addItemToDirectory("Heater Shield", tool_heaterShield);
+		TConstructRegistry.addItemToDirectory("Tinker Shears", tool_shears);
 		TConstructRegistry.addItemToDirectory("Tinker Wrench", tool_wrench);
 		TConstructRegistry.addItemToDirectory("Sheath", tool_sheath);
 		TConstructRegistry.addItemToDirectory("Mask", tool_mask);
 		TConstructRegistry.addItemToDirectory("Zweihander", tool_zweihander);
+		TConstructRegistry.addItemToDirectory("tinkerhelm", armor_TinkerHelm);
 
 		//Register Items
 		GameRegistry.registerItem(item_thread = new Item_Thread(), "thread");
@@ -344,13 +358,17 @@ public class TinkersDefense {
 
 		// Renderers
 		proxy.registerRenderers();
-
-		 item_TinkerArmor = new TinkerArmor(ArmorMaterial.IRON, 4,
-		 1).setUnlocalizedName("Tinker_Armor");
-		 GameRegistry.registerItem(item_TinkerArmor,"Tinker Armor");
+				 
+		 item_TinkerBreastplate = new TinkersBreastplate(ArmorMaterial.IRON, 4, 1).setUnlocalizedName("Tinkers_Breastplate");
+		 GameRegistry.registerItem(item_TinkerBreastplate,"Tinkers Breastplate");
 		 
-		 item_ChainArmor = new ChainArmor(ArmorMaterial.IRON, 4,
-				 1).setUnlocalizedName("Chain_Armor");
+		 item_TinkerGrieves = new TinkersGrieves(ArmorMaterial.IRON, 4, 2).setUnlocalizedName("Tinkers_Grieves");
+		 GameRegistry.registerItem(item_TinkerGrieves,"Tinkers Grieves");
+						 
+		 item_TinkerSabatons = new TinkersSabatons(ArmorMaterial.IRON, 4, 3).setUnlocalizedName("Tinkers_Sabatons");
+		 GameRegistry.registerItem(item_TinkerSabatons,"Tinkers Sabatons");
+		 
+		 item_ChainArmor = new ChainArmor(ArmorMaterial.IRON, 4, 1).setUnlocalizedName("Chain_Armor");
 		 GameRegistry.registerItem(item_ChainArmor,"Chain Armor");
 		 
 		 item_ClothArmor = new ClothArmor(ArmorMaterial.IRON, 4,
@@ -368,7 +386,7 @@ public class TinkersDefense {
 
 	@EventHandler
 	public void init(FMLInitializationEvent e) {
-		System.out.print(Reference.MOD_ID);
+		//System.out.print(Reference.MOD_ID);
 		
 		StencilBuilder.registerStencil(50, woodPattern, 0); // rivets
 		StencilBuilder.registerStencil(51, woodPattern, 1); // clasp
@@ -401,32 +419,7 @@ public class TinkersDefense {
 		
 		PatternBuilder pb = PatternBuilder.instance;
 		
-		ModifyBuilder.registerModifier(new modifierDaze("Daze", config.DazeID, new ItemStack[] { new ItemStack(Blocks.light_weighted_pressure_plate), new ItemStack(Items.potionitem,1,8202)},
-				new int[] {1,0}));
-		
-		//ModifyBuilder.registerModifier(new modifierTorchArrow(new ItemStack[] {new ItemStack(Blocks.glowstone)}, 12));
-		
-		ModifyBuilder.registerModifier(new modifierCrestofFeathers("Crest of Feathers", config.CrestFeathersID, new ItemStack[] { new ItemStack(Items.feather)},
-				new int[] {1}));
-		
-		ModifyBuilder.registerModifier(new modifierCrestofMirrors("Crest of Mirrors", config.CrestMirrorsID, new ItemStack[] { new ItemStack(Blocks.glass_pane)},
-				new int[] {1}));
-		
-		ModifyBuilder.registerModifier(new modifierCrestofLegends("Crest of Legends", config.CrestLegendsID, new ItemStack[] { new ItemStack(item_relic)},
-				new int[] {1}));
-		
-		ModifyBuilder.registerModifier(new modifierCrestofBlades("Crest of Blades", config.CrestBladesID, new ItemStack[] { new ItemStack(Items.iron_sword)},new int[] {1}));
-		
-		TConstructRegistry.registerActiveToolMod(new TDefenseActiveToolMod());
-		
-		for (ToolCore tool : TConstructRegistry.getToolMapping())
-        {
-			TConstructClientRegistry.addEffectRenderMapping(tool, config.DazeID, "tinker", "daze", true);
-			TConstructClientRegistry.addEffectRenderMapping(tool, config.CrestFeathersID, "tinker", "feathers", true);
-			TConstructClientRegistry.addEffectRenderMapping(tool, config.CrestMirrorsID, "tinker", "mirrors", true);
-			TConstructClientRegistry.addEffectRenderMapping(tool, config.CrestLegendsID, "tinker", "legends", true);
-			TConstructClientRegistry.addEffectRenderMapping(tool, config.CrestBladesID, "tinker", "blades", true);
-        }
+
 
 		
 		TConstructClientRegistry.toolButtons
@@ -599,6 +592,9 @@ public class TinkersDefense {
 		TConstructRegistry.addToolRecipe(tool_wrench, TinkerTools.handGuard,
 				TinkerTools.toolRod, TinkerTools.binding);
 		
+		TConstructRegistry.addToolRecipe(tool_shears, TinkerTools.knifeBlade,
+				TinkerTools.binding, TinkerTools.knifeBlade);
+		
 		//Zweihander
 		TConstructRegistry.addToolRecipe(tool_zweihander, TinkerTools.largeSwordBlade,
 				TinkerTools.toughRod, TinkerTools.wideGuard, TinkerTools.swordBlade);
@@ -606,6 +602,8 @@ public class TinkersDefense {
 		//Armor
 		TConstructRegistry.addToolRecipe(tool_sheath, partArmorplate,TinkerTools.toolRod, partCloth, partClasp);
 		TConstructRegistry.addToolRecipe(tool_mask, partArmorplate, partCloth, partClasp);
+
+		TConstructRegistry.addToolRecipe(armor_TinkerHelm, TinkerTools.frypanHead, TinkerTools.toughRod, partArmorplate);
 
 		tcInject = new Injector(0,TinkerTools.broadsword);
 		GameRegistry.registerItem(tcInject, "debugger");

@@ -4,7 +4,6 @@ import lance5057.tDefense.TinkersDefense;
 import lance5057.tDefense.armor.renderers.ModelChainArmor;
 import lance5057.tDefense.armor.renderers.ModelClothArmor;
 import lance5057.tDefense.armor.renderers.ModelMask;
-import lance5057.tDefense.armor.renderers.ModelTinkerArmor;
 import lance5057.tDefense.core.blocks.crestMount.Renderer_CrestMount;
 import lance5057.tDefense.core.blocks.crestMount.TileEntity_CrestMount;
 import lance5057.tDefense.finishingAnvil.blocks.finishingAnvil.Renderer_FinishingAnvil;
@@ -17,7 +16,6 @@ import tconstruct.client.FlexibleToolRenderer;
 import cpw.mods.fml.client.registry.ClientRegistry;
 
 public class ClientProxy extends CommonProxy {
-	public static final ModelTinkerArmor tutChest = new ModelTinkerArmor(1.0f);
 	//public static final ModelSheath sheath = new ModelSheath();
 	public static final ModelChainArmor chain = new ModelChainArmor(0.1f);
 	public static final ModelClothArmor cloth = new ModelClothArmor();
@@ -33,7 +31,11 @@ public class ClientProxy extends CommonProxy {
 				TinkersDefense.tool_heaterShield, renderer);
 		MinecraftForgeClient.registerItemRenderer(TinkersDefense.tool_wrench,
 				renderer);
+		MinecraftForgeClient.registerItemRenderer(TinkersDefense.tool_shears,
+				renderer);
 		MinecraftForgeClient.registerItemRenderer(TinkersDefense.tool_zweihander,
+				renderer);
+		MinecraftForgeClient.registerItemRenderer(TinkersDefense.armor_TinkerHelm,
 				renderer);
 
 		ClientRegistry.bindTileEntitySpecialRenderer(
