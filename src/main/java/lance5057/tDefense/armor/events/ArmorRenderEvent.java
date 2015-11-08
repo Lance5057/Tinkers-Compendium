@@ -1,6 +1,7 @@
 package lance5057.tDefense.armor.events;
 
 import lance5057.tDefense.armor.ArmorCore;
+import lance5057.tDefense.armor.renderers.heavy.ModelTinkersHelm;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.event.RenderPlayerEvent;
@@ -21,9 +22,15 @@ public class ArmorRenderEvent
 					
 					if(Armor.getItem() instanceof ArmorCore)
 					{
-						ArmorCore AArmor = ((ArmorCore)Armor.getItem());
+						ArmorCore AArmor = (ArmorCore)Armor.getItem();
+						String color[] = new String[10];
 						
-						AArmor.armorModel.render(event.entityPlayer, event.entityPlayer.limbSwing, event.entityPlayer.limbSwingAmount,event.entityPlayer.ticksExisted , event.entityPlayer.rotationYaw - event.entityPlayer.renderYawOffset, event.entityPlayer.rotationPitch, 0.0625f);
+						for(int j = 0; j<10; j++)
+							color[j] = Integer.toHexString(AArmor.getColorFromItemStack(Armor, j));
+						
+						ModelBiped armorModel = AArmor.getModel(color);
+						
+						armorModel.render(event.entityPlayer, event.entityPlayer.limbSwing, event.entityPlayer.limbSwingAmount,event.entityPlayer.ticksExisted , event.entityPlayer.prevRotationYaw/* - event.entityPlayer.renderYawOffset*/, event.entityPlayer.rotationPitch, 0.0825f);
 					}
 				}
 			}

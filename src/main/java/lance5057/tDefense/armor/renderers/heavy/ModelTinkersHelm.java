@@ -1,5 +1,7 @@
 package lance5057.tDefense.armor.renderers.heavy;
 
+import lance5057.tDefense.TinkersDefense;
+
 import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.client.FMLClientHandler;
@@ -17,10 +19,19 @@ public class ModelTinkersHelm extends ModelBiped
     public ModelRenderer Visor;
     public ModelRenderer Helm;
     public ModelRenderer Trim;
+    
+    public String[] colors;
+    
+    public String[] textures;
+    public String defaultFolder;
 
-    public ModelTinkersHelm() 
+    public ModelTinkersHelm(String[] colors, String defaultFolder, String[] textures) 
     {
     	super(1f, 0, 64,64);
+    	
+    	this.colors = colors;
+    	this.textures = textures;
+    	this.defaultFolder = defaultFolder;
     	
         this.textureWidth = 64;
         this.textureHeight = 64;
@@ -44,15 +55,22 @@ public class ModelTinkersHelm extends ModelBiped
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     { 
     	GL11.glPushMatrix();
+    	for(int i = 0; i<3; i++)
+    	{
+    	GL11.glPushMatrix();
+    	
+        FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation("tinkersdefense:textures/" + defaultFolder + "/" + textures[i] + ".png"));
     	
     	GL11.glTranslatef(0f, -1f, 0f);
-    	
-        FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation("tinkersdefense:textures/armor/TinkersHelm.png"));
+    			
+    	int[] intColors = TinkersDefense.hexToRGB(colors[i]);
+    	GL11.glColor3d((float)intColors[0]/255, (float)intColors[1]/255, (float)intColors[2]/255);
 
     	super.render(entity, f, f1, f2, f3, f4, f5);
+    	setRotationAngles(f, f1, f2, f3, f4, f5, entity);
     	GL11.glPopMatrix();
-    	
-        setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+    	}
+    	GL11.glPopMatrix();
     }
 
     /**

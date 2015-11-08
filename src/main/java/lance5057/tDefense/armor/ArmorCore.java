@@ -11,6 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.World;
 import net.minecraftforge.common.ISpecialArmor;
 import tconstruct.library.accessory.IAccessoryModel;
 import tconstruct.library.tools.ToolCore;
@@ -25,6 +26,13 @@ public class ArmorCore extends ToolCore implements ISpecialArmor//, IAccessoryMo
 		
 		this.slot = slot;
 	}
+	
+//	@Override
+//	public void onUpdate(ItemStack stack, World world, Entity entity, int par4,
+//			boolean par5) {
+//		super.onUpdate(stack, world, entity, par4, par5);
+//
+//	}
 
 	@Override
 	public ArmorProperties getProperties(EntityLivingBase player,
@@ -37,6 +45,11 @@ public class ArmorCore extends ToolCore implements ISpecialArmor//, IAccessoryMo
 	public int getArmorDisplay(EntityPlayer player, ItemStack armor, int slot) 
 	{
 		return 1;
+	}
+	
+	public ModelBiped getModel(String[] color)
+	{
+		return armorModel;
 	}
 	
 	@Override
