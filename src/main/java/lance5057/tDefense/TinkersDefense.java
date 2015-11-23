@@ -136,7 +136,7 @@ public class TinkersDefense {
 	public static Block block_JewelersBench;
 
 	public static ToolCore armor_TinkerHelm;
-	public static Item item_TinkerBreastplate;
+	public static ToolCore armor_TinkerBreastplate;
 	public static Item item_TinkerGrieves;
 	public static Item item_TinkerSabatons;
 	
@@ -313,6 +313,7 @@ public class TinkersDefense {
 		tool_zweihander = new TinkerZweihander(0);
 		
 		armor_TinkerHelm = new TinkersHelm();
+		armor_TinkerBreastplate = new TinkersBreastplate();
 		
 		//Register Tools
 		
@@ -324,6 +325,7 @@ public class TinkersDefense {
 		GameRegistry.registerItem(tool_mask, "Mask");
 		GameRegistry.registerItem(tool_zweihander, "Zweihander");
 		GameRegistry.registerItem(armor_TinkerHelm,"tinkerhelm");
+		GameRegistry.registerItem(armor_TinkerBreastplate,"tinkerbreastplate");
 		
 		//Add Tools to TiCo directory
 		TConstructRegistry.addItemToDirectory("Round Shield", tool_roundShield);
@@ -334,6 +336,7 @@ public class TinkersDefense {
 		TConstructRegistry.addItemToDirectory("Mask", tool_mask);
 		TConstructRegistry.addItemToDirectory("Zweihander", tool_zweihander);
 		TConstructRegistry.addItemToDirectory("tinkerhelm", armor_TinkerHelm);
+		TConstructRegistry.addItemToDirectory("tinkerbreastplate", armor_TinkerBreastplate);
 
 		//Register Items
 		GameRegistry.registerItem(item_thread = new Item_Thread(), "thread");
@@ -359,8 +362,8 @@ public class TinkersDefense {
 		// Renderers
 		proxy.registerRenderers();
 				 
-		 item_TinkerBreastplate = new TinkersBreastplate(ArmorMaterial.IRON, 4, 1).setUnlocalizedName("Tinkers_Breastplate");
-		 GameRegistry.registerItem(item_TinkerBreastplate,"Tinkers Breastplate");
+//		 item_TinkerBreastplate = new TinkersBreastplate().setUnlocalizedName("Tinkers_Breastplate");
+//		 GameRegistry.registerItem(item_TinkerBreastplate,"Tinkers Breastplate");
 		 
 		 item_TinkerGrieves = new TinkersGrieves(ArmorMaterial.IRON, 4, 2).setUnlocalizedName("Tinkers_Grieves");
 		 GameRegistry.registerItem(item_TinkerGrieves,"Tinkers Grieves");
@@ -604,6 +607,7 @@ public class TinkersDefense {
 		TConstructRegistry.addToolRecipe(tool_mask, partArmorplate, partCloth, partClasp);
 
 		TConstructRegistry.addToolRecipe(armor_TinkerHelm, TinkerTools.frypanHead, TinkerTools.toughRod, partArmorplate);
+		TConstructRegistry.addToolRecipe(armor_TinkerBreastplate, TinkerTools.largePlate, TinkerTools.toughRod, partArmorplate, partChainmaille);
 
 		tcInject = new Injector(0,TinkerTools.broadsword);
 		GameRegistry.registerItem(tcInject, "debugger");

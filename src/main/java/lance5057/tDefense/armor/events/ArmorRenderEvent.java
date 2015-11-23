@@ -30,7 +30,22 @@ public class ArmorRenderEvent
 						
 						ModelBiped armorModel = AArmor.getModel(color);
 						
-						armorModel.render(event.entityPlayer, event.entityPlayer.limbSwing, event.entityPlayer.limbSwingAmount,event.entityPlayer.ticksExisted , event.entityPlayer.prevRotationYaw/* - event.entityPlayer.renderYawOffset*/, event.entityPlayer.rotationPitch, 0.0825f);
+						float size;
+						switch(AArmor.getSlot())
+						{
+						case 0: size = 0.085f; break;
+						case 1: size = .126f; break;
+						
+						default: size = 0.1f; break;
+						}
+						
+						float yaw = event.entityPlayer.prevRotationYawHead + (event.entityPlayer.rotationYawHead - event.entityPlayer.prevRotationYawHead) * event.partialRenderTick;
+						float yawOffset = event.entityPlayer.prevRenderYawOffset + (event.entityPlayer.renderYawOffset - event.entityPlayer.prevRenderYawOffset) * event.partialRenderTick;
+			            float limbs = event.entityPlayer.prevLimbSwingAmount + (event.entityPlayer.limbSwingAmount - event.entityPlayer.prevLimbSwingAmount) * event.partialRenderTick;
+						
+						armorModel.render(event.entityPlayer, event.entityPlayer.limbSwing, limbs,event.entityPlayer.ticksExisted ,
+								yaw - yawOffset
+								, event.entityPlayer.rotationPitch, size);
 					}
 				}
 			}

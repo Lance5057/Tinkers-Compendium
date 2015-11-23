@@ -47,6 +47,11 @@ public class ArmorCore extends ToolCore implements ISpecialArmor//, IAccessoryMo
 		return 1;
 	}
 	
+	public int getSlot()
+	{
+		return slot;
+	}
+	
 	public ModelBiped getModel(String[] color)
 	{
 		return armorModel;

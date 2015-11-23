@@ -1,8 +1,14 @@
 package lance5057.tDefense.armor.renderers.heavy;
 
+import lance5057.tDefense.TinkersDefense;
+
+import org.lwjgl.opengl.GL11;
+
+import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.util.ResourceLocation;
 
 /**
  * ModelBiped - Either Mojang or a mod author
@@ -20,10 +26,19 @@ public class ModelTinkersBreastplate extends ModelBiped
     public ModelRenderer ArmL;
     public ModelRenderer ArmR;
     public ModelRenderer BreastPlateFront;
+    
+    public String[] colors;
+    
+    public String[] textures;
+    public String defaultFolder;
 
-    public ModelTinkersBreastplate() 
+    public ModelTinkersBreastplate(String[] colors, String defaultFolder, String[] textures) 
     {
     	super(1.1f, 0, 64,64);
+    	
+    	this.colors = colors;
+    	this.textures = textures;
+    	this.defaultFolder = defaultFolder;
     	
         this.textureWidth = 64;
         this.textureHeight = 64;
@@ -84,12 +99,33 @@ public class ModelTinkersBreastplate extends ModelBiped
         this.PauldronL.addBox(0.5F, -2.0F, -3.5F, 4, 5, 7, 0.0F);
         this.setRotateAngle(PauldronL, 0.0F, -0.0F, -0.4363323129985824F);
         this.bipedLeftArm.addChild(this.PauldronL);
+        
+        this.ArmR.offsetX = this.ArmR.offsetX + 0.04f;
+        
+        this.bipedHead.isHidden = true;
+        this.bipedHeadwear.isHidden = true;
+        this.bipedCloak.isHidden = true;
     }
 
     @Override
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) { 
-    	super.render(entity, f, f1, f2, f3, f4, f5);
-        setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+    	GL11.glPushMatrix();
+    	for(int i = 0; i<4; i++)
+    	{
+	    	GL11.glPushMatrix();
+	    	
+	        FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation("tinkersdefense:textures/" + defaultFolder + "/" + textures[i] + ".png"));
+	    	
+	    	GL11.glTranslatef(0f, -1.51f, 0f);
+	    			
+	    	int[] intColors = TinkersDefense.hexToRGB(colors[i]);
+	    	GL11.glColor3d((float)intColors[0]/255, (float)intColors[1]/255, (float)intColors[2]/255);
+	
+	    	super.render(entity, f, f1, f2, f3, f4, f5);
+	    	setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+	    	GL11.glPopMatrix();
+    	}
+    	GL11.glPopMatrix();
     }
 
     /**

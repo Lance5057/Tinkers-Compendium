@@ -23,19 +23,22 @@ public class TDefenseActiveToolMod extends ActiveToolMod
 	@Override
 	public void updateTool(ToolCore tool, ItemStack stack, World world, Entity entity)
 	{
-		NBTTagCompound tags = stack.getTagCompound().getCompoundTag("InfiTool");
-		
-		if (!tags.getBoolean("Broken")) 
+		if(stack.hasTagCompound() && stack.getTagCompound().hasKey("InfiTool"))
 		{
-			//TDefense
-			TDMods.UpdateAll(tool, stack, world, entity, tags);
+			NBTTagCompound tags = stack.getTagCompound().getCompoundTag("InfiTool");
 			
-			//Botania
-			if(Loader.isModLoaded("Botania"))
+			if (!tags.getBoolean("Broken")) 
 			{
-				FlowerMods.UpdateAll(tool, stack, world, entity, tags);
+				//TDefense
+				TDMods.UpdateAll(tool, stack, world, entity, tags);
+				
+				//Botania
+				if(Loader.isModLoaded("Botania"))
+				{
+					FlowerMods.UpdateAll(tool, stack, world, entity, tags);
+				}
+				
 			}
-			
 		}
 	}
 	

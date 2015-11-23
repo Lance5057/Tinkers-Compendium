@@ -49,6 +49,13 @@ public class ModelTinkersHelm extends ModelBiped
         this.Trim.setRotationPoint(0.0F, 0.0F, 0.0F);
         this.Trim.addBox(-1.0F, -8.3F, -4.0F, 2, 9, 8, 0.7F);
         this.bipedHead.addChild(this.Trim);
+        
+        this.bipedBody.isHidden = true;
+        this.bipedCloak.isHidden = true;
+        this.bipedLeftArm.isHidden = true;
+        this.bipedLeftLeg.isHidden = true;
+        this.bipedRightArm.isHidden = true;
+        this.bipedRightLeg.isHidden = true;
     }
 
     @Override
@@ -57,18 +64,18 @@ public class ModelTinkersHelm extends ModelBiped
     	GL11.glPushMatrix();
     	for(int i = 0; i<3; i++)
     	{
-    	GL11.glPushMatrix();
-    	
-        FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation("tinkersdefense:textures/" + defaultFolder + "/" + textures[i] + ".png"));
-    	
-    	GL11.glTranslatef(0f, -1f, 0f);
-    			
-    	int[] intColors = TinkersDefense.hexToRGB(colors[i]);
-    	GL11.glColor3d((float)intColors[0]/255, (float)intColors[1]/255, (float)intColors[2]/255);
-
-    	super.render(entity, f, f1, f2, f3, f4, f5);
-    	setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-    	GL11.glPopMatrix();
+	    	GL11.glPushMatrix();
+	    	
+	        FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation("tinkersdefense:textures/" + defaultFolder + "/" + textures[i] + ".png"));
+	    	
+	    	GL11.glTranslatef(0f, -1f, 0f);
+	    			
+	    	int[] intColors = TinkersDefense.hexToRGB(colors[i]);
+	    	GL11.glColor3d((float)intColors[0]/255, (float)intColors[1]/255, (float)intColors[2]/255);
+	
+	    	super.render(entity, f, f1, f2, f3, f4, f5);
+	    	setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+	    	GL11.glPopMatrix();
     	}
     	GL11.glPopMatrix();
     }

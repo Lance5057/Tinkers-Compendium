@@ -37,6 +37,8 @@ public class ClientProxy extends CommonProxy {
 				renderer);
 		MinecraftForgeClient.registerItemRenderer(TinkersDefense.armor_TinkerHelm,
 				renderer);
+		MinecraftForgeClient.registerItemRenderer(TinkersDefense.armor_TinkerBreastplate,
+				renderer);
 
 		ClientRegistry.bindTileEntitySpecialRenderer(
 				TileEntity_CrestMount.class, new Renderer_CrestMount());
