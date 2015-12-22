@@ -1,15 +1,24 @@
 package lance5057.tDefense.core.events;
 
+import lance5057.tDefense.TinkersDefense;
+import lance5057.tDefense.armor.parts.ClothMaterial;
 import mods.battlegear2.api.PlayerEventChild.ShieldBlockEvent;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.projectile.EntityFireball;
 import net.minecraft.entity.projectile.EntityLargeFireball;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.Vec3;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.living.LivingDropsEvent;
+import net.minecraftforge.event.entity.living.LivingSpawnEvent;
+import tconstruct.library.TConstructRegistry;
+import tconstruct.library.event.PartBuilderEvent;
+import tconstruct.library.tools.BowstringMaterial;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class TDEventHandler {
@@ -19,13 +28,31 @@ public class TDEventHandler {
 	}
 	
 	@SubscribeEvent
+	public void craftTDPart(PartBuilderEvent.NormalPart event)
+	{
+		// Cloth
+        if (event.pattern.getItem() == TinkersDefense.woodPattern && event.pattern.getItemDamage() == 3)
+        {
+            ItemStack result = null;
+
+            ClothMaterial mat = (ClothMaterial) TConstructRegistry.getCustomMaterial(event.material, ClothMaterial.class);
+            if (mat != null && event.material.stackSize >= 3)
+                result = mat.craftingItem.copy();
+            
+            if (result != null)
+            {
+                event.overrideResult(new ItemStack[] { result, null });
+            }
+        }
+	}
+	
+	@SubscribeEvent
 	public void TD_ShieldBlock(ShieldBlockEvent event)
 	{
 		NBTTagCompound tags = event.shield.getTagCompound().getCompoundTag("InfiTool");
 		
 		if (!tags.getBoolean("Broken")) 
 		{
-			event.getPlayer().addChatComponentMessage(new ChatComponentText("Pow!"));
 
 			if(tags.hasKey("Crest of Mirrors"))
 			{
@@ -60,8 +87,6 @@ public class TDEventHandler {
 	                //ent.
 					
 					ent.setDead();
-					
-					event.getPlayer().addChatComponentMessage(new ChatComponentText("Nom"));
 				}
 			}
 			
@@ -77,5 +102,40 @@ public class TDEventHandler {
 				event.getPlayer().heal(event.ammount/tags.getInteger("Crest of Vampires"));
 			}
 		}
+	}
+	
+	@SubscribeEvent
+	public void dropEasterEggs(LivingDropsEvent event)
+	{
+		if(!event.entityLiving.worldObj.isRemote)
+		{
+			if(event.entityLiving.getHeldItem() != null)
+					if(event.entityLiving.getHeldItem().getItem() == TinkersDefense.item_RedMintcane)
+							event.drops.add(new EntityItem(event.entityLiving.worldObj, event.entityLiving.posX, event.entityLiving.posY, event.entityLiving.posZ, new ItemStack(TinkersDefense.item_RedMintcane,1,0)));
+						else
+							event.drops.add(new EntityItem(event.entityLiving.worldObj, event.entityLiving.posX, event.entityLiving.posY, event.entityLiving.posZ, new ItemStack(TinkersDefense.item_GreenMintcane,1,0)));
+
+		}
+	}
+	
+	@SubscribeEvent
+	public void giveCandyToUndead(LivingSpawnEvent event)
+	{
+		//if(!Minecraft.getMinecraft().theWorld.isRemote)
+			if(TinkersDefense.month == 12)
+			{
+				if(event.entityLiving.isEntityUndead())
+				{
+					Integer chance = Minecraft.getMinecraft().theWorld.rand.nextInt(100);
+					Boolean candy = Minecraft.getMinecraft().theWorld.rand.nextBoolean();
+					if(chance < 25)
+					{
+						if(candy == true)
+							event.entityLiving.setCurrentItemOrArmor(0, new ItemStack(TinkersDefense.item_RedMintcane,1,0));
+						else
+							event.entityLiving.setCurrentItemOrArmor(0, new ItemStack(TinkersDefense.item_GreenMintcane,1,0));
+					}
+				}
+			}
 	}
 }

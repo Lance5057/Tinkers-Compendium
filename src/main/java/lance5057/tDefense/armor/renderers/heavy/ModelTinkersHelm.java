@@ -27,7 +27,7 @@ public class ModelTinkersHelm extends ModelBiped
 
     public ModelTinkersHelm(String[] colors, String defaultFolder, String[] textures) 
     {
-    	super(1f, 0, 64,64);
+    	super(1.5f, 0, 64,64);
     	
     	this.colors = colors;
     	this.textures = textures;
@@ -68,8 +68,9 @@ public class ModelTinkersHelm extends ModelBiped
 	    	
 	        FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation("tinkersdefense:textures/" + defaultFolder + "/" + textures[i] + ".png"));
 	    	
-	    	GL11.glTranslatef(0f, -1f, 0f);
-	    			
+	        float size = 1.75f;
+            GL11.glScalef(1.5F / size, 1.5F / size, 1.5F / size);
+            GL11.glTranslatef(0.0F, -12F * f5, 0.0F);
 	    	int[] intColors = TinkersDefense.hexToRGB(colors[i]);
 	    	GL11.glColor3d((float)intColors[0]/255, (float)intColors[1]/255, (float)intColors[2]/255);
 	

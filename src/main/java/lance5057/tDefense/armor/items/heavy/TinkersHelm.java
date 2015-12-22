@@ -5,15 +5,17 @@ import lance5057.tDefense.armor.ArmorCore;
 import lance5057.tDefense.armor.renderers.heavy.ModelTinkersHelm;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import tconstruct.tools.TinkerTools;
 
 public class TinkersHelm extends ArmorCore 
 {
 	public TinkersHelm() {
-		super(0,0);
+		super(2,0);
 		this.setUnlocalizedName("tinkershelm");
 	}
 	
@@ -107,11 +109,17 @@ public class TinkersHelm extends ArmorCore
 	}
 
 	@Override
-	public ModelBiped getModel(String[] color)
+	public ModelBiped getModel(String[] color,NBTTagCompound tags)
 	{
 		String[] textures = {this.getIconSuffix(2),this.getIconSuffix(0),this.getIconSuffix(3)};
 		
 		armorModel = new ModelTinkersHelm(color, this.getDefaultFolder(), textures);
 		return armorModel;
+	}
+	
+	@Override
+	public int getArmorDisplay(EntityPlayer player, ItemStack armor, int slot) 
+	{
+		return 2;
 	}
 }

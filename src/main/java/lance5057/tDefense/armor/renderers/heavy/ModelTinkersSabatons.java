@@ -1,8 +1,17 @@
 package lance5057.tDefense.armor.renderers.heavy;
 
+import java.io.File;
+
+import lance5057.tDefense.TinkersDefense;
+
+import org.lwjgl.opengl.GL11;
+
+import tconstruct.library.TConstructRegistry;
+import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.util.ResourceLocation;
 
 /**
  * ModelBiped - Either Mojang or a mod author
@@ -23,9 +32,18 @@ public class ModelTinkersSabatons extends ModelBiped
     public ModelRenderer KneeGuardL;
     public ModelRenderer KneeGuardCapR;
 
-    public ModelTinkersSabatons() 
+   public String[] colors;
+    
+    public String[] textures;
+    public String defaultFolder;
+
+    public ModelTinkersSabatons(String[] colors, String defaultFolder, String[] textures) 
     {
     	super(1f, 0, 64,64);
+    	
+    	this.colors = colors;
+    	this.textures = textures;
+    	this.defaultFolder = defaultFolder;
     	
         this.textureWidth = 64;
         this.textureHeight = 64;
@@ -105,8 +123,29 @@ public class ModelTinkersSabatons extends ModelBiped
 
     @Override
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) { 
-    	super.render(entity, f, f1, f2, f3, f4, f5);
-        setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+    	GL11.glPushMatrix();
+    	
+    	for(int i = 0; i<4; i++)
+    	{
+    		//TConstructRegistry.getCustomMaterial(arg0, arg1)
+	    	GL11.glPushMatrix();
+	    	ResourceLocation texture = new ResourceLocation("tinkersdefense:textures/" + defaultFolder + "/" + textures[i] + ".png");
+	    	//Boolean exists = new File(texture.getResourceDomain() + ":" + texture.getResourcePath()).exists();
+	        FMLClientHandler.instance().getClient().renderEngine.bindTexture(texture);
+	        
+	    	
+	        float size =0.75f;
+	        GL11.glScalef(1.0F / size, 1.0F / size, 1.0F / size);
+            GL11.glTranslatef(0.0F, -12.4F*f5, 0.0F);
+	    			
+	    	int[] intColors = TinkersDefense.hexToRGB(colors[i]);
+	    	GL11.glColor3d((float)intColors[0]/255, (float)intColors[1]/255, (float)intColors[2]/255);
+	
+	    	super.render(entity, f, f1, f2, f3, f4, f5);
+	    	setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+	    	GL11.glPopMatrix();
+    	}
+    	GL11.glPopMatrix();
     }
 
     /**

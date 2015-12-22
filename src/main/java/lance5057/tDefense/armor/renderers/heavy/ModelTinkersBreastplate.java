@@ -116,7 +116,9 @@ public class ModelTinkersBreastplate extends ModelBiped
 	    	
 	        FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation("tinkersdefense:textures/" + defaultFolder + "/" + textures[i] + ".png"));
 	    	
-	    	GL11.glTranslatef(0f, -1.51f, 0f);
+	        float size =1.5f;
+	        GL11.glScalef(1.0F / size, 1.0F / size, 1.0F / size);
+            GL11.glTranslatef(0.0F, -0F*f5, 0.0F);
 	    			
 	    	int[] intColors = TinkersDefense.hexToRGB(colors[i]);
 	    	GL11.glColor3d((float)intColors[0]/255, (float)intColors[1]/255, (float)intColors[2]/255);

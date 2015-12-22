@@ -6,6 +6,7 @@ import lance5057.tDefense.armor.renderers.ModelClothArmor;
 import lance5057.tDefense.armor.renderers.ModelMask;
 import lance5057.tDefense.core.blocks.crestMount.Renderer_CrestMount;
 import lance5057.tDefense.core.blocks.crestMount.TileEntity_CrestMount;
+import lance5057.tDefense.core.renderer.BigFlexibleToolRenderer;
 import lance5057.tDefense.finishingAnvil.blocks.finishingAnvil.Renderer_FinishingAnvil;
 import lance5057.tDefense.finishingAnvil.blocks.finishingAnvil.TileEntity_FinishingAnvil;
 import lance5057.tDefense.models.Renderer_JewelersBench;
@@ -25,6 +26,7 @@ public class ClientProxy extends CommonProxy {
 	@Override
 	public void registerRenderers() {
 		FlexibleToolRenderer renderer = new FlexibleToolRenderer();
+		FlexibleToolRenderer bigrenderer = new BigFlexibleToolRenderer();
 		MinecraftForgeClient.registerItemRenderer(
 				TinkersDefense.tool_roundShield, renderer);
 		MinecraftForgeClient.registerItemRenderer(
@@ -34,10 +36,14 @@ public class ClientProxy extends CommonProxy {
 		MinecraftForgeClient.registerItemRenderer(TinkersDefense.tool_shears,
 				renderer);
 		MinecraftForgeClient.registerItemRenderer(TinkersDefense.tool_zweihander,
-				renderer);
+				bigrenderer);
 		MinecraftForgeClient.registerItemRenderer(TinkersDefense.armor_TinkerHelm,
 				renderer);
 		MinecraftForgeClient.registerItemRenderer(TinkersDefense.armor_TinkerBreastplate,
+				renderer);
+		MinecraftForgeClient.registerItemRenderer(TinkersDefense.armor_TinkerGrieves,
+				renderer);
+		MinecraftForgeClient.registerItemRenderer(TinkersDefense.armor_TinkerSabatons,
 				renderer);
 
 		ClientRegistry.bindTileEntitySpecialRenderer(

@@ -11,6 +11,8 @@ public class TD_Config
 	public int AeonsteelMatID;	
 	public int QueensGoldMatID;	
 	public int DogbeariumMatID;
+	public int RedMintMatID;
+	public int GreenMintMatID;
 	
 	public int DazeID;
 	public int CrestFeathersID;
@@ -29,14 +31,16 @@ public class TD_Config
 		AeonsteelMatID = config.get("Material Configs", "Aeonsteel Material ID", 201).getInt();
 		QueensGoldMatID = config.get("Material Configs", "QueensGold Material ID", 202).getInt();
 		DogbeariumMatID = config.get("Material Configs", "Dogbearium Material ID", 203).getInt();
-		
+		RedMintMatID = config.get("Material Configs", "RedMint Material ID", 204).getInt();
+		GreenMintMatID = config.get("Material Configs", "GreenMint Material ID", 205).getInt();
+
 		DazeID = config.get("Modifier Configs", "Daze ID", 18).getInt();
 		CrestFeathersID = config.get("Modifier Configs", "Crest of Feathers ID", 19).getInt();
 		CrestMirrorsID = config.get("Modifier Configs", "Crest of Mirrors ID", 20).getInt();
 		CrestLegendsID = config.get("Modifier Configs", "Crest of Legends ID", 21).getInt();
 		CrestLegendsID = config.get("Modifier Configs", "Crest of Legends ID", 22).getInt();
 		
-		MaterialIndex = config.get("Material Index", "Highest material ID -\n TDefense - 204\n MFR - 1001\n ExtraTIC - 1024", 204).getInt();
+		MaterialIndex = config.get("Material Index", "Highest material ID - TDefense - 204 MFR - 1001 ExtraTIC - 1024", 204).getInt();
 		
 		
 		

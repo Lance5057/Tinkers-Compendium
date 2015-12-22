@@ -15,6 +15,12 @@ tile.MoltenDogbearium.name=Molten Dogbearium
 material.dogbearium=Dogbearium
 material.dogbearium.ability=Serrated
 
+material.redmint=Red Mint
+material.redmint.ability=Pepperminty
+
+material.greenmint=Green Mint
+material.greenmint.ability=Spearminty
+
 tile.CrestMount.name=Crest Mount
 tile.ArmorAnvil.name=Armor Anvil (WIP)
 tile.JewelersBench.name=Jeweler's Bench (WIP)

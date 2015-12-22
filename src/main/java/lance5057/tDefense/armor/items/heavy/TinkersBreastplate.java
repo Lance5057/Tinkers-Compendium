@@ -6,8 +6,10 @@ import lance5057.tDefense.armor.renderers.heavy.ModelTinkersBreastplate;
 import lance5057.tDefense.armor.renderers.heavy.ModelTinkersHelm;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import tconstruct.tools.TinkerTools;
 
@@ -116,11 +118,12 @@ public class TinkersBreastplate extends ArmorCore
 	}
 
 	@Override
-	public ModelBiped getModel(String[] color)
+	public ModelBiped getModel(String[] color,NBTTagCompound tags)
 	{
 		String[] textures = {this.getIconSuffix(2),this.getIconSuffix(0),this.getIconSuffix(3), this.getIconSuffix(4)};
 		
 		armorModel = new ModelTinkersBreastplate(color, this.getDefaultFolder(), textures);
+		
 		return armorModel;
 	}
 }

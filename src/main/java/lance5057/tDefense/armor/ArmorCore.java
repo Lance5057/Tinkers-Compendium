@@ -9,10 +9,13 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.IChatComponent;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ISpecialArmor;
+import scala.Int;
 import tconstruct.library.accessory.IAccessoryModel;
 import tconstruct.library.tools.ToolCore;
 
@@ -38,13 +41,15 @@ public class ArmorCore extends ToolCore implements ISpecialArmor//, IAccessoryMo
 	public ArmorProperties getProperties(EntityLivingBase player,
 			ItemStack armor, DamageSource source, double damage, int slot) 
 	{
-		return new ArmorProperties(0, 10, 100); //TODO figure this out
+		ArmorProperties armorp = new ArmorProperties(0, 0.8, 100); //TODO figure this out
+		((EntityPlayer)player).addChatComponentMessage(new ChatComponentText(Double.toString(damage)));
+		return armorp;
 	}
 	
 	@Override
 	public int getArmorDisplay(EntityPlayer player, ItemStack armor, int slot) 
 	{
-		return 1;
+		return 0;
 	}
 	
 	public int getSlot()
@@ -52,7 +57,7 @@ public class ArmorCore extends ToolCore implements ISpecialArmor//, IAccessoryMo
 		return slot;
 	}
 	
-	public ModelBiped getModel(String[] color)
+	public ModelBiped getModel(String[] color, NBTTagCompound tags)
 	{
 		return armorModel;
 	}
