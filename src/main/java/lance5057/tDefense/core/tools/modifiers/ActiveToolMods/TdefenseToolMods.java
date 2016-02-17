@@ -48,4 +48,9 @@ public class TdefenseToolMods
 	        }
 		}
 	}
+
+	public void UpdateTorchArrow(ToolCore tool, ItemStack stack, World world, Entity entity)
+	{
+		//entity.worldObj.ent
+	}
 }

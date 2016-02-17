@@ -3,12 +3,12 @@
  "modid": "tinkersdefense",
  "name": "Tinkers' Defense",
  "description": "An inbetween mod for Tinkers Construct and Mine and Blade 2 that adds new shields made using tinker parts",
- "version": "1.0",
+ "version": "1.3a",
  "mcversion": "1.7.10",
  "url": "",
  "authorList": ["Sir Lance"],
- "requiredMods": [ "Forge", "TConstruct","battlegear2" ],
- "dependencies": ["TConstruct","battlegear2"],
+ "requiredMods": [ "Forge", "TConstruct" ],
+ "dependencies": ["TConstruct"],
  "useDependencyInformation": "true"
 }
 ]

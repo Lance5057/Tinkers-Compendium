@@ -12,17 +12,20 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.IChatComponent;
+import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ISpecialArmor;
 import scala.Int;
 import tconstruct.library.accessory.IAccessoryModel;
+import tconstruct.library.tools.AbilityHelper;
 import tconstruct.library.tools.ToolCore;
 
 public class ArmorCore extends ToolCore implements ISpecialArmor//, IAccessoryModel
-{
+{	
 	int slot;
-	public ModelBiped armorModel;
+	protected Double reductionPercent = 0.0;
+	protected int maxReduction = 0;
 	
 	public ArmorCore(int baseProtection, int slot) {
 		super(baseProtection);
@@ -41,8 +44,18 @@ public class ArmorCore extends ToolCore implements ISpecialArmor//, IAccessoryMo
 	public ArmorProperties getProperties(EntityLivingBase player,
 			ItemStack armor, DamageSource source, double damage, int slot) 
 	{
-		ArmorProperties armorp = new ArmorProperties(0, 0.8, 100); //TODO figure this out
-		((EntityPlayer)player).addChatComponentMessage(new ChatComponentText(Double.toString(damage)));
+		NBTTagCompound tags = armor.getTagCompound().getCompoundTag("InfiTool");
+
+		Double enhancedPercent = reductionPercent;
+		
+		if(tags.hasKey("Protection"))
+			enhancedPercent += (calcModifierDamage(tags.getInteger("Protection"), 0.75f, source) * 0.04);
+		
+		ArmorProperties armorp = new ArmorProperties(0, enhancedPercent, maxReduction); //0.04 per half shirt
+		((EntityPlayer)player).addChatComponentMessage(new ChatComponentText(source.getDamageType() + 
+				" - Max: " + Double.toString(damage) +
+				" - ReductPerc: " + Double.toString(reductionPercent) +
+				" - EnhancedPerc: " + Double.toString(enhancedPercent)));
 		return armorp;
 	}
 	
@@ -57,9 +70,10 @@ public class ArmorCore extends ToolCore implements ISpecialArmor//, IAccessoryMo
 		return slot;
 	}
 	
+	@SideOnly(Side.CLIENT)
 	public ModelBiped getModel(String[] color, NBTTagCompound tags)
 	{
-		return armorModel;
+		return null;
 	}
 	
 	@Override
@@ -71,27 +85,7 @@ public class ArmorCore extends ToolCore implements ISpecialArmor//, IAccessoryMo
 	@Override
 	public void damageArmor(EntityLivingBase entity, ItemStack stack,
 			DamageSource source, int damage, int slot) {
-		if (stack.hasTagCompound())
-        {
-            NBTTagCompound tags = stack.getTagCompound().getCompoundTag(getBaseTagName());
-            if (!tags.getBoolean("Broken"))
-            {
-                int maxDurability = tags.getInteger("TotalDurability");
-                int currentDurability = tags.getInteger("Damage");
-                if (currentDurability + damage > maxDurability)
-                {
-                    tags.setInteger("Damage", 0);
-                    tags.setBoolean("Broken", true);
-                    stack.setItemDamage(0);
-                    entity.worldObj.playSound(entity.posX, entity.posY, entity.posZ, "random.break", 1f, 1f, true);
-                }
-                else
-                {
-                    tags.setInteger("Damage", currentDurability + damage);
-                    stack.setItemDamage(currentDurability + damage);
-                }
-            }
-        }		
+		AbilityHelper.damageTool(stack, damage, entity, false);
 	}
 	
 	@Override
@@ -99,24 +93,7 @@ public class ArmorCore extends ToolCore implements ISpecialArmor//, IAccessoryMo
 	public ModelBiped getArmorModel(EntityLivingBase entityLiving,
 			ItemStack itemStack, int armorSlot) 
 	{
-		if (itemStack != null) {
-
-			if (armorModel != null) {
-				armorModel.isSneak = entityLiving.isSneaking();
-				armorModel.isRiding = entityLiving.isRiding();
-				armorModel.isChild = entityLiving.isChild();
-				armorModel.heldItemRight = entityLiving.getHeldItem() != null ? 1
-						: 0;
-
-				if (entityLiving instanceof EntityPlayer) {
-					armorModel.aimedBow = ((EntityPlayer) entityLiving)
-							.getItemInUseDuration() > 2;
-				}
-				return armorModel;
-			}
-		}
-		return armorModel;
-		//this.armor
+		return null;
 	}
 
 	@Override
@@ -160,5 +137,18 @@ public class ArmorCore extends ToolCore implements ISpecialArmor//, IAccessoryMo
 //		// TODO Auto-generated method stub
 //		return null;
 //	}
+	
+	public int calcModifierDamage(int level, float typeMod, DamageSource source)
+    {
+        if (source.canHarmInCreative())
+        {
+            return 0;
+        }
+        else
+        {
+            float f = (float)(6 + level * level) / 3.0F;
+            return MathHelper.floor_float(f * typeMod);
+        }
+    }
 
 }

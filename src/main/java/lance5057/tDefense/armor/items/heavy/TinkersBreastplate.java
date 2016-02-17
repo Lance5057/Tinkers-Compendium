@@ -1,23 +1,30 @@
 package lance5057.tDefense.armor.items.heavy;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import lance5057.tDefense.TinkersDefense;
 import lance5057.tDefense.armor.ArmorCore;
 import lance5057.tDefense.armor.renderers.heavy.ModelTinkersBreastplate;
 import lance5057.tDefense.armor.renderers.heavy.ModelTinkersHelm;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ISpecialArmor.ArmorProperties;
 import tconstruct.tools.TinkerTools;
 
 public class TinkersBreastplate extends ArmorCore 
 {
 	public TinkersBreastplate() {
-		super(0,1);
+		super(2,1);
 		this.setUnlocalizedName("tinkershelm");
+		this.maxReduction = 100;
+		this.reductionPercent = 0.32;
 	}
 	
 	@Override
@@ -118,12 +125,17 @@ public class TinkersBreastplate extends ArmorCore
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public ModelBiped getModel(String[] color,NBTTagCompound tags)
 	{
 		String[] textures = {this.getIconSuffix(2),this.getIconSuffix(0),this.getIconSuffix(3), this.getIconSuffix(4)};
 		
-		armorModel = new ModelTinkersBreastplate(color, this.getDefaultFolder(), textures);
-		
-		return armorModel;
+		return new ModelTinkersBreastplate(color, this.getDefaultFolder(), textures);
+	}
+	
+	@Override
+	public int getArmorDisplay(EntityPlayer player, ItemStack armor, int slot) 
+	{
+		return 8;
 	}
 }

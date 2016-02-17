@@ -1,17 +1,19 @@
 package lance5057.tDefense.armor.events;
 
 import lance5057.tDefense.armor.ArmorCore;
-import lance5057.tDefense.armor.renderers.heavy.ModelTinkersHelm;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.client.event.RenderPlayerEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ArmorRenderEvent
 {
 
+	@SideOnly(Side.CLIENT)
 	@SubscribeEvent
 	public void renderArmorEvent(RenderPlayerEvent.SetArmorModel event) {
 		if (event.entityPlayer != null) 

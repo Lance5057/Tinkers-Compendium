@@ -35,8 +35,8 @@ public class ClientProxy extends CommonProxy {
 				renderer);
 		MinecraftForgeClient.registerItemRenderer(TinkersDefense.tool_shears,
 				renderer);
-		MinecraftForgeClient.registerItemRenderer(TinkersDefense.tool_zweihander,
-				bigrenderer);
+//		MinecraftForgeClient.registerItemRenderer(TinkersDefense.tool_zweihander,
+//				bigrenderer);
 		MinecraftForgeClient.registerItemRenderer(TinkersDefense.armor_TinkerHelm,
 				renderer);
 		MinecraftForgeClient.registerItemRenderer(TinkersDefense.armor_TinkerBreastplate,
@@ -44,6 +44,23 @@ public class ClientProxy extends CommonProxy {
 		MinecraftForgeClient.registerItemRenderer(TinkersDefense.armor_TinkerGrieves,
 				renderer);
 		MinecraftForgeClient.registerItemRenderer(TinkersDefense.armor_TinkerSabatons,
+				renderer);
+		MinecraftForgeClient.registerItemRenderer(TinkersDefense.armor_TinkerRobe,
+				renderer);
+		MinecraftForgeClient.registerItemRenderer(TinkersDefense.armor_TinkerShawl,
+				renderer);
+		MinecraftForgeClient.registerItemRenderer(TinkersDefense.armor_TinkerHood,
+				renderer);
+		MinecraftForgeClient.registerItemRenderer(TinkersDefense.armor_TinkerShoes,
+				renderer);
+		
+		MinecraftForgeClient.registerItemRenderer(TinkersDefense.armor_TinkerCoif,
+				renderer);
+		MinecraftForgeClient.registerItemRenderer(TinkersDefense.armor_TinkerHalberd,
+				renderer);
+		MinecraftForgeClient.registerItemRenderer(TinkersDefense.armor_TinkerChausses,
+				renderer);
+		MinecraftForgeClient.registerItemRenderer(TinkersDefense.armor_TinkerBoots,
 				renderer);
 
 		ClientRegistry.bindTileEntitySpecialRenderer(

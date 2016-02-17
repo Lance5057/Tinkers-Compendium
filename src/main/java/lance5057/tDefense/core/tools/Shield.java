@@ -1,5 +1,7 @@
 package lance5057.tDefense.core.tools;
 
+import java.util.List;
+
 import mods.battlegear2.api.ISheathed;
 import mods.battlegear2.api.shield.IArrowCatcher;
 import mods.battlegear2.api.shield.IArrowDisplay;
@@ -16,6 +18,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import tconstruct.library.tools.ToolCore;
 import cpw.mods.fml.common.Optional;
@@ -257,5 +261,26 @@ public class Shield extends ToolCore implements IShield, ISheathed,
 	@Override
 	public String getIconSuffix(int arg0) {
 		return null;
+	}
+	
+	@Override
+	@Optional.Method(modid = "battlegear2")
+	@SideOnly(Side.CLIENT)
+	public void addInformation(ItemStack par1ItemStack,
+			EntityPlayer par2EntityPlayer, List par3List, boolean par4) {
+		NBTTagCompound tags = par1ItemStack.getTagCompound();
+		super.addInformation(par1ItemStack, par2EntityPlayer, par3List, par4);
+		par3List.add("");
+		par3List.add(EnumChatFormatting.DARK_GREEN
+				+ ItemStack.field_111284_a
+						.format(1F / (10f / (tags.getCompoundTag("InfiTool")
+								.getInteger("MiningSpeed") / 1.5f)) / 20F)
+				+ StatCollector.translateToLocal("attribute.shield.block.time"));
+		int arrowCount = getArrowCount(par1ItemStack);
+		if (arrowCount > 0) {
+			par3List.add(String.format("%s%s %s", EnumChatFormatting.GOLD,
+					arrowCount, StatCollector
+							.translateToLocal("attribute.shield.arrow.count")));
+		}
 	}
 }

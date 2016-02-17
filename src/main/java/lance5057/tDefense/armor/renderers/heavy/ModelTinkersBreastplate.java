@@ -100,7 +100,7 @@ public class ModelTinkersBreastplate extends ModelBiped
         this.setRotateAngle(PauldronL, 0.0F, -0.0F, -0.4363323129985824F);
         this.bipedLeftArm.addChild(this.PauldronL);
         
-        this.ArmR.offsetX = this.ArmR.offsetX + 0.04f;
+       // this.ArmR.offsetX = this.ArmR.offsetX + 0.04f;
         
         this.bipedHead.isHidden = true;
         this.bipedHeadwear.isHidden = true;

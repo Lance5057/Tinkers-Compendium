@@ -1,5 +1,6 @@
 package lance5057.tDefense.core.tools;
 
+import cpw.mods.fml.common.Optional;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
@@ -8,6 +9,9 @@ import tconstruct.library.tools.Weapon;
 import tconstruct.tools.TinkerTools;
 import buildcraft.api.tools.IToolWrench;
 
+@Optional.InterfaceList({
+	@Optional.Interface(modid = "buildcraft", iface = "buildcraft.api.tools.IToolWrench")
+})
 public class TinkerWrench extends Weapon implements IToolWrench {
 	int induceDamage = 0;
 
@@ -83,6 +87,7 @@ public class TinkerWrench extends Weapon implements IToolWrench {
 	}
 
 	@Override
+	@Optional.Method(modid = "buildcraft")
 	public boolean canWrench(EntityPlayer player, int x, int y, int z) {
 		NBTTagCompound tags = player.inventory.getCurrentItem()
 				.getTagCompound().getCompoundTag("InfiTool");

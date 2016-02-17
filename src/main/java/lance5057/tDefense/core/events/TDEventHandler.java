@@ -6,6 +6,7 @@ import mods.battlegear2.api.PlayerEventChild.ShieldBlockEvent;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityFireball;
 import net.minecraft.entity.projectile.EntityLargeFireball;
 import net.minecraft.item.ItemStack;
@@ -15,11 +16,17 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.Vec3;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import tconstruct.library.TConstructRegistry;
 import tconstruct.library.event.PartBuilderEvent;
 import tconstruct.library.tools.BowstringMaterial;
+import cpw.mods.fml.common.Optional;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+
+@Optional.InterfaceList({
+	@Optional.Interface(modid = "battlegear2", iface = "mods.battlegear2.api.PlayerEventChild.ShieldBlockEvent"),
+})
 
 public class TDEventHandler {
 	
@@ -47,6 +54,7 @@ public class TDEventHandler {
 	}
 	
 	@SubscribeEvent
+	@Optional.Method(modid = "battlegear2")
 	public void TD_ShieldBlock(ShieldBlockEvent event)
 	{
 		NBTTagCompound tags = event.shield.getTagCompound().getCompoundTag("InfiTool");
@@ -103,20 +111,26 @@ public class TDEventHandler {
 			}
 		}
 	}
-	
-	@SubscribeEvent
-	public void dropEasterEggs(LivingDropsEvent event)
-	{
-		if(!event.entityLiving.worldObj.isRemote)
-		{
-			if(event.entityLiving.getHeldItem() != null)
-					if(event.entityLiving.getHeldItem().getItem() == TinkersDefense.item_RedMintcane)
-							event.drops.add(new EntityItem(event.entityLiving.worldObj, event.entityLiving.posX, event.entityLiving.posY, event.entityLiving.posZ, new ItemStack(TinkersDefense.item_RedMintcane,1,0)));
-						else
-							event.drops.add(new EntityItem(event.entityLiving.worldObj, event.entityLiving.posX, event.entityLiving.posY, event.entityLiving.posZ, new ItemStack(TinkersDefense.item_GreenMintcane,1,0)));
 
-		}
-	}
+//	public void TD_LivingHurt(LivingHurtEvent event)
+//	{
+//		if(event.entityLiving instanceof EntityPlayer)
+//		event.entityLiving
+//	}
+	
+//	@SubscribeEvent
+//	public void dropEasterEggs(LivingDropsEvent event)
+//	{
+//		if(!event.entityLiving.worldObj.isRemote)
+//		{
+//			if(event.entityLiving.getHeldItem() != null)
+//					if(event.entityLiving.getHeldItem().getItem() == TinkersDefense.item_RedMintcane)
+//							event.drops.add(new EntityItem(event.entityLiving.worldObj, event.entityLiving.posX, event.entityLiving.posY, event.entityLiving.posZ, new ItemStack(TinkersDefense.item_RedMintcane,1,0)));
+//					if(event.entityLiving.getHeldItem().getItem() == TinkersDefense.item_GreenMintcane)
+//							event.drops.add(new EntityItem(event.entityLiving.worldObj, event.entityLiving.posX, event.entityLiving.posY, event.entityLiving.posZ, new ItemStack(TinkersDefense.item_GreenMintcane,1,0)));
+//
+//		}
+//	}
 	
 	@SubscribeEvent
 	public void giveCandyToUndead(LivingSpawnEvent event)

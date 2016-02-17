@@ -134,9 +134,9 @@ public class ModelTinkersSabatons extends ModelBiped
 	        FMLClientHandler.instance().getClient().renderEngine.bindTexture(texture);
 	        
 	    	
-	        float size =0.75f;
+	        float size =1.5f;
 	        GL11.glScalef(1.0F / size, 1.0F / size, 1.0F / size);
-            GL11.glTranslatef(0.0F, -12.4F*f5, 0.0F);
+            GL11.glTranslatef(0.0F, -1F*f5, 0.0F);
 	    			
 	    	int[] intColors = TinkersDefense.hexToRGB(colors[i]);
 	    	GL11.glColor3d((float)intColors[0]/255, (float)intColors[1]/255, (float)intColors[2]/255);

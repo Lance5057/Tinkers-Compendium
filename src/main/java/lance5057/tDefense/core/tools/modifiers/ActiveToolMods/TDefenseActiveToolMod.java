@@ -17,14 +17,14 @@ import tconstruct.library.tools.ToolCore;
 public class TDefenseActiveToolMod extends ActiveToolMod 
 {
 	TdefenseToolMods TDMods = new TdefenseToolMods();
-	BotaniaToolMods FlowerMods = new BotaniaToolMods();
+	//BotaniaToolMods FlowerMods = new BotaniaToolMods();
 	
 
 	@Override
 	public void updateTool(ToolCore tool, ItemStack stack, World world, Entity entity)
 	{
 		if(stack.hasTagCompound() && stack.getTagCompound().hasKey("InfiTool"))
-		{
+		{ 
 			NBTTagCompound tags = stack.getTagCompound().getCompoundTag("InfiTool");
 			
 			if (!tags.getBoolean("Broken")) 
@@ -33,10 +33,10 @@ public class TDefenseActiveToolMod extends ActiveToolMod
 				TDMods.UpdateAll(tool, stack, world, entity, tags);
 				
 				//Botania
-				if(Loader.isModLoaded("Botania"))
-				{
-					FlowerMods.UpdateAll(tool, stack, world, entity, tags);
-				}
+//				if(Loader.isModLoaded("Botania"))
+//				{
+//					FlowerMods.UpdateAll(tool, stack, world, entity, tags);
+//				}
 				
 			}
 		}

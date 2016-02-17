@@ -1,8 +1,8 @@
 itemGroup.tabName=Tinkers' Defense
-item.AeonSteelIngot.name=Aeon Steel Ingot
-tile.AeonSteelBlock.name=Aeon Steel Block
-tile.MoltenAeonSteel.name=Molten Aeon Steel
-material.aeonsteel=Aeon Steel
+item.AeonsteelIngot.name=Aeonsteel Ingot
+tile.AeonsteelBlock.name=Aeonsteel Block
+tile.MoltenAeonsteel.name=Molten Aeonsteel
+material.aeonsteel=Aeonsteel
 
 item.QueensGoldIngot.name=Queen's Gold Ingot
 tile.QueensGoldBlock.name=Queen's Gold Block
@@ -11,7 +11,7 @@ material.queensgold=Queen's Gold
 
 item.DogbeariumIngot.name=Dogbearium Ingot
 tile.DogbeariumBlock.name=Dogbearium Block
-tile.MoltenDogbearium.name=Molten Dogbearium
+tile.Moltendogbearium.name=Molten Dogbearium
 material.dogbearium=Dogbearium
 material.dogbearium.ability=Serrated
 
@@ -22,7 +22,7 @@ material.greenmint=Green Mint
 material.greenmint.ability=Spearminty
 
 tile.CrestMount.name=Crest Mount
-tile.ArmorAnvil.name=Armor Anvil (WIP)
+tile.ArmorAnvil.name=Finishing Anvil (WIP)
 tile.JewelersBench.name=Jeweler's Bench (WIP)
 
 tool.roundshield=Round Shield
@@ -39,3 +39,64 @@ gui.toolstation.heatershield.name=Heater Shield
 gui.toolstation.heatershield.desc=A simple shield with high durability and high defense.
 
 item.Crest_Feathers.name=Crest of Feathers
+
+toolpart.Chainmaille=Chainmail
+toolpart.Rivets=Rivets
+toolpart.Clasp=Clasp
+toolpart.Armor Plate=Armor Plate
+
+item.TD.Cloth.white.name=White Cloth
+item.TD.Cloth.orange.name=Orange Cloth
+item.TD.Cloth.magenta.name=Magenta Cloth
+item.TD.Cloth.lightblue.name=Light Blue Cloth
+item.TD.Cloth.yellow.name=Yellow Cloth
+item.TD.Cloth.lime.name=Lime Cloth
+item.TD.Cloth.pink.name=Pink Cloth
+item.TD.Cloth.gray.name=Grey Cloth
+item.TD.Cloth.lightgray.name=Grey Cloth
+item.TD.Cloth.cyan.name=Cyan Cloth
+item.TD.Cloth.purple.name=Purple Cloth
+item.TD.Cloth.blue.name=Blue Cloth
+item.TD.Cloth.brown.name=Brown Cloth
+item.TD.Cloth.green.name=Green Cloth
+item.TD.Cloth.red.name=Red Cloth
+item.TD.Cloth.black.name=Black Cloth
+
+tool.tinkersrobe=Robe
+tool.tinkersshawl=Shawl
+tool.tinkershood=Hood
+tool.tinkersshoes=Shoes
+
+tool.tinkerscoif=Coif
+tool.tinkershalberd=Halberd
+tool.tinkerschausses=Chausses
+tool.tinkersboots=Boots
+
+tool.tinkershelm=Helm
+tool.tinkersbreastplate=Breastplate
+tool.tinkersgrieves=Grieves
+tool.tinkerssabatons=Sabatons
+
+item.tconstruct.Pattern.rivets.name=Rivet Pattern
+item.tconstruct.Pattern.clasp.name=Clasp Pattern
+item.tconstruct.Pattern.armorplate.name=Armor Plate Pattern
+item.tconstruct.Pattern.chainmaille.name=Chainmail Pattern
+
+item.tconstruct.MetalPattern.rivets.name=Rivet Cast
+item.tconstruct.MetalPattern.clasp.name=Clasp Cast
+item.tconstruct.MetalPattern.armorplate.name=Armor Plate Cast
+item.tconstruct.MetalPattern.chainmaille.name=Chainmail Cast
+
+tool.tinkerwrench=Wrench
+tool.shears=Shears
+tool.tinkerzweihander=Zweihander
+
+item.GreenMintIngot.name=Green Mint Ingot
+item.RedMintIngot.name=Red Mint Ingot
+item.GreenMintcane.name=Green Mint Cane
+item.RedMintcane.name=Red Mint Cane
+
+tile.RedMintBlock.name=Red Mint Block
+tile.GreenMintBlock.name=Green Mint Block
+tile.MoltenRedMint.name=Molten Red Mint
+tile.MoltenGreenMint.name=Molten Green Mint

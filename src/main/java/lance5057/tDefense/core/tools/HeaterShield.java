@@ -126,26 +126,6 @@ public class HeaterShield extends Shield {
 	}
 
 	@Override
-	@SideOnly(Side.CLIENT)
-	public void addInformation(ItemStack par1ItemStack,
-			EntityPlayer par2EntityPlayer, List par3List, boolean par4) {
-		NBTTagCompound tags = par1ItemStack.getTagCompound();
-		super.addInformation(par1ItemStack, par2EntityPlayer, par3List, par4);
-		par3List.add("");
-		par3List.add(EnumChatFormatting.DARK_GREEN
-				+ ItemStack.field_111284_a
-						.format(1F / (10f / (tags.getCompoundTag("InfiTool")
-								.getInteger("MiningSpeed") / 1.5f)) / 20F)
-				+ StatCollector.translateToLocal("attribute.shield.block.time"));
-		int arrowCount = getArrowCount(par1ItemStack);
-		if (arrowCount > 0) {
-			par3List.add(String.format("%s%s %s", EnumChatFormatting.GOLD,
-					arrowCount, StatCollector
-							.translateToLocal("attribute.shield.arrow.count")));
-		}
-	}
-
-	@Override
 	protected String getHarvestType() {
 		return "shield";
 	}

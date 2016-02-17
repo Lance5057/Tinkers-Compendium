@@ -68,9 +68,9 @@ public class ModelTinkersHelm extends ModelBiped
 	    	
 	        FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation("tinkersdefense:textures/" + defaultFolder + "/" + textures[i] + ".png"));
 	    	
-	        float size = 1.75f;
+	        float size = 2.5f;
             GL11.glScalef(1.5F / size, 1.5F / size, 1.5F / size);
-            GL11.glTranslatef(0.0F, -12F * f5, 0.0F);
+            GL11.glTranslatef(0.0F, -0F * f5, 0.0F);
 	    	int[] intColors = TinkersDefense.hexToRGB(colors[i]);
 	    	GL11.glColor3d((float)intColors[0]/255, (float)intColors[1]/255, (float)intColors[2]/255);
 	

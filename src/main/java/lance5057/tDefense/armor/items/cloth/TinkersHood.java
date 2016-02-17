@@ -1,58 +1,65 @@
 package lance5057.tDefense.armor.items.cloth;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import lance5057.tDefense.TinkersDefense;
 import lance5057.tDefense.armor.ArmorCore;
-import lance5057.tDefense.armor.renderers.heavy.ModelTinkersHelm;
+import lance5057.tDefense.armor.parts.ClothMaterial;
+import lance5057.tDefense.armor.renderers.cloth.ModelTinkersHood;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import tconstruct.tools.TinkerTools;
+import net.minecraft.util.DamageSource;
+import net.minecraftforge.common.ISpecialArmor.ArmorProperties;
+import tconstruct.library.TConstructRegistry;
+import tconstruct.library.tools.CustomMaterial;
 
 public class TinkersHood extends ArmorCore 
 {
 	public TinkersHood() {
-		super(2,0);
-		this.setUnlocalizedName("tinkershelm");
+		super(0,0);
+		this.setUnlocalizedName("tinkershood");
 	}
 	
 	@Override
 	public Item getHeadItem() 
 	{
-		return TinkerTools.frypanHead;
+		return TinkersDefense.partCloth;
 	}
 	
 	@Override
 	public Item getHandleItem() {
-		return TinkerTools.toughRod;
+		return TinkersDefense.partCloth;
 	}
 	
 	@Override
 	public Item getAccessoryItem() 
 	{
-		return TinkersDefense.partArmorplate;
+		return TinkersDefense.partRivet;
 	}
 	
 	@Override
 	public int durabilityTypeAccessory() {
-		return 2;
+		return 1;
 	}
 
 	@Override
 	public float getRepairCost() {
-		return 4.0f;
+		return 1.0f;
 	}
 
 	@Override
 	public float getDurabilityModifier() {
-		return 2.5f;
+		return 1f;
 	}
 	
 	@Override
 	public float getDamageModifier() {
-		return 1.4f;
+		return 1f;
 	}
 
 	@Override
@@ -65,13 +72,13 @@ public class TinkersHood extends ArmorCore
 	{
 		switch (partType) {
 		case 0:
-			return "_helm_top";
+			return "_hood_cloth";
 		case 1:
-			return "_helm_top_broken";
+			return "_hood_cloth_broken";
 		case 2:
-			return "_helm_visor";
+			return "_hood_trim";
 		case 3:
-			return "_helm_chain";
+			return "_hood_rivet";
 		default:
 			return "";
 		}
@@ -80,13 +87,13 @@ public class TinkersHood extends ArmorCore
 	@Override
 	public String getEffectSuffix() 
 	{
-		return "_helm_effect";
+		return "_hood_effect";
 	}
 	
 	@Override
 	public String getDefaultFolder()
 	{
-		return "armor/helm";
+		return "armor/hood";
 	}
 	
 //	@Override
@@ -99,26 +106,35 @@ public class TinkersHood extends ArmorCore
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot,
 			String type) {
-		return "tinkersdefense:textures/armor/TinkersHelm.png";
+		return "tinkersdefense:textures/armor/TinkersHood.png";
 	}
 	
 	@Override
 	public String[] getTraits() {
-		return new String[] {"armor","helmet","helm","heavyarmor"};
+		return new String[] {"armor","helmet","hood","cloth"};
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public ModelBiped getModel(String[] color,NBTTagCompound tags)
 	{
 		String[] textures = {this.getIconSuffix(2),this.getIconSuffix(0),this.getIconSuffix(3)};
 		
-		armorModel = new ModelTinkersHelm(color, this.getDefaultFolder(), textures);
-		return armorModel;
+		int HeadID = tags.getCompoundTag("InfiTool").getInteger("RenderHead");
+		int HandleID = tags.getCompoundTag("InfiTool").getInteger("RenderHandle");
+		
+		CustomMaterial newColor = TConstructRegistry.getCustomMaterial(HeadID, ClothMaterial.class);
+		color[1] = Integer.toHexString(newColor.color);
+		
+		newColor = TConstructRegistry.getCustomMaterial(HandleID, ClothMaterial.class);
+		color[0] = Integer.toHexString(newColor.color);
+
+		return new ModelTinkersHood(color, this.getDefaultFolder(), textures);
 	}
 	
 	@Override
 	public int getArmorDisplay(EntityPlayer player, ItemStack armor, int slot) 
 	{
-		return 2;
+		return 0;
 	}
 }

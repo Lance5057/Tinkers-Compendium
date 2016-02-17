@@ -1,8 +1,8 @@
 package lance5057.tDefense.core.tools.modifiers;
 
-import cpw.mods.fml.common.registry.GameRegistry;
 import lance5057.tDefense.Reference;
 import lance5057.tDefense.TinkersDefense;
+import lance5057.tDefense.armor.modifiers.ArmorMods;
 import lance5057.tDefense.core.tools.modifiers.ActiveToolMods.TDefenseActiveToolMod;
 import lance5057.tDefense.core.tools.modifiers.shields.modifierCrestofBlades;
 import lance5057.tDefense.core.tools.modifiers.shields.modifierCrestofFeathers;
@@ -17,13 +17,17 @@ import tconstruct.library.TConstructRegistry;
 import tconstruct.library.client.TConstructClientRegistry;
 import tconstruct.library.crafting.ModifyBuilder;
 import tconstruct.library.tools.ToolCore;
+import cpw.mods.fml.common.registry.GameRegistry;
 
 public class Modifiers 
 {
 	public static Item item_relic;
+	public static ArmorMods AMod;
 	
 	public void init()
 	{
+		AMod = new ArmorMods();
+		
 		item_relic = new Item().setCreativeTab(TinkersDefense.tabName).setMaxStackSize(1)
 				.setUnlocalizedName("AncientRelic")
 				.setTextureName(Reference.MOD_ID + ":AncientRelic");

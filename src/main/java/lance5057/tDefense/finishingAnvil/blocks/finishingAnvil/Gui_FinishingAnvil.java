@@ -63,16 +63,16 @@ public class Gui_FinishingAnvil extends GuiContainer
 	public void initGui()
 	{
 		super.initGui();
-		this.buttonList.add(new GuiButton(1 ,this.guiLeft+25, this.guiTop+10, 10, 10,"▲"));
-		this.buttonList.add(new GuiButton(2 ,this.guiLeft+25, this.guiTop+59, 10, 10,"▼"));
-		this.buttonList.add(new GuiButton(3 ,this.guiLeft+47, this.guiTop+49, 18, 18,"✓"));
+		this.buttonList.add(new GuiButton(1 ,this.guiLeft+25, this.guiTop+10, 10, 10,""));
+		this.buttonList.add(new GuiButton(2 ,this.guiLeft+25, this.guiTop+59, 10, 10,""));
+		this.buttonList.add(new GuiButton(3 ,this.guiLeft+47, this.guiTop+49, 18, 18,""));
 		
 		this.buttonList.add(new GuiButton(4 ,this.guiLeft+5, this.guiTop+10, 20, 20,""));
 		this.buttonList.add(new GuiButton(5 ,this.guiLeft+5, this.guiTop+30, 20, 20,""));
 		this.buttonList.add(new GuiButton(6 ,this.guiLeft+5, this.guiTop+50, 20, 20,""));
 		
-		this.buttonList.add(new GuiButton(7 ,this.guiLeft+120, this.guiTop+10, 10, 10,"▲"));
-		this.buttonList.add(new GuiButton(8 ,this.guiLeft+120, this.guiTop+59, 10, 10,"▼"));
+		this.buttonList.add(new GuiButton(7 ,this.guiLeft+120, this.guiTop+10, 10, 10,""));
+		this.buttonList.add(new GuiButton(8 ,this.guiLeft+120, this.guiTop+59, 10, 10,""));
 		
 		this.buttonList.add(new GuiButton(9 ,this.guiLeft+130, this.guiTop+10, 20, 20,""));
 		this.buttonList.add(new GuiButton(10 ,this.guiLeft+130, this.guiTop+30, 20, 20,""));
@@ -87,7 +87,7 @@ public class Gui_FinishingAnvil extends GuiContainer
 		switch(button.id)
 		{
 		case 1: if(this.leftButtonPosX > 0) this.leftButtonPosX--; break;
-		case 2: if(this.leftButtonPosX+2 < ((ToolCore)bigCopy.getItem()).getPartAmount() - 1) this.leftButtonPosX++; break;
+		case 2: if(this.leftButtonPosX+2 < ((ToolCore)bigCopy.getItem()).getPartAmount()) this.leftButtonPosX++; break;
 		
 		case 3: 
 			 TinkersDefense.INSTANCE.sendToServer(new Message_FinishingAnvil(inventory.xCoord, inventory.yCoord, inventory.zCoord, this.bigCopy));

@@ -4,22 +4,28 @@ import static net.minecraft.util.EnumChatFormatting.DARK_RED;
 import static net.minecraft.util.EnumChatFormatting.GOLD;
 import static net.minecraft.util.EnumChatFormatting.LIGHT_PURPLE;
 
-import java.time.LocalDate;
-import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import lance5057.tDefense.addons.TDAddonBotania;
+import lance5057.tDefense.armor.events.ArmorModEvents;
 import lance5057.tDefense.armor.events.ArmorRenderEvent;
-import lance5057.tDefense.armor.items.ChainArmor;
-import lance5057.tDefense.armor.items.Mask;
-import lance5057.tDefense.armor.items.Sheath;
+import lance5057.tDefense.armor.items.cloth.TinkersHood;
+import lance5057.tDefense.armor.items.cloth.TinkersRobe;
+import lance5057.tDefense.armor.items.cloth.TinkersShawl;
+import lance5057.tDefense.armor.items.cloth.TinkersShoes;
 import lance5057.tDefense.armor.items.heavy.TinkersBreastplate;
 import lance5057.tDefense.armor.items.heavy.TinkersGrieves;
 import lance5057.tDefense.armor.items.heavy.TinkersHelm;
 import lance5057.tDefense.armor.items.heavy.TinkersSabatons;
+import lance5057.tDefense.armor.items.light.TinkersBoots;
+import lance5057.tDefense.armor.items.light.TinkersChausses;
+import lance5057.tDefense.armor.items.light.TinkersCoif;
+import lance5057.tDefense.armor.items.light.TinkersHalberd;
 import lance5057.tDefense.armor.parts.Cloth;
 import lance5057.tDefense.armor.parts.ClothMaterial;
 import lance5057.tDefense.blocks.JewelersBench;
-import lance5057.tDefense.core.Injector;
 import lance5057.tDefense.core.TD_Patterns;
 import lance5057.tDefense.core.blocks.AeonSteelBlock;
 import lance5057.tDefense.core.blocks.DogbeariumBlock;
@@ -28,25 +34,28 @@ import lance5057.tDefense.core.blocks.QueensGoldBlock;
 import lance5057.tDefense.core.blocks.RedMintBlock;
 import lance5057.tDefense.core.blocks.crestMount.CrestMount;
 import lance5057.tDefense.core.blocks.crestMount.TileEntity_CrestMount;
+import lance5057.tDefense.core.blocks.ore.TD_Ore;
 import lance5057.tDefense.core.events.TDEventHandler;
+import lance5057.tDefense.core.items.RawGem;
 import lance5057.tDefense.core.liquids.MoltenFluid;
 import lance5057.tDefense.core.network.PacketHandler;
 import lance5057.tDefense.core.tools.HeaterShield;
 import lance5057.tDefense.core.tools.RoundShield;
 import lance5057.tDefense.core.tools.Shears;
 import lance5057.tDefense.core.tools.TinkerWrench;
-import lance5057.tDefense.core.tools.TinkerZweihander;
 import lance5057.tDefense.core.tools.modifiers.Modifiers;
 import lance5057.tDefense.finishingAnvil.blocks.finishingAnvil.FinishingAnvil;
 import lance5057.tDefense.finishingAnvil.blocks.finishingAnvil.TileEntity_FinishingAnvil;
+import lance5057.tDefense.finishingAnvil.utilities.Injector;
+import lance5057.tDefense.finishingAnvil.utilities.InjectorLocations;
 import lance5057.tDefense.proxy.CommonProxy;
 import lance5057.tDefense.tileentities.TileEntity_JewelersBench;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.MinecraftForge;
@@ -55,10 +64,12 @@ import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import tconstruct.TConstruct;
 import tconstruct.library.TConstructRegistry;
+import tconstruct.library.client.StencilGuiElement;
 import tconstruct.library.client.TConstructClientRegistry;
 import tconstruct.library.client.ToolGuiElement;
 import tconstruct.library.crafting.FluidType;
 import tconstruct.library.crafting.LiquidCasting;
+import tconstruct.library.crafting.ModifyBuilder;
 import tconstruct.library.crafting.PatternBuilder;
 import tconstruct.library.crafting.Smeltery;
 import tconstruct.library.crafting.StencilBuilder;
@@ -98,6 +109,7 @@ public class TinkersDefense {
 	
 	public static TDEventHandler TDevents;
 	public static ArmorRenderEvent AREvent;
+	public static ArmorModEvents AMEvent;
 	
 	public static TD_Config config;
 
@@ -105,8 +117,6 @@ public class TinkersDefense {
 			.newSimpleChannel(Reference.MOD_ID);
 
 	static Date date = new Date();
-	static LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-	public static int month = localDate.getMonthValue();
 
 	public static Item tabIcon;
 	
@@ -139,13 +149,23 @@ public class TinkersDefense {
 	public static Block block_GreenMintBlock;
 	public static Fluid moltenGreenMint;
 	public static Block moltenGreenMintBlock;
+	
+	public static Item item_RawSapphire;
+	public static Item item_RawRuby;
+	public static Item item_RawAmethyst;
+	public static Item item_RawAmber;
+	
+	public static Block block_SapphireOre;
+	public static Block block_RubyOre;
+	public static Block block_AmethystOre;
+	public static Block block_AmberOre;
 
 	public static ToolCore tool_roundShield;
 	public static ToolCore tool_heaterShield;
 	public static ToolCore tool_wrench;
-	public static ToolCore tool_sheath;
-	public static ToolCore tool_mask;
-	public static ToolCore tool_zweihander;
+//	public static ToolCore tool_sheath;
+//	public static ToolCore tool_mask;
+//	public static ToolCore tool_zweihander;
 	public static ToolCore tool_shears;
 	
 	public static Block block_CrestMount;
@@ -153,9 +173,14 @@ public class TinkersDefense {
 	public static Block block_JewelersBench;
 
 	public static ToolCore armor_TinkerHood;
-	public static ToolCore armor_TinkerCowl;
+	public static ToolCore armor_TinkerShawl;
 	public static ToolCore armor_TinkerRobe;
 	public static ToolCore armor_TinkerShoes;
+	
+	public static ToolCore armor_TinkerCoif;
+	public static ToolCore armor_TinkerHalberd;
+	public static ToolCore armor_TinkerChausses;
+	public static ToolCore armor_TinkerBoots;
 	
 	public static ToolCore armor_TinkerHelm;
 	public static ToolCore armor_TinkerBreastplate;
@@ -172,23 +197,61 @@ public class TinkersDefense {
 	public static Item partCloth;
 	public static Item partChainmaille;
 	
-	public static Injector tcInject;
+	public static List<Injector> tcInject;
+	public static InjectorLocations injectLoc;
+	
+	public static TDAddonBotania flowermod;
 
 	@SidedProxy(clientSide = "lance5057.tDefense.proxy.ClientProxy", serverSide = "lance5057.tDefense.proxy.CommonProxy")
 	public static CommonProxy proxy;
+	public static int month;
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent e) {
+		month = this.date.getMonth();
+		
 		PacketHandler.init();
 		TDevents = new TDEventHandler();
 		
 		AREvent = new ArmorRenderEvent();
+		AMEvent = new ArmorModEvents();
 		MinecraftForge.EVENT_BUS.register(AREvent);
+		MinecraftForge.EVENT_BUS.register(AMEvent);
 		
 		config = new TD_Config(e);
+
+		NetworkRegistry.INSTANCE.registerGuiHandler(TinkersDefense.instance,
+				new CommonProxy());
+		MinecraftForge.EVENT_BUS.register(this);
+		
+		tabIcon = new Item().setMaxStackSize(1).setCreativeTab(tabName).setUnlocalizedName("tabIcon").setTextureName(Reference.MOD_ID + ":Icon");
+		GameRegistry.registerItem(tabIcon, "tabIcon");
+		
+		//flowermod = new TDAddonBotania();
+
 		mods = new Modifiers();
 		
-		mods.init();
+		injectLoc = new InjectorLocations();
+		
+//		item_RawSapphire = new RawGem("sapphire");
+//		item_RawRuby = new RawGem("ruby");
+//		item_RawAmethyst = new RawGem("amethyst");
+//		item_RawAmber = new RawGem("amber");
+//		
+//		block_SapphireOre = new TD_Ore(Material.ground, "sapphire", item_RawSapphire);
+//		block_RubyOre = new TD_Ore(Material.ground, "ruby", item_RawRuby);
+//		block_AmethystOre = new TD_Ore(Material.ground, "amethyst", item_RawAmethyst);
+//		block_AmberOre = new TD_Ore(Material.ground, "amber", item_RawAmber);
+//		
+//		GameRegistry.registerItem(item_RawSapphire, "rawsapphire");
+//		GameRegistry.registerItem(item_RawRuby, "rawruby");
+//		GameRegistry.registerItem(item_RawAmethyst, "rawamethyst");
+//		GameRegistry.registerItem(item_RawAmber, "rawamber");
+//		
+//		GameRegistry.registerBlock(block_SapphireOre, "sapphireore");
+//		GameRegistry.registerBlock(block_RubyOre, "rubyore");
+//		GameRegistry.registerBlock(block_AmethystOre, "amethystore");
+//		GameRegistry.registerBlock(block_AmberOre, "amber ore");
 		
 		block_CrestMount = new CrestMount().setHardness(4.0F)
 				.setStepSound(Block.soundTypeStone).setBlockName("CrestMount")
@@ -202,7 +265,7 @@ public class TinkersDefense {
 				new Object[] { "xxx", "-i-", "---", 'x',
 						new ItemStack(TinkerTools.toughRod, 1, 1), 'i',
 						new ItemStack(TinkerTools.toolRod, 1, 1) });
-
+		
 		block_ArmorAnvil = new FinishingAnvil().setHardness(4.0F)
 				.setStepSound(Block.soundTypeAnvil).setBlockName("ArmorAnvil")
 				.setCreativeTab(tabName);
@@ -210,6 +273,11 @@ public class TinkersDefense {
 		GameRegistry.registerBlock(block_ArmorAnvil, "Block_ArmorAnvil");
 		GameRegistry.registerTileEntity(TileEntity_FinishingAnvil.class,
 				"Tile_ArmorAnvil");
+		
+		GameRegistry.addShapedRecipe(new ItemStack(block_ArmorAnvil), 
+				new Object[] { "ai-", "lr-", "---", 'r',
+						new ItemStack(TinkerTools.toughRod, 1, 0), 'a',
+						Blocks.anvil, 'i', Items.iron_ingot, 'l', Blocks.log });
 
 		block_JewelersBench = new JewelersBench().setHardness(4.0F)
 				.setStepSound(Block.soundTypeWood)
@@ -218,13 +286,6 @@ public class TinkersDefense {
 		GameRegistry.registerBlock(block_JewelersBench, "Block_JewelersBench");
 		GameRegistry.registerTileEntity(TileEntity_JewelersBench.class,
 				"Tile_JewelersBench");
-
-		NetworkRegistry.INSTANCE.registerGuiHandler(TinkersDefense.instance,
-				new CommonProxy());
-		MinecraftForge.EVENT_BUS.register(this);
-		
-		tabIcon = new Item().setMaxStackSize(1).setCreativeTab(tabName).setUnlocalizedName("tabIcon").setTextureName(Reference.MOD_ID + ":Icon");
-		GameRegistry.registerItem(tabIcon, "tabIcon");
 		
 		item_AeonSteelIngot = new Item().setCreativeTab(tabName)
 				.setMaxStackSize(64).setUnlocalizedName("AeonsteelIngot")
@@ -319,11 +380,11 @@ public class TinkersDefense {
 		//Candy Canes
 		item_RedMintcane = new Item().setCreativeTab(tabName)
 				.setMaxStackSize(64).setUnlocalizedName("RedMintcane")
-				.setTextureName(Reference.MOD_ID + ":RedMintcane");
+				.setTextureName(Reference.MOD_ID + ":redmintcane");
 		
 		item_RedMintIngot = new Item().setCreativeTab(tabName)
 				.setMaxStackSize(64).setUnlocalizedName("RedMintIngot")
-				.setTextureName(Reference.MOD_ID + ":RedMintIngot");
+				.setTextureName(Reference.MOD_ID + ":redmintingot");
 		
 		GameRegistry.registerItem(item_RedMintcane, "RedMintCane");
 		GameRegistry.registerItem(item_RedMintIngot, "RedMintIngot");
@@ -331,9 +392,9 @@ public class TinkersDefense {
 		block_RedMintBlock = new RedMintBlock(Material.iron)
 				.setHardness(4.0F).setStepSound(Block.soundTypeMetal)
 				.setBlockName("RedMintBlock").setCreativeTab(tabName)
-				.setBlockTextureName(Reference.MOD_ID + ":RedMintBlock");
+				.setBlockTextureName(Reference.MOD_ID + ":redmintblock");
 
-		GameRegistry.registerBlock(block_RedMintBlock, "RedMintblock");
+		GameRegistry.registerBlock(block_RedMintBlock, "redmintblock");
 
 		GameRegistry
 				.addShapedRecipe(new ItemStack(block_RedMintBlock),
@@ -353,11 +414,11 @@ public class TinkersDefense {
 		
 		item_GreenMintcane = new Item().setCreativeTab(tabName)
 				.setMaxStackSize(64).setUnlocalizedName("GreenMintcane")
-				.setTextureName(Reference.MOD_ID + ":GreenMintcane");
+				.setTextureName(Reference.MOD_ID + ":greenmintcane");
 		
 		item_GreenMintIngot = new Item().setCreativeTab(tabName)
 				.setMaxStackSize(64).setUnlocalizedName("GreenMintIngot")
-				.setTextureName(Reference.MOD_ID + ":GreenMintIngot");
+				.setTextureName(Reference.MOD_ID + ":greenmintingot");
 		
 		GameRegistry.registerItem(item_GreenMintcane, "GreenMintCane");
 		GameRegistry.registerItem(item_GreenMintIngot, "GreenMintIngot");
@@ -365,7 +426,7 @@ public class TinkersDefense {
 		block_GreenMintBlock = new GreenMintBlock(Material.iron)
 				.setHardness(4.0F).setStepSound(Block.soundTypeMetal)
 				.setBlockName("GreenMintBlock").setCreativeTab(tabName)
-				.setBlockTextureName(Reference.MOD_ID + ":GreenMintBlock");
+				.setBlockTextureName(Reference.MOD_ID + ":greenmintblock");
 
 		GameRegistry.registerBlock(block_GreenMintBlock, "GreenMintblock");
 
@@ -388,15 +449,25 @@ public class TinkersDefense {
 
 		tool_shears = new Shears();
 		tool_wrench = new TinkerWrench();
-		tool_sheath = new Sheath();
-		tool_mask = new Mask();
+//		tool_sheath = new Sheath();
+//		tool_mask = new Mask();
 		
-		tool_zweihander = new TinkerZweihander(0);
+//		tool_zweihander = new TinkerZweihander(0);
 		
 		armor_TinkerHelm = new TinkersHelm();
 		armor_TinkerBreastplate = new TinkersBreastplate();
 		armor_TinkerGrieves = new TinkersGrieves();
 		armor_TinkerSabatons = new TinkersSabatons();
+		
+		armor_TinkerRobe = new TinkersRobe();
+		armor_TinkerShawl = new TinkersShawl();
+		armor_TinkerHood = new TinkersHood();
+		armor_TinkerShoes = new TinkersShoes();
+		
+		armor_TinkerCoif = new TinkersCoif();
+		armor_TinkerHalberd = new TinkersHalberd();
+		armor_TinkerChausses = new TinkersChausses();
+		armor_TinkerBoots = new TinkersBoots();
 		
 		//Register Tools
 		
@@ -405,27 +476,48 @@ public class TinkersDefense {
 		
 		GameRegistry.registerItem(tool_shears, "Tinker Shears");
 		GameRegistry.registerItem(tool_wrench, "Tinker Wrench");
-		GameRegistry.registerItem(tool_sheath, "Sheath");
-		GameRegistry.registerItem(tool_mask, "Mask");
+//		GameRegistry.registerItem(tool_sheath, "Sheath");
+//		GameRegistry.registerItem(tool_mask, "Mask");
+//		GameRegistry.registerItem(tool_zweihander, "Zweihander");
 		
-		GameRegistry.registerItem(tool_zweihander, "Zweihander");
 		GameRegistry.registerItem(armor_TinkerHelm,"tinkerhelm");
 		GameRegistry.registerItem(armor_TinkerBreastplate,"tinkerbreastplate");
 		GameRegistry.registerItem(armor_TinkerGrieves,"tinkergrieves");
 		GameRegistry.registerItem(armor_TinkerSabatons,"tinkersabatons");
+		
+		GameRegistry.registerItem(armor_TinkerCoif,"tinkercoif");
+		GameRegistry.registerItem(armor_TinkerHalberd,"tinkerhalberd");
+		GameRegistry.registerItem(armor_TinkerChausses,"tinkerchausses");
+		GameRegistry.registerItem(armor_TinkerBoots,"tinkerboots");
+		
+		GameRegistry.registerItem(armor_TinkerRobe, "tinkerrobe");
+		GameRegistry.registerItem(armor_TinkerShawl, "tinkershawl");
+		GameRegistry.registerItem(armor_TinkerHood, "tinkerhood");
+		GameRegistry.registerItem(armor_TinkerShoes, "tinkershoes");
 		
 		//Add Tools to TiCo directory
 		TConstructRegistry.addItemToDirectory("Round Shield", tool_roundShield);
 		TConstructRegistry.addItemToDirectory("Heater Shield", tool_heaterShield);
 		TConstructRegistry.addItemToDirectory("Tinker Shears", tool_shears);
 		TConstructRegistry.addItemToDirectory("Tinker Wrench", tool_wrench);
-		TConstructRegistry.addItemToDirectory("Sheath", tool_sheath);
-		TConstructRegistry.addItemToDirectory("Mask", tool_mask);
-		TConstructRegistry.addItemToDirectory("Zweihander", tool_zweihander);
+//		TConstructRegistry.addItemToDirectory("Sheath", tool_sheath);
+//		TConstructRegistry.addItemToDirectory("Mask", tool_mask);
+//		TConstructRegistry.addItemToDirectory("Zweihander", tool_zweihander);
+		
 		TConstructRegistry.addItemToDirectory("tinkerhelm", armor_TinkerHelm);
 		TConstructRegistry.addItemToDirectory("tinkerbreastplate", armor_TinkerBreastplate);
 		TConstructRegistry.addItemToDirectory("tinkergrieves", armor_TinkerGrieves);
 		TConstructRegistry.addItemToDirectory("tinkersabatons", armor_TinkerSabatons);
+		
+		TConstructRegistry.addItemToDirectory("tinkercoif", armor_TinkerCoif);
+		TConstructRegistry.addItemToDirectory("tinkerhalberd", armor_TinkerHalberd);
+		TConstructRegistry.addItemToDirectory("tinkerchausses", armor_TinkerChausses);
+		TConstructRegistry.addItemToDirectory("tinkerboots", armor_TinkerBoots);
+		
+		TConstructRegistry.addItemToDirectory("tinkerrobe", armor_TinkerRobe);
+		TConstructRegistry.addItemToDirectory("tinkershawl", armor_TinkerShawl);
+		TConstructRegistry.addItemToDirectory("tinkerhood", armor_TinkerHood);
+		TConstructRegistry.addItemToDirectory("tinkershoes", armor_TinkerShoes);
 
 		woodPattern = new TD_Patterns("pattern_", "Pattern");
 		metalPattern = new TD_Patterns("cast_", "MetalPattern");
@@ -445,8 +537,8 @@ public class TinkersDefense {
 		// Renderers
 		proxy.registerRenderers();
 		 
-		 item_ChainArmor = new ChainArmor(ArmorMaterial.IRON, 4, 1).setUnlocalizedName("Chain_Armor");
-		 GameRegistry.registerItem(item_ChainArmor,"Chain Armor");
+//		 item_ChainArmor = new ChainArmor(ArmorMaterial.IRON, 4, 1).setUnlocalizedName("Chain_Armor");
+//		 GameRegistry.registerItem(item_ChainArmor,"Chain Armor");
 		
 		//tool_Sheath = new Sheath().setUnlocalizedName("Sheath");
 		
@@ -461,10 +553,13 @@ public class TinkersDefense {
 	public void init(FMLInitializationEvent e) {
 		//System.out.print(Reference.MOD_ID);
 		
+		//flowermod.RegisterRecipes();
+		//flowermod.RegisterModifiers();
+		
 		StencilBuilder.registerStencil(50, woodPattern, 0); // rivets
 		StencilBuilder.registerStencil(51, woodPattern, 1); // clasp
 		StencilBuilder.registerStencil(52, woodPattern, 2); // armorplate
-		//StencilBuilder.registerStencil(53, woodPattern, 3); // cloth
+		StencilBuilder.registerStencil(53, woodPattern, 3); // cloth
 		StencilBuilder.registerStencil(54, woodPattern, 4);	// chainmaille
 
 		PatternBuilder.instance.addToolPattern(woodPattern);
@@ -490,10 +585,12 @@ public class TinkersDefense {
 		//buildParts(partCloth, 3);
 		buildParts(partChainmaille, 4);
 		
+		mods.init();
+		
 		PatternBuilder pb = PatternBuilder.instance;
 		
 		TConstructClientRegistry.toolButtons
-				.add(TConstructClientRegistry.toolButtons.size(),
+				.add(
 						new ToolGuiElement(
 								1,
 								0,
@@ -505,22 +602,16 @@ public class TinkersDefense {
 								StatCollector
 										.translateToLocal("gui.toolstation.roundshield.desc"),
 								"tinkersdefense", "textures/gui/icons.png"));
-		TConstructClientRegistry.tierTwoButtons
-				.add(TConstructClientRegistry.tierTwoButtons.size(),
-						new ToolGuiElement(
-								5,
-								0,
-								0,
-								new int[] { 9, 8, 9, 9 },
-								new int[] { 2, 3, 2, 3 },
-								StatCollector
-										.translateToLocal("gui.toolstation.heatershield.name"),
-								StatCollector
-										.translateToLocal("gui.toolstation.heatershield.desc"),
-								"tinkersdefense", "textures/gui/icons.png"));
 		
+		ToolGuiElement button2 = new ToolGuiElement(5,0,0,new int[] { 9, 8, 9, 9 },new int[] { 2, 3, 2, 3 },StatCollector.translateToLocal("gui.toolstation.heatershield.name"),StatCollector.translateToLocal("gui.toolstation.heatershield.desc"),"tinkersdefense:", "textures/gui/icons.png");
+		TConstructClientRegistry.tierTwoButtons.add(button2);
 		
-
+		TConstructClientRegistry.stencilButtons2.add(new StencilGuiElement(0, 0, 50, "tinkersdefense", "textures/gui/icons.png"));
+		TConstructClientRegistry.stencilButtons2.add(new StencilGuiElement(0, 0, 51, "tinkersdefense", "textures/gui/icons.png"));
+		TConstructClientRegistry.stencilButtons2.add(new StencilGuiElement(0, 0, 52, "tinkersdefense", "textures/gui/icons.png"));
+		TConstructClientRegistry.stencilButtons2.add(new StencilGuiElement(0, 0, 53, "tinkersdefense", "textures/gui/icons.png"));
+		TConstructClientRegistry.stencilButtons2.add(new StencilGuiElement(0, 0, 54, "tinkersdefense", "textures/gui/icons.png"));
+		
 		// Aeonsteel
 		pb.registerMaterialSet("aeonsteel", new ItemStack(
 				TinkerTools.toolShard, 1, 10), new ItemStack(
@@ -656,8 +747,8 @@ public class TinkersDefense {
 		
 		TConstructClientRegistry.addMaterialRenderMapping(config.RedMintMatID, "tinker",
 				"RedMint", true);
-		TConstructRegistry.addToolMaterial(config.RedMintMatID, "RedMint", 4, 600, 800, 2,
-				1.6F, 0, -2f, DARK_RED.toString(), 0xFF0000);
+		TConstructRegistry.addToolMaterial(config.RedMintMatID, "RedMint", 1, 50, 10, 0,
+				0F, 0, 0f, DARK_RED.toString(), 0xFF0000);
 		TinkerTools.registerPatternMaterial("RedMintIngot", 2, "RedMint");
 		TConstructRegistry.addDefaultToolPartMaterial(config.RedMintMatID);
 
@@ -689,8 +780,8 @@ public class TinkersDefense {
 		
 		TConstructClientRegistry.addMaterialRenderMapping(config.GreenMintMatID, "tinker",
 				"GreenMint", true);
-		TConstructRegistry.addToolMaterial(config.GreenMintMatID, "GreenMint", 4, 600, 800, 2,
-				1.6F, 0, -2f, DARK_RED.toString(), 0x5bde4b);
+		TConstructRegistry.addToolMaterial(config.GreenMintMatID, "GreenMint", 1, 50, 10, 0,
+				0F, 0, 0f, DARK_RED.toString(), 0x5bde4b);
 		TinkerTools.registerPatternMaterial("GreenMintIngot", 2, "GreenMint");
 		TConstructRegistry.addDefaultToolPartMaterial(config.GreenMintMatID);
 
@@ -752,25 +843,44 @@ public class TinkersDefense {
 				TinkerTools.binding, TinkerTools.knifeBlade);
 		
 		//Zweihander
-		TConstructRegistry.addToolRecipe(tool_zweihander, TinkerTools.largeSwordBlade,
-				TinkerTools.toughRod, TinkerTools.wideGuard, TinkerTools.swordBlade);
+//		TConstructRegistry.addToolRecipe(tool_zweihander, TinkerTools.largeSwordBlade,
+//				TinkerTools.toughRod, TinkerTools.wideGuard, TinkerTools.swordBlade);
 		
 		//Armor
-		TConstructRegistry.addToolRecipe(tool_sheath, partArmorplate,TinkerTools.toolRod, partCloth, partClasp);
-		TConstructRegistry.addToolRecipe(tool_mask, partArmorplate, partCloth, partClasp);
+//		TConstructRegistry.addToolRecipe(tool_sheath, partArmorplate,TinkerTools.toolRod, partCloth, partClasp);
+//		TConstructRegistry.addToolRecipe(tool_mask, partArmorplate, partCloth, partClasp);
 
 		TConstructRegistry.addToolRecipe(armor_TinkerHelm, TinkerTools.frypanHead, TinkerTools.toughRod, partArmorplate);
 		TConstructRegistry.addToolRecipe(armor_TinkerBreastplate, TinkerTools.largePlate, TinkerTools.toughRod, partArmorplate, partChainmaille);
 		TConstructRegistry.addToolRecipe(armor_TinkerGrieves, partArmorplate, TinkerTools.toughRod, partChainmaille, partArmorplate);
 		TConstructRegistry.addToolRecipe(armor_TinkerSabatons, partArmorplate, TinkerTools.toughRod, partArmorplate, partCloth);
 
-		tcInject = new Injector(0,TinkerTools.broadsword);
-		GameRegistry.registerItem(tcInject, "debugger");
+		TConstructRegistry.addToolRecipe(armor_TinkerRobe, partCloth, partCloth);
+		TConstructRegistry.addToolRecipe(armor_TinkerShawl, partCloth, partCloth, partClasp);
+		TConstructRegistry.addToolRecipe(armor_TinkerHood, partCloth, partCloth, partRivet);
+		TConstructRegistry.addToolRecipe(armor_TinkerShoes, partCloth, partClasp, partRivet);
+		
+		TConstructRegistry.addToolRecipe(armor_TinkerCoif, partChainmaille, partCloth, TinkerTools.toughRod);
+		TConstructRegistry.addToolRecipe(armor_TinkerHalberd, partChainmaille, partArmorplate, partRivet);
+		TConstructRegistry.addToolRecipe(armor_TinkerChausses, partChainmaille, partArmorplate);
+		TConstructRegistry.addToolRecipe(armor_TinkerBoots, partChainmaille, partCloth, partRivet);
+		
+		tcInject =  new ArrayList<Injector>();
+		
+		for(int i = 0; i < TConstructRegistry.tools.size(); i++)
+		{
+			if(!(TConstructRegistry.tools.get(i) instanceof Injector))
+			{
+				tcInject.add(new Injector(i,TConstructRegistry.tools.get(i), injectLoc));
+				GameRegistry.registerItem(tcInject.get(i), "debugger_"+TConstructRegistry.tools.get(i).getLocalizedToolName());
+			}
+		}
 	}
 
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent e) {
-
+		List list = ModifyBuilder.instance.itemModifiers;
+		list = ModifyBuilder.instance.itemModifiers;
 	}
 
 	public void castMolten(Fluid fluid, int ID) {
@@ -867,7 +977,22 @@ public class TinkersDefense {
 				new ItemStack(TinkerTools.arrowhead, 1, ID),
 				new FluidStack(fluid, (int) (144 * 1.0D)),
 				TConstructRegistry.getItemStack("arrowheadCast"), 50);
-
+		TConstructRegistry.instance.getTableCasting().addCastingRecipe(
+				new ItemStack(partArmorplate, 1, ID),
+				new FluidStack(fluid, (int) (144 * 4.0D)),
+				new ItemStack(metalPattern, 1, 2), 50);
+		TConstructRegistry.instance.getTableCasting().addCastingRecipe(
+				new ItemStack(partRivet, 1, ID),
+				new FluidStack(fluid, (int) (144 * 0.5D)),
+				new ItemStack(metalPattern, 1, 0), 50);
+		TConstructRegistry.instance.getTableCasting().addCastingRecipe(
+				new ItemStack(partClasp, 1, ID),
+				new FluidStack(fluid, (int) (144 * 1.0D)),
+				new ItemStack(metalPattern, 1, 1), 50);
+		TConstructRegistry.instance.getTableCasting().addCastingRecipe(
+				new ItemStack(partChainmaille, 1, ID),
+				new FluidStack(fluid, (int) (144 * 4.0D)),
+				new ItemStack(metalPattern, 1, 3), 50);
 	}
 
 	public void buildParts(Item item, int meta) {
@@ -910,9 +1035,9 @@ public class TinkersDefense {
 	{
 		int color[] = new int[3];
 		
-		color[0] = Integer.parseUnsignedInt(hex.substring(0, 2), 16);
-		color[1] = Integer.parseUnsignedInt(hex.substring(2, 4), 16);
-		color[2] = Integer.parseUnsignedInt(hex.substring(4, 6), 16);
+		color[0] = Integer.parseInt(hex.substring(0, 2), 16);
+		color[1] = Integer.parseInt(hex.substring(2, 4), 16);
+		color[2] = Integer.parseInt(hex.substring(4, 6), 16);
 		
 		return color;
 	}

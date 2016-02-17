@@ -20,13 +20,20 @@ public class TD_Config
 	public int CrestLegendsID;
 	public int CrestBladesID;
 	
+	public int ArmorProtectionID;
+	
 	public int MaterialIndex;
+	
+	public boolean BotaniaAddon;
+	public int CorpseIvyModID;
 	
 	public TD_Config(FMLPreInitializationEvent e)
 	{
 		Configuration config = new Configuration(e.getSuggestedConfigurationFile());
 		
 		config.load();
+		
+		MaterialIndex = config.get("Material Index", "Highest material ID - TDefense - 206 MFR - 1001 ExtraTIC - 1024", 206).getInt();
 		
 		AeonsteelMatID = config.get("Material Configs", "Aeonsteel Material ID", 201).getInt();
 		QueensGoldMatID = config.get("Material Configs", "QueensGold Material ID", 202).getInt();
@@ -40,9 +47,10 @@ public class TD_Config
 		CrestLegendsID = config.get("Modifier Configs", "Crest of Legends ID", 21).getInt();
 		CrestLegendsID = config.get("Modifier Configs", "Crest of Legends ID", 22).getInt();
 		
-		MaterialIndex = config.get("Material Index", "Highest material ID - TDefense - 204 MFR - 1001 ExtraTIC - 1024", 204).getInt();
+		ArmorProtectionID = config.getInt("Protection ID", "Armor Modifier Configs", 40, 0, Integer.MAX_VALUE, "");
 		
-		
+		BotaniaAddon = config.getBoolean("Enable Botania Addon", "Botania Addon", true, "Still requires Botania to use");
+		CorpseIvyModID = config.getInt("Corpse Drinker Ivy Modifier ID", "Botania Addon", 60, 0, Integer.MAX_VALUE, "");
 		
 		config.save();
 	}
