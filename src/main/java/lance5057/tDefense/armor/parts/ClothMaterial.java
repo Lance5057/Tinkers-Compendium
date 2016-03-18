@@ -6,8 +6,8 @@ import tconstruct.library.tools.CustomMaterial;
 public class ClothMaterial extends CustomMaterial
 {
 
-	public ClothMaterial(int materialID, int value, ItemStack input,
-			ItemStack craftingItem, int color) {
+	public ClothMaterial(int materialID, int value, ItemStack input, ItemStack craftingItem, int color)
+	{
 		super(materialID, value, input, craftingItem, color);
 	}
 

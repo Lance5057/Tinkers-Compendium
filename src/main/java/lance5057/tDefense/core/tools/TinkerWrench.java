@@ -9,101 +9,115 @@ import tconstruct.library.tools.Weapon;
 import tconstruct.tools.TinkerTools;
 import buildcraft.api.tools.IToolWrench;
 
-@Optional.InterfaceList({
-	@Optional.Interface(modid = "buildcraft", iface = "buildcraft.api.tools.IToolWrench")
-})
-public class TinkerWrench extends Weapon implements IToolWrench {
-	int induceDamage = 0;
+@Optional.InterfaceList({@Optional.Interface(modid = "buildcraft", iface = "buildcraft.api.tools.IToolWrench")})
+public class TinkerWrench extends Weapon implements IToolWrench
+{
+	int	induceDamage	= 0;
 
-	public TinkerWrench() {
+	public TinkerWrench()
+	{
 		super(0);
 		this.setUnlocalizedName("tinkerwrench");
 	}
 
 	@Override
-	public Item getHeadItem() {
+	public Item getHeadItem()
+	{
 		return TinkerTools.handGuard;
 	}
 
 	@Override
-	public Item getHandleItem() {
+	public Item getHandleItem()
+	{
 		return TinkerTools.toolRod;
 	}
 
 	@Override
-	public Item getAccessoryItem() {
+	public Item getAccessoryItem()
+	{
 		return TinkerTools.binding;
 	}
 
 	@Override
-	public int durabilityTypeAccessory() {
+	public int durabilityTypeAccessory()
+	{
 		return 2;
 	}
 
 	@Override
-	public float getRepairCost() {
+	public float getRepairCost()
+	{
 		return 1.0f;
 	}
 
 	@Override
-	public float getDurabilityModifier() {
+	public float getDurabilityModifier()
+	{
 		return 0.1f;
 	}
 
 	@Override
-	public float getDamageModifier() {
+	public float getDamageModifier()
+	{
 		return 0.4f;
 	}
 
 	@Override
-	public int getPartAmount() {
+	public int getPartAmount()
+	{
 		return 3;
 	}
 
 	@Override
-	public String getIconSuffix(int partType) {
-		switch (partType) {
-		case 0:
-			return "_wrench_head";
-		case 1:
-			return "_wrench_head_broken";
-		case 2:
-			return "_wrench_handle";
-		case 3:
-			return "_wrench_binding";
-		default:
-			return "";
+	public String getIconSuffix(int partType)
+	{
+		switch(partType)
+		{
+			case 0:
+				return "_wrench_head";
+			case 1:
+				return "_wrench_head_broken";
+			case 2:
+				return "_wrench_handle";
+			case 3:
+				return "_wrench_binding";
+			default:
+				return "";
 		}
 	}
 
 	@Override
-	public String getEffectSuffix() {
+	public String getEffectSuffix()
+	{
 		return "_wrench_effect";
 	}
 
 	@Override
-	public String getDefaultFolder() {
+	public String getDefaultFolder()
+	{
 		return "wrench";
 	}
 
 	@Override
 	@Optional.Method(modid = "buildcraft")
-	public boolean canWrench(EntityPlayer player, int x, int y, int z) {
-		NBTTagCompound tags = player.inventory.getCurrentItem()
-				.getTagCompound().getCompoundTag("InfiTool");
+	public boolean canWrench(EntityPlayer player, int x, int y, int z)
+	{
+		NBTTagCompound tags = player.inventory.getCurrentItem().getTagCompound().getCompoundTag("InfiTool");
 
-		if (!tags.getBoolean("Broken")) {
+		if(!tags.getBoolean("Broken"))
+		{
 			return true;
 		}
 		return false;
 	}
 
 	@Override
-	public void wrenchUsed(EntityPlayer player, int x, int y, int z) {
+	@Optional.Method(modid = "buildcraft")
+	public void wrenchUsed(EntityPlayer player, int x, int y, int z)
+	{
 
 		player.swingItem();
-		AbilityHelper.damageTool(player.inventory.getCurrentItem(), 1, player,
-				false);
+		AbilityHelper.damageTool(player.inventory.getCurrentItem(), 1, player, false);
 
 	}
 }

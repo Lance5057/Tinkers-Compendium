@@ -11,88 +11,114 @@ import tconstruct.library.tools.AbilityHelper;
 import tconstruct.library.tools.ToolCore;
 import tconstruct.modifiers.tools.ModInteger;
 
-
 public class modifierProtection extends ModInteger
 {
-	String color;
-    String tooltipName = "";
-    int initialIncrease;
-    int secondaryIncrease;
-	
-    public modifierProtection(ItemStack[] items, int effect, int increase, String c)
-    {
-        super(items, effect, "Protection", increase, c, "Protection");
-        color = c;
-    }
+	String		color;
+	String		type;
+	String		tooltipName	= "";
+	int			initialIncrease;
+	int			secondaryIncrease;
+	String[]	types		= {"Protection", "Fire Protection", "Blast Protection", "Projectile Protection", "Featherfall"};
 
-    @Override
-    protected boolean canModify (ItemStack tool, ItemStack[] input)
-    {
-    	if (tool.getItem() instanceof ToolCore)
-        {
-    		List list = Arrays.asList(((ToolCore)tool.getItem()).getTraits());
-    		if (list.contains("heavyarmor") || list.contains("lightarmor"))
-    		{
-    			return true;
-    		}	
-        }
-    	return false;
-    }
-    
-    @Override
-    public void modify (ItemStack[] input, ItemStack tool)
-    {
-        NBTTagCompound tags = tool.getTagCompound().getCompoundTag("InfiTool");
-        if (tags.hasKey(key))
-        {
-            int increase = tags.getInteger(key);
-            increase += secondaryIncrease;
-            tags.setInteger(key, increase);
-        }
-        else
-        {
-            tags.setInteger(key, initialIncrease);
-        }
+	public modifierProtection(ItemStack[] items, int effect, int increase, String c, String t)
+	{
+		super(items, effect, t, increase, c, t);
+		color = c;
+		type = t;
+	}
 
-        int modifiers = tags.getInteger("Modifiers");
-        modifiers -= 1;
-        tags.setInteger("Modifiers", modifiers);
+	@Override
+	protected boolean canModify(ItemStack tool, ItemStack[] input)
+	{
+		if(tool.getItem() instanceof ToolCore)
+		{
+			List list = Arrays.asList(((ToolCore) tool.getItem()).getTraits());
+			NBTTagCompound tags = tool.getTagCompound().getCompoundTag("InfiTool");
 
-        int prot = tags.getInteger("Protection");
-        prot += 1;
-        tags.setInteger("Protection", prot);
+			if(list.contains("heavyarmor") || list.contains("lightarmor"))
+			{
+				if(type != types[4])
+				{
+					for(int i = 0; i < 4; i++)
+					{
+						if(tags.hasKey(types[i]))
+						{
+							if(types[i] != type)
+								return false;
+							if(types[i] == type && tags.getInteger(types[i]) > 5)
+								return false;
+						}
+					}
+					return true;
+				}
+				else if(type == types[4] && tags.getInteger(types[4]) < 5)
+				{
+					if(list.contains("feet"))
+					{
+						return true;
+					}
+					return false;
+				}
+			}
 
-        addToolTip(tool, color + tooltipName, color + key);
-    }
+		}
+		return false;
+	}
 
-    protected int addToolTip (ItemStack tool, String tooltip, String modifierTip)
-    {
-        NBTTagCompound tags = tool.getTagCompound().getCompoundTag("InfiTool");
-        int tipNum = 0;
-        while (true)
-        {
-            tipNum++;
-            String tip = "Tooltip" + tipNum;
-            if (!tags.hasKey(tip))
-            {
-                tags.setString(tip, "");
-                String modTip = "ModifierTip" + tipNum;
-                String tag = tags.getString(modTip);
-                tags.setString(modTip, getProperName(modifierTip, tag));
-                return tipNum;
-            }
-            else
-            {
-                String modTip = "ModifierTip" + tipNum;
-                String tag = tags.getString(modTip);
-                if (tag.contains(modifierTip))
-                {
-                    tags.setString(tip, "");
-                    tag = tags.getString(modTip);
-                    tags.setString(modTip, getProperName(modifierTip, tag));
-                    return tipNum;
-                }
-            }
-        }
-    }
+	@Override
+	public void modify(ItemStack[] input, ItemStack tool)
+	{
+		NBTTagCompound tags = tool.getTagCompound().getCompoundTag("InfiTool");
+		if(tags.hasKey(key))
+		{
+			int increase = tags.getInteger(key);
+			increase += secondaryIncrease;
+			tags.setInteger(key, increase);
+		}
+		else
+		{
+			tags.setInteger(key, initialIncrease);
+		}
+
+		int modifiers = tags.getInteger("Modifiers");
+		modifiers -= 1;
+		tags.setInteger("Modifiers", modifiers);
+
+		int prot = tags.getInteger(type);
+		prot += 1;
+		tags.setInteger(type, prot);
+
+		addToolTip(tool, color + tooltipName, color + key);
+	}
+
+	protected int addToolTip(ItemStack tool, String tooltip, String modifierTip)
+	{
+		NBTTagCompound tags = tool.getTagCompound().getCompoundTag("InfiTool");
+		int tipNum = 0;
+		while(true)
+		{
+			tipNum++;
+			String tip = "Tooltip" + tipNum;
+			if(!tags.hasKey(tip))
+			{
+				tags.setString(tip, "");
+				String modTip = "ModifierTip" + tipNum;
+				String tag = tags.getString(modTip);
+				tags.setString(modTip, getProperName(modifierTip, tag));
+				return tipNum;
+			}
+			else
+			{
+				String modTip = "ModifierTip" + tipNum;
+				String tag = tags.getString(modTip);
+				if(tag.contains(modifierTip))
+				{
+					tags.setString(tip, "");
+					tag = tags.getString(modTip);
+					tags.setString(modTip, getProperName(modifierTip, tag));
+					return tipNum;
+				}
+			}
+		}
+	}
 }

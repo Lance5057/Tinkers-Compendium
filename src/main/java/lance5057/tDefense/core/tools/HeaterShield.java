@@ -15,89 +15,105 @@ import tconstruct.tools.TinkerTools;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class HeaterShield extends Shield {
-	int induceDamage = 0;
+public class HeaterShield extends Shield
+{
+	int	induceDamage	= 0;
 
-	public HeaterShield() {
+	public HeaterShield()
+	{
 		super(0);
 		this.setUnlocalizedName("heatershield");
 	}
 
 	@Override
-	public Item getHeadItem() {
+	public Item getHeadItem()
+	{
 		return TinkersDefense.partArmorplate;
 	}
 
 	@Override
-	public Item getHandleItem() {
+	public Item getHandleItem()
+	{
 		return TinkerTools.toughRod;
 	}
 
 	@Override
-	public Item getAccessoryItem() {
+	public Item getAccessoryItem()
+	{
 		return TinkersDefense.partArmorplate;
 	}
 
 	@Override
-	public Item getExtraItem() {
+	public Item getExtraItem()
+	{
 		return TinkersDefense.partRivet;
 	}
 
 	@Override
-	public int durabilityTypeAccessory() {
+	public int durabilityTypeAccessory()
+	{
 		return 2;
 	}
 
 	@Override
-	public float getRepairCost() {
+	public float getRepairCost()
+	{
 		return 4.0f;
 	}
 
 	@Override
-	public float getDurabilityModifier() {
+	public float getDurabilityModifier()
+	{
 		return 2.5f;
 	}
 
 	@Override
-	public float breakSpeedModifier() {
+	public float breakSpeedModifier()
+	{
 		return 0.4f;
 	}
 
 	@Override
-	public float getDamageModifier() {
+	public float getDamageModifier()
+	{
 		return 1.4f;
 	}
 
 	@Override
-	public int getPartAmount() {
+	public int getPartAmount()
+	{
 		return 4;
 	}
 
 	@Override
-	public String getIconSuffix(int partType) {
-		switch (partType) {
-		case 0:
-			return "_shield_face";
-		case 1:
-			return "_shield_face_broken";
-		case 2:
-			return "_shield_edge";
-		case 3:
-			return "_shield_face_other";
-		case 4:
-			return "_shield_binding";
-		default:
-			return "";
+	public String getIconSuffix(int partType)
+	{
+		switch(partType)
+		{
+			case 0:
+				return "_shield_face";
+			case 1:
+				return "_shield_face_broken";
+			case 2:
+				return "_shield_edge";
+			case 3:
+				return "_shield_face_other";
+			case 4:
+				return "_shield_binding";
+			default:
+				return "";
 		}
 	}
 
 	@Override
-	public String getEffectSuffix() {
+	public String getEffectSuffix()
+	{
 		return "_shield_effect";
 	}
 
 	@Override
-	public String getDefaultFolder() {
+	public String getDefaultFolder()
+	{
 		return "heatershield";
 	}
 
@@ -119,14 +135,15 @@ public class HeaterShield extends Shield {
 	// }
 
 	@Override
-	public void onUpdate(ItemStack stack, World world, Entity entity, int par4,
-			boolean par5) {
+	public void onUpdate(ItemStack stack, World world, Entity entity, int par4, boolean par5)
+	{
 		super.onUpdate(stack, world, entity, par4, par5);
 
 	}
 
 	@Override
-	protected String getHarvestType() {
+	protected String getHarvestType()
+	{
 		return "shield";
 	}
 }

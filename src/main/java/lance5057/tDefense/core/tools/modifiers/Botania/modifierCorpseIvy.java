@@ -11,57 +11,57 @@ import tconstruct.modifiers.tools.ItemModTypeFilter;
 
 public class modifierCorpseIvy extends ItemModTypeFilter
 {
-    String tooltipName;
-    String guiType;
+	String	tooltipName;
+	String	guiType;
 
-    public modifierCorpseIvy(String type, int effect, ItemStack[] items, int[] values)
-    {
-        super(effect, "corpseivy", items, values);
-        tooltipName = "\u00A7fCorpse Drinker";
-        guiType = type;
-    }
+	public modifierCorpseIvy(String type, int effect, ItemStack[] items, int[] values)
+	{
+		super(effect, "corpseivy", items, values);
+		tooltipName = "\u00A7fCorpse Drinker";
+		guiType = type;
+	}
 
-    @Override
-    protected boolean canModify (ItemStack tool, ItemStack[] input)
-    {
-        NBTTagCompound tags = tool.getTagCompound().getCompoundTag("InfiTool");
-        
-        List list = Arrays.asList(((ToolCore)tool.getItem()).getTraits());
-		if (list.contains("weapon"))
+	@Override
+	protected boolean canModify(ItemStack tool, ItemStack[] input)
+	{
+		NBTTagCompound tags = tool.getTagCompound().getCompoundTag("InfiTool");
+
+		List list = Arrays.asList(((ToolCore) tool.getItem()).getTraits());
+		if(list.contains("weapon"))
 		{
-            return tags.getInteger("Modifiers") > 0;
+			return tags.getInteger("Modifiers") > 0;
 		}
-        
-        return false;
-    }
 
-    @Override
-    public void modify (ItemStack[] input, ItemStack tool)
-    {
-        NBTTagCompound tags = tool.getTagCompound().getCompoundTag("InfiTool");
-        int increase = matchingAmount(input);
-        if (tags.hasKey(key))
-        {
-            int[] keyPair = tags.getIntArray(key);
+		return false;
+	}
 
-            updateModTag(tool, keyPair);
+	@Override
+	public void modify(ItemStack[] input, ItemStack tool)
+	{
+		NBTTagCompound tags = tool.getTagCompound().getCompoundTag("InfiTool");
+		int increase = matchingAmount(input);
+		if(tags.hasKey(key))
+		{
+			int[] keyPair = tags.getIntArray(key);
 
-        }
-        else
-        {
-            int modifiers = tags.getInteger("Modifiers");
-            modifiers -= 1;
-            tags.setInteger("Modifiers", modifiers);
-            String modName = "\u00A76" + guiType;
-            int tooltipIndex = addToolTip(tool, tooltipName, modName);
-        }
-    }
+			updateModTag(tool, keyPair);
 
-    void updateModTag (ItemStack tool, int[] keys)
-    {
-        NBTTagCompound tags = tool.getTagCompound().getCompoundTag("InfiTool");
-        String tip = "ModifierTip" + keys[2];
-        String modName = "\u00A76" + guiType;
-        tags.setString(tip, modName);
-    }
+		}
+		else
+		{
+			int modifiers = tags.getInteger("Modifiers");
+			modifiers -= 1;
+			tags.setInteger("Modifiers", modifiers);
+			String modName = "\u00A76" + guiType;
+			int tooltipIndex = addToolTip(tool, tooltipName, modName);
+		}
+	}
+
+	void updateModTag(ItemStack tool, int[] keys)
+	{
+		NBTTagCompound tags = tool.getTagCompound().getCompoundTag("InfiTool");
+		String tip = "ModifierTip" + keys[2];
+		String modName = "\u00A76" + guiType;
+		tags.setString(tip, modName);
+	}
 }

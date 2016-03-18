@@ -13,60 +13,58 @@ import net.minecraft.world.World;
 import cpw.mods.fml.common.network.IGuiHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 
-public class CommonProxy implements IGuiHandler 
+public class CommonProxy implements IGuiHandler
 {
-        public void registerRenderers() 
-        {
-        }
-        
-        public void registerTileEntitySpecialRenderer()
-        {
-        	
-        }
-        
-        public EntityPlayer getPlayerEntity(MessageContext ctx) 
-        {
-        	return ctx.getServerHandler().playerEntity;
-        }
-        
-        public ModelBiped getArmorModel(int id)
-        { 
-        	return null;
-        }
+	public void registerRenderers()
+	{
+	}
 
-        public World getClientWorld()
-        {
-        return null;
-        }
+	public void registerTileEntitySpecialRenderer()
+	{
 
-		@Override
-		public Object getServerGuiElement(int ID, EntityPlayer player,
-				World world, int x, int y, int z) 
+	}
+
+	public EntityPlayer getPlayerEntity(MessageContext ctx)
+	{
+		return ctx.getServerHandler().playerEntity;
+	}
+
+	public ModelBiped getArmorModel(int id)
+	{
+		return null;
+	}
+
+	public World getClientWorld()
+	{
+		return null;
+	}
+
+	@Override
+	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
+	{
+		if(ID == TinkersDefense.GUI_CREST_INV)
 		{
-			if (ID == TinkersDefense.GUI_CREST_INV)
-			{
-				return new Container_CrestMount(player.inventory, (TileEntity_CrestMount)world.getTileEntity(x, y, z));
-			}
-			if (ID == TinkersDefense.GUI_ANVIL_INV)
-			{
-				return new Container_FinishingAnvil(player.inventory, (TileEntity_FinishingAnvil)world.getTileEntity(x, y, z));
-			}
-			
-			return null;
+			return new Container_CrestMount(player.inventory, (TileEntity_CrestMount) world.getTileEntity(x, y, z));
+		}
+		if(ID == TinkersDefense.GUI_ANVIL_INV)
+		{
+			return new Container_FinishingAnvil(player.inventory, (TileEntity_FinishingAnvil) world.getTileEntity(x, y, z));
 		}
 
-		@Override
-		public Object getClientGuiElement(int ID, EntityPlayer player,
-				World world, int x, int y, int z) 
+		return null;
+	}
+
+	@Override
+	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
+	{
+		if(ID == TinkersDefense.GUI_CREST_INV)
 		{
-			if (ID == TinkersDefense.GUI_CREST_INV)
-			{
-				return new Gui_CrestMount(player.inventory, (TileEntity_CrestMount)world.getTileEntity(x, y, z));
-			}
-			if (ID == TinkersDefense.GUI_ANVIL_INV)
-			{
-				return new Gui_FinishingAnvil(player.inventory, (TileEntity_FinishingAnvil)world.getTileEntity(x, y, z));
-			}
-			return null;
+			return new Gui_CrestMount(player.inventory, (TileEntity_CrestMount) world.getTileEntity(x, y, z));
 		}
-} 
+		if(ID == TinkersDefense.GUI_ANVIL_INV)
+		{
+			return new Gui_FinishingAnvil(player.inventory, (TileEntity_FinishingAnvil) world.getTileEntity(x, y, z));
+		}
+		return null;
+	}
+}

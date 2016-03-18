@@ -26,36 +26,38 @@ import cpw.mods.fml.common.Optional;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-@Optional.InterfaceList({
-		@Optional.Interface(modid = "battlegear2", iface = "mods.battlegear2.api.ISheathed"),
-		@Optional.Interface(modid = "battlegear2", iface = "mods.battlegear2.api.shield.IArrowCatcher"),
-		@Optional.Interface(modid = "battlegear2", iface = "mods.battlegear2.api.shield.IArrowDisplay"),
-		@Optional.Interface(modid = "battlegear2", iface = "mods.battlegear2.api.shield.IShield") })
-public class Shield extends ToolCore implements IShield, ISheathed,
-		IArrowCatcher, IArrowDisplay {
-	public Shield(int baseDamage) {
+@Optional.InterfaceList({@Optional.Interface(modid = "battlegear2", iface = "mods.battlegear2.api.ISheathed"), @Optional.Interface(modid = "battlegear2", iface = "mods.battlegear2.api.shield.IArrowCatcher"), @Optional.Interface(modid = "battlegear2", iface = "mods.battlegear2.api.shield.IArrowDisplay"), @Optional.Interface(modid = "battlegear2", iface = "mods.battlegear2.api.shield.IShield")})
+public class Shield extends ToolCore implements IShield, ISheathed, IArrowCatcher, IArrowDisplay
+{
+	public Shield(int baseDamage)
+	{
 		super(baseDamage);
 	}
 
-	protected float baseSpeed() {
+	protected float baseSpeed()
+	{
 		return 1.5f;
 	}
 
-	protected float effectiveSpeed() {
+	protected float effectiveSpeed()
+	{
 		return 15f;
 	}
 
-	public float breakSpeedModifier() {
+	public float breakSpeedModifier()
+	{
 		return 1.0f;
 	}
 
 	@Override
-	public float getDigSpeed(ItemStack stack, Block block, int meta) {
-		if (stack.getTagCompound().getCompoundTag("InfiTool")
-				.getBoolean("Broken"))
+	public float getDigSpeed(ItemStack stack, Block block, int meta)
+	{
+		if(stack.getTagCompound().getCompoundTag("InfiTool").getBoolean("Broken"))
 			return 0.1f;
-		for (int i = 0; i < web.length; i++) {
-			if (web[i] == block.getMaterial()) {
+		for(int i = 0; i < web.length; i++)
+		{
+			if(web[i] == block.getMaterial())
+			{
 				return effectiveSpeed();
 			}
 		}
@@ -67,7 +69,8 @@ public class Shield extends ToolCore implements IShield, ISheathed,
 	 * is being used
 	 */
 	@Override
-	public EnumAction getItemUseAction(ItemStack par1ItemStack) {
+	public EnumAction getItemUseAction(ItemStack par1ItemStack)
+	{
 		return EnumAction.block;
 	}
 
@@ -75,7 +78,8 @@ public class Shield extends ToolCore implements IShield, ISheathed,
 	 * How long it takes to use or consume an item
 	 */
 	@Override
-	public int getMaxItemUseDuration(ItemStack par1ItemStack) {
+	public int getMaxItemUseDuration(ItemStack par1ItemStack)
+	{
 		return 72000;
 	}
 
@@ -84,16 +88,15 @@ public class Shield extends ToolCore implements IShield, ISheathed,
 	 * pressed. Args: itemStack, world, entityPlayer
 	 */
 	@Override
-	public ItemStack onItemRightClick(ItemStack stack, World world,
-			EntityPlayer player) {
+	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
+	{
 		player.setItemInUse(stack, this.getMaxItemUseDuration(stack));
 		return stack;
 	}
 
 	@Override
-	public boolean onItemUse(ItemStack stack, EntityPlayer player, World world,
-			int x, int y, int z, int side, float clickX, float clickY,
-			float clickZ) {
+	public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float clickX, float clickY, float clickZ)
+	{
 		return false;
 	}
 
@@ -101,27 +104,32 @@ public class Shield extends ToolCore implements IShield, ISheathed,
 	 * Returns if the item (tool) can harvest results from the block type.
 	 */
 	@Override
-	public boolean canHarvestBlock(Block block, ItemStack is) {
-		for (int i = 0; i < web.length; i++) {
-			if (block.getMaterial() == web[i])
+	public boolean canHarvestBlock(Block block, ItemStack is)
+	{
+		for(int i = 0; i < web.length; i++)
+		{
+			if(block.getMaterial() == web[i])
 				return true;
 		}
 		return super.canHarvestBlock(block, is);
 	}
 
-	protected Material[] getEffectiveMaterials() {
+	protected Material[] getEffectiveMaterials()
+	{
 		return web;
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void onUpdate(ItemStack stack, World world, Entity entity, int par4,
-			boolean par5) {
+	public void onUpdate(ItemStack stack, World world, Entity entity, int par4, boolean par5)
+	{
 		super.onUpdate(stack, world, entity, par4, par5);
-		if (entity instanceof EntityPlayerSP) {
+		if(entity instanceof EntityPlayerSP)
+		{
 			EntityPlayerSP player = (EntityPlayerSP) entity;
 			ItemStack usingItem = player.getItemInUse();
-			if (usingItem != null && usingItem.getItem() == this) {
+			if(usingItem != null && usingItem.getItem() == this)
+			{
 				player.movementInput.moveForward *= 2.5F;
 				player.movementInput.moveStrafe *= 2.5F;
 			}
@@ -129,36 +137,43 @@ public class Shield extends ToolCore implements IShield, ISheathed,
 	}
 
 	@Override
-	public String[] getTraits() {
-		return new String[] { "shield", "blocking" };
+	public String[] getTraits()
+	{
+		return new String[] {"shield", "blocking"};
 	}
 
-	public static Material[] web = new Material[] { Material.web,
-			Material.cloth, Material.coral, Material.cake };
-	public static Material[] none = new Material[0];
+	public static Material[]	web		= new Material[] {Material.web, Material.cloth, Material.coral, Material.cake};
+	public static Material[]	none	= new Material[0];
 
-	protected String getHarvestType() {
+	protected String getHarvestType()
+	{
 		return null;
 	}
 
 	@Override
 	@Optional.Method(modid = "battlegear2")
-	public int getArrowCount(ItemStack stack) {
-		if (stack.hasTagCompound() && stack.getTagCompound().hasKey("arrows")) {
+	public int getArrowCount(ItemStack stack)
+	{
+		if(stack.hasTagCompound() && stack.getTagCompound().hasKey("arrows"))
+		{
 			return stack.getTagCompound().getShort("arrows");
-		} else
+		}
+		else
 			return 0;
 	}
 
 	@Override
 	@Optional.Method(modid = "battlegear2")
-	public void setArrowCount(ItemStack stack, int count) {
-		if (!stack.hasTagCompound()) {
+	public void setArrowCount(ItemStack stack, int count)
+	{
+		if(!stack.hasTagCompound())
+		{
 			stack.setTagCompound(new NBTTagCompound());
 		}
 		// Should never happen, you would need A LOT of arrows for this to
 		// happen
-		if (count > Short.MAX_VALUE) {
+		if(count > Short.MAX_VALUE)
+		{
 			count = Short.MAX_VALUE;
 		}
 		stack.getTagCompound().setShort("arrows", (short) count);
@@ -167,9 +182,10 @@ public class Shield extends ToolCore implements IShield, ISheathed,
 
 	@Override
 	@Optional.Method(modid = "battlegear2")
-	public boolean catchArrow(ItemStack shield, EntityPlayer player,
-			IProjectile arrow) {
-		if (arrow instanceof EntityArrow) {
+	public boolean catchArrow(ItemStack shield, EntityPlayer player, IProjectile arrow)
+	{
+		if(arrow instanceof EntityArrow)
+		{
 			setArrowCount(shield, getArrowCount(shield) + 1);
 			player.setArrowCountInEntity(player.getArrowCountInEntity() - 1);
 			((EntityArrow) arrow).setDead();
@@ -180,107 +196,114 @@ public class Shield extends ToolCore implements IShield, ISheathed,
 
 	@Override
 	@Optional.Method(modid = "battlegear2")
-	public boolean sheatheOnBack(ItemStack item) {
+	public boolean sheatheOnBack(ItemStack item)
+	{
 		return true;
 	}
 
 	@Override
 	@Optional.Method(modid = "battlegear2")
-	public void blockAnimation(EntityPlayer player, float dmg) {
+	public void blockAnimation(EntityPlayer player, float dmg)
+	{
 		player.worldObj.playSoundAtEntity(player, "battlegear2:shield", 1, 1);
 	}
 
 	@Override
 	@Optional.Method(modid = "battlegear2")
-	public boolean canBlock(ItemStack shield, DamageSource source) {
+	public boolean canBlock(ItemStack shield, DamageSource source)
+	{
 		return !source.isUnblockable();
 	}
 
 	@Override
 	@Optional.Method(modid = "battlegear2")
-	public int getBashTimer(ItemStack arg0) {
+	public int getBashTimer(ItemStack arg0)
+	{
 		return 10;
 	}
 
 	@Override
 	@Optional.Method(modid = "battlegear2")
-	public float getBlockAngle(ItemStack arg0) {
+	public float getBlockAngle(ItemStack arg0)
+	{
 		return 60;
 	}
 
 	@Override
 	@Optional.Method(modid = "battlegear2")
-	public float getDamageDecayRate(ItemStack shield, float amount) {
+	public float getDamageDecayRate(ItemStack shield, float amount)
+	{
 		return 0;
 	}
 
 	@Override
 	@Optional.Method(modid = "battlegear2")
-	public float getDamageReduction(ItemStack arg0, DamageSource arg1) {
+	public float getDamageReduction(ItemStack arg0, DamageSource arg1)
+	{
 		return 1f;
 	}
 
 	@Override
 	@Optional.Method(modid = "battlegear2")
-	public float getDecayRate(ItemStack stack) {
+	public float getDecayRate(ItemStack stack)
+	{
 		NBTTagCompound tags = stack.getTagCompound();
-		float recovery = tags.getCompoundTag("InfiTool").getInteger(
-				"MiningSpeed") / 1.5f;
+		float recovery = tags.getCompoundTag("InfiTool").getInteger("MiningSpeed") / 1.5f;
 		return 10f / recovery;
 	}
 
 	@Override
 	@Optional.Method(modid = "battlegear2")
-	public float getRecoveryRate(ItemStack stack) {
+	public float getRecoveryRate(ItemStack stack)
+	{
 		NBTTagCompound tags = stack.getTagCompound();
-		float recovery = tags.getCompoundTag("InfiTool").getInteger(
-				"MiningSpeed") / 1.5f;
+		float recovery = tags.getCompoundTag("InfiTool").getInteger("MiningSpeed") / 1.5f;
 		return 10f / recovery;
 	}
 
 	@Override
-	public Item getAccessoryItem() {
+	public Item getAccessoryItem()
+	{
 		return null;
 	}
 
 	@Override
-	public String getDefaultFolder() {
+	public String getDefaultFolder()
+	{
 		return null;
 	}
 
 	@Override
-	public String getEffectSuffix() {
+	public String getEffectSuffix()
+	{
 		return null;
 	}
 
 	@Override
-	public Item getHeadItem() {
+	public Item getHeadItem()
+	{
 		return null;
 	}
 
 	@Override
-	public String getIconSuffix(int arg0) {
+	public String getIconSuffix(int arg0)
+	{
 		return null;
 	}
-	
+
 	@Override
 	@Optional.Method(modid = "battlegear2")
 	@SideOnly(Side.CLIENT)
-	public void addInformation(ItemStack par1ItemStack,
-			EntityPlayer par2EntityPlayer, List par3List, boolean par4) {
+	public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4)
+	{
 		NBTTagCompound tags = par1ItemStack.getTagCompound();
 		super.addInformation(par1ItemStack, par2EntityPlayer, par3List, par4);
 		par3List.add("");
-		par3List.add(EnumChatFormatting.DARK_GREEN
-				+ ItemStack.field_111284_a
-						.format(1F / (10f / (tags.getCompoundTag("InfiTool")
-								.getInteger("MiningSpeed") / 1.5f)) / 20F)
-				+ StatCollector.translateToLocal("attribute.shield.block.time"));
+		par3List.add(EnumChatFormatting.DARK_GREEN + ItemStack.field_111284_a.format(1F / (10f / (tags.getCompoundTag("InfiTool").getInteger("MiningSpeed") / 1.5f)) / 20F) + StatCollector.translateToLocal("attribute.shield.block.time"));
 		int arrowCount = getArrowCount(par1ItemStack);
-		if (arrowCount > 0) {
-			par3List.add(String.format("%s%s %s", EnumChatFormatting.GOLD,
-					arrowCount, StatCollector
-							.translateToLocal("attribute.shield.arrow.count")));
+		if(arrowCount > 0)
+		{
+			par3List.add(String.format("%s%s %s", EnumChatFormatting.GOLD, arrowCount, StatCollector.translateToLocal("attribute.shield.arrow.count")));
 		}
 	}
 }

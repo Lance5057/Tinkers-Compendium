@@ -18,122 +18,131 @@ import net.minecraftforge.common.ISpecialArmor.ArmorProperties;
 import tconstruct.library.TConstructRegistry;
 import tconstruct.library.tools.CustomMaterial;
 
-public class TinkersHood extends ArmorCore 
+public class TinkersHood extends ArmorCore
 {
-	public TinkersHood() {
-		super(0,0);
+	public TinkersHood()
+	{
+		super(0, 0);
 		this.setUnlocalizedName("tinkershood");
 	}
-	
+
 	@Override
-	public Item getHeadItem() 
+	public Item getHeadItem()
 	{
 		return TinkersDefense.partCloth;
 	}
-	
+
 	@Override
-	public Item getHandleItem() {
+	public Item getHandleItem()
+	{
 		return TinkersDefense.partCloth;
 	}
-	
+
 	@Override
-	public Item getAccessoryItem() 
+	public Item getAccessoryItem()
 	{
 		return TinkersDefense.partRivet;
 	}
-	
+
 	@Override
-	public int durabilityTypeAccessory() {
+	public int durabilityTypeAccessory()
+	{
 		return 1;
 	}
 
 	@Override
-	public float getRepairCost() {
+	public float getRepairCost()
+	{
 		return 1.0f;
 	}
 
 	@Override
-	public float getDurabilityModifier() {
-		return 1f;
-	}
-	
-	@Override
-	public float getDamageModifier() {
+	public float getDurabilityModifier()
+	{
 		return 1f;
 	}
 
 	@Override
-	public int getPartAmount() {
+	public float getDamageModifier()
+	{
+		return 1f;
+	}
+
+	@Override
+	public int getPartAmount()
+	{
 		return 3;
 	}
-	
+
 	@Override
-	public String getIconSuffix(int partType) 
+	public String getIconSuffix(int partType)
 	{
-		switch (partType) {
-		case 0:
-			return "_hood_cloth";
-		case 1:
-			return "_hood_cloth_broken";
-		case 2:
-			return "_hood_trim";
-		case 3:
-			return "_hood_rivet";
-		default:
-			return "";
+		switch(partType)
+		{
+			case 0:
+				return "_hood_cloth";
+			case 1:
+				return "_hood_cloth_broken";
+			case 2:
+				return "_hood_trim";
+			case 3:
+				return "_hood_rivet";
+			default:
+				return "";
 		}
 	}
-	
+
 	@Override
-	public String getEffectSuffix() 
+	public String getEffectSuffix()
 	{
 		return "_hood_effect";
 	}
-	
+
 	@Override
 	public String getDefaultFolder()
 	{
 		return "armor/hood";
 	}
-	
-//	@Override
-//	public void onUpdate(ItemStack stack, World world, Entity entity, int par4,
-//			boolean par5) {
-//		super.onUpdate(stack, world, entity, par4, par5);
-//
-//	}
+
+	//	@Override
+	//	public void onUpdate(ItemStack stack, World world, Entity entity, int par4,
+	//			boolean par5) {
+	//		super.onUpdate(stack, world, entity, par4, par5);
+	//
+	//	}
 
 	@Override
-	public String getArmorTexture(ItemStack stack, Entity entity, int slot,
-			String type) {
+	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
+	{
 		return "tinkersdefense:textures/armor/TinkersHood.png";
 	}
-	
+
 	@Override
-	public String[] getTraits() {
-		return new String[] {"armor","helmet","hood","cloth"};
+	public String[] getTraits()
+	{
+		return new String[] {"armor", "helmet", "hood", "cloth"};
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public ModelBiped getModel(String[] color,NBTTagCompound tags)
+	public ModelBiped getModel(String[] color, NBTTagCompound tags)
 	{
-		String[] textures = {this.getIconSuffix(2),this.getIconSuffix(0),this.getIconSuffix(3)};
-		
+		String[] textures = {this.getIconSuffix(2), this.getIconSuffix(0), this.getIconSuffix(3)};
+
 		int HeadID = tags.getCompoundTag("InfiTool").getInteger("RenderHead");
 		int HandleID = tags.getCompoundTag("InfiTool").getInteger("RenderHandle");
-		
+
 		CustomMaterial newColor = TConstructRegistry.getCustomMaterial(HeadID, ClothMaterial.class);
 		color[1] = Integer.toHexString(newColor.color);
-		
+
 		newColor = TConstructRegistry.getCustomMaterial(HandleID, ClothMaterial.class);
 		color[0] = Integer.toHexString(newColor.color);
 
 		return new ModelTinkersHood(color, this.getDefaultFolder(), textures);
 	}
-	
+
 	@Override
-	public int getArmorDisplay(EntityPlayer player, ItemStack armor, int slot) 
+	public int getArmorDisplay(EntityPlayer player, ItemStack armor, int slot)
 	{
 		return 0;
 	}

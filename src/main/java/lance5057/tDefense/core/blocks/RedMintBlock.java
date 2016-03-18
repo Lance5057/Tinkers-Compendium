@@ -6,10 +6,10 @@ import net.minecraft.block.material.Material;
 public class RedMintBlock extends Block
 {
 
-        public RedMintBlock (Material material)
-        {
-                super(material);
-                setHarvestLevel("pickaxe",2);
-        }
+	public RedMintBlock(Material material)
+	{
+		super(material);
+		setHarvestLevel("pickaxe", 2);
+	}
 
 }
