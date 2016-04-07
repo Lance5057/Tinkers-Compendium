@@ -47,7 +47,7 @@ public class ModelTinkersBreastplate extends ArmorRenderer
 
 		this.Plackart = new ModelRenderer(this, 0, 42);
 		this.Plackart.setRotationPoint(0.0F, 0.0F, 0.0F);
-		this.Plackart.addBox(-4.0F, 5.0F, -3.0F, 8, 7, 6, 0.0F);
+		this.Plackart.addBox(-4.0F, 5.0F, -3.0F, 8, 7, 6, 0.01F);
 		this.bipedBody.addChild(this.Plackart);
 
 		this.ArmGuardR = new ModelRenderer(this, 28, 44);

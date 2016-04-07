@@ -35,57 +35,57 @@ public class ModelTinkersHalberd extends ArmorRenderer
 
 		this.Pauldron2_1 = new ModelRenderer(this, 0, 32);
 		this.Pauldron2_1.mirror = true;
-		this.Pauldron2_1.setRotationPoint(0.0F, 0.0F, 0.0F);
+		this.Pauldron2_1.setRotationPoint(0.0F, 0.0F, 0.01F);
 		this.Pauldron2_1.addBox(-0.7F, -2.7F, -2.0F, 3, 3, 4, 0.1F);
 		this.setRotateAngle(Pauldron2_1, 0.0F, 0.0F, 0.2617993877991494F);
 		this.bipedLeftArm.addChild(this.Pauldron2_1);
 
 		this.Body = new ModelRenderer(this, 16, 48);
 		this.Body.setRotationPoint(0.0F, 0.0F, 0.0F);
-		this.Body.addBox(-4.0F, 0.0F, -2.0F, 8, 12, 4, 0.0F);
+		this.Body.addBox(-4.0F, 0.0F, -2.0F, 8, 12, 4, 0.01F);
 		this.bipedBody.addChild(this.Body);
 
 		this.Pauldron1_1 = new ModelRenderer(this, 30, 32);
 		this.Pauldron1_1.mirror = true;
 		this.Pauldron1_1.setRotationPoint(0.0F, 0.0F, 0.0F);
-		this.Pauldron1_1.addBox(0.5F, -1.9F, -2.5F, 3, 4, 5, 0.0F);
+		this.Pauldron1_1.addBox(0.5F, -1.9F, -2.5F, 3, 4, 5, 0.01F);
 		this.setRotateAngle(Pauldron1_1, 0.0F, 0.0F, -0.2617993877991494F);
 		this.bipedLeftArm.addChild(this.Pauldron1_1);
 
 		this.Pauldron3 = new ModelRenderer(this, 16, 32);
 		this.Pauldron3.setRotationPoint(0.0F, 0.0F, 0.0F);
-		this.Pauldron3.addBox(-1.2F, -1.5F, -2.5F, 2, 2, 5, 0.1F);
+		this.Pauldron3.addBox(-1.2F, -1.5F, -2.5F, 2, 2, 5, 0.11F);
 		this.setRotateAngle(Pauldron3, 0.0F, 0.0F, -0.2617993877991494F);
 		this.bipedRightArm.addChild(this.Pauldron3);
 
 		this.ArmL = new ModelRenderer(this, 0, 48);
 		this.ArmL.mirror = true;
 		this.ArmL.setRotationPoint(0.0F, 0.0F, 0.0F);
-		this.ArmL.addBox(-1.0F, -2.0F, -2.0F, 4, 12, 4, 0.0F);
+		this.ArmL.addBox(-1.0F, -2.0F, -2.0F, 4, 12, 4, 0.02F);
 		this.bipedLeftArm.addChild(this.ArmL);
 
 		this.Pauldron1 = new ModelRenderer(this, 30, 32);
 		this.Pauldron1.setRotationPoint(0.0F, 0.0F, 0.0F);
-		this.Pauldron1.addBox(-3.5F, -1.9F, -2.5F, 3, 4, 5, 0.0F);
+		this.Pauldron1.addBox(-3.5F, -1.9F, -2.5F, 3, 4, 5, 0.01F);
 		this.setRotateAngle(Pauldron1, 0.0F, 0.0F, 0.2617993877991494F);
 		this.bipedRightArm.addChild(this.Pauldron1);
 
 		this.Pauldron3_1 = new ModelRenderer(this, 16, 32);
 		this.Pauldron3_1.mirror = true;
 		this.Pauldron3_1.setRotationPoint(0.0F, 0.0F, 0.0F);
-		this.Pauldron3_1.addBox(-0.8F, -1.5F, -2.5F, 2, 2, 5, 0.1F);
+		this.Pauldron3_1.addBox(-0.8F, -1.5F, -2.5F, 2, 2, 5, 0.11F);
 		this.setRotateAngle(Pauldron3_1, 0.0F, 0.0F, 0.2617993877991494F);
 		this.bipedLeftArm.addChild(this.Pauldron3_1);
 
 		this.Pauldron2 = new ModelRenderer(this, 0, 32);
 		this.Pauldron2.setRotationPoint(0.0F, 0.0F, 0.0F);
-		this.Pauldron2.addBox(-2.3F, -2.7F, -2.0F, 3, 3, 4, 0.1F);
+		this.Pauldron2.addBox(-2.3F, -2.7F, -2.0F, 3, 3, 4, 0.11F);
 		this.setRotateAngle(Pauldron2, 0.0F, 0.0F, -0.2617993877991494F);
 		this.bipedRightArm.addChild(this.Pauldron2);
 
 		this.ArmR = new ModelRenderer(this, 0, 48);
 		this.ArmR.setRotationPoint(0.0F, 0.0F, 0.0F);
-		this.ArmR.addBox(-3.0F, -2.0F, -2.0F, 4, 12, 4, 0.0F);
+		this.ArmR.addBox(-3.0F, -2.0F, -2.0F, 4, 12, 4, 0.02F);
 		this.bipedRightArm.addChild(this.ArmR);
 	}
 
@@ -99,15 +99,14 @@ public class ModelTinkersHalberd extends ArmorRenderer
 
 			FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation("tinkersdefense:textures/" + defaultFolder + "/" + textures[i] + ".png"));
 
-			float size = 2.25f;
-			GL11.glScalef(1.5F / size, 1.5F / size, 1.5F / size);
+			float size = 1.6f;
+			GL11.glScalef(1.0F / size, 1.0F / size, 1.0F / size);
 			GL11.glTranslatef(0.0F, 0F * f5, 0.0F);
 
 			int[] intColors = TinkersDefense.hexToRGB(colors[i]);
 			GL11.glColor3d((float) intColors[0] / 255, (float) intColors[1] / 255, (float) intColors[2] / 255);
 
 			super.render(entity, f, f1, f2, f3, f4, f5);
-			setRotationAngles(f, f1, f2, f3, f4, f5, entity);
 			GL11.glPopMatrix();
 		}
 		GL11.glPopMatrix();

@@ -19,9 +19,9 @@ public class ModelTinkersHood extends ArmorRenderer
 	public ModelRenderer	Hood;
 	public ModelRenderer	Flop;
 
-	public ModelTinkersHood(String[] colors, String defaultFolder, String[] textures)
+	public ModelTinkersHood()
 	{
-		super(1.1f, 0, 64, 64);
+		super(1.0f, 0, 64, 64);
 
 		this.textureWidth = 64;
 		this.textureHeight = 64;
@@ -58,7 +58,7 @@ public class ModelTinkersHood extends ArmorRenderer
 			GL11.glColor3d((float) intColors[0] / 255, (float) intColors[1] / 255, (float) intColors[2] / 255);
 
 			super.render(entity, f, f1, f2, f3, f4, f5);
-			setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+			//setRotationAngles(f, f1, f2, f3, f4, f5, entity);
 			GL11.glPopMatrix();
 		}
 		GL11.glPopMatrix();

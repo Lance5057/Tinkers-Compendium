@@ -1,5 +1,7 @@
 package lance5057.tDefense.armor.events;
 
+import tconstruct.armor.ArmorProxyClient;
+import tconstruct.armor.player.ArmorExtended;
 import lance5057.tDefense.armor.ArmorCore;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.player.EntityPlayer;
@@ -20,65 +22,73 @@ public class ArmorRenderEvent
 	{
 		if(event.entityPlayer != null)
 		{
-			for(int i = 0; i < 4; i++)
+			ArmorExtended armorEx = ArmorProxyClient.armorExtended;
+
+			ItemStack Armor = event.entityPlayer.inventory.armorItemInSlot(event.slot);
+
+			if(Armor != null)
 			{
-				if(event.entityPlayer.inventory.armorItemInSlot(i) != null)
-				{
-					ItemStack Armor = event.entityPlayer.inventory.armorItemInSlot(i);
-					NBTTagCompound tags = Armor.getTagCompound();
+				ModelBiped armorModel = Armor.getItem().getArmorModel(event.entityLiving, Armor, event.slot);
 
-					if(Armor.getItem() instanceof ArmorCore)
-					{
-						ArmorCore AArmor = (ArmorCore) Armor.getItem();
-						ModelBiped armorModel = AArmor.getArmorModel(event.entityLiving, Armor, AArmor.getSlot());
-
-						if(armorModel != null)
-						{
-							armorModel.isSneak = event.entityPlayer.isSneaking();
-							armorModel.isRiding = event.entityPlayer.isRiding();
-							armorModel.isChild = event.entityPlayer.isChild();
-
-							armorModel.onGround = event.entityPlayer.getSwingProgress(event.partialRenderTick);
-
-							if(event.entityPlayer instanceof EntityPlayer)
-							{
-								ItemStack itemstack = event.entityPlayer.inventory.getCurrentItem();
-								armorModel.heldItemRight = 0;
-								armorModel.aimedBow = false;
-								if(itemstack != null)
-								{
-									if(event.entityPlayer.getItemInUseCount() > 0)
-									{
-										EnumAction enumaction = itemstack.getItemUseAction();
-
-										if(enumaction == EnumAction.block)
-										{
-											armorModel.heldItemRight = 3;
-										}
-										else if(enumaction == EnumAction.bow)
-										{
-											armorModel.aimedBow = true;
-										}
-									}
-									else
-									{
-										armorModel.heldItemRight = event.entityPlayer.getHeldItem() != null ? 1 : 0;
-									}
-								}
-							}
-						}
-
-						float yaw = event.entityPlayer.prevRotationYawHead + (event.entityPlayer.rotationYawHead - event.entityPlayer.prevRotationYawHead) * event.partialRenderTick;
-						float yawOffset = event.entityPlayer.prevRenderYawOffset + (event.entityPlayer.renderYawOffset - event.entityPlayer.prevRenderYawOffset) * event.partialRenderTick;
-						float limbs = event.entityPlayer.prevLimbSwingAmount + (event.entityPlayer.limbSwingAmount - event.entityPlayer.prevLimbSwingAmount) * event.partialRenderTick;
-						float limbSwing = event.entityPlayer.limbSwing - event.entityPlayer.limbSwingAmount * (1.0F - event.partialRenderTick);
-
-						armorModel.setRotationAngles(limbSwing, limbs, event.entityPlayer.ticksExisted, yaw - yawOffset, event.entityPlayer.rotationPitch, 0.1f, event.entityPlayer);
-						armorModel.render(event.entityPlayer, limbSwing, limbs, event.entityPlayer.ticksExisted, yaw - yawOffset, event.entityPlayer.rotationPitch, 0.1f);
-					}
-				}
+				TrimArmor(armorModel, event);
 			}
+
+			ItemStack Accessory = armorEx.getStackInSlot(event.slot);
+
+			if(Accessory != null)
+			{
+				ModelBiped accessoryModel = Accessory.getItem().getArmorModel(event.entityLiving, Accessory, event.slot);
+
+				TrimArmor(accessoryModel, event);
+			}
+
 		}
 	}
 
+	private void TrimArmor(ModelBiped armorModel, RenderPlayerEvent.SetArmorModel event)
+	{
+		if(armorModel != null)
+		{
+			armorModel.isSneak = event.entityPlayer.isSneaking();
+			armorModel.isRiding = event.entityPlayer.isRiding();
+			armorModel.isChild = event.entityPlayer.isChild();
+
+			armorModel.onGround = event.entityPlayer.getSwingProgress(event.partialRenderTick);
+
+			if(event.entityPlayer instanceof EntityPlayer)
+			{
+				ItemStack itemstack = event.entityPlayer.inventory.getCurrentItem();
+				armorModel.heldItemRight = 0;
+				armorModel.aimedBow = false;
+				if(itemstack != null)
+				{
+					if(event.entityPlayer.getItemInUseCount() > 0)
+					{
+						EnumAction enumaction = itemstack.getItemUseAction();
+
+						if(enumaction == EnumAction.block)
+						{
+							armorModel.heldItemRight = 3;
+						}
+						else if(enumaction == EnumAction.bow)
+						{
+							armorModel.aimedBow = true;
+						}
+					}
+					else
+					{
+						armorModel.heldItemRight = event.entityPlayer.getHeldItem() != null ? 1 : 0;
+					}
+				}
+			}
+
+			float yaw = event.entityPlayer.prevRotationYawHead + (event.entityPlayer.rotationYawHead - event.entityPlayer.prevRotationYawHead) * event.partialRenderTick;
+			float yawOffset = event.entityPlayer.prevRenderYawOffset + (event.entityPlayer.renderYawOffset - event.entityPlayer.prevRenderYawOffset) * event.partialRenderTick;
+			float limbs = event.entityPlayer.prevLimbSwingAmount + (event.entityPlayer.limbSwingAmount - event.entityPlayer.prevLimbSwingAmount) * event.partialRenderTick;
+			float limbSwing = event.entityPlayer.limbSwing - event.entityPlayer.limbSwingAmount * (1.0F - event.partialRenderTick);
+
+			armorModel.setRotationAngles(limbSwing, limbs, event.entityPlayer.ticksExisted, yaw - yawOffset, event.entityPlayer.rotationPitch, 0.1f, event.entityPlayer);
+			armorModel.render(event.entityPlayer, limbSwing, limbs, event.entityPlayer.ticksExisted, yaw - yawOffset, event.entityPlayer.rotationPitch, 0.1f);
+		}
+	}
 }

@@ -8,8 +8,10 @@ import lance5057.tDefense.TinkersDefense;
 import lance5057.tDefense.armor.ArmorCore;
 import lance5057.tDefense.armor.parts.ClothMaterial;
 import lance5057.tDefense.armor.renderers.cloth.ModelTinkersRobe;
+import lance5057.tDefense.proxy.ClientProxy;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -114,12 +116,16 @@ public class TinkersRobe extends ArmorCore
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public ModelBiped getModel(String[] color, NBTTagCompound tags)
+	public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, int armorSlot)
 	{
-		String[] textures = {this.getIconSuffix(2), this.getIconSuffix(0)};
+		String[] color = new String[10];
+		String[] textures = {this.getIconSuffix(2), this.getIconSuffix(0), this.getIconSuffix(3)};
 
-		int HeadID = tags.getCompoundTag("InfiTool").getInteger("RenderHead");
-		int HandleID = tags.getCompoundTag("InfiTool").getInteger("RenderHandle");
+		for(int j = 0; j < 10; j++)
+			color[j] = Integer.toHexString(itemStack.getItem().getColorFromItemStack(itemStack, j));
+
+		int HeadID = itemStack.getTagCompound().getCompoundTag("InfiTool").getInteger("RenderHead");
+		int HandleID = itemStack.getTagCompound().getCompoundTag("InfiTool").getInteger("RenderHandle");
 
 		CustomMaterial newColor = TConstructRegistry.getCustomMaterial(HeadID, ClothMaterial.class);
 		color[1] = Integer.toHexString(newColor.color);
@@ -127,7 +133,8 @@ public class TinkersRobe extends ArmorCore
 		newColor = TConstructRegistry.getCustomMaterial(HandleID, ClothMaterial.class);
 		color[0] = Integer.toHexString(newColor.color);
 
-		return new ModelTinkersRobe(color, this.getDefaultFolder(), textures);
+		ClientProxy.robe.SetColors(color, this.getDefaultFolder(), textures);
+		return ClientProxy.robe;
 	}
 
 	@Override

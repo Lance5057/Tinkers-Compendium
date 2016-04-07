@@ -7,6 +7,7 @@ import lance5057.tDefense.armor.ArmorCore;
 import lance5057.tDefense.armor.parts.ClothMaterial;
 import lance5057.tDefense.armor.renderers.cloth.ModelTinkersHood;
 import lance5057.tDefense.armor.renderers.light.ModelTinkersCoif;
+import lance5057.tDefense.proxy.ClientProxy;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -129,16 +130,21 @@ public class TinkersCoif extends ArmorCore
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public ModelBiped getModel(String[] color, NBTTagCompound tags)
+	public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, int armorSlot)
 	{
-		String[] textures = {this.getIconSuffix(2), this.getIconSuffix(0), this.getIconSuffix(3)};
+		String[] color = new String[10];
 
-		int HandleID = tags.getCompoundTag("InfiTool").getInteger("RenderHandle");
+		for(int j = 0; j < 10; j++)
+			color[j] = Integer.toHexString(itemStack.getItem().getColorFromItemStack(itemStack, j));
+		
+		int AccessoryID = itemStack.getTagCompound().getCompoundTag("InfiTool").getInteger("RenderHandle");
 
-		CustomMaterial newColor = TConstructRegistry.getCustomMaterial(HandleID, ClothMaterial.class);
+		CustomMaterial newColor = TConstructRegistry.getCustomMaterial(AccessoryID, ClothMaterial.class);
 		color[0] = Integer.toHexString(newColor.color);
 
-		return new ModelTinkersCoif(color, this.getDefaultFolder(), textures);
+		String[] textures = {this.getIconSuffix(2), this.getIconSuffix(0), this.getIconSuffix(3)};
+		ClientProxy.coif.SetColors(color, this.getDefaultFolder(), textures);
+		return ClientProxy.coif;
 	}
 
 	@Override

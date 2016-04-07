@@ -25,19 +25,25 @@ public class Modifiers
 {
 	public static Item		item_relic;
 	public static Item		itemSoulChain;
-	public static ArmorMods	AMod;
+	public static ArmorMods	AMod = new ArmorMods();
 
-	public void init()
+	public void preInit()
 	{
-		AMod = new ArmorMods();
-
+		AMod.LoadItems();
+		
 		item_relic = new Item().setCreativeTab(TinkersDefense.tabName).setMaxStackSize(1).setUnlocalizedName("AncientRelic").setTextureName(Reference.MOD_ID + ":AncientRelic");
 
 		itemSoulChain = new Item().setCreativeTab(TinkersDefense.tabName).setMaxStackSize(1).setUnlocalizedName("SoulChain").setTextureName(Reference.MOD_ID + ":SoulChain");
 
 		GameRegistry.registerItem(item_relic, "Ancient Relic");
 		GameRegistry.registerItem(itemSoulChain, "Soul Chain");
-
+	}
+	
+	public void Init()
+	{
+		AMod.RegisterRecipes();
+		AMod.RegisterModifiers();
+		
 		ModifyBuilder.registerModifier(new modifierDaze("Daze", TinkersDefense.config.DazeID, new ItemStack[] {new ItemStack(Blocks.light_weighted_pressure_plate), new ItemStack(Items.potionitem, 1, 8202)}, new int[] {1, 0}));
 
 		//ModifyBuilder.registerModifier(new modifierTorchArrow(new ItemStack[] {new ItemStack(Blocks.glowstone)}, 12));

@@ -24,54 +24,60 @@ public class ModelTinkersChausses extends ArmorRenderer
 	public ModelRenderer	BackL;
 	public ModelRenderer	FrontR;
 	public ModelRenderer	BackR;
+	public ModelRenderer	Belt;
 
-	public ModelTinkersChausses(String[] colors, String defaultFolder, String[] textures)
+	public ModelTinkersChausses()
 	{
 		super(1.1f, 0, 64, 64);
 
 		this.textureWidth = 64;
 		this.textureHeight = 64;
 
+		this.Belt = new ModelRenderer(this, 16, 54);
+		this.Belt.setRotationPoint(0.0F, 0.0F, 0.0F);
+		this.Belt.addBox(-4.5F, 10.0F, -3F, 9, 2, 6, 0.1F);
+		this.bipedBody.addChild(this.Belt);
+
 		this.HipGuardR = new ModelRenderer(this, 10, 37);
 		this.HipGuardR.setRotationPoint(0F, 0F, 0F);
-		this.HipGuardR.addBox(-2.5F, 0.0F, -2.5F, 4, 6, 5, 0.0F);
+		this.HipGuardR.addBox(-2.5F, 0.0F, -2.5F, 4, 6, 5, 0.01F);
 		this.setRotateAngle(HipGuardR, 0.0F, 0.0F, 0.17453292519943295F);
 		this.bipedRightLeg.addChild(this.HipGuardR);
 
 		this.LegL = new ModelRenderer(this, 0, 48);
 		this.LegL.setRotationPoint(0F, 0F, 0F);
-		this.LegL.addBox(-2.0F, 0.0F, -2.0F, 4, 12, 4, 0.0F);
+		this.LegL.addBox(-2.0F, 0.0F, -2.0F, 4, 12, 4, 0.01F);
 		this.bipedLeftLeg.addChild(this.LegL);
 
 		this.BackR = new ModelRenderer(this, 0, 40);
 		this.BackR.setRotationPoint(0F, 0F, 0F);
-		this.BackR.addBox(-0.1F, 0.0F, 1.7F, 4, 7, 1, 0.01F);
+		this.BackR.addBox(-0.1F, 0.0F, 1.7F, 4, 7, 1, 0.02F);
 		this.bipedRightLeg.addChild(this.BackR);
 
 		this.FrontL = new ModelRenderer(this, 0, 40);
 		this.FrontL.setRotationPoint(0F, 0F, 0F);
-		this.FrontL.addBox(-4.0F, 0.0F, -2.7F, 4, 7, 1, 0.0F);
+		this.FrontL.addBox(-4.0F, 0.0F, -2.7F, 4, 7, 1, 0.01F);
 		this.bipedLeftLeg.addChild(this.FrontL);
 
 		this.LegR = new ModelRenderer(this, 0, 48);
 		this.LegR.setRotationPoint(0F, 0F, 0F);
-		this.LegR.addBox(-2.0F, 0.0F, -2.0F, 4, 12, 4, 0.0F);
+		this.LegR.addBox(-2.0F, 0.0F, -2.0F, 4, 12, 4, 0.01F);
 		this.bipedRightLeg.addChild(this.LegR);
 
 		this.BackL = new ModelRenderer(this, 0, 40);
 		this.BackL.setRotationPoint(0F, 0F, 0F);
-		this.BackL.addBox(-4.0F, 0.0F, 1.7F, 4, 7, 1, 0.0F);
+		this.BackL.addBox(-4.0F, 0.0F, 1.7F, 4, 7, 1, 0.01F);
 		this.bipedLeftLeg.addChild(this.BackL);
 
 		this.FrontR = new ModelRenderer(this, 0, 40);
 		this.FrontR.setRotationPoint(0F, 0F, 0F);
-		this.FrontR.addBox(-0.1F, 0.0F, -2.7F, 4, 7, 1, 0.01F);
+		this.FrontR.addBox(-0.1F, 0.0F, -2.7F, 4, 7, 1, 0.02F);
 		this.bipedRightLeg.addChild(this.FrontR);
 
 		this.HipGuardL = new ModelRenderer(this, 10, 37);
 		this.HipGuardL.mirror = true;
 		this.HipGuardL.setRotationPoint(0F, 0F, 0F);
-		this.HipGuardL.addBox(-1.5F, 0.0F, -2.5F, 4, 6, 5, 0.0F);
+		this.HipGuardL.addBox(-1.5F, 0.0F, -2.5F, 4, 6, 5, 0.01F);
 		this.setRotateAngle(HipGuardL, 0.0F, 0.0F, -0.17453292519943295F);
 		this.bipedLeftLeg.addChild(this.HipGuardL);
 	}
@@ -86,15 +92,14 @@ public class ModelTinkersChausses extends ArmorRenderer
 
 			FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation("tinkersdefense:textures/" + defaultFolder + "/" + textures[i] + ".png"));
 
-			float size = 1.5f;
+			float size = 1.6f;
 			GL11.glScalef(1.0F / size, 1.0F / size, 1.0F / size);
-			GL11.glTranslatef(0F, -1F * f5, -0F);
+			GL11.glTranslatef(0F, 0F * f5, -0F);
 
 			int[] intColors = TinkersDefense.hexToRGB(colors[i]);
 			GL11.glColor3d((float) intColors[0] / 255, (float) intColors[1] / 255, (float) intColors[2] / 255);
 
 			super.render(entity, f, f1, f2, f3, f4, f5);
-			setRotationAngles(f, f1, f2, f3, f4, f5, entity);
 			GL11.glPopMatrix();
 		}
 		GL11.glPopMatrix();

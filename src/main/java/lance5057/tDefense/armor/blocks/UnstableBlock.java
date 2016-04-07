@@ -84,6 +84,21 @@ public class UnstableBlock extends Block
 	{
 		return 1;
 	}
+	@Override
+	public void breakBlock(World par1World, int par2, int par3, int par4, Block p_149749_5_, int meta)
+	{
+		//int meta = par1World.getBlockMetadata(par2, par3, par4);
+
+		if(meta == 0)
+		{
+			par1World.setBlock(par2, par3, par4, Blocks.water, 0, 3);
+		}
+		if(meta == 1)
+		{
+			par1World.setBlock(par2, par3, par4, Blocks.lava, 0, 3);
+		}
+		par1World.notifyBlockOfNeighborChange(par2, par3, par4, par1World.getBlock(par2, par3, par4));
+	}
 
 	@Override
 	public void updateTick(World par1World, int par2, int par3, int par4, Random par5Random)

@@ -1,5 +1,6 @@
 package lance5057.tDefense.armor;
 
+import lance5057.tDefense.TinkersDefense;
 import lance5057.tDefense.armor.modifiers.ArmorMods;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.Entity;
@@ -21,14 +22,12 @@ public class ArmorCore extends ToolCore implements ISpecialArmor
 	int				slot;
 	public float	reductionPercent	= 0f;
 	protected int	maxReduction		= 100;
-	ArmorMods		amod;
-
+	
 	public ArmorCore(int baseProtection, int slot)
 	{
 		super(baseProtection);
 
 		this.slot = slot;
-		amod = new ArmorMods();
 	}
 
 	@Override
@@ -124,7 +123,7 @@ public class ArmorCore extends ToolCore implements ISpecialArmor
 	public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack)
 	{
 
-		amod.UpdateAll((ToolCore) itemStack.getItem(), itemStack, world, player, itemStack.getTagCompound().getCompoundTag("InfiTool"));
+		TinkersDefense.mods.AMod.UpdateAll((ToolCore) itemStack.getItem(), itemStack, world, player, itemStack.getTagCompound().getCompoundTag("InfiTool"));
 	}
 
 }

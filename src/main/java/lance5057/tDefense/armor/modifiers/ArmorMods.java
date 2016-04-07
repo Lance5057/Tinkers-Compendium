@@ -1,12 +1,15 @@
 package lance5057.tDefense.armor.modifiers;
 
+import lance5057.tDefense.Reference;
 import lance5057.tDefense.TinkersDefense;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
@@ -14,49 +17,97 @@ import tconstruct.library.TConstructRegistry;
 import tconstruct.library.client.TConstructClientRegistry;
 import tconstruct.library.crafting.ModifyBuilder;
 import tconstruct.library.tools.ToolCore;
+import tconstruct.tools.TinkerTools;
+import cpw.mods.fml.common.registry.GameRegistry;
 
 public class ArmorMods
 {
 
-	public ArmorMods()
-	{
-		LoadItems();
-		RegisterRecipes();
-		RegisterModifiers();
-	}
+	//	public ArmorMods()
+	//	{
+	//		
+	//	}
+	Item	item_Canister;
+	Item	item_Emptycanister;
+	Item	item_Rebreather;
+
+	Item	item_Glowsole;
+	Item	item_Firesole;
+	Item	item_Icesole;
+	Item	item_Feathersole;
+	Item	item_Flippers;
 
 	public void LoadItems()
 	{
-		// protKit = new Item()
-		// .setUnlocalizedName("protectionkit")
-		// .setCreativeTab(TinkersDefense.tabName)
-		// .setTextureName("tinkersdefense:protectionkit");
-		//
-		// GameRegistry.registerItem(protKit, "protectionkit");
+		item_Canister = new Item().setCreativeTab(TinkersDefense.tabName).setMaxStackSize(10).setUnlocalizedName("FilledCart").setTextureName(Reference.MOD_ID + ":FilledCart");
+		item_Emptycanister = new Item().setCreativeTab(TinkersDefense.tabName).setMaxStackSize(10).setUnlocalizedName("EmptyCart").setTextureName(Reference.MOD_ID + ":EmptyCart");
+		item_Rebreather = new Item().setCreativeTab(TinkersDefense.tabName).setMaxStackSize(1).setUnlocalizedName("Rebreather").setTextureName(Reference.MOD_ID + ":Rebreather");
+
+		item_Feathersole = new Item().setCreativeTab(TinkersDefense.tabName).setMaxStackSize(1).setUnlocalizedName("FeatherSole").setTextureName(Reference.MOD_ID + ":FeatherSole");
+		item_Firesole = new Item().setCreativeTab(TinkersDefense.tabName).setMaxStackSize(1).setUnlocalizedName("FireSole").setTextureName(Reference.MOD_ID + ":FireSole");
+		item_Icesole = new Item().setCreativeTab(TinkersDefense.tabName).setMaxStackSize(1).setUnlocalizedName("IceSole").setTextureName(Reference.MOD_ID + ":IceSole");
+		item_Glowsole = new Item().setCreativeTab(TinkersDefense.tabName).setMaxStackSize(1).setUnlocalizedName("GlowSole").setTextureName(Reference.MOD_ID + ":GlowSole");
+		item_Flippers = new Item().setCreativeTab(TinkersDefense.tabName).setMaxStackSize(1).setUnlocalizedName("Flippers").setTextureName(Reference.MOD_ID + ":Flippers");
+
+		GameRegistry.registerItem(item_Canister, "FilledCart");
+		GameRegistry.registerItem(item_Emptycanister, "EmptyCart");
+		GameRegistry.registerItem(item_Rebreather, "Rebreather");
+		
+		GameRegistry.registerItem(item_Feathersole, "FeatherSole");
+		GameRegistry.registerItem(item_Firesole, "FireSole");
+		GameRegistry.registerItem(item_Icesole, "IceSole");
+		GameRegistry.registerItem(item_Glowsole, "GlowSole");
+		GameRegistry.registerItem(item_Flippers, "Flippers");
 	}
 
 	public void RegisterRecipes()
 	{
-		// GameRegistry.addShapelessRecipe(new ItemStack(protKit,1), new
-		// ItemStack(TinkersDefense.partArmorplate,1,2),
-		// TinkerArmor.heartCanister, Items.iron_ingot);
+		GameRegistry.addShapedRecipe(new ItemStack(item_Canister), new Object[] {"-c-", "ses", "-s-", 'c', new ItemStack(Items.coal, 1, 1), 's', new ItemStack(Blocks.sapling, 1), 'e', new ItemStack(item_Emptycanister, 1, 0)});
+		GameRegistry.addShapedRecipe(new ItemStack(item_Emptycanister), new Object[] {"gsg", "lil", "gig", 'g', new ItemStack(Items.gold_nugget, 1, 0), 's', new ItemStack(Items.slime_ball, 1, 0), 'l', new ItemStack(Items.dye, 1, 4), 'i', new ItemStack(Items.iron_ingot, 1, 0)});
+		GameRegistry.addShapedRecipe(new ItemStack(item_Rebreather), new Object[] {"-s-", "eie", "-d-", 's', new ItemStack(Items.slime_ball, 1, 0), 'e', new ItemStack(item_Emptycanister, 1, 0), 'i', new ItemStack(TinkersDefense.partArmorplate,1,2), 'd', new ItemStack(Items.dye, 1, 0)});
+
+		GameRegistry.addShapedRecipe(new ItemStack(item_Glowsole), new Object[] {"ggg", "ala", "ggg", 'g', new ItemStack(Blocks.glowstone, 1, 0), 'a', new ItemStack(Items.glowstone_dust, 1, 0), 'l', TConstructRegistry.getItemStack("lavaCrystal")});
+		GameRegistry.addShapedRecipe(new ItemStack(item_Glowsole), new Object[] {"gag", "glg", "gag", 'g', new ItemStack(Blocks.glowstone, 1, 0), 'a', new ItemStack(Items.glowstone_dust, 1, 0), 'l', TConstructRegistry.getItemStack("lavaCrystal")});
+		GameRegistry.addShapedRecipe(new ItemStack(item_Feathersole), new Object[] {"fgf", 'g', new ItemStack(Items.gold_nugget, 1, 0), 'f', new ItemStack(Items.feather, 1, 0)});
+		GameRegistry.addShapedRecipe(new ItemStack(item_Firesole), new Object[] {"lol", "oao", "lol", 'o', new ItemStack(Blocks.obsidian, 1, 0), 'a', TConstructRegistry.getItemStack("ingotArdite"), 'l', TConstructRegistry.getItemStack("lavaCrystal")});
+		GameRegistry.addShapedRecipe(new ItemStack(item_Icesole), new Object[] {"ili", "lcl", "ili", 'l', new ItemStack(Blocks.lapis_block, 1, 0), 'i', new ItemStack(Blocks.ice, 1, 0), 'c', TConstructRegistry.getItemStack("ingotCobalt")});
+		GameRegistry.addShapedRecipe(new ItemStack(item_Flippers), new Object[] {"-b-", "rlr", "-s-", 'b', new ItemStack(Items.leather_boots, 1, 0), 'l', new ItemStack(Items.leather, 1, 0), 'r', new ItemStack(TinkerTools.toolRod,1,2), 's', new ItemStack(Items.slime_ball, 1, 0)});
+
 	}
 
 	public void RegisterModifiers()
 	{
+		//Head only
+		ModifyBuilder.registerModifier(new modifierBoolExclusive(new ItemStack[] {new ItemStack(item_Rebreather, 1, 0)}, TinkersDefense.config.ArmorRebreatherID, "Rebreather", "\u00A76", "Rebreather", new String[] {"head"}));
+		
+		//Excluding Cloth
 		ModifyBuilder.registerModifier(new modifierProtection(new ItemStack[] {new ItemStack(TinkersDefense.partArmorplate, 1, 2)}, TinkersDefense.config.ArmorProtectionID, 1, "\u00A77", "Protection"));
 		ModifyBuilder.registerModifier(new modifierProtection(new ItemStack[] {new ItemStack(Items.magma_cream, 1)}, TinkersDefense.config.ArmorFireProtectionID, 1, "\u00A7c", "Fire Protection"));
 		ModifyBuilder.registerModifier(new modifierProtection(new ItemStack[] {new ItemStack(Blocks.wool, 1)}, TinkersDefense.config.ArmorBlastProtectionID, 1, "\u00A72", "Blast Protection"));
 		ModifyBuilder.registerModifier(new modifierProtection(new ItemStack[] {new ItemStack(TinkersDefense.partRivet, 1, 2)}, TinkersDefense.config.ArmorProjectileProtectionID, 1, "\u00A7f", "Projectile Protection"));
-		ModifyBuilder.registerModifier(new modifierProtection(new ItemStack[] {new ItemStack(Blocks.hay_block)}, TinkersDefense.config.FeatherfallID, 1, "\u00A7f", "Featherfall"));
+		ModifyBuilder.registerModifier(new modifierProtection(new ItemStack[] {new ItemStack(item_Feathersole, 1, 0)}, TinkersDefense.config.ArmorFeatherfallID, 1, "\u00A7f", "Featherfall"));
+		
+		//Feet only
+		ModifyBuilder.registerModifier(new modifierBoolExclusive(new ItemStack[] {new ItemStack(item_Glowsole, 1, 0)}, TinkersDefense.config.ArmorGlowstepID, "GlowStep", "\u00A76", "GlowStep", new String[] {"feet"}));
+		ModifyBuilder.registerModifier(new modifierBoolExclusive(new ItemStack[] {new ItemStack(item_Firesole, 1, 0)}, TinkersDefense.config.ArmorFirewalkerID, "Firewalker", "\u00A74", "Firewalker", new String[] {"feet"}));
+		ModifyBuilder.registerModifier(new modifierBoolExclusive(new ItemStack[] {new ItemStack(item_Icesole, 1, 0)}, TinkersDefense.config.ArmorFrostwalkerID, "Frostwalker", "\u00A7b", "Frostwalker", new String[] {"feet"}));
+		ModifyBuilder.registerModifier(new modifierBoolExclusive(new ItemStack[] {new ItemStack(item_Flippers, 1, 0)}, TinkersDefense.config.ArmorDepthstriderID, "Depthstrider", "\u00A71", "Depthstrider", new String[] {"feet"}));
 
 		for(ToolCore tool : TConstructRegistry.getToolMapping())
 		{
+			TConstructClientRegistry.addEffectRenderMapping(tool, TinkersDefense.config.ArmorRebreatherID, "tinker", "rebreather", true);
+
 			TConstructClientRegistry.addEffectRenderMapping(tool, TinkersDefense.config.ArmorProtectionID, "tinker", "protection", true);
 			TConstructClientRegistry.addEffectRenderMapping(tool, TinkersDefense.config.ArmorFireProtectionID, "tinker", "fireprotection", true);
 			TConstructClientRegistry.addEffectRenderMapping(tool, TinkersDefense.config.ArmorBlastProtectionID, "tinker", "blastprotection", true);
 			TConstructClientRegistry.addEffectRenderMapping(tool, TinkersDefense.config.ArmorProjectileProtectionID, "tinker", "projprotection", true);
-			TConstructClientRegistry.addEffectRenderMapping(tool, TinkersDefense.config.FeatherfallID, "tinker", "featherfall", true);
+			TConstructClientRegistry.addEffectRenderMapping(tool, TinkersDefense.config.ArmorFeatherfallID, "tinker", "featherfall", true);
+			
+			TConstructClientRegistry.addEffectRenderMapping(tool, TinkersDefense.config.ArmorGlowstepID, "tinker", "glowstep", true);
+			TConstructClientRegistry.addEffectRenderMapping(tool, TinkersDefense.config.ArmorFirewalkerID, "tinker", "firewalk", true);
+			TConstructClientRegistry.addEffectRenderMapping(tool, TinkersDefense.config.ArmorFrostwalkerID, "tinker", "frostwalk", true);
+			TConstructClientRegistry.addEffectRenderMapping(tool, TinkersDefense.config.ArmorDepthstriderID, "tinker", "depthstrider", true);
+
 		}
 	}
 
@@ -64,9 +115,19 @@ public class ArmorMods
 	{
 		if(!world.isRemote)
 		{
-			UpdateWalker(tool, stack, world, entity, Material.water, TinkersDefense.block_Unstable, 0);
-			UpdateWalker(tool, stack, world, entity, Material.lava, TinkersDefense.block_Unstable, 1);
-			UpdateGlowstep(tool, stack, world, entity);
+			if(tags.hasKey("Frostwalker"))
+				UpdateWalker(tool, stack, world, entity, Material.water, TinkersDefense.block_Unstable, 0);
+			if(tags.hasKey("Firewalker"))
+				UpdateWalker(tool, stack, world, entity, Material.lava, TinkersDefense.block_Unstable, 1);
+			if(tags.hasKey("GlowStep"))
+				UpdateGlowstep(tool, stack, world, entity);
+			if(tags.hasKey("Rebreather"))
+				UpdateRebreather(tool, stack, world, entity);
+		}
+		else
+		{
+			if(tags.hasKey("Depthstrider"))
+				UpdateFlippers(tool, stack, world, entity);
 		}
 	}
 
@@ -119,5 +180,35 @@ public class ArmorMods
 
 		prevX = x;
 		prevZ = z;
+	}
+	
+	public void UpdateFlippers(ToolCore tool, ItemStack stack, World world, Entity entity)
+	{
+		if(entity.isInWater())
+		{
+			entity.motionX *= 1.2;
+			entity.motionY *= 1.2;
+			entity.motionZ *= 1.2;
+		}
+	}
+	
+	public void UpdateRebreather(ToolCore tool, ItemStack stack, World world, Entity entity)
+	{
+		EntityPlayer player = (EntityPlayer) entity;
+		if(player.getAir() <= 0)
+		{
+			if(player.inventory.hasItem(item_Canister))
+			{
+				player.inventory.consumeInventoryItem(item_Canister);
+				player.inventory.addItemStackToInventory(new ItemStack(item_Emptycanister, 1, 0));
+				player.setAir(150);
+			}
+			if(player.inventory.hasItem(item_Canister))
+			{
+				player.inventory.consumeInventoryItem(item_Canister);
+				player.inventory.addItemStackToInventory(new ItemStack(item_Emptycanister, 1, 0));
+				player.setAir(300);
+			}
+		}
 	}
 }

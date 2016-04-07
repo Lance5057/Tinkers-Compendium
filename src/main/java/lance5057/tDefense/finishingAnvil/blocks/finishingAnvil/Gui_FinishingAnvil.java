@@ -1,7 +1,12 @@
 package lance5057.tDefense.finishingAnvil.blocks.finishingAnvil;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import lance5057.tDefense.TinkersDefense;
 import lance5057.tDefense.core.network.Message_FinishingAnvil;
+import lance5057.tDefense.finishingAnvil.utilities.Injector;
+import lance5057.tDefense.finishingAnvil.utilities.ToolCoreTip;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.entity.RenderItem;
@@ -12,6 +17,7 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
+import cpw.mods.fml.client.config.GuiButtonExt;
 import tconstruct.library.TConstructRegistry;
 import tconstruct.library.tools.ToolCore;
 
@@ -36,7 +42,7 @@ public class Gui_FinishingAnvil extends GuiContainer
 	private int								leftSelect		= 0;
 
 	private int								rightButtonPosX	= 0;
-	private int								rightButtonPosY	= 2;
+	private int								rightButtonPosY	= 0;
 	private int								xRIcon_one, yRIcon_one;
 	private int								xRIcon_two, yRIcon_two;
 	private int								xRIcon_three, yRIcon_three;
@@ -63,20 +69,20 @@ public class Gui_FinishingAnvil extends GuiContainer
 	public void initGui()
 	{
 		super.initGui();
-		this.buttonList.add(new GuiButton(1, this.guiLeft + 25, this.guiTop + 10, 10, 10, ""));
-		this.buttonList.add(new GuiButton(2, this.guiLeft + 25, this.guiTop + 59, 10, 10, ""));
-		this.buttonList.add(new GuiButton(3, this.guiLeft + 47, this.guiTop + 49, 18, 18, ""));
+		this.buttonList.add(new GuiButtonExt(1, this.guiLeft + 25, this.guiTop + 10, 10, 10, "⇑"));
+		this.buttonList.add(new GuiButtonExt(2, this.guiLeft + 25, this.guiTop + 59, 10, 10, "⇓"));
+		this.buttonList.add(new GuiButtonExt(3, this.guiLeft + 47, this.guiTop + 49, 18, 18, "✓"));
 
-		this.buttonList.add(new GuiButton(4, this.guiLeft + 5, this.guiTop + 10, 20, 20, ""));
-		this.buttonList.add(new GuiButton(5, this.guiLeft + 5, this.guiTop + 30, 20, 20, ""));
-		this.buttonList.add(new GuiButton(6, this.guiLeft + 5, this.guiTop + 50, 20, 20, ""));
+		this.buttonList.add(new GuiButtonExt(4, this.guiLeft + 5, this.guiTop + 10, 20, 20, ""));
+		this.buttonList.add(new GuiButtonExt(5, this.guiLeft + 5, this.guiTop + 30, 20, 20, ""));
+		this.buttonList.add(new GuiButtonExt(6, this.guiLeft + 5, this.guiTop + 50, 20, 20, ""));
 
-		this.buttonList.add(new GuiButton(7, this.guiLeft + 120, this.guiTop + 10, 10, 10, ""));
-		this.buttonList.add(new GuiButton(8, this.guiLeft + 120, this.guiTop + 59, 10, 10, ""));
+		this.buttonList.add(new GuiButtonExt(7, this.guiLeft + 120, this.guiTop + 10, 10, 10, "⇑"));
+		this.buttonList.add(new GuiButtonExt(8, this.guiLeft + 120, this.guiTop + 60, 10, 10, "⇓"));
 
-		this.buttonList.add(new GuiButton(9, this.guiLeft + 130, this.guiTop + 10, 20, 20, ""));
-		this.buttonList.add(new GuiButton(10, this.guiLeft + 130, this.guiTop + 30, 20, 20, ""));
-		this.buttonList.add(new GuiButton(11, this.guiLeft + 130, this.guiTop + 50, 20, 20, ""));
+		this.buttonList.add(new GuiButtonExt(9, this.guiLeft + 130, this.guiTop + 10, 20, 20, ""));
+		this.buttonList.add(new GuiButtonExt(10, this.guiLeft + 130, this.guiTop + 30, 20, 20, ""));
+		this.buttonList.add(new GuiButtonExt(11, this.guiLeft + 130, this.guiTop + 50, 20, 20, ""));
 
 	}
 
@@ -91,7 +97,7 @@ public class Gui_FinishingAnvil extends GuiContainer
 						this.leftButtonPosX--;
 					break;
 				case 2:
-					if(this.leftButtonPosX + 2 < ((ToolCore) bigCopy.getItem()).getPartAmount())
+					if(this.leftButtonPosX + 3 < ((ToolCore) bigCopy.getItem()).getPartAmount())
 						this.leftButtonPosX++;
 					break;
 
@@ -100,31 +106,43 @@ public class Gui_FinishingAnvil extends GuiContainer
 					break;
 
 				case 4:
-					leftSelect = 0;
-					rightButtonPosY = 2;
+					leftSelect = 0 + leftButtonPosX;
+					rightButtonPosY = 0 + (leftButtonPosX * 3);
 					break;
 				case 5:
-					leftSelect = 1;
-					rightButtonPosY = 3;
+					leftSelect = 1 + leftButtonPosX;
+					rightButtonPosY = 3 + (leftButtonPosX * 3);
 					break;
 				case 6:
-					leftSelect = 2;
-					rightButtonPosY = 4;
+					leftSelect = 2 + leftButtonPosX;
+					rightButtonPosY = 6 + (leftButtonPosX * 3);
 					break;
 
 				case 7:
 					if(this.rightButtonPosX > 0)
+					{
 						this.rightButtonPosX--;
+					}
+					else if(this.rightButtonPosY > (0 + this.leftSelect * 4))
+					{
+						this.rightButtonPosY--;
+						this.rightButtonPosX = 15;
+					}
 					break;
 				case 8:
 					this.rightButtonPosX++;
+					if(this.rightButtonPosX >= 16)
+					{
+						this.rightButtonPosY++;
+						this.rightButtonPosX = 0;
+					}
 					break;
 
 				case 9:
 					if(tags.hasKey("Render" + renders[leftSelect]))
 					{
-						tags.setInteger("Render" + renders[leftSelect], bigCopy.getTagCompound().getCompoundTag("InfiTool").getInteger(renders[leftSelect]) + ((rightButtonPosX) * TinkersDefense.config.MaterialIndex));
-						if(rightButtonPosX > 0)
+						tags.setInteger("Render" + renders[leftSelect], bigCopy.getTagCompound().getCompoundTag("InfiTool").getInteger(renders[leftSelect]) + ((rightButtonPosX + ((rightButtonPosY % 3) * 16)) * TinkersDefense.config.MaterialIndex));
+						if(rightButtonPosX + (rightButtonPosY * 16) > 0)
 							tags.setInteger(renders[leftSelect] + "Color", TConstructRegistry.getMaterial(tags.getInteger(renders[leftSelect])).primaryColor());
 						else
 							tags.removeTag(renders[leftSelect] + "Color");
@@ -134,7 +152,7 @@ public class Gui_FinishingAnvil extends GuiContainer
 				case 10:
 					if(tags.hasKey("Render" + renders[leftSelect]))
 					{
-						tags.setInteger("Render" + renders[leftSelect], bigCopy.getTagCompound().getCompoundTag("InfiTool").getInteger(renders[leftSelect]) + ((rightButtonPosX + 1) * TinkersDefense.config.MaterialIndex));
+						tags.setInteger("Render" + renders[leftSelect], bigCopy.getTagCompound().getCompoundTag("InfiTool").getInteger(renders[leftSelect]) + ((rightButtonPosX + 1 + ((rightButtonPosY % 3) * 16)) * TinkersDefense.config.MaterialIndex));
 						tags.setInteger(renders[leftSelect] + "Color", TConstructRegistry.getMaterial(tags.getInteger(renders[leftSelect])).primaryColor());
 					}
 					break;
@@ -142,14 +160,14 @@ public class Gui_FinishingAnvil extends GuiContainer
 				case 11:
 					if(tags.hasKey("Render" + renders[leftSelect]))
 					{
-						tags.setInteger("Render" + renders[leftSelect], bigCopy.getTagCompound().getCompoundTag("InfiTool").getInteger(renders[leftSelect]) + ((rightButtonPosX + 2) * TinkersDefense.config.MaterialIndex));
+						tags.setInteger("Render" + renders[leftSelect], bigCopy.getTagCompound().getCompoundTag("InfiTool").getInteger(renders[leftSelect]) + ((rightButtonPosX + 2 + ((rightButtonPosY % 3) * 16)) * TinkersDefense.config.MaterialIndex));
 						tags.setInteger(renders[leftSelect] + "Color", TConstructRegistry.getMaterial(tags.getInteger(renders[leftSelect])).primaryColor());
 					}
 					break;
 			}
 	}
 
-	public void drawScreen(int par1, int par2, float par3)
+	public void drawScreen(int x, int y, float par3)
 	{
 
 		if(inventory.getStackInSlot(0) != null && isNull == true
@@ -166,9 +184,10 @@ public class Gui_FinishingAnvil extends GuiContainer
 			isNull = true;
 		}
 
-		super.drawScreen(par1, par2, par3);
-		this.xSize_lo = (float) par1;
-		this.ySize_lo = (float) par2;
+		super.drawScreen(x, y, par3);
+		drawTooltip(x, y);
+		this.xSize_lo = (float) x;
+		this.ySize_lo = (float) y;
 	}
 
 	protected void drawGuiContainerForegroundLayer(int par1, int par2)
@@ -207,11 +226,11 @@ public class Gui_FinishingAnvil extends GuiContainer
 				this.yLIcon_three = 0;
 
 				this.xRIcon_one = 0;
-				this.yRIcon_one = 0;
+				this.yRIcon_one = 32;
 				this.xRIcon_two = 16;
-				this.yRIcon_two = 0;
+				this.yRIcon_two = 32;
 				this.xRIcon_three = 32;
-				this.yRIcon_three = 0;
+				this.yRIcon_three = 32;
 			}
 		}
 
@@ -224,8 +243,16 @@ public class Gui_FinishingAnvil extends GuiContainer
 		this.drawTexturedModalRect(7, 52, this.xLIcon_three + (this.leftButtonPosX * 16), this.yLIcon_three + (this.leftButtonPosY * 16), 16, 16);
 
 		this.drawTexturedModalRect(132, 12, this.xRIcon_one + (this.rightButtonPosX * 16), this.yRIcon_one + (this.rightButtonPosY * 16), 16, 16);
-		this.drawTexturedModalRect(132, 32, this.xRIcon_two + (this.rightButtonPosX * 16), this.yRIcon_two + (this.rightButtonPosY * 16), 16, 16);
-		this.drawTexturedModalRect(132, 52, this.xRIcon_three + (this.rightButtonPosX * 16), this.yRIcon_three + (this.rightButtonPosY * 16), 16, 16);
+
+		if(this.rightButtonPosX + 1 < 16)
+			this.drawTexturedModalRect(132, 32, this.xRIcon_two + (this.rightButtonPosX * 16), this.yRIcon_two + (this.rightButtonPosY * 16), 16, 16);
+		else
+			this.drawTexturedModalRect(132, 32, this.xRIcon_two + ((this.rightButtonPosX - 16) * 16), this.yRIcon_two + ((this.rightButtonPosY + 1) * 16), 16, 16);
+
+		if(this.rightButtonPosX + 2 < 16)
+			this.drawTexturedModalRect(132, 52, this.xRIcon_three + (this.rightButtonPosX * 16), this.yRIcon_three + (this.rightButtonPosY * 16), 16, 16);
+		else
+			this.drawTexturedModalRect(132, 52, this.xRIcon_three + ((this.rightButtonPosX - 16) * 16), this.yRIcon_three + ((this.rightButtonPosY + 1) * 16), 16, 16);
 
 		bigRender.renderItemAndEffectIntoGUI(fontRendererObj, this.mc.getTextureManager(), bigCopy, 23, 5);
 
@@ -243,5 +270,42 @@ public class Gui_FinishingAnvil extends GuiContainer
 	protected void injectIcons()
 	{
 
+	}
+
+	protected void drawTooltip(int x, int y)
+	{
+		int buttons[] = {4, 5, 6, 9, 10, 11};
+
+		for(int i = 0; i < buttons.length; i++)
+		{
+			GuiButtonExt button = ((GuiButtonExt) this.buttonList.get(buttons[i] - 1));
+			boolean mousehover = x >= button.xPosition && y >= button.yPosition && x < button.xPosition + button.width && y < button.yPosition + button.height;
+			int test = button.getHoverState(mousehover);
+			if(test == 2)
+			{
+				if(bigCopy != null)
+				{
+					ToolCore tool = (ToolCore) bigCopy.getItem();
+					ToolCoreTip tt = ((Injector) TinkersDefense.tcInject).tools.get(tool.getToolName());
+					List<String> list = new ArrayList();
+
+					switch(i)
+					{
+						case 0: list.add(tt.getPart(1 + this.leftButtonPosX)); break;
+						case 1: list.add(tt.getPart(3 + this.leftButtonPosX)); break;
+						case 2: list.add(tt.getPart(2 + this.leftButtonPosX)); break;
+						
+						case 3: list.add(tt.getPartName(this.leftSelect + 1, (rightButtonPosX + ((rightButtonPosY % 3) * 16)))); break;
+						case 4: list.add(tt.getPartName(this.leftSelect + 1, (rightButtonPosX + 1 + ((rightButtonPosY % 3) * 16)))); break;
+						case 5: list.add(tt.getPartName(this.leftSelect + 1, (rightButtonPosX + 2 + ((rightButtonPosY % 3) * 16)))); break;
+					}
+
+					if(list.get(0).contains("Metallurgy"))
+						list.add(" -by Shadowclaimer");
+					func_146283_a(list, x, y);
+
+				}
+			}
+		}
 	}
 }

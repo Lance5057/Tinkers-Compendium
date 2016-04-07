@@ -27,7 +27,7 @@ public class ModelTinkersShawl extends ArmorRenderer
 	public ModelRenderer	ArmRight;
 	public ModelRenderer	Chest;
 
-	public ModelTinkersShawl(String[] colors, String defaultFolder, String[] textures)
+	public ModelTinkersShawl()
 	{
 		super(1f, 0, 64, 64);
 
@@ -37,17 +37,17 @@ public class ModelTinkersShawl extends ArmorRenderer
 		this.ArmLeft = new ModelRenderer(this, 48, 48);
 		this.ArmLeft.mirror = true;
 		this.ArmLeft.setRotationPoint(0.0F, 0.0F, 0.0F);
-		this.ArmLeft.addBox(-1.0F, -2.0F, -2.0F, 4, 12, 4, 0.0F);
+		this.ArmLeft.addBox(-1.0F, -2.0F, -2.0F, 4, 12, 4, 0.02F);
 		this.bipedLeftArm.addChild(this.ArmLeft);
 
 		this.ArmRight = new ModelRenderer(this, 48, 48);
 		this.ArmRight.setRotationPoint(0.0F, 0.0F, 0.0F);
-		this.ArmRight.addBox(-3.0F, -2.0F, -2.0F, 4, 12, 4, 0.0F);
+		this.ArmRight.addBox(-3.0F, -2.0F, -2.0F, 4, 12, 4, 0.02F);
 		this.bipedRightArm.addChild(this.ArmRight);
 
 		this.Chest = new ModelRenderer(this, 40, 32);
 		this.Chest.setRotationPoint(0.0F, 0.0F, 0.0F);
-		this.Chest.addBox(-4.0F, 0.0F, -2.0F, 8, 12, 4, 0.0F);
+		this.Chest.addBox(-4.0F, 0.0F, -2.0F, 8, 12, 4, 0.02F);
 		this.bipedBody.addChild(this.Chest);
 
 		this.TopRight = new ModelRenderer(this, 0, 52);
@@ -108,7 +108,7 @@ public class ModelTinkersShawl extends ArmorRenderer
 
 			FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation("tinkersdefense:textures/" + defaultFolder + "/" + textures[i] + ".png"));
 
-			float size = 1.5f;
+			float size = 1.6f;
 			GL11.glScalef(1.0F / size, 1.0F / size, 1.0F / size);
 			GL11.glTranslatef(0F, -0F * f5, -0F);
 

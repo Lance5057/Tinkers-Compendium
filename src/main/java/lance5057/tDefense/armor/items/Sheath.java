@@ -1,19 +1,24 @@
 package lance5057.tDefense.armor.items;
 
+import lance5057.tDefense.TinkersDefense;
+import lance5057.tDefense.armor.parts.ClothMaterial;
 import lance5057.tDefense.armor.renderers.ModelSheath;
+import lance5057.tDefense.proxy.ClientProxy;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import tconstruct.library.TConstructRegistry;
 import tconstruct.library.accessory.IAccessory;
 import tconstruct.library.accessory.IAccessoryModel;
 import tconstruct.library.tools.ToolCore;
+import tconstruct.tools.TinkerTools;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class Sheath extends ToolCore implements IAccessoryModel, IAccessory
+public class Sheath extends ToolCore implements IAccessory
 {
 
 	public Sheath()
@@ -31,34 +36,43 @@ public class Sheath extends ToolCore implements IAccessoryModel, IAccessory
 	@SideOnly(Side.CLIENT)
 	public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, int armorSlot)
 	{
-		String color[] = new String[10];
+		String[] color = new String[10];
 
-		for(int i = 0; i < 10; i++)
-			color[i] = Integer.toHexString(this.getColorFromItemStack(itemStack, i));
+		for(int j = 0; j < 10; j++)
+			color[j] = Integer.toHexString(itemStack.getItem().getColorFromItemStack(itemStack, j));
+		
+		int HandleID = itemStack.getTagCompound().getCompoundTag("InfiTool").getInteger("RenderExtra");
+		
+		color[3] = Integer.toHexString(TConstructRegistry.getCustomMaterial(HandleID, ClothMaterial.class).color);
 
-		return new ModelSheath(color);
+		String[] textures = {this.getIconSuffix(2), this.getIconSuffix(0), this.getIconSuffix(4), this.getIconSuffix(3)};
+
+		ClientProxy.sheath.SetColors(color, this.getDefaultFolder(), textures);
+		return ClientProxy.sheath;
 	}
 
 	@Override
-	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
+	public Item getHeadItem()
 	{
-		return "tinkersdefense:textures/armor/Sheath/_sheath_base.png";
+		return TinkersDefense.partArmorplate;
 	}
 
-	ResourceLocation	texture	= new ResourceLocation("tinkersdefense", "textures/armor/Sheath/_sheath_base.png");
-
 	@Override
-	@SideOnly(Side.CLIENT)
-	public ResourceLocation getWearbleTexture(Entity entity, ItemStack stack, int slot)
+	public Item getHandleItem()
 	{
-		return texture;
+		return TinkerTools.toolRod;
 	}
 
 	@Override
 	public Item getAccessoryItem()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		return TinkersDefense.partClasp;
+	}
+
+	@Override
+	public Item getExtraItem()
+	{
+		return TinkersDefense.partCloth;
 	}
 
 	@Override
@@ -72,13 +86,6 @@ public class Sheath extends ToolCore implements IAccessoryModel, IAccessory
 	public String getEffectSuffix()
 	{
 		return "_sheath_effect";
-	}
-
-	@Override
-	public Item getHeadItem()
-	{
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@SideOnly(Side.CLIENT)

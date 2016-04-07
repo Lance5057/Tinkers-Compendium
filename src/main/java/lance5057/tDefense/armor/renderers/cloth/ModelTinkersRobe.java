@@ -24,7 +24,7 @@ public class ModelTinkersRobe extends ArmorRenderer
 	public ModelRenderer	Belt;
 	public ModelRenderer	LeftBack;
 
-	public ModelTinkersRobe(String[] colors, String defaultFolder, String[] textures)
+	public ModelTinkersRobe()
 	{
 		super(1f, 0, 64, 64);
 
@@ -53,7 +53,7 @@ public class ModelTinkersRobe extends ArmorRenderer
 
 		this.Belt = new ModelRenderer(this, 0, 32);
 		this.Belt.setRotationPoint(0.0F, 0.0F, 0.0F);
-		this.Belt.addBox(-6.8F, 10.0F, -3.0F, 10, 3, 6, 0.0F);
+		this.Belt.addBox(-6.5F, 9.0F, -3.0F, 10, 3, 6, -0.1F);
 		this.setRotateAngle(Belt, 0.0F, 0.0F, -0.13962634015954636F);
 		this.bipedBody.addChild(this.Belt);
 
@@ -95,9 +95,9 @@ public class ModelTinkersRobe extends ArmorRenderer
 
 			FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation("tinkersdefense:textures/" + defaultFolder + "/" + textures[i] + ".png"));
 
-			float size = 1.45f;
+			float size = 1.6f;
 			GL11.glScalef(1.0F / size, 1.0F / size, 1.0F / size);
-			GL11.glTranslatef(0F, -1.5F * f5, -0F);
+			GL11.glTranslatef(0F, -0F * f5, -0F);
 
 			int[] intColors = TinkersDefense.hexToRGB(colors[i]);
 			GL11.glColor3d((float) intColors[0] / 255, (float) intColors[1] / 255, (float) intColors[2] / 255);

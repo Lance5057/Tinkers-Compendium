@@ -137,9 +137,9 @@ public class TinkersHalberd extends ArmorCore
 		for(int j = 0; j < 10; j++)
 			color[j] = Integer.toHexString(itemStack.getItem().getColorFromItemStack(itemStack, j));
 
-		String[] textures = {this.getIconSuffix(2), this.getIconSuffix(0), this.getIconSuffix(3), this.getIconSuffix(4)};
-		ClientProxy.breastplate.SetColors(color, this.getDefaultFolder(), textures);
-		return ClientProxy.breastplate;
+		String[] textures = {this.getIconSuffix(2), this.getIconSuffix(0), this.getIconSuffix(3)};
+		ClientProxy.halberd.SetColors(color, this.getDefaultFolder(), textures);
+		return ClientProxy.halberd;
 	}
 
 	@Override

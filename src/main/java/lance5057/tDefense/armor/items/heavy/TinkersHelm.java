@@ -121,7 +121,7 @@ public class TinkersHelm extends ArmorCore
 	@Override
 	public String[] getTraits()
 	{
-		return new String[] {"armor", "helmet", "helm", "heavyarmor"};
+		return new String[] {"armor", "head", "helm", "heavyarmor"};
 	}
 
 	@Override

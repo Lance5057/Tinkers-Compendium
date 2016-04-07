@@ -6,8 +6,10 @@ import lance5057.tDefense.TinkersDefense;
 import lance5057.tDefense.armor.ArmorCore;
 import lance5057.tDefense.armor.parts.ClothMaterial;
 import lance5057.tDefense.armor.renderers.light.ModelTinkersBoots;
+import lance5057.tDefense.proxy.ClientProxy;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -122,16 +124,21 @@ public class TinkersShoes extends ArmorCore
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public ModelBiped getModel(String[] color, NBTTagCompound tags)
+	public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, int armorSlot)
 	{
+		String[] color = new String[10];
 		String[] textures = {this.getIconSuffix(2), this.getIconSuffix(0), this.getIconSuffix(3)};
 
-		int HeadID = tags.getCompoundTag("InfiTool").getInteger("RenderHead");
+		for(int j = 0; j < 10; j++)
+			color[j] = Integer.toHexString(itemStack.getItem().getColorFromItemStack(itemStack, j));
+
+		int HeadID = itemStack.getTagCompound().getCompoundTag("InfiTool").getInteger("RenderHead");
 
 		CustomMaterial newColor = TConstructRegistry.getCustomMaterial(HeadID, ClothMaterial.class);
 		color[1] = Integer.toHexString(newColor.color);
 
-		return (ModelBiped) new ModelTinkersBoots(color, this.getDefaultFolder(), textures);
+		ClientProxy.shoes.SetColors(color, this.getDefaultFolder(), textures);
+		return ClientProxy.shoes;
 	}
 
 	@Override

@@ -6,6 +6,7 @@ import lance5057.tDefense.TinkersDefense;
 import lance5057.tDefense.armor.ArmorCore;
 import lance5057.tDefense.armor.parts.ClothMaterial;
 import lance5057.tDefense.armor.renderers.light.ModelTinkersChausses;
+import lance5057.tDefense.proxy.ClientProxy;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -119,11 +120,16 @@ public class TinkersChausses extends ArmorCore
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public ModelBiped getModel(String[] color, NBTTagCompound tags)
+	public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, int armorSlot)
 	{
-		String[] textures = {this.getIconSuffix(2), this.getIconSuffix(0)};
+		String[] color = new String[10];
 
-		return new ModelTinkersChausses(color, this.getDefaultFolder(), textures);
+		for(int j = 0; j < 10; j++)
+			color[j] = Integer.toHexString(itemStack.getItem().getColorFromItemStack(itemStack, j));
+
+		String[] textures = {this.getIconSuffix(2), this.getIconSuffix(0)};
+		ClientProxy.chausses.SetColors(color, this.getDefaultFolder(), textures);
+		return ClientProxy.chausses;
 	}
 
 	@Override

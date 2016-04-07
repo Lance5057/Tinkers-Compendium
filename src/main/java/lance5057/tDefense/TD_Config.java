@@ -25,7 +25,12 @@ public class TD_Config
 	public int		ArmorFireProtectionID;
 	public int		ArmorBlastProtectionID;
 	public int		ArmorProjectileProtectionID;
-	public int		FeatherfallID;
+	public int		ArmorFeatherfallID;
+	public int		ArmorGlowstepID;
+	public int		ArmorFrostwalkerID;
+	public int		ArmorFirewalkerID;
+	public int		ArmorDepthstriderID;
+	public int		ArmorRebreatherID;
 
 	public int		MaterialIndex;
 
@@ -57,7 +62,12 @@ public class TD_Config
 		ArmorFireProtectionID = config.getInt("Fire Protection ID", "Armor Modifier Configs", 41, 0, Integer.MAX_VALUE, "");
 		ArmorBlastProtectionID = config.getInt("Blast Protection ID", "Armor Modifier Configs", 42, 0, Integer.MAX_VALUE, "");
 		ArmorProjectileProtectionID = config.getInt("Projectile Protection ID", "Armor Modifier Configs", 43, 0, Integer.MAX_VALUE, "");
-		FeatherfallID = config.getInt("Featherfall ID", "Armor Modifier Configs", 44, 0, Integer.MAX_VALUE, "");
+		ArmorFeatherfallID = config.getInt("Featherfall ID", "Armor Modifier Configs", 44, 0, Integer.MAX_VALUE, "");
+		ArmorGlowstepID = config.getInt("Glowstep ID", "Armor Modifier Configs", 45, 0, Integer.MAX_VALUE, "");
+		ArmorFrostwalkerID = config.getInt("Frostwalker ID", "Armor Modifier Configs", 46, 0, Integer.MAX_VALUE, "");
+		ArmorFirewalkerID = config.getInt("Firewalker ID", "Armor Modifier Configs", 47, 0, Integer.MAX_VALUE, "");
+		ArmorDepthstriderID = config.getInt("Depthstrider ID", "Armor Modifier Configs", 48, 0, Integer.MAX_VALUE, "");
+		ArmorRebreatherID = config.getInt("Rebreather ID", "Armor Modifier Configs", 49, 0, Integer.MAX_VALUE, "");
 
 		BotaniaAddon = config.getBoolean("Enable Botania Addon", "Botania Addon", true, "Still requires Botania to use");
 		CorpseIvyModID = config.getInt("Corpse Drinker Ivy Modifier ID", "Botania Addon", 60, 0, Integer.MAX_VALUE, "");

@@ -19,7 +19,7 @@ public class ModelTinkersCoif extends ArmorRenderer
 	public ModelRenderer	Coif;
 	public ModelRenderer	Head;
 
-	public ModelTinkersCoif(String[] colors, String defaultFolder, String[] textures)
+	public ModelTinkersCoif()
 	{
 		super(1.1f, 0, 64, 64);
 
@@ -28,12 +28,12 @@ public class ModelTinkersCoif extends ArmorRenderer
 
 		this.Head = new ModelRenderer(this, 32, 48);
 		this.Head.setRotationPoint(0.0F, 0.0F, 0.0F);
-		this.Head.addBox(-4.0F, -8.0F, -4.0F, 8, 8, 8, 0.0F);
+		this.Head.addBox(-4.0F, -8.0F, -4.0F, 8, 8, 8, 0.01F);
 		this.bipedHead.addChild(this.Head);
 
 		this.Coif = new ModelRenderer(this, 0, 46);
 		this.Coif.setRotationPoint(0.0F, 0.0F, 0.0F);
-		this.Coif.addBox(-4.0F, -8.0F, -4.0F, 8, 10, 8, 0.5F);
+		this.Coif.addBox(-4.0F, -8.0F, -4.0F, 8, 10, 8, 0.51F);
 		this.bipedHead.addChild(this.Coif);
 	}
 
@@ -47,8 +47,8 @@ public class ModelTinkersCoif extends ArmorRenderer
 
 			FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation("tinkersdefense:textures/" + defaultFolder + "/" + textures[i] + ".png"));
 
-			float size = 2.25f;
-			GL11.glScalef(1.5F / size, 1.5F / size, 1.5F / size);
+			float size = 1.6f;
+			GL11.glScalef(1.0F / size, 1.0F / size, 1.0F / size);
 			GL11.glTranslatef(0.0F, 0F * f5, 0.0F);
 
 			int[] intColors = TinkersDefense.hexToRGB(colors[i]);
