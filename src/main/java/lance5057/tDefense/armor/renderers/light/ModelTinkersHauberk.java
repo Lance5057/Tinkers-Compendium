@@ -14,7 +14,7 @@ import cpw.mods.fml.client.FMLClientHandler;
  * ModelBiped - Either Mojang or a mod author
  * Created using Tabula 4.1.1
  */
-public class ModelTinkersHalberd extends ArmorRenderer
+public class ModelTinkersHauberk extends ArmorRenderer
 {
 	public ModelRenderer	Pauldron1;
 	public ModelRenderer	Pauldron2;
@@ -26,7 +26,7 @@ public class ModelTinkersHalberd extends ArmorRenderer
 	public ModelRenderer	Pauldron3_1;
 	public ModelRenderer	ArmL;
 
-	public ModelTinkersHalberd()
+	public ModelTinkersHauberk()
 	{
 		super(1.1f, 0, 64, 64);
 

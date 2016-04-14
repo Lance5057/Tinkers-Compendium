@@ -2,22 +2,19 @@ package lance5057.tDefense.armor.items.heavy;
 
 import lance5057.tDefense.TinkersDefense;
 import lance5057.tDefense.armor.ArmorCore;
-import lance5057.tDefense.armor.renderers.heavy.ModelTinkersHelm;
 import lance5057.tDefense.proxy.ClientProxy;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.DamageSource;
-import net.minecraftforge.common.ISpecialArmor.ArmorProperties;
 import tconstruct.tools.TinkerTools;
+import thaumcraft.api.IGoggles;
+import thaumcraft.api.nodes.IRevealer;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class TinkersHelm extends ArmorCore
+public class TinkersHelm extends ArmorCore implements IRevealer, IGoggles
 {
 	public TinkersHelm()
 	{
@@ -136,5 +133,17 @@ public class TinkersHelm extends ArmorCore
 		String[] textures = {this.getIconSuffix(2), this.getIconSuffix(0), this.getIconSuffix(3), this.getIconSuffix(4)};
 		ClientProxy.helm.SetColors(color, this.getDefaultFolder(), textures);
 		return ClientProxy.helm;
+	}
+	
+	@Override
+	public boolean showIngamePopups(ItemStack itemstack, EntityLivingBase player)
+	{
+		return itemstack.getTagCompound().getCompoundTag("InfiTool").getBoolean("Revealing");
+	}
+
+	@Override
+	public boolean showNodes(ItemStack itemstack, EntityLivingBase player)
+	{
+		return itemstack.getTagCompound().getCompoundTag("InfiTool").getBoolean("Revealing");
 	}
 }

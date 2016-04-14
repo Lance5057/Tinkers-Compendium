@@ -14,7 +14,7 @@ import lance5057.tDefense.armor.renderers.heavy.ModelTinkersSabatons;
 import lance5057.tDefense.armor.renderers.light.ModelTinkersBoots;
 import lance5057.tDefense.armor.renderers.light.ModelTinkersChausses;
 import lance5057.tDefense.armor.renderers.light.ModelTinkersCoif;
-import lance5057.tDefense.armor.renderers.light.ModelTinkersHalberd;
+import lance5057.tDefense.armor.renderers.light.ModelTinkersHauberk;
 import lance5057.tDefense.core.blocks.crestMount.Renderer_CrestMount;
 import lance5057.tDefense.core.blocks.crestMount.TileEntity_CrestMount;
 import lance5057.tDefense.core.renderer.BigFlexibleToolRenderer;
@@ -45,7 +45,7 @@ public class ClientProxy extends CommonProxy
 	public static ModelTinkersBoots			shoes		= new ModelTinkersBoots();
 
 	public static ModelTinkersCoif			coif		= new ModelTinkersCoif();
-	public static ModelTinkersHalberd		halberd		= new ModelTinkersHalberd();
+	public static ModelTinkersHauberk		hauberk		= new ModelTinkersHauberk();
 	public static ModelTinkersChausses		chausses	= new ModelTinkersChausses();
 	public static ModelTinkersBoots			boots		= new ModelTinkersBoots();
 

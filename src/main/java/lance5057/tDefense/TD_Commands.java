@@ -16,7 +16,7 @@ import lance5057.tDefense.armor.renderers.heavy.ModelTinkersSabatons;
 import lance5057.tDefense.armor.renderers.light.ModelTinkersBoots;
 import lance5057.tDefense.armor.renderers.light.ModelTinkersChausses;
 import lance5057.tDefense.armor.renderers.light.ModelTinkersCoif;
-import lance5057.tDefense.armor.renderers.light.ModelTinkersHalberd;
+import lance5057.tDefense.armor.renderers.light.ModelTinkersHauberk;
 import lance5057.tDefense.proxy.ClientProxy;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommand;
@@ -122,7 +122,7 @@ public class TD_Commands extends CommandBase implements ICommand
 		ClientProxy.shoes = new ModelTinkersBoots();
 
 		ClientProxy.coif = new ModelTinkersCoif();
-		ClientProxy.halberd = new ModelTinkersHalberd();
+		ClientProxy.hauberk = new ModelTinkersHauberk();
 		ClientProxy.chausses = new ModelTinkersChausses();
 		ClientProxy.boots = new ModelTinkersBoots();
 	}

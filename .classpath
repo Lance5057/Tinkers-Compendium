@@ -2,7 +2,7 @@
 <classpath>
 	<classpathentry kind="src" path="src/main/java"/>
 	<classpathentry kind="src" path="src/main/resources"/>
-	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
 	<classpathentry kind="src" path="src/api/java"/>
 	<classpathentry exported="true" kind="lib" path="C:/Users/T/.gradle/caches/minecraft/net/minecraftforge/forge/1.7.10-10.13.4.1448-1.7.10/forgeSrc-1.7.10-10.13.4.1448-1.7.10.jar" sourcepath="C:/Users/T/.gradle/caches/minecraft/net/minecraftforge/forge/1.7.10-10.13.4.1448-1.7.10/forgeSrc-1.7.10-10.13.4.1448-1.7.10-sources.jar"/>
 	<classpathentry exported="true" kind="lib" path="C:/Users/T/.gradle/caches/modules-2/files-2.1/net.minecraft/launchwrapper/1.11/9c0592c6e1e9ea296a70948081bd4cc84dda1289/launchwrapper-1.11.jar" sourcepath="C:/Users/T/.gradle/caches/modules-2/files-2.1/net.minecraft/launchwrapper/1.11/ea64c0bce5e9f465cd56566530133331568d2157/launchwrapper-1.11-sources.jar"/>
@@ -64,11 +64,9 @@
 	<classpathentry exported="true" kind="lib" path="C:/Users/T/.gradle/caches/modules-2/files-2.1/org.lwjgl.lwjgl/lwjgl-platform/2.9.1/2d12c83fdfbc04ecabf02c7bc8cc54d034f0daac/lwjgl-platform-2.9.1-natives-osx.jar"/>
 	<classpathentry exported="true" kind="lib" path="C:/Users/T/Desktop/Minecraft Modding/1.7.10/Tinkers-Defense/libs/1.7.10-Battlegear-Bin-1.0.6.3.jar"/>
 	<classpathentry exported="true" kind="lib" path="C:/Users/T/Desktop/Minecraft Modding/1.7.10/Tinkers-Defense/libs/Mantle-1.7.10-0.3.2.DEV.GITBORK-deobf.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/T/Desktop/Minecraft Modding/1.7.10/Tinkers-Defense/libs/TConstruct-1.7.10-1.8.3.DEV.GITBORK-deobf.jar" sourcepath="libs/TConstruct-1.7.10-1.8.3.DEV.GITBORK-sources.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/T/Desktop/Minecraft Modding/1.7.10/Tinkers-Defense/libs/TConstruct-1.7.10-1.8.3.DEV.GITBORK-lib.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/T/Desktop/Minecraft Modding/1.7.10/Tinkers-Defense/libs/TConstruct-1.7.10-1.8.3.DEV.GITBORK-sources.jar"/>
 	<classpathentry exported="true" kind="lib" path="C:/Users/T/.gradle/caches/minecraft/net/minecraftforge/forge/1.7.10-10.13.4.1448-1.7.10/start"/>
 	<classpathentry kind="lib" path="C:/Users/T/Desktop/Minecraft Modding/1.7.10/Tinkers-Defense/jars/Botania r1.7-225-deobf.jar"/>
 	<classpathentry kind="lib" path="C:/Users/T/Desktop/Minecraft Modding/1.7.10/Tinkers-Defense/jars/Thaumcraft-deobf-1.7.10-4.2.3.5.jar"/>
+	<classpathentry kind="lib" path="libs/TConstruct-1.7.10-1.8.3.DEV.GITBORK-deobf.jar" sourcepath="libs/TConstruct-1.7.10-1.8.3.DEV.GITBORK-sources.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

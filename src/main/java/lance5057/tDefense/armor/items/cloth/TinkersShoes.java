@@ -16,8 +16,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import tconstruct.library.TConstructRegistry;
 import tconstruct.library.tools.CustomMaterial;
+import thaumcraft.api.IVisDiscountGear;
+import thaumcraft.api.aspects.Aspect;
 
-public class TinkersShoes extends ArmorCore
+public class TinkersShoes extends ArmorCore implements IVisDiscountGear
 {
 	public TinkersShoes()
 	{
@@ -145,5 +147,11 @@ public class TinkersShoes extends ArmorCore
 	public int getArmorDisplay(EntityPlayer player, ItemStack armor, int slot)
 	{
 		return 0;
+	}
+
+	@Override
+	public int getVisDiscount(ItemStack stack, EntityPlayer player, Aspect aspect)
+	{
+		return stack.getTagCompound().getCompoundTag("InfiTool").getInteger("Vis Embroidery");
 	}
 }

@@ -1,10 +1,7 @@
 package lance5057.tDefense;
 
-import java.util.Vector;
-
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.common.config.Configuration;
-import net.minecraftforge.common.config.Property;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
 public class TD_Config
 {
@@ -36,6 +33,10 @@ public class TD_Config
 
 	public boolean	BotaniaAddon;
 	public int		CorpseIvyModID;
+
+	public boolean	ThaumcraftAddon;
+	public int		RevealingModID;
+	public int		VisDiscountModID;
 
 	public TD_Config(FMLPreInitializationEvent e)
 	{
@@ -71,6 +72,10 @@ public class TD_Config
 
 		BotaniaAddon = config.getBoolean("Enable Botania Addon", "Botania Addon", true, "Still requires Botania to use");
 		CorpseIvyModID = config.getInt("Corpse Drinker Ivy Modifier ID", "Botania Addon", 60, 0, Integer.MAX_VALUE, "");
+
+		ThaumcraftAddon = config.getBoolean("Enable Thaumcraft Addon", "Thaumcraft Addon", true, "Requires Thaumcraft to use");
+		RevealingModID = config.getInt("Revealing Modifier ID", "Thaumcraft Addon", 70, 0, Integer.MAX_VALUE, "");
+		VisDiscountModID = config.getInt("Vis Discount Modifier ID", "Thaumcraft Addon", 71, 0, Integer.MAX_VALUE, "");
 
 		config.save();
 	}

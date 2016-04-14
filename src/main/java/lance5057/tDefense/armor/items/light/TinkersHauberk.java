@@ -1,12 +1,7 @@
 package lance5057.tDefense.armor.items.light;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import lance5057.tDefense.TinkersDefense;
 import lance5057.tDefense.armor.ArmorCore;
-import lance5057.tDefense.armor.parts.ClothMaterial;
-import lance5057.tDefense.armor.renderers.cloth.ModelTinkersHood;
-import lance5057.tDefense.armor.renderers.light.ModelTinkersHalberd;
 import lance5057.tDefense.proxy.ClientProxy;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.Entity;
@@ -14,19 +9,15 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.DamageSource;
-import net.minecraftforge.common.ISpecialArmor.ArmorProperties;
-import tconstruct.library.TConstructRegistry;
-import tconstruct.library.tools.CustomMaterial;
-import tconstruct.tools.TinkerTools;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
-public class TinkersHalberd extends ArmorCore
+public class TinkersHauberk extends ArmorCore
 {
-	public TinkersHalberd()
+	public TinkersHauberk()
 	{
 		super(1, 1);
-		this.setUnlocalizedName("tinkershalberd");
+		this.setUnlocalizedName("tinkershauberk");
 		this.maxReduction = 100;
 		this.reductionPercent = 0.24f;
 	}
@@ -85,13 +76,13 @@ public class TinkersHalberd extends ArmorCore
 		switch(partType)
 		{
 			case 0:
-				return "_halberd_chain";
+				return "_hauberk_chain";
 			case 1:
-				return "_halberd_chain_broken";
+				return "_hauberk_chain_broken";
 			case 2:
-				return "_halberd_plate";
+				return "_hauberk_plate";
 			case 3:
-				return "_halberd_rivet";
+				return "_hauberk_rivet";
 			default:
 				return "";
 		}
@@ -100,13 +91,13 @@ public class TinkersHalberd extends ArmorCore
 	@Override
 	public String getEffectSuffix()
 	{
-		return "_halberd_effect";
+		return "_hauberk_effect";
 	}
 
 	@Override
 	public String getDefaultFolder()
 	{
-		return "armor/halberd";
+		return "armor/hauberk";
 	}
 
 	//	@Override
@@ -119,13 +110,13 @@ public class TinkersHalberd extends ArmorCore
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
-		return "tinkersdefense:textures/armor/TinkersHalberd.png";
+		return "tinkersdefense:textures/armor/TinkersHauberk.png";
 	}
 
 	@Override
 	public String[] getTraits()
 	{
-		return new String[] {"armor", "chest", "halberd", "lightarmor"};
+		return new String[] {"armor", "chest", "hauberk", "lightarmor"};
 	}
 
 	@Override
@@ -138,8 +129,8 @@ public class TinkersHalberd extends ArmorCore
 			color[j] = Integer.toHexString(itemStack.getItem().getColorFromItemStack(itemStack, j));
 
 		String[] textures = {this.getIconSuffix(2), this.getIconSuffix(0), this.getIconSuffix(3)};
-		ClientProxy.halberd.SetColors(color, this.getDefaultFolder(), textures);
-		return ClientProxy.halberd;
+		ClientProxy.hauberk.SetColors(color, this.getDefaultFolder(), textures);
+		return ClientProxy.hauberk;
 	}
 
 	@Override

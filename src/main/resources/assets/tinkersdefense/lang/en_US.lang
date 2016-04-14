@@ -40,10 +40,10 @@ gui.toolstation.heatershield.desc=A simple shield with high durability and high 
 
 item.Crest_Feathers.name=Crest of Feathers
 
-toolpart.Chainmaille=Chainmail
-toolpart.Rivets=Rivets
-toolpart.Clasp=Clasp
-toolpart.Armor Plate=Armor Plate
+toolpart.Chainmaille=%%material Chainmail
+toolpart.Rivets=%%material Rivets
+toolpart.Clasp=%%material Clasp
+toolpart.Armor Plate=%%material Armor Plate
 
 item.TD.Cloth.white.name=White Cloth
 item.TD.Cloth.orange.name=Orange Cloth

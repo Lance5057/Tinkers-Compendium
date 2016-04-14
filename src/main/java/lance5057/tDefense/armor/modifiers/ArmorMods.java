@@ -2,6 +2,7 @@ package lance5057.tDefense.armor.modifiers;
 
 import lance5057.tDefense.Reference;
 import lance5057.tDefense.TinkersDefense;
+import lance5057.tDefense.armor.modifiers.Thaumcraft.ThaumArmorMods;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.material.Material;
@@ -22,11 +23,13 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 public class ArmorMods
 {
+	ThaumArmorMods	tcmods;
 
-	//	public ArmorMods()
-	//	{
-	//		
-	//	}
+	public ArmorMods()
+	{
+		tcmods = new ThaumArmorMods();
+	}
+
 	Item	item_Canister;
 	Item	item_Emptycanister;
 	Item	item_Rebreather;
@@ -52,46 +55,50 @@ public class ArmorMods
 		GameRegistry.registerItem(item_Canister, "FilledCart");
 		GameRegistry.registerItem(item_Emptycanister, "EmptyCart");
 		GameRegistry.registerItem(item_Rebreather, "Rebreather");
-		
+
 		GameRegistry.registerItem(item_Feathersole, "FeatherSole");
 		GameRegistry.registerItem(item_Firesole, "FireSole");
 		GameRegistry.registerItem(item_Icesole, "IceSole");
 		GameRegistry.registerItem(item_Glowsole, "GlowSole");
 		GameRegistry.registerItem(item_Flippers, "Flippers");
+
+		tcmods.LoadItems();
+
 	}
 
 	public void RegisterRecipes()
 	{
 		GameRegistry.addShapedRecipe(new ItemStack(item_Canister), new Object[] {"-c-", "ses", "-s-", 'c', new ItemStack(Items.coal, 1, 1), 's', new ItemStack(Blocks.sapling, 1), 'e', new ItemStack(item_Emptycanister, 1, 0)});
 		GameRegistry.addShapedRecipe(new ItemStack(item_Emptycanister), new Object[] {"gsg", "lil", "gig", 'g', new ItemStack(Items.gold_nugget, 1, 0), 's', new ItemStack(Items.slime_ball, 1, 0), 'l', new ItemStack(Items.dye, 1, 4), 'i', new ItemStack(Items.iron_ingot, 1, 0)});
-		GameRegistry.addShapedRecipe(new ItemStack(item_Rebreather), new Object[] {"-s-", "eie", "-d-", 's', new ItemStack(Items.slime_ball, 1, 0), 'e', new ItemStack(item_Emptycanister, 1, 0), 'i', new ItemStack(TinkersDefense.partArmorplate,1,2), 'd', new ItemStack(Items.dye, 1, 0)});
+		GameRegistry.addShapedRecipe(new ItemStack(item_Rebreather), new Object[] {"-s-", "eie", "-d-", 's', new ItemStack(Items.slime_ball, 1, 0), 'e', new ItemStack(item_Emptycanister, 1, 0), 'i', new ItemStack(TinkersDefense.partArmorplate, 1, 2), 'd', new ItemStack(Items.dye, 1, 0)});
 
 		GameRegistry.addShapedRecipe(new ItemStack(item_Glowsole), new Object[] {"ggg", "ala", "ggg", 'g', new ItemStack(Blocks.glowstone, 1, 0), 'a', new ItemStack(Items.glowstone_dust, 1, 0), 'l', TConstructRegistry.getItemStack("lavaCrystal")});
 		GameRegistry.addShapedRecipe(new ItemStack(item_Glowsole), new Object[] {"gag", "glg", "gag", 'g', new ItemStack(Blocks.glowstone, 1, 0), 'a', new ItemStack(Items.glowstone_dust, 1, 0), 'l', TConstructRegistry.getItemStack("lavaCrystal")});
 		GameRegistry.addShapedRecipe(new ItemStack(item_Feathersole), new Object[] {"fgf", 'g', new ItemStack(Items.gold_nugget, 1, 0), 'f', new ItemStack(Items.feather, 1, 0)});
 		GameRegistry.addShapedRecipe(new ItemStack(item_Firesole), new Object[] {"lol", "oao", "lol", 'o', new ItemStack(Blocks.obsidian, 1, 0), 'a', TConstructRegistry.getItemStack("ingotArdite"), 'l', TConstructRegistry.getItemStack("lavaCrystal")});
 		GameRegistry.addShapedRecipe(new ItemStack(item_Icesole), new Object[] {"ili", "lcl", "ili", 'l', new ItemStack(Blocks.lapis_block, 1, 0), 'i', new ItemStack(Blocks.ice, 1, 0), 'c', TConstructRegistry.getItemStack("ingotCobalt")});
-		GameRegistry.addShapedRecipe(new ItemStack(item_Flippers), new Object[] {"-b-", "rlr", "-s-", 'b', new ItemStack(Items.leather_boots, 1, 0), 'l', new ItemStack(Items.leather, 1, 0), 'r', new ItemStack(TinkerTools.toolRod,1,2), 's', new ItemStack(Items.slime_ball, 1, 0)});
+		GameRegistry.addShapedRecipe(new ItemStack(item_Flippers), new Object[] {"-b-", "rlr", "-s-", 'b', new ItemStack(Items.leather_boots, 1, 0), 'l', new ItemStack(Items.leather, 1, 0), 'r', new ItemStack(TinkerTools.toolRod, 1, 2), 's', new ItemStack(Items.slime_ball, 1, 0)});
 
+		tcmods.RegisterRecipes();
 	}
 
 	public void RegisterModifiers()
 	{
 		//Head only
-		ModifyBuilder.registerModifier(new modifierBoolExclusive(new ItemStack[] {new ItemStack(item_Rebreather, 1, 0)}, TinkersDefense.config.ArmorRebreatherID, "Rebreather", "\u00A76", "Rebreather", new String[] {"head"}));
-		
+		ModifyBuilder.registerModifier(new modifierBoolExclusive(new ItemStack[] {new ItemStack(item_Rebreather, 1, 0)}, TinkersDefense.config.ArmorRebreatherID, "Rebreather", "\u00A76", "Rebreather", new String[] {"head"}, 1));
+
 		//Excluding Cloth
 		ModifyBuilder.registerModifier(new modifierProtection(new ItemStack[] {new ItemStack(TinkersDefense.partArmorplate, 1, 2)}, TinkersDefense.config.ArmorProtectionID, 1, "\u00A77", "Protection"));
 		ModifyBuilder.registerModifier(new modifierProtection(new ItemStack[] {new ItemStack(Items.magma_cream, 1)}, TinkersDefense.config.ArmorFireProtectionID, 1, "\u00A7c", "Fire Protection"));
 		ModifyBuilder.registerModifier(new modifierProtection(new ItemStack[] {new ItemStack(Blocks.wool, 1)}, TinkersDefense.config.ArmorBlastProtectionID, 1, "\u00A72", "Blast Protection"));
 		ModifyBuilder.registerModifier(new modifierProtection(new ItemStack[] {new ItemStack(TinkersDefense.partRivet, 1, 2)}, TinkersDefense.config.ArmorProjectileProtectionID, 1, "\u00A7f", "Projectile Protection"));
 		ModifyBuilder.registerModifier(new modifierProtection(new ItemStack[] {new ItemStack(item_Feathersole, 1, 0)}, TinkersDefense.config.ArmorFeatherfallID, 1, "\u00A7f", "Featherfall"));
-		
+
 		//Feet only
-		ModifyBuilder.registerModifier(new modifierBoolExclusive(new ItemStack[] {new ItemStack(item_Glowsole, 1, 0)}, TinkersDefense.config.ArmorGlowstepID, "GlowStep", "\u00A76", "GlowStep", new String[] {"feet"}));
-		ModifyBuilder.registerModifier(new modifierBoolExclusive(new ItemStack[] {new ItemStack(item_Firesole, 1, 0)}, TinkersDefense.config.ArmorFirewalkerID, "Firewalker", "\u00A74", "Firewalker", new String[] {"feet"}));
-		ModifyBuilder.registerModifier(new modifierBoolExclusive(new ItemStack[] {new ItemStack(item_Icesole, 1, 0)}, TinkersDefense.config.ArmorFrostwalkerID, "Frostwalker", "\u00A7b", "Frostwalker", new String[] {"feet"}));
-		ModifyBuilder.registerModifier(new modifierBoolExclusive(new ItemStack[] {new ItemStack(item_Flippers, 1, 0)}, TinkersDefense.config.ArmorDepthstriderID, "Depthstrider", "\u00A71", "Depthstrider", new String[] {"feet"}));
+		ModifyBuilder.registerModifier(new modifierBoolExclusive(new ItemStack[] {new ItemStack(item_Glowsole, 1, 0)}, TinkersDefense.config.ArmorGlowstepID, "GlowStep", "\u00A76", "GlowStep", new String[] {"feet"}, 1));
+		ModifyBuilder.registerModifier(new modifierBoolExclusive(new ItemStack[] {new ItemStack(item_Firesole, 1, 0)}, TinkersDefense.config.ArmorFirewalkerID, "Firewalker", "\u00A74", "Firewalker", new String[] {"feet"}, 1));
+		ModifyBuilder.registerModifier(new modifierBoolExclusive(new ItemStack[] {new ItemStack(item_Icesole, 1, 0)}, TinkersDefense.config.ArmorFrostwalkerID, "Frostwalker", "\u00A7b", "Frostwalker", new String[] {"feet"}, 1));
+		ModifyBuilder.registerModifier(new modifierBoolExclusive(new ItemStack[] {new ItemStack(item_Flippers, 1, 0)}, TinkersDefense.config.ArmorDepthstriderID, "Depthstrider", "\u00A71", "Depthstrider", new String[] {"feet"}, 1));
 
 		for(ToolCore tool : TConstructRegistry.getToolMapping())
 		{
@@ -102,13 +109,15 @@ public class ArmorMods
 			TConstructClientRegistry.addEffectRenderMapping(tool, TinkersDefense.config.ArmorBlastProtectionID, "tinker", "blastprotection", true);
 			TConstructClientRegistry.addEffectRenderMapping(tool, TinkersDefense.config.ArmorProjectileProtectionID, "tinker", "projprotection", true);
 			TConstructClientRegistry.addEffectRenderMapping(tool, TinkersDefense.config.ArmorFeatherfallID, "tinker", "featherfall", true);
-			
+
 			TConstructClientRegistry.addEffectRenderMapping(tool, TinkersDefense.config.ArmorGlowstepID, "tinker", "glowstep", true);
 			TConstructClientRegistry.addEffectRenderMapping(tool, TinkersDefense.config.ArmorFirewalkerID, "tinker", "firewalk", true);
 			TConstructClientRegistry.addEffectRenderMapping(tool, TinkersDefense.config.ArmorFrostwalkerID, "tinker", "frostwalk", true);
 			TConstructClientRegistry.addEffectRenderMapping(tool, TinkersDefense.config.ArmorDepthstriderID, "tinker", "depthstrider", true);
 
 		}
+
+		tcmods.RegisterModifiers();
 	}
 
 	public void UpdateAll(ToolCore tool, ItemStack stack, World world, Entity entity, NBTTagCompound tags)
@@ -129,6 +138,8 @@ public class ArmorMods
 			if(tags.hasKey("Depthstrider"))
 				UpdateFlippers(tool, stack, world, entity);
 		}
+
+		tcmods.UpdateAll(tool, stack, world, entity, tags);
 	}
 
 	public void UpdateWalker(ToolCore tool, ItemStack stack, World world, Entity entity, Material mat, Block replacement, int meta)
@@ -181,7 +192,7 @@ public class ArmorMods
 		prevX = x;
 		prevZ = z;
 	}
-	
+
 	public void UpdateFlippers(ToolCore tool, ItemStack stack, World world, Entity entity)
 	{
 		if(entity.isInWater())
@@ -191,7 +202,7 @@ public class ArmorMods
 			entity.motionZ *= 1.2;
 		}
 	}
-	
+
 	public void UpdateRebreather(ToolCore tool, ItemStack stack, World world, Entity entity)
 	{
 		EntityPlayer player = (EntityPlayer) entity;

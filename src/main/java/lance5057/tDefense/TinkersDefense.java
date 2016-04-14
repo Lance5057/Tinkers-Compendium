@@ -25,7 +25,7 @@ import lance5057.tDefense.armor.items.heavy.TinkersSabatons;
 import lance5057.tDefense.armor.items.light.TinkersBoots;
 import lance5057.tDefense.armor.items.light.TinkersChausses;
 import lance5057.tDefense.armor.items.light.TinkersCoif;
-import lance5057.tDefense.armor.items.light.TinkersHalberd;
+import lance5057.tDefense.armor.items.light.TinkersHauberk;
 import lance5057.tDefense.armor.parts.Cloth;
 import lance5057.tDefense.armor.parts.ClothMaterial;
 import lance5057.tDefense.blocks.JewelersBench;
@@ -406,7 +406,7 @@ public class TinkersDefense
 		armor_TinkerShoes = new TinkersShoes();
 
 		armor_TinkerCoif = new TinkersCoif();
-		armor_TinkerHalberd = new TinkersHalberd();
+		armor_TinkerHalberd = new TinkersHauberk();
 		armor_TinkerChausses = new TinkersChausses();
 		armor_TinkerBoots = new TinkersBoots();
 

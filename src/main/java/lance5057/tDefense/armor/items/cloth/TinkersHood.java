@@ -1,11 +1,8 @@
 package lance5057.tDefense.armor.items.cloth;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import lance5057.tDefense.TinkersDefense;
 import lance5057.tDefense.armor.ArmorCore;
 import lance5057.tDefense.armor.parts.ClothMaterial;
-import lance5057.tDefense.armor.renderers.cloth.ModelTinkersHood;
 import lance5057.tDefense.proxy.ClientProxy;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.Entity;
@@ -14,12 +11,16 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.DamageSource;
-import net.minecraftforge.common.ISpecialArmor.ArmorProperties;
 import tconstruct.library.TConstructRegistry;
 import tconstruct.library.tools.CustomMaterial;
+import thaumcraft.api.IGoggles;
+import thaumcraft.api.IVisDiscountGear;
+import thaumcraft.api.aspects.Aspect;
+import thaumcraft.api.nodes.IRevealer;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
-public class TinkersHood extends ArmorCore
+public class TinkersHood extends ArmorCore implements IRevealer, IGoggles, IVisDiscountGear
 {
 	public TinkersHood()
 	{
@@ -151,5 +152,23 @@ public class TinkersHood extends ArmorCore
 	public int getArmorDisplay(EntityPlayer player, ItemStack armor, int slot)
 	{
 		return 0;
+	}
+
+	@Override
+	public boolean showIngamePopups(ItemStack itemstack, EntityLivingBase player)
+	{
+		return itemstack.getTagCompound().getCompoundTag("InfiTool").getBoolean("Revealing");
+	}
+
+	@Override
+	public boolean showNodes(ItemStack itemstack, EntityLivingBase player)
+	{
+		return itemstack.getTagCompound().getCompoundTag("InfiTool").getBoolean("Revealing");
+	}
+
+	@Override
+	public int getVisDiscount(ItemStack stack, EntityPlayer player, Aspect aspect)
+	{
+		return stack.getTagCompound().getCompoundTag("InfiTool").getInteger("Vis Embroidery");
 	}
 }

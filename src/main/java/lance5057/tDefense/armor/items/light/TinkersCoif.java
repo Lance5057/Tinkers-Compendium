@@ -1,12 +1,8 @@
 package lance5057.tDefense.armor.items.light;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import lance5057.tDefense.TinkersDefense;
 import lance5057.tDefense.armor.ArmorCore;
 import lance5057.tDefense.armor.parts.ClothMaterial;
-import lance5057.tDefense.armor.renderers.cloth.ModelTinkersHood;
-import lance5057.tDefense.armor.renderers.light.ModelTinkersCoif;
 import lance5057.tDefense.proxy.ClientProxy;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.Entity;
@@ -14,14 +10,16 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
-import net.minecraftforge.common.ISpecialArmor.ArmorProperties;
 import tconstruct.library.TConstructRegistry;
 import tconstruct.library.tools.CustomMaterial;
 import tconstruct.tools.TinkerTools;
+import thaumcraft.api.IGoggles;
+import thaumcraft.api.nodes.IRevealer;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
-public class TinkersCoif extends ArmorCore
+public class TinkersCoif extends ArmorCore implements IRevealer, IGoggles
 {
 	public TinkersCoif()
 	{
@@ -159,5 +157,17 @@ public class TinkersCoif extends ArmorCore
 		ArmorProperties armorp = new ArmorProperties(0, 0.08, 100); //0.04 per half shirt
 		//((EntityPlayer)player).addChatComponentMessage(new ChatComponentText(Double.toString(damage)));
 		return armorp;
+	}
+	
+	@Override
+	public boolean showIngamePopups(ItemStack itemstack, EntityLivingBase player)
+	{
+		return itemstack.getTagCompound().getCompoundTag("InfiTool").getBoolean("Revealing");
+	}
+
+	@Override
+	public boolean showNodes(ItemStack itemstack, EntityLivingBase player)
+	{
+		return itemstack.getTagCompound().getCompoundTag("InfiTool").getBoolean("Revealing");
 	}
 }

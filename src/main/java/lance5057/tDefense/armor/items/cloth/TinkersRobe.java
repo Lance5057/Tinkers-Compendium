@@ -4,6 +4,8 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import tconstruct.library.TConstructRegistry;
 import tconstruct.library.tools.CustomMaterial;
+import thaumcraft.api.IVisDiscountGear;
+import thaumcraft.api.aspects.Aspect;
 import lance5057.tDefense.TinkersDefense;
 import lance5057.tDefense.armor.ArmorCore;
 import lance5057.tDefense.armor.parts.ClothMaterial;
@@ -17,7 +19,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
-public class TinkersRobe extends ArmorCore
+public class TinkersRobe extends ArmorCore implements IVisDiscountGear
 {
 	public TinkersRobe()
 	{
@@ -141,5 +143,11 @@ public class TinkersRobe extends ArmorCore
 	public int getArmorDisplay(EntityPlayer player, ItemStack armor, int slot)
 	{
 		return 0;
+	}
+
+	@Override
+	public int getVisDiscount(ItemStack stack, EntityPlayer player, Aspect aspect)
+	{
+		return stack.getTagCompound().getCompoundTag("InfiTool").getInteger("Vis Embroidery");
 	}
 }
