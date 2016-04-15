@@ -1,5 +1,6 @@
 package lance5057.tDefense.armor.items.cloth;
 
+import cpw.mods.fml.common.Optional;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import lance5057.tDefense.TinkersDefense;
@@ -19,6 +20,7 @@ import tconstruct.library.tools.CustomMaterial;
 import thaumcraft.api.IVisDiscountGear;
 import thaumcraft.api.aspects.Aspect;
 
+@Optional.InterfaceList({@Optional.Interface(modid = "Thaumcraft", iface = "thaumcraft.api.IVisDiscountGear", striprefs = true)})
 public class TinkersShoes extends ArmorCore implements IVisDiscountGear
 {
 	public TinkersShoes()
@@ -150,6 +152,7 @@ public class TinkersShoes extends ArmorCore implements IVisDiscountGear
 	}
 
 	@Override
+	@Optional.Method(modid = "Thaumcraft")
 	public int getVisDiscount(ItemStack stack, EntityPlayer player, Aspect aspect)
 	{
 		return stack.getTagCompound().getCompoundTag("InfiTool").getInteger("Vis Embroidery");

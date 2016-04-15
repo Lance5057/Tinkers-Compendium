@@ -11,9 +11,11 @@ import net.minecraft.item.ItemStack;
 import tconstruct.tools.TinkerTools;
 import thaumcraft.api.IGoggles;
 import thaumcraft.api.nodes.IRevealer;
+import cpw.mods.fml.common.Optional;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
+@Optional.InterfaceList({@Optional.Interface(modid = "Thaumcraft", iface = "thaumcraft.api.IGoggles", striprefs = true), @Optional.Interface(modid = "Thaumcraft", iface = "thaumcraft.api.nodes.IRevealer", striprefs = true)})
 public class TinkersHelm extends ArmorCore implements IRevealer, IGoggles
 {
 	public TinkersHelm()
@@ -134,14 +136,16 @@ public class TinkersHelm extends ArmorCore implements IRevealer, IGoggles
 		ClientProxy.helm.SetColors(color, this.getDefaultFolder(), textures);
 		return ClientProxy.helm;
 	}
-	
+
 	@Override
+	@Optional.Method(modid = "Thaumcraft")
 	public boolean showIngamePopups(ItemStack itemstack, EntityLivingBase player)
 	{
 		return itemstack.getTagCompound().getCompoundTag("InfiTool").getBoolean("Revealing");
 	}
 
 	@Override
+	@Optional.Method(modid = "Thaumcraft")
 	public boolean showNodes(ItemStack itemstack, EntityLivingBase player)
 	{
 		return itemstack.getTagCompound().getCompoundTag("InfiTool").getBoolean("Revealing");

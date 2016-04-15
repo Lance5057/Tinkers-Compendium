@@ -16,9 +16,11 @@ import tconstruct.library.tools.CustomMaterial;
 import tconstruct.tools.TinkerTools;
 import thaumcraft.api.IGoggles;
 import thaumcraft.api.nodes.IRevealer;
+import cpw.mods.fml.common.Optional;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
+@Optional.InterfaceList({@Optional.Interface(modid = "Thaumcraft", iface = "thaumcraft.api.IGoggles", striprefs = true), @Optional.Interface(modid = "Thaumcraft", iface = "thaumcraft.api.nodes.IRevealer", striprefs = true)})
 public class TinkersCoif extends ArmorCore implements IRevealer, IGoggles
 {
 	public TinkersCoif()
@@ -134,7 +136,7 @@ public class TinkersCoif extends ArmorCore implements IRevealer, IGoggles
 
 		for(int j = 0; j < 10; j++)
 			color[j] = Integer.toHexString(itemStack.getItem().getColorFromItemStack(itemStack, j));
-		
+
 		int AccessoryID = itemStack.getTagCompound().getCompoundTag("InfiTool").getInteger("RenderHandle");
 
 		CustomMaterial newColor = TConstructRegistry.getCustomMaterial(AccessoryID, ClothMaterial.class);
@@ -158,14 +160,16 @@ public class TinkersCoif extends ArmorCore implements IRevealer, IGoggles
 		//((EntityPlayer)player).addChatComponentMessage(new ChatComponentText(Double.toString(damage)));
 		return armorp;
 	}
-	
+
 	@Override
+	@Optional.Method(modid = "Thaumcraft")
 	public boolean showIngamePopups(ItemStack itemstack, EntityLivingBase player)
 	{
 		return itemstack.getTagCompound().getCompoundTag("InfiTool").getBoolean("Revealing");
 	}
 
 	@Override
+	@Optional.Method(modid = "Thaumcraft")
 	public boolean showNodes(ItemStack itemstack, EntityLivingBase player)
 	{
 		return itemstack.getTagCompound().getCompoundTag("InfiTool").getBoolean("Revealing");

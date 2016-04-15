@@ -17,7 +17,7 @@ buildscript {
 
 apply plugin: 'forge'
 
-version = "1.3a"
+version = "1.3.5a"
 group= "gmail.lance5057.com" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "tinkersdefense"
 

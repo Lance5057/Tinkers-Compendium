@@ -2,6 +2,8 @@ package lance5057.tDefense.core.tools.modifiers.ActiveToolMods;
 
 import java.util.Random;
 
+import lance5057.tDefense.core.tools.modifiers.Modifiers;
+import lance5057.tDefense.core.tools.modifiers.ToolMods;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
@@ -13,7 +15,7 @@ import tconstruct.library.tools.ToolCore;
 
 public class TDefenseActiveToolMod extends ActiveToolMod
 {
-	TdefenseToolMods	TDMods	= new TdefenseToolMods();
+	Modifiers	TDMods	= new Modifiers();
 
 	// BotaniaToolMods FlowerMods = new BotaniaToolMods();
 

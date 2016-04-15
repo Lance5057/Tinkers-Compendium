@@ -1,6 +1,7 @@
 package lance5057.tDefense.armor.modifiers;
 
 import lance5057.tDefense.Reference;
+import lance5057.tDefense.TDIntegration;
 import lance5057.tDefense.TinkersDefense;
 import lance5057.tDefense.armor.modifiers.Thaumcraft.ThaumArmorMods;
 import net.minecraft.block.Block;
@@ -25,20 +26,20 @@ public class ArmorMods
 {
 	ThaumArmorMods	tcmods;
 
+	Item			item_Canister;
+	Item			item_Emptycanister;
+	Item			item_Rebreather;
+
+	Item			item_Glowsole;
+	Item			item_Firesole;
+	Item			item_Icesole;
+	Item			item_Feathersole;
+	Item			item_Flippers;
+	
 	public ArmorMods()
 	{
-		tcmods = new ThaumArmorMods();
+		LoadItems();
 	}
-
-	Item	item_Canister;
-	Item	item_Emptycanister;
-	Item	item_Rebreather;
-
-	Item	item_Glowsole;
-	Item	item_Firesole;
-	Item	item_Icesole;
-	Item	item_Feathersole;
-	Item	item_Flippers;
 
 	public void LoadItems()
 	{
@@ -62,7 +63,11 @@ public class ArmorMods
 		GameRegistry.registerItem(item_Glowsole, "GlowSole");
 		GameRegistry.registerItem(item_Flippers, "Flippers");
 
-		tcmods.LoadItems();
+		if(TDIntegration.thaumcraft)
+		{
+			tcmods = new ThaumArmorMods();
+			tcmods.LoadItems();
+		}
 
 	}
 
@@ -79,7 +84,10 @@ public class ArmorMods
 		GameRegistry.addShapedRecipe(new ItemStack(item_Icesole), new Object[] {"ili", "lcl", "ili", 'l', new ItemStack(Blocks.lapis_block, 1, 0), 'i', new ItemStack(Blocks.ice, 1, 0), 'c', TConstructRegistry.getItemStack("ingotCobalt")});
 		GameRegistry.addShapedRecipe(new ItemStack(item_Flippers), new Object[] {"-b-", "rlr", "-s-", 'b', new ItemStack(Items.leather_boots, 1, 0), 'l', new ItemStack(Items.leather, 1, 0), 'r', new ItemStack(TinkerTools.toolRod, 1, 2), 's', new ItemStack(Items.slime_ball, 1, 0)});
 
-		tcmods.RegisterRecipes();
+		if(TDIntegration.thaumcraft)
+		{
+			tcmods.RegisterRecipes();
+		}
 	}
 
 	public void RegisterModifiers()
@@ -117,7 +125,10 @@ public class ArmorMods
 
 		}
 
-		tcmods.RegisterModifiers();
+		if(TDIntegration.thaumcraft)
+		{
+			tcmods.RegisterModifiers();
+		}
 	}
 
 	public void UpdateAll(ToolCore tool, ItemStack stack, World world, Entity entity, NBTTagCompound tags)
@@ -139,7 +150,10 @@ public class ArmorMods
 				UpdateFlippers(tool, stack, world, entity);
 		}
 
-		tcmods.UpdateAll(tool, stack, world, entity, tags);
+		if(TDIntegration.thaumcraft)
+		{
+			tcmods.UpdateAll(tool, stack, world, entity, tags);
+		}
 	}
 
 	public void UpdateWalker(ToolCore tool, ItemStack stack, World world, Entity entity, Material mat, Block replacement, int meta)

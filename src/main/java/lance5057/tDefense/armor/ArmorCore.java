@@ -1,5 +1,6 @@
 package lance5057.tDefense.armor;
 
+import lance5057.tDefense.TDIntegration;
 import lance5057.tDefense.TinkersDefense;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.Entity;
@@ -14,18 +15,20 @@ import net.minecraftforge.common.ISpecialArmor;
 import tconstruct.library.tools.AbilityHelper;
 import tconstruct.library.tools.ToolCore;
 import thaumcraft.api.IRunicArmor;
+import cpw.mods.fml.common.Optional;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
+@Optional.InterfaceList({@Optional.Interface(modid = "Thaumcraft", iface = "thaumcraft.api.IRunicArmor", striprefs = true)})
 public class ArmorCore extends ToolCore implements ISpecialArmor, IRunicArmor
 {
 	int				slot;
 	public float	reductionPercent	= 0f;
 	protected int	maxReduction		= 100;
-	
+
 	//Thaumcraft
-	boolean Charge = false;
-	
+	boolean			Charge				= false;
+
 	public ArmorCore(int baseProtection, int slot)
 	{
 		super(baseProtection);
@@ -134,25 +137,27 @@ public class ArmorCore extends ToolCore implements ISpecialArmor, IRunicArmor
 	{
 		return 0;
 	}
-	
+
 	@Override
 	public void onUpdate(ItemStack stack, World world, Entity ent, int p_77663_4_, boolean p_77663_5_)
 	{
 		//Check if runic shielding level has changed
-		
-		NBTTagCompound tcTag = stack.getTagCompound();
-		NBTTagCompound ticoTag = stack.getTagCompound().getCompoundTag("InfiTool");
-		
-		byte rs = tcTag.getByte("RS.HARDEN");
-		if(!Charge && rs > 0)
+		if(TDIntegration.thaumcraft)
 		{
-			if(ticoTag.getInteger("Modifiers") > 0)
+			NBTTagCompound tcTag = stack.getTagCompound();
+			NBTTagCompound ticoTag = stack.getTagCompound().getCompoundTag("InfiTool");
+
+			byte rs = tcTag.getByte("RS.HARDEN");
+			if(!Charge && rs > 0)
 			{
-				ticoTag.setInteger("Modifiers", ticoTag.getInteger("Modifiers") - 1);
-				Charge = true;
+				if(ticoTag.getInteger("Modifiers") > 0)
+				{
+					ticoTag.setInteger("Modifiers", ticoTag.getInteger("Modifiers") - 1);
+					Charge = true;
+				}
+				else
+					tcTag.setByte("RS.HARDEN", (byte) 0);
 			}
-			else
-				tcTag.setByte("RS.HARDEN", (byte) 0);
 		}
 	}
 

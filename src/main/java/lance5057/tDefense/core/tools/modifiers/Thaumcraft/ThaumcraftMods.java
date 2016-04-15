@@ -1,0 +1,91 @@
+package lance5057.tDefense.core.tools.modifiers.Thaumcraft;
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
+import cpw.mods.fml.common.FMLLog;
+import lance5057.tDefense.TinkersDefense;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.world.World;
+import tconstruct.library.crafting.ModifyBuilder;
+import tconstruct.library.tools.ToolCore;
+import thaumcraft.api.ItemApi;
+import thaumcraft.api.aspects.Aspect;
+import thaumcraft.api.aspects.AspectList;
+import thaumcraft.api.internal.DummyInternalMethodHandler;
+
+public class ThaumcraftMods
+{
+
+	public ThaumcraftMods()
+	{
+		LoadItems();
+	}
+
+	public void LoadItems()
+	{
+
+	}
+
+	public void RegisterRecipes()
+	{
+	}
+
+	public void RegisterModifiers()
+	{
+		ModifyBuilder.registerModifier(new modifierRepairVis(new ItemStack[] {ItemApi.getItem("itemWandCap", 0)}, TinkersDefense.config.CapsModID, "Caps", EnumChatFormatting.GOLD.toString(), "Caps"));
+	}
+
+	public void UpdateAll(ToolCore tool, ItemStack stack, World world, Entity entity, NBTTagCompound tags)
+	{
+		if(!world.isRemote)
+		{
+			if(tags.hasKey("Caps"))
+				UpdateRepairVis(tool, stack, world, entity, tags);
+		}
+	}
+
+	static Method	consumeVisFromInventory;
+
+	public void UpdateRepairVis(ToolCore tool, ItemStack stack, World world, Entity entity, NBTTagCompound tags)
+	{
+		if(tags.getInteger("Damage") > 0)
+		{
+			AspectList cost = new AspectList();
+			cost.add(Aspect.AIR, (int) (10 * tags.getFloat("Caps")));
+			cost.add(Aspect.WATER, (int) (30 * tags.getFloat("Caps")));
+			cost.add(Aspect.FIRE, (int) (10 * tags.getFloat("Caps")));
+			cost.add(Aspect.ORDER, (int) (20 * tags.getFloat("Caps")));
+			cost.add(Aspect.ENTROPY, (int) (10 * tags.getFloat("Caps")));
+			cost.add(Aspect.EARTH, (int) (30 * tags.getFloat("Caps")));
+
+			boolean success = false;
+			try
+			{
+				if(consumeVisFromInventory == null)
+				{
+					consumeVisFromInventory = Class.forName("thaumcraft.common.items.wands.WandManager").getMethod("consumeVisFromInventory", EntityPlayer.class, AspectList.class);
+				}
+				success = (boolean) consumeVisFromInventory.invoke(null, (EntityPlayer) entity, cost);
+			}
+			catch(Exception ex)
+			{
+				FMLLog.warning("Thaumcraft is missing, you shouldn't see this, please report");
+			}
+			finally
+			{
+				if(success)
+				{
+					if(tags.getInteger("Damage") >= 4)
+						tags.setInteger("Damage", tags.getInteger("Damage") - 4);
+					else
+						tags.setInteger("Damage", 0);
+				}
+			}
+		}
+	}
+}

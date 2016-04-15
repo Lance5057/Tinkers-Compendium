@@ -37,7 +37,9 @@ public class TD_Config
 	public boolean	ThaumcraftAddon;
 	public int		RevealingModID;
 	public int		VisDiscountModID;
-
+	public int		CapsModID;
+	public int		SpellbindModID;
+	
 	public TD_Config(FMLPreInitializationEvent e)
 	{
 		Configuration config = new Configuration(e.getSuggestedConfigurationFile());
@@ -76,6 +78,8 @@ public class TD_Config
 		ThaumcraftAddon = config.getBoolean("Enable Thaumcraft Addon", "Thaumcraft Addon", true, "Requires Thaumcraft to use");
 		RevealingModID = config.getInt("Revealing Modifier ID", "Thaumcraft Addon", 70, 0, Integer.MAX_VALUE, "");
 		VisDiscountModID = config.getInt("Vis Discount Modifier ID", "Thaumcraft Addon", 71, 0, Integer.MAX_VALUE, "");
+		CapsModID = config.getInt("Cap Repair Modifier ID", "Thaumcraft Addon", 72, 0, Integer.MAX_VALUE, "");
+		SpellbindModID = config.getInt("Spellbinding Modifier ID", "Thaumcraft Addon", 73, 0, Integer.MAX_VALUE, "");
 
 		config.save();
 	}

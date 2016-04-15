@@ -1,12 +1,16 @@
-package lance5057.tDefense.addons;
+package lance5057.tDefense.core.tools.modifiers.Botania;
 
 import lance5057.tDefense.TinkersDefense;
-import lance5057.tDefense.core.tools.modifiers.Botania.modifierCorpseIvy;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.world.World;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import tconstruct.library.crafting.ModifyBuilder;
+import tconstruct.library.tools.ToolCore;
 import tconstruct.tools.TinkerTools;
 import vazkii.botania.api.BotaniaAPI;
 import vazkii.botania.common.item.ModItems;
@@ -14,25 +18,18 @@ import vazkii.botania.common.item.block.ItemBlockSpecialFlower;
 import vazkii.botania.common.lib.LibBlockNames;
 import vazkii.botania.common.lib.LibOreDict;
 import cpw.mods.fml.common.Loader;
+import cpw.mods.fml.common.Optional;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-public class TDAddonBotania
+@Optional.InterfaceList({@Optional.Interface(modid = "botania", iface = "vazkii.botania.common.entity.EntityManaBurst"), @Optional.Interface(modid = "botania", iface = "vazkii.botania.common.item.ModItems"), @Optional.Interface(modid = "botania", iface = "vazkii.botania.common.item.equipment.tool.ToolCommons"), @Optional.Interface(modid = "botania", iface = "vazkii.botania.common.item.equipment.tool.terrasteel.ItemTerraSword"),})
+public class BotaniaMods
 {
-	boolean	active;
-
 	Item	corpseIvyGraft;
 	Item	corpseIvy;
 
-	public TDAddonBotania()
+	public BotaniaMods()
 	{
-		active = false;
-
-		if(Loader.isModLoaded("Botania"))
-		{
-			active = true;
-
 			LoadItems();
-		}
 	}
 
 	public void LoadItems()
@@ -55,5 +52,29 @@ public class TDAddonBotania
 	public void RegisterModifiers()
 	{
 		ModifyBuilder.registerModifier(new modifierCorpseIvy("Corpse Ivy", TinkersDefense.config.CorpseIvyModID, new ItemStack[] {new ItemStack(corpseIvy)}, new int[] {1}));
+	}
+
+	public void UpdateAll(ToolCore tool, ItemStack stack, World world, Entity entity, NBTTagCompound tags)
+	{
+		UpdateTerraCore(tool, stack, world, entity, tags);
+	}
+
+	public void UpdateTerraCore(ToolCore tool, ItemStack stack, World world, Entity entity, NBTTagCompound tags)
+	{
+		if(entity instanceof EntityPlayer)
+		{
+			//			EntityPlayer player = (EntityPlayer) entity;
+			//			PotionEffect haste = player.getActivePotionEffect(Potion.digSpeed);
+			//			float check = haste == null ? 0.16666667F : haste.getAmplifier() == 1 ? 0.5F : 0.4F;
+
+			//			if(player.getCurrentEquippedItem() == stack && player.swingProgress == check && !world.isRemote && world.rand.nextInt(2) == 0) 
+			//			{
+			//				int color = TConstructRegistry.getMaterial(tags.getInteger("Head")).primaryColor();
+			//				EntityManaBurst burst = ((ItemTerraSword)ModItems.terraSword).getBurst(player, new ItemStack(ModItems.terraSword));
+			//				burst.setColor(color);
+			//				world.spawnEntityInWorld(burst);
+			//				ToolCommonSoundAtEntity(player, "botania:terraBlade", 0.4F, 1.4F);
+			//			}
+		}
 	}
 }

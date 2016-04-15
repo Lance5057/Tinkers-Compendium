@@ -6,7 +6,6 @@ import static net.minecraft.util.EnumChatFormatting.LIGHT_PURPLE;
 
 import java.util.Date;
 
-import lance5057.tDefense.addons.TDAddonBotania;
 import lance5057.tDefense.armor.blocks.GlowstoneCrumbs;
 import lance5057.tDefense.armor.blocks.UnstableBlock;
 import lance5057.tDefense.armor.blocks.UnstableItemBlock;
@@ -46,6 +45,7 @@ import lance5057.tDefense.core.tools.Shears;
 import lance5057.tDefense.core.tools.TinkerWrench;
 import lance5057.tDefense.core.tools.TinkerZweihander;
 import lance5057.tDefense.core.tools.modifiers.Modifiers;
+import lance5057.tDefense.core.tools.modifiers.Botania.BotaniaMods;
 import lance5057.tDefense.finishingAnvil.blocks.finishingAnvil.FinishingAnvil;
 import lance5057.tDefense.finishingAnvil.blocks.finishingAnvil.TileEntity_FinishingAnvil;
 import lance5057.tDefense.finishingAnvil.utilities.Injector;
@@ -206,7 +206,7 @@ public class TinkersDefense
 
 	public static ToolCore						tcInject;
 
-	public static TDAddonBotania				flowermod;
+	public static BotaniaMods				flowermod;
 
 	@SidedProxy(clientSide = "lance5057.tDefense.proxy.ClientProxy", serverSide = "lance5057.tDefense.proxy.CommonProxy")
 	public static CommonProxy					proxy;
@@ -216,6 +216,7 @@ public class TinkersDefense
 	public void preInit(FMLPreInitializationEvent e)
 	{
 		month = this.date.getMonth();
+		TDIntegration.Integrate();
 
 		PacketHandler.init();
 

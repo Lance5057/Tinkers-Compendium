@@ -13,6 +13,7 @@ import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import tconstruct.library.tools.ToolCore;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
+import cpw.mods.fml.common.registry.EntityRegistry;
 
 public class ArmorModEvents
 {
@@ -60,23 +61,6 @@ public class ArmorModEvents
 			((EntityPlayer) event.entityLiving).addChatComponentMessage(new ChatComponentText(event.source.getDamageType() + " - Adjusted: " + Double.toString(event.ammount)));
 		}
 	}
-
-	//	@SubscribeEvent
-	//	public void playerTick(TickEvent.PlayerTickEvent event)
-	//	{
-	//		for(int i = 0; i < 4; i++)
-	//		{
-	//			EntityPlayer entity = event.player;
-	//			World world = entity.worldObj;
-	//			ItemStack stack = entity.getCurrentArmor(i);
-	//
-	//			if(stack.getItem() instanceof ToolCore)
-	//			{
-	//				ToolCore tool = (ToolCore) stack.getItem();
-	//				NBTTagCompound tags = stack.getTagCompound().getCompoundTag("InfiTool");
-	//			}
-	//		}
-	//	}
 
 	public int calcModifierDamage(int level, float typeMod, DamageSource source)
 	{
