@@ -10,18 +10,23 @@ import tconstruct.modifiers.tools.ModBoolean;
 
 public class modifierBoolExclusive extends ModBoolean
 {
-	String[] exclusive;
-	int modsNeeded = 0;
-	String color;
-    String tooltipName;
-    
-	public modifierBoolExclusive(ItemStack[] items, int effect, String tag, String c, String tip, String[] exclusive, int modsNeeded)
+	String[]	exclusive;
+	int			modsNeeded	= 0;
+	String		color;
+	String		tooltipName;
+	String[]	modExclusions;
+
+	/*
+	 * excludeMods: If these modifier keys are present this modifier wont take.
+	 */
+	public modifierBoolExclusive(ItemStack[] items, int effect, String tag, String c, String tip, String[] exclusive, int modsNeeded, String[] excludeMods)
 	{
 		super(items, effect, tag, c, tip);
 		this.exclusive = exclusive;
 		this.modsNeeded = modsNeeded;
 		this.color = c;
 		this.tooltipName = tip;
+		this.modExclusions = excludeMods;
 	}
 
 	@Override
@@ -29,29 +34,43 @@ public class modifierBoolExclusive extends ModBoolean
 	{
 		List list = Arrays.asList(((ToolCore) tool.getItem()).getTraits());
 		NBTTagCompound tags = tool.getTagCompound().getCompoundTag("InfiTool");
-		
+
+		boolean isExclusive = false;
+		boolean hasModRejection = false;
+
 		for(int i = 0; i < exclusive.length; i++)
 		{
 			if(list.contains(exclusive[i]))
 			{
-				return tags.getInteger("Modifiers") > 0 && !tags.getBoolean(key);
+				isExclusive = true;
 			}
 		}
-		
-		return false;
+
+		if(modExclusions != null)
+		{
+			for(int i = 0; i < modExclusions.length; i++)
+			{
+				if(tags.hasKey(modExclusions[i]))
+				{
+					hasModRejection = true;
+				}
+			}
+		}
+
+		return isExclusive && !hasModRejection && !tags.hasKey(tooltipName);
 	}
-	
+
 	@Override
-    public void modify (ItemStack[] input, ItemStack tool)
-    {
-        NBTTagCompound tags = tool.getTagCompound().getCompoundTag("InfiTool");
+	public void modify(ItemStack[] input, ItemStack tool)
+	{
+		NBTTagCompound tags = tool.getTagCompound().getCompoundTag("InfiTool");
 
-        tags.setBoolean(key, true);
+		tags.setBoolean(key, true);
 
-        int modifiers = tags.getInteger("Modifiers");
-        modifiers -= modsNeeded;
-        tags.setInteger("Modifiers", modifiers);
+		int modifiers = tags.getInteger("Modifiers");
+		modifiers -= modsNeeded;
+		tags.setInteger("Modifiers", modifiers);
 
-        addToolTip(tool, color + tooltipName, color + key);
-    }
+		addToolTip(tool, color + tooltipName, color + key);
+	}
 }

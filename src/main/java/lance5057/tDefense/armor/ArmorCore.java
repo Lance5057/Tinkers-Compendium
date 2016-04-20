@@ -1,5 +1,7 @@
 package lance5057.tDefense.armor;
 
+import org.lwjgl.opengl.GL11;
+
 import lance5057.tDefense.TDIntegration;
 import lance5057.tDefense.TinkersDefense;
 import net.minecraft.client.model.ModelBiped;
@@ -10,11 +12,13 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ISpecialArmor;
 import tconstruct.library.tools.AbilityHelper;
 import tconstruct.library.tools.ToolCore;
 import thaumcraft.api.IRunicArmor;
+import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.Optional;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -129,7 +133,7 @@ public class ArmorCore extends ToolCore implements ISpecialArmor, IRunicArmor
 	public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack)
 	{
 
-		TinkersDefense.mods.AMod.UpdateAll((ToolCore) itemStack.getItem(), itemStack, world, player, itemStack.getTagCompound().getCompoundTag("InfiTool"));
+		//TinkersDefense.mods.AMod.UpdateAll((ToolCore) itemStack.getItem(), itemStack, world, player, itemStack.getTagCompound().getCompoundTag("InfiTool"));
 	}
 
 	@Override
@@ -161,4 +165,46 @@ public class ArmorCore extends ToolCore implements ISpecialArmor, IRunicArmor
 		}
 	}
 
+	public void renderArmor(Entity entity, float f, float f1, float f2, float f3, float f4, float f5, String[] colors, ItemStack stack, int pass)
+	{
+
+		ResourceLocation rc = new ResourceLocation("tinkersdefense:textures/" + this.getDefaultFolder() + "/" + getTexture(pass, stack) + ".png");
+		FMLClientHandler.instance().getClient().renderEngine.bindTexture(rc);
+
+		float size = 1.6f;
+		GL11.glScalef(1.0F / size, 1.0F / size, 1.0F / size);
+		GL11.glTranslatef(0.0F, -0.01F, 0.0F);
+
+		int[] intColors = TinkersDefense.hexToRGB(colors[pass]);
+		GL11.glColor3d((float) intColors[0] / 255, (float) intColors[1] / 255, (float) intColors[2] / 255);
+
+	}
+
+	public String getTexture(int pass, ItemStack stack)
+	{
+		NBTTagCompound tags = stack.getTagCompound().getCompoundTag("InfiTool");
+		switch(pass)
+		{
+			case 0:
+				return this.getIconSuffix(0);
+			case 1:
+				return this.getIconSuffix(2);
+			case 2:
+				return this.getIconSuffix(3);
+			case 3:
+				return this.getIconSuffix(4);
+
+			default:
+				if(tags != null && tags.hasKey("Effect" + (1 + pass - getPartAmount())))
+				{
+					String effect = effectStrings.get(tags.getInteger("Effect" + (1 + pass - getPartAmount())));
+					if(effect != null)
+						return effect.substring(effect.lastIndexOf("/"));
+					else
+						return "";
+						
+				}
+		}
+		return "";
+	}
 }

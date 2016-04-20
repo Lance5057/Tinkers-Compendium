@@ -1,8 +1,12 @@
 package lance5057.tDefense.armor.events;
 
 import lance5057.tDefense.armor.ArmorCore;
+import lance5057.tDefense.armor.items.cloth.TinkersRobe;
+import lance5057.tDefense.armor.items.heavy.TinkersGrieves;
+import lance5057.tDefense.armor.items.light.TinkersChausses;
 import lance5057.tDefense.armor.modifiers.ArmorMods;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ChatComponentText;

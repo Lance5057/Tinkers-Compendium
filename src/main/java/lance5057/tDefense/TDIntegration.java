@@ -11,19 +11,19 @@ public final class TDIntegration
 
 	public static void Integrate()
 	{
-		if(Loader.isModLoaded("battlegear2"))
+		if(Loader.isModLoaded("battlegear2") && TinkersDefense.config.MineAndBladeAddon)
 		{
 			mineAndBlade = true;
 		}
-		if(Loader.isModLoaded("Thaumcraft"))
+		if(Loader.isModLoaded("Thaumcraft") && TinkersDefense.config.ThaumcraftAddon)
 		{
 			thaumcraft = true;
 		}
-		if(Loader.isModLoaded("Botania"))
+		if(Loader.isModLoaded("Botania") && TinkersDefense.config.BotaniaAddon)
 		{
 			botania = true;
 		}
-		if(Loader.isModLoaded("bloodmagic"))
+		if(Loader.isModLoaded("bloodmagic") && TinkersDefense.config.BloodMagicAddon)
 		{
 			bloodMagic = true;
 		}

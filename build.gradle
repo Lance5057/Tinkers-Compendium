@@ -22,7 +22,7 @@ group= "gmail.lance5057.com" // http://maven.apache.org/guides/mini/guide-naming
 archivesBaseName = "tinkersdefense"
 
 minecraft {
-    version = "1.7.10-10.13.4.1448-1.7.10"
+    version = "1.7.10-10.13.4.1614-1.7.10"
     runDir = "eclipse"
 }
 

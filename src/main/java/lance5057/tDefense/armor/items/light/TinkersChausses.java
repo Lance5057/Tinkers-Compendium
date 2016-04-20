@@ -115,7 +115,7 @@ public class TinkersChausses extends ArmorCore
 	@Override
 	public String[] getTraits()
 	{
-		return new String[] {"armor", "feet", "chausses", "lightarmor"};
+		return new String[] {"armor", "pants", "chausses", "lightarmor"};
 	}
 
 	@Override

@@ -37,9 +37,9 @@ public class ThaumArmorMods
 
 	public void RegisterModifiers()
 	{
-		ModifyBuilder.registerModifier(new modifierBoolExclusive(new ItemStack[] {ItemApi.getItem("itemGoggles", 0)}, TinkersDefense.config.RevealingModID, "Revealing", "\u00A75", "Revealing", new String[] {"head"}, 0));
+		ModifyBuilder.registerModifier(new modifierBoolExclusive(new ItemStack[] {ItemApi.getItem("itemGoggles", 0)}, TinkersDefense.config.RevealingModID, "Revealing", "\u00A75", "Revealing", new String[] {"head"}, 0, null));
 		
-		ModifyBuilder.registerModifier(new modifierIntExclusive(new ItemStack[] {ItemApi.getItem("itemResource", 7)}, TinkersDefense.config.VisDiscountModID, "VisEmbroidery", 1, "\u00A79", "Vis Embroidery", new String[] {"cloth"}, 1));
+		ModifyBuilder.registerModifier(new modifierIntExclusive(new ItemStack[] {ItemApi.getItem("itemResource", 7)}, TinkersDefense.config.VisDiscountModID, "VisEmbroidery", 1, "\u00A79", "Vis Embroidery", new String[] {"cloth"}, 1, new String[] {"ManaEmbroidery"}));
 		
 		for(ToolCore tool : TConstructRegistry.getToolMapping())
 		{

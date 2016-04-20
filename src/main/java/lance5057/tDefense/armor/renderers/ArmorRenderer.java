@@ -2,12 +2,13 @@ package lance5057.tDefense.armor.renderers;
 
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.Entity;
+import net.minecraft.item.ItemStack;
 
 public class ArmorRenderer extends ModelBiped
 {
 	public String[]	colors;
 
-	public String[]	textures;
+	public ItemStack stack;
 	public String	defaultFolder;
 
 	public ArmorRenderer(float a, float b, int c, int d)
@@ -15,10 +16,10 @@ public class ArmorRenderer extends ModelBiped
 		super(a, b, c, d);
 	}
 
-	public void SetColors(String[] colors, String defaultFolder, String[] textures)
+	public void SetColors(String[] colors, String defaultFolder, ItemStack stack)
 	{
 		this.colors = colors;
-		this.textures = textures;
+		this.stack = stack;
 		this.defaultFolder = defaultFolder;
 	}
 }

@@ -25,6 +25,7 @@ import lance5057.tDefense.armor.items.light.TinkersBoots;
 import lance5057.tDefense.armor.items.light.TinkersChausses;
 import lance5057.tDefense.armor.items.light.TinkersCoif;
 import lance5057.tDefense.armor.items.light.TinkersHauberk;
+import lance5057.tDefense.armor.modifiers.ArmorMods;
 import lance5057.tDefense.armor.parts.Cloth;
 import lance5057.tDefense.armor.parts.ClothMaterial;
 import lance5057.tDefense.blocks.JewelersBench;
@@ -79,6 +80,7 @@ import tconstruct.library.tools.ToolCore;
 import tconstruct.smeltery.TinkerSmeltery;
 import tconstruct.tools.TinkerTools;
 import tconstruct.tools.items.Pattern;
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -112,8 +114,6 @@ public class TinkersDefense
 																};
 
 	public static TDEventHandler				TDevents;
-	public static ArmorRenderEvent				AREvent;
-	public static ArmorModEvents				AMEvent;
 
 	public static TD_Config						config;
 
@@ -216,18 +216,16 @@ public class TinkersDefense
 	public void preInit(FMLPreInitializationEvent e)
 	{
 		month = this.date.getMonth();
-		TDIntegration.Integrate();
-
+		
 		PacketHandler.init();
 
 		TDevents = new TDEventHandler();
-		AMEvent = new ArmorModEvents();
-		AREvent = new ArmorRenderEvent();
 
-		MinecraftForge.EVENT_BUS.register(AREvent);
-		MinecraftForge.EVENT_BUS.register(AMEvent);
+		MinecraftForge.EVENT_BUS.register(new ArmorRenderEvent());
+		MinecraftForge.EVENT_BUS.register(new ArmorModEvents());
 
 		config = new TD_Config(e);
+		TDIntegration.Integrate();
 
 		NetworkRegistry.INSTANCE.registerGuiHandler(TinkersDefense.instance, new CommonProxy());
 		MinecraftForge.EVENT_BUS.register(this);
@@ -236,8 +234,6 @@ public class TinkersDefense
 
 		tabIcon = new Item().setMaxStackSize(1).setCreativeTab(tabName).setUnlocalizedName("tabIcon").setTextureName(Reference.MOD_ID + ":Icon");
 		GameRegistry.registerItem(tabIcon, "tabIcon");
-
-		//flowermod = new TDAddonBotania();
 
 		mods = new Modifiers();
 		mods.preInit();
@@ -520,9 +516,9 @@ public class TinkersDefense
 
 		PatternBuilder pb = PatternBuilder.instance;
 
-		TConstructClientRegistry.toolButtons.add(new ToolGuiElement(1, 0, 0, new int[] {9, 0, 4, 0}, new int[] {2, 3, 2, 0}, StatCollector.translateToLocal("gui.toolstation.roundshield.name"), StatCollector.translateToLocal("gui.toolstation.roundshield.desc"), "tinkersdefense", "textures/gui/icons.png"));
+		TConstructClientRegistry.toolButtons.add(new ToolGuiElement(1, 0, 0, new int[] {9, 0, 4, 0}, new int[] {2, 3, 2, 0}, StatCollector.translateToLocal("gui.toolstation.roundshield.name"), StatCollector.translateToLocal("gui.toolstation.roundshield.desc"), "tinkersdefense", "textures/gui/icons2.png"));
 
-		ToolGuiElement button2 = new ToolGuiElement(5, 0, 0, new int[] {9, 8, 9, 9}, new int[] {2, 3, 2, 3}, StatCollector.translateToLocal("gui.toolstation.heatershield.name"), StatCollector.translateToLocal("gui.toolstation.heatershield.desc"), "tinkersdefense:", "textures/gui/icons.png");
+		ToolGuiElement button2 = new ToolGuiElement(5, 0, 0, new int[] {0, 0, 0, 0}, new int[] {2, 3, 2, 3}, StatCollector.translateToLocal("gui.toolstation.heatershield.name"), StatCollector.translateToLocal("gui.toolstation.heatershield.desc"), "tinkersdefense:", "textures/gui/icons2.png");
 		TConstructClientRegistry.tierTwoButtons.add(button2);
 
 		TConstructClientRegistry.stencilButtons2.add(new StencilGuiElement(0, 0, 50, "tinkersdefense", "textures/gui/icons.png"));

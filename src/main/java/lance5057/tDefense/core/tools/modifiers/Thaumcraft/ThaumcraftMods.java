@@ -11,6 +11,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
+import tconstruct.library.TConstructRegistry;
+import tconstruct.library.client.TConstructClientRegistry;
 import tconstruct.library.crafting.ModifyBuilder;
 import tconstruct.library.tools.ToolCore;
 import thaumcraft.api.ItemApi;
@@ -38,6 +40,11 @@ public class ThaumcraftMods
 	public void RegisterModifiers()
 	{
 		ModifyBuilder.registerModifier(new modifierRepairVis(new ItemStack[] {ItemApi.getItem("itemWandCap", 0)}, TinkersDefense.config.CapsModID, "Caps", EnumChatFormatting.GOLD.toString(), "Caps"));
+		
+		for(ToolCore tool : TConstructRegistry.getToolMapping())
+		{
+			TConstructClientRegistry.addEffectRenderMapping(tool, TinkersDefense.config.CapsModID, "tinker", "cap", true);
+		}
 	}
 
 	public void UpdateAll(ToolCore tool, ItemStack stack, World world, Entity entity, NBTTagCompound tags)
@@ -70,7 +77,7 @@ public class ThaumcraftMods
 				{
 					consumeVisFromInventory = Class.forName("thaumcraft.common.items.wands.WandManager").getMethod("consumeVisFromInventory", EntityPlayer.class, AspectList.class);
 				}
-				success = (boolean) consumeVisFromInventory.invoke(null, (EntityPlayer) entity, cost);
+				success = (Boolean) consumeVisFromInventory.invoke(null, (EntityPlayer) entity, cost);
 			}
 			catch(Exception ex)
 			{

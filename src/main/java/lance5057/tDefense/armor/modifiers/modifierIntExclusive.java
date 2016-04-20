@@ -17,8 +17,9 @@ public class modifierIntExclusive extends ModInteger
 	int			initialIncrease;
 	int			secondaryIncrease;
 	int			max			= 5;
+	String[]	modExclusions;
 
-	public modifierIntExclusive(ItemStack[] items, int effect, String dataKey, int increase, String c, String tip, String[] exclusive, int modsNeeded)
+	public modifierIntExclusive(ItemStack[] items, int effect, String dataKey, int increase, String c, String tip, String[] exclusive, int modsNeeded, String[] excludeMods)
 	{
 		super(items, effect, dataKey, increase, c, tip);
 		this.exclusive = exclusive;
@@ -26,6 +27,7 @@ public class modifierIntExclusive extends ModInteger
 		initialIncrease = secondaryIncrease = increase;
 		color = c;
 		tooltipName = tip;
+		this.modExclusions = excludeMods;
 	}
 
 	public modifierIntExclusive(ItemStack[] items, int effect, String dataKey, int increase, String c, String tip, String[] exclusive, int modsNeeded, int max)
@@ -45,15 +47,29 @@ public class modifierIntExclusive extends ModInteger
 		List list = Arrays.asList(((ToolCore) tool.getItem()).getTraits());
 		NBTTagCompound tags = tool.getTagCompound().getCompoundTag("InfiTool");
 
+		boolean isExclusive = false;
+		boolean hasModRejection = false;
+
 		for(int i = 0; i < exclusive.length; i++)
 		{
 			if(list.contains(exclusive[i]))
 			{
-				return tags.getInteger(tooltipName) < max;
+				isExclusive = true;
 			}
 		}
 
-		return false;
+		if(modExclusions != null)
+		{
+			for(int i = 0; i < modExclusions.length; i++)
+			{
+				if(tags.hasKey(modExclusions[i]))
+				{
+					hasModRejection = true;
+				}
+			}
+		}
+
+		return tags.getInteger(tooltipName) < max;
 	}
 
 	@Override
