@@ -128,8 +128,8 @@ public class TinkersHauberk extends ArmorCore
 		for(int j = 0; j < 10; j++)
 			color[j] = Integer.toHexString(itemStack.getItem().getColorFromItemStack(itemStack, j));
 
-		String[] textures = {this.getIconSuffix(2), this.getIconSuffix(0), this.getIconSuffix(3)};
-		ClientProxy.hauberk.SetColors(color, this.getDefaultFolder(), textures);
+		//String[] textures = {this.getIconSuffix(2), this.getIconSuffix(0), this.getIconSuffix(3)};
+		ClientProxy.hauberk.SetColors(color, this.getDefaultFolder(), itemStack);
 		return ClientProxy.hauberk;
 	}
 

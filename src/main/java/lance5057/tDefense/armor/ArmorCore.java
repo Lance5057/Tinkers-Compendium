@@ -186,9 +186,9 @@ public class ArmorCore extends ToolCore implements ISpecialArmor, IRunicArmor
 		switch(pass)
 		{
 			case 0:
-				return this.getIconSuffix(0);
-			case 1:
 				return this.getIconSuffix(2);
+			case 1:
+				return this.getIconSuffix(0);
 			case 2:
 				return this.getIconSuffix(3);
 			case 3:

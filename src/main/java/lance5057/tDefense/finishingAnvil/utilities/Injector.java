@@ -68,6 +68,8 @@ public class Injector extends ToolCore
 				Mattock();
 			if(tool.getToolName().equals("Longbow"))
 				Longbow();
+			if(tool.getToolName().equals("HeaterShield"))
+				HeaterShield();
 			setupIcons(tool, iconRegister, heads, this.headStrings, this.headIcons);
 			setupIcons(tool, iconRegister, accessories, this.accessoryStrings, this.accessoryIcons);
 			setupIcons(tool, iconRegister, handles, this.handleStrings, this.handleIcons);
@@ -464,4 +466,93 @@ public class Injector extends ToolCore
 		handles.add("_m5copper_handle");
 		extras.add("_m5copper_extra");
 	}
+
+	void HeaterShield()
+	{
+		ToolCoreTip tt = new ToolCoreTip();
+
+		tt.head = "Plate";
+		tt.accessory = "Emblem";
+		tt.handle = "Edge";
+		tt.extra = "Binding";
+
+		tt.headTT.add("Standard Plate");
+		heads.add("_glass_plate");
+		tt.headTT.add("Glass Plate");
+		
+		tt.accessoryTT.add("Standard Emblem");
+		accessories.add("_test_face");
+		tt.accessoryTT.add("Villager Emblem");
+		accessories.add("_skeleton_face");
+		tt.accessoryTT.add("Skeleton Emblem");
+		accessories.add("_ender_face");
+		tt.accessoryTT.add("Ender Emblem");
+		accessories.add("_creeper_face");
+		tt.accessoryTT.add("Creeper Emblem");
+		accessories.add("_square_face");
+		tt.accessoryTT.add("Block Emblem");
+		accessories.add("_angel_face");
+		tt.accessoryTT.add("Angel Emblem");
+		accessories.add("_fancy_face");
+		tt.accessoryTT.add("Fancy Emblem");
+		accessories.add("_cross_face");
+		tt.accessoryTT.add("Cross Emblem");
+		accessories.add("_stripe_face");
+		tt.accessoryTT.add("Vertical Stripe Emblem");
+		accessories.add("_bar_face");
+		tt.accessoryTT.add("Vertical Bars Emblem");
+		accessories.add("_horbar_face");
+		tt.accessoryTT.add("Horizontal Bars Emblem");
+		accessories.add("_horstripe_face");
+		tt.accessoryTT.add("Horizontal Stripe Emblem");
+		accessories.add("_triangle_face");
+		tt.accessoryTT.add("Triangles Emblem");
+		accessories.add("_arrow_face");
+		tt.accessoryTT.add("Arrow Emblem");
+		accessories.add("_checker_face");
+		tt.accessoryTT.add("Checkered Emblem");
+
+		tt.handleTT.add("Standard Edge");
+		handles.add("_demon_edge");
+		tt.handleTT.add("Demonic Edge");
+		handles.add("_squared_edge");
+		tt.handleTT.add("Squared Edge");
+		handles.add("_heart_edge");
+		tt.handleTT.add("Heart Edge");
+		
+		tt.extraTT.add("Standard Binding");
+		extras.add("_spider_binding");
+		tt.extraTT.add("Spider Binding");
+		extras.add("_love_binding");
+		tt.extraTT.add("Heart Binding");
+		extras.add("_enforced_binding");
+		tt.extraTT.add("Enforced Binding");
+		extras.add("_slime_binding");
+		tt.extraTT.add("Slimey Binding");
+		extras.add("_small_binding");
+		tt.extraTT.add("Small Binding");
+		extras.add("_demon_binding");
+		tt.extraTT.add("Demon Binding");
+		extras.add("_pig_binding");
+		tt.extraTT.add("Pig Binding");
+		extras.add("_wolf_binding");
+		tt.extraTT.add("Wolf Binding");
+		extras.add("_wide_binding");
+		tt.extraTT.add("Wide Binding");
+		extras.add("_reinforced_binding");
+		tt.extraTT.add("Strong Binding");
+		extras.add("_skull_binding");
+		tt.extraTT.add("Skull Binding");
+		extras.add("_hell_binding");
+		tt.extraTT.add("Hell Binding");	
+		extras.add("_queen_binding");
+		tt.extraTT.add("Queen's Binding");
+		extras.add("_tri_binding");
+		tt.extraTT.add("Tri Binding");
+		extras.add("_fancy_binding");
+		tt.extraTT.add("Fancy Binding");
+
+		tools.put("Heater Shield", tt);
+	}
+
 }

@@ -4,6 +4,7 @@ import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.client.FMLClientHandler;
 import lance5057.tDefense.TinkersDefense;
+import lance5057.tDefense.armor.ArmorCore;
 import lance5057.tDefense.armor.renderers.ArmorRenderer;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
@@ -72,24 +73,22 @@ public class ModelTinkersGauntlets extends ArmorRenderer
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
 		GL11.glPushMatrix();
-		for(int i = 0; i < 3; i++)
+
+		for(int i = 0; i < 10; i++)
 		{
-			GL11.glPushMatrix();
+			String texture = ((ArmorCore) this.stack.getItem()).getTexture(i, stack);
+			if(texture != "")
+			{
 
-			FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation("tinkersdefense:textures/" + defaultFolder + "/" + textures[i] + ".png"));
+				GL11.glPushMatrix();
 
-			float size = 1.6f;
-			GL11.glScalef(1.0F / size, 1.0F / size, 1.0F / size);
-			GL11.glTranslatef(0.0F, -0.0F, 0.0F);
+				((ArmorCore) this.stack.getItem()).renderArmor(entity, f, f1, f2, f3, f4, f5, colors, stack, i);
+				super.render(entity, f, f1, f2, f3, f4, f5);
 
-			int[] intColors = TinkersDefense.hexToRGB(colors[i]);
-			GL11.glColor3d((float) intColors[0] / 255, (float) intColors[1] / 255, (float) intColors[2] / 255);
-
-			//setLivingAnimations((EntityLivingBase) entity, f,f1, f5);
-			super.render(entity, f, f1, f2, f3, f4, f5);
-
-			GL11.glPopMatrix();
+				GL11.glPopMatrix();
+			}
 		}
+
 		GL11.glPopMatrix();
 	}
 

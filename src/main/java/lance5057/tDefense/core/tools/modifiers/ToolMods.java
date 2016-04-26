@@ -2,11 +2,11 @@ package lance5057.tDefense.core.tools.modifiers;
 
 import java.util.ArrayList;
 
-import cpw.mods.fml.common.registry.GameRegistry;
 import lance5057.tDefense.Reference;
 import lance5057.tDefense.TinkersDefense;
+import lance5057.tDefense.armor.modifiers.modifierBoolExclusive;
+import lance5057.tDefense.armor.modifiers.modifierIntExclusive;
 import lance5057.tDefense.core.tools.modifiers.ActiveToolMods.TDefenseActiveToolMod;
-import lance5057.tDefense.core.tools.modifiers.Botania.modifierCorpseIvy;
 import lance5057.tDefense.core.tools.modifiers.TDefense.modifierSoulBound;
 import lance5057.tDefense.core.tools.modifiers.TDefense.shields.modifierCrestofBlades;
 import lance5057.tDefense.core.tools.modifiers.TDefense.shields.modifierCrestofFeathers;
@@ -16,35 +16,39 @@ import lance5057.tDefense.core.tools.modifiers.TDefense.weapons.modifierDaze;
 import mods.battlegear2.api.core.IBattlePlayer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityXPOrb;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityFireball;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
-import net.minecraftforge.oredict.ShapedOreRecipe;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import tconstruct.library.TConstructRegistry;
 import tconstruct.library.client.TConstructClientRegistry;
 import tconstruct.library.crafting.ModifyBuilder;
 import tconstruct.library.tools.ToolCore;
-import tconstruct.tools.TinkerTools;
-import vazkii.botania.api.BotaniaAPI;
-import vazkii.botania.common.item.ModItems;
-import vazkii.botania.common.item.block.ItemBlockSpecialFlower;
-import vazkii.botania.common.lib.LibBlockNames;
-import vazkii.botania.common.lib.LibOreDict;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.registry.GameRegistry;
 
 public class ToolMods
 {
 	public static Item	item_relic;
 	public static Item	itemSoulChain;
 
+	public static Item	item_RainbowGem;
+	public static Item	item_Textbook;
+
 	public ToolMods()
 	{
+		MinecraftForge.EVENT_BUS.register(this);
+		
 		LoadItems();
 	}
 
@@ -54,8 +58,15 @@ public class ToolMods
 
 		itemSoulChain = new Item().setCreativeTab(TinkersDefense.tabName).setMaxStackSize(1).setUnlocalizedName("SoulChain").setTextureName(Reference.MOD_ID + ":SoulChain");
 
-		GameRegistry.registerItem(item_relic, "Ancient Relic");
-		GameRegistry.registerItem(itemSoulChain, "Soul Chain");
+		item_Textbook = new Item().setCreativeTab(TinkersDefense.tabName).setMaxStackSize(1).setUnlocalizedName("Textbook").setTextureName(Reference.MOD_ID + ":Textbook");
+
+		//Shears
+		item_RainbowGem = new Item().setCreativeTab(TinkersDefense.tabName).setMaxStackSize(1).setUnlocalizedName("RainbowGem").setTextureName(Reference.MOD_ID + ":RainbowGem");
+
+		GameRegistry.registerItem(item_relic, "AncientRelic");
+		GameRegistry.registerItem(itemSoulChain, "SoulChain");
+		GameRegistry.registerItem(item_RainbowGem, "RainbowGem");
+		GameRegistry.registerItem(item_Textbook, "Textbook");
 	}
 
 	public void RegisterRecipes()
@@ -64,19 +75,24 @@ public class ToolMods
 
 	public void RegisterModifiers()
 	{
+		//All
+		ModifyBuilder.registerModifier(new modifierSoulBound(new ItemStack[] {new ItemStack(itemSoulChain)}, TinkersDefense.config.SoulBoundID, "Soulbound", "\u00A7b", "Soulbound"));
+
+		//Weapons
+		//TO-DO
 		ModifyBuilder.registerModifier(new modifierDaze("Daze", TinkersDefense.config.DazeID, new ItemStack[] {new ItemStack(Blocks.light_weighted_pressure_plate), new ItemStack(Items.potionitem, 1, 8202)}, new int[] {1, 0}));
+		ModifyBuilder.registerModifier(new modifierIntExclusive(new ItemStack[] {new ItemStack(item_Textbook, 1, 0)}, TinkersDefense.config.XPBoostID, "XPBoost", 1, EnumChatFormatting.GREEN.toString(), "XP Boost", new String[] {"weapon"}, 1, null));
 
-		//ModifyBuilder.registerModifier(new modifierTorchArrow(new ItemStack[] {new ItemStack(Blocks.glowstone)}, 12));
+		//Shears
+		ModifyBuilder.registerModifier(new modifierBoolExclusive(new ItemStack[] {new ItemStack(item_RainbowGem, 1, 0)}, TinkersDefense.config.RainbowID, "Rainbow", EnumChatFormatting.WHITE.toString(), "Rainbow", new String[] {"shears"}, 1, null));
 
+		//Shields
 		ModifyBuilder.registerModifier(new modifierCrestofFeathers("Crest of Feathers", TinkersDefense.config.CrestFeathersID, new ItemStack[] {new ItemStack(Items.feather)}, new int[] {1}));
-
 		ModifyBuilder.registerModifier(new modifierCrestofMirrors("Crest of Mirrors", TinkersDefense.config.CrestMirrorsID, new ItemStack[] {new ItemStack(Blocks.glass_pane)}, new int[] {1}));
-
 		ModifyBuilder.registerModifier(new modifierCrestofLegends("Crest of Legends", TinkersDefense.config.CrestLegendsID, new ItemStack[] {new ItemStack(item_relic)}, new int[] {1}));
-
 		ModifyBuilder.registerModifier(new modifierCrestofBlades("Crest of Blades", TinkersDefense.config.CrestBladesID, new ItemStack[] {new ItemStack(Items.iron_sword)}, new int[] {1}));
 
-		ModifyBuilder.registerModifier(new modifierSoulBound(new ItemStack[] {new ItemStack(itemSoulChain)}, TinkersDefense.config.SoulBoundID, "Soulbound", "\u00A7b", "Soulbound"));
+		ModifyBuilder.registerModifier(new modifierBoolExclusive(new ItemStack[] {new ItemStack(item_RainbowGem, 1, 0)}, TinkersDefense.config.RainbowID, "Rainbow", EnumChatFormatting.WHITE.toString(), "Rainbow", new String[] {"shears"}, 1, null));
 
 		TConstructRegistry.registerActiveToolMod(new TDefenseActiveToolMod());
 
@@ -88,6 +104,9 @@ public class ToolMods
 			TConstructClientRegistry.addEffectRenderMapping(tool, TinkersDefense.config.CrestLegendsID, "tinker", "legends", true);
 			TConstructClientRegistry.addEffectRenderMapping(tool, TinkersDefense.config.CrestBladesID, "tinker", "blades", true);
 			TConstructClientRegistry.addEffectRenderMapping(tool, TinkersDefense.config.SoulBoundID, "tinker", "soulbound", true);
+			TConstructClientRegistry.addEffectRenderMapping(tool, TinkersDefense.config.RainbowID, "tinker", "rainbow", true);
+			TConstructClientRegistry.addEffectRenderMapping(tool, TinkersDefense.config.XPBoostID, "tinker", "textbook", true);
+
 		}
 	}
 
@@ -128,5 +147,25 @@ public class ToolMods
 	public void UpdateTorchArrow(ToolCore tool, ItemStack stack, World world, Entity entity)
 	{
 		//entity.worldObj.ent
+	}
+
+	@SubscribeEvent
+	public void XPBoost(LivingDeathEvent event)
+	{
+		if(!(event.entityLiving instanceof EntityPlayer) && event.source.getSourceOfDamage() instanceof EntityPlayer)
+		{
+			EntityPlayer player = (EntityPlayer) event.source.getSourceOfDamage();
+			ItemStack itemstack = player.getCurrentEquippedItem();
+			if(itemstack != null)
+			{
+				NBTTagCompound tags = itemstack.getTagCompound().getCompoundTag("InfiTool");
+
+				if(tags != null && tags.hasKey("XPBoost"))
+				{
+					player.worldObj.spawnEntityInWorld(new EntityXPOrb(player.worldObj, event.entityLiving.posX, event.entityLiving.posY, event.entityLiving.posZ, (int)Math.pow(tags.getInteger("XPBoost"),2)));
+
+				}
+			}
+		}
 	}
 }

@@ -142,8 +142,8 @@ public class TinkersCoif extends ArmorCore implements IRevealer, IGoggles
 		CustomMaterial newColor = TConstructRegistry.getCustomMaterial(AccessoryID, ClothMaterial.class);
 		color[0] = Integer.toHexString(newColor.color);
 
-		String[] textures = {this.getIconSuffix(2), this.getIconSuffix(0), this.getIconSuffix(3)};
-		ClientProxy.coif.SetColors(color, this.getDefaultFolder(), textures);
+		//String[] textures = {this.getIconSuffix(2), this.getIconSuffix(0), this.getIconSuffix(3)};
+		ClientProxy.coif.SetColors(color, this.getDefaultFolder(), itemStack);
 		return ClientProxy.coif;
 	}
 

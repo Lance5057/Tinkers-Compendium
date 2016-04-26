@@ -126,6 +126,17 @@ public class Shears extends ToolCore
 			{
 				ArrayList<ItemStack> drops = target.onSheared(itemstack, entity.worldObj, (int) entity.posX, (int) entity.posY, (int) entity.posZ, EnchantmentHelper.getEnchantmentLevel(Enchantment.fortune.effectId, itemstack));
 
+				if(itemstack.getTagCompound().getCompoundTag("InfiTool").hasKey("Rainbow"))
+				{
+					for(int i = 0; i < drops.size(); i++)
+					{
+						if(drops.get(i).getItem() == Blocks.wool.getItem(entity.worldObj, 0, 0, 0))
+						{
+							drops.get(i).setItemDamage(entity.worldObj.rand.nextInt(16));
+						}
+					}
+				}
+
 				Random rand = new Random();
 				for(ItemStack stack : drops)
 				{

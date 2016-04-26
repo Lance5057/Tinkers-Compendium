@@ -145,8 +145,13 @@ public class TinkersSabatons extends ArmorCore
 		for(int j = 0; j < 10; j++)
 			color[j] = Integer.toHexString(itemStack.getItem().getColorFromItemStack(itemStack, j));
 
-		String[] textures = {this.getIconSuffix(2), this.getIconSuffix(0), this.getIconSuffix(3), this.getIconSuffix(4)};
-		ClientProxy.sabatons.SetColors(color, this.getDefaultFolder(), textures);
+		int ExtraID = itemStack.getTagCompound().getCompoundTag("InfiTool").getInteger("RenderExtra");
+
+		CustomMaterial newColor = TConstructRegistry.getCustomMaterial(ExtraID, ClothMaterial.class);
+		color[3] = Integer.toHexString(newColor.color);
+		
+		//String[] textures = {this.getIconSuffix(2), this.getIconSuffix(0), this.getIconSuffix(3), this.getIconSuffix(4)};
+		ClientProxy.sabatons.SetColors(color, this.getDefaultFolder(), itemStack);
 		return ClientProxy.sabatons;
 	}
 }

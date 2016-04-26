@@ -1,0 +1,400 @@
+Offense
+Heh. What is super armor to me. %dmg% damage!!
+%dmg% damage! Pow!
+Swish!
+HIYA!
+%dmg% damage? Swing me harder!
+Woo! %dmg% damage! I'm awesome!
+%dmg% damage!
+%dmg% damage?
+%dmg% damage...
+
+Defense
+Hee hee hee... you are bad. Only %dmg% damage!
+You need to do more than that. Only %dmg% damage.
+Only %dmg%? Pathetic!
+Ah my face!
+Don't hit! Thats rude!
+I can do more than %dmg% damage and I don't have hands!
+%dmg% damage!
+%dmg% damage?
+%dmg% damage...
+
+Armor
+It's like I'm hugging you!
+Did you put on deoderant today? Doesn't smell like it...
+Smelling kinda musty here...
+Ewww you're sweating on me %player%!
+You're warm... It's nice...
+Don't worry %player%! I'll protect you!
+I'm like a koala.
+
+Weapon
+Let me at 'em!
+I'm so sharp it hurts!
+You should have made me into a chainsaw. Chainsaws are cool!
+Why didn't you make me into a flamethrower?
+Find me something to whack on!
+
+OnFire
+It's hot! You're gonna be burnt!
+Fire! Fire! It's too hot in here!
+
+LowHP
+%Player%, say something.
+H, Hey, get away, jack!
+One more blow from that guy could finish us.
+No need to worry...
+Yo, you awake up there, %player%?
+
+Death
+Damn... if only there hadn't been the accident... we would have been able to live happily ever after...
+That's not good...
+I guess human dreams are fragile...
+I remember... my dad's motto was... A man should never cry like a newborn.
+Sorry! It was my fault...
+I wonder if there is a life after death...
+Aww man, that sucks!
+Darn, I couldn't get to telling you his weak point!
+
+LowHunger
+Eat something nutritious.
+You look famished!
+Are you hungry? You should eat.
+You should eat.
+Are you hungry?
+Your tummy sounds angry.
+Was that a monster?! Oh it was just your stomache...
+
+LowDurability
+I'm starvin'!
+I'm starving. I wanna eat a piece of %material%.
+I feel thirsty.
+Wow. I'm beat.
+Thump, thump, thump. My heart is throbbing...
+I'm getting sleepy... zzz.
+I'm still young!
+I am very sensitive. Handle with care, please.
+My fortune today is the worst!! My stars are all wrong.
+Something's bothering me...
+I feel my body starting to creak...
+My back hurts lately...
+Hasn't Steve been good to you? I don't know what I've done for you to treat me so disrespectfully.
+%player% you need to repair me every once in a while. Life without Steve isn't worth living.
+Am I losing it?
+Agghh! My head is gonna explode...
+Recently, I've been feeling beat.
+I'm really having a crappy day.
+Why... am I so... miserable... ?
+Don't you think my existence is pretty important. I mean, how many talking &tool%s do you know.
+Count on me! Oops. Wait, wait!
+Hey... %player%, you been cold to me recently...
+I'm burning out...
+
+Broken
+I'm gonna take a nap.
+Not now %player%, I've got a headache.
+I wonder if there is any medicine that heals the heart...
+I, I lost...
+I hope I can have pleasant dreams tonight...
+(Sob)... I have no time left...
+Oh... Dad. You are there.
+Nothingness... there is nothing there but darkness... darkness spreading everywhere.
+Agghh!
+I can't take it anymore.
+Uggghhh!
+I don't want to be defeated by him!
+Argh... I think I'm really... a loser...
+
+Repaired
+Yeah, my priorities have all changed! Ahh, it's exciting to be alive.
+I tingle with excitement at my new life course. Steve, the millionaire %tool%!!
+The power sealed within me now... about to be revived!
+As long as I am alive, good things will happen.
+Andy, brother! Stop! Stop it! Phew... it was... a dream...
+It feels like love...
+
+Modified
+I'm gonna be the %tool% to beat all %tool%!
+%player%, you're too friendly. It makes me jealous.
+It feels like love...
+I... I feel strong... I feel charged with power... an immense power...
+I'm pretty much a genius, huh.
+Uggh! This, this is it! The coolness I was looking for.
+I see. I get it. Now I understand. I am enlightened!
+
+HorseNear
+Neigh!
+Is that a horse? Well, it doesn't matter. It's cool anyway!
+I wonder what the name of that horse is?
+Hey look, Swedish meatballs!
+How do you turn that into glue...?
+
+PigNear
+Oink Oink!
+I wonder if boar's meat is tasty.
+Mmm, porkchops.
+Aww he has a wittle snout!
+
+ChickenNear
+Cluck cluck!
+Didn't you say you like chicken better %player%?
+That's a chicken? It looks like a duck...
+
+CowNear
+Mooo!
+Mmm, steak.
+Horns and udders...?
+I could go for a glass of milk.
+
+SheepNear
+Baaaaah!
+It looks so fluffy!
+Mmm, mutton.
+%player% could you just lay me on that sheep? It looks soft.
+
+WolfNear
+Woof!
+Hey back up, I'm not a chew toy!
+Here boy! *whistles*
+Aww I wanna pet him!
+
+CatNear
+Meow!
+Claws and teeth? Scary pet you have...
+No, I'm not for scratching!
+So cute!
+
+SkeletonNear
+They say that monster is one of the undead.
+What's that weird clunky noise?
+I hear a bow being drawn...
+Doot doot!
+
+ZombieNear
+Smell something?
+They say that monster is one of the undead.
+I smell something.
+Eww it's rotting!
+Don't let that touch you, it looks diseased!
+
+CreeperNear
+I smell gunpowder.
+Smell something?
+Handle with care.
+I feel the presence of some kind of powder...
+He has gunpowder.
+I smell something.
+What's up with its color?
+
+SpiderNear
+*shudder*
+Giant bugs? This is hell.
+You should try riding that!
+Too many legs... Yuck!
+Kill it with fire!
+
+EndermanNear
+He has long legs. You needed me to tell you that huh.
+It has such thin arms.
+Careful, he can dodge pretty well... Well, sometimes anyway.
+Woah, where'd he come from?
+Wow, he's huge.
+
+SilverfishNear
+What's up with its color?
+I hear scratching...
+Ew what is that?!
+Kill it with fire!
+
+BlazeNear
+Blaze blaze bla bla blaze. Woah, Mr. Blaze.
+Is that a demon?
+I think that's a demon.
+I hope you're fireproof.
+
+EnemyNear
+What's he doing here?
+Hey look, it's a %other%!
+Look out!
+Hey, shoo, stupid %other%.
+I wonder what %other% tastes like...
+
+InsultZombie
+Being undead bites.
+He makes me puke.
+Bet he'd taste nasty if we ate him.
+Looks like a sickly little boy.
+Looks a little sickly.
+He looks like he'll die pretty soon with our without our help.
+He must be rotten.
+You reek man.
+Yeeek...
+There are alot of guys running around that look like him.
+
+InsultSkeleton
+Calcium rich bones have such a nice pop when they break.
+He looks pale. I wonder if something bad happened to him.
+Wow that guy's pale. Get out on the beach or something dude.
+He looks pale. I wonder if he has a glandular problem.
+Ah, he doesn't look like much. Whups! Incoming!
+Whoa, careful! You'll put somebody's eye out with that thing.
+He's just a skeleton, but he has a bow.
+
+InsultCreeper
+Woah! This guys gonna blow!
+Get away from him before he pops...
+That looks kinda like a pig, a creepy pig...
+He looks a bit unstable...
+Hehehe, what is that?
+
+InsultSpider
+Don't make me get the bug spray!
+Bugs are gross! Go away!
+%player%, kill it with fire!
+
+InsultEnderman
+Behind his benign face, lies evil intent of the most fearful kind... Aren't I dramatic?
+I get an evil vibe off him.
+I hate the way his mouth moves...
+
+InsultSilverfish
+Bet he'd taste nasty if we ate him.
+Ew, what is that?
+Squish it!
+
+InsultWitch
+I don't want to get an apple from her.
+Just smash the potion throwing old bag!
+This chick's gross.
+Old lady power is endless...
+You have something for if you get poisoned right?
+
+InsultBlaze
+Away hellspawn!
+The power of Steve compels you!
+Got any holy water? Or any water really...
+
+InsultGhast
+Crybaby!
+Hit that fireball back at him!
+Did you bring a ranged weapon? That would help right now.
+Ew, it's got weird tentacles...
+
+InsultDragon
+Ooo a Dragon... Rrrarrggh!
+Steve's tip of the day. Lesson 1. Ender Dragon hides make awesome boots.
+I used to imagine dragons were slender creatures.
+Ohhh C-Cool...
+
+InsultPlayer
+%other%... I heard that name somewhere before.
+%other% has a great body!
+%other%, %other%... Talk to me bud. Why do you challenge the supremacy of Steve?
+He has the same name as the mayor of my village!
+I wonder if %other% has no friends? Probably.
+This guy's boring.
+Bet he's got no friends.
+Yup, he was adopted.
+Don't waste your time with this guy %player%.
+My weak point? Hmph. No such thing.
+He should just chill himself, don't you think?
+Let's settle it with speed! You can't beat the speed of a talking %tool%!
+He thinks he's so cool with his sword. Loser.
+He's strong. But he's not all that strong when you attack from a distance.
+Whoa, careful! You'll put somebody's eye out with that thing.
+His weapon is great, but he is meager.
+There are alot of guys running around that look like him.
+So he's still kickin' huh?
+
+InsultOther
+Me shatter you like glass.
+Wish I knew how to slowly lumber into oncoming fire.
+He's lame.
+He burnt me in my dream. Burn him back. For me!
+Pretty much looks like a dork huh.
+Airhead.
+Leave it be, %player%. It obviously has no friends.
+This guy's a putz... Did I just use that word?
+Just off him already.
+My name is STEVE! I own you.
+Won't give up will he.
+Get lost. Loser.
+I hate this loser.
+Annoying.
+Oh! My buddy's calling! I gotta go.
+How do we handle this one?
+Looks stupid.
+The weak point of this monster? I don't remember...
+What me... lose to him!? Ha, good one!
+Just because I'm a %tool%, doesn't mean I'm stupid.
+Don't you think he's annoying?
+Weak point? Uh, duh! Don't make me say it, please.
+Hello my name is Steve. I own you, %other%.
+Today's prediction. Pain!
+I wonder how much I could sell that %other% for...
+This guy doesn't hold back.
+This guy's a clown.
+He should try to learn from my exquisite sense of style.
+My kung fu is stronger!
+What? The weak point? You know it, right? It's not that I don't know it...
+He'll get what's coming... Just wait.
+Humph, this guy's a piece of cake.
+This guy might fetch a high price!
+Let's just take 'em out, pack 'em up and get outta here.
+He's got a weird face.
+Behave yourself %other%.
+Finish him, %player%!!
+Fight fire with fire, %player%. Not literally but you get what I mean.
+He's pretty tough. Be careful.
+Whoa! Are you fighting him?
+Maybe he doesn't know he's made of paper. We have to tell him.
+His weak point? Come on, you've gotta know it?
+
+Creation
+My name is Steve! A pleasure.
+My name is Steve! By the way, my sister's name is Stephanie.
+And on the 6th day Steve created...
+Zzz... Huh! Was I sleeping?
+Today's fortune, you will meet someone new. It was great to meet you, %player%.
+Hello my name is Steve. I own you.
+In the village, everybody called me Steve, the busy bee.
+
+Other
+I wonder sometimes, why do I have to be a %tool%? Why not some absurd fully automatic firearm?
+My baby brother was such a brat...
+By the way. How are ya doing?
+Reminds me of last night. I had a dream of my dad... he was a catapult...
+My hair is awesome!!! It takes forever in the morning but tell me it isn't worth it.
+Waffle, waffle, waffle.
+Why on earth can I talk? I'm a %tool%...
+Do you understand, %player%, what it feels like to be a %tool%?
+...Achoo!
+I has a twin sister who I have been separated from for a long time... I wonder how she's doing.
+My sister was totally cute. She was the belle of the village.
+When I take a close look at you, %player% you look like my sister.
+My pitiful attempts to be cool. Blasted playground!
+Why didn't the cool kids play with me?
+I like flan.
+How'd I get my name...? I don't remember.
+Don't you think my name is cool?
+Yo. What is it like being human, %player%? Don't think it would work for me. A human %tool%... messy.
+Sometimes, I remember my old days. I went through many hardships...
+My jokes are getting stale...
+Let me tell you my state of mind... I wanna be a human as quickly as possible.
+Love is an immaculate beam of warm fuzzy energy.
+Did you know that I am an excellent singer? A pro!
+My dad would say, "A man should stand up in the headwind no matter what.
+If I didn't have a torso, that would kinda bug me.
+Last night, my late dad talked to me in a dream... I was so happy
+Yesterday, I dreamt I was rich.
+My ego is like a gas giant. Like Jupiter or, heh Uranus.
+I know, I know... You're wondering how you might serve Steve better.
+Fortune of the day. Beware of being boring. Oops, I gotta be careful.
+Fortune of the day. It'll be a very happy day. Maybe.
+I can sing and dance! I should be a performer.
+I am a great dancer. I want to show you.
+I wonder %player%, how old are you?
+By the way, do you think I am handsome?
+Don't you think it will look good on me if I dye my hair red?
+Fortune of the day. The lucky item is a white handkerchief.

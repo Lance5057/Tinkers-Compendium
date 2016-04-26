@@ -142,7 +142,7 @@ public class Gui_FinishingAnvil extends GuiContainer
 					if(tags.hasKey("Render" + renders[leftSelect]))
 					{
 						tags.setInteger("Render" + renders[leftSelect], bigCopy.getTagCompound().getCompoundTag("InfiTool").getInteger(renders[leftSelect]) + ((rightButtonPosX + ((rightButtonPosY % 3) * 16)) * TinkersDefense.config.MaterialIndex));
-						if(rightButtonPosX + (rightButtonPosY * 16) > 0)
+						if(rightButtonPosX > 0)
 							tags.setInteger(renders[leftSelect] + "Color", TConstructRegistry.getMaterial(tags.getInteger(renders[leftSelect])).primaryColor());
 						else
 							tags.removeTag(renders[leftSelect] + "Color");
@@ -236,11 +236,16 @@ public class Gui_FinishingAnvil extends GuiContainer
 
 		this.mc.getTextureManager().bindTexture(this.forGui);
 		if(inventory.getStackInSlot(0) != null)
-			this.drawTexturedModalRect(7, 12 + (leftSelect * 20), 16, 0, 16, 16);
+		{
+//			int leftMax = leftSelect;
+//			if(leftMax > 2)
+//				leftMax = 2;
+			this.drawTexturedModalRect(7, 12 + ((leftSelect - leftButtonPosX) * 20), 16, 0, 16, 16);
+		}
 
-		this.drawTexturedModalRect(7, 12, this.xLIcon_one + (this.leftButtonPosX * 16), this.yLIcon_one + (this.leftButtonPosY * 16), 16, 16);
-		this.drawTexturedModalRect(7, 32, this.xLIcon_two + (this.leftButtonPosX * 16), this.yLIcon_two + (this.leftButtonPosY * 16), 16, 16);
-		this.drawTexturedModalRect(7, 52, this.xLIcon_three + (this.leftButtonPosX * 16), this.yLIcon_three + (this.leftButtonPosY * 16), 16, 16);
+		this.drawTexturedModalRect(7, 12, this.xLIcon_one + (this.leftButtonPosX * 16), this.yLIcon_one + 0, 16, 16);
+		this.drawTexturedModalRect(7, 32, this.xLIcon_two + (this.leftButtonPosX * 16), this.yLIcon_two + 0, 16, 16);
+		this.drawTexturedModalRect(7, 52, this.xLIcon_three + (this.leftButtonPosX * 16), this.yLIcon_three + 0, 16, 16);
 
 		this.drawTexturedModalRect(132, 12, this.xRIcon_one + (this.rightButtonPosX * 16), this.yRIcon_one + (this.rightButtonPosY * 16), 16, 16);
 
@@ -289,21 +294,40 @@ public class Gui_FinishingAnvil extends GuiContainer
 					ToolCoreTip tt = ((Injector) TinkersDefense.tcInject).tools.get(tool.getToolName());
 					List<String> list = new ArrayList();
 
-					switch(i)
+					if(tt != null)
 					{
-						case 0: list.add(tt.getPart(1 + this.leftButtonPosX)); break;
-						case 1: list.add(tt.getPart(3 + this.leftButtonPosX)); break;
-						case 2: list.add(tt.getPart(2 + this.leftButtonPosX)); break;
-						
-						case 3: list.add(tt.getPartName(this.leftSelect + 1, (rightButtonPosX + ((rightButtonPosY % 3) * 16)))); break;
-						case 4: list.add(tt.getPartName(this.leftSelect + 1, (rightButtonPosX + 1 + ((rightButtonPosY % 3) * 16)))); break;
-						case 5: list.add(tt.getPartName(this.leftSelect + 1, (rightButtonPosX + 2 + ((rightButtonPosY % 3) * 16)))); break;
+						switch(i)
+						{
+							case 0:
+								list.add(tt.getPart(1 + this.leftButtonPosX));
+								break;
+							case 1:
+								list.add(tt.getPart(3 + this.leftButtonPosX));
+								break;
+							case 2:
+								list.add(tt.getPart(2 + this.leftButtonPosX));
+								break;
+
+							case 3:
+								list.add(tt.getPartName(this.leftSelect + 1, (rightButtonPosX + ((rightButtonPosY % 3) * 16))));
+								break;
+							case 4:
+								list.add(tt.getPartName(this.leftSelect + 1, (rightButtonPosX + 1 + ((rightButtonPosY % 3) * 16))));
+								break;
+							case 5:
+								list.add(tt.getPartName(this.leftSelect + 1, (rightButtonPosX + 2 + ((rightButtonPosY % 3) * 16))));
+								break;
+						}
+
+						if(list.get(0).contains("Metallurgy"))
+							list.add(" -by Shadowclaimer");
+						func_146283_a(list, x, y);
 					}
-
-					if(list.get(0).contains("Metallurgy"))
-						list.add(" -by Shadowclaimer");
-					func_146283_a(list, x, y);
-
+					else
+					{
+						list.add("Error - No name/desc!");
+						func_146283_a(list, x, y);
+					}
 				}
 			}
 		}

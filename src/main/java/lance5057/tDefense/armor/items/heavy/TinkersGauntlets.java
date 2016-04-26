@@ -19,11 +19,11 @@ import tconstruct.tools.TinkerTools;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class TinkersGauntlets extends ToolCore implements IAccessory
+public class TinkersGauntlets extends ArmorCore implements IAccessory
 {
 	public TinkersGauntlets()
 	{
-		super(2);
+		super(0,-1);
 		this.setUnlocalizedName("tinkersgauntlets");
 	}
 
@@ -72,7 +72,7 @@ public class TinkersGauntlets extends ToolCore implements IAccessory
 	@Override
 	public float getDamageModifier()
 	{
-		return 1.4f;
+		return 0f;
 	}
 
 	@Override
@@ -140,9 +140,9 @@ public class TinkersGauntlets extends ToolCore implements IAccessory
 		for(int j = 0; j < 10; j++)
 			color[j] = Integer.toHexString(itemStack.getItem().getColorFromItemStack(itemStack, j));
 
-		String[] textures = {this.getIconSuffix(2), this.getIconSuffix(0), this.getIconSuffix(3)};
+		//String[] textures = {this.getIconSuffix(2), this.getIconSuffix(0), this.getIconSuffix(3)};
 		
-		ClientProxy.gauntlets.SetColors(color, this.getDefaultFolder(), textures);
+		ClientProxy.gauntlets.SetColors(color, this.getDefaultFolder(), itemStack);
 		return ClientProxy.gauntlets;
 	}
 }

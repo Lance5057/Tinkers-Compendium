@@ -15,10 +15,12 @@ public class TD_Config
 
 	public int		SoulBoundID;
 	public int		DazeID;
+	public int		RainbowID;
 	public int		CrestFeathersID;
 	public int		CrestMirrorsID;
 	public int		CrestLegendsID;
 	public int		CrestBladesID;
+	public int		XPBoostID;
 
 	public int		ArmorProtectionID;
 	public int		ArmorFireProtectionID;
@@ -78,11 +80,15 @@ public class TD_Config
 		GreenMintMatID = config.get("Material Configs", "GreenMint Material ID", 205).getInt();
 
 		DazeID = config.get("Modifier Configs", "Daze ID", count++).getInt();
+		SoulBoundID = config.get("Modifier Configs", "Soulbound ID", count++).getInt();
+		RainbowID = config.get("Modifier Configs", "Rainbow ID", count++).getInt();
+		XPBoostID = config.get("Modifier Configs", "XPBoost ID", count++).getInt();
+		
 		CrestFeathersID = config.get("Modifier Configs", "Crest of Feathers ID", count++).getInt();
 		CrestMirrorsID = config.get("Modifier Configs", "Crest of Mirrors ID", count++).getInt();
 		CrestLegendsID = config.get("Modifier Configs", "Crest of Legends ID", count++).getInt();
 		CrestLegendsID = config.get("Modifier Configs", "Crest of Legends ID", count++).getInt();
-		SoulBoundID = config.get("Modifier Configs", "Soulbound ID", count++).getInt();
+		
 
 		ArmorProtectionID = config.get("Armor Modifier Configs", "Protection ID", count++).getInt();
 		ArmorFireProtectionID = config.get("Armor Modifier Configs", "Fire Protection ID", count++).getInt();

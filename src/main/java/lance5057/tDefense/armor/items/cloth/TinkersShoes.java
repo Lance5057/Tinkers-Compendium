@@ -131,7 +131,7 @@ public class TinkersShoes extends ArmorCore implements IVisDiscountGear
 	public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, int armorSlot)
 	{
 		String[] color = new String[10];
-		String[] textures = {this.getIconSuffix(2), this.getIconSuffix(0), this.getIconSuffix(3)};
+		//String[] textures = {this.getIconSuffix(2), this.getIconSuffix(0), this.getIconSuffix(3)};
 
 		for(int j = 0; j < 10; j++)
 			color[j] = Integer.toHexString(itemStack.getItem().getColorFromItemStack(itemStack, j));
@@ -141,7 +141,7 @@ public class TinkersShoes extends ArmorCore implements IVisDiscountGear
 		CustomMaterial newColor = TConstructRegistry.getCustomMaterial(HeadID, ClothMaterial.class);
 		color[1] = Integer.toHexString(newColor.color);
 
-		ClientProxy.shoes.SetColors(color, this.getDefaultFolder(), textures);
+		ClientProxy.shoes.SetColors(color, this.getDefaultFolder(), itemStack);
 		return ClientProxy.shoes;
 	}
 

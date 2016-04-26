@@ -1,29 +1,25 @@
 package lance5057.tDefense.armor.items;
 
 import lance5057.tDefense.TinkersDefense;
+import lance5057.tDefense.armor.ArmorCore;
 import lance5057.tDefense.armor.parts.ClothMaterial;
-import lance5057.tDefense.armor.renderers.ModelSheath;
 import lance5057.tDefense.proxy.ClientProxy;
 import net.minecraft.client.model.ModelBiped;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
 import tconstruct.library.TConstructRegistry;
 import tconstruct.library.accessory.IAccessory;
-import tconstruct.library.accessory.IAccessoryModel;
-import tconstruct.library.tools.ToolCore;
 import tconstruct.tools.TinkerTools;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class Sheath extends ToolCore implements IAccessory
+public class Sheath extends ArmorCore implements IAccessory
 {
 
 	public Sheath()
 	{
-		super(0);
+		super(0,-1);
 	}
 
 	@Override
@@ -45,9 +41,9 @@ public class Sheath extends ToolCore implements IAccessory
 		
 		color[3] = Integer.toHexString(TConstructRegistry.getCustomMaterial(HandleID, ClothMaterial.class).color);
 
-		String[] textures = {this.getIconSuffix(2), this.getIconSuffix(0), this.getIconSuffix(4), this.getIconSuffix(3)};
+		//String[] textures = {this.getIconSuffix(2), this.getIconSuffix(0), this.getIconSuffix(4), this.getIconSuffix(3)};
 
-		ClientProxy.sheath.SetColors(color, this.getDefaultFolder(), textures);
+		ClientProxy.sheath.SetColors(color, this.getDefaultFolder(), itemStack);
 		return ClientProxy.sheath;
 	}
 

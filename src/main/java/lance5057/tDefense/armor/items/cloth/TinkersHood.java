@@ -134,7 +134,7 @@ public class TinkersHood extends ArmorCore implements IRevealer, IGoggles, IVisD
 	public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, int armorSlot)
 	{
 		String[] color = new String[10];
-		String[] textures = {this.getIconSuffix(2), this.getIconSuffix(0), this.getIconSuffix(3)};
+		//String[] textures = {this.getIconSuffix(2), this.getIconSuffix(0), this.getIconSuffix(3)};
 
 		for(int j = 0; j < 10; j++)
 			color[j] = Integer.toHexString(itemStack.getItem().getColorFromItemStack(itemStack, j));
@@ -148,7 +148,7 @@ public class TinkersHood extends ArmorCore implements IRevealer, IGoggles, IVisD
 		newColor = TConstructRegistry.getCustomMaterial(HandleID, ClothMaterial.class);
 		color[0] = Integer.toHexString(newColor.color);
 
-		ClientProxy.hood.SetColors(color, this.getDefaultFolder(), textures);
+		ClientProxy.hood.SetColors(color, this.getDefaultFolder(), itemStack);
 		return ClientProxy.hood;
 	}
 

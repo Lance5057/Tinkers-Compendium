@@ -91,13 +91,13 @@ public class HeaterShield extends Shield
 		switch(partType)
 		{
 			case 0:
-				return "_shield_face";
+				return "_shield_plate";
 			case 1:
-				return "_shield_face_broken";
+				return "_shield_plate_broken";
 			case 2:
 				return "_shield_edge";
 			case 3:
-				return "_shield_face_other";
+				return "_shield_face";
 			case 4:
 				return "_shield_binding";
 			default:
