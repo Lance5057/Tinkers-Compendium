@@ -1,24 +1,12 @@
 package lance5057.tDefense.armor.items.heavy;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import lance5057.tDefense.TinkersDefense;
 import lance5057.tDefense.armor.ArmorCore;
-import lance5057.tDefense.armor.parts.ClothMaterial;
-import lance5057.tDefense.armor.renderers.heavy.ModelTinkersSabatons;
+import lance5057.tDefense.armor.renderers.ArmorRenderer;
 import lance5057.tDefense.proxy.ClientProxy;
-import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.DamageSource;
-import net.minecraftforge.common.ISpecialArmor.ArmorProperties;
-import tconstruct.library.TConstructRegistry;
-import tconstruct.library.tools.CustomMaterial;
 import tconstruct.tools.TinkerTools;
 
 public class TinkersSabatons extends ArmorCore
@@ -26,8 +14,8 @@ public class TinkersSabatons extends ArmorCore
 	public TinkersSabatons()
 	{
 		super(2, 3);
-		this.setUnlocalizedName("tinkersabatons");
-		this.maxReduction = 100;
+		setUnlocalizedName("tinkersabatons");
+		maxReduction = 100;
 		reductionPercent = 3 * 0.04f;
 	}
 
@@ -137,21 +125,8 @@ public class TinkersSabatons extends ArmorCore
 	}
 
 	@Override
-	@SideOnly(Side.CLIENT)
-	public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, int armorSlot)
+	public ArmorRenderer getRenderer()
 	{
-		String[] color = new String[10];
-
-		for(int j = 0; j < 10; j++)
-			color[j] = Integer.toHexString(itemStack.getItem().getColorFromItemStack(itemStack, j));
-
-		int ExtraID = itemStack.getTagCompound().getCompoundTag("InfiTool").getInteger("RenderExtra");
-
-		CustomMaterial newColor = TConstructRegistry.getCustomMaterial(ExtraID, ClothMaterial.class);
-		color[3] = Integer.toHexString(newColor.color);
-		
-		//String[] textures = {this.getIconSuffix(2), this.getIconSuffix(0), this.getIconSuffix(3), this.getIconSuffix(4)};
-		ClientProxy.sabatons.SetColors(color, this.getDefaultFolder(), itemStack);
 		return ClientProxy.sabatons;
 	}
 }

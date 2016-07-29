@@ -30,7 +30,8 @@ public class Injector extends ToolCore
 
 	protected void loadHeads(IIconRegister iconRegister)
 	{
-		int toolLength = TConstructRegistry.tools.size();
+
+		final int toolLength = TConstructRegistry.tools.size();
 		for(int i = 0; i < toolLength; i++)
 		{
 			heads.clear();
@@ -38,42 +39,58 @@ public class Injector extends ToolCore
 			handles.clear();
 			extras.clear();
 
-			this.headStrings.clear();
-			this.headIcons.clear();
-			this.accessoryStrings.clear();
-			this.accessoryIcons.clear();
-			this.handleStrings.clear();
-			this.handleIcons.clear();
-			this.extraStrings.clear();
-			this.extraIcons.clear();
+			headStrings.clear();
+			headIcons.clear();
+			accessoryStrings.clear();
+			accessoryIcons.clear();
+			handleStrings.clear();
+			handleIcons.clear();
+			extraStrings.clear();
+			extraIcons.clear();
 
-			ToolCore tool = TConstructRegistry.tools.get(i);
+			final ToolCore tool = TConstructRegistry.tools.get(i);
 
-			IIcon origHead = tool.headIcons.get(-1);
-			IIcon origAccessory = tool.accessoryIcons.get(-1);
-			IIcon origHandle = tool.handleIcons.get(-1);
-			IIcon origExtra = tool.extraIcons.get(-1);
+			final IIcon origHead = tool.headIcons.get(-1);
+			final IIcon origAccessory = tool.accessoryIcons.get(-1);
+			final IIcon origHandle = tool.handleIcons.get(-1);
+			final IIcon origExtra = tool.extraIcons.get(-1);
 
 			if(tool.getToolName().equals("Battleaxe"))
+			{
 				BattleAxe();
+			}
 			if(tool.getToolName().equals("Arrow"))
+			{
 				Arrow();
+			}
 			if(tool.getToolName().equals("Broadsword"))
+			{
 				Broadsword();
+			}
 			if(tool.getToolName().equals("Battlesign"))
+			{
 				Battlesign();
+			}
 			if(tool.getToolName().equals("Hatchet"))
+			{
 				Axe();
+			}
 			if(tool.getToolName().equals("Mattock"))
+			{
 				Mattock();
+			}
 			if(tool.getToolName().equals("Longbow"))
+			{
 				Longbow();
+			}
 			if(tool.getToolName().equals("HeaterShield"))
+			{
 				HeaterShield();
-			setupIcons(tool, iconRegister, heads, this.headStrings, this.headIcons);
-			setupIcons(tool, iconRegister, accessories, this.accessoryStrings, this.accessoryIcons);
-			setupIcons(tool, iconRegister, handles, this.handleStrings, this.handleIcons);
-			setupIcons(tool, iconRegister, extras, this.extraStrings, this.extraIcons);
+			}
+			setupIcons(tool, iconRegister, heads, headStrings, headIcons);
+			setupIcons(tool, iconRegister, accessories, accessoryStrings, accessoryIcons);
+			setupIcons(tool, iconRegister, handles, handleStrings, handleIcons);
+			setupIcons(tool, iconRegister, extras, extraStrings, extraIcons);
 
 			tool.headStrings.putAll(headStrings);
 			tool.headIcons.putAll(headIcons);
@@ -152,8 +169,8 @@ public class Injector extends ToolCore
 	{
 		for(int i = 0; i < newList.size(); i++)
 		{
-			PatternBuilder pb = PatternBuilder.instance;
-			for(Map.Entry<String, MaterialSet> entry : pb.materialSets.entrySet())
+			final PatternBuilder pb = PatternBuilder.instance;
+			for(final Map.Entry<String, MaterialSet> entry : pb.materialSets.entrySet())
 			{
 				String icon = "tinkersdefense:";
 				icon += tool.getDefaultFolder() + "/" + newList.get(i);
@@ -167,7 +184,7 @@ public class Injector extends ToolCore
 
 	void BattleAxe()
 	{
-		ToolCoreTip tt = new ToolCoreTip();
+		final ToolCoreTip tt = new ToolCoreTip();
 
 		tt.accessory = "Front Head";
 		tt.head = "Back Head";
@@ -203,7 +220,7 @@ public class Injector extends ToolCore
 
 	void Axe()
 	{
-		ToolCoreTip tt = new ToolCoreTip();
+		final ToolCoreTip tt = new ToolCoreTip();
 
 		tt.head = "Head";
 		tt.handle = "Handle";
@@ -325,7 +342,7 @@ public class Injector extends ToolCore
 
 	void Broadsword()
 	{
-		ToolCoreTip tt = new ToolCoreTip();
+		final ToolCoreTip tt = new ToolCoreTip();
 
 		tt.head = "Blade";
 		tt.accessory = "Guard";
@@ -469,7 +486,7 @@ public class Injector extends ToolCore
 
 	void HeaterShield()
 	{
-		ToolCoreTip tt = new ToolCoreTip();
+		final ToolCoreTip tt = new ToolCoreTip();
 
 		tt.head = "Plate";
 		tt.accessory = "Emblem";
@@ -479,7 +496,7 @@ public class Injector extends ToolCore
 		tt.headTT.add("Standard Plate");
 		heads.add("_glass_plate");
 		tt.headTT.add("Glass Plate");
-		
+
 		tt.accessoryTT.add("Standard Emblem");
 		accessories.add("_test_face");
 		tt.accessoryTT.add("Villager Emblem");
@@ -519,7 +536,7 @@ public class Injector extends ToolCore
 		tt.handleTT.add("Squared Edge");
 		handles.add("_heart_edge");
 		tt.handleTT.add("Heart Edge");
-		
+
 		tt.extraTT.add("Standard Binding");
 		extras.add("_spider_binding");
 		tt.extraTT.add("Spider Binding");
@@ -544,7 +561,7 @@ public class Injector extends ToolCore
 		extras.add("_skull_binding");
 		tt.extraTT.add("Skull Binding");
 		extras.add("_hell_binding");
-		tt.extraTT.add("Hell Binding");	
+		tt.extraTT.add("Hell Binding");
 		extras.add("_queen_binding");
 		tt.extraTT.add("Queen's Binding");
 		extras.add("_tri_binding");

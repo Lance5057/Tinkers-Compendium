@@ -1,125 +1,167 @@
 package lance5057.tDefense.armor.renderers.cloth;
 
-import lance5057.tDefense.TinkersDefense;
-import lance5057.tDefense.armor.ArmorCore;
 import lance5057.tDefense.armor.renderers.ArmorRenderer;
 import net.minecraft.client.model.ModelRenderer;
-import net.minecraft.entity.Entity;
-import net.minecraft.util.ResourceLocation;
-
-import org.lwjgl.opengl.GL11;
-
-import cpw.mods.fml.client.FMLClientHandler;
 
 /**
- * ModelBiped - Either Mojang or a mod author
+ * ModelTinkersShawl - Either Mojang or a mod author
  * Created using Tabula 4.1.1
  */
 public class ModelTinkersShawl extends ArmorRenderer
 {
-	public ModelRenderer	ShawlLeft1;
-	public ModelRenderer	ShawlLeft2;
-	public ModelRenderer	ShawlRight1;
-	public ModelRenderer	ShawlRight2;
 	public ModelRenderer	Button;
-	public ModelRenderer	TopLeft;
-	public ModelRenderer	TopRight;
-	public ModelRenderer	ArmLeft;
-	public ModelRenderer	ArmRight;
-	public ModelRenderer	Chest;
+	public ModelRenderer	Zipper;
+	public ModelRenderer	ArmTrimL;
+	public ModelRenderer	ArmTrimR;
+	public ModelRenderer	TrimNeck;
+	public ModelRenderer	ButtonArmL;
+	public ModelRenderer	ButtonArmR;
+	public ModelRenderer	ShawlLeftShort;
+	public ModelRenderer	ShawlRightShort;
+	public ModelRenderer	ShawlLeftTrim;
+	public ModelRenderer	TrimShawl;
+	public ModelRenderer	ShawlRightTrim;
+	public ModelRenderer	ZipperShort;
+	public ModelRenderer	ShawlLeftLong;
+	public ModelRenderer	ShawlLeftTrimLong;
+	public ModelRenderer	ShawlRightLong;
+	public ModelRenderer	ShawlRightTrimLong;
 
 	public ModelTinkersShawl()
 	{
-		super(1f, 0, 64, 64);
+		super(0.1f, 0, 64, 64);
 
-		this.textureWidth = 64;
-		this.textureHeight = 64;
+		textureWidth = 64;
+		textureHeight = 64;
 
-		this.ArmLeft = new ModelRenderer(this, 48, 48);
-		this.ArmLeft.mirror = true;
-		this.ArmLeft.setRotationPoint(0.0F, 0.0F, 0.0F);
-		this.ArmLeft.addBox(-1.0F, -2.0F, -2.0F, 4, 12, 4, 0.02F);
-		this.bipedLeftArm.addChild(this.ArmLeft);
+		TrimNeck = new ModelRenderer(this, "Collar");
+		TrimNeck.setTextureOffset(20, 32);
+		TrimNeck.setRotationPoint(0.0F, 0.0F, 0.0F);
+		TrimNeck.addBox(-4.5F, -0.5F, -2.5F, 9, 2, 5, -0.3F);
+		bipedBody.addChild(TrimNeck);
 
-		this.ArmRight = new ModelRenderer(this, 48, 48);
-		this.ArmRight.setRotationPoint(0.0F, 0.0F, 0.0F);
-		this.ArmRight.addBox(-3.0F, -2.0F, -2.0F, 4, 12, 4, 0.02F);
-		this.bipedRightArm.addChild(this.ArmRight);
+		Button = new ModelRenderer(this, "Collar Button");
+		Button.setTextureOffset(15, 32);
+		Button.setRotationPoint(0.0F, 0.0F, 0.0F);
+		Button.addBox(-1.5F, -0.5F, -2.5F, 2, 2, 1, -0.2F);
+		setRotateAngle(Button, 0.0F, 0.0F, -0.7853981633974483F);
+		bipedBody.addChild(Button);
 
-		this.Chest = new ModelRenderer(this, 40, 32);
-		this.Chest.setRotationPoint(0.0F, 0.0F, 0.0F);
-		this.Chest.addBox(-4.0F, 0.0F, -2.0F, 8, 12, 4, 0.02F);
-		this.bipedBody.addChild(this.Chest);
+		ButtonArmL = new ModelRenderer(this, "Button Arm Left");
+		ButtonArmL.setTextureOffset(23, 39);
+		ButtonArmL.mirror = true;
+		ButtonArmL.setRotationPoint(0.0F, 0.0F, 0.0F);
+		ButtonArmL.addBox(2.5F, 3.0F, -5.0F, 1, 2, 2, -0.2F);
+		setRotateAngle(ButtonArmL, 0.7853981633974483F, 0.0F, 0.0F);
+		bipedLeftArm.addChild(ButtonArmL);
 
-		this.TopRight = new ModelRenderer(this, 0, 52);
-		this.TopRight.mirror = true;
-		this.TopRight.setRotationPoint(0.0F, 0.0F, 0.0F);
-		this.TopRight.addBox(-3.5F, -2.3F, -3.0F, 9, 3, 6, -0.01F);
-		this.bipedRightArm.addChild(this.TopRight);
+		ButtonArmR = new ModelRenderer(this, "Button Arm Right");
+		ButtonArmR.setTextureOffset(23, 39);
+		ButtonArmR.setRotationPoint(0.0F, 0.0F, 0.0F);
+		ButtonArmR.addBox(-3.5F, 3.0F, -5.0F, 1, 2, 2, -0.2F);
+		setRotateAngle(ButtonArmR, 0.7853981633974483F, 0.0F, 0.0F);
+		bipedRightArm.addChild(ButtonArmR);
 
-		this.Button = new ModelRenderer(this, 0, 61);
-		this.Button.setRotationPoint(0.0F, 0.0F, 0.0F);
-		this.Button.addBox(0.0F, 0.0F, -3.5F, 2, 2, 1, 0.0F);
-		this.setRotateAngle(Button, 0.0F, 0.0F, 0.7853981633974483F);
-		this.bipedBody.addChild(this.Button);
+		ArmTrimR = new ModelRenderer(this, "Arm Trim Right");
+		ArmTrimR.setTextureOffset(0, 32);
+		ArmTrimR.setRotationPoint(0.0F, 0.0F, 0.0F);
+		ArmTrimR.addBox(-3.5F, 5.0F, -2.5F, 5, 2, 5, -0.3F);
+		bipedRightArm.addChild(ArmTrimR);
 
-		this.TopLeft = new ModelRenderer(this, 0, 52);
-		this.TopLeft.setRotationPoint(0.0F, 0.0F, 0.0F);
-		this.TopLeft.addBox(-5.5F, -2.3F, -3.0F, 9, 3, 6, -0.01F);
-		this.bipedLeftArm.addChild(this.TopLeft);
+		ArmTrimL = new ModelRenderer(this, "Arm Trim Left");
+		ArmTrimL.setTextureOffset(0, 32);
+		ArmTrimL.mirror = true;
+		ArmTrimL.setRotationPoint(0.0F, 0.0F, 0.0F);
+		ArmTrimL.addBox(-1.5F, 5.0F, -2.5F, 5, 2, 5, -0.3F);
+		bipedLeftArm.addChild(ArmTrimL);
 
-		this.ShawlRight1 = new ModelRenderer(this, 0, 32);
-		this.ShawlRight1.mirror = true;
-		this.ShawlRight1.setRotationPoint(0.0F, 0.0F, 0.0F);
-		this.ShawlRight1.addBox(-4.0F, -1.3F, -3.0F, 6, 5, 6, 0.0F);
-		this.setRotateAngle(ShawlRight1, 0.0F, 0.0F, 0.2617993877991494F);
-		this.bipedRightArm.addChild(this.ShawlRight1);
+		ZipperShort = new ModelRenderer(this, "Zipper Bottom");
+		ZipperShort.setTextureOffset(30, 53);
+		ZipperShort.setRotationPoint(0.0F, 0.0F, 0.0F);
+		ZipperShort.addBox(-1.0F, 6.3F, -2.5F, 2, 5, 1, -0.3F);
+		bipedBody.addChild(ZipperShort);
 
-		this.ShawlRight2 = new ModelRenderer(this, 0, 43);
-		this.ShawlRight2.mirror = true;
-		this.ShawlRight2.setRotationPoint(0.0F, 0.0F, 0.0F);
-		this.ShawlRight2.addBox(-1.9F, 0.8F, -3.0F, 6, 3, 6, 0.01F);
-		this.setRotateAngle(ShawlRight2, 0.0F, 0.0F, -0.6981317007977318F);
-		this.bipedRightArm.addChild(this.ShawlRight2);
+		Zipper = new ModelRenderer(this, "Zipper Top");
+		Zipper.setTextureOffset(30, 52);
+		Zipper.setRotationPoint(0.0F, 0.0F, 0.0F);
+		Zipper.addBox(-1.0F, 0.2F, -2.5F, 2, 7, 1, -0.3F);
+		bipedBody.addChild(Zipper);
 
-		this.ShawlLeft1 = new ModelRenderer(this, 0, 32);
-		this.ShawlLeft1.setRotationPoint(0.0F, 0.0F, 0.0F);
-		this.ShawlLeft1.addBox(-2.0F, -1.3F, -3.0F, 6, 5, 6, 0.0F);
-		this.setRotateAngle(ShawlLeft1, 0.0F, 0.0F, -0.2617993877991494F);
-		this.bipedLeftArm.addChild(this.ShawlLeft1);
+		ShawlLeftTrim = new ModelRenderer(this, "Shawl Left Trim");
+		ShawlLeftTrim.setTextureOffset(28, 39);
+		ShawlLeftTrim.setRotationPoint(0.0F, 0.0F, 0.0F);
+		ShawlLeftTrim.addBox(-5.1F, 2.45F, -2.5F, 9, 2, 5, -0.29F);
+		setRotateAngle(ShawlLeftTrim, 0.0F, 0.0F, -0.2792526803190927F);
+		bipedLeftArm.addChild(ShawlLeftTrim);
 
-		this.ShawlLeft2 = new ModelRenderer(this, 0, 43);
-		this.ShawlLeft2.setRotationPoint(0.0F, 0.0F, 0.0F);
-		this.ShawlLeft2.addBox(-4.1F, 0.8F, -3.0F, 6, 3, 6, 0.1F);
-		this.setRotateAngle(ShawlLeft2, 0.0F, 0.0F, 0.6981317007977318F);
-		this.bipedLeftArm.addChild(this.ShawlLeft2);
+		ShawlRightTrim = new ModelRenderer(this, "Shawl Right Trim Short");
+		ShawlRightTrim.setTextureOffset(28, 39);
+		ShawlRightTrim.mirror = true;
+		ShawlRightTrim.setRotationPoint(0.0F, 0.0F, 0.0F);
+		ShawlRightTrim.addBox(-3.95F, 2.45F, -2.5F, 9, 2, 5, -0.29F);
+		setRotateAngle(ShawlRightTrim, 0.0F, 0.0F, 0.2792526803190927F);
+		bipedRightArm.addChild(ShawlRightTrim);
 
-		this.bipedHead.isHidden = true;
-		this.bipedHeadwear.isHidden = true;
-		this.bipedCloak.isHidden = true;
-	}
+		ShawlRightTrimLong = new ModelRenderer(this, "Shawl Right Trim Long");
+		ShawlRightTrimLong.setTextureOffset(0, 39);
+		ShawlRightTrimLong.mirror = true;
+		ShawlRightTrimLong.setRotationPoint(0.0F, 0.0F, 0.0F);
+		ShawlRightTrimLong.addBox(-3.95F, 7.85F, -2.5F, 9, 2, 5, -0.29F);
+		setRotateAngle(ShawlRightTrimLong, 0.0F, 0.0F, 0.2792526803190927F);
+		bipedRightArm.addChild(ShawlRightTrimLong);
 
-	@Override
-	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
-	{
-		GL11.glPushMatrix();
+		ShawlLeftTrimLong = new ModelRenderer(this, "Shawl Left Trim Long");
+		ShawlLeftTrimLong.setTextureOffset(0, 39);
+		ShawlLeftTrimLong.setRotationPoint(0.0F, 0.0F, 0.0F);
+		ShawlLeftTrimLong.addBox(-5.1F, 7.85F, -2.5F, 9, 2, 5, -0.29F);
+		setRotateAngle(ShawlLeftTrimLong, 0.0F, 0.0F, -0.2792526803190927F);
+		bipedLeftArm.addChild(ShawlLeftTrimLong);
 
-		for(int i = 0; i < 10; i++)
-		{
-			String texture = ((ArmorCore) this.stack.getItem()).getTexture(i, stack);
-			if(texture != "")
-			{
+		ShawlLeftLong = new ModelRenderer(this, "Shawl Left Long");
+		ShawlLeftLong.setTextureOffset(38, 50);
+		ShawlLeftLong.setRotationPoint(0.0F, 0.0F, 0.0F);
+		ShawlLeftLong.addBox(-4.55F, -1.05F, -2.0F, 8, 10, 4, 0.11F);
+		setRotateAngle(ShawlLeftLong, 0.0F, 0.0F, -0.2792526803190927F);
+		bipedLeftArm.addChild(ShawlLeftLong);
 
-				GL11.glPushMatrix();
+		ShawlRightLong = new ModelRenderer(this, "Shawl Right Long");
+		ShawlRightLong.setTextureOffset(38, 50);
+		ShawlRightLong.mirror = true;
+		ShawlRightLong.setRotationPoint(0.0F, 0.0F, 0.0F);
+		ShawlRightLong.addBox(-3.45F, -1.05F, -2.0F, 8, 10, 4, 0.11F);
+		setRotateAngle(ShawlRightLong, 0.0F, 0.0F, 0.2792526803190927F);
+		bipedRightArm.addChild(ShawlRightLong);
 
-				((ArmorCore) this.stack.getItem()).renderArmor(entity, f, f1, f2, f3, f4, f5, colors, stack, i);
-				super.render(entity, f, f1, f2, f3, f4, f5);
+		ShawlLeftShort = new ModelRenderer(this, "Shawl Left Short");
+		ShawlLeftShort.setTextureOffset(38, 50);
+		ShawlLeftShort.setRotationPoint(0.0F, 0.0F, 0.0F);
+		ShawlLeftShort.addBox(-1.55F, -1.05F, -2.0F, 5, 5, 4, 0.01F);
+		setRotateAngle(ShawlLeftShort, 0.0F, 0.0F, -0.2792526803190927F);
+		bipedLeftArm.addChild(ShawlLeftShort);
 
-				GL11.glPopMatrix();
-			}
-		}
+		ShawlRightShort = new ModelRenderer(this, "Shawl Right Short");
+		ShawlRightShort.setTextureOffset(38, 50);
+		ShawlRightShort.mirror = true;
+		ShawlRightShort.setRotationPoint(0.0F, 0.0F, 0.0F);
+		ShawlRightShort.addBox(-3.45F, -1.05F, -2.0F, 5, 5, 4, 0.01F);
+		setRotateAngle(ShawlRightShort, 0.0F, 0.0F, 0.2792526803190927F);
+		bipedRightArm.addChild(ShawlRightShort);
 
-		GL11.glPopMatrix();
+		TrimShawl = new ModelRenderer(this, "Trim Shawl Short");
+		TrimShawl.setTextureOffset(20, 32);
+		TrimShawl.setRotationPoint(0.0F, 0.0F, 0.0F);
+		TrimShawl.addBox(-4.5F, 5.5F, -2.5F, 9, 2, 5, -0.31F);
+		bipedBody.addChild(TrimShawl);
+
+		ArmTrimL.isHidden = true;
+		ArmTrimR.isHidden = true;
+		ShawlLeftTrim.isHidden = true;
+		ShawlRightTrim.isHidden = true;
+		TrimShawl.isHidden = true;
+		Zipper.isHidden = true;
+		ZipperShort.isHidden = true;
+
+		init();
 	}
 
 	/**

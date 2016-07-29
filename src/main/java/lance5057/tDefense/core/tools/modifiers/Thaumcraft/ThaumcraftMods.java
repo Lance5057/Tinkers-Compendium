@@ -5,6 +5,7 @@ import java.lang.reflect.Method;
 
 import cpw.mods.fml.common.FMLLog;
 import lance5057.tDefense.TinkersDefense;
+import lance5057.tDefense.core.tools.modifiers.ModifiersBase;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -20,23 +21,26 @@ import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
 import thaumcraft.api.internal.DummyInternalMethodHandler;
 
-public class ThaumcraftMods
+public class ThaumcraftMods extends ModifiersBase
 {
 
 	public ThaumcraftMods()
 	{
-		LoadItems();
+		super(null, null);
 	}
 
+	@Override
 	public void LoadItems()
 	{
 
 	}
 
+	@Override
 	public void RegisterRecipes()
 	{
 	}
 
+	@Override
 	public void RegisterModifiers()
 	{
 		ModifyBuilder.registerModifier(new modifierRepairVis(new ItemStack[] {ItemApi.getItem("itemWandCap", 0)}, TinkersDefense.config.CapsModID, "Caps", EnumChatFormatting.GOLD.toString(), "Caps"));
@@ -47,6 +51,7 @@ public class ThaumcraftMods
 		}
 	}
 
+	@Override
 	public void UpdateAll(ToolCore tool, ItemStack stack, World world, Entity entity, NBTTagCompound tags)
 	{
 		if(!world.isRemote)

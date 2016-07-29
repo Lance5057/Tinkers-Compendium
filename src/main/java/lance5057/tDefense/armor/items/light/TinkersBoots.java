@@ -1,33 +1,22 @@
 package lance5057.tDefense.armor.items.light;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import lance5057.tDefense.TinkersDefense;
 import lance5057.tDefense.armor.ArmorCore;
-import lance5057.tDefense.armor.parts.ClothMaterial;
-import lance5057.tDefense.armor.renderers.cloth.ModelTinkersHood;
-import lance5057.tDefense.armor.renderers.light.ModelTinkersBoots;
+import lance5057.tDefense.armor.renderers.ArmorRenderer;
 import lance5057.tDefense.proxy.ClientProxy;
-import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.DamageSource;
-import net.minecraftforge.common.ISpecialArmor.ArmorProperties;
-import tconstruct.library.TConstructRegistry;
-import tconstruct.library.tools.CustomMaterial;
 
 public class TinkersBoots extends ArmorCore
 {
 	public TinkersBoots()
 	{
 		super(1, 3);
-		this.setUnlocalizedName("tinkersboots");
-		this.maxReduction = 100;
-		this.reductionPercent = 0.08f;
+		setUnlocalizedName("tinkersboots");
+		maxReduction = 100;
+		reductionPercent = 0.08f;
 	}
 
 	@Override
@@ -128,27 +117,14 @@ public class TinkersBoots extends ArmorCore
 	}
 
 	@Override
-	@SideOnly(Side.CLIENT)
-	public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, int armorSlot)
-	{
-		String[] color = new String[10];
-
-		for(int j = 0; j < 10; j++)
-			color[j] = Integer.toHexString(itemStack.getItem().getColorFromItemStack(itemStack, j));
-		
-		int AccessoryID = itemStack.getTagCompound().getCompoundTag("InfiTool").getInteger("RenderHandle");
-
-		CustomMaterial newColor = TConstructRegistry.getCustomMaterial(AccessoryID, ClothMaterial.class);
-		color[0] = Integer.toHexString(newColor.color);
-
-		//String[] textures = {this.getIconSuffix(2), this.getIconSuffix(0), this.getIconSuffix(3)};
-		ClientProxy.boots.SetColors(color, this.getDefaultFolder(), itemStack);
-		return ClientProxy.boots;
-	}
-
-	@Override
 	public int getArmorDisplay(EntityPlayer player, ItemStack armor, int slot)
 	{
 		return 2;
+	}
+
+	@Override
+	public ArmorRenderer getRenderer()
+	{
+		return ClientProxy.boots;
 	}
 }

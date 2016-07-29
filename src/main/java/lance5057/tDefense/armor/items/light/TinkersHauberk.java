@@ -2,24 +2,22 @@ package lance5057.tDefense.armor.items.light;
 
 import lance5057.tDefense.TinkersDefense;
 import lance5057.tDefense.armor.ArmorCore;
+import lance5057.tDefense.armor.renderers.ArmorRenderer;
 import lance5057.tDefense.proxy.ClientProxy;
-import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import tconstruct.tools.TinkerTools;
 
 public class TinkersHauberk extends ArmorCore
 {
 	public TinkersHauberk()
 	{
 		super(1, 1);
-		this.setUnlocalizedName("tinkershauberk");
-		this.maxReduction = 100;
-		this.reductionPercent = 0.24f;
+		setUnlocalizedName("tinkershauberk");
+		maxReduction = 100;
+		reductionPercent = 0.24f;
 	}
 
 	@Override
@@ -31,13 +29,13 @@ public class TinkersHauberk extends ArmorCore
 	@Override
 	public Item getHandleItem()
 	{
-		return TinkersDefense.partArmorplate;
+		return TinkerTools.largePlate;
 	}
 
 	@Override
 	public Item getAccessoryItem()
 	{
-		return TinkersDefense.partRivet;
+		return TinkersDefense.partCloth;
 	}
 
 	@Override
@@ -82,7 +80,7 @@ public class TinkersHauberk extends ArmorCore
 			case 2:
 				return "_hauberk_plate";
 			case 3:
-				return "_hauberk_rivet";
+				return "_hauberk_cloth";
 			default:
 				return "";
 		}
@@ -120,22 +118,14 @@ public class TinkersHauberk extends ArmorCore
 	}
 
 	@Override
-	@SideOnly(Side.CLIENT)
-	public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, int armorSlot)
-	{
-		String[] color = new String[10];
-
-		for(int j = 0; j < 10; j++)
-			color[j] = Integer.toHexString(itemStack.getItem().getColorFromItemStack(itemStack, j));
-
-		//String[] textures = {this.getIconSuffix(2), this.getIconSuffix(0), this.getIconSuffix(3)};
-		ClientProxy.hauberk.SetColors(color, this.getDefaultFolder(), itemStack);
-		return ClientProxy.hauberk;
-	}
-
-	@Override
 	public int getArmorDisplay(EntityPlayer player, ItemStack armor, int slot)
 	{
 		return 6;
+	}
+
+	@Override
+	public ArmorRenderer getRenderer()
+	{
+		return ClientProxy.hauberk;
 	}
 }

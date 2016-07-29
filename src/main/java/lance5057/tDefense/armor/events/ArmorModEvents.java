@@ -1,5 +1,6 @@
 package lance5057.tDefense.armor.events;
 
+import lance5057.tDefense.TinkersDefense;
 import lance5057.tDefense.armor.ArmorCore;
 import lance5057.tDefense.armor.items.cloth.TinkersRobe;
 import lance5057.tDefense.armor.items.heavy.TinkersGrieves;
@@ -59,8 +60,8 @@ public class ArmorModEvents
 
 		float adjustedPerc = (float) (1f - (epf * 0.04));
 		event.ammount = adjustedPerc * event.ammount;
-
-		if(event.entityLiving instanceof EntityPlayer)
+ 
+		if(TinkersDefense.config.debug && event.entityLiving instanceof EntityPlayer)
 		{
 			((EntityPlayer) event.entityLiving).addChatComponentMessage(new ChatComponentText(event.source.getDamageType() + " - Adjusted: " + Double.toString(event.ammount)));
 		}

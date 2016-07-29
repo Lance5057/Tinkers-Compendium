@@ -10,7 +10,7 @@ public class Container_FinishingAnvil extends Container
 {
 	public Container_FinishingAnvil(InventoryPlayer inventoryPlayer, TileEntity_FinishingAnvil te)
 	{
-		addSlotToContainer(new Slot(te, 0, 48, 32));
+		addSlotToContainer(new Slot(te, 0, 39, 32));
 
 		for(int x = 0; x < 9; x++)
 		{

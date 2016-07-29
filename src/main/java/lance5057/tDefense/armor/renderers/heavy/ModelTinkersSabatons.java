@@ -1,24 +1,16 @@
 package lance5057.tDefense.armor.renderers.heavy;
 
-import lance5057.tDefense.TinkersDefense;
-import lance5057.tDefense.armor.ArmorCore;
 import lance5057.tDefense.armor.renderers.ArmorRenderer;
 import net.minecraft.client.model.ModelRenderer;
-import net.minecraft.entity.Entity;
-import net.minecraft.util.ResourceLocation;
-
-import org.lwjgl.opengl.GL11;
-
-import cpw.mods.fml.client.FMLClientHandler;
 
 /**
- * ModelBiped - Either Mojang or a mod author
+ * TinkersSabatons - Either Mojang or a mod author
  * Created using Tabula 4.1.1
  */
 public class ModelTinkersSabatons extends ArmorRenderer
 {
 	public ModelRenderer	BootL;
-	public ModelRenderer	KneeGuardR;
+	public ModelRenderer	FlairBackR;
 	public ModelRenderer	ShinGuardL;
 	public ModelRenderer	KneeGuardCapL;
 	public ModelRenderer	LegBackL;
@@ -27,110 +19,161 @@ public class ModelTinkersSabatons extends ArmorRenderer
 	public ModelRenderer	BootCapR;
 	public ModelRenderer	BootCapL;
 	public ModelRenderer	LegBackR;
-	public ModelRenderer	KneeGuardL;
+	public ModelRenderer	FlairL;
 	public ModelRenderer	KneeGuardCapR;
+	public ModelRenderer	BootTipR;
+	public ModelRenderer	BootTipL;
+	public ModelRenderer	KneeGuardR;
+	public ModelRenderer	KneeGuardL;
+	public ModelRenderer	FlairR;
+	public ModelRenderer	BackFlairL;
 
 	public ModelTinkersSabatons()
 	{
-		super(1f, 0, 64, 64);
+		super(0.1f, 0, 64, 64);
 
-		this.textureWidth = 64;
-		this.textureHeight = 64;
+		textureWidth = 64;
+		textureHeight = 64;
 
-		this.ShinGuardL = new ModelRenderer(this, 0, 48);
-		this.ShinGuardL.mirror = true;
-		this.ShinGuardL.setRotationPoint(0.0F, 0.0F, 0.0F);
-		this.ShinGuardL.addBox(-2.0F, 4.0F, -2.6F, 4, 5, 3, 0.11F);
-		this.setRotateAngle(ShinGuardL, 0.05759586531581287F, 0.0F, 0.0F);
-		this.bipedLeftLeg.addChild(this.ShinGuardL);
+		BootR = new ModelRenderer(this, "Boot Right");
+		BootR.setTextureOffset(0, 56);
+		BootR.setRotationPoint(0.0F, 0.0F, 0.0F);
+		BootR.addBox(-2.0F, 9.0F, -3.0F, 4, 3, 5, 0.2F);
+		bipedRightLeg.addChild(BootR);
 
-		this.KneeGuardL = new ModelRenderer(this, 6, 32);
-		this.KneeGuardL.mirror = true;
-		this.KneeGuardL.setRotationPoint(0.0F, 0.0F, 0.0F);
-		this.KneeGuardL.addBox(-2.0F, 3.0F, -2.5F, 4, 3, 4, 0.2F);
-		this.bipedLeftLeg.addChild(this.KneeGuardL);
+		BootL = new ModelRenderer(this, "Boot Left");
+		BootL.setTextureOffset(0, 56);
+		BootL.mirror = true;
+		BootL.setRotationPoint(0.0F, 0.0F, 0.0F);
+		BootL.addBox(-2.0F, 9.0F, -3.0F, 4, 3, 5, 0.2F);
+		bipedLeftLeg.addChild(BootL);
 
-		this.BootL = new ModelRenderer(this, 0, 56);
-		this.BootL.mirror = true;
-		this.BootL.setRotationPoint(0.0F, 0.0F, 0.0F);
-		this.BootL.addBox(-2.0F, 9.0F, -3.0F, 4, 3, 5, 0.2F);
-		this.bipedLeftLeg.addChild(this.BootL);
+		KneeGuardR = new ModelRenderer(this, "Knee Guard Right");
+		KneeGuardR.setTextureOffset(0, 32);
+		KneeGuardR.setRotationPoint(0.0F, 0.0F, 0.0F);
+		KneeGuardR.addBox(-2.0F, 3.1F, -2.5F, 4, 3, 4, 0.3F);
+		bipedRightLeg.addChild(KneeGuardR);
 
-		this.KneeGuardCapL = new ModelRenderer(this, 0, 37);
-		this.KneeGuardCapL.mirror = true;
-		this.KneeGuardCapL.setRotationPoint(0.0F, 0.0F, 0.0F);
-		this.KneeGuardCapL.addBox(-1.0F, 2.4F, -3.0F, 2, 2, 1, 0.2F);
-		this.bipedLeftLeg.addChild(this.KneeGuardCapL);
+		KneeGuardL = new ModelRenderer(this, "Knee Guard Left");
+		KneeGuardL.setTextureOffset(0, 32);
+		KneeGuardL.mirror = true;
+		KneeGuardL.setRotationPoint(0.0F, 0.0F, 0.0F);
+		KneeGuardL.addBox(-2.0F, 3.1F, -2.5F, 4, 3, 4, 0.3F);
+		bipedLeftLeg.addChild(KneeGuardL);
 
-		this.KneeGuardR = new ModelRenderer(this, 6, 32);
-		this.KneeGuardR.setRotationPoint(0.0F, 0.0F, 0.0F);
-		this.KneeGuardR.addBox(-2.0F, 3.0F, -2.5F, 4, 3, 4, 0.2F);
-		this.bipedRightLeg.addChild(this.KneeGuardR);
+		ShinGuardR = new ModelRenderer(this, "Shin Guard Right");
+		ShinGuardR.setTextureOffset(0, 48);
+		ShinGuardR.setRotationPoint(0.0F, 0.0F, 0.0F);
+		ShinGuardR.addBox(-2.0F, 4.0F, -2.5F, 4, 5, 3, 0.11F);
+		setRotateAngle(ShinGuardR, 0.05759586531581287F, 0.0F, 0.0F);
+		bipedRightLeg.addChild(ShinGuardR);
 
-		this.LegBackL = new ModelRenderer(this, 0, 40);
-		this.LegBackL.mirror = true;
-		this.LegBackL.setRotationPoint(0.0F, 0.0F, 0.0F);
-		this.LegBackL.addBox(-2.0F, 3.0F, -2.6F, 4, 6, 2, 0.1F);
-		this.setRotateAngle(LegBackL, 0.05759586531581287F, 3.141592653589793F, 0.0F);
-		this.bipedLeftLeg.addChild(this.LegBackL);
+		ShinGuardL = new ModelRenderer(this, "Shin Guard Left");
+		ShinGuardL.setTextureOffset(0, 48);
+		ShinGuardL.mirror = true;
+		ShinGuardL.setRotationPoint(0.0F, 0.0F, 0.0F);
+		ShinGuardL.addBox(-2.0F, 4.0F, -2.5F, 4, 5, 3, 0.11F);
+		setRotateAngle(ShinGuardL, 0.05759586531581287F, 0.0F, 0.0F);
+		bipedLeftLeg.addChild(ShinGuardL);
 
-		this.BootCapL = new ModelRenderer(this, 0, 33);
-		this.BootCapL.mirror = true;
-		this.BootCapL.setRotationPoint(0.0F, 0.0F, 0.0F);
-		this.BootCapL.addBox(-1.0F, 9.1F, -5.2F, 2, 2, 1, 0.2F);
-		this.setRotateAngle(BootCapL, 0.17453292519943295F, 0.0F, 0.0F);
-		this.bipedLeftLeg.addChild(this.BootCapL);
+		LegBackL = new ModelRenderer(this, "Leg Back Left");
+		LegBackL.setTextureOffset(0, 40);
+		LegBackL.mirror = true;
+		LegBackL.setRotationPoint(0.0F, 0.0F, 0.0F);
+		LegBackL.addBox(-2.0F, 3.0F, 0.6F, 4, 6, 2, 0.1F);
+		setRotateAngle(LegBackL, -0.05759586531581287F, 0.0F, 0.0F);
+		bipedLeftLeg.addChild(LegBackL);
 
-		this.KneeGuardCapR = new ModelRenderer(this, 0, 37);
-		this.KneeGuardCapR.setRotationPoint(0.0F, 0.0F, 0.0F);
-		this.KneeGuardCapR.addBox(-1.0F, 2.4F, -3.0F, 2, 2, 1, 0.2F);
-		this.bipedRightLeg.addChild(this.KneeGuardCapR);
+		LegBackR = new ModelRenderer(this, "Leg Back Right");
+		LegBackR.setTextureOffset(0, 40);
+		LegBackR.setRotationPoint(0.0F, 0.0F, 0.0F);
+		LegBackR.addBox(-2.0F, 3.0F, 0.6F, 4, 6, 2, 0.1F);
+		setRotateAngle(LegBackR, -0.05759586531581287F, 0.0F, 0.0F);
+		bipedRightLeg.addChild(LegBackR);
 
-		this.BootR = new ModelRenderer(this, 0, 56);
-		this.BootR.setRotationPoint(0.0F, 0.0F, 0.0F);
-		this.BootR.addBox(-2.0F, 9.0F, -3.0F, 4, 3, 5, 0.2F);
-		this.bipedRightLeg.addChild(this.BootR);
+		FlairR = new ModelRenderer(this, "Flair Right");
+		FlairR.setTextureOffset(18, 53);
+		FlairR.setRotationPoint(0.0F, 0.0F, 0.0F);
+		FlairR.addBox(0.9F, 0.2F, -2.5F, 5, 11, 0, 0.0F);
+		setRotateAngle(FlairR, 0.0F, -0.6108652381980153F, 0.0F);
+		bipedLeftLeg.addChild(FlairR);
 
-		this.ShinGuardR = new ModelRenderer(this, 0, 48);
-		this.ShinGuardR.setRotationPoint(0.0F, 0.0F, 0.0F);
-		this.ShinGuardR.addBox(-2.0F, 4.0F, -2.6F, 4, 5, 3, 0.11F);
-		this.setRotateAngle(ShinGuardR, 0.05759586531581287F, 0.0F, 0.0F);
-		this.bipedRightLeg.addChild(this.ShinGuardR);
+		FlairL = new ModelRenderer(this, "Flair Left");
+		FlairL.setTextureOffset(18, 53);
+		FlairL.mirror = true;
+		FlairL.setRotationPoint(0.0F, 0.0F, 0.0F);
+		FlairL.addBox(-5.9F, 0.2F, -2.5F, 5, 11, 0, 0.0F);
+		setRotateAngle(FlairL, 0.0F, 0.6108652381980153F, 0.0F);
+		bipedRightLeg.addChild(FlairL);
 
-		this.LegBackR = new ModelRenderer(this, 0, 40);
-		this.LegBackR.setRotationPoint(0.0F, 0.0F, 0.0F);
-		this.LegBackR.addBox(-2.0F, 3.0F, -2.6F, 4, 6, 2, 0.1F);
-		this.setRotateAngle(LegBackR, 0.05759586531581287F, 3.141592653589793F, 0.0F);
-		this.bipedRightLeg.addChild(this.LegBackR);
+		FlairBackR = new ModelRenderer(this, "Flair Back Right");
+		FlairBackR.setTextureOffset(28, 47);
+		FlairBackR.setRotationPoint(0.0F, 0.0F, 0.0F);
+		FlairBackR.addBox(0.0F, 0.0F, 2.0F, 0, 12, 5, 0.0F);
+		bipedRightLeg.addChild(FlairBackR);
 
-		this.BootCapR = new ModelRenderer(this, 0, 33);
-		this.BootCapR.setRotationPoint(0.0F, 0.0F, 0.0F);
-		this.BootCapR.addBox(-1.0F, 9.1F, -5.2F, 2, 2, 1, 0.2F);
-		this.setRotateAngle(BootCapR, 0.17453292519943295F, 0.0F, 0.0F);
-		this.bipedRightLeg.addChild(this.BootCapR);
-	}
+		BackFlairL = new ModelRenderer(this, "Flair Back Left");
+		BackFlairL.setTextureOffset(28, 47);
+		BackFlairL.mirror = true;
+		BackFlairL.setRotationPoint(0.0F, 0.0F, 0.0F);
+		BackFlairL.addBox(0.0F, 0.0F, 2.0F, 0, 12, 5, 0.0F);
+		bipedLeftLeg.addChild(BackFlairL);
 
-	@Override
-	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
-	{
-		GL11.glPushMatrix();
+		KneeGuardCapR = new ModelRenderer(this, "Knee Guard Cap Right");
+		KneeGuardCapR.setTextureOffset(16, 36);
+		KneeGuardCapR.setRotationPoint(0.0F, 0.0F, 0.0F);
+		KneeGuardCapR.addBox(-1.5F, 2.4F, -3.8F, 3, 2, 1, 0.2F);
+		setRotateAngle(KneeGuardCapR, 0.17453292519943295F, 0.0F, 0.0F);
+		bipedRightLeg.addChild(KneeGuardCapR);
 
-		for(int i = 0; i < 10; i++)
-		{
-			String texture = ((ArmorCore) this.stack.getItem()).getTexture(i, stack);
-			if(texture != "")
-			{
+		KneeGuardCapL = new ModelRenderer(this, "Knee Guard Cap Left");
+		KneeGuardCapL.setTextureOffset(16, 36);
+		KneeGuardCapL.mirror = true;
+		KneeGuardCapL.setRotationPoint(0.0F, 0.0F, 0.0F);
+		KneeGuardCapL.addBox(-1.5F, 2.4F, -3.8F, 3, 2, 1, 0.2F);
+		setRotateAngle(KneeGuardCapL, 0.17453292519943295F, 0.0F, 0.0F);
+		bipedLeftLeg.addChild(KneeGuardCapL);
 
-				GL11.glPushMatrix();
+		BootTipR = new ModelRenderer(this, "Boot Tip Right");
+		BootTipR.setTextureOffset(22, 32);
+		BootTipR.setRotationPoint(0.0F, 0.0F, 0.0F);
+		BootTipR.addBox(-1.4F, 10.0F, -2.5F, 3, 2, 2, -0.1F);
+		setRotateAngle(BootTipR, -0.3490658503988659F, 0.0F, 0.0F);
+		bipedRightLeg.addChild(BootTipR);
 
-				((ArmorCore) this.stack.getItem()).renderArmor(entity, f, f1, f2, f3, f4, f5, colors, stack, i);
-				super.render(entity, f, f1, f2, f3, f4, f5);
+		BootCapR = new ModelRenderer(this, "Boot Cap Right");
+		BootCapR.setTextureOffset(12, 32);
+		BootCapR.setRotationPoint(0.0F, 0.0F, 0.0F);
+		BootCapR.addBox(-1.5F, 10.0F, -2.5F, 3, 2, 2, 0.3F);
+		setRotateAngle(BootCapR, -0.17453292519943295F, 0.0F, 0.0F);
+		bipedRightLeg.addChild(BootCapR);
 
-				GL11.glPopMatrix();
-			}
-		}
+		BootTipL = new ModelRenderer(this, "Boot Tip Left");
+		BootTipL.setTextureOffset(22, 32);
+		BootTipL.mirror = true;
+		BootTipL.setRotationPoint(0.0F, 0.0F, 0.0F);
+		BootTipL.addBox(-1.5F, 10.0F, -2.6F, 3, 2, 2, -0.1F);
+		setRotateAngle(BootTipL, -0.3490658503988659F, 0.0F, 0.0F);
+		bipedLeftLeg.addChild(BootTipL);
 
-		GL11.glPopMatrix();
+		BootCapL = new ModelRenderer(this, "Boot Cap Left");
+		BootCapL.setTextureOffset(12, 32);
+		BootCapL.mirror = true;
+		BootCapL.setRotationPoint(0.0F, 0.0F, 0.0F);
+		BootCapL.addBox(-1.5F, 10.0F, -2.5F, 3, 2, 2, 0.3F);
+		setRotateAngle(BootCapL, -0.17453292519943295F, 0.0F, 0.0F);
+		bipedLeftLeg.addChild(BootCapL);
+
+		BootCapL.isHidden = true;
+		BootCapR.isHidden = true;
+		BootTipL.isHidden = true;
+		BootTipR.isHidden = true;
+		FlairBackR.isHidden = true;
+		BackFlairL.isHidden = true;
+		FlairL.isHidden = true;
+		FlairR.isHidden = true;
+
+		init();
 	}
 
 	/**

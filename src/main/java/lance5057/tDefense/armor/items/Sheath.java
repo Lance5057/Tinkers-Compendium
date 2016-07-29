@@ -2,13 +2,10 @@ package lance5057.tDefense.armor.items;
 
 import lance5057.tDefense.TinkersDefense;
 import lance5057.tDefense.armor.ArmorCore;
-import lance5057.tDefense.armor.parts.ClothMaterial;
+import lance5057.tDefense.armor.renderers.ArmorRenderer;
 import lance5057.tDefense.proxy.ClientProxy;
-import net.minecraft.client.model.ModelBiped;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import tconstruct.library.TConstructRegistry;
 import tconstruct.library.accessory.IAccessory;
 import tconstruct.tools.TinkerTools;
 import cpw.mods.fml.relauncher.Side;
@@ -19,32 +16,13 @@ public class Sheath extends ArmorCore implements IAccessory
 
 	public Sheath()
 	{
-		super(0,-1);
+		super(0, -1);
 	}
 
 	@Override
 	public boolean canEquipAccessory(ItemStack item, int slot)
 	{
 		return slot == 3;
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, int armorSlot)
-	{
-		String[] color = new String[10];
-
-		for(int j = 0; j < 10; j++)
-			color[j] = Integer.toHexString(itemStack.getItem().getColorFromItemStack(itemStack, j));
-		
-		int HandleID = itemStack.getTagCompound().getCompoundTag("InfiTool").getInteger("RenderExtra");
-		
-		color[3] = Integer.toHexString(TConstructRegistry.getCustomMaterial(HandleID, ClothMaterial.class).color);
-
-		//String[] textures = {this.getIconSuffix(2), this.getIconSuffix(0), this.getIconSuffix(4), this.getIconSuffix(3)};
-
-		ClientProxy.sheath.SetColors(color, this.getDefaultFolder(), itemStack);
-		return ClientProxy.sheath;
 	}
 
 	@Override
@@ -62,14 +40,14 @@ public class Sheath extends ArmorCore implements IAccessory
 	@Override
 	public Item getAccessoryItem()
 	{
-		return TinkersDefense.partClasp;
-	}
-
-	@Override
-	public Item getExtraItem()
-	{
 		return TinkersDefense.partCloth;
 	}
+
+	//	@Override
+	//	public Item getExtraItem()
+	//	{
+	//		return TinkersDefense.partCloth;
+	//	}
 
 	@Override
 	public String getDefaultFolder()
@@ -88,7 +66,7 @@ public class Sheath extends ArmorCore implements IAccessory
 	@Override
 	public int getPartAmount()
 	{
-		return 4;
+		return 3;
 	}
 
 	@Override
@@ -97,15 +75,15 @@ public class Sheath extends ArmorCore implements IAccessory
 		switch(partType)
 		{
 			case 0:
-				return "_sheath_base";
+				return "_tabard_cloth";
 			case 1:
 				return "_shield_base_broken"; //useless
 			case 2:
-				return "_sheath_filigree";
+				return "_tabard_trim";
 			case 3:
-				return "_sheath_belt";
-			case 4:
-				return "_sheath_clasp";
+				return "_tabard_filigree";
+				//			case 4:
+				//				return "_sheath_clasp";
 			default:
 				return "";
 		}
@@ -115,6 +93,13 @@ public class Sheath extends ArmorCore implements IAccessory
 	public String[] getTraits()
 	{
 		return new String[] {"sheath", "cosmetic"};
+	}
+
+	@Override
+	public ArmorRenderer getRenderer()
+	{
+		// TODO Auto-generated method stub
+		return ClientProxy.sheath;
 	}
 
 }

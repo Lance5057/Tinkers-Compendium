@@ -1,109 +1,122 @@
 package lance5057.tDefense.armor.renderers.light;
 
-import lance5057.tDefense.TinkersDefense;
-import lance5057.tDefense.armor.ArmorCore;
 import lance5057.tDefense.armor.renderers.ArmorRenderer;
 import net.minecraft.client.model.ModelRenderer;
-import net.minecraft.entity.Entity;
-import net.minecraft.util.ResourceLocation;
-
-import org.lwjgl.opengl.GL11;
-
-import cpw.mods.fml.client.FMLClientHandler;
 
 /**
- * ModelBiped - Either Mojang or a mod author
+ * ModelTinkersChausses - Either Mojang or a mod author
  * Created using Tabula 4.1.1
  */
 public class ModelTinkersChausses extends ArmorRenderer
 {
-	public ModelRenderer	LegL;
 	public ModelRenderer	FrontL;
+	public ModelRenderer	FrontR;
 	public ModelRenderer	HipGuardL;
 	public ModelRenderer	HipGuardR;
-	public ModelRenderer	LegR;
 	public ModelRenderer	BackL;
-	public ModelRenderer	FrontR;
 	public ModelRenderer	BackR;
+	public ModelRenderer	HipGuardL_1;
+	public ModelRenderer	HipGuardR_1;
 	public ModelRenderer	Belt;
+	public ModelRenderer	BeltR;
+	public ModelRenderer	BeltL;
 
 	public ModelTinkersChausses()
 	{
-		super(1.1f, 0, 64, 64);
+		super(0.1f, 0, 64, 64);
 
-		this.textureWidth = 64;
-		this.textureHeight = 64;
+		textureWidth = 64;
+		textureHeight = 64;
 
-		this.Belt = new ModelRenderer(this, 16, 54);
-		this.Belt.setRotationPoint(0.0F, 0.0F, 0.0F);
-		this.Belt.addBox(-4.5F, 10.0F, -3F, 9, 2, 6, 0.1F);
-		this.bipedBody.addChild(this.Belt);
+		bipedRightLeg = new ModelRenderer(this, "Right Leg");
+		bipedRightLeg.setTextureOffset(0, 16);
+		bipedRightLeg.addBox(-2.0F, 0.0F, -2.0F, 4, 12, 4, 0.1f);
+		bipedRightLeg.setRotationPoint(-1.9F, 12.0F + 0, 0.0F);
 
-		this.HipGuardR = new ModelRenderer(this, 10, 37);
-		this.HipGuardR.setRotationPoint(0F, 0F, 0F);
-		this.HipGuardR.addBox(-2.5F, 0.0F, -2.5F, 4, 6, 5, 0.01F);
-		this.setRotateAngle(HipGuardR, 0.0F, 0.0F, 0.17453292519943295F);
-		this.bipedRightLeg.addChild(this.HipGuardR);
+		bipedLeftLeg = new ModelRenderer(this, "Left Leg");
+		bipedLeftLeg.setTextureOffset(0, 16);
+		bipedLeftLeg.mirror = true;
+		bipedLeftLeg.addBox(-2.0F, 0.0F, -2.0F, 4, 12, 4, 0.1f);
+		bipedLeftLeg.setRotationPoint(1.9F, 12.0F + 0, 0.0F);
 
-		this.LegL = new ModelRenderer(this, 0, 48);
-		this.LegL.setRotationPoint(0F, 0F, 0F);
-		this.LegL.addBox(-2.0F, 0.0F, -2.0F, 4, 12, 4, 0.01F);
-		this.bipedLeftLeg.addChild(this.LegL);
+		HipGuardR = new ModelRenderer(this, "Hip Guard Right");
+		HipGuardR.setTextureOffset(0, 49);
+		HipGuardR.setRotationPoint(0f, 0f, 0f);
+		HipGuardR.addBox(-2.5F, 0.0F, -2.6F, 4, 6, 5, 0.1F);
+		setRotateAngle(HipGuardR, 0.0F, 0.0F, 0.17453292519943295F);
+		bipedRightLeg.addChild(HipGuardR);
 
-		this.BackR = new ModelRenderer(this, 0, 40);
-		this.BackR.setRotationPoint(0F, 0F, 0F);
-		this.BackR.addBox(-0.1F, 0.0F, 1.7F, 4, 7, 1, 0.02F);
-		this.bipedRightLeg.addChild(this.BackR);
+		Belt = new ModelRenderer(this, "Belt");
+		Belt.setTextureOffset(18, 48);
+		Belt.setRotationPoint(0.0F, 0.0F, 0.0F);
+		Belt.addBox(-5.0F, 10.5F, -3.0F, 10, 2, 6, -0.19F);
+		bipedBody.addChild(Belt);
 
-		this.FrontL = new ModelRenderer(this, 0, 40);
-		this.FrontL.setRotationPoint(0F, 0F, 0F);
-		this.FrontL.addBox(-4.0F, 0.0F, -2.7F, 4, 7, 1, 0.01F);
-		this.bipedLeftLeg.addChild(this.FrontL);
+		FrontR = new ModelRenderer(this, "Front Right");
+		FrontR.setTextureOffset(0, 40);
+		FrontR.setRotationPoint(1.9f, 0f, -0.1f);
+		FrontR.addBox(-2.0F, 0.0F, -2.4F, 4, 7, 1, 0.0F);
+		setRotateAngle(FrontR, -0.1F, 0.0F, 0.0f);
+		bipedRightLeg.addChild(FrontR);
 
-		this.LegR = new ModelRenderer(this, 0, 48);
-		this.LegR.setRotationPoint(0F, 0F, 0F);
-		this.LegR.addBox(-2.0F, 0.0F, -2.0F, 4, 12, 4, 0.01F);
-		this.bipedRightLeg.addChild(this.LegR);
+		FrontL = new ModelRenderer(this, "Front Left");
+		FrontL.setTextureOffset(0, 40);
+		FrontL.setRotationPoint(-1.9f, 0f, -0.1f);
+		FrontL.addBox(-2.0F, 0.0F, -2.4F, 4, 7, 1, 0.0F);
+		setRotateAngle(FrontL, -0.1F, 0.0F, 0.0f);
+		bipedLeftLeg.addChild(FrontL);
 
-		this.BackL = new ModelRenderer(this, 0, 40);
-		this.BackL.setRotationPoint(0F, 0F, 0F);
-		this.BackL.addBox(-4.0F, 0.0F, 1.7F, 4, 7, 1, 0.01F);
-		this.bipedLeftLeg.addChild(this.BackL);
+		HipGuardL_1 = new ModelRenderer(this, "Hip Guard Left 2");
+		HipGuardL_1.setTextureOffset(10, 37);
+		HipGuardL_1.mirror = true;
+		HipGuardL_1.setRotationPoint(0f, 0f, 0f);
+		HipGuardL_1.addBox(-1.5F, 0.0F, -2.6F, 4, 10, 5, 0.0F);
+		setRotateAngle(HipGuardL_1, 0.0F, 0.0F, -0.08726646259971647F);
+		bipedLeftLeg.addChild(HipGuardL_1);
 
-		this.FrontR = new ModelRenderer(this, 0, 40);
-		this.FrontR.setRotationPoint(0F, 0F, 0F);
-		this.FrontR.addBox(-0.1F, 0.0F, -2.7F, 4, 7, 1, 0.02F);
-		this.bipedRightLeg.addChild(this.FrontR);
+		BeltR = new ModelRenderer(this, "Belt Right");
+		BeltR.setTextureOffset(18, 56);
+		BeltR.mirror = true;
+		BeltR.setRotationPoint(0.0F, 0.0F, 0.0F);
+		BeltR.addBox(-6F, 1.0F, -3.1F, 12, 2, 6, -0.2F);
+		setRotateAngle(BeltR, 0.0F, 0.0F, -0.4363323129985824F);
+		bipedRightLeg.addChild(BeltR);
 
-		this.HipGuardL = new ModelRenderer(this, 10, 37);
-		this.HipGuardL.mirror = true;
-		this.HipGuardL.setRotationPoint(0F, 0F, 0F);
-		this.HipGuardL.addBox(-1.5F, 0.0F, -2.5F, 4, 6, 5, 0.01F);
-		this.setRotateAngle(HipGuardL, 0.0F, 0.0F, -0.17453292519943295F);
-		this.bipedLeftLeg.addChild(this.HipGuardL);
-	}
+		BeltL = new ModelRenderer(this, "Belt Left");
+		BeltL.setTextureOffset(18, 56);
+		BeltL.setRotationPoint(0.0F, 0.0F, 0.0F);
+		BeltL.addBox(-6F, 1.0F, -3.1F, 12, 2, 6, -0.21F);
+		setRotateAngle(BeltL, 0.0F, 0.0F, 0.4363323129985824F);
+		bipedLeftLeg.addChild(BeltL);
 
-	@Override
-	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
-	{
-		GL11.glPushMatrix();
+		HipGuardR_1 = new ModelRenderer(this, "Hip Guard Right 2");
+		HipGuardR_1.setTextureOffset(10, 37);
+		HipGuardR_1.setRotationPoint(0f, 0f, 0f);
+		HipGuardR_1.addBox(-2.5F, 0.0F, -2.6F, 4, 10, 5, 0.0F);
+		setRotateAngle(HipGuardR_1, 0.0F, 0.0F, 0.08726646259971647F);
+		bipedRightLeg.addChild(HipGuardR_1);
 
-		for(int i = 0; i < 10; i++)
-		{
-			String texture = ((ArmorCore) this.stack.getItem()).getTexture(i, stack);
-			if(texture != "")
-			{
+		BackR = new ModelRenderer(this, "Back Right");
+		BackR.setTextureOffset(0, 40);
+		BackR.setRotationPoint(1.9f, 0f, 0f);
+		BackR.addBox(-2.0F, 0.0F, 1.2F, 4, 7, 1, 0.0F);
+		setRotateAngle(BackR, 0.1F, 0.0F, 0.0f);
+		bipedRightLeg.addChild(BackR);
 
-				GL11.glPushMatrix();
+		BackL = new ModelRenderer(this, "Back Light");
+		BackL.setTextureOffset(0, 40);
+		BackL.setRotationPoint(-1.9f, 0f, 0f);
+		BackL.addBox(-2.0F, 0.0F, 1.2F, 4, 7, 1, 0.0F);
+		setRotateAngle(BackL, 0.1F, 0.0F, 0.0f);
+		bipedLeftLeg.addChild(BackL);
 
-				((ArmorCore) this.stack.getItem()).renderArmor(entity, f, f1, f2, f3, f4, f5, colors, stack, i);
-				super.render(entity, f, f1, f2, f3, f4, f5);
-
-				GL11.glPopMatrix();
-			}
-		}
-
-		GL11.glPopMatrix();
+		HipGuardL = new ModelRenderer(this, "Hip Guard Left");
+		HipGuardL.setTextureOffset(0, 48);
+		HipGuardL.mirror = true;
+		HipGuardL.setRotationPoint(0f, 0f, 0f);
+		HipGuardL.addBox(-1.5F, 0.0F, -2.6F, 4, 6, 5, 0.1F);
+		setRotateAngle(HipGuardL, 0.0F, 0.0F, -0.17453292519943295F);
+		bipedLeftLeg.addChild(HipGuardL);
 	}
 
 	/**

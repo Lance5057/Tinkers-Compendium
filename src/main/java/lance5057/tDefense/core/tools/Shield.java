@@ -52,16 +52,7 @@ public class Shield extends ToolCore implements IShield, ISheathed, IArrowCatche
 	@Override
 	public float getDigSpeed(ItemStack stack, Block block, int meta)
 	{
-		if(stack.getTagCompound().getCompoundTag("InfiTool").getBoolean("Broken"))
-			return 0.1f;
-		for(int i = 0; i < web.length; i++)
-		{
-			if(web[i] == block.getMaterial())
-			{
-				return effectiveSpeed();
-			}
-		}
-		return baseSpeed();
+		return 0.0f;
 	}
 
 	/**
@@ -90,7 +81,7 @@ public class Shield extends ToolCore implements IShield, ISheathed, IArrowCatche
 	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
 	{
-		player.setItemInUse(stack, this.getMaxItemUseDuration(stack));
+		player.setItemInUse(stack, getMaxItemUseDuration(stack));
 		return stack;
 	}
 
@@ -126,8 +117,8 @@ public class Shield extends ToolCore implements IShield, ISheathed, IArrowCatche
 		super.onUpdate(stack, world, entity, par4, par5);
 		if(entity instanceof EntityPlayerSP)
 		{
-			EntityPlayerSP player = (EntityPlayerSP) entity;
-			ItemStack usingItem = player.getItemInUse();
+			final EntityPlayerSP player = (EntityPlayerSP) entity;
+			final ItemStack usingItem = player.getItemInUse();
 			if(usingItem != null && usingItem.getItem() == this)
 			{
 				player.movementInput.moveForward *= 2.5F;
@@ -155,9 +146,7 @@ public class Shield extends ToolCore implements IShield, ISheathed, IArrowCatche
 	public int getArrowCount(ItemStack stack)
 	{
 		if(stack.hasTagCompound() && stack.getTagCompound().hasKey("arrows"))
-		{
 			return stack.getTagCompound().getShort("arrows");
-		}
 		else
 			return 0;
 	}
@@ -247,8 +236,8 @@ public class Shield extends ToolCore implements IShield, ISheathed, IArrowCatche
 	@Optional.Method(modid = "battlegear2")
 	public float getDecayRate(ItemStack stack)
 	{
-		NBTTagCompound tags = stack.getTagCompound();
-		float recovery = tags.getCompoundTag("InfiTool").getInteger("MiningSpeed") / 1.5f;
+		final NBTTagCompound tags = stack.getTagCompound();
+		final float recovery = tags.getCompoundTag("InfiTool").getInteger("MiningSpeed") + (tags.getCompoundTag("InfiTool").getInteger("feathers") * 300) / 1.5f;
 		return 10f / recovery;
 	}
 
@@ -256,8 +245,8 @@ public class Shield extends ToolCore implements IShield, ISheathed, IArrowCatche
 	@Optional.Method(modid = "battlegear2")
 	public float getRecoveryRate(ItemStack stack)
 	{
-		NBTTagCompound tags = stack.getTagCompound();
-		float recovery = tags.getCompoundTag("InfiTool").getInteger("MiningSpeed") / 1.5f;
+		final NBTTagCompound tags = stack.getTagCompound();
+		final float recovery = tags.getCompoundTag("InfiTool").getInteger("MiningSpeed") + (tags.getCompoundTag("InfiTool").getInteger("feathers") * 300) / 1.5f;
 		return 10f / recovery;
 	}
 
@@ -296,11 +285,11 @@ public class Shield extends ToolCore implements IShield, ISheathed, IArrowCatche
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4)
 	{
-		NBTTagCompound tags = par1ItemStack.getTagCompound();
+		final NBTTagCompound tags = par1ItemStack.getTagCompound();
 		super.addInformation(par1ItemStack, par2EntityPlayer, par3List, par4);
 		par3List.add("");
-		par3List.add(EnumChatFormatting.DARK_GREEN + ItemStack.field_111284_a.format(1F / (10f / (tags.getCompoundTag("InfiTool").getInteger("MiningSpeed") / 1.5f)) / 20F) + StatCollector.translateToLocal("attribute.shield.block.time"));
-		int arrowCount = getArrowCount(par1ItemStack);
+		par3List.add(EnumChatFormatting.DARK_GREEN + ItemStack.field_111284_a.format(1F / (10f / (tags.getCompoundTag("InfiTool").getInteger("MiningSpeed") + (tags.getCompoundTag("InfiTool").getInteger("feathers") * 300) / 1.5f)) / 20F) + StatCollector.translateToLocal("attribute.shield.block.time"));
+		final int arrowCount = getArrowCount(par1ItemStack);
 		if(arrowCount > 0)
 		{
 			par3List.add(String.format("%s%s %s", EnumChatFormatting.GOLD, arrowCount, StatCollector.translateToLocal("attribute.shield.arrow.count")));

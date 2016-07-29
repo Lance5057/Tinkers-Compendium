@@ -1,76 +1,89 @@
 package lance5057.tDefense.armor.renderers.light;
 
-import lance5057.tDefense.TinkersDefense;
-import lance5057.tDefense.armor.ArmorCore;
 import lance5057.tDefense.armor.renderers.ArmorRenderer;
 import net.minecraft.client.model.ModelRenderer;
-import net.minecraft.entity.Entity;
-import net.minecraft.util.ResourceLocation;
-
-import org.lwjgl.opengl.GL11;
-
-import cpw.mods.fml.client.FMLClientHandler;
 
 /**
- * ModelBiped - Either Mojang or a mod author
+ * ModelTinkersBoots - Either Mojang or a mod author
  * Created using Tabula 4.1.1
  */
 public class ModelTinkersBoots extends ArmorRenderer
 {
-	public ModelRenderer	LegR;
-	public ModelRenderer	LegL;
+	public ModelRenderer	BootTopR;
+	public ModelRenderer	BootTopL;
 	public ModelRenderer	FootL;
 	public ModelRenderer	FootR;
+	public ModelRenderer	LegGuardL;
+	public ModelRenderer	LegGuardR;
+	public ModelRenderer	FootTipL;
+	public ModelRenderer	FootTipR;
 
 	public ModelTinkersBoots()
 	{
-		super(1.1f, 0, 64, 64);
+		super(0.1f, 0, 64, 64);
 
-		this.textureWidth = 64;
-		this.textureHeight = 64;
+		textureWidth = 64;
+		textureHeight = 64;
 
-		this.FootL = new ModelRenderer(this, 0, 43);
-		this.FootL.setRotationPoint(0.0F, 0.0F, 0.0F);
-		this.FootL.addBox(-2.0F, 10.0F, -3.0F, 4, 2, 1, 0.01F);
-		this.bipedLeftLeg.addChild(this.FootL);
+		FootR = new ModelRenderer(this, "FootR");
+		FootR.setTextureOffset(0, 41);
+		FootR.setRotationPoint(0f, 0f, 0f);
+		FootR.addBox(-2.0F, 10.0F, -3.0F, 4, 2, 1, 0.0F);
+		bipedRightLeg.addChild(FootR);
 
-		this.LegL = new ModelRenderer(this, 0, 48);
-		this.LegL.setRotationPoint(0.0F, 0.0F, 0.0F);
-		this.LegL.addBox(-2.0F, 0.0F, -2.0F, 4, 12, 4, 0.01F);
-		this.bipedLeftLeg.addChild(this.LegL);
+		BootTopR = new ModelRenderer(this, "BootTopR");
+		BootTopR.setTextureOffset(0, 32);
+		BootTopR.setRotationPoint(0f, 0f, 0f);
+		BootTopR.addBox(-2.5F, 3.5F, -2.5F, 5, 4, 5, -0.2F);
+		bipedRightLeg.addChild(BootTopR);
 
-		this.FootR = new ModelRenderer(this, 0, 43);
-		this.FootR.setRotationPoint(0.0F, 0.0F, 0.0F);
-		this.FootR.addBox(-2.0F, 10.0F, -3.0F, 4, 2, 1, 0.01F);
-		this.bipedRightLeg.addChild(this.FootR);
+		BootTopL = new ModelRenderer(this, "BootTopL");
+		BootTopL.setTextureOffset(0, 32);
+		BootTopL.setRotationPoint(0f, 0f, 0f);
+		BootTopL.addBox(-2.5F, 3.5F, -2.5F, 5, 4, 5, -0.2F);
+		bipedLeftLeg.addChild(BootTopL);
 
-		this.LegR = new ModelRenderer(this, 0, 48);
-		this.LegR.setRotationPoint(0.0F, 0.0F, 0.0F);
-		this.LegR.addBox(-2.0F, 0.0F, -2.0F, 4, 12, 4, 0.01F);
-		this.bipedRightLeg.addChild(this.LegR);
-	}
+		LegGuardR = new ModelRenderer(this, "LegGuardR");
+		LegGuardR.setTextureOffset(0, 44);
+		LegGuardR.setRotationPoint(0f, 0f, 0f);
+		LegGuardR.addBox(-2.0F, 5.5F, -3.8F, 4, 4, 2, 0.2F);
+		setRotateAngle(LegGuardR, 0.17453292519943295F, 0.0F, 0.0F);
+		bipedRightLeg.addChild(LegGuardR);
 
-	@Override
-	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
-	{
-		GL11.glPushMatrix();
+		FootTipR = new ModelRenderer(this, "FootTipR");
+		FootTipR.setTextureOffset(10, 41);
+		FootTipR.setRotationPoint(0f, 0f, 0f);
+		FootTipR.addBox(-1.5F, 9.5F, -5.6F, 3, 2, 2, -0.2F);
+		setRotateAngle(FootTipR, 0.17453292519943295F, 0.0F, 0.0F);
+		bipedRightLeg.addChild(FootTipR);
 
-		for(int i = 0; i < 10; i++)
-		{
-			String texture = ((ArmorCore) this.stack.getItem()).getTexture(i, stack);
-			if(texture != "")
-			{
+		FootL = new ModelRenderer(this, "FootL");
+		FootL.setTextureOffset(0, 41);
+		FootL.mirror = true;
+		FootL.setRotationPoint(0f, 0f, 0f);
+		FootL.addBox(-2.0F, 10.0F, -3.0F, 4, 2, 1, 0.0F);
+		bipedLeftLeg.addChild(FootL);
 
-				GL11.glPushMatrix();
+		LegGuardL = new ModelRenderer(this, "LegGuardL");
+		LegGuardL.setTextureOffset(0, 44);
+		LegGuardL.setRotationPoint(0f, 0f, 0f);
+		LegGuardL.addBox(-2.0F, 5.5F, -3.8F, 4, 4, 2, 0.2F);
+		setRotateAngle(LegGuardL, 0.17453292519943295F, 0.0F, 0.0F);
+		bipedLeftLeg.addChild(LegGuardL);
 
-				((ArmorCore) this.stack.getItem()).renderArmor(entity, f, f1, f2, f3, f4, f5, colors, stack, i);
-				super.render(entity, f, f1, f2, f3, f4, f5);
+		FootTipL = new ModelRenderer(this, "FootTipL");
+		FootTipL.setTextureOffset(10, 41);
+		FootTipL.setRotationPoint(0f, 0f, 0f);
+		FootTipL.addBox(-1.5F, 9.5F, -5.6F, 3, 2, 2, -0.2F);
+		setRotateAngle(FootTipL, 0.17453292519943295F, 0.0F, 0.0F);
+		bipedLeftLeg.addChild(FootTipL);
 
-				GL11.glPopMatrix();
-			}
-		}
+		BootTopL.isHidden = true;
+		BootTopR.isHidden = true;
+		FootTipL.isHidden = true;
+		FootTipR.isHidden = true;
 
-		GL11.glPopMatrix();
+		init();
 	}
 
 	/**

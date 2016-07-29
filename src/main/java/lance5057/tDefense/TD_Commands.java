@@ -3,21 +3,6 @@ package lance5057.tDefense;
 import java.util.ArrayList;
 import java.util.List;
 
-import lance5057.tDefense.armor.renderers.ModelMask;
-import lance5057.tDefense.armor.renderers.ModelSheath;
-import lance5057.tDefense.armor.renderers.cloth.ModelTinkersHood;
-import lance5057.tDefense.armor.renderers.cloth.ModelTinkersRobe;
-import lance5057.tDefense.armor.renderers.cloth.ModelTinkersShawl;
-import lance5057.tDefense.armor.renderers.heavy.ModelTinkersBreastplate;
-import lance5057.tDefense.armor.renderers.heavy.ModelTinkersGauntlets;
-import lance5057.tDefense.armor.renderers.heavy.ModelTinkersGrieves;
-import lance5057.tDefense.armor.renderers.heavy.ModelTinkersHelm;
-import lance5057.tDefense.armor.renderers.heavy.ModelTinkersSabatons;
-import lance5057.tDefense.armor.renderers.light.ModelTinkersBoots;
-import lance5057.tDefense.armor.renderers.light.ModelTinkersChausses;
-import lance5057.tDefense.armor.renderers.light.ModelTinkersCoif;
-import lance5057.tDefense.armor.renderers.light.ModelTinkersHauberk;
-import lance5057.tDefense.proxy.ClientProxy;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
@@ -39,7 +24,9 @@ public class TD_Commands extends CommandBase implements ICommand
 
 		commands = new ArrayList();
 
-		commands.add("reloadModels");
+		commands.add("reloadRenderers");
+		commands.add("toggleTransparency");
+		commands.add("toggleDebugMode");
 	}
 
 	@Override
@@ -75,15 +62,50 @@ public class TD_Commands extends CommandBase implements ICommand
 	@Override
 	public void processCommand(ICommandSender p_71515_1_, String[] p_71515_2_)
 	{
-		World world = p_71515_1_.getEntityWorld();
-		if(p_71515_2_[0].equals("reloadModels"))
+		final World world = p_71515_1_.getEntityWorld();
+		if(world.isRemote)
 		{
-			p_71515_1_.addChatMessage(new ChatComponentText("§9[TDefense] - Reloading All Models..."));
-			reloadModels();
-		}
-		else
-		{
-			p_71515_1_.addChatMessage(new ChatComponentText("§c[TDefense] - Invalid Command"));
+			if(p_71515_2_[0].equals("reloadRenderers"))
+			{
+				p_71515_1_.addChatMessage(new ChatComponentText(
+						"§9[TDefense]§f - Reloading All Renderers..."));
+				reloadModels();
+			}
+			else if(p_71515_2_[0].equals("toggleTransparency"))
+			{
+				TinkersDefense.config.transparency = !TinkersDefense.config.transparency;
+				if(TinkersDefense.config.transparency)
+				{
+					p_71515_1_.addChatMessage(new ChatComponentText(
+							"§9[TDefense]§f - Transparency on."));
+				}
+				else
+				{
+					p_71515_1_.addChatMessage(new ChatComponentText(
+							"§9[TDefense]§f - Transparency off."));
+				}
+
+			}
+			else if(p_71515_2_[0].equals("toggleDebugMode"))
+			{
+				TinkersDefense.config.debug = !TinkersDefense.config.debug;
+				if(TinkersDefense.config.debug)
+				{
+					p_71515_1_.addChatMessage(new ChatComponentText(
+							"§9[TDefense]§f - Debug Mode on."));
+				}
+				else
+				{
+					p_71515_1_.addChatMessage(new ChatComponentText(
+							"§9[TDefense]§f - Debug Mode off."));
+				}
+
+			}
+			else
+			{
+				p_71515_1_.addChatMessage(new ChatComponentText(
+						"§c[TDefense]§f - Invalid Command"));
+			}
 		}
 	}
 
@@ -107,23 +129,6 @@ public class TD_Commands extends CommandBase implements ICommand
 
 	public void reloadModels()
 	{
-		ClientProxy.mask = new ModelMask(null);
-		ClientProxy.sheath = new ModelSheath();
-
-		ClientProxy.helm = new ModelTinkersHelm();
-		ClientProxy.breastplate = new ModelTinkersBreastplate();
-		ClientProxy.grieves = new ModelTinkersGrieves();
-		ClientProxy.sabatons = new ModelTinkersSabatons();
-		ClientProxy.gauntlets = new ModelTinkersGauntlets();
-
-		ClientProxy.hood = new ModelTinkersHood();
-		ClientProxy.shawl = new ModelTinkersShawl();
-		ClientProxy.robe = new ModelTinkersRobe();
-		ClientProxy.shoes = new ModelTinkersBoots();
-
-		ClientProxy.coif = new ModelTinkersCoif();
-		ClientProxy.hauberk = new ModelTinkersHauberk();
-		ClientProxy.chausses = new ModelTinkersChausses();
-		ClientProxy.boots = new ModelTinkersBoots();
+		TinkersDefense.proxy.registerRenderers();
 	}
 }

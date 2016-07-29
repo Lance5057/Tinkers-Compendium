@@ -1,28 +1,21 @@
 package lance5057.tDefense.armor.items.heavy;
 
 import lance5057.tDefense.TinkersDefense;
-import lance5057.tDefense.armor.ArmorCore;
+import lance5057.tDefense.armor.TDHelmet;
+import lance5057.tDefense.armor.renderers.ArmorRenderer;
 import lance5057.tDefense.proxy.ClientProxy;
-import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import tconstruct.tools.TinkerTools;
-import thaumcraft.api.IGoggles;
-import thaumcraft.api.nodes.IRevealer;
-import cpw.mods.fml.common.Optional;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
-@Optional.InterfaceList({@Optional.Interface(modid = "Thaumcraft", iface = "thaumcraft.api.IGoggles", striprefs = true), @Optional.Interface(modid = "Thaumcraft", iface = "thaumcraft.api.nodes.IRevealer", striprefs = true)})
-public class TinkersHelm extends ArmorCore implements IRevealer, IGoggles
+public class TinkersHelm extends TDHelmet
 {
 	public TinkersHelm()
 	{
 		super(2, 0);
-		this.setUnlocalizedName("tinkershelm");
-		this.maxReduction = 100;
+		setUnlocalizedName("tinkershelm");
+		maxReduction = 100;
 		reductionPercent = 3 * 0.04f;
 	}
 
@@ -35,13 +28,19 @@ public class TinkersHelm extends ArmorCore implements IRevealer, IGoggles
 	@Override
 	public Item getHandleItem()
 	{
-		return TinkerTools.toughRod;
+		return TinkersDefense.partChainmaille;
 	}
 
 	@Override
 	public Item getAccessoryItem()
 	{
 		return TinkersDefense.partArmorplate;
+	}
+
+	@Override
+	public Item getExtraItem()
+	{
+		return TinkerTools.toughRod;
 	}
 
 	@Override
@@ -71,7 +70,7 @@ public class TinkersHelm extends ArmorCore implements IRevealer, IGoggles
 	@Override
 	public int getPartAmount()
 	{
-		return 3;
+		return 4;
 	}
 
 	@Override
@@ -84,9 +83,11 @@ public class TinkersHelm extends ArmorCore implements IRevealer, IGoggles
 			case 1:
 				return "_helm_top_broken";
 			case 2:
-				return "_helm_visor";
-			case 3:
 				return "_helm_chain";
+			case 3:
+				return "_helm_plate";
+			case 4:
+				return "_helm_visor";
 			default:
 				return "";
 		}
@@ -124,30 +125,8 @@ public class TinkersHelm extends ArmorCore implements IRevealer, IGoggles
 	}
 
 	@Override
-	@SideOnly(Side.CLIENT)
-	public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, int armorSlot)
+	public ArmorRenderer getRenderer()
 	{
-		String[] color = new String[10];
-
-		for(int j = 0; j < 10; j++)
-			color[j] = Integer.toHexString(itemStack.getItem().getColorFromItemStack(itemStack, j));
-
-		//String[] textures = {this.getIconSuffix(2), this.getIconSuffix(0), this.getIconSuffix(3), this.getIconSuffix(4)};
-		ClientProxy.helm.SetColors(color, this.getDefaultFolder(), itemStack);
 		return ClientProxy.helm;
-	}
-
-	@Override
-	@Optional.Method(modid = "Thaumcraft")
-	public boolean showIngamePopups(ItemStack itemstack, EntityLivingBase player)
-	{
-		return itemstack.getTagCompound().getCompoundTag("InfiTool").getBoolean("Revealing");
-	}
-
-	@Override
-	@Optional.Method(modid = "Thaumcraft")
-	public boolean showNodes(ItemStack itemstack, EntityLivingBase player)
-	{
-		return itemstack.getTagCompound().getCompoundTag("InfiTool").getBoolean("Revealing");
 	}
 }

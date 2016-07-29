@@ -23,7 +23,7 @@ public final class TDIntegration
 		{
 			botania = true;
 		}
-		if(Loader.isModLoaded("bloodmagic") && TinkersDefense.config.BloodMagicAddon)
+		if(Loader.isModLoaded("AWWayofTime") && TinkersDefense.config.BloodMagicAddon)
 		{
 			bloodMagic = true;
 		}

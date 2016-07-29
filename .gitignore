@@ -69,6 +69,7 @@ $RECYCLE.BIN/
 
 # Exclude Gimp files (lots of memory)
 /Gimp_files/*
+src/api/*
 *.xcf
 
 /libs/*

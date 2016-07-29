@@ -4,6 +4,8 @@ import lance5057.tDefense.TinkersDefense;
 import lance5057.tDefense.core.blocks.crestMount.Container_CrestMount;
 import lance5057.tDefense.core.blocks.crestMount.Gui_CrestMount;
 import lance5057.tDefense.core.blocks.crestMount.TileEntity_CrestMount;
+import lance5057.tDefense.core.gui.GuiTDGuideBook;
+import lance5057.tDefense.core.tools.modifiers.ModifierSoulHandler;
 import lance5057.tDefense.finishingAnvil.blocks.finishingAnvil.Container_FinishingAnvil;
 import lance5057.tDefense.finishingAnvil.blocks.finishingAnvil.Gui_FinishingAnvil;
 import lance5057.tDefense.finishingAnvil.blocks.finishingAnvil.TileEntity_FinishingAnvil;
@@ -15,6 +17,8 @@ import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 
 public class CommonProxy implements IGuiHandler
 {
+	public static ModifierSoulHandler	SoulHandler	= null;
+
 	public void registerRenderers()
 	{
 	}
@@ -43,13 +47,11 @@ public class CommonProxy implements IGuiHandler
 	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
 	{
 		if(ID == TinkersDefense.GUI_CREST_INV)
-		{
-			return new Container_CrestMount(player.inventory, (TileEntity_CrestMount) world.getTileEntity(x, y, z));
-		}
+			return new Container_CrestMount(player.inventory,
+					(TileEntity_CrestMount) world.getTileEntity(x, y, z));
 		if(ID == TinkersDefense.GUI_ANVIL_INV)
-		{
-			return new Container_FinishingAnvil(player.inventory, (TileEntity_FinishingAnvil) world.getTileEntity(x, y, z));
-		}
+			return new Container_FinishingAnvil(player.inventory,
+					(TileEntity_FinishingAnvil) world.getTileEntity(x, y, z));
 
 		return null;
 	}
@@ -58,13 +60,13 @@ public class CommonProxy implements IGuiHandler
 	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
 	{
 		if(ID == TinkersDefense.GUI_CREST_INV)
-		{
-			return new Gui_CrestMount(player.inventory, (TileEntity_CrestMount) world.getTileEntity(x, y, z));
-		}
+			return new Gui_CrestMount(player.inventory,
+					(TileEntity_CrestMount) world.getTileEntity(x, y, z));
 		if(ID == TinkersDefense.GUI_ANVIL_INV)
-		{
-			return new Gui_FinishingAnvil(player.inventory, (TileEntity_FinishingAnvil) world.getTileEntity(x, y, z));
-		}
+			return new Gui_FinishingAnvil(player.inventory,
+					(TileEntity_FinishingAnvil) world.getTileEntity(x, y, z));
+		if(ID == TinkersDefense.GUI_GUIDEBOOK)
+			return new GuiTDGuideBook();
 		return null;
 	}
 }

@@ -1,32 +1,24 @@
 package lance5057.tDefense.armor.items.light;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import lance5057.tDefense.TinkersDefense;
 import lance5057.tDefense.armor.ArmorCore;
-import lance5057.tDefense.armor.parts.ClothMaterial;
-import lance5057.tDefense.armor.renderers.light.ModelTinkersChausses;
+import lance5057.tDefense.armor.renderers.ArmorRenderer;
 import lance5057.tDefense.proxy.ClientProxy;
-import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
-import net.minecraftforge.common.ISpecialArmor.ArmorProperties;
-import tconstruct.library.TConstructRegistry;
-import tconstruct.library.tools.CustomMaterial;
 
 public class TinkersChausses extends ArmorCore
 {
 	public TinkersChausses()
 	{
 		super(1, 2);
-		this.setUnlocalizedName("tinkerschausses");
-		this.maxReduction = 100;
-		this.reductionPercent = 0.2f;
+		setUnlocalizedName("tinkerschausses");
+		maxReduction = 100;
+		reductionPercent = 0.2f;
 	}
 
 	@Override
@@ -39,6 +31,12 @@ public class TinkersChausses extends ArmorCore
 	public Item getHandleItem()
 	{
 		return TinkersDefense.partArmorplate;
+	}
+
+	@Override
+	public Item getAccessoryItem()
+	{
+		return TinkersDefense.partCloth;
 	}
 
 	@Override
@@ -68,7 +66,7 @@ public class TinkersChausses extends ArmorCore
 	@Override
 	public int getPartAmount()
 	{
-		return 2;
+		return 3;
 	}
 
 	@Override
@@ -82,6 +80,8 @@ public class TinkersChausses extends ArmorCore
 				return "_chausses_chain_broken";
 			case 2:
 				return "_chausses_plate";
+			case 3:
+				return "_chausses_cloth";
 			default:
 				return "";
 		}
@@ -119,20 +119,6 @@ public class TinkersChausses extends ArmorCore
 	}
 
 	@Override
-	@SideOnly(Side.CLIENT)
-	public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, int armorSlot)
-	{
-		String[] color = new String[10];
-
-		for(int j = 0; j < 10; j++)
-			color[j] = Integer.toHexString(itemStack.getItem().getColorFromItemStack(itemStack, j));
-
-		//String[] textures = {this.getIconSuffix(2), this.getIconSuffix(0)};
-		ClientProxy.chausses.SetColors(color, this.getDefaultFolder(), itemStack);
-		return ClientProxy.chausses;
-	}
-
-	@Override
 	public int getArmorDisplay(EntityPlayer player, ItemStack armor, int slot)
 	{
 		return 5;
@@ -141,8 +127,14 @@ public class TinkersChausses extends ArmorCore
 	@Override
 	public ArmorProperties getProperties(EntityLivingBase player, ItemStack armor, DamageSource source, double damage, int slot)
 	{
-		ArmorProperties armorp = new ArmorProperties(0, 0.2, 100); //0.04 per half shirt
+		final ArmorProperties armorp = new ArmorProperties(0, 0.2, 100); //0.04 per half shirt
 		//((EntityPlayer)player).addChatComponentMessage(new ChatComponentText(Double.toString(damage)));
 		return armorp;
+	}
+
+	@Override
+	public ArmorRenderer getRenderer()
+	{
+		return ClientProxy.chausses;
 	}
 }

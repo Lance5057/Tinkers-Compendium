@@ -35,7 +35,7 @@ public class RenderItem_FinishingAnvil extends RenderItem
 		{
 			GL11.glPushMatrix();
 
-			GL11.glScalef(3.0f, 3.0f, 1.0f);
+			GL11.glScalef(3.438f, 3.43f, 1.0f);
 			super.renderItemAndEffectIntoGUI(fontRenderer, textureManager, itemStack, x, y);
 
 			GL11.glPopMatrix();

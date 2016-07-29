@@ -2,6 +2,7 @@ package lance5057.tDefense.armor.events;
 
 import tconstruct.armor.ArmorProxyClient;
 import tconstruct.armor.player.ArmorExtended;
+import tconstruct.library.tools.ToolCore;
 import lance5057.tDefense.armor.ArmorCore;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.player.EntityPlayer;
@@ -26,7 +27,7 @@ public class ArmorRenderEvent
 
 			ItemStack Armor = event.entityPlayer.inventory.armorItemInSlot(event.slot);
 
-			if(Armor != null)
+			if(Armor != null && Armor.getItem() instanceof ArmorCore)
 			{
 				ModelBiped armorModel = Armor.getItem().getArmorModel(event.entityLiving, Armor, event.slot);
 
@@ -35,7 +36,7 @@ public class ArmorRenderEvent
 
 			ItemStack Accessory = armorEx.getStackInSlot(event.slot);
 
-			if(Accessory != null)
+			if(Accessory != null && Accessory.getItem() instanceof ToolCore)
 			{
 				ModelBiped accessoryModel = Accessory.getItem().getArmorModel(event.entityLiving, Accessory, event.slot);
 

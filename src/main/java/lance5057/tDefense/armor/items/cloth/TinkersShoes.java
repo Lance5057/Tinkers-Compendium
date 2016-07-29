@@ -1,32 +1,25 @@
 package lance5057.tDefense.armor.items.cloth;
 
-import cpw.mods.fml.common.Optional;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import lance5057.tDefense.TinkersDefense;
 import lance5057.tDefense.armor.ArmorCore;
-import lance5057.tDefense.armor.parts.ClothMaterial;
-import lance5057.tDefense.armor.renderers.light.ModelTinkersBoots;
+import lance5057.tDefense.armor.renderers.ArmorRenderer;
 import lance5057.tDefense.proxy.ClientProxy;
-import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import tconstruct.library.TConstructRegistry;
-import tconstruct.library.tools.CustomMaterial;
 import thaumcraft.api.IVisDiscountGear;
 import thaumcraft.api.aspects.Aspect;
+import vazkii.botania.api.mana.IManaDiscountArmor;
+import cpw.mods.fml.common.Optional;
 
-@Optional.InterfaceList({@Optional.Interface(modid = "Thaumcraft", iface = "thaumcraft.api.IVisDiscountGear", striprefs = true)})
-public class TinkersShoes extends ArmorCore implements IVisDiscountGear
+@Optional.InterfaceList({@Optional.Interface(modid = "Thaumcraft", iface = "thaumcraft.api.IVisDiscountGear", striprefs = true), @Optional.Interface(modid = "Botania", iface = "vazkii.botania.api.mana.IManaDiscountArmor", striprefs = true)})
+public class TinkersShoes extends ArmorCore implements IVisDiscountGear, IManaDiscountArmor
 {
 	public TinkersShoes()
 	{
 		super(0, 3);
-		this.setUnlocalizedName("tinkersshoes");
+		setUnlocalizedName("tinkersshoes");
 	}
 
 	@Override
@@ -38,13 +31,13 @@ public class TinkersShoes extends ArmorCore implements IVisDiscountGear
 	@Override
 	public Item getHandleItem()
 	{
-		return TinkersDefense.partClasp;
+		return TinkersDefense.partRivet;
 	}
 
 	@Override
 	public Item getAccessoryItem()
 	{
-		return TinkersDefense.partRivet;
+		return TinkersDefense.partCloth;
 	}
 
 	@Override
@@ -87,9 +80,9 @@ public class TinkersShoes extends ArmorCore implements IVisDiscountGear
 			case 1:
 				return "_shoes_cloth_broken";
 			case 2:
-				return "_shoes_clasp";
+				return "_shoes_metal";
 			case 3:
-				return "_shoes_rivet";
+				return "_shoes_sole";
 			default:
 				return "";
 		}
@@ -127,25 +120,6 @@ public class TinkersShoes extends ArmorCore implements IVisDiscountGear
 	}
 
 	@Override
-	@SideOnly(Side.CLIENT)
-	public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, int armorSlot)
-	{
-		String[] color = new String[10];
-		//String[] textures = {this.getIconSuffix(2), this.getIconSuffix(0), this.getIconSuffix(3)};
-
-		for(int j = 0; j < 10; j++)
-			color[j] = Integer.toHexString(itemStack.getItem().getColorFromItemStack(itemStack, j));
-
-		int HeadID = itemStack.getTagCompound().getCompoundTag("InfiTool").getInteger("RenderHead");
-
-		CustomMaterial newColor = TConstructRegistry.getCustomMaterial(HeadID, ClothMaterial.class);
-		color[1] = Integer.toHexString(newColor.color);
-
-		ClientProxy.shoes.SetColors(color, this.getDefaultFolder(), itemStack);
-		return ClientProxy.shoes;
-	}
-
-	@Override
 	public int getArmorDisplay(EntityPlayer player, ItemStack armor, int slot)
 	{
 		return 0;
@@ -155,6 +129,19 @@ public class TinkersShoes extends ArmorCore implements IVisDiscountGear
 	@Optional.Method(modid = "Thaumcraft")
 	public int getVisDiscount(ItemStack stack, EntityPlayer player, Aspect aspect)
 	{
-		return stack.getTagCompound().getCompoundTag("InfiTool").getInteger("Vis Embroidery");
+		return stack.getTagCompound().getCompoundTag("InfiTool").getInteger("VisEmbroidery");
+	}
+
+	@Override
+	public ArmorRenderer getRenderer()
+	{
+		return ClientProxy.shoes;
+	}
+
+	@Override
+	public float getDiscount(ItemStack stack, int arg1, EntityPlayer arg2)
+	{
+		final float i = stack.getTagCompound().getCompoundTag("InfiTool").getInteger("ManaEmbroidery") / 100f;
+		return i;
 	}
 }

@@ -1,21 +1,12 @@
 package lance5057.tDefense.armor.items.heavy;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import lance5057.tDefense.TinkersDefense;
 import lance5057.tDefense.armor.ArmorCore;
-import lance5057.tDefense.armor.renderers.heavy.ModelTinkersGrieves;
+import lance5057.tDefense.armor.renderers.ArmorRenderer;
 import lance5057.tDefense.proxy.ClientProxy;
-import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.DamageSource;
-import net.minecraft.world.World;
-import net.minecraftforge.common.ISpecialArmor.ArmorProperties;
 import tconstruct.tools.TinkerTools;
 
 public class TinkersGrieves extends ArmorCore
@@ -23,8 +14,8 @@ public class TinkersGrieves extends ArmorCore
 	public TinkersGrieves()
 	{
 		super(2, 2);
-		this.setUnlocalizedName("tinkergrieves");
-		this.maxReduction = 100;
+		setUnlocalizedName("tinkergrieves");
+		maxReduction = 100;
 		reductionPercent = 6 * 0.04f;
 	}
 
@@ -49,7 +40,7 @@ public class TinkersGrieves extends ArmorCore
 	@Override
 	public Item getExtraItem()
 	{
-		return TinkersDefense.partArmorplate;
+		return TinkersDefense.partCloth;
 	}
 
 	@Override
@@ -96,7 +87,7 @@ public class TinkersGrieves extends ArmorCore
 			case 3:
 				return "_grieves_chain";
 			case 4:
-				return "_grieves_cod";
+				return "_grieves_cloth";
 			default:
 				return "";
 		}
@@ -134,16 +125,8 @@ public class TinkersGrieves extends ArmorCore
 	}
 
 	@Override
-	@SideOnly(Side.CLIENT)
-	public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, int armorSlot)
+	public ArmorRenderer getRenderer()
 	{
-		String[] color = new String[10];
-
-		for(int j = 0; j < 10; j++)
-			color[j] = Integer.toHexString(itemStack.getItem().getColorFromItemStack(itemStack, j));
-
-		//String[] textures = {this.getIconSuffix(2), this.getIconSuffix(0), this.getIconSuffix(3), this.getIconSuffix(4)};
-		ClientProxy.grieves.SetColors(color, this.getDefaultFolder(), itemStack);
 		return ClientProxy.grieves;
 	}
 }
