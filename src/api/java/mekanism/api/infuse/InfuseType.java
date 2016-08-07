@@ -11,19 +11,19 @@ import net.minecraft.util.StatCollector;
 public final class InfuseType
 {
 	/** The name of this infusion */
-	public String name;
+	public String			name;
 
 	/** The location of this infuse's GUI texture */
-	public ResourceLocation texture;
+	public ResourceLocation	texture;
 
 	/** The infuse's GUI texture X offset. */
-	public int texX;
+	public int				texX;
 
 	/** The infuse's GUI texture Y offset. */
-	public int texY;
+	public int				texY;
 
 	/** The unlocalized name of this type. */
-	public String unlocalizedName;
+	public String			unlocalizedName;
 
 	public InfuseType(String s, ResourceLocation location, int x, int y)
 	{

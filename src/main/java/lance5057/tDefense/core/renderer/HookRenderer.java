@@ -15,9 +15,9 @@ import org.lwjgl.opengl.GL12;
 public class HookRenderer extends Render
 {
 	ResourceLocation	head	= new ResourceLocation(
-										"tinkersdefense:textures/entity/swordhead.png");
+			"tinkersdefense:textures/entity/swordhead.png");
 	ResourceLocation	chain	= new ResourceLocation(
-										"tinkersdefense:textures/entity/chain.png");
+			"tinkersdefense:textures/entity/chain.png");
 
 	public HookRenderer()
 	{
@@ -85,7 +85,7 @@ public class HookRenderer extends Render
 		bindTexture(chain);
 		GL11.glShadeModel(GL11.GL_SMOOTH);
 		final float f9 = 0.0F - (f8) * 0.1F;
-		final float f10 = MathHelper.sqrt_float(f4 * f4 + f5 * f5 + f6 * f6) / 32.0F - (p_76986_1_.ticksExisted + p_76986_9_) * 0.01F;
+		MathHelper.sqrt_float(f4 * f4 + f5 * f5 + f6 * f6);
 
 		GL11.glScalef(0.5f, 0.5f, 1);
 		for(int j = 0; j < 2; j++)
@@ -98,7 +98,6 @@ public class HookRenderer extends Render
 
 				final float f11 = MathHelper.sin(i % b0 * (float) Math.PI * 2.0F / b0) * 0.75F;
 				final float f12 = MathHelper.cos(i % b0 * (float) Math.PI * 2.0F / b0) * 0.75F;
-				final float f13 = i % b0 * 1.0F / b0;
 				tessellator.addVertexWithUV(f11, f12, 0.0D, 0, 0);
 				tessellator.addVertexWithUV(f11, f12, f8, 0, f9);
 				tessellator.addVertexWithUV(f11, f12, 0.0D, 1, 0);

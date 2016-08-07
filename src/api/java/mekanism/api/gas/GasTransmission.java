@@ -8,7 +8,6 @@ import java.util.List;
 import mekanism.api.Coord4D;
 import mekanism.api.transmitters.ITransmitterTile;
 import mekanism.api.transmitters.TransmissionType;
-
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
@@ -27,15 +26,15 @@ public final class GasTransmission
 	 */
 	public static IGasHandler[] getConnectedAcceptors(TileEntity tileEntity)
 	{
-		IGasHandler[] acceptors = new IGasHandler[] {null, null, null, null, null, null};
+		final IGasHandler[] acceptors = new IGasHandler[] {null, null, null, null, null, null};
 
-		for(ForgeDirection orientation : ForgeDirection.VALID_DIRECTIONS)
+		for(final ForgeDirection orientation : ForgeDirection.VALID_DIRECTIONS)
 		{
-			TileEntity acceptor = Coord4D.get(tileEntity).getFromSide(orientation).getTileEntity(tileEntity.getWorldObj());
+			final TileEntity acceptor = Coord4D.get(tileEntity).getFromSide(orientation).getTileEntity(tileEntity.getWorldObj());
 
 			if(acceptor instanceof IGasHandler)
 			{
-				acceptors[orientation.ordinal()] = (IGasHandler)acceptor;
+				acceptors[orientation.ordinal()] = (IGasHandler) acceptor;
 			}
 		}
 
@@ -49,15 +48,15 @@ public final class GasTransmission
 	 */
 	public static ITubeConnection[] getConnections(TileEntity tileEntity)
 	{
-		ITubeConnection[] connections = new ITubeConnection[] {null, null, null, null, null, null};
+		final ITubeConnection[] connections = new ITubeConnection[] {null, null, null, null, null, null};
 
-		for(ForgeDirection orientation : ForgeDirection.VALID_DIRECTIONS)
+		for(final ForgeDirection orientation : ForgeDirection.VALID_DIRECTIONS)
 		{
-			TileEntity connection = Coord4D.get(tileEntity).getFromSide(orientation).getTileEntity(tileEntity.getWorldObj());
+			final TileEntity connection = Coord4D.get(tileEntity).getFromSide(orientation).getTileEntity(tileEntity.getWorldObj());
 
 			if(canConnect(connection, orientation))
 			{
-				connections[orientation.ordinal()] = (ITubeConnection)connection;
+				connections[orientation.ordinal()] = (ITubeConnection) connection;
 			}
 		}
 
@@ -72,9 +71,9 @@ public final class GasTransmission
 	 */
 	public static boolean canConnect(TileEntity tileEntity, ForgeDirection side)
 	{
-		if(tileEntity instanceof ITubeConnection && (!(tileEntity instanceof ITransmitterTile) || TransmissionType.checkTransmissionType(((ITransmitterTile)tileEntity).getTransmitter(), TransmissionType.GAS)))
+		if(tileEntity instanceof ITubeConnection && (!(tileEntity instanceof ITransmitterTile) || TransmissionType.checkTransmissionType(((ITransmitterTile) tileEntity).getTransmitter(), TransmissionType.GAS)))
 		{
-			if(((ITubeConnection)tileEntity).canTubeConnect(side.getOpposite()))
+			if(((ITubeConnection) tileEntity).canTubeConnect(side.getOpposite()))
 			{
 				return true;
 			}
@@ -94,7 +93,7 @@ public final class GasTransmission
 	{
 		if(itemStack != null && itemStack.getItem() instanceof IGasItem)
 		{
-			IGasItem item = (IGasItem)itemStack.getItem();
+			final IGasItem item = (IGasItem) itemStack.getItem();
 
 			if(type != null && item.getGas(itemStack) != null && item.getGas(itemStack).getGas() != type || !item.canProvideGas(itemStack, type))
 			{
@@ -115,14 +114,14 @@ public final class GasTransmission
 	 */
 	public static int addGas(ItemStack itemStack, GasStack stack)
 	{
-		if(itemStack != null && itemStack.getItem() instanceof IGasItem && ((IGasItem)itemStack.getItem()).canReceiveGas(itemStack, stack.getGas()))
+		if(itemStack != null && itemStack.getItem() instanceof IGasItem && ((IGasItem) itemStack.getItem()).canReceiveGas(itemStack, stack.getGas()))
 		{
-			return ((IGasItem)itemStack.getItem()).addGas(itemStack, stack.copy());
+			return ((IGasItem) itemStack.getItem()).addGas(itemStack, stack.copy());
 		}
 
 		return 0;
 	}
-	
+
 	/**
 	 * Emits gas from a central block by splitting the received stack among the sides given.
 	 * @param sides - the list of sides to output from
@@ -136,14 +135,14 @@ public final class GasTransmission
 		{
 			return 0;
 		}
-		
-		List<IGasHandler> availableAcceptors = new ArrayList<IGasHandler>();
-		IGasHandler[] possibleAcceptors = getConnectedAcceptors(from);
-		
+
+		final List<IGasHandler> availableAcceptors = new ArrayList<IGasHandler>();
+		final IGasHandler[] possibleAcceptors = getConnectedAcceptors(from);
+
 		for(int i = 0; i < possibleAcceptors.length; i++)
 		{
-			IGasHandler handler = possibleAcceptors[i];
-			
+			final IGasHandler handler = possibleAcceptors[i];
+
 			if(handler != null && handler.canReceiveGas(ForgeDirection.getOrientation(i).getOpposite(), stack.getGas()))
 			{
 				availableAcceptors.add(handler);
@@ -153,15 +152,15 @@ public final class GasTransmission
 		Collections.shuffle(availableAcceptors);
 
 		int toSend = stack.amount;
-		int prevSending = toSend;
+		final int prevSending = toSend;
 
 		if(!availableAcceptors.isEmpty())
 		{
-			int divider = availableAcceptors.size();
+			final int divider = availableAcceptors.size();
 			int remaining = toSend % divider;
-			int sending = (toSend-remaining)/divider;
+			final int sending = (toSend - remaining) / divider;
 
-			for(IGasHandler acceptor : availableAcceptors)
+			for(final IGasHandler acceptor : availableAcceptors)
 			{
 				int currentSending = sending;
 
@@ -170,12 +169,13 @@ public final class GasTransmission
 					currentSending++;
 					remaining--;
 				}
-				
-				ForgeDirection dir = ForgeDirection.getOrientation(Arrays.asList(possibleAcceptors).indexOf(acceptor)).getOpposite();
-				toSend -= acceptor.receiveGas(dir, new GasStack(stack.getGas(), currentSending), true);
+
+				final ForgeDirection dir = ForgeDirection.getOrientation(Arrays.asList(possibleAcceptors).indexOf(acceptor)).getOpposite();
+				toSend -= acceptor.receiveGas(dir, new GasStack(stack.getGas(),
+						currentSending), true);
 			}
 		}
 
-		return prevSending-toSend;
+		return prevSending - toSend;
 	}
 }

@@ -18,9 +18,10 @@ import ic2.api.energy.tile.IEnergyTile;
  * 
  * See ic2/api/energy/usage.txt for an overall description of the energy net api.
  */
-public class EnergyTileLoadEvent extends EnergyTileEvent {
-	public EnergyTileLoadEvent(IEnergyTile energyTile1) {
+public class EnergyTileLoadEvent extends EnergyTileEvent
+{
+	public EnergyTileLoadEvent(IEnergyTile energyTile1)
+	{
 		super(energyTile1);
 	}
 }
-

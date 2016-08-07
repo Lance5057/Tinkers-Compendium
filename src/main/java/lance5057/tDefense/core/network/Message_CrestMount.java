@@ -26,12 +26,12 @@ public class Message_CrestMount implements IMessage
 	@Override
 	public void fromBytes(ByteBuf buf)
 	{
-		this.x = buf.readInt();
-		this.y = buf.readInt();
-		this.z = buf.readInt();
+		x = buf.readInt();
+		y = buf.readInt();
+		z = buf.readInt();
 		for(int i = 0; i < flip.length; i++)
 		{
-			this.flip[i] = buf.readBoolean();
+			flip[i] = buf.readBoolean();
 		}
 	}
 
@@ -41,9 +41,9 @@ public class Message_CrestMount implements IMessage
 		buf.writeInt(x);
 		buf.writeInt(y);
 		buf.writeInt(z);
-		for(int i = 0; i < flip.length; i++)
+		for(final boolean element : flip)
 		{
-			buf.writeBoolean(flip[i]);
+			buf.writeBoolean(element);
 		}
 	}
 

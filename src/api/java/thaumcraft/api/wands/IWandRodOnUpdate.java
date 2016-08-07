@@ -11,6 +11,7 @@ import net.minecraft.item.ItemStack;
  * update tick. 
  *
  */
-public interface IWandRodOnUpdate {
+public interface IWandRodOnUpdate
+{
 	void onUpdate(ItemStack itemstack, EntityPlayer player);
 }

@@ -2,14 +2,14 @@ package ic2.api.item;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * Interface used for Items that can be processed in the Turning Table
  */
-public interface ILatheItem {
+public interface ILatheItem
+{
 
 	/**
 	 * Returns the radius of this Lathe Item
@@ -57,7 +57,8 @@ public interface ILatheItem {
 	/**
 	 * Interface used for Tools that can be used to modify {@link ILatheItem}
 	 */
-	public static interface ILatheTool extends ICustomDamageItem {
+	public static interface ILatheTool extends ICustomDamageItem
+	{
 
 		/**
 		 * This is similar to the Tool HarvestLevel. Requires a different tool for a different hardness

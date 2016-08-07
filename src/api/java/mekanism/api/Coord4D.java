@@ -1,7 +1,9 @@
 package mekanism.api;
 
-import cpw.mods.fml.common.network.NetworkRegistry.TargetPoint;
 import io.netty.buffer.ByteBuf;
+
+import java.util.ArrayList;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
@@ -15,8 +17,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.common.util.ForgeDirection;
-
-import java.util.ArrayList;
+import cpw.mods.fml.common.network.NetworkRegistry.TargetPoint;
 
 /**
  * Coord4D - an integer-based way to keep track of and perform operations on blocks in a Minecraft-based environment. This also takes
@@ -26,11 +27,11 @@ import java.util.ArrayList;
  */
 public class Coord4D
 {
-	public int xCoord;
-	public int yCoord;
-	public int zCoord;
+	public int	xCoord;
+	public int	yCoord;
+	public int	zCoord;
 
-	public int dimensionId;
+	public int	dimensionId;
 
 	/**
 	 * Creates a Coord4D WITHOUT a dimensionId. Don't use unless absolutely necessary.
@@ -46,17 +47,17 @@ public class Coord4D
 
 		dimensionId = 0;
 	}
-	
+
 	/**
 	 * Creates a Coord4D from an entity's position, rounded down.
 	 * @param entity - entity to create the Coord4D from
 	 */
 	public Coord4D(Entity entity)
 	{
-		xCoord = (int)entity.posX;
-		yCoord = (int)entity.posY;
-		zCoord = (int)entity.posZ;
-		
+		xCoord = (int) entity.posX;
+		yCoord = (int) entity.posY;
+		zCoord = (int) entity.posZ;
+
 		dimensionId = entity.worldObj.provider.dimensionId;
 	}
 
@@ -100,7 +101,7 @@ public class Coord4D
 	 */
 	public TileEntity getTileEntity(IBlockAccess world)
 	{
-		if(world instanceof World && !exists((World)world))
+		if(world instanceof World && !exists((World) world))
 		{
 			return null;
 		}
@@ -115,11 +116,11 @@ public class Coord4D
 	 */
 	public Block getBlock(IBlockAccess world)
 	{
-		if(world instanceof World && !exists((World)world))
+		if(world instanceof World && !exists((World) world))
 		{
 			return null;
 		}
-		
+
 		return world.getBlock(xCoord, yCoord, zCoord);
 	}
 
@@ -149,7 +150,7 @@ public class Coord4D
 		data.add(zCoord);
 		data.add(dimensionId);
 	}
-	
+
 	/**
 	 * Writes this Coord4D's data to a ByteBuf for packet transfer.
 	 * @param dataStream - the ByteBuf to add the data to
@@ -177,7 +178,7 @@ public class Coord4D
 
 		return this;
 	}
-	
+
 	/**
 	 * Translates this Coord4D by the defined Coord4D's coordinates, regardless of dimension.
 	 * @param coord - coordinates to translate by
@@ -186,7 +187,7 @@ public class Coord4D
 	public Coord4D translate(Coord4D coord)
 	{
 		translate(coord.xCoord, coord.yCoord, coord.zCoord);
-		
+
 		return this;
 	}
 
@@ -208,18 +209,20 @@ public class Coord4D
 	 */
 	public Coord4D getFromSide(ForgeDirection side, int amount)
 	{
-		return new Coord4D(xCoord+(side.offsetX*amount), yCoord+(side.offsetY*amount), zCoord+(side.offsetZ*amount), dimensionId);
+		return new Coord4D(xCoord + (side.offsetX * amount),
+				yCoord + (side.offsetY * amount),
+				zCoord + (side.offsetZ * amount), dimensionId);
 	}
-	
+
 	public ItemStack getStack(IBlockAccess world)
 	{
-		Block block = getBlock(world);
-		
+		final Block block = getBlock(world);
+
 		if(block == null || block == Blocks.air)
 		{
 			return null;
 		}
-		
+
 		return new ItemStack(block, 1, getMetadata(world));
 	}
 
@@ -230,7 +233,9 @@ public class Coord4D
 	 */
 	public static Coord4D get(TileEntity tileEntity)
 	{
-		return new Coord4D(tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord, tileEntity.getWorldObj().provider.dimensionId);
+		return new Coord4D(tileEntity.xCoord, tileEntity.yCoord,
+				tileEntity.zCoord,
+				tileEntity.getWorldObj().provider.dimensionId);
 	}
 
 	/**
@@ -238,10 +243,11 @@ public class Coord4D
 	 * @param tag - tag compound to read from
 	 * @return the Coord4D from the tag compound
 	 */
-    public static Coord4D read(NBTTagCompound tag)
-    {
-        return new Coord4D(tag.getInteger("x"), tag.getInteger("y"), tag.getInteger("z"), tag.getInteger("id"));
-    }
+	public static Coord4D read(NBTTagCompound tag)
+	{
+		return new Coord4D(tag.getInteger("x"), tag.getInteger("y"),
+				tag.getInteger("z"), tag.getInteger("id"));
+	}
 
 	/**
 	 * Returns a new Coord4D from a ByteBuf.
@@ -250,7 +256,8 @@ public class Coord4D
 	 */
 	public static Coord4D read(ByteBuf dataStream)
 	{
-		return new Coord4D(dataStream.readInt(), dataStream.readInt(), dataStream.readInt(), dataStream.readInt());
+		return new Coord4D(dataStream.readInt(), dataStream.readInt(),
+				dataStream.readInt(), dataStream.readInt());
 	}
 
 	/**
@@ -260,7 +267,8 @@ public class Coord4D
 	 */
 	public Coord4D difference(Coord4D other)
 	{
-		return new Coord4D(xCoord-other.xCoord, yCoord-other.yCoord, zCoord-other.zCoord, dimensionId);
+		return new Coord4D(xCoord - other.xCoord, yCoord - other.yCoord,
+				zCoord - other.zCoord, dimensionId);
 	}
 
 	/**
@@ -271,9 +279,9 @@ public class Coord4D
 	 */
 	public ForgeDirection sideDifference(Coord4D other)
 	{
-		Coord4D diff = difference(other);
+		final Coord4D diff = difference(other);
 
-		for(ForgeDirection side : ForgeDirection.VALID_DIRECTIONS)
+		for(final ForgeDirection side : ForgeDirection.VALID_DIRECTIONS)
 		{
 			if(side.offsetX == diff.xCoord && side.offsetY == diff.yCoord && side.offsetZ == diff.zCoord)
 			{
@@ -291,10 +299,10 @@ public class Coord4D
 	 */
 	public int distanceTo(Coord4D obj)
 	{
-		int subX = xCoord - obj.xCoord;
-		int subY = yCoord - obj.yCoord;
-		int subZ = zCoord - obj.zCoord;
-		return (int)MathHelper.sqrt_double(subX * subX + subY * subY + subZ * subZ);
+		final int subX = xCoord - obj.xCoord;
+		final int subY = yCoord - obj.yCoord;
+		final int subZ = zCoord - obj.zCoord;
+		return (int) MathHelper.sqrt_double(subX * subX + subY * subY + subZ * subZ);
 	}
 
 	/**
@@ -305,9 +313,9 @@ public class Coord4D
 	 */
 	public boolean sideVisible(ForgeDirection side, IBlockAccess world)
 	{
-		return world.isAirBlock(xCoord+side.offsetX, yCoord+side.offsetY, zCoord+side.offsetZ);
+		return world.isAirBlock(xCoord + side.offsetX, yCoord + side.offsetY, zCoord + side.offsetZ);
 	}
-	
+
 	/**
 	 * Gets a TargetPoint with the defined range from this Coord4D with the appropriate coordinates and dimension ID.
 	 * @param range - the range the packet can be sent in of this Coord4D
@@ -347,7 +355,7 @@ public class Coord4D
 	{
 		return world.getChunkFromBlockCoords(xCoord, zCoord);
 	}
-	
+
 	/**
 	 * Gets the Chunk3D object with chunk coordinates correlating to this Coord4D's location
 	 * @return Chunk3D with correlating chunk coordinates.
@@ -366,7 +374,7 @@ public class Coord4D
 	{
 		return world.isAirBlock(xCoord, yCoord, zCoord);
 	}
-	
+
 	/**
 	 * Whether or not this block this Coord4D represents is replaceable.
 	 * @param world - world this Coord4D is in
@@ -376,14 +384,14 @@ public class Coord4D
 	{
 		return getBlock(world).isReplaceable(world, xCoord, yCoord, zCoord);
 	}
-	
+
 	/**
 	 * Gets a bounding box that contains the area this Coord4D would take up in a world.
 	 * @return this Coord4D's bounding box
 	 */
 	public AxisAlignedBB getBoundingBox()
 	{
-		return AxisAlignedBB.getBoundingBox(xCoord, yCoord, zCoord, xCoord+1, yCoord+1, zCoord+1);
+		return AxisAlignedBB.getBoundingBox(xCoord, yCoord, zCoord, xCoord + 1, yCoord + 1, zCoord + 1);
 	}
 
 	@Override
@@ -401,11 +409,7 @@ public class Coord4D
 	@Override
 	public boolean equals(Object obj)
 	{
-		return obj instanceof Coord4D &&
-				((Coord4D)obj).xCoord == xCoord &&
-				((Coord4D)obj).yCoord == yCoord &&
-				((Coord4D)obj).zCoord == zCoord &&
-				((Coord4D)obj).dimensionId == dimensionId;
+		return obj instanceof Coord4D && ((Coord4D) obj).xCoord == xCoord && ((Coord4D) obj).yCoord == yCoord && ((Coord4D) obj).zCoord == zCoord && ((Coord4D) obj).dimensionId == dimensionId;
 	}
 
 	@Override

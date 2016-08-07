@@ -39,7 +39,9 @@ public class MoreFlexibleToolRenderer extends FlexibleToolRenderer
 	public boolean handleRenderType(ItemStack item, ItemRenderType type)
 	{
 		if(!item.hasTagCompound())
+		{
 			return false;
+		}
 
 		switch(type)
 		{
@@ -76,7 +78,9 @@ public class MoreFlexibleToolRenderer extends FlexibleToolRenderer
 	public void renderItem(ItemRenderType type, ItemStack item, Object... data)
 	{
 		if(item == null || item.getItem() == null || !(item.getItem() instanceof ToolCore))
+		{
 			return;
+		}
 
 		Entity ent = null;
 		if(data.length > 1)

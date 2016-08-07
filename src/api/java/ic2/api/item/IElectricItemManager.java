@@ -17,7 +17,8 @@ import net.minecraft.item.ItemStack;
  * to minimize its dependency on its own constraints/structure and delegates most work back to the
  * more atomic features in the gateway manager.
  */
-public interface IElectricItemManager {
+public interface IElectricItemManager
+{
 	/**
 	 * Charge an item with a specified amount of energy.
 	 *

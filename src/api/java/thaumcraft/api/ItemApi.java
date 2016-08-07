@@ -13,38 +13,53 @@ import cpw.mods.fml.common.FMLLog;
  * require a bit of work for you to get hold of everything you need.
  *
  */
-public class ItemApi {
-	
-	public static ItemStack getItem(String itemString, int meta) {
+public class ItemApi
+{
+
+	public static ItemStack getItem(String itemString, int meta)
+	{
 		ItemStack item = null;
 
-		try {
-			String itemClass = "thaumcraft.common.config.ConfigItems";
-			Object obj = Class.forName(itemClass).getField(itemString).get(null);
-			if (obj instanceof Item) {
-				item = new ItemStack((Item) obj,1,meta);
-			} else if (obj instanceof ItemStack) {
+		try
+		{
+			final String itemClass = "thaumcraft.common.config.ConfigItems";
+			final Object obj = Class.forName(itemClass).getField(itemString).get(null);
+			if(obj instanceof Item)
+			{
+				item = new ItemStack((Item) obj, 1, meta);
+			}
+			else if(obj instanceof ItemStack)
+			{
 				item = (ItemStack) obj;
 			}
-		} catch (Exception ex) {
+		}
+		catch(final Exception ex)
+		{
 			FMLLog.warning("[Thaumcraft] Could not retrieve item identified by: " + itemString);
 		}
 
 		return item;
 	}
-	
-	public static ItemStack getBlock(String itemString, int meta) {
+
+	public static ItemStack getBlock(String itemString, int meta)
+	{
 		ItemStack item = null;
 
-		try {
-			String itemClass = "thaumcraft.common.config.ConfigBlocks";
-			Object obj = Class.forName(itemClass).getField(itemString).get(null);
-			if (obj instanceof Block) {
-				item = new ItemStack((Block) obj,1,meta);
-			} else if (obj instanceof ItemStack) {
+		try
+		{
+			final String itemClass = "thaumcraft.common.config.ConfigBlocks";
+			final Object obj = Class.forName(itemClass).getField(itemString).get(null);
+			if(obj instanceof Block)
+			{
+				item = new ItemStack((Block) obj, 1, meta);
+			}
+			else if(obj instanceof ItemStack)
+			{
 				item = (ItemStack) obj;
 			}
-		} catch (Exception ex) {
+		}
+		catch(final Exception ex)
+		{
 			FMLLog.warning("[Thaumcraft] Could not retrieve block identified by: " + itemString);
 		}
 

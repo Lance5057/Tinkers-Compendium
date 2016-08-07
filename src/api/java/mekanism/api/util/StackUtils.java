@@ -16,7 +16,7 @@ public final class StackUtils
 			return null;
 		}
 
-		List<ItemStack> ret = new ArrayList<ItemStack>();
+		final List<ItemStack> ret = new ArrayList<ItemStack>();
 
 		if(stack.stackSize == 1)
 		{
@@ -24,10 +24,10 @@ public final class StackUtils
 			return ret;
 		}
 
-		int remain = stack.stackSize % 2;
-		int split = (int)((float)(stack.stackSize)/2F);
+		final int remain = stack.stackSize % 2;
+		final int split = (int) ((stack.stackSize) / 2F);
 
-		ret.add(size(stack, split+remain));
+		ret.add(size(stack, split + remain));
 		ret.add(size(stack, split));
 
 		return ret;
@@ -59,7 +59,7 @@ public final class StackUtils
 		{
 			return check == wild;
 		}
-		
+
 		return wild.getItem() == check.getItem() && (wild.getItemDamage() == OreDictionary.WILDCARD_VALUE || wild.getItemDamage() == check.getItemDamage());
 	}
 
@@ -70,9 +70,9 @@ public final class StackUtils
 
 	public static List<ItemStack> even(ItemStack stack1, ItemStack stack2)
 	{
-		ArrayList<ItemStack> ret = new ArrayList<ItemStack>();
+		final ArrayList<ItemStack> ret = new ArrayList<ItemStack>();
 
-		if(getSize(stack1) == getSize(stack2) || Math.abs(getSize(stack1)-getSize(stack2)) == 1)
+		if(getSize(stack1) == getSize(stack2) || Math.abs(getSize(stack1) - getSize(stack2)) == 1)
 		{
 			ret.add(stack1);
 			ret.add(stack2);
@@ -82,18 +82,18 @@ public final class StackUtils
 
 		if(getSize(stack1) > getSize(stack2))
 		{
-			int diff = getSize(stack1)-getSize(stack2);
+			final int diff = getSize(stack1) - getSize(stack2);
 
-			List<ItemStack> split = split(size(stack1, diff));
+			final List<ItemStack> split = split(size(stack1, diff));
 
 			ret.add(subtract(stack1, split.get(0)));
 			ret.add(add(stack2, split.get(0)));
 		}
 		else if(getSize(stack2) > getSize(stack1))
 		{
-			int diff = getSize(stack2)-getSize(stack1);
+			final int diff = getSize(stack2) - getSize(stack1);
 
-			List<ItemStack> split = split(size(stack2, diff));
+			final List<ItemStack> split = split(size(stack2, diff));
 
 			ret.add(subtract(stack2, split.get(0)));
 			ret.add(add(stack1, split.get(0)));
@@ -113,7 +113,7 @@ public final class StackUtils
 			return stack1;
 		}
 
-		return size(stack1, getSize(stack1)+getSize(stack2));
+		return size(stack1, getSize(stack1) + getSize(stack2));
 	}
 
 	public static ItemStack subtract(ItemStack stack1, ItemStack stack2)
@@ -127,7 +127,7 @@ public final class StackUtils
 			return stack1;
 		}
 
-		return size(stack1, getSize(stack1)-getSize(stack2));
+		return size(stack1, getSize(stack1) - getSize(stack2));
 	}
 
 	public static ItemStack size(ItemStack stack, int size)
@@ -137,7 +137,7 @@ public final class StackUtils
 			return null;
 		}
 
-		ItemStack ret = stack.copy();
+		final ItemStack ret = stack.copy();
 		ret.stackSize = size;
 		return ret;
 	}
@@ -156,27 +156,27 @@ public final class StackUtils
 	{
 		return stack != null ? stack.stackSize : 0;
 	}
-	
+
 	public static List<ItemStack> getMergeRejects(ItemStack[] orig, ItemStack[] toAdd)
 	{
-		List<ItemStack> ret = new ArrayList<ItemStack>();
-		
+		final List<ItemStack> ret = new ArrayList<ItemStack>();
+
 		for(int i = 0; i < toAdd.length; i++)
 		{
 			if(toAdd[i] != null)
 			{
-				ItemStack reject = getMergeReject(orig[i], toAdd[i]);
-				
+				final ItemStack reject = getMergeReject(orig[i], toAdd[i]);
+
 				if(reject != null)
 				{
 					ret.add(reject);
 				}
 			}
 		}
-			
+
 		return ret;
 	}
-	
+
 	public static void merge(ItemStack[] orig, ItemStack[] toAdd)
 	{
 		for(int i = 0; i < toAdd.length; i++)
@@ -187,51 +187,52 @@ public final class StackUtils
 			}
 		}
 	}
-	
+
 	public static ItemStack merge(ItemStack orig, ItemStack toAdd)
 	{
 		if(orig == null)
 		{
 			return toAdd;
 		}
-		
+
 		if(toAdd == null)
 		{
 			return orig;
 		}
-		
+
 		if(!orig.isItemEqual(toAdd) || !ItemStack.areItemStackTagsEqual(orig, toAdd))
 		{
 			return orig;
 		}
-		
-		return StackUtils.size(orig, Math.min(orig.getMaxStackSize(), orig.stackSize+toAdd.stackSize));
+
+		return StackUtils.size(orig, Math.min(orig.getMaxStackSize(), orig.stackSize + toAdd.stackSize));
 	}
-	
+
 	public static ItemStack getMergeReject(ItemStack orig, ItemStack toAdd)
 	{
 		if(orig == null)
 		{
 			return null;
 		}
-		
+
 		if(toAdd == null)
 		{
 			return orig;
 		}
-		
+
 		if(!orig.isItemEqual(toAdd) || !ItemStack.areItemStackTagsEqual(orig, toAdd))
 		{
 			return orig;
 		}
-		
-		int newSize = orig.stackSize+toAdd.stackSize;
-		
+
+		final int newSize = orig.stackSize + toAdd.stackSize;
+
 		if(newSize > orig.getMaxStackSize())
 		{
-			return StackUtils.size(orig, newSize-orig.getMaxStackSize());
+			return StackUtils.size(orig, newSize - orig.getMaxStackSize());
 		}
-		else {
+		else
+		{
 			return StackUtils.size(orig, newSize);
 		}
 	}
@@ -247,8 +248,8 @@ public final class StackUtils
 		{
 			return -1;
 		}
-		
-		String name = stack.getItemDamage() == OreDictionary.WILDCARD_VALUE ? stack.getItem().getUnlocalizedName() : stack.getItem().getUnlocalizedName(stack);
+
+		final String name = stack.getItemDamage() == OreDictionary.WILDCARD_VALUE ? stack.getItem().getUnlocalizedName() : stack.getItem().getUnlocalizedName(stack);
 		return name.hashCode() << 8 | stack.getItemDamage();
 	}
 }

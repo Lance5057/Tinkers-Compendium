@@ -11,38 +11,43 @@ import net.minecraft.util.ResourceLocation;
  * It is also used to generate the wand recipes ingame.
  *
  */
-public class StaffRod extends WandRod {
-	
-	boolean runes=false;
+public class StaffRod extends WandRod
+{
 
-	public StaffRod(String tag, int capacity, ItemStack item, int craftCost) {
-		super(tag+"_staff", capacity, item, craftCost);
-		this.texture = new ResourceLocation("thaumcraft","textures/models/wand_rod_"+tag+".png");
+	boolean	runes	= false;
+
+	public StaffRod(String tag, int capacity, ItemStack item, int craftCost)
+	{
+		super(tag + "_staff", capacity, item, craftCost);
+		texture = new ResourceLocation("thaumcraft",
+				"textures/models/wand_rod_" + tag + ".png");
 	}
 
-	public StaffRod(String tag, int capacity, ItemStack item, int craftCost,
-			IWandRodOnUpdate onUpdate, ResourceLocation texture) {
-		super(tag+"_staff", capacity, item, craftCost, onUpdate, texture);
+	public StaffRod(String tag, int capacity, ItemStack item, int craftCost, IWandRodOnUpdate onUpdate, ResourceLocation texture)
+	{
+		super(tag + "_staff", capacity, item, craftCost, onUpdate, texture);
 	}
 
-	public StaffRod(String tag, int capacity, ItemStack item, int craftCost,
-			IWandRodOnUpdate onUpdate) {
-		super(tag+"_staff", capacity, item, craftCost, onUpdate);
-		this.texture = new ResourceLocation("thaumcraft","textures/models/wand_rod_"+tag+".png");
+	public StaffRod(String tag, int capacity, ItemStack item, int craftCost, IWandRodOnUpdate onUpdate)
+	{
+		super(tag + "_staff", capacity, item, craftCost, onUpdate);
+		texture = new ResourceLocation("thaumcraft",
+				"textures/models/wand_rod_" + tag + ".png");
 	}
 
-	public StaffRod(String tag, int capacity, ItemStack item, int craftCost,
-			ResourceLocation texture) {
-		super(tag+"_staff", capacity, item, craftCost, texture);
+	public StaffRod(String tag, int capacity, ItemStack item, int craftCost, ResourceLocation texture)
+	{
+		super(tag + "_staff", capacity, item, craftCost, texture);
 	}
 
-	public boolean hasRunes() {
+	public boolean hasRunes()
+	{
 		return runes;
 	}
 
-	public void setRunes(boolean hasRunes) {
-		this.runes = hasRunes;
+	public void setRunes(boolean hasRunes)
+	{
+		runes = hasRunes;
 	}
 
-	
 }

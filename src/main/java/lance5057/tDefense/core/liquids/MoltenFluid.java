@@ -12,8 +12,8 @@ public class MoltenFluid extends BlockFluidClassic
 {
 	private IIcon	stillIcon;
 	private IIcon	flowingIcon;
-	private String	stillIconTexture;
-	private String	flowIconTexture;
+	private final String	stillIconTexture;
+	private final String	flowIconTexture;
 
 	public MoltenFluid(Fluid fluid, String name)
 	{
@@ -29,20 +29,20 @@ public class MoltenFluid extends BlockFluidClassic
 	@SideOnly(Side.CLIENT)
 	public void func_149651_a(IIconRegister icon)
 	{
-		this.stillIcon = icon.registerIcon(this.stillIconTexture);
-		this.flowingIcon = icon.registerIcon(this.flowIconTexture);
+		stillIcon = icon.registerIcon(stillIconTexture);
+		flowingIcon = icon.registerIcon(flowIconTexture);
 
-		getFluid().setIcons(this.stillIcon, this.flowingIcon);
+		getFluid().setIcons(stillIcon, flowingIcon);
 	}
 
 	public IIcon getStillIcon()
 	{
-		return this.stillIcon;
+		return stillIcon;
 	}
 
 	public IIcon getFlowingIcon()
 	{
-		return this.flowingIcon;
+		return flowingIcon;
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -50,8 +50,8 @@ public class MoltenFluid extends BlockFluidClassic
 	{
 		if(side <= 1)
 		{
-			return this.stillIcon;
+			return stillIcon;
 		}
-		return this.flowingIcon;
+		return flowingIcon;
 	}
 }

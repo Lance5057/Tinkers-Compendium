@@ -7,6 +7,7 @@ import net.minecraft.item.ItemStack;
  *
  * The manager implementing this has to be registered with ElectricItem.registerBackupManager().
  */
-public interface IBackupElectricItemManager extends IElectricItemManager {
+public interface IBackupElectricItemManager extends IElectricItemManager
+{
 	boolean handles(ItemStack stack);
 }

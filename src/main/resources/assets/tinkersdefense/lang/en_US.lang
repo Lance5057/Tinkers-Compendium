@@ -1,16 +1,16 @@
 itemGroup.tabName=Tinkers' Defense
-item.AeonsteelIngot.name=Aeonsteel Ingot
-tile.AeonsteelBlock.name=Aeonsteel Block
-tile.MoltenAeonsteel.name=Molten Aeonsteel
+item.aeonsteelingot.name=Aeonsteel Ingot
+tile.aeonsteelblock.name=Aeonsteel Block
+tile.Moltenaeonsteel.name=Molten Aeonsteel
 material.aeonsteel=Aeonsteel
 
-item.QueensGoldIngot.name=Queen's Gold Ingot
-tile.QueensGoldBlock.name=Queen's Gold Block
-tile.MoltenQueensGold.name=Molten Queen's Gold
+item.queensgoldingot.name=Queen's Gold Ingot
+tile.queensgoldblock.name=Queen's Gold Block
+tile.Moltenqueensgold.name=Molten Queen's Gold
 material.queensgold=Queen's Gold
 
-item.DogbeariumIngot.name=Dogbearium Ingot
-tile.DogbeariumBlock.name=Dogbearium Block
+item.dogbeariumingot.name=Dogbearium Ingot
+tile.dogbeariumblock.name=Dogbearium Block
 tile.Moltendogbearium.name=Molten Dogbearium
 material.dogbearium=Dogbearium
 material.dogbearium.ability=Serrated
@@ -21,24 +21,70 @@ material.redmint.ability=Pepperminty
 material.greenmint=Green Mint
 material.greenmint.ability=Spearminty
 
-tile.CrestMount.name=Crest Mount
-tile.ArmorAnvil.name=Finishing Anvil (WIP)
-tile.JewelersBench.name=Jeweler's Bench (WIP)
+tile.crestmount.name=Crest Mount
+tile.armoranvil.name=Finishing Anvil
+tile.jewelersbench.name=Jeweler's Bench (WIP)
 
-tool.roundshield=Round Shield
+tool.roundshield=Buckler
 tool.heatershield=Heater Shield
 
-fluid.moltenAeonsteel.name=Molten Aeon Steel
-fluid.moltenQueensGold.name=Molten Queen's Gold
-fluid.moltenDogbearium.name=Molten Dogbearium
+fluid.moltenaeonsteel.name=Molten Aeon Steel
+fluid.moltenqueensgold.name=Molten Queen's Gold
+fluid.moltendogbearium.name=Molten Dogbearium
 
-gui.toolstation.roundshield.name=Round Shield
-gui.toolstation.roundshield.desc=A simple shield with average durability and average defense.
+gui.toolstation.roundshield.name=Buckler
+gui.toolstation.roundshield.desc=A small shield with low protection but with the ability to counter attacks, slowing down your opponent. Due to its small size it can't hold as many modifiers.
 
 gui.toolstation.heatershield.name=Heater Shield
-gui.toolstation.heatershield.desc=A simple shield with high durability and high defense.
+gui.toolstation.heatershield.desc=A standard shield designed to protect from all incoming attacks while still being mobile.
 
-item.Crest_Feathers.name=Crest of Feathers
+gui.toolstation.helm.name=Helm
+gui.toolstation.helm.desc=A heavy set of interlocking plates to protect the head from most damage.
+
+gui.toolstation.breastplate.name=Breastplate
+gui.toolstation.breastplate.desc=A heavy set of interlocking plates to protect the chest from most damage.
+
+gui.toolstation.grieves.name=Grieves
+gui.toolstation.grieves.desc=A heavy set of interlocking plates to protect the legs from most damage.
+
+gui.toolstation.sabatons.name=Sabatons
+gui.toolstation.sabatons.desc=A heavy set of interlocking plates to protect the feet from most damage.
+
+gui.toolstation.gauntlets.name=Gauntlets
+gui.toolstation.gauntlets.desc=Armored gloves to protect the hands. (Cosmetic)
+
+gui.toolstation.coif.name=Coif
+gui.toolstation.coif.desc=Thickly woven loops linked with small plates and cloth to protect the head.
+
+gui.toolstation.hauberk.name=Hauberk
+gui.toolstation.hauberk.desc=Thickly woven loops linked with small plates and cloth to protect the chest.
+
+gui.toolstation.chausses.name=Chausses
+gui.toolstation.chausses.desc=Thickly woven loops linked with small plates and cloth to protect the legs.
+
+gui.toolstation.boots.name=Boots
+gui.toolstation.boots.desc=Thickly woven loops linked with small plates and cloth to protect the feet.
+
+gui.toolstation.hood.name=Hood
+gui.toolstation.hood.desc=Delicately stitched clothing for the head that offers little protection but is more accepting of magical modifiers.
+
+gui.toolstation.shawl.name=Shawl
+gui.toolstation.shawl.desc=Delicately stitched clothing for the chest that offers little protection but is more accepting of magical modifiers.
+
+gui.toolstation.robe.name=Robe
+gui.toolstation.robe.desc=Delicately stitched clothing for the legs that offers little protection but is more accepting of magical modifiers.
+
+gui.toolstation.shoes.name=Shoes
+gui.toolstation.shoes.desc=Delicately stitched clothing for the head that offers little protection but is more accepting of magical modifiers.
+
+gui.toolstation.shears.name=Shears
+gui.toolstation.shears.desc=A set of sharpened blades bound together to allow shearing of sheep and tree leaves.
+
+gui.toolstation.wrench.name=Wrench
+gui.toolstation.wrench.desc=A tool designed to turn, remove, or configure technical blocks.
+
+gui.toolstation.zweihander.name=Zweihander
+gui.toolstation.zweihander.desc=A great two handed sword designed to take down horse and rider or keep enemies back with its long reach.\n \n x2 Damage against mounted enemies \n Ability: Great Swing - \n Hit all enemies close to you with a great arching slash. Leaves you slowed and weakened temporarily.
 
 toolpart.Chainmaille=%%material Chainmail
 toolpart.Rivets=%%material Rivets
@@ -68,7 +114,7 @@ tool.tinkershood=Hood
 tool.tinkersshoes=Shoes
 
 tool.tinkerscoif=Coif
-tool.tinkershalberd=Halberd
+tool.tinkershauberk=Hauberk
 tool.tinkerschausses=Chausses
 tool.tinkersboots=Boots
 
@@ -76,6 +122,7 @@ tool.tinkershelm=Helm
 tool.tinkersbreastplate=Breastplate
 tool.tinkersgrieves=Grieves
 tool.tinkerssabatons=Sabatons
+tool.tinkersgauntlets=Gauntlets
 
 item.tconstruct.Pattern.rivets.name=Rivet Pattern
 item.tconstruct.Pattern.clasp.name=Clasp Pattern
@@ -91,20 +138,60 @@ tool.tinkerwrench=Wrench
 tool.shears=Shears
 tool.tinkerzweihander=Zweihander
 
-item.GreenMintIngot.name=Green Mint Ingot
-item.RedMintIngot.name=Red Mint Ingot
-item.GreenMintcane.name=Green Mint Cane
-item.RedMintcane.name=Red Mint Cane
+item.greenmintIngot.name=Green Mint Ingot
+item.redmintIngot.name=Red Mint Ingot
+item.greenmintcane.name=Green Mint Cane
+item.redmintcane.name=Red Mint Cane
 
-tile.RedMintBlock.name=Red Mint Block
-tile.GreenMintBlock.name=Green Mint Block
-tile.MoltenRedMint.name=Molten Red Mint
-tile.MoltenGreenMint.name=Molten Green Mint
+tile.redmintblock.name=Red Mint Block
+tile.greenmintblock.name=Green Mint Block
+tile.Moltenredmint.name=Molten Red Mint
+tile.Moltengreenmint.name=Molten Green Mint
+
+item.guidebook.name=Order's Manual
+item.modItemsCore_AncientRelic.name=Ancient Relic
+item.modItemsCore_RainbowGem.name=Rainbow Gem
+item.modItemsCore_Textbook.name=Textbook
+item.modItemsCore_SoulStone.name=SoulStone (Steve)
+item.modItemsCore_CrestFeathers.name=Crest of Feathers Template
+item.modItemsCore_CrestMirrors.name=Crest of Mirrors Template
+item.modItemsCore_CrestLegends.name=Crest of Legends Template
+item.modItemsCore_CrestGluttony.name=Crest of Gluttony Template
+item.modItemsCore_CrestThorns.name=Crest of Thorns Template
+item.modItemsCore_CrestSanguisuga.name=Crest of the Sanguisuga Template
+item.modItemsCore_CrestWinds.name=Crest of Winds Template
+item.modItemsCore_CrestLight.name=Crest of Light Template
+item.modItemsCore_CrestPaper.name=Crest Paper
+item.modItemsArmor_Canister.name=Filled Canister
+item.modItemsArmor_EmptyCanister.name=Empty Canister
+item.modItemsArmor_Rebreather.name=Rebreather
+item.modItemsArmor_NightvisionGoggles.name=Nightvision Goggles
+item.modItemsArmor_Glowstep.name=Glowing Crystal
+item.modItemsArmor_Firewalker.name=Fiery Crystal
+item.modItemsArmor_Frostwalker.name=Frosty Crystal
+item.modItemsArmor_FeatherFall.name=Hermes' Feathers
+item.modItemsArmor_Flippers.name=Flippers
+item.modItemsBloodMagic_bindingwrap.name=Oathbinding Chains
+item.modItemsBloodMagic_bloodybandages.name=Bloody Bandages
+item.modItemsBotania_corpseIvyGraft.name=CorpseIvy Graft
+item.modItemsBotania_corpseIvy.name=CorpseIvy
+item.modItemsBotania_terraCore.name=TerraCore
+item.modItemsBotania_manaCore.name=ManaCore
+item.modItemsBotania_elementiumcore.name=ElementiumCore
+
+tile.unstable_ice.name=Unstable Ice
+tile.unstable_obsidian.name=Unstable Obsidian
+tile.glowstonecrumbs.name=Glowstone Crumbs
 
 book.chapter0.page0.titleL=Intro
 book.chapter0.page0.titleR= 
 book.chapter0.page0.ContentL=By command of the Order of the Silver Lance and under supervision of me, Urist Ironhammer, this text has been created for use as reference and learning tool for fellow members.
 book.chapter0.page0.ContentR=Within these pages are secrets long kept by the Order, caution and discretion are adviced to avoid revelation or personal harm.
+
+book.chapter1.page0.titleL=Shields
+book.chapter1.page0.titleR= 
+book.chapter1.page0.ContentL=The first, and sometimes only, defense in a Tinkerer's arsenal is the shield. The Order specializes in two types, the Bucker and the Heater shield.
+book.chapter1.page0.ContentR=Diagrams, blueprints, and ways to modify are shown on the following pages.
 
 //Note to translators - anything in %% is changed in code and ~player~ is the player's name.
 soul.Steve.offense.0=Heh. What is super armor to me. ~damage~ damage!!

@@ -4,7 +4,6 @@ import lance5057.tDefense.TinkersDefense;
 import lance5057.tDefense.core.blocks.crestMount.Container_CrestMount;
 import lance5057.tDefense.core.blocks.crestMount.Gui_CrestMount;
 import lance5057.tDefense.core.blocks.crestMount.TileEntity_CrestMount;
-import lance5057.tDefense.core.gui.GuiTDGuideBook;
 import lance5057.tDefense.core.tools.modifiers.ModifierSoulHandler;
 import lance5057.tDefense.finishingAnvil.blocks.finishingAnvil.Container_FinishingAnvil;
 import lance5057.tDefense.finishingAnvil.blocks.finishingAnvil.Gui_FinishingAnvil;
@@ -65,8 +64,6 @@ public class CommonProxy implements IGuiHandler
 		if(ID == TinkersDefense.GUI_ANVIL_INV)
 			return new Gui_FinishingAnvil(player.inventory,
 					(TileEntity_FinishingAnvil) world.getTileEntity(x, y, z));
-		if(ID == TinkersDefense.GUI_GUIDEBOOK)
-			return new GuiTDGuideBook();
 		return null;
 	}
 }

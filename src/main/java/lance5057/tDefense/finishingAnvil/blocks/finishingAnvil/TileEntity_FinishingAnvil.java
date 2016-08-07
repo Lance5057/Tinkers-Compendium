@@ -33,7 +33,7 @@ public class TileEntity_FinishingAnvil extends TileEntity implements IInventory
 	@Override
 	public Packet getDescriptionPacket()
 	{
-		NBTTagCompound tag = new NBTTagCompound();
+		final NBTTagCompound tag = new NBTTagCompound();
 		writeToNBT(tag);
 		return new S35PacketUpdateTileEntity(xCoord, yCoord, zCoord, 0, tag);
 	}
@@ -76,7 +76,7 @@ public class TileEntity_FinishingAnvil extends TileEntity implements IInventory
 				setInventorySlotContents(slot, null);
 			}
 
-			this.markDirty();
+			markDirty();
 		}
 		return stack;
 	}
@@ -84,7 +84,7 @@ public class TileEntity_FinishingAnvil extends TileEntity implements IInventory
 	@Override
 	public ItemStack getStackInSlotOnClosing(int slot)
 	{
-		ItemStack stack = getStackInSlot(slot);
+		final ItemStack stack = getStackInSlot(slot);
 
 		if(stack != null)
 		{
@@ -96,14 +96,14 @@ public class TileEntity_FinishingAnvil extends TileEntity implements IInventory
 	@Override
 	public void setInventorySlotContents(int slot, ItemStack itemstack)
 	{
-		this.inventory[slot] = itemstack;
+		inventory[slot] = itemstack;
 
-		if(itemstack != null && itemstack.stackSize > this.getInventoryStackLimit())
+		if(itemstack != null && itemstack.stackSize > getInventoryStackLimit())
 		{
-			itemstack.stackSize = this.getInventoryStackLimit();
+			itemstack.stackSize = getInventoryStackLimit();
 		}
 
-		this.markDirty();
+		markDirty();
 	}
 
 	@Override
@@ -164,11 +164,11 @@ public class TileEntity_FinishingAnvil extends TileEntity implements IInventory
 
 	public void readInventoryFromNBT(NBTTagCompound tags)
 	{
-		NBTTagList nbttaglist = tags.getTagList("Items", Constants.NBT.TAG_COMPOUND);
+		final NBTTagList nbttaglist = tags.getTagList("Items", Constants.NBT.TAG_COMPOUND);
 		for(int iter = 0; iter < nbttaglist.tagCount(); iter++)
 		{
-			NBTTagCompound tagList = (NBTTagCompound) nbttaglist.getCompoundTagAt(iter);
-			byte slotID = tagList.getByte("Slot");
+			final NBTTagCompound tagList = nbttaglist.getCompoundTagAt(iter);
+			final byte slotID = tagList.getByte("Slot");
 			if(slotID >= 0 && slotID < inventory.length)
 			{
 				inventory[slotID] = ItemStack.loadItemStackFromNBT(tagList);
@@ -178,12 +178,12 @@ public class TileEntity_FinishingAnvil extends TileEntity implements IInventory
 
 	public void writeInventoryToNBT(NBTTagCompound tags)
 	{
-		NBTTagList nbttaglist = new NBTTagList();
+		final NBTTagList nbttaglist = new NBTTagList();
 		for(int iter = 0; iter < inventory.length; iter++)
 		{
 			if(inventory[iter] != null)
 			{
-				NBTTagCompound tagList = new NBTTagCompound();
+				final NBTTagCompound tagList = new NBTTagCompound();
 				tagList.setByte("Slot", (byte) iter);
 				inventory[iter].writeToNBT(tagList);
 				nbttaglist.appendTag(tagList);

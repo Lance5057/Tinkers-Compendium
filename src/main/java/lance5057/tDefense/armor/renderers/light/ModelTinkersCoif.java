@@ -75,8 +75,15 @@ public class ModelTinkersCoif extends ArmorRenderer
 		Coif = new ModelRenderer(this, "Coif");
 		Coif.setTextureOffset(0, 32);
 		Coif.setRotationPoint(0.0F, 0.0F, 0.0F);
-		Coif.addBox(-4.0F, 1.0F, -4.0F, 8, 3, 8, 0.5F);
+		Coif.addBox(-4.0F, 1.0F, -4.0F, 8, 3, 8, 0.6F);
 		bipedHead.addChild(Coif);
+
+		Mask.isHidden = true;
+		Mohawk.isHidden = true;
+		MohawkL.isHidden = true;
+		MohawkR.isHidden = true;
+		WingL.isHidden = true;
+		WingR.isHidden = true;
 
 		init();
 	}

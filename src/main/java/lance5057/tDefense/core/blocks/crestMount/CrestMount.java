@@ -27,7 +27,7 @@ public class CrestMount extends BlockContainer
 	public CrestMount()
 	{
 		super(Material.iron);
-		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
+		setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 	}
 
 	@Override
@@ -40,11 +40,9 @@ public class CrestMount extends BlockContainer
 	@Override
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int metadata, float what, float these, float are)
 	{
-		TileEntity tileEntity = world.getTileEntity(x, y, z);
+		final TileEntity tileEntity = world.getTileEntity(x, y, z);
 		if(tileEntity == null || player.isSneaking())
-		{
 			return false;
-		}
 		//code to open gui explained later
 		player.openGui(TinkersDefense.instance, TinkersDefense.GUI_CREST_INV, player.worldObj, x, y, z);
 		return true;
@@ -59,33 +57,33 @@ public class CrestMount extends BlockContainer
 
 	private void dropItems(World world, int x, int y, int z)
 	{
-		Random rand = new Random();
+		final Random rand = new Random();
 
-		TileEntity tileEntity = world.getTileEntity(x, y, z);
+		final TileEntity tileEntity = world.getTileEntity(x, y, z);
 		if(!(tileEntity instanceof IInventory))
-		{
 			return;
-		}
-		IInventory inventory = (IInventory) tileEntity;
+		final IInventory inventory = (IInventory) tileEntity;
 
 		for(int i = 0; i < inventory.getSizeInventory(); i++)
 		{
-			ItemStack item = inventory.getStackInSlot(i);
+			final ItemStack item = inventory.getStackInSlot(i);
 
 			if(item != null && item.stackSize > 0)
 			{
-				float rx = rand.nextFloat() * 0.8F + 0.1F;
-				float ry = rand.nextFloat() * 0.8F + 0.1F;
-				float rz = rand.nextFloat() * 0.8F + 0.1F;
+				final float rx = rand.nextFloat() * 0.8F + 0.1F;
+				final float ry = rand.nextFloat() * 0.8F + 0.1F;
+				final float rz = rand.nextFloat() * 0.8F + 0.1F;
 
-				EntityItem entityItem = new EntityItem(world, x + rx, y + ry, z + rz, new ItemStack(item.getItem(), item.stackSize, item.getItemDamage()));
+				final EntityItem entityItem = new EntityItem(world, x + rx,
+						y + ry, z + rz, new ItemStack(item.getItem(),
+								item.stackSize, item.getItemDamage()));
 
 				if(item.hasTagCompound())
 				{
 					entityItem.getEntityItem().setTagCompound((NBTTagCompound) item.getTagCompound().copy());
 				}
 
-				float factor = 0.05F;
+				final float factor = 0.05F;
 				entityItem.motionX = rand.nextGaussian() * factor;
 				entityItem.motionY = rand.nextGaussian() * factor + 0.2F;
 				entityItem.motionZ = rand.nextGaussian() * factor;
@@ -110,6 +108,7 @@ public class CrestMount extends BlockContainer
 	}
 
 	//It's not a normal block, so you need this too.
+	@Override
 	public boolean renderAsNormalBlock()
 	{
 		return false;
@@ -120,13 +119,13 @@ public class CrestMount extends BlockContainer
 	@Override
 	public void registerBlockIcons(IIconRegister icon)
 	{
-		this.blockIcon = icon.registerIcon("tinkersdefense:Item_CrestMount");
+		blockIcon = icon.registerIcon("tinkersdefense:item_crestmount");
 	}
 
 	@Override
 	public TileEntity createNewTileEntity(World w, int md)
 	{
-		TileEntity_CrestMount te = new TileEntity_CrestMount();
+		final TileEntity_CrestMount te = new TileEntity_CrestMount();
 		return te;
 	}
 

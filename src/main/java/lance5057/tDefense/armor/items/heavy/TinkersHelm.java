@@ -1,15 +1,24 @@
 package lance5057.tDefense.armor.items.heavy;
 
 import lance5057.tDefense.TinkersDefense;
-import lance5057.tDefense.armor.TDHelmet;
+import lance5057.tDefense.armor.ArmorCore;
 import lance5057.tDefense.armor.renderers.ArmorRenderer;
 import lance5057.tDefense.proxy.ClientProxy;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 import tconstruct.tools.TinkerTools;
+import thaumcraft.api.IGoggles;
+import thaumcraft.api.nodes.IRevealer;
+import WayofTime.alchemicalWizardry.api.alchemy.energy.IAlchemyGoggles;
+import WayofTime.alchemicalWizardry.api.items.interfaces.ILPGauge;
+import cpw.mods.fml.common.Optional;
 
-public class TinkersHelm extends TDHelmet
+@Optional.InterfaceList({@Optional.Interface(modid = "Thaumcraft", iface = "thaumcraft.api.IGoggles", striprefs = true), @Optional.Interface(modid = "Thaumcraft", iface = "thaumcraft.api.nodes.IRevealer", striprefs = true), @Optional.Interface(modid = "AWWayofTime", iface = "WayofTime.alchemicalWizardry.api.items.interfaces.ILPGauge", striprefs = true), @Optional.Interface(modid = "AWWayofTime", iface = "WayofTime.alchemicalWizardry.api.alchemy.energy.IAlchemyGoggles", striprefs = true)})
+public class TinkersHelm extends ArmorCore implements IRevealer, IGoggles, ILPGauge, IAlchemyGoggles
 {
 	public TinkersHelm()
 	{
@@ -28,7 +37,7 @@ public class TinkersHelm extends TDHelmet
 	@Override
 	public Item getHandleItem()
 	{
-		return TinkersDefense.partChainmaille;
+		return TinkerTools.toughRod;
 	}
 
 	@Override
@@ -40,7 +49,7 @@ public class TinkersHelm extends TDHelmet
 	@Override
 	public Item getExtraItem()
 	{
-		return TinkerTools.toughRod;
+		return TinkersDefense.partChainmaille;
 	}
 
 	@Override
@@ -128,5 +137,33 @@ public class TinkersHelm extends TDHelmet
 	public ArmorRenderer getRenderer()
 	{
 		return ClientProxy.helm;
+	}
+
+	@Optional.Method(modid = "Thaumcraft")
+	@Override
+	public boolean showIngamePopups(ItemStack itemstack, EntityLivingBase player)
+	{
+		return itemstack.getTagCompound().getCompoundTag("InfiTool").getBoolean("Revealing");
+	}
+
+	@Optional.Method(modid = "Thaumcraft")
+	@Override
+	public boolean showNodes(ItemStack itemstack, EntityLivingBase player)
+	{
+		return itemstack.getTagCompound().getCompoundTag("InfiTool").getBoolean("Revealing");
+	}
+
+	@Optional.Method(modid = "AWWayofTime")
+	@Override
+	public boolean canSeeLPBar(ItemStack stack)
+	{
+		return stack.getTagCompound().getCompoundTag("InfiTool").getBoolean("Divination");
+	}
+
+	@Optional.Method(modid = "AWWayofTime")
+	@Override
+	public boolean showIngameHUD(World world, ItemStack stack, EntityPlayer player)
+	{
+		return stack.getTagCompound().getCompoundTag("InfiTool").getBoolean("Divination");
 	}
 }

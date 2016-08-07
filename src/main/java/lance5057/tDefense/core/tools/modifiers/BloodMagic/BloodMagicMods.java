@@ -68,9 +68,9 @@ public class BloodMagicMods extends ModifiersBase
 		ModifyBuilder.registerModifier(new ModifierBoolExclusive(
 				new ItemStack[] {new ItemStack(ModItems.apprenticeBloodOrb, 1), new ItemStack(
 						ModItems.sacrificialDagger, 1)},
-				TinkersDefense.config.SuppingModID, "Supping",
-				EnumChatFormatting.DARK_RED.toString(), "Supping",
-				new String[] {"weapon"}, 1, new String[] {"Scabbing"}));
+						TinkersDefense.config.SuppingModID, "Supping",
+						EnumChatFormatting.DARK_RED.toString(), "Supping",
+						new String[] {"weapon"}, 1, new String[] {"Scabbing"}));
 
 		for(final ToolCore tool : TConstructRegistry.getToolMapping())
 		{

@@ -9,11 +9,13 @@ import net.minecraft.nbt.NBTTagCompound;
  */
 public class GasTank
 {
-	public GasStack stored;
+	public GasStack	stored;
 
-	private int maxGas;
+	private int		maxGas;
 
-	private GasTank() {}
+	private GasTank()
+	{
+	}
 
 	/**
 	 * Creates a tank with a defined capacity.
@@ -51,7 +53,8 @@ public class GasTank
 			return null;
 		}
 
-		GasStack ret = new GasStack(getGas().getGas(), Math.min(getStored(), amount));
+		final GasStack ret = new GasStack(getGas().getGas(),
+				Math.min(getStored(), amount));
 
 		if(ret.amount > 0)
 		{
@@ -84,16 +87,17 @@ public class GasTank
 			return 0;
 		}
 
-		int toFill = Math.min(getMaxGas()-getStored(), amount.amount);
+		final int toFill = Math.min(getMaxGas() - getStored(), amount.amount);
 
 		if(doReceive)
 		{
 			if(stored == null)
 			{
-				stored = amount.copy().withAmount(getStored()+toFill);
+				stored = amount.copy().withAmount(getStored() + toFill);
 			}
-			else {
-				stored.amount = Math.min(getMaxGas(), getStored()+amount.amount);
+			else
+			{
+				stored.amount = Math.min(getMaxGas(), getStored() + amount.amount);
 			}
 		}
 
@@ -151,7 +155,7 @@ public class GasTank
 	 */
 	public int getNeeded()
 	{
-		return getMaxGas()-getStored();
+		return getMaxGas() - getStored();
 	}
 
 	/**
@@ -179,7 +183,7 @@ public class GasTank
 	{
 		return stored;
 	}
-	
+
 	/**
 	 * Gets the type of gas currently stored in this GasTank.
 	 * @return gas type contained
@@ -244,7 +248,7 @@ public class GasTank
 			return null;
 		}
 
-		GasTank tank = new GasTank();
+		final GasTank tank = new GasTank();
 		tank.read(nbtTags);
 
 		return tank;

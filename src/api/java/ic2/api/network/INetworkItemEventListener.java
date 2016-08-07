@@ -6,7 +6,8 @@ import net.minecraft.item.ItemStack;
 /**
  * Allows an item to receive network events received from the server.
  */
-public interface INetworkItemEventListener {
+public interface INetworkItemEventListener
+{
 	/**
 	 * Called when a network event is received.
 	 * 
@@ -16,4 +17,3 @@ public interface INetworkItemEventListener {
 	 */
 	void onNetworkEvent(ItemStack stack, EntityPlayer player, int event);
 }
-

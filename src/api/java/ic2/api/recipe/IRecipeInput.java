@@ -4,7 +4,8 @@ import java.util.List;
 
 import net.minecraft.item.ItemStack;
 
-public interface IRecipeInput {
+public interface IRecipeInput
+{
 	/**
 	 * Check if subject matches this recipe input, ignoring the amount.
 	 * 

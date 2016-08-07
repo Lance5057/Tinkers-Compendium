@@ -97,10 +97,12 @@ public class Shield extends ToolCore implements IShield, ISheathed, IArrowCatche
 	@Override
 	public boolean canHarvestBlock(Block block, ItemStack is)
 	{
-		for(int i = 0; i < web.length; i++)
+		for(final Material element : web)
 		{
-			if(block.getMaterial() == web[i])
+			if(block.getMaterial() == element)
+			{
 				return true;
+			}
 		}
 		return super.canHarvestBlock(block, is);
 	}
@@ -146,9 +148,13 @@ public class Shield extends ToolCore implements IShield, ISheathed, IArrowCatche
 	public int getArrowCount(ItemStack stack)
 	{
 		if(stack.hasTagCompound() && stack.getTagCompound().hasKey("arrows"))
+		{
 			return stack.getTagCompound().getShort("arrows");
+		}
 		else
+		{
 			return 0;
+		}
 	}
 
 	@Override

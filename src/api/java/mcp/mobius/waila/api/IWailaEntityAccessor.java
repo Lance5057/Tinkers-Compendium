@@ -12,13 +12,21 @@ import net.minecraft.world.World;
  * It will also return things that are unmodified by the overriding systems (like getWailaStack).
  */
 
-public interface IWailaEntityAccessor {
-	World        		 getWorld();
-	EntityPlayer 		 getPlayer();
-	Entity               getEntity();
+public interface IWailaEntityAccessor
+{
+	World getWorld();
+
+	EntityPlayer getPlayer();
+
+	Entity getEntity();
+
 	MovingObjectPosition getPosition();
-	Vec3                 getRenderingPosition();
-	NBTTagCompound       getNBTData();
-	int                  getNBTInteger(NBTTagCompound tag, String keyname);
-	double               getPartialFrame();
+
+	Vec3 getRenderingPosition();
+
+	NBTTagCompound getNBTData();
+
+	int getNBTInteger(NBTTagCompound tag, String keyname);
+
+	double getPartialFrame();
 }

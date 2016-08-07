@@ -13,7 +13,8 @@ import net.minecraft.entity.player.EntityPlayer;
 /***
  * Implement this interface on subclasses of Item to have that item work as a wrench for buildcraft
  */
-public interface IToolWrench {
+public interface IToolWrench
+{
 
 	/***
 	 * Called to ensure that the wrench can be used. To get the ItemStack that is used, check player.inventory.getCurrentItem()

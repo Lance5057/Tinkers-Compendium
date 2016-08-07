@@ -158,6 +158,7 @@ public class GuiTDGuideBook extends GuiScreen
 			default:
 				((GuiButton) buttonList.get(chapter + 3)).enabled = true;
 				chapter = button.id - 3;
+				page = 0;
 				((GuiButton) buttonList.get(chapter + 3)).enabled = false;
 				break;
 		}
@@ -412,8 +413,6 @@ public class GuiTDGuideBook extends GuiScreen
 			GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 			RenderHelper.enableGUIStandardItemLighting();
 			gui.mc.getTextureManager().bindTexture(guiLocation2);
-			final IRecipe recipe;
-
 			gui.drawTexturedModalRect(w / 2 + 7, h / 2 - 48, 157, 57, 99, 40);
 
 			itemRender.renderItemAndEffectIntoGUI(fontRendererObj, gui.mc.getTextureManager(), new ItemStack(
@@ -437,9 +436,9 @@ public class GuiTDGuideBook extends GuiScreen
 						TCRecipe.get(3), 1, TCItemCycle.get(3)), w / 2 + 11, h / 2 - 37);
 				itemRender.renderItemAndEffectIntoGUI(fontRendererObj, gui.mc.getTextureManager(), ToolBuilder.instance.buildTool(new ItemStack(
 						TCRecipe.get(0), 1, TCItemCycle.get(0)), new ItemStack(
-						TCRecipe.get(1), 1, TCItemCycle.get(1)), new ItemStack(
-						TCRecipe.get(2), 1, TCItemCycle.get(2)), new ItemStack(
-						TCRecipe.get(3), 1, TCItemCycle.get(3)), "Result"), w / 2 + 87, h / 2 - 37);
+								TCRecipe.get(1), 1, TCItemCycle.get(1)), new ItemStack(
+										TCRecipe.get(2), 1, TCItemCycle.get(2)), new ItemStack(
+												TCRecipe.get(3), 1, TCItemCycle.get(3)), "Result"), w / 2 + 87, h / 2 - 37);
 			}
 
 			GL11.glEnable(GL11.GL_BLEND);
@@ -454,8 +453,8 @@ public class GuiTDGuideBook extends GuiScreen
 		int spaceIndex = 0;
 		while(str.length() > index)
 		{
-			endIndex = index + 22;
-			if(index + 22 > str.length())
+			endIndex = index + 20;
+			if(index + 20 > str.length())
 			{
 				endIndex = str.length();
 			}

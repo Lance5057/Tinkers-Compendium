@@ -18,9 +18,9 @@ import net.minecraft.tileentity.TileEntity;
  * producing effects. Anything which is only visible inside the GUI should be synchronized through
  * the Container class associated to the GUI in Container.updateProgressBar().
  */
-public final class NetworkHelper {
+public final class NetworkHelper
+{
 	// server -> client
-
 
 	/**
 	 * Schedule a TileEntity's field to be updated to the clients in range.
@@ -53,13 +53,23 @@ public final class NetworkHelper {
 	 * @param te TileEntity to update
 	 * @param field Name of the field to update
 	 */
-	public static void updateTileEntityField(TileEntity te, String field) {
-		try {
-			if (NetworkManager_updateTileEntityField == null) NetworkManager_updateTileEntityField = Class.forName(getPackage() + ".core.network.NetworkManager").getMethod("updateTileEntityField", TileEntity.class, String.class);
-			if (instance == null) instance = getInstance();
+	public static void updateTileEntityField(TileEntity te, String field)
+	{
+		try
+		{
+			if(NetworkManager_updateTileEntityField == null)
+			{
+				NetworkManager_updateTileEntityField = Class.forName(getPackage() + ".core.network.NetworkManager").getMethod("updateTileEntityField", TileEntity.class, String.class);
+			}
+			if(instance == null)
+			{
+				instance = getInstance();
+			}
 
 			NetworkManager_updateTileEntityField.invoke(instance, te, field);
-		} catch (Exception e) {
+		}
+		catch(final Exception e)
+		{
 			throw new RuntimeException(e);
 		}
 	}
@@ -75,13 +85,23 @@ public final class NetworkHelper {
 	 * @param limitRange Limit the notification range to (currently) 20 blocks instead of the
 	 *        tracking distance if true
 	 */
-	public static void initiateTileEntityEvent(TileEntity te, int event, boolean limitRange) {
-		try {
-			if (NetworkManager_initiateTileEntityEvent == null) NetworkManager_initiateTileEntityEvent = Class.forName(getPackage() + ".core.network.NetworkManager").getMethod("initiateTileEntityEvent", TileEntity.class, Integer.TYPE, Boolean.TYPE);
-			if (instance == null) instance = getInstance();
+	public static void initiateTileEntityEvent(TileEntity te, int event, boolean limitRange)
+	{
+		try
+		{
+			if(NetworkManager_initiateTileEntityEvent == null)
+			{
+				NetworkManager_initiateTileEntityEvent = Class.forName(getPackage() + ".core.network.NetworkManager").getMethod("initiateTileEntityEvent", TileEntity.class, Integer.TYPE, Boolean.TYPE);
+			}
+			if(instance == null)
+			{
+				instance = getInstance();
+			}
 
 			NetworkManager_initiateTileEntityEvent.invoke(instance, te, event, limitRange);
-		} catch (Exception e) {
+		}
+		catch(final Exception e)
+		{
 			throw new RuntimeException(e);
 		}
 	}
@@ -100,17 +120,26 @@ public final class NetworkHelper {
 	 * @param limitRange Limit the notification range to (currently) 20 blocks instead of the
 	 *        tracking distance if true
 	 */
-	public static void initiateItemEvent(EntityPlayer player, ItemStack itemStack, int event, boolean limitRange) {
-		try {
-			if (NetworkManager_initiateItemEvent == null) NetworkManager_initiateItemEvent = Class.forName(getPackage() + ".core.network.NetworkManager").getMethod("initiateItemEvent", EntityPlayer.class, ItemStack.class, Integer.TYPE, Boolean.TYPE);
-			if (instance == null) instance = getInstance();
+	public static void initiateItemEvent(EntityPlayer player, ItemStack itemStack, int event, boolean limitRange)
+	{
+		try
+		{
+			if(NetworkManager_initiateItemEvent == null)
+			{
+				NetworkManager_initiateItemEvent = Class.forName(getPackage() + ".core.network.NetworkManager").getMethod("initiateItemEvent", EntityPlayer.class, ItemStack.class, Integer.TYPE, Boolean.TYPE);
+			}
+			if(instance == null)
+			{
+				instance = getInstance();
+			}
 
 			NetworkManager_initiateItemEvent.invoke(instance, player, itemStack, event, limitRange);
-		} catch (Exception e) {
+		}
+		catch(final Exception e)
+		{
 			throw new RuntimeException(e);
 		}
 	}
-
 
 	// client -> server
 
@@ -122,13 +151,23 @@ public final class NetworkHelper {
 	 * @param te TileEntity to notify, should implement INetworkClientTileEntityEventListener
 	 * @param event Arbitrary integer to represent the event, choosing the values is up to you
 	 */
-	public static void initiateClientTileEntityEvent(TileEntity te, int event) {
-		try {
-			if (NetworkManager_initiateClientTileEntityEvent == null) NetworkManager_initiateClientTileEntityEvent = Class.forName(getPackage() + ".core.network.NetworkManager").getMethod("initiateClientTileEntityEvent", TileEntity.class, Integer.TYPE);
-			if (instance == null) instance = getInstance();
+	public static void initiateClientTileEntityEvent(TileEntity te, int event)
+	{
+		try
+		{
+			if(NetworkManager_initiateClientTileEntityEvent == null)
+			{
+				NetworkManager_initiateClientTileEntityEvent = Class.forName(getPackage() + ".core.network.NetworkManager").getMethod("initiateClientTileEntityEvent", TileEntity.class, Integer.TYPE);
+			}
+			if(instance == null)
+			{
+				instance = getInstance();
+			}
 
 			NetworkManager_initiateClientTileEntityEvent.invoke(instance, te, event);
-		} catch (Exception e) {
+		}
+		catch(final Exception e)
+		{
 			throw new RuntimeException(e);
 		}
 	}
@@ -143,13 +182,23 @@ public final class NetworkHelper {
 	 * @param itemStack ItemStack containing the item
 	 * @param event Arbitrary integer to represent the event, choosing the values is up to you
 	 */
-	public static void initiateClientItemEvent(ItemStack itemStack, int event) {
-		try {
-			if (NetworkManager_initiateClientItemEvent == null) NetworkManager_initiateClientItemEvent = Class.forName(getPackage() + ".core.network.NetworkManager").getMethod("initiateClientItemEvent", ItemStack.class, Integer.TYPE);
-			if (instance == null) instance = getInstance();
+	public static void initiateClientItemEvent(ItemStack itemStack, int event)
+	{
+		try
+		{
+			if(NetworkManager_initiateClientItemEvent == null)
+			{
+				NetworkManager_initiateClientItemEvent = Class.forName(getPackage() + ".core.network.NetworkManager").getMethod("initiateClientItemEvent", ItemStack.class, Integer.TYPE);
+			}
+			if(instance == null)
+			{
+				instance = getInstance();
+			}
 
 			NetworkManager_initiateClientItemEvent.invoke(instance, itemStack, event);
-		} catch (Exception e) {
+		}
+		catch(final Exception e)
+		{
 			throw new RuntimeException(e);
 		}
 	}
@@ -159,11 +208,13 @@ public final class NetworkHelper {
 	 *
 	 * @return IC2 package name, if unable to be determined defaults to ic2
 	 */
-	private static String getPackage() {
-		Package pkg = NetworkHelper.class.getPackage();
+	private static String getPackage()
+	{
+		final Package pkg = NetworkHelper.class.getPackage();
 
-		if (pkg != null) {
-			String packageName = pkg.getName();
+		if(pkg != null)
+		{
+			final String packageName = pkg.getName();
 
 			return packageName.substring(0, packageName.length() - ".api.network".length());
 		}
@@ -176,19 +227,22 @@ public final class NetworkHelper {
 	 *
 	 * @return NetworkManager instance
 	 */
-	private static Object getInstance() {
-		try {
+	private static Object getInstance()
+	{
+		try
+		{
 			return Class.forName(getPackage() + ".core.util.SideGateway").getMethod("get").invoke(Class.forName(getPackage() + ".core.IC2").getDeclaredField("network").get(null));
-		} catch (Throwable e) {
+		}
+		catch(final Throwable e)
+		{
 			throw new RuntimeException(e);
 		}
 	}
 
-	private static Object instance;
-	private static Method NetworkManager_updateTileEntityField;
-	private static Method NetworkManager_initiateTileEntityEvent;
-	private static Method NetworkManager_initiateItemEvent;
-	private static Method NetworkManager_initiateClientTileEntityEvent;
-	private static Method NetworkManager_initiateClientItemEvent;
+	private static Object	instance;
+	private static Method	NetworkManager_updateTileEntityField;
+	private static Method	NetworkManager_initiateTileEntityEvent;
+	private static Method	NetworkManager_initiateItemEvent;
+	private static Method	NetworkManager_initiateClientTileEntityEvent;
+	private static Method	NetworkManager_initiateClientItemEvent;
 }
-

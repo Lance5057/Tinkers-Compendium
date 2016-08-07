@@ -1,13 +1,9 @@
 package lance5057.tDefense.core.tools.modifiers.Thaumcraft;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import tconstruct.modifiers.tools.ModBoolean;
 import thaumcraft.api.wands.WandCap;
-import thaumcraft.common.items.wands.ItemWandCap;
 
 public class modifierRepairVis extends ModBoolean
 {
@@ -26,14 +22,14 @@ public class modifierRepairVis extends ModBoolean
 	public boolean matches(ItemStack[] recipe, ItemStack input)
 	{
 		cap = null;
-		for(int i = 0; i < recipe.length; i++)
+		for(final ItemStack element : recipe)
 		{
-			if(recipe[i] != null)
+			if(element != null)
 			{
-				for(WandCap cp : WandCap.caps.values())
+				for(final WandCap cp : WandCap.caps.values())
 				{
-					ItemStack test = cp.getItem();
-					if(recipe[i].getItem() == test.getItem() && recipe[i].getItemDamage() == test.getItemDamage())
+					final ItemStack test = cp.getItem();
+					if(element.getItem() == test.getItem() && element.getItemDamage() == test.getItemDamage())
 					{
 						cap = cp;
 						break;
@@ -43,23 +39,27 @@ public class modifierRepairVis extends ModBoolean
 		}
 
 		if(!canModify(input, recipe))
+		{
 			return false;
+		}
 		if(cap == null)
+		{
 			return false;
+		}
 		return true;
 	}
 
 	@Override
 	protected boolean canModify(ItemStack tool, ItemStack[] input)
 	{
-		NBTTagCompound tags = tool.getTagCompound().getCompoundTag("InfiTool");
+		final NBTTagCompound tags = tool.getTagCompound().getCompoundTag("InfiTool");
 		return tags.getInteger("Modifiers") > 0 && !tags.getBoolean(key) && cap != null; //Will fail if the modifier is false or the tag doesn't exist
 	}
 
 	@Override
 	public void modify(ItemStack[] input, ItemStack tool)
 	{
-		NBTTagCompound tags = tool.getTagCompound().getCompoundTag("InfiTool");
+		final NBTTagCompound tags = tool.getTagCompound().getCompoundTag("InfiTool");
 
 		tags.setFloat(key, cap.getBaseCostModifier());
 
@@ -67,7 +67,7 @@ public class modifierRepairVis extends ModBoolean
 		modifiers -= 1;
 		tags.setInteger("Modifiers", modifiers);
 
-		String mat = cap.getTag().substring(0, 1).toUpperCase() + cap.getTag().substring(1) + " ";
+		final String mat = cap.getTag().substring(0, 1).toUpperCase() + cap.getTag().substring(1) + " ";
 		addToolTip(tool, color + mat + tooltipName, color + mat + tooltipName + " (" + (int) (cap.getBaseCostModifier() * 100) + "%)");
 	}
 }

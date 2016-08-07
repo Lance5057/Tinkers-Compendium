@@ -31,7 +31,7 @@ public class MetaModifierItem extends Item
 	{
 		for(int i = 0; i < metaAmount; i++)
 		{
-			icons[i] = reg.registerIcon(Reference.MOD_ID + ":item_" + names[i]);
+			icons[i] = reg.registerIcon(Reference.MOD_ID + ":item_" + names[i].toLowerCase());
 		}
 	}
 

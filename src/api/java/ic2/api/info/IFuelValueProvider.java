@@ -2,7 +2,8 @@ package ic2.api.info;
 
 import net.minecraft.item.ItemStack;
 
-public interface IFuelValueProvider {
+public interface IFuelValueProvider
+{
 	/**
 	 * Determine the fuel value for a single item in the supplied stack.
 	 * The information currently applies to Generators and the Iron Furnace.

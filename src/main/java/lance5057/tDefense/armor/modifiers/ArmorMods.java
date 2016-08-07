@@ -79,34 +79,34 @@ public class ArmorMods extends ModifiersBase
 	{
 		GameRegistry.addShapedRecipe(new ItemStack(modItems, 1, 0), new Object[] {"-c-", "ses", "-s-", 'c', new ItemStack(
 				Items.coal, 1, 1), 's', new ItemStack(Blocks.sapling, 1), 'e', new ItemStack(
-				modItems, 1, 1)});
+						modItems, 1, 1)});
 		GameRegistry.addShapedRecipe(new ItemStack(modItems, 1, 1), new Object[] {"gsg", "lil", "gig", 'g', new ItemStack(
 				Items.gold_nugget, 1, 0), 's', new ItemStack(Items.slime_ball,
-				1, 0), 'l', new ItemStack(Items.dye, 1, 4), 'i', new ItemStack(
-				Items.iron_ingot, 1, 0)});
+						1, 0), 'l', new ItemStack(Items.dye, 1, 4), 'i', new ItemStack(
+								Items.iron_ingot, 1, 0)});
 		GameRegistry.addShapedRecipe(new ItemStack(modItems, 1, 2), new Object[] {"-s-", "eie", "-d-", 's', new ItemStack(
 				Items.slime_ball, 1, 0), 'e', new ItemStack(modItems, 1, 1), 'i', new ItemStack(
-				TinkersDefense.partArmorplate, 1, 2), 'd', new ItemStack(
-				Items.dye, 1, 4)});
+						TinkersDefense.partArmorplate, 1, 2), 'd', new ItemStack(
+								Items.dye, 1, 4)});
 		GameRegistry.addShapedRecipe(new ItemStack(modItems, 1, 3), new Object[] {"-s-", "eie", "-d-", 's', new ItemStack(
 				Items.potionitem, 1, 8262), 'e', new ItemStack(
-				Blocks.glass_pane, 1, 0), 'i', new ItemStack(Items.iron_ingot,
-				1, 0), 'd', new ItemStack(Items.dye, 1, 2)});
+						Blocks.glass_pane, 1, 0), 'i', new ItemStack(Items.iron_ingot,
+								1, 0), 'd', new ItemStack(Items.dye, 1, 2)});
 
 		GameRegistry.addShapedRecipe(new ItemStack(modItems, 1, 4), new Object[] {"ggg", "ala", "ggg", 'g', new ItemStack(
 				Blocks.glowstone, 1, 0), 'a', new ItemStack(
-				Items.glowstone_dust, 1, 0), 'l', TConstructRegistry.getItemStack("lavaCrystal")});
+						Items.glowstone_dust, 1, 0), 'l', TConstructRegistry.getItemStack("lavaCrystal")});
 		GameRegistry.addShapedRecipe(new ItemStack(modItems, 1, 5), new Object[] {"lol", "oao", "lol", 'o', new ItemStack(
 				Blocks.obsidian, 1, 0), 'a', TConstructRegistry.getItemStack("ingotArdite"), 'l', TConstructRegistry.getItemStack("lavaCrystal")});
 		GameRegistry.addShapedRecipe(new ItemStack(modItems, 1, 7), new Object[] {"fgf", 'g', new ItemStack(
 				Items.gold_nugget, 1, 0), 'f', new ItemStack(Items.feather, 1,
-				0)});
+						0)});
 		GameRegistry.addShapedRecipe(new ItemStack(modItems, 1, 6), new Object[] {"ili", "lcl", "ili", 'l', new ItemStack(
 				Blocks.lapis_block, 1, 0), 'i', new ItemStack(Blocks.ice, 1, 0), 'c', TConstructRegistry.getItemStack("ingotCobalt")});
 		GameRegistry.addShapedRecipe(new ItemStack(modItems, 1, 8), new Object[] {"-b-", "rlr", "-s-", 'b', new ItemStack(
 				Items.leather_boots, 1, 0), 'l', new ItemStack(Items.leather,
-				1, 0), 'r', new ItemStack(TinkerTools.toolRod, 1, 2), 's', new ItemStack(
-				Items.slime_ball, 1, 0)});
+						1, 0), 'r', new ItemStack(TinkerTools.toolRod, 1, 2), 's', new ItemStack(
+								Items.slime_ball, 1, 0)});
 
 		if(TDIntegration.thaumcraft)
 		{
@@ -164,7 +164,7 @@ public class ArmorMods extends ModifiersBase
 		ModifyBuilder.registerModifier(new modifierProtection(
 				new ItemStack[] {new ItemStack(TinkersDefense.partArmorplate,
 						1, 2)}, TinkersDefense.config.ArmorProtectionID, 1,
-				EnumChatFormatting.DARK_GRAY.toString(), "Protection"));
+						EnumChatFormatting.DARK_GRAY.toString(), "Protection"));
 		ModifyBuilder.registerModifier(new modifierProtection(
 				new ItemStack[] {new ItemStack(Items.magma_cream, 1)},
 				TinkersDefense.config.ArmorFireProtectionID, 1,

@@ -117,7 +117,9 @@ public class TinkerWrench extends ToolCore implements IToolWrench, IToolHammer
 		final NBTTagCompound tags = player.inventory.getCurrentItem().getTagCompound().getCompoundTag("InfiTool");
 
 		if(!tags.getBoolean("Broken"))
+		{
 			return true;
+		}
 		return false;
 	}
 

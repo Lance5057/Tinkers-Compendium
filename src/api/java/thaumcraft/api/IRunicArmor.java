@@ -11,12 +11,12 @@ import net.minecraft.item.ItemStack;
  *
  */
 
-public interface IRunicArmor {
-	
+public interface IRunicArmor
+{
+
 	/**
 	 * returns how much charge this item can provide. This is the base shielding value - any hardening is stored and calculated internally. 
 	 */
 	public int getRunicCharge(ItemStack itemstack);
-	
 
 }

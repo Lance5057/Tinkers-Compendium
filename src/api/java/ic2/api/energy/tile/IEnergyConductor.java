@@ -6,7 +6,8 @@ package ic2.api.energy.tile;
  * 
  * See ic2/api/energy/usage.txt for an overall description of the energy net api.
  */
-public interface IEnergyConductor extends IEnergyAcceptor, IEnergyEmitter {
+public interface IEnergyConductor extends IEnergyAcceptor, IEnergyEmitter
+{
 	/**
 	 * Energy loss for the conductor in EU per block.
 	 * 
@@ -50,4 +51,3 @@ public interface IEnergyConductor extends IEnergyAcceptor, IEnergyEmitter {
 	 */
 	void removeConductor();
 }
-

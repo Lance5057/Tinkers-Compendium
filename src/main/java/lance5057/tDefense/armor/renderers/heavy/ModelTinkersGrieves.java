@@ -188,6 +188,17 @@ public class ModelTinkersGrieves extends ArmorRenderer
 		setRotateAngle(CenterBackR, 0.08726646259971647F, 0.0F, 0.0F);
 		bipedRightLeg.addChild(CenterBackR);
 
+		SecBeltL.isHidden = true;
+		SecBeltR.isHidden = true;
+		CenterBackL.isHidden = true;
+		CenterBackR.isHidden = true;
+		CenterFrontL.isHidden = true;
+		CenterFrontR.isHidden = true;
+		LeftBackL.isHidden = true;
+		LeftFrontL.isHidden = true;
+		RightBackL.isHidden = true;
+		RightFrontL.isHidden = true;
+
 		init();
 	}
 

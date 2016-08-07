@@ -1,10 +1,10 @@
 package modwarriors.notenoughkeys.api;
 
+import net.minecraft.client.settings.KeyBinding;
 import cpw.mods.fml.common.eventhandler.Cancelable;
 import cpw.mods.fml.common.eventhandler.Event;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.client.settings.KeyBinding;
 
 /**
  * Called when a keybinding is triggered with the passed with valid modifiers
@@ -13,16 +13,18 @@ import net.minecraft.client.settings.KeyBinding;
  */
 @SideOnly(Side.CLIENT)
 @Cancelable
-public class KeyBindingPressedEvent extends Event {
+public class KeyBindingPressedEvent extends Event
+{
 
 	/**
 	 * The KeyBinding being triggered
 	 */
-	public KeyBinding keyBinding = null;
+	public KeyBinding	keyBinding	= null;
 	/**
 	 * Tells whether a modifier was required AND was down when triggered
 	 */
-	public boolean shiftRequired = false, ctrlRequired = false, altRequired = false;
+	public boolean		shiftRequired	= false, ctrlRequired = false,
+			altRequired = false;
 
 	/**
 	 * Called with the passed keyBinding and modifiers.
@@ -31,12 +33,13 @@ public class KeyBindingPressedEvent extends Event {
 	 * @param keyBinding The KeyBinding being triggered. Stores the key's description and keycode
 	 * @param modifiers  The modifiers (SHIFT, CTRL, ALT) that determine when a compatible key is pressed
 	 */
-	public KeyBindingPressedEvent(KeyBinding keyBinding, boolean[] modifiers) {
+	public KeyBindingPressedEvent(KeyBinding keyBinding, boolean[] modifiers)
+	{
 		super();
 		this.keyBinding = keyBinding;
-		this.shiftRequired = modifiers[0];
-		this.ctrlRequired = modifiers[1];
-		this.altRequired = modifiers[2];
+		shiftRequired = modifiers[0];
+		ctrlRequired = modifiers[1];
+		altRequired = modifiers[2];
 
 	}
 

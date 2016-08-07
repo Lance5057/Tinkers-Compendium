@@ -7,7 +7,8 @@ import net.minecraft.item.ItemStack;
  * 
  * @author Richard
  */
-public interface ICraftingRecipeManager {
+public interface ICraftingRecipeManager
+{
 	/**
 	 * Adds a shaped crafting recipe.
 	 * 
@@ -15,7 +16,7 @@ public interface ICraftingRecipeManager {
 	 * @param input Recipe input format
 	 */
 	public void addRecipe(ItemStack output, Object... input);
-	
+
 	/**
 	 * Adds a shapeless crafting recipe.
 	 * 

@@ -8,10 +8,10 @@ package mekanism.api.infuse;
 public class InfuseObject
 {
 	/** The type of infuse this item stores */
-	public InfuseType type;
+	public InfuseType	type;
 
 	/** How much infuse this item stores */
-	public int stored;
+	public int			stored;
 
 	public InfuseObject(InfuseType infusion, int i)
 	{

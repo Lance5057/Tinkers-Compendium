@@ -1,6 +1,6 @@
 package ic2.api.item;
 
-
-public interface IBlockCuttingBlade {
+public interface IBlockCuttingBlade
+{
 	int gethardness();
 }

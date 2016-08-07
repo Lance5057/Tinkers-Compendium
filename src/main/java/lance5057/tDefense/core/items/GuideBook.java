@@ -11,15 +11,16 @@ public class GuideBook extends Item
 {
 	public GuideBook()
 	{
-		this.setCreativeTab(TinkersDefense.tabName);
-		this.setMaxStackSize(1);
-		this.setUnlocalizedName("guidebook");
-		this.setTextureName(Reference.MOD_ID + ":tdbook");
+		setCreativeTab(TinkersDefense.tabName);
+		setMaxStackSize(1);
+		setUnlocalizedName("guidebook");
+		setTextureName(Reference.MOD_ID + ":tdbook");
 	}
-	
+
+	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
-    {
-		player.openGui(TinkersDefense.instance, TinkersDefense.GUI_GUIDEBOOK, player.worldObj, (int)player.posX, (int)player.posY, (int)player.posZ);
-        return stack;
-    }
+	{
+		player.openGui(TinkersDefense.instance, TinkersDefense.GUI_GUIDEBOOK, player.worldObj, (int) player.posX, (int) player.posY, (int) player.posZ);
+		return stack;
+	}
 }

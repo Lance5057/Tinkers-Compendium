@@ -40,7 +40,7 @@ public class ModelTinkersChausses extends ArmorRenderer
 		bipedLeftLeg.setRotationPoint(1.9F, 12.0F + 0, 0.0F);
 
 		HipGuardR = new ModelRenderer(this, "Hip Guard Right");
-		HipGuardR.setTextureOffset(0, 49);
+		HipGuardR.setTextureOffset(10, 37);
 		HipGuardR.setRotationPoint(0f, 0f, 0f);
 		HipGuardR.addBox(-2.5F, 0.0F, -2.6F, 4, 6, 5, 0.1F);
 		setRotateAngle(HipGuardR, 0.0F, 0.0F, 0.17453292519943295F);
@@ -55,19 +55,19 @@ public class ModelTinkersChausses extends ArmorRenderer
 		FrontR = new ModelRenderer(this, "Front Right");
 		FrontR.setTextureOffset(0, 40);
 		FrontR.setRotationPoint(1.9f, 0f, -0.1f);
-		FrontR.addBox(-2.0F, 0.0F, -2.4F, 4, 7, 1, 0.0F);
+		FrontR.addBox(-2.0F, 0.0F, -2.6F, 4, 7, 1, 0.0F);
 		setRotateAngle(FrontR, -0.1F, 0.0F, 0.0f);
 		bipedRightLeg.addChild(FrontR);
 
 		FrontL = new ModelRenderer(this, "Front Left");
 		FrontL.setTextureOffset(0, 40);
 		FrontL.setRotationPoint(-1.9f, 0f, -0.1f);
-		FrontL.addBox(-2.0F, 0.0F, -2.4F, 4, 7, 1, 0.0F);
+		FrontL.addBox(-2.0F, 0.0F, -2.6F, 4, 7, 1, 0.0F);
 		setRotateAngle(FrontL, -0.1F, 0.0F, 0.0f);
 		bipedLeftLeg.addChild(FrontL);
 
 		HipGuardL_1 = new ModelRenderer(this, "Hip Guard Left 2");
-		HipGuardL_1.setTextureOffset(10, 37);
+		HipGuardL_1.setTextureOffset(0, 49);
 		HipGuardL_1.mirror = true;
 		HipGuardL_1.setRotationPoint(0f, 0f, 0f);
 		HipGuardL_1.addBox(-1.5F, 0.0F, -2.6F, 4, 10, 5, 0.0F);
@@ -90,7 +90,7 @@ public class ModelTinkersChausses extends ArmorRenderer
 		bipedLeftLeg.addChild(BeltL);
 
 		HipGuardR_1 = new ModelRenderer(this, "Hip Guard Right 2");
-		HipGuardR_1.setTextureOffset(10, 37);
+		HipGuardR_1.setTextureOffset(0, 49);
 		HipGuardR_1.setRotationPoint(0f, 0f, 0f);
 		HipGuardR_1.addBox(-2.5F, 0.0F, -2.6F, 4, 10, 5, 0.0F);
 		setRotateAngle(HipGuardR_1, 0.0F, 0.0F, 0.08726646259971647F);
@@ -99,24 +99,31 @@ public class ModelTinkersChausses extends ArmorRenderer
 		BackR = new ModelRenderer(this, "Back Right");
 		BackR.setTextureOffset(0, 40);
 		BackR.setRotationPoint(1.9f, 0f, 0f);
-		BackR.addBox(-2.0F, 0.0F, 1.2F, 4, 7, 1, 0.0F);
+		BackR.addBox(-2.0F, 0.0F, 1.5F, 4, 7, 1, 0.0F);
 		setRotateAngle(BackR, 0.1F, 0.0F, 0.0f);
 		bipedRightLeg.addChild(BackR);
 
 		BackL = new ModelRenderer(this, "Back Light");
 		BackL.setTextureOffset(0, 40);
 		BackL.setRotationPoint(-1.9f, 0f, 0f);
-		BackL.addBox(-2.0F, 0.0F, 1.2F, 4, 7, 1, 0.0F);
+		BackL.addBox(-2.0F, 0.0F, 1.5F, 4, 7, 1, 0.0F);
 		setRotateAngle(BackL, 0.1F, 0.0F, 0.0f);
 		bipedLeftLeg.addChild(BackL);
 
 		HipGuardL = new ModelRenderer(this, "Hip Guard Left");
-		HipGuardL.setTextureOffset(0, 48);
+		HipGuardL.setTextureOffset(10, 37);
 		HipGuardL.mirror = true;
 		HipGuardL.setRotationPoint(0f, 0f, 0f);
 		HipGuardL.addBox(-1.5F, 0.0F, -2.6F, 4, 6, 5, 0.1F);
 		setRotateAngle(HipGuardL, 0.0F, 0.0F, -0.17453292519943295F);
 		bipedLeftLeg.addChild(HipGuardL);
+
+		BeltL.isHidden = true;
+		BeltR.isHidden = true;
+		HipGuardL_1.isHidden = true;
+		HipGuardR_1.isHidden = true;
+
+		init();
 	}
 
 	/**

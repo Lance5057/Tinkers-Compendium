@@ -1,11 +1,11 @@
 package powercrystals.minefactoryreloaded.api;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
+
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.event.FMLInterModComms.IMCMessage;
-
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Method;
 
 /**
  * @author PowerCrystals
@@ -94,18 +94,19 @@ public class FactoryRegistry
 	 */
 	public static void sendMessage(String message, Object value)
 	{
-		if (!Loader.isModLoaded("MineFactoryReloaded") ||
-				Loader.instance().activeModContainer() == null)
+		if(!Loader.isModLoaded("MineFactoryReloaded") || Loader.instance().activeModContainer() == null)
+		{
 			return;
+		}
 		try
 		{
-			Method m = FMLInterModComms.class.getDeclaredMethod("enqueueMessage", Object.class, String.class, IMCMessage.class);
+			final Method m = FMLInterModComms.class.getDeclaredMethod("enqueueMessage", Object.class, String.class, IMCMessage.class);
 			m.setAccessible(true);
-			Constructor<IMCMessage> c = IMCMessage.class.getDeclaredConstructor(String.class, Object.class);
+			final Constructor<IMCMessage> c = IMCMessage.class.getDeclaredConstructor(String.class, Object.class);
 			c.setAccessible(true);
 			m.invoke(null, Loader.instance().activeModContainer(), "MineFactoryReloaded", c.newInstance(message, value));
 		}
-		catch(Exception e)
+		catch(final Exception e)
 		{
 			e.printStackTrace();
 		}

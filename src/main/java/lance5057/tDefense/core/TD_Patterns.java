@@ -16,14 +16,16 @@ public class TD_Patterns extends Pattern
 	{
 		super(patternName, getPatternNames(patternName, patternType), "patterns/");
 
-		this.setUnlocalizedName(Reference.prefix(name));
+		setUnlocalizedName(Reference.prefix(name));
 	}
 
 	public static String[] getPatternNames(String[] patternName, String partType)
 	{
-		String[] names = new String[patternName.length];
+		final String[] names = new String[patternName.length];
 		for(int i = 0; i < patternName.length; i++)
+		{
 			names[i] = partType + patternName[i];
+		}
 		return names;
 	}
 

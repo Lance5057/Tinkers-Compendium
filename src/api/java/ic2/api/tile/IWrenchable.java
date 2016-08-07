@@ -6,7 +6,8 @@ import net.minecraft.item.ItemStack;
 /**
  * Allows a tile entity to make use of the wrench's removal and rotation functions.
  */
-public interface IWrenchable {
+public interface IWrenchable
+{
 	/**
 	 * Determine if the wrench can be used to set the block's facing.
 	 * Called before wrenchCanRemove().
@@ -58,4 +59,3 @@ public interface IWrenchable {
 	 */
 	ItemStack getWrenchDrop(EntityPlayer entityPlayer);
 }
-

@@ -7,7 +7,7 @@ import net.minecraftforge.fluids.Fluid;
 
 public class GasRegistry
 {
-	private static ArrayList<Gas> registeredGasses = new ArrayList<Gas>();
+	private static ArrayList<Gas>	registeredGasses	= new ArrayList<Gas>();
 
 	/**
 	 * Register a new gas into GasRegistry.
@@ -48,7 +48,7 @@ public class GasRegistry
 	 */
 	public static Gas getGas(Fluid f)
 	{
-		for(Gas gas : getRegisteredGasses())
+		for(final Gas gas : getRegisteredGasses())
 		{
 			if(gas.hasFluid() && gas.getFluid() == f)
 			{
@@ -75,7 +75,7 @@ public class GasRegistry
 	 */
 	public static List<Gas> getRegisteredGasses()
 	{
-		return (List<Gas>)registeredGasses.clone();
+		return (List<Gas>) registeredGasses.clone();
 	}
 
 	/**
@@ -85,7 +85,7 @@ public class GasRegistry
 	 */
 	public static Gas getGas(String name)
 	{
-		for(Gas gas : registeredGasses)
+		for(final Gas gas : registeredGasses)
 		{
 			if(gas.getName().toLowerCase().equals(name.toLowerCase()))
 			{

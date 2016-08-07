@@ -34,6 +34,22 @@ public class ModelTinkersHauberk extends ArmorRenderer
 		textureWidth = 64;
 		textureHeight = 64;
 
+		bipedBody = new ModelRenderer(this, "Body");
+		bipedBody.setTextureOffset(16, 16);
+		bipedBody.addBox(-4.0F, 0.0F, -2.0F, 8, 12, 4, 0.05f);
+		bipedBody.setRotationPoint(0.0F, 0.0F + 0, 0.0F);
+
+		bipedRightArm = new ModelRenderer(this, "Right Arm");
+		bipedRightArm.setTextureOffset(40, 16);
+		bipedRightArm.addBox(-3.0F, -2.0F, -2.0F, 4, 12, 4, 0.05f);
+		bipedRightArm.setRotationPoint(-5.0F, 2.0F + 0, 0.0F);
+
+		bipedLeftArm = new ModelRenderer(this, "Left Arm");
+		bipedLeftArm.setTextureOffset(40, 16);
+		bipedLeftArm.mirror = true;
+		bipedLeftArm.addBox(-1.0F, -2.0F, -2.0F, 4, 12, 4, 0.05f);
+		bipedLeftArm.setRotationPoint(5.0F, 2.0F + 0, 0.0F);
+
 		ChestBelt_1 = new ModelRenderer(this, "ChestBelt_1");
 		ChestBelt_1.setTextureOffset(0, 57);
 		ChestBelt_1.setRotationPoint(0.0F, 0.0F, 0.0F);
@@ -156,6 +172,16 @@ public class ModelTinkersHauberk extends ArmorRenderer
 		ChestBelt.setRotationPoint(0.0F, 0.0F, 0.0F);
 		ChestBelt.addBox(-4.5F, 3.0F, -2.5F, 9, 2, 5, -0.19F);
 		bipedBody.addChild(ChestBelt);
+
+		//ChestBelt.isHidden = true;
+		ChestBelt_1.isHidden = true;
+		ChestBelt_2.isHidden = true;
+		ChestBeltL.isHidden = true;
+		ChestBeltL_1.isHidden = true;
+		ChestBeltR.isHidden = true;
+		ChestBeltR_1.isHidden = true;
+		PauldronFlairL.isHidden = true;
+		PauldronFlairR.isHidden = true;
 
 		init();
 	}

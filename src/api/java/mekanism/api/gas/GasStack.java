@@ -9,9 +9,9 @@ import net.minecraft.nbt.NBTTagCompound;
  */
 public class GasStack
 {
-	private Gas type;
+	private Gas	type;
 
-	public int amount;
+	public int	amount;
 
 	/**
 	 * Creates a new GasStack with a defined gas ID and quantity.
@@ -35,7 +35,9 @@ public class GasStack
 		amount = quantity;
 	}
 
-	private GasStack() {}
+	private GasStack()
+	{
+	}
 
 	/**
 	 * Gets the Gas type of this GasStack.
@@ -45,11 +47,11 @@ public class GasStack
 	{
 		return type;
 	}
-	
+
 	public GasStack withAmount(int newAmount)
 	{
 		amount = newAmount;
-		
+
 		return this;
 	}
 
@@ -88,7 +90,7 @@ public class GasStack
 			return null;
 		}
 
-		GasStack stack = new GasStack();
+		final GasStack stack = new GasStack();
 		stack.read(nbtTags);
 
 		if(stack.getGas() == null || stack.amount <= 0)

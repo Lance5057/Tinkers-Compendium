@@ -6,7 +6,6 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
-
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.ModContainer;
 import cpw.mods.fml.relauncher.Side;
@@ -17,8 +16,10 @@ import cpw.mods.fml.relauncher.SideOnly;
  *
  * Any crop extending this can be registered using registerCrop to be added into the game.
  */
-public abstract class CropCard {
-	public CropCard() {
+public abstract class CropCard
+{
+	public CropCard()
+	{
 		modId = getModId(); // initialize mod id while we should be in the real owner's init event
 	}
 
@@ -46,7 +47,8 @@ public abstract class CropCard {
 	 *
 	 * @return Mod id.
 	 */
-	public String owner() { // TODO: make abstract
+	public String owner()
+	{ // TODO: make abstract
 		return modId;
 	}
 
@@ -59,7 +61,8 @@ public abstract class CropCard {
 	 *
 	 * @return Unlocalized name.
 	 */
-	public String displayName() {
+	public String displayName()
+	{
 		return name(); // return the raw name for backwards compatibility
 	}
 
@@ -68,7 +71,8 @@ public abstract class CropCard {
 	 *
 	 * @return Your name
 	 */
-	public String discoveredBy() {
+	public String discoveredBy()
+	{
 		return "unknown";
 	}
 
@@ -79,22 +83,37 @@ public abstract class CropCard {
 	 * @param i line to get, starting from 0
 	 * @return The line
 	 */
-	public String desc(int i) {
-		String[] att = attributes();
+	public String desc(int i)
+	{
+		final String[] att = attributes();
 
-		if (att == null || att.length == 0) return "";
+		if(att == null || att.length == 0)
+		{
+			return "";
+		}
 
-		if (i == 0) {
+		if(i == 0)
+		{
 			String s = att[0];
-			if (att.length >= 2) {
-				s+=", "+att[1];
-				if (att.length >= 3) s+=",";
+			if(att.length >= 2)
+			{
+				s += ", " + att[1];
+				if(att.length >= 3)
+				{
+					s += ",";
+				}
 			}
 			return s;
 		}
-		if (att.length < 3) return "";
+		if(att.length < 3)
+		{
+			return "";
+		}
 		String s = att[2];
-		if (att.length >= 4) s+=", "+att[3];
+		if(att.length >= 4)
+		{
+			s += ", " + att[3];
+		}
 		return s;
 	}
 
@@ -103,7 +122,8 @@ public abstract class CropCard {
 	 * @param crop reference to ICropTile
 	 * @return roots lengt use in isBlockBelow
 	 */
-	public int getrootslength(ICropTile crop) { // TODO: camel case
+	public int getrootslength(ICropTile crop)
+	{ // TODO: camel case
 		return 1;
 	}
 
@@ -155,12 +175,14 @@ public abstract class CropCard {
 	 * ic2:crop/*, which will then read assets/yourmod/textures/blocks/crop/*.png.
 	 */
 	@SideOnly(Side.CLIENT)
-	public void registerSprites(IIconRegister iconRegister) {
+	public void registerSprites(IIconRegister iconRegister)
+	{
 		textures = new IIcon[maxSize()];
 
-		for (int i = 1; i <= textures.length; i++) {
+		for(int i = 1; i <= textures.length; i++)
+		{
 			// ic2:crop/blockCrop.NAME.n is the legacy name for backwards compatiblity
-			textures[i - 1] = iconRegister.registerIcon("ic2:crop/blockCrop."+name()+"."+i);
+			textures[i - 1] = iconRegister.registerIcon("ic2:crop/blockCrop." + name() + "." + i);
 		}
 	}
 
@@ -171,8 +193,12 @@ public abstract class CropCard {
 	 * @return 0-255, representing the sprite index on the crop's spritesheet.
 	 */
 	@SideOnly(Side.CLIENT)
-	public IIcon getSprite(ICropTile crop) {
-		if (crop.getSize() <= 0 || crop.getSize() > textures.length) return null;
+	public IIcon getSprite(ICropTile crop)
+	{
+		if(crop.getSize() <= 0 || crop.getSize() > textures.length)
+		{
+			return null;
+		}
 
 		return textures[crop.getSize() - 1];
 	}
@@ -181,7 +207,8 @@ public abstract class CropCard {
 	 * Amount of growth points needed to increase the plant's size.
 	 * Default is 200 * tier.
 	 */
-	public int growthDuration(ICropTile crop) {
+	public int growthDuration(ICropTile crop)
+	{
 		return tier() * 200;
 	}
 
@@ -214,7 +241,8 @@ public abstract class CropCard {
 	 * @param air air quality, influences by open gardens and less crops surrounding this one
 	 * @return 0-30
 	 */
-	public int weightInfluences(ICropTile crop, float humidity, float nutrients, float air) {
+	public int weightInfluences(ICropTile crop, float humidity, float nutrients, float air)
+	{
 		return (int) (humidity + nutrients + air);
 	}
 
@@ -224,10 +252,10 @@ public abstract class CropCard {
 	 *
 	 * @param crop crop to crossbreed with
 	 */
-	public boolean canCross(ICropTile crop) {
+	public boolean canCross(ICropTile crop)
+	{
 		return crop.getSize() >= 3;
 	}
-
 
 	/**
 	 * Called when the plant is rightclicked by a player.
@@ -239,7 +267,8 @@ public abstract class CropCard {
 	 * @param player player rightclicking the crop
 	 * @return Whether the plant has changed
 	 */
-	public boolean rightclick(ICropTile crop, EntityPlayer player) {
+	public boolean rightclick(ICropTile crop, EntityPlayer player)
+	{
 		return crop.harvest(true);
 	}
 
@@ -266,7 +295,8 @@ public abstract class CropCard {
 	 *
 	 * @return Chance to drop the gains
 	 */
-	public float dropGainChance() { // TODO: change to double
+	public float dropGainChance()
+	{ // TODO: change to double
 		return (float) Math.pow(0.95, tier());
 	}
 
@@ -285,8 +315,10 @@ public abstract class CropCard {
 	 * @param crop reference to ICropTile
 	 * @return Plant size after harvesting
 	 */
-	public byte getSizeAfterHarvest(ICropTile crop) {return 1;} // TODO: change to int
-
+	public byte getSizeAfterHarvest(ICropTile crop)
+	{
+		return 1;
+	} // TODO: change to int
 
 	/**
 	 * Called when the plant is left clicked by a player.
@@ -298,7 +330,8 @@ public abstract class CropCard {
 	 * @param player player left clicked the crop
 	 * @return Whether the plant has changed
 	 */
-	public boolean leftclick(ICropTile crop, EntityPlayer player) { // TODO: camel case
+	public boolean leftclick(ICropTile crop, EntityPlayer player)
+	{ // TODO: camel case
 		return crop.pick(true);
 	}
 
@@ -309,11 +342,21 @@ public abstract class CropCard {
 	 * @param crop reference to ICropTile
 	 * @return Chance to drop the seeds
 	 */
-	public float dropSeedChance(ICropTile crop) {
-		if (crop.getSize() == 1) return 0;
+	public float dropSeedChance(ICropTile crop)
+	{
+		if(crop.getSize() == 1)
+		{
+			return 0;
+		}
 		float base = 0.5F;
-		if (crop.getSize() == 2) base/=2F;
-		for (int i = 0; i < tier(); i++) {base*=0.8;}
+		if(crop.getSize() == 2)
+		{
+			base /= 2F;
+		}
+		for(int i = 0; i < tier(); i++)
+		{
+			base *= 0.8;
+		}
 		return base;
 	}
 
@@ -325,7 +368,8 @@ public abstract class CropCard {
 	 * @param crop reference to ICropTile
 	 * @return Seeds
 	 */
-	public ItemStack getSeeds(ICropTile crop) {
+	public ItemStack getSeeds(ICropTile crop)
+	{
 		return crop.generateSeeds(crop.getCrop(), crop.getGrowth(), crop.getGain(), crop.getResistance(), crop.getScanLevel());
 	}
 
@@ -334,7 +378,8 @@ public abstract class CropCard {
 	 *
 	 * @param crop reference to ICropTile
 	 */
-	public void onNeighbourChange(ICropTile crop) {
+	public void onNeighbourChange(ICropTile crop)
+	{
 		//
 	}
 
@@ -343,14 +388,18 @@ public abstract class CropCard {
 	 *
 	 * @return Whether the crop should emit redstone
 	 */
-	public int emitRedstone(ICropTile crop) {return 0;}
+	public int emitRedstone(ICropTile crop)
+	{
+		return 0;
+	}
 
 	/**
 	 * Called when the crop is destroyed.
 	 *
 	 * @param crop reference to ICropTile
 	 */
-	public void onBlockDestroyed(ICropTile crop) {
+	public void onBlockDestroyed(ICropTile crop)
+	{
 		//
 	}
 
@@ -360,7 +409,8 @@ public abstract class CropCard {
 	 * @param crop reference to ICropTile
 	 * @return Light value emitted
 	 */
-	public int getEmittedLight(ICropTile crop) {
+	public int getEmittedLight(ICropTile crop)
+	{
 		return 0;
 	}
 
@@ -371,14 +421,15 @@ public abstract class CropCard {
 	 * @param entity entity colliding
 	 * @return Whether trampling calculation should happen, return false if the plant is no longer valid.
 	 */
-	public boolean onEntityCollision(ICropTile crop, Entity entity) {
-		if (entity instanceof EntityLivingBase) {
+	public boolean onEntityCollision(ICropTile crop, Entity entity)
+	{
+		if(entity instanceof EntityLivingBase)
+		{
 			return ((EntityLivingBase) entity).isSprinting();
 		}
 
 		return false;
 	}
-
 
 	/**
 	 * Called every time the crop ticks.
@@ -386,7 +437,8 @@ public abstract class CropCard {
 	 *
 	 * @param crop reference to ICropTile
 	 */
-	public void tick(ICropTile crop) {
+	public void tick(ICropTile crop)
+	{
 		// nothing by default
 	}
 
@@ -397,11 +449,10 @@ public abstract class CropCard {
 	 * @param crop reference to ICropTile
 	 * @return Whether the plant spreads weed
 	 */
-	public boolean isWeed(ICropTile crop) {
-		return crop.getSize() >= 2 &&
-				(crop.getCrop() == Crops.weed || crop.getGrowth() >= 24);
+	public boolean isWeed(ICropTile crop)
+	{
+		return crop.getSize() >= 2 && (crop.getCrop() == Crops.weed || crop.getGrowth() >= 24);
 	}
-
 
 	/**
 	 * Get this plant's ID.
@@ -410,16 +461,21 @@ public abstract class CropCard {
 	 * @deprecated IDs aren't used anymore.
 	 */
 	@Deprecated
-	public final int getId() {
+	public final int getId()
+	{
 		return Crops.instance.getIdFor(this);
 	}
 
-	private static String getModId() {
-		ModContainer modContainer = Loader.instance().activeModContainer();
+	private static String getModId()
+	{
+		final ModContainer modContainer = Loader.instance().activeModContainer();
 
-		if (modContainer != null) {
+		if(modContainer != null)
+		{
 			return modContainer.getModId();
-		} else {
+		}
+		else
+		{
 			// this is bad if you are not actually IC2
 			assert false;
 
@@ -428,8 +484,8 @@ public abstract class CropCard {
 	}
 
 	@SideOnly(Side.CLIENT)
-	protected IIcon textures[];
+	protected IIcon			textures[];
 
-	private final String modId; // TODO: make owner abstract, remove modId auto detection
+	private final String	modId;		// TODO: make owner abstract, remove modId auto detection
 	// TODO: add a clean way to obtain world reference and position
 }

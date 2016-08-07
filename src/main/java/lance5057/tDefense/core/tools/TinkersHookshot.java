@@ -87,16 +87,16 @@ public class TinkersHookshot extends ToolCore
 		final Item accessory = getAccessoryItem();
 		final ItemStack accessoryStack = accessory != null ? new ItemStack(
 				getAccessoryItem(), 1, id) : null;
-		final Item extra = getExtraItem();
-		final ItemStack extraStack = extra != null ? new ItemStack(extra, 1, id) : null;
-		final ItemStack tool = ToolBuilder.instance.buildTool(new ItemStack(
-				getHeadItem(), 1, id), new ItemStack(getHandleItem(), 1, id), accessoryStack, extraStack, name);
-		if(tool != null)
-		{
-			tool.getTagCompound().getCompoundTag("InfiTool").setBoolean("Built", true);
-			tool.getTagCompound().getCompoundTag("InfiTool").setInteger("ChainLength", 10);
-			list.add(tool);
-		}
+				final Item extra = getExtraItem();
+				final ItemStack extraStack = extra != null ? new ItemStack(extra, 1, id) : null;
+				final ItemStack tool = ToolBuilder.instance.buildTool(new ItemStack(
+						getHeadItem(), 1, id), new ItemStack(getHandleItem(), 1, id), accessoryStack, extraStack, name);
+				if(tool != null)
+				{
+					tool.getTagCompound().getCompoundTag("InfiTool").setBoolean("Built", true);
+					tool.getTagCompound().getCompoundTag("InfiTool").setInteger("ChainLength", 10);
+					list.add(tool);
+				}
 	}
 
 	@Override

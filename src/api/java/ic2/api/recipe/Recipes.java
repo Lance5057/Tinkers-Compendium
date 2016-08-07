@@ -1,25 +1,25 @@
 package ic2.api.recipe;
 
-
 /**
  * General recipe registry.
  *
  * @author Richard
  */
-public class Recipes {
-	public static IMachineRecipeManager macerator;
-	public static IMachineRecipeManager extractor;
-	public static IMachineRecipeManager compressor;
-	public static IMachineRecipeManager centrifuge;
-	public static IMachineRecipeManager blockcutter;
-	public static IMachineRecipeManager blastfurance;
-	public static IMachineRecipeManager recycler;
-	public static IMachineRecipeManager metalformerExtruding;
-	public static IMachineRecipeManager metalformerCutting;
-	public static IMachineRecipeManager metalformerRolling;
-	public static IMachineRecipeManager oreWashing;
-	public static ICannerBottleRecipeManager cannerBottle;
-	public static ICannerEnrichRecipeManager cannerEnrich;
+public class Recipes
+{
+	public static IMachineRecipeManager			macerator;
+	public static IMachineRecipeManager			extractor;
+	public static IMachineRecipeManager			compressor;
+	public static IMachineRecipeManager			centrifuge;
+	public static IMachineRecipeManager			blockcutter;
+	public static IMachineRecipeManager			blastfurance;
+	public static IMachineRecipeManager			recycler;
+	public static IMachineRecipeManager			metalformerExtruding;
+	public static IMachineRecipeManager			metalformerCutting;
+	public static IMachineRecipeManager			metalformerRolling;
+	public static IMachineRecipeManager			oreWashing;
+	public static ICannerBottleRecipeManager	cannerBottle;
+	public static ICannerEnrichRecipeManager	cannerEnrich;
 
 	/**
 	 * Reference amplifier values:
@@ -33,7 +33,7 @@ public class Recipes {
 	 * nbt.setInteger("amplification", aValue);
 	 * matterAmplifier.addRecipe(yourStack, nbt);
 	 */
-	public static IMachineRecipeManager matterAmplifier;
+	public static IMachineRecipeManager			matterAmplifier;
 	/**
 	 * Reference scrap box chance values:
 	 *
@@ -46,23 +46,23 @@ public class Recipes {
 	 * 4.0: Stick
 	 * 5.0: Dirt, Wooden Hoe
 	 */
-	public static IScrapboxManager scrapboxDrops;
-	public static IListRecipeManager recyclerBlacklist;
+	public static IScrapboxManager				scrapboxDrops;
+	public static IListRecipeManager			recyclerBlacklist;
 	/**
 	 * Do not add anything to this Whitelist. This is for Configuration only.
 	 * You may need this if you have an own Recycler in your Mod, just to check if something can be recycled. but don't add anything to this List
 	 */
-	public static IListRecipeManager recyclerWhitelist;
-	public static ICraftingRecipeManager advRecipes;
+	public static IListRecipeManager			recyclerWhitelist;
+	public static ICraftingRecipeManager		advRecipes;
 
-	public static ISemiFluidFuelManager semiFluidGenerator;
-	public static IFluidHeatManager FluidHeatGenerator;
+	public static ISemiFluidFuelManager			semiFluidGenerator;
+	public static IFluidHeatManager				FluidHeatGenerator;
 	/**
 	 * Used by the Liquid Heat Exchanger to cool down liquids and determine the amount of hu generated for every mb.
 	 */
-	public static ILiquidHeatExchangerManager liquidCooldownManager;
+	public static ILiquidHeatExchangerManager	liquidCooldownManager;
 	/**
 	 * Opposite of {@link #liquidCooldownManager}. This is for Liquids that can be heated up again.
 	 */
-	public static ILiquidHeatExchangerManager liquidHeatupManager;
+	public static ILiquidHeatExchangerManager	liquidHeatupManager;
 }

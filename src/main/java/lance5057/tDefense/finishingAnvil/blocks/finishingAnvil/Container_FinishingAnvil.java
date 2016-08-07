@@ -21,7 +21,8 @@ public class Container_FinishingAnvil extends Container
 		{
 			for(int x = 0; x < 9; x++)
 			{
-				addSlotToContainer(new Slot(inventoryPlayer, x + y * 9 + 9, 8 + 18 * x, 84 + y * 18));
+				addSlotToContainer(new Slot(inventoryPlayer, x + y * 9 + 9,
+						8 + 18 * x, 84 + y * 18));
 			}
 		}
 	}

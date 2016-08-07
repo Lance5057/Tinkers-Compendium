@@ -7,7 +7,8 @@ import net.minecraft.world.World;
 /**
  * Interface implemented by the tile entity of nuclear reactors.
  */
-public interface IReactor {
+public interface IReactor
+{
 	/**
 	 * Get the reactor's position in the world.
 	 * 
@@ -66,7 +67,6 @@ public interface IReactor {
 	 * for all Componetents with self-cooling
 	 * no more magic heat disappear
 	 */
-
 
 	public void addEmitHeat(int heat);
 

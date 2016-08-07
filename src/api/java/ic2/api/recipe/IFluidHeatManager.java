@@ -4,8 +4,8 @@ import java.util.Map;
 
 import net.minecraftforge.fluids.Fluid;
 
-
-public interface IFluidHeatManager extends ILiquidAcceptManager {
+public interface IFluidHeatManager extends ILiquidAcceptManager
+{
 	/**
 	 * Add a new fluid to the Fluid Heat Generator.
 	 * 
@@ -19,14 +19,15 @@ public interface IFluidHeatManager extends ILiquidAcceptManager {
 
 	Map<String, BurnProperty> getBurnProperties();
 
-
-	public static class BurnProperty {
-		public BurnProperty(int amount1, int heat1) {
-			this.amount = amount1;
-			this.heat = heat1;
+	public static class BurnProperty
+	{
+		public BurnProperty(int amount1, int heat1)
+		{
+			amount = amount1;
+			heat = heat1;
 		}
 
-		public final int amount;
-		public final int heat;
+		public final int	amount;
+		public final int	heat;
 	}
 }

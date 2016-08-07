@@ -5,8 +5,8 @@ import net.minecraft.item.ItemStack;
 
 public class ItemInfo
 {
-	public Item item;
-	public int meta;
+	public Item	item;
+	public int	meta;
 
 	public ItemInfo(Item i, int j)
 	{
@@ -22,9 +22,7 @@ public class ItemInfo
 	@Override
 	public boolean equals(Object obj)
 	{
-		return obj instanceof ItemInfo &&
-				((ItemInfo)obj).item == item &&
-				((ItemInfo)obj).meta == meta;
+		return obj instanceof ItemInfo && ((ItemInfo) obj).item == item && ((ItemInfo) obj).meta == meta;
 	}
 
 	@Override

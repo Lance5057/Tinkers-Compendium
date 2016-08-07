@@ -10,11 +10,12 @@ import net.minecraft.item.ItemStack;
  * See {@link mods.battlegear2.api.RenderPlayerEventChild.PreRenderSheathed} and {@link mods.battlegear2.api.RenderPlayerEventChild.PostRenderSheathed}
  * for more flexibility over the rendering
  */
-public interface ISheathed {
+public interface ISheathed
+{
 
-    /**
-     * Returns true if this item should always be sheathed on the back, false if it should be sheathed on the hip
-     * @param item the {@link ItemStack} to be sheathed
-     */
-    public boolean sheatheOnBack(ItemStack item);
+	/**
+	 * Returns true if this item should always be sheathed on the back, false if it should be sheathed on the hip
+	 * @param item the {@link ItemStack} to be sheathed
+	 */
+	public boolean sheatheOnBack(ItemStack item);
 }

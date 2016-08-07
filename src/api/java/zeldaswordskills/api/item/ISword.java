@@ -25,6 +25,7 @@ package zeldaswordskills.api.item;
  * {@link LeapingBlow}, {@link MortalDraw}, {@link RisingCut}, and {@link SwordBeam}
  *
  */
-public interface ISword {
+public interface ISword
+{
 
 }

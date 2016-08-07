@@ -4,7 +4,9 @@ import java.util.Set;
 
 import net.minecraftforge.fluids.Fluid;
 
-public interface ILiquidAcceptManager {
+public interface ILiquidAcceptManager
+{
 	boolean acceptsFluid(Fluid fluid);
+
 	Set<Fluid> getAcceptedFluids();
 }

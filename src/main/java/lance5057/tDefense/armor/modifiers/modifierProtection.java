@@ -5,9 +5,6 @@ import java.util.List;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import tconstruct.library.crafting.PatternBuilder;
-import tconstruct.library.modifier.ItemModifier;
-import tconstruct.library.tools.AbilityHelper;
 import tconstruct.library.tools.ToolCore;
 import tconstruct.modifiers.tools.ModInteger;
 
@@ -33,8 +30,8 @@ public class modifierProtection extends ModInteger
 	{
 		if(tool.getItem() instanceof ToolCore)
 		{
-			List list = Arrays.asList(((ToolCore) tool.getItem()).getTraits());
-			NBTTagCompound tags = tool.getTagCompound().getCompoundTag("InfiTool");
+			final List list = Arrays.asList(((ToolCore) tool.getItem()).getTraits());
+			final NBTTagCompound tags = tool.getTagCompound().getCompoundTag("InfiTool");
 
 			if(list.contains("heavyarmor") || list.contains("lightarmor"))
 			{
@@ -45,9 +42,13 @@ public class modifierProtection extends ModInteger
 						if(tags.hasKey(types[i]))
 						{
 							if(types[i] != type)
+							{
 								return false;
+							}
 							if(types[i] == type && tags.getInteger(types[i]) > 5)
+							{
 								return false;
+							}
 						}
 					}
 					return true;
@@ -69,7 +70,7 @@ public class modifierProtection extends ModInteger
 	@Override
 	public void modify(ItemStack[] input, ItemStack tool)
 	{
-		NBTTagCompound tags = tool.getTagCompound().getCompoundTag("InfiTool");
+		final NBTTagCompound tags = tool.getTagCompound().getCompoundTag("InfiTool");
 		if(tags.hasKey(key))
 		{
 			int increase = tags.getInteger(key);

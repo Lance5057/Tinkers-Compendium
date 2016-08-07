@@ -65,7 +65,9 @@ public class EntityHookshotHook extends EntityThrowable
 			final Block block = worldObj.getBlock(Op.blockX, Op.blockY, Op.blockZ);
 
 			if(!block.getMaterial().blocksMovement())
+			{
 				return;
+			}
 			if(ticksExisted < getChainLength())
 			{
 				dataWatcher.updateObject(DATA_ARRIVED, (byte) 1);
@@ -98,7 +100,9 @@ public class EntityHookshotHook extends EntityThrowable
 	{
 		final String name = dataWatcher.getWatchableObjectString(DATA_PLAYER);
 		if(name == "")
+		{
 			return null;
+		}
 		return worldObj.getPlayerEntityByName(name);
 	}
 

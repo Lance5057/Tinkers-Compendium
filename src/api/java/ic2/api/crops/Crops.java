@@ -5,19 +5,18 @@ import java.util.Collection;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.biome.BiomeGenBase;
-
+import net.minecraftforge.common.BiomeDictionary.Type;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-
-import net.minecraftforge.common.BiomeDictionary.Type;
 
 /**
  * General management of the crop system.
  */
-public abstract class Crops {
-	public static Crops instance;
+public abstract class Crops
+{
+	public static Crops		instance;
 
-	public static CropCard weed; // weed has special properties, thus it's exposed here
+	public static CropCard	weed;		// weed has special properties, thus it's exposed here
 
 	/**
 	 * Adds a crop nutrient biome bonus.
@@ -38,7 +37,6 @@ public abstract class Crops {
 	 * @param humidityBonus Humidity stat bonus
 	 */
 	public abstract void addBiomehumidityBonus(Type type, int humidityBonus);
-
 
 	/**
 	 * Gets the humidity bonus for a biome.

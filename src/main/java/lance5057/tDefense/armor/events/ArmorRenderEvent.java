@@ -1,15 +1,14 @@
 package lance5057.tDefense.armor.events;
 
-import tconstruct.armor.ArmorProxyClient;
-import tconstruct.armor.player.ArmorExtended;
-import tconstruct.library.tools.ToolCore;
 import lance5057.tDefense.armor.ArmorCore;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.client.event.RenderPlayerEvent;
+import tconstruct.armor.ArmorProxyClient;
+import tconstruct.armor.player.ArmorExtended;
+import tconstruct.library.tools.ToolCore;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -23,22 +22,22 @@ public class ArmorRenderEvent
 	{
 		if(event.entityPlayer != null)
 		{
-			ArmorExtended armorEx = ArmorProxyClient.armorExtended;
+			final ArmorExtended armorEx = ArmorProxyClient.armorExtended;
 
-			ItemStack Armor = event.entityPlayer.inventory.armorItemInSlot(event.slot);
+			final ItemStack Armor = event.entityPlayer.inventory.armorItemInSlot(event.slot);
 
 			if(Armor != null && Armor.getItem() instanceof ArmorCore)
 			{
-				ModelBiped armorModel = Armor.getItem().getArmorModel(event.entityLiving, Armor, event.slot);
+				final ModelBiped armorModel = Armor.getItem().getArmorModel(event.entityLiving, Armor, event.slot);
 
 				TrimArmor(armorModel, event);
 			}
 
-			ItemStack Accessory = armorEx.getStackInSlot(event.slot);
+			final ItemStack Accessory = armorEx.getStackInSlot(event.slot);
 
 			if(Accessory != null && Accessory.getItem() instanceof ToolCore)
 			{
-				ModelBiped accessoryModel = Accessory.getItem().getArmorModel(event.entityLiving, Accessory, event.slot);
+				final ModelBiped accessoryModel = Accessory.getItem().getArmorModel(event.entityLiving, Accessory, event.slot);
 
 				TrimArmor(accessoryModel, event);
 			}
@@ -58,14 +57,14 @@ public class ArmorRenderEvent
 
 			if(event.entityPlayer instanceof EntityPlayer)
 			{
-				ItemStack itemstack = event.entityPlayer.inventory.getCurrentItem();
+				final ItemStack itemstack = event.entityPlayer.inventory.getCurrentItem();
 				armorModel.heldItemRight = 0;
 				armorModel.aimedBow = false;
 				if(itemstack != null)
 				{
 					if(event.entityPlayer.getItemInUseCount() > 0)
 					{
-						EnumAction enumaction = itemstack.getItemUseAction();
+						final EnumAction enumaction = itemstack.getItemUseAction();
 
 						if(enumaction == EnumAction.block)
 						{
@@ -83,10 +82,10 @@ public class ArmorRenderEvent
 				}
 			}
 
-			float yaw = event.entityPlayer.prevRotationYawHead + (event.entityPlayer.rotationYawHead - event.entityPlayer.prevRotationYawHead) * event.partialRenderTick;
-			float yawOffset = event.entityPlayer.prevRenderYawOffset + (event.entityPlayer.renderYawOffset - event.entityPlayer.prevRenderYawOffset) * event.partialRenderTick;
-			float limbs = event.entityPlayer.prevLimbSwingAmount + (event.entityPlayer.limbSwingAmount - event.entityPlayer.prevLimbSwingAmount) * event.partialRenderTick;
-			float limbSwing = event.entityPlayer.limbSwing - event.entityPlayer.limbSwingAmount * (1.0F - event.partialRenderTick);
+			final float yaw = event.entityPlayer.prevRotationYawHead + (event.entityPlayer.rotationYawHead - event.entityPlayer.prevRotationYawHead) * event.partialRenderTick;
+			final float yawOffset = event.entityPlayer.prevRenderYawOffset + (event.entityPlayer.renderYawOffset - event.entityPlayer.prevRenderYawOffset) * event.partialRenderTick;
+			final float limbs = event.entityPlayer.prevLimbSwingAmount + (event.entityPlayer.limbSwingAmount - event.entityPlayer.prevLimbSwingAmount) * event.partialRenderTick;
+			final float limbSwing = event.entityPlayer.limbSwing - event.entityPlayer.limbSwingAmount * (1.0F - event.partialRenderTick);
 
 			armorModel.setRotationAngles(limbSwing, limbs, event.entityPlayer.ticksExisted, yaw - yawOffset, event.entityPlayer.rotationPitch, 0.1f, event.entityPlayer);
 			armorModel.render(event.entityPlayer, limbSwing, limbs, event.entityPlayer.ticksExisted, yaw - yawOffset, event.entityPlayer.rotationPitch, 0.1f);

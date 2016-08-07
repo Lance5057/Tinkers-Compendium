@@ -1,21 +1,27 @@
 package lance5057.tDefense.armor.items.cloth;
 
 import lance5057.tDefense.TinkersDefense;
-import lance5057.tDefense.armor.TDHelmet;
+import lance5057.tDefense.armor.ArmorCore;
 import lance5057.tDefense.armor.renderers.ArmorRenderer;
 import lance5057.tDefense.proxy.ClientProxy;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 import tconstruct.tools.TinkerTools;
+import thaumcraft.api.IGoggles;
 import thaumcraft.api.IVisDiscountGear;
 import thaumcraft.api.aspects.Aspect;
+import thaumcraft.api.nodes.IRevealer;
 import vazkii.botania.api.mana.IManaDiscountArmor;
+import WayofTime.alchemicalWizardry.api.alchemy.energy.IAlchemyGoggles;
+import WayofTime.alchemicalWizardry.api.items.interfaces.ILPGauge;
 import cpw.mods.fml.common.Optional;
 
-@Optional.InterfaceList({@Optional.Interface(modid = "Thaumcraft", iface = "thaumcraft.api.IVisDiscountGear", striprefs = true), @Optional.Interface(modid = "Botania", iface = "vazkii.botania.api.mana.IManaDiscountArmor", striprefs = true)})
-public class TinkersHood extends TDHelmet implements IVisDiscountGear, IManaDiscountArmor
+@Optional.InterfaceList({@Optional.Interface(modid = "Thaumcraft", iface = "thaumcraft.api.IGoggles", striprefs = true), @Optional.Interface(modid = "Thaumcraft", iface = "thaumcraft.api.nodes.IRevealer", striprefs = true), @Optional.Interface(modid = "AWWayofTime", iface = "WayofTime.alchemicalWizardry.api.items.interfaces.ILPGauge", striprefs = true), @Optional.Interface(modid = "AWWayofTime", iface = "WayofTime.alchemicalWizardry.api.alchemy.energy.IAlchemyGoggles", striprefs = true), @Optional.Interface(modid = "Thaumcraft", iface = "thaumcraft.api.IVisDiscountGear", striprefs = true), @Optional.Interface(modid = "Botania", iface = "vazkii.botania.api.mana.IManaDiscountArmor", striprefs = true)})
+public class TinkersHood extends ArmorCore implements IRevealer, IGoggles, ILPGauge, IAlchemyGoggles, IVisDiscountGear, IManaDiscountArmor
 {
 	public TinkersHood()
 	{
@@ -144,5 +150,33 @@ public class TinkersHood extends TDHelmet implements IVisDiscountGear, IManaDisc
 	{
 		final float i = stack.getTagCompound().getCompoundTag("InfiTool").getInteger("ManaEmbroidery") / 100f;
 		return i;
+	}
+
+	@Optional.Method(modid = "Thaumcraft")
+	@Override
+	public boolean showIngamePopups(ItemStack itemstack, EntityLivingBase player)
+	{
+		return itemstack.getTagCompound().getCompoundTag("InfiTool").getBoolean("Revealing");
+	}
+
+	@Optional.Method(modid = "Thaumcraft")
+	@Override
+	public boolean showNodes(ItemStack itemstack, EntityLivingBase player)
+	{
+		return itemstack.getTagCompound().getCompoundTag("InfiTool").getBoolean("Revealing");
+	}
+
+	@Optional.Method(modid = "AWWayofTime")
+	@Override
+	public boolean canSeeLPBar(ItemStack stack)
+	{
+		return stack.getTagCompound().getCompoundTag("InfiTool").getBoolean("Divination");
+	}
+
+	@Optional.Method(modid = "AWWayofTime")
+	@Override
+	public boolean showIngameHUD(World world, ItemStack stack, EntityPlayer player)
+	{
+		return stack.getTagCompound().getCompoundTag("InfiTool").getBoolean("Divination");
 	}
 }

@@ -99,5 +99,15 @@ public class ClientProxy extends CommonProxy
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntity_CrestMount.class, new Renderer_CrestMount());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntity_FinishingAnvil.class, new Renderer_FinishingAnvil());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntity_JewelersBench.class, new Renderer_JewelersBench());
+
+		//		MinecraftForgeClient.registerItemRenderer(new ItemBlock(
+		//				TinkersDefense.block_ArmorAnvil), new CustomModelItemRenderer(
+		//				new Renderer_FinishingAnvil(), new TileEntity_FinishingAnvil()));
+		//		MinecraftForgeClient.registerItemRenderer(new ItemBlock(
+		//				TinkersDefense.block_CrestMount), new CustomModelItemRenderer(
+		//				new Renderer_CrestMount(), new TileEntity_CrestMount()));
+		//		MinecraftForgeClient.registerItemRenderer(new ItemBlock(
+		//				TinkersDefense.block_JewelersBench), new CustomModelItemRenderer(
+		//				new Renderer_JewelersBench(), new TileEntity_JewelersBench()));
 	}
 }

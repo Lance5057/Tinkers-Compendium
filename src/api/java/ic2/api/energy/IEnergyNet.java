@@ -2,7 +2,6 @@ package ic2.api.energy;
 
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-
 import net.minecraftforge.common.util.ForgeDirection;
 
 /**
@@ -10,7 +9,8 @@ import net.minecraftforge.common.util.ForgeDirection;
  * 
  * See ic2/api/energy/usage.txt for an overall description of the energy net api.
  */
-public interface IEnergyNet {
+public interface IEnergyNet
+{
 	/**
 	 * Get the EnergyNet-registered tile entity at the specified position.
 	 * 

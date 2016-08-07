@@ -17,7 +17,8 @@ import net.minecraft.item.ItemStack;
  *
  * @author Player
  */
-public interface ICustomDamageItem {
+public interface ICustomDamageItem
+{
 	/**
 	 * Retrieve the custom damage value for the supplied item stack.
 	 *

@@ -4,8 +4,8 @@ import net.minecraft.util.StatCollector;
 
 public class OreGas extends Gas
 {
-	private String oreName;
-	private OreGas cleanGas;
+	private final String	oreName;
+	private OreGas	cleanGas;
 
 	public OreGas(String s, String name)
 	{

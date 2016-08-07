@@ -11,7 +11,7 @@ public class Handler_FinishingAnvil implements IMessageHandler<Message_Finishing
 	@Override
 	public IMessage onMessage(Message_FinishingAnvil message, MessageContext ctx)
 	{
-		TileEntity te = ctx.getServerHandler().playerEntity.worldObj.getTileEntity(message.x, message.y, message.z);
+		final TileEntity te = ctx.getServerHandler().playerEntity.worldObj.getTileEntity(message.x, message.y, message.z);
 		if(te instanceof TileEntity_FinishingAnvil)
 		{
 			//((TileEntity_FinishingAnvil) te).flip = message.flip;

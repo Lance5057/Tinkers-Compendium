@@ -23,7 +23,7 @@ import lance5057.tDefense.core.blocks.RedMintBlock;
 import lance5057.tDefense.core.blocks.crestMount.CrestMount;
 import lance5057.tDefense.core.blocks.crestMount.TileEntity_CrestMount;
 import lance5057.tDefense.core.events.TDEventHandler;
-import lance5057.tDefense.core.items.GuideBook;
+//import lance5057.tDefense.core.items.GuideBook;
 import lance5057.tDefense.core.liquids.MoltenFluid;
 import lance5057.tDefense.core.network.PacketHandler;
 import lance5057.tDefense.core.tools.HeaterShield;
@@ -104,35 +104,35 @@ public class TinkersDefense
 
 	public static Modifiers						mods;
 
-	public static Item							item_Guidebook;
+	//public static Item							item_Guidebook;
 
-	public static Item							item_AeonSteelIngot;
-	public static Block							block_AeonSteelBlock;
-	public static Fluid							moltenAeonsteel;
-	public static Block							moltenAeonsteelBlock;
+	public static Item							item_aeonsteelIngot;
+	public static Block							block_aeonsteelBlock;
+	public static Fluid							moltenaeonsteel;
+	public static Block							moltenaeonsteelBlock;
 
-	public static Item							item_QueensGoldIngot;
-	public static Block							block_QueensGoldBlock;
-	public static Fluid							moltenQueensGold;
-	public static Block							moltenQueensGoldBlock;
+	public static Item							item_queensgoldIngot;
+	public static Block							block_queensgoldBlock;
+	public static Fluid							moltenqueensgold;
+	public static Block							moltenqueensgoldBlock;
 
-	public static Item							item_DogbeariumIngot;
-	public static Block							block_DogbeariumBlock;
-	public static Fluid							moltenDogbearium;
-	public static Block							moltenDogbeariumBlock;
+	public static Item							item_dogbeariumIngot;
+	public static Block							block_dogbeariumBlock;
+	public static Fluid							moltendogbearium;
+	public static Block							moltendogbeariumBlock;
 
-	public static Item							item_RedMintcane;
-	public static Item							item_GreenMintcane;
+	public static Item							item_redmintcane;
+	public static Item							item_greenmintcane;
 
-	public static Item							item_RedMintIngot;
-	public static Block							block_RedMintBlock;
-	public static Fluid							moltenRedMint;
-	public static Block							moltenRedMintBlock;
+	public static Item							item_redmintIngot;
+	public static Block							block_redmintBlock;
+	public static Fluid							moltenredmint;
+	public static Block							moltenredmintBlock;
 
-	public static Item							item_GreenMintIngot;
-	public static Block							block_GreenMintBlock;
-	public static Fluid							moltenGreenMint;
-	public static Block							moltenGreenMintBlock;
+	public static Item							item_greenmintIngot;
+	public static Block							block_greenmintBlock;
+	public static Fluid							moltengreenmint;
+	public static Block							moltengreenmintBlock;
 
 	//	public static Item							item_RawSapphire;
 	//	public static Item							item_RawRuby;
@@ -210,32 +210,32 @@ public class TinkersDefense
 		mods = new Modifiers();
 
 		//Blocks
-		block_CrestMount = new CrestMount().setHardness(4.0F).setStepSound(Block.soundTypeStone).setBlockName("CrestMount").setCreativeTab(tabName);
-		block_ArmorAnvil = new FinishingAnvil().setHardness(4.0F).setStepSound(Block.soundTypeAnvil).setBlockName("ArmorAnvil").setCreativeTab(tabName);
-		block_JewelersBench = new JewelersBench().setHardness(4.0F).setStepSound(Block.soundTypeWood).setBlockName("JewelersBench").setCreativeTab(tabName);
+		block_CrestMount = new CrestMount().setHardness(4.0F).setStepSound(Block.soundTypeStone).setBlockName("crestmount").setCreativeTab(tabName);
+		block_ArmorAnvil = new FinishingAnvil().setHardness(4.0F).setStepSound(Block.soundTypeAnvil).setBlockName("armoranvil").setCreativeTab(tabName);
+		block_JewelersBench = new JewelersBench().setHardness(4.0F).setStepSound(Block.soundTypeWood).setBlockName("jewelersbench").setCreativeTab(tabName);
 
-		block_AeonSteelBlock = new AeonSteelBlock(Material.iron).setHardness(4.0F).setStepSound(Block.soundTypeMetal).setBlockName("AeonsteelBlock").setCreativeTab(tabName).setBlockTextureName(Reference.MOD_ID + ":AeonsteelBlock");
-		block_QueensGoldBlock = new QueensGoldBlock(Material.iron).setHardness(4.0F).setStepSound(Block.soundTypeMetal).setBlockName("QueensGoldBlock").setCreativeTab(tabName).setBlockTextureName(Reference.MOD_ID + ":QueensGoldBlock");
-		block_DogbeariumBlock = new DogbeariumBlock(Material.iron).setHardness(4.0F).setStepSound(Block.soundTypeMetal).setBlockName("DogbeariumBlock").setCreativeTab(tabName).setBlockTextureName(Reference.MOD_ID + ":DogbeariumBlock");
-		block_RedMintBlock = new RedMintBlock(Material.iron).setHardness(4.0F).setStepSound(Block.soundTypeMetal).setBlockName("RedMintBlock").setCreativeTab(tabName).setBlockTextureName(Reference.MOD_ID + ":redmintblock");
-		block_GreenMintBlock = new GreenMintBlock(Material.iron).setHardness(4.0F).setStepSound(Block.soundTypeMetal).setBlockName("GreenMintBlock").setCreativeTab(tabName).setBlockTextureName(Reference.MOD_ID + ":greenmintblock");
+		block_aeonsteelBlock = new AeonSteelBlock(Material.iron).setHardness(4.0F).setStepSound(Block.soundTypeMetal).setBlockName("aeonsteelblock").setCreativeTab(tabName).setBlockTextureName(Reference.MOD_ID + ":aeonsteelblock");
+		block_queensgoldBlock = new QueensGoldBlock(Material.iron).setHardness(4.0F).setStepSound(Block.soundTypeMetal).setBlockName("queensgoldblock").setCreativeTab(tabName).setBlockTextureName(Reference.MOD_ID + ":queensgoldblock");
+		block_dogbeariumBlock = new DogbeariumBlock(Material.iron).setHardness(4.0F).setStepSound(Block.soundTypeMetal).setBlockName("dogbeariumblock").setCreativeTab(tabName).setBlockTextureName(Reference.MOD_ID + ":dogbeariumblock");
+		block_redmintBlock = new RedMintBlock(Material.iron).setHardness(4.0F).setStepSound(Block.soundTypeMetal).setBlockName("redmintblock").setCreativeTab(tabName).setBlockTextureName(Reference.MOD_ID + ":redmintblock");
+		block_greenmintBlock = new GreenMintBlock(Material.iron).setHardness(4.0F).setStepSound(Block.soundTypeMetal).setBlockName("greenmintblock").setCreativeTab(tabName).setBlockTextureName(Reference.MOD_ID + ":greenmintblock");
 
 		//Items
-		item_Guidebook = new GuideBook();
-		item_AeonSteelIngot = new Item().setCreativeTab(tabName).setMaxStackSize(64).setUnlocalizedName("AeonsteelIngot").setTextureName(Reference.MOD_ID + ":AeonsteelIngot");
-		item_QueensGoldIngot = new Item().setCreativeTab(tabName).setMaxStackSize(64).setUnlocalizedName("QueensGoldIngot").setTextureName(Reference.MOD_ID + ":QueensGoldIngot");
-		item_DogbeariumIngot = new Item().setCreativeTab(tabName).setMaxStackSize(64).setUnlocalizedName("DogbeariumIngot").setTextureName(Reference.MOD_ID + ":DogbeariumIngot");
-		item_RedMintcane = new Item().setCreativeTab(tabName).setMaxStackSize(64).setUnlocalizedName("RedMintcane").setTextureName(Reference.MOD_ID + ":redmintcane");
-		item_RedMintIngot = new Item().setCreativeTab(tabName).setMaxStackSize(64).setUnlocalizedName("RedMintIngot").setTextureName(Reference.MOD_ID + ":redmintingot");
-		item_GreenMintcane = new Item().setCreativeTab(tabName).setMaxStackSize(64).setUnlocalizedName("GreenMintcane").setTextureName(Reference.MOD_ID + ":greenmintcane");
-		item_GreenMintIngot = new Item().setCreativeTab(tabName).setMaxStackSize(64).setUnlocalizedName("GreenMintIngot").setTextureName(Reference.MOD_ID + ":greenmintingot");
+		//item_Guidebook = new GuideBook();
+		item_aeonsteelIngot = new Item().setCreativeTab(tabName).setMaxStackSize(64).setUnlocalizedName("aeonsteelingot").setTextureName(Reference.MOD_ID + ":aeonsteelingot");
+		item_queensgoldIngot = new Item().setCreativeTab(tabName).setMaxStackSize(64).setUnlocalizedName("queensgoldingot").setTextureName(Reference.MOD_ID + ":queensgoldingot");
+		item_dogbeariumIngot = new Item().setCreativeTab(tabName).setMaxStackSize(64).setUnlocalizedName("dogbeariumingot").setTextureName(Reference.MOD_ID + ":dogbeariumingot");
+		item_redmintcane = new Item().setCreativeTab(tabName).setMaxStackSize(64).setUnlocalizedName("redmintcane").setTextureName(Reference.MOD_ID + ":redmintcane");
+		item_redmintIngot = new Item().setCreativeTab(tabName).setMaxStackSize(64).setUnlocalizedName("redmintIngot").setTextureName(Reference.MOD_ID + ":redmintingot");
+		item_greenmintcane = new Item().setCreativeTab(tabName).setMaxStackSize(64).setUnlocalizedName("greenmintcane").setTextureName(Reference.MOD_ID + ":greenmintcane");
+		item_greenmintIngot = new Item().setCreativeTab(tabName).setMaxStackSize(64).setUnlocalizedName("greenmintIngot").setTextureName(Reference.MOD_ID + ":greenmintingot");
 
 		//Fluids
-		moltenAeonsteel = new Fluid("moltenAeonsteel").setLuminosity(15).setDensity(3000).setViscosity(6000).setTemperature(1300);
-		moltenQueensGold = new Fluid("moltenQueensGold").setLuminosity(15).setDensity(3000).setViscosity(6000).setTemperature(1300);
-		moltenDogbearium = new Fluid("moltenDogbearium").setLuminosity(15).setDensity(3000).setViscosity(6000).setTemperature(1300);
-		moltenRedMint = new Fluid("moltenRedMint").setLuminosity(15).setDensity(3000).setViscosity(6000).setTemperature(1300);
-		moltenGreenMint = new Fluid("moltenGreenMint").setLuminosity(15).setDensity(3000).setViscosity(6000).setTemperature(1300);
+		moltenaeonsteel = new Fluid("moltenaeonsteel").setLuminosity(15).setDensity(3000).setViscosity(6000).setTemperature(1300);
+		moltenqueensgold = new Fluid("moltenqueensgold").setLuminosity(15).setDensity(3000).setViscosity(6000).setTemperature(1300);
+		moltendogbearium = new Fluid("moltendogbearium").setLuminosity(15).setDensity(3000).setViscosity(6000).setTemperature(1300);
+		moltenredmint = new Fluid("moltenredmint").setLuminosity(15).setDensity(3000).setViscosity(6000).setTemperature(1300);
+		moltengreenmint = new Fluid("moltengreenmint").setLuminosity(15).setDensity(3000).setViscosity(6000).setTemperature(1300);
 
 		//Tools
 		tool_roundShield = new RoundShield();
@@ -251,26 +251,26 @@ public class TinkersDefense
 
 		//Minecraft Registrations
 		//Blocks
-		GameRegistry.registerBlock(block_CrestMount, "Block_CrestMount");
-		GameRegistry.registerBlock(block_ArmorAnvil, "Block_ArmorAnvil");
-		GameRegistry.registerBlock(block_JewelersBench, "Block_JewelersBench");
-		GameRegistry.registerBlock(block_AeonSteelBlock, "Aeonsteelblock");
-		GameRegistry.registerBlock(block_QueensGoldBlock, "QueensGoldblock");
-		GameRegistry.registerBlock(block_DogbeariumBlock, "Dogbeariumblock");
-		GameRegistry.registerBlock(block_RedMintBlock, "redmintblock");
-		GameRegistry.registerBlock(block_GreenMintBlock, "GreenMintblock");
+		GameRegistry.registerBlock(block_CrestMount, "block_crestmount");
+		GameRegistry.registerBlock(block_ArmorAnvil, "block_armoranvil");
+		GameRegistry.registerBlock(block_JewelersBench, "block_jewelersbench");
+		GameRegistry.registerBlock(block_aeonsteelBlock, "aeonsteelblock");
+		GameRegistry.registerBlock(block_queensgoldBlock, "queensgoldblock");
+		GameRegistry.registerBlock(block_dogbeariumBlock, "dogbeariumblock");
+		GameRegistry.registerBlock(block_redmintBlock, "redmintblock");
+		GameRegistry.registerBlock(block_greenmintBlock, "greenmintblock");
 
 		//Items
-		GameRegistry.registerItem(item_Guidebook, "guidebook");
+		//GameRegistry.registerItem(item_Guidebook, "guidebook");
 
-		GameRegistry.registerItem(item_AeonSteelIngot, "AeonsteelIngot");
-		GameRegistry.registerItem(item_QueensGoldIngot, "QueensGoldIngot");
-		GameRegistry.registerItem(item_DogbeariumIngot, "DogbeariumIngot");
+		GameRegistry.registerItem(item_aeonsteelIngot, "aeonsteelingot");
+		GameRegistry.registerItem(item_queensgoldIngot, "queensgoldingot");
+		GameRegistry.registerItem(item_dogbeariumIngot, "dogbeariumingot");
 
-		GameRegistry.registerItem(item_RedMintcane, "RedMintCane");
-		GameRegistry.registerItem(item_RedMintIngot, "RedMintIngot");
-		GameRegistry.registerItem(item_GreenMintcane, "GreenMintCane");
-		GameRegistry.registerItem(item_GreenMintIngot, "GreenMintIngot");
+		GameRegistry.registerItem(item_redmintcane, "redmintcane");
+		GameRegistry.registerItem(item_redmintIngot, "redmintingot");
+		GameRegistry.registerItem(item_greenmintcane, "greenmintcane");
+		GameRegistry.registerItem(item_greenmintIngot, "greenmintingot");
 
 		//Tools
 		GameRegistry.registerItem(tool_roundShield, "Round Shield");
@@ -286,29 +286,29 @@ public class TinkersDefense
 		GameRegistry.registerItem(metalPattern, "Cast");
 
 		//TileEntities
-		GameRegistry.registerTileEntity(TileEntity_CrestMount.class, "Tile_CrestMount");
-		GameRegistry.registerTileEntity(TileEntity_FinishingAnvil.class, "Tile_ArmorAnvil");
-		GameRegistry.registerTileEntity(TileEntity_JewelersBench.class, "Tile_JewelersBench");
+		GameRegistry.registerTileEntity(TileEntity_CrestMount.class, "tile_crestmount");
+		GameRegistry.registerTileEntity(TileEntity_FinishingAnvil.class, "tile_armoranvil");
+		GameRegistry.registerTileEntity(TileEntity_JewelersBench.class, "tile_jewelersbench");
 
 		//Fluids
-		FluidRegistry.registerFluid(moltenAeonsteel);
-		FluidRegistry.registerFluid(moltenQueensGold);
-		FluidRegistry.registerFluid(moltenDogbearium);
-		FluidRegistry.registerFluid(moltenRedMint);
-		FluidRegistry.registerFluid(moltenGreenMint);
+		FluidRegistry.registerFluid(moltenaeonsteel);
+		FluidRegistry.registerFluid(moltenqueensgold);
+		FluidRegistry.registerFluid(moltendogbearium);
+		FluidRegistry.registerFluid(moltenredmint);
+		FluidRegistry.registerFluid(moltengreenmint);
 
 		//FluidBlocks
-		moltenAeonsteelBlock = new MoltenFluid(moltenAeonsteel, "Aeonsteel");
-		moltenQueensGoldBlock = new MoltenFluid(moltenQueensGold, "QueensGold");
-		moltenDogbeariumBlock = new MoltenFluid(moltenDogbearium, "dogbearium");
-		moltenRedMintBlock = new MoltenFluid(moltenRedMint, "RedMint");
-		moltenGreenMintBlock = new MoltenFluid(moltenGreenMint, "GreenMint");
+		moltenaeonsteelBlock = new MoltenFluid(moltenaeonsteel, "aeonsteel");
+		moltenqueensgoldBlock = new MoltenFluid(moltenqueensgold, "queensgold");
+		moltendogbeariumBlock = new MoltenFluid(moltendogbearium, "dogbearium");
+		moltenredmintBlock = new MoltenFluid(moltenredmint, "redmint");
+		moltengreenmintBlock = new MoltenFluid(moltengreenmint, "greenmint");
 
-		GameRegistry.registerBlock(moltenAeonsteelBlock, "moltenAeonsteel");
-		GameRegistry.registerBlock(moltenQueensGoldBlock, "moltenQueensGold");
-		GameRegistry.registerBlock(moltenDogbeariumBlock, "moltenDogbearium");
-		GameRegistry.registerBlock(moltenRedMintBlock, "moltenRedMint");
-		GameRegistry.registerBlock(moltenGreenMintBlock, "moltenGreenMint");
+		GameRegistry.registerBlock(moltenaeonsteelBlock, "moltenaeonsteel");
+		GameRegistry.registerBlock(moltenqueensgoldBlock, "moltenqueensgold");
+		GameRegistry.registerBlock(moltendogbeariumBlock, "moltendogbearium");
+		GameRegistry.registerBlock(moltenredmintBlock, "moltenredmint");
+		GameRegistry.registerBlock(moltengreenmintBlock, "moltengreenmint");
 
 		//Recipes
 		GameRegistry.addShapedRecipe(new ItemStack(block_CrestMount), new Object[] {"xxx", "-i-", "---", 'x', new ItemStack(
@@ -316,23 +316,23 @@ public class TinkersDefense
 						TinkerTools.toolRod, 1, 1)});
 		GameRegistry.addShapedRecipe(new ItemStack(block_ArmorAnvil), new Object[] {"ai-", "lr-", "---", 'r', new ItemStack(
 				TinkerTools.toughRod, 1, 0), 'a', Blocks.anvil, 'i', Items.iron_ingot, 'l', Blocks.log});
-		GameRegistry.addShapedRecipe(new ItemStack(block_AeonSteelBlock), new Object[] {"xxx", "xxx", "xxx", 'x', item_AeonSteelIngot});
-		GameRegistry.addShapelessRecipe(new ItemStack(item_AeonSteelIngot, 9), new Object[] {new ItemStack(
-				block_AeonSteelBlock)});
-		GameRegistry.addShapedRecipe(new ItemStack(block_QueensGoldBlock), new Object[] {"xxx", "xxx", "xxx", 'x', item_QueensGoldIngot});
-		GameRegistry.addShapelessRecipe(new ItemStack(item_QueensGoldIngot, 9), new Object[] {new ItemStack(
-				block_QueensGoldBlock)});
-		GameRegistry.addShapedRecipe(new ItemStack(block_DogbeariumBlock), new Object[] {"xxx", "xxx", "xxx", 'x', item_DogbeariumIngot});
-		GameRegistry.addShapelessRecipe(new ItemStack(item_DogbeariumIngot, 9), new Object[] {new ItemStack(
-				block_DogbeariumBlock)});
-		GameRegistry.addShapedRecipe(new ItemStack(block_RedMintBlock), new Object[] {"xxx", "xxx", "xxx", 'x', new ItemStack(
-				item_RedMintcane, 1, 2)});
-		GameRegistry.addShapelessRecipe(new ItemStack(item_RedMintcane, 9, 2), new Object[] {new ItemStack(
-				block_RedMintBlock)});
-		GameRegistry.addShapedRecipe(new ItemStack(block_GreenMintBlock), new Object[] {"xxx", "xxx", "xxx", 'x', new ItemStack(
-				item_GreenMintcane, 1, 3)});
-		GameRegistry.addShapelessRecipe(new ItemStack(item_GreenMintcane, 9, 3), new Object[] {new ItemStack(
-				block_GreenMintBlock)});
+		GameRegistry.addShapedRecipe(new ItemStack(block_aeonsteelBlock), new Object[] {"xxx", "xxx", "xxx", 'x', item_aeonsteelIngot});
+		GameRegistry.addShapelessRecipe(new ItemStack(item_aeonsteelIngot, 9), new Object[] {new ItemStack(
+				block_aeonsteelBlock)});
+		GameRegistry.addShapedRecipe(new ItemStack(block_queensgoldBlock), new Object[] {"xxx", "xxx", "xxx", 'x', item_queensgoldIngot});
+		GameRegistry.addShapelessRecipe(new ItemStack(item_queensgoldIngot, 9), new Object[] {new ItemStack(
+				block_queensgoldBlock)});
+		GameRegistry.addShapedRecipe(new ItemStack(block_dogbeariumBlock), new Object[] {"xxx", "xxx", "xxx", 'x', item_dogbeariumIngot});
+		GameRegistry.addShapelessRecipe(new ItemStack(item_dogbeariumIngot, 9), new Object[] {new ItemStack(
+				block_dogbeariumBlock)});
+		GameRegistry.addShapedRecipe(new ItemStack(block_redmintBlock), new Object[] {"xxx", "xxx", "xxx", 'x', new ItemStack(
+				item_redmintcane, 1, 2)});
+		GameRegistry.addShapelessRecipe(new ItemStack(item_redmintcane, 9, 2), new Object[] {new ItemStack(
+				block_redmintBlock)});
+		GameRegistry.addShapedRecipe(new ItemStack(block_greenmintBlock), new Object[] {"xxx", "xxx", "xxx", 'x', new ItemStack(
+				item_greenmintcane, 1, 3)});
+		GameRegistry.addShapelessRecipe(new ItemStack(item_greenmintcane, 9, 3), new Object[] {new ItemStack(
+				block_greenmintBlock)});
 
 		//TinkersConstruct Registrations
 		//Tools
@@ -423,25 +423,159 @@ public class TinkersDefense
 
 		final PatternBuilder pb = PatternBuilder.instance;
 
+		//Shields
 		TConstructClientRegistry.toolButtons.add(new ToolGuiElement(
-				1,
 				0,
 				0,
-				new int[] {9, 0, 4, 0},
-				new int[] {2, 3, 2, 0},
+				6,
+				new int[] {0, 0, 4, 0},
+				new int[] {7, 3, 2, 0},
 				StatCollector.translateToLocal("gui.toolstation.roundshield.name"),
 				StatCollector.translateToLocal("gui.toolstation.roundshield.desc"),
-				"tinkersdefense", "textures/gui/icons2.png"));
+				"tinkersdefense", "textures/gui/icons.png"));
 
 		TConstructClientRegistry.tierTwoButtons.add(new ToolGuiElement(
 				5,
-				0,
-				0,
-				new int[] {0, 0, 0, 0},
-				new int[] {2, 3, 2, 3},
+				1,
+				6,
+				new int[] {0, 8, 0, 2},
+				new int[] {7, 3, 7, 7},
 				StatCollector.translateToLocal("gui.toolstation.heatershield.name"),
 				StatCollector.translateToLocal("gui.toolstation.heatershield.desc"),
-				"tinkersdefense:", "textures/gui/icons2.png"));
+				"tinkersdefense:", "textures/gui/icons.png"));
+
+		//Cloth
+		//Hood
+		TConstructClientRegistry.toolButtons.add(new ToolGuiElement(0, 2, 6,
+				new int[] {4, 0, 4, 0}, new int[] {7, 3, 7, 0},
+				StatCollector.translateToLocal("gui.toolstation.hood.name"),
+				StatCollector.translateToLocal("gui.toolstation.hood.desc"),
+				"tinkersdefense", "textures/gui/icons.png"));
+		//Shawl
+		TConstructClientRegistry.toolButtons.add(new ToolGuiElement(0, 3, 6,
+				new int[] {4, 0, 4, 0}, new int[] {7, 7, 7, 0},
+				StatCollector.translateToLocal("gui.toolstation.shawl.name"),
+				StatCollector.translateToLocal("gui.toolstation.shawl.desc"),
+				"tinkersdefense", "textures/gui/icons.png"));
+		//Robe
+		TConstructClientRegistry.toolButtons.add(new ToolGuiElement(0, 4, 6,
+				new int[] {4, 3, 4, 0}, new int[] {7, 7, 7, 0},
+				StatCollector.translateToLocal("gui.toolstation.robe.name"),
+				StatCollector.translateToLocal("gui.toolstation.robe.desc"),
+				"tinkersdefense", "textures/gui/icons.png"));
+		//Shoes
+		TConstructClientRegistry.toolButtons.add(new ToolGuiElement(0, 5, 6,
+				new int[] {4, 2, 4, 0}, new int[] {7, 7, 7, 0},
+				StatCollector.translateToLocal("gui.toolstation.shoes.name"),
+				StatCollector.translateToLocal("gui.toolstation.shoes.desc"),
+				"tinkersdefense", "textures/gui/icons.png"));
+
+		//Chain
+		//Coif
+		TConstructClientRegistry.toolButtons.add(new ToolGuiElement(0, 6, 6,
+				new int[] {1, 8, 4, 0}, new int[] {7, 3, 7, 0},
+				StatCollector.translateToLocal("gui.toolstation.coif.name"),
+				StatCollector.translateToLocal("gui.toolstation.coif.desc"),
+				"tinkersdefense", "textures/gui/icons.png"));
+		//Hauberk
+		TConstructClientRegistry.toolButtons.add(new ToolGuiElement(0, 7, 6,
+				new int[] {1, 9, 4, 0}, new int[] {7, 2, 7, 0},
+				StatCollector.translateToLocal("gui.toolstation.hauberk.name"),
+				StatCollector.translateToLocal("gui.toolstation.hauberk.desc"),
+				"tinkersdefense", "textures/gui/icons.png"));
+		//Chausses
+		TConstructClientRegistry.toolButtons.add(new ToolGuiElement(
+				0,
+				8,
+				6,
+				new int[] {1, 0, 4, 0},
+				new int[] {7, 7, 7, 0},
+				StatCollector.translateToLocal("gui.toolstation.chausses.name"),
+				StatCollector.translateToLocal("gui.toolstation.chausses.desc"),
+				"tinkersdefense", "textures/gui/icons.png"));
+		//Boots
+		TConstructClientRegistry.toolButtons.add(new ToolGuiElement(0, 9, 6,
+				new int[] {1, 4, 2, 0}, new int[] {7, 7, 7, 0},
+				StatCollector.translateToLocal("gui.toolstation.boots.name"),
+				StatCollector.translateToLocal("gui.toolstation.boots.desc"),
+				"tinkersdefense", "textures/gui/icons.png"));
+
+		//Plate
+		//Helm
+		TConstructClientRegistry.tierTwoButtons.add(new ToolGuiElement(0, 10,
+				6,
+				new int[] {4, 8, 0, 1}, new int[] {2, 3, 7, 7},
+				StatCollector.translateToLocal("gui.toolstation.helm.name"),
+				StatCollector.translateToLocal("gui.toolstation.helm.desc"),
+				"tinkersdefense", "textures/gui/icons.png"));
+		//Breastplate
+		TConstructClientRegistry.tierTwoButtons.add(new ToolGuiElement(
+				0,
+				11,
+				6,
+				new int[] {9, 8, 0, 1},
+				new int[] {2, 3, 7, 7},
+				StatCollector.translateToLocal("gui.toolstation.breastplate.name"),
+				StatCollector.translateToLocal("gui.toolstation.breastplate.desc"),
+				"tinkersdefense", "textures/gui/icons.png"));
+		//Grieves
+		TConstructClientRegistry.tierTwoButtons.add(new ToolGuiElement(
+				0,
+				12,
+				6,
+				new int[] {0, 8, 1, 4},
+				new int[] {7, 3, 7, 7},
+				StatCollector.translateToLocal("gui.toolstation.chausses.name"),
+				StatCollector.translateToLocal("gui.toolstation.chausses.desc"),
+				"tinkersdefense", "textures/gui/icons.png"));
+		//Sabatons
+		TConstructClientRegistry.tierTwoButtons.add(new ToolGuiElement(
+				0,
+				13,
+				6,
+				new int[] {0, 8, 0, 4},
+				new int[] {7, 3, 7, 7},
+				StatCollector.translateToLocal("gui.toolstation.sabatons.name"),
+				StatCollector.translateToLocal("gui.toolstation.sabatons.desc"),
+				"tinkersdefense", "textures/gui/icons.png"));
+
+		//Gauntlets
+		TConstructClientRegistry.toolButtons.add(new ToolGuiElement(
+				0,
+				0,
+				8,
+				new int[] {0, 8, 2, 0},
+				new int[] {7, 3, 7, 0},
+				StatCollector.translateToLocal("gui.toolstation.gauntlets.name"),
+				StatCollector.translateToLocal("gui.toolstation.gauntlets.desc"),
+				"tinkersdefense", "textures/gui/icons.png"));
+
+		//Zweihander
+		TConstructClientRegistry.tierTwoButtons.add(new ToolGuiElement(
+				0,
+				3,
+				8,
+				new int[] {6, 8, 2, 1},
+				new int[] {3, 3, 3, 2},
+				StatCollector.translateToLocal("gui.toolstation.zweihander.name"),
+				StatCollector.translateToLocal("gui.toolstation.zweihander.desc"),
+				"tinkersdefense", "textures/gui/icons.png"));
+
+		//Wrench
+		TConstructClientRegistry.toolButtons.add(new ToolGuiElement(0, 1, 8,
+				new int[] {3, 0, 1, 0},
+				new int[] {3, 3, 3, 0},
+				StatCollector.translateToLocal("gui.toolstation.wrench.name"),
+				StatCollector.translateToLocal("gui.toolstation.wrench.desc"),
+				"tinkersdefense", "textures/gui/icons.png"));
+
+		//Shears
+		TConstructClientRegistry.toolButtons.add(new ToolGuiElement(0, 2, 8,
+				new int[] {7, 1, 7, 0},
+				new int[] {2, 3, 2, 0},
+				StatCollector.translateToLocal("gui.toolstation.shears.name"),
+				StatCollector.translateToLocal("gui.toolstation.shears.desc"),
+				"tinkersdefense", "textures/gui/icons.png"));
 
 		TConstructClientRegistry.stencilButtons2.add(new StencilGuiElement(0,
 				0, 50, "tinkersdefense", "textures/gui/icons.png"));
@@ -454,7 +588,7 @@ public class TinkersDefense
 		TConstructClientRegistry.stencilButtons2.add(new StencilGuiElement(0,
 				0, 54, "tinkersdefense", "textures/gui/icons.png"));
 
-		// Aeonsteel
+		// aeonsteel
 		pb.registerMaterialSet("aeonsteel", new ItemStack(
 				TinkerTools.toolShard, 1, 10), new ItemStack(
 						TinkerTools.toolRod, 1, 10), config.AeonsteelMatID);
@@ -464,31 +598,31 @@ public class TinkersDefense
 		// Tool Materials: id, name, harvestlevel, durability, speed, damage,
 		// handlemodifier, reinforced, shoddy, style color, primary color for
 		// block use
-		TConstructRegistry.addToolMaterial(config.AeonsteelMatID, "AeonSteel", 4, 822, 1100, 3, 1.6F, 2, 0f, LIGHT_PURPLE.toString(), 0xb565e6);
-		TinkerTools.registerPatternMaterial("AeonSteelIngot", 2, "AeonSteel");
+		TConstructRegistry.addToolMaterial(config.AeonsteelMatID, "aeonsteel", 4, 822, 1100, 3, 1.6F, 2, 0f, LIGHT_PURPLE.toString(), 0xb565e6);
+		TinkerTools.registerPatternMaterial("aeonsteelIngot", 2, "aeonsteel");
 		TConstructRegistry.addDefaultToolPartMaterial(config.AeonsteelMatID);
 
-		Smeltery.addMelting(new ItemStack(item_AeonSteelIngot, 1, 0), block_AeonSteelBlock, 0, 500, new FluidStack(
-				moltenAeonsteel, TConstruct.ingotLiquidValue));
-		Smeltery.addMelting(block_AeonSteelBlock, 0, 500, new FluidStack(
-				moltenAeonsteel, TConstruct.ingotLiquidValue * 9));
+		Smeltery.addMelting(new ItemStack(item_aeonsteelIngot, 1, 0), block_aeonsteelBlock, 0, 500, new FluidStack(
+				moltenaeonsteel, TConstruct.ingotLiquidValue));
+		Smeltery.addMelting(block_aeonsteelBlock, 0, 500, new FluidStack(
+				moltenaeonsteel, TConstruct.ingotLiquidValue * 9));
 
-		TConstructRegistry.instance.getTableCasting().addCastingRecipe(new ItemStack(
-				item_AeonSteelIngot, 1, 0), new FluidStack(moltenAeonsteel,
+		TConstructRegistry.getTableCasting().addCastingRecipe(new ItemStack(
+				item_aeonsteelIngot, 1, 0), new FluidStack(moltenaeonsteel,
 						TConstruct.ingotLiquidValue), TConstructRegistry.getItemStack("ingotCast"), false, 50);
 
-		TConstructRegistry.instance.getBasinCasting().addCastingRecipe(new ItemStack(
-				block_AeonSteelBlock, 1, 0), new FluidStack(moltenAeonsteel,
+		TConstructRegistry.getBasinCasting().addCastingRecipe(new ItemStack(
+				block_aeonsteelBlock, 1, 0), new FluidStack(moltenaeonsteel,
 						TConstruct.ingotLiquidValue * 9), 100);
 
-		castMolten(moltenAeonsteel, config.AeonsteelMatID);
+		castmolten(moltenaeonsteel, config.AeonsteelMatID);
 
 		PatternBuilder.instance.registerFullMaterial(new ItemStack(
-				item_AeonSteelIngot, 1, 0), 2, "Aeonsteel", new ItemStack(
+				item_aeonsteelIngot, 1, 0), 2, "aeonsteel", new ItemStack(
 						TinkerTools.toolShard, 1, config.AeonsteelMatID), new ItemStack(
 								TinkerTools.toolRod, 1, config.AeonsteelMatID), config.AeonsteelMatID);
 
-		Smeltery.addAlloyMixing(new FluidStack(moltenAeonsteel, 144), new FluidStack[] {new FluidStack(
+		Smeltery.addAlloyMixing(new FluidStack(moltenaeonsteel, 144), new FluidStack[] {new FluidStack(
 				TinkerSmeltery.moltenAlumiteFluid, 144), new FluidStack(
 						TinkerSmeltery.moltenCobaltFluid, 144)});
 
@@ -498,129 +632,129 @@ public class TinkersDefense
 						TinkerTools.toolRod, 1, 10), config.QueensGoldMatID);
 
 		TConstructClientRegistry.addMaterialRenderMapping(config.QueensGoldMatID, "tinker", "queensgold", true);
-		TConstructRegistry.addToolMaterial(config.QueensGoldMatID, "QueensGold", 3, 100, 500, 2, 1.0F, 0, 0f, GOLD.toString(), 0xeaee57);
-		TinkerTools.registerPatternMaterial("QueensGoldIngot", 2, "QueensGold");
+		TConstructRegistry.addToolMaterial(config.QueensGoldMatID, "queensgold", 3, 100, 500, 2, 1.0F, 0, 0f, GOLD.toString(), 0xeaee57);
+		TinkerTools.registerPatternMaterial("queensgoldIngot", 2, "queensgold");
 		TConstructRegistry.addDefaultToolPartMaterial(config.QueensGoldMatID);
 
-		Smeltery.addMelting(new ItemStack(item_QueensGoldIngot, 1, 0), block_QueensGoldBlock, 0, 500, new FluidStack(
-				moltenQueensGold, TConstruct.ingotLiquidValue));
-		Smeltery.addMelting(block_QueensGoldBlock, 0, 500, new FluidStack(
-				moltenQueensGold, TConstruct.ingotLiquidValue * 9));
+		Smeltery.addMelting(new ItemStack(item_queensgoldIngot, 1, 0), block_queensgoldBlock, 0, 500, new FluidStack(
+				moltenqueensgold, TConstruct.ingotLiquidValue));
+		Smeltery.addMelting(block_queensgoldBlock, 0, 500, new FluidStack(
+				moltenqueensgold, TConstruct.ingotLiquidValue * 9));
 
-		TConstructRegistry.instance.getTableCasting().addCastingRecipe(new ItemStack(
-				item_QueensGoldIngot, 1, 0), new FluidStack(moltenQueensGold,
+		TConstructRegistry.getTableCasting().addCastingRecipe(new ItemStack(
+				item_queensgoldIngot, 1, 0), new FluidStack(moltenqueensgold,
 						TConstruct.ingotLiquidValue), TConstructRegistry.getItemStack("ingotCast"), false, 50);
 
-		TConstructRegistry.instance.getBasinCasting().addCastingRecipe(new ItemStack(
-				block_QueensGoldBlock, 1, 0), new FluidStack(moltenQueensGold,
+		TConstructRegistry.getBasinCasting().addCastingRecipe(new ItemStack(
+				block_queensgoldBlock, 1, 0), new FluidStack(moltenqueensgold,
 						TConstruct.ingotLiquidValue * 9), 100);
 
-		castMolten(moltenQueensGold, config.QueensGoldMatID);
+		castmolten(moltenqueensgold, config.QueensGoldMatID);
 
 		PatternBuilder.instance.registerFullMaterial(new ItemStack(
-				item_QueensGoldIngot, 1, 0), 2, "QueensGold", new ItemStack(
+				item_queensgoldIngot, 1, 0), 2, "queensgold", new ItemStack(
 						TinkerTools.toolShard, 1, config.QueensGoldMatID), new ItemStack(
 								TinkerTools.toolRod, 1, config.QueensGoldMatID), config.QueensGoldMatID);
 
-		Smeltery.addAlloyMixing(new FluidStack(moltenQueensGold, 144 * 8), new FluidStack[] {new FluidStack(
+		Smeltery.addAlloyMixing(new FluidStack(moltenqueensgold, 144 * 8), new FluidStack[] {new FluidStack(
 				TinkerSmeltery.moltenGoldFluid, 144 * 8), new FluidStack(
 						TinkerSmeltery.moltenEmeraldFluid, 80)});
 
-		// Dogbearium
+		// dogbearium
 		pb.registerMaterialSet("dogbearium", new ItemStack(
 				TinkerTools.toolShard, 1, 10), new ItemStack(
 						TinkerTools.toolRod, 1, 10), config.DogbeariumMatID);
 
 		TConstructClientRegistry.addMaterialRenderMapping(config.DogbeariumMatID, "tinker", "dogbearium", true);
-		TConstructRegistry.addToolMaterial(config.DogbeariumMatID, "Dogbearium", 4, 600, 800, 2, 1.6F, 0, -2f, DARK_RED.toString(), 0x754200);
-		TinkerTools.registerPatternMaterial("DogbeariumIngot", 2, "Dogbearium");
+		TConstructRegistry.addToolMaterial(config.DogbeariumMatID, "dogbearium", 4, 600, 800, 2, 1.6F, 0, -2f, DARK_RED.toString(), 0x754200);
+		TinkerTools.registerPatternMaterial("dogbeariumIngot", 2, "dogbearium");
 		TConstructRegistry.addDefaultToolPartMaterial(config.DogbeariumMatID);
 
-		Smeltery.addMelting(new ItemStack(item_DogbeariumIngot, 1, 0), block_DogbeariumBlock, 0, 500, new FluidStack(
-				moltenDogbearium, TConstruct.ingotLiquidValue));
-		Smeltery.addMelting(block_DogbeariumBlock, 0, 500, new FluidStack(
-				moltenDogbearium, TConstruct.ingotLiquidValue * 9));
+		Smeltery.addMelting(new ItemStack(item_dogbeariumIngot, 1, 0), block_dogbeariumBlock, 0, 500, new FluidStack(
+				moltendogbearium, TConstruct.ingotLiquidValue));
+		Smeltery.addMelting(block_dogbeariumBlock, 0, 500, new FluidStack(
+				moltendogbearium, TConstruct.ingotLiquidValue * 9));
 
-		TConstructRegistry.instance.getTableCasting().addCastingRecipe(new ItemStack(
-				item_DogbeariumIngot, 1, 0), new FluidStack(moltenDogbearium,
+		TConstructRegistry.getTableCasting().addCastingRecipe(new ItemStack(
+				item_dogbeariumIngot, 1, 0), new FluidStack(moltendogbearium,
 						TConstruct.ingotLiquidValue), TConstructRegistry.getItemStack("ingotCast"), false, 50);
 
-		TConstructRegistry.instance.getBasinCasting().addCastingRecipe(new ItemStack(
-				block_DogbeariumBlock, 1, 0), new FluidStack(moltenDogbearium,
+		TConstructRegistry.getBasinCasting().addCastingRecipe(new ItemStack(
+				block_dogbeariumBlock, 1, 0), new FluidStack(moltendogbearium,
 						TConstruct.ingotLiquidValue * 9), 100);
 
-		castMolten(moltenDogbearium, config.DogbeariumMatID);
+		castmolten(moltendogbearium, config.DogbeariumMatID);
 
 		PatternBuilder.instance.registerFullMaterial(new ItemStack(
-				item_DogbeariumIngot, 1, 0), 2, "Dogbearium", new ItemStack(
+				item_dogbeariumIngot, 1, 0), 2, "dogbearium", new ItemStack(
 						TinkerTools.toolShard, 1, config.DogbeariumMatID), new ItemStack(
 								TinkerTools.toolRod, 1, config.DogbeariumMatID), config.DogbeariumMatID);
 
-		Smeltery.addAlloyMixing(new FluidStack(moltenDogbearium, 144 * 2), new FluidStack[] {new FluidStack(
+		Smeltery.addAlloyMixing(new FluidStack(moltendogbearium, 144 * 2), new FluidStack[] {new FluidStack(
 				TinkerSmeltery.moltenArditeFluid, 144), new FluidStack(
 						TinkerSmeltery.bloodFluid, 160), new FluidStack(
 								TinkerSmeltery.moltenEnderFluid, 250)});
 
 		//Red Mint
-		pb.registerMaterialSet("RedMint", new ItemStack(TinkerTools.toolShard,
+		pb.registerMaterialSet("redmint", new ItemStack(TinkerTools.toolShard,
 				1, 10), new ItemStack(TinkerTools.toolRod, 1, 10), config.RedMintMatID);
 
-		TConstructClientRegistry.addMaterialRenderMapping(config.RedMintMatID, "tinker", "RedMint", true);
-		TConstructRegistry.addToolMaterial(config.RedMintMatID, "RedMint", 1, 50, 10, 0, 0F, 0, 0f, DARK_RED.toString(), 0xFF0000);
-		TinkerTools.registerPatternMaterial("RedMintIngot", 2, "RedMint");
+		TConstructClientRegistry.addMaterialRenderMapping(config.RedMintMatID, "tinker", "redmint", true);
+		TConstructRegistry.addToolMaterial(config.RedMintMatID, "redmint", 1, 50, 10, 0, 0F, 0, 0f, DARK_RED.toString(), 0xFF0000);
+		TinkerTools.registerPatternMaterial("redmintIngot", 2, "redmint");
 		TConstructRegistry.addDefaultToolPartMaterial(config.RedMintMatID);
 
-		Smeltery.addMelting(new ItemStack(item_RedMintcane, 1, 0), block_RedMintBlock, 0, 250, new FluidStack(
-				moltenRedMint, TConstruct.chunkLiquidValue));
-		Smeltery.addMelting(new ItemStack(item_RedMintIngot, 1, 0), block_RedMintBlock, 0, 500, new FluidStack(
-				moltenRedMint, TConstruct.ingotLiquidValue));
-		Smeltery.addMelting(block_RedMintBlock, 0, 500, new FluidStack(
-				moltenRedMint, TConstruct.ingotLiquidValue * 9));
+		Smeltery.addMelting(new ItemStack(item_redmintcane, 1, 0), block_redmintBlock, 0, 250, new FluidStack(
+				moltenredmint, TConstruct.chunkLiquidValue));
+		Smeltery.addMelting(new ItemStack(item_redmintIngot, 1, 0), block_redmintBlock, 0, 500, new FluidStack(
+				moltenredmint, TConstruct.ingotLiquidValue));
+		Smeltery.addMelting(block_redmintBlock, 0, 500, new FluidStack(
+				moltenredmint, TConstruct.ingotLiquidValue * 9));
 
-		TConstructRegistry.instance.getTableCasting().addCastingRecipe(new ItemStack(
-				item_RedMintIngot, 1, 0), new FluidStack(moltenRedMint,
+		TConstructRegistry.getTableCasting().addCastingRecipe(new ItemStack(
+				item_redmintIngot, 1, 0), new FluidStack(moltenredmint,
 						TConstruct.ingotLiquidValue), TConstructRegistry.getItemStack("ingotCast"), false, 50);
 
-		TConstructRegistry.instance.getBasinCasting().addCastingRecipe(new ItemStack(
-				block_RedMintBlock, 1, 0), new FluidStack(moltenRedMint,
+		TConstructRegistry.getBasinCasting().addCastingRecipe(new ItemStack(
+				block_redmintBlock, 1, 0), new FluidStack(moltenredmint,
 						TConstruct.ingotLiquidValue * 9), 100);
 
-		castMolten(moltenRedMint, config.RedMintMatID);
+		castmolten(moltenredmint, config.RedMintMatID);
 
 		PatternBuilder.instance.registerFullMaterial(new ItemStack(
-				item_RedMintcane, 1, 0), 2, "RedMint", new ItemStack(
+				item_redmintcane, 1, 0), 2, "redmint", new ItemStack(
 						TinkerTools.toolShard, 1, config.RedMintMatID), new ItemStack(
 								TinkerTools.toolRod, 1, config.RedMintMatID), config.RedMintMatID);
 
 		//Green Mint
-		pb.registerMaterialSet("GreenMint", new ItemStack(
+		pb.registerMaterialSet("greenmint", new ItemStack(
 				TinkerTools.toolShard, 1, 10), new ItemStack(
 						TinkerTools.toolRod, 1, 10), config.GreenMintMatID);
 
-		TConstructClientRegistry.addMaterialRenderMapping(config.GreenMintMatID, "tinker", "GreenMint", true);
-		TConstructRegistry.addToolMaterial(config.GreenMintMatID, "GreenMint", 1, 50, 10, 0, 0F, 0, 0f, DARK_RED.toString(), 0x5bde4b);
-		TinkerTools.registerPatternMaterial("GreenMintIngot", 2, "GreenMint");
+		TConstructClientRegistry.addMaterialRenderMapping(config.GreenMintMatID, "tinker", "greenmint", true);
+		TConstructRegistry.addToolMaterial(config.GreenMintMatID, "greenmint", 1, 50, 10, 0, 0F, 0, 0f, DARK_RED.toString(), 0x5bde4b);
+		TinkerTools.registerPatternMaterial("greenmintIngot", 2, "greenmint");
 		TConstructRegistry.addDefaultToolPartMaterial(config.GreenMintMatID);
 
-		Smeltery.addMelting(new ItemStack(item_GreenMintcane, 1, 0), block_GreenMintBlock, 0, 250, new FluidStack(
-				moltenGreenMint, TConstruct.chunkLiquidValue));
-		Smeltery.addMelting(new ItemStack(item_GreenMintIngot, 1, 0), block_GreenMintBlock, 0, 500, new FluidStack(
-				moltenGreenMint, TConstruct.ingotLiquidValue));
-		Smeltery.addMelting(block_GreenMintBlock, 0, 500, new FluidStack(
-				moltenGreenMint, TConstruct.ingotLiquidValue * 9));
+		Smeltery.addMelting(new ItemStack(item_greenmintcane, 1, 0), block_greenmintBlock, 0, 250, new FluidStack(
+				moltengreenmint, TConstruct.chunkLiquidValue));
+		Smeltery.addMelting(new ItemStack(item_greenmintIngot, 1, 0), block_greenmintBlock, 0, 500, new FluidStack(
+				moltengreenmint, TConstruct.ingotLiquidValue));
+		Smeltery.addMelting(block_greenmintBlock, 0, 500, new FluidStack(
+				moltengreenmint, TConstruct.ingotLiquidValue * 9));
 
-		TConstructRegistry.instance.getTableCasting().addCastingRecipe(new ItemStack(
-				item_GreenMintIngot, 1, 0), new FluidStack(moltenGreenMint,
+		TConstructRegistry.getTableCasting().addCastingRecipe(new ItemStack(
+				item_greenmintIngot, 1, 0), new FluidStack(moltengreenmint,
 						TConstruct.ingotLiquidValue), TConstructRegistry.getItemStack("ingotCast"), false, 50);
 
-		TConstructRegistry.instance.getBasinCasting().addCastingRecipe(new ItemStack(
-				block_GreenMintBlock, 1, 0), new FluidStack(moltenGreenMint,
+		TConstructRegistry.getBasinCasting().addCastingRecipe(new ItemStack(
+				block_greenmintBlock, 1, 0), new FluidStack(moltengreenmint,
 						TConstruct.ingotLiquidValue * 9), 100);
 
-		castMolten(moltenGreenMint, config.GreenMintMatID);
+		castmolten(moltengreenmint, config.GreenMintMatID);
 
 		PatternBuilder.instance.registerFullMaterial(new ItemStack(
-				item_GreenMintcane, 1, 0), 2, "GreenMint", new ItemStack(
+				item_greenmintcane, 1, 0), 2, "greenmint", new ItemStack(
 						TinkerTools.toolShard, 1, config.GreenMintMatID), new ItemStack(
 								TinkerTools.toolRod, 1, config.GreenMintMatID), config.GreenMintMatID);
 
@@ -692,8 +826,8 @@ public class TinkersDefense
 		tcInject = new Injector(0);
 		GameRegistry.registerItem(tcInject, "???");
 
-		GameRegistry.addShapelessRecipe(new ItemStack(item_Guidebook), new ItemStack(
-				Items.book), new ItemStack(partArmorplate, 1, -1));
+		//		GameRegistry.addShapelessRecipe(new ItemStack(item_Guidebook), new ItemStack(
+		//				Items.book), new ItemStack(partArmorplate, 1, -1));
 
 		mods.Init();
 
@@ -724,88 +858,88 @@ public class TinkersDefense
 		}
 	}
 
-	public void castMolten(Fluid fluid, int ID)
+	public void castmolten(Fluid fluid, int ID)
 	{
 		// .addCastingRecipe(output, fluid, cast, hardeningDelay)
-		TConstructRegistry.instance.getTableCasting().addCastingRecipe(new ItemStack(
+		TConstructRegistry.getTableCasting().addCastingRecipe(new ItemStack(
 				TinkerTools.toolRod, 1, ID), new FluidStack(fluid,
 						(int) (144 * 0.5D)), TConstructRegistry.getItemStack("toolRodCast"), 50);
-		TConstructRegistry.instance.getTableCasting().addCastingRecipe(new ItemStack(
+		TConstructRegistry.getTableCasting().addCastingRecipe(new ItemStack(
 				TinkerTools.pickaxeHead, 1, ID), new FluidStack(fluid,
 						(int) (144 * 1.0D)), TConstructRegistry.getItemStack("pickaxeHeadCast"), 50);
-		TConstructRegistry.instance.getTableCasting().addCastingRecipe(new ItemStack(
+		TConstructRegistry.getTableCasting().addCastingRecipe(new ItemStack(
 				TinkerTools.shovelHead, 1, ID), new FluidStack(fluid,
 						(int) (144 * 1.0D)), TConstructRegistry.getItemStack("shovelHeadCast"), 50);
-		TConstructRegistry.instance.getTableCasting().addCastingRecipe(new ItemStack(
+		TConstructRegistry.getTableCasting().addCastingRecipe(new ItemStack(
 				TinkerTools.hatchetHead, 1, ID), new FluidStack(fluid,
 						(int) (144 * 1.0D)), TConstructRegistry.getItemStack("hatchetHeadCast"), 50);
-		TConstructRegistry.instance.getTableCasting().addCastingRecipe(new ItemStack(
+		TConstructRegistry.getTableCasting().addCastingRecipe(new ItemStack(
 				TinkerTools.swordBlade, 1, ID), new FluidStack(fluid,
 						(int) (144 * 1.0D)), TConstructRegistry.getItemStack("swordBladeCast"), 50);
-		TConstructRegistry.instance.getTableCasting().addCastingRecipe(new ItemStack(
+		TConstructRegistry.getTableCasting().addCastingRecipe(new ItemStack(
 				TinkerTools.fullGuard, 1, ID), new FluidStack(fluid,
 						(int) (144 * 3.0D)), TConstructRegistry.getItemStack("fullGuardCast"), 50);
-		TConstructRegistry.instance.getTableCasting().addCastingRecipe(new ItemStack(
+		TConstructRegistry.getTableCasting().addCastingRecipe(new ItemStack(
 				TinkerTools.wideGuard, 1, ID), new FluidStack(fluid,
 						(int) (144 * 0.5D)), TConstructRegistry.getItemStack("wideGuardCast"), 50);
-		TConstructRegistry.instance.getTableCasting().addCastingRecipe(new ItemStack(
+		TConstructRegistry.getTableCasting().addCastingRecipe(new ItemStack(
 				TinkerTools.crossbar, 1, ID), new FluidStack(fluid,
 						(int) (144 * 0.5D)), TConstructRegistry.getItemStack("crossbarCast"), 50);
-		TConstructRegistry.instance.getTableCasting().addCastingRecipe(new ItemStack(
+		TConstructRegistry.getTableCasting().addCastingRecipe(new ItemStack(
 				TinkerTools.binding, 1, ID), new FluidStack(fluid,
 						(int) (144 * 0.5D)), TConstructRegistry.getItemStack("bindingCast"), 50);
-		TConstructRegistry.instance.getTableCasting().addCastingRecipe(new ItemStack(
+		TConstructRegistry.getTableCasting().addCastingRecipe(new ItemStack(
 				TinkerTools.handGuard, 1, ID), new FluidStack(fluid,
 						(int) (144 * 0.5D)), TConstructRegistry.getItemStack("handGuardCast"), 50);
-		TConstructRegistry.instance.getTableCasting().addCastingRecipe(new ItemStack(
+		TConstructRegistry.getTableCasting().addCastingRecipe(new ItemStack(
 				TinkerTools.frypanHead, 1, ID), new FluidStack(fluid,
 						(int) (144 * 1.0D)), TConstructRegistry.getItemStack("frypanHeadCast"), 50);
-		TConstructRegistry.instance.getTableCasting().addCastingRecipe(new ItemStack(
+		TConstructRegistry.getTableCasting().addCastingRecipe(new ItemStack(
 				TinkerTools.signHead, 1, ID), new FluidStack(fluid,
 						(int) (144 * 1.0D)), TConstructRegistry.getItemStack("signHeadCast"), 50);
-		TConstructRegistry.instance.getTableCasting().addCastingRecipe(new ItemStack(
+		TConstructRegistry.getTableCasting().addCastingRecipe(new ItemStack(
 				TinkerTools.knifeBlade, 1, ID), new FluidStack(fluid,
 						(int) (144 * 0.5D)), TConstructRegistry.getItemStack("knifeBladeCast"), 50);
-		TConstructRegistry.instance.getTableCasting().addCastingRecipe(new ItemStack(
+		TConstructRegistry.getTableCasting().addCastingRecipe(new ItemStack(
 				TinkerTools.chiselHead, 1, ID), new FluidStack(fluid,
 						(int) (144 * 0.5D)), TConstructRegistry.getItemStack("chiselHeadCast"), 50);
-		TConstructRegistry.instance.getTableCasting().addCastingRecipe(new ItemStack(
+		TConstructRegistry.getTableCasting().addCastingRecipe(new ItemStack(
 				TinkerTools.toughRod, 1, ID), new FluidStack(fluid,
 						(int) (144 * 3.0D)), TConstructRegistry.getItemStack("toughRodCast"), 50);
-		TConstructRegistry.instance.getTableCasting().addCastingRecipe(new ItemStack(
+		TConstructRegistry.getTableCasting().addCastingRecipe(new ItemStack(
 				TinkerTools.toughBinding, 1, ID), new FluidStack(fluid,
 						(int) (144 * 3.0D)), TConstructRegistry.getItemStack("toughBindingCast"), 50);
-		TConstructRegistry.instance.getTableCasting().addCastingRecipe(new ItemStack(
+		TConstructRegistry.getTableCasting().addCastingRecipe(new ItemStack(
 				TinkerTools.largePlate, 1, ID), new FluidStack(fluid,
 						(int) (144 * 8.0D)), TConstructRegistry.getItemStack("largePlateCast"), 50);
-		TConstructRegistry.instance.getTableCasting().addCastingRecipe(new ItemStack(
+		TConstructRegistry.getTableCasting().addCastingRecipe(new ItemStack(
 				TinkerTools.broadAxeHead, 1, ID), new FluidStack(fluid,
 						(int) (144 * 8.0D)), TConstructRegistry.getItemStack("broadAxeHeadCast"), 50);
-		TConstructRegistry.instance.getTableCasting().addCastingRecipe(new ItemStack(
+		TConstructRegistry.getTableCasting().addCastingRecipe(new ItemStack(
 				TinkerTools.scytheBlade, 1, ID), new FluidStack(fluid,
 						(int) (144 * 8.0D)), TConstructRegistry.getItemStack("scytheHeadCast"), 50);
-		TConstructRegistry.instance.getTableCasting().addCastingRecipe(new ItemStack(
+		TConstructRegistry.getTableCasting().addCastingRecipe(new ItemStack(
 				TinkerTools.excavatorHead, 1, ID), new FluidStack(fluid,
 						(int) (144 * 8.0D)), TConstructRegistry.getItemStack("excavatorHeadCast"), 50);
-		TConstructRegistry.instance.getTableCasting().addCastingRecipe(new ItemStack(
+		TConstructRegistry.getTableCasting().addCastingRecipe(new ItemStack(
 				TinkerTools.largeSwordBlade, 1, ID), new FluidStack(fluid,
 						(int) (144 * 8.0D)), TConstructRegistry.getItemStack("largeBladeCast"), 50);
-		TConstructRegistry.instance.getTableCasting().addCastingRecipe(new ItemStack(
+		TConstructRegistry.getTableCasting().addCastingRecipe(new ItemStack(
 				TinkerTools.hammerHead, 1, ID), new FluidStack(fluid,
 						(int) (144 * 8.0D)), TConstructRegistry.getItemStack("hammerHeadCast"), 50);
-		TConstructRegistry.instance.getTableCasting().addCastingRecipe(new ItemStack(
+		TConstructRegistry.getTableCasting().addCastingRecipe(new ItemStack(
 				TinkerTools.arrowhead, 1, ID), new FluidStack(fluid,
 						(int) (144 * 1.0D)), TConstructRegistry.getItemStack("arrowheadCast"), 50);
-		TConstructRegistry.instance.getTableCasting().addCastingRecipe(new ItemStack(
+		TConstructRegistry.getTableCasting().addCastingRecipe(new ItemStack(
 				partArmorplate, 1, ID), new FluidStack(fluid,
 						(int) (144 * 4.0D)), new ItemStack(metalPattern, 1, 2), 50);
-		TConstructRegistry.instance.getTableCasting().addCastingRecipe(new ItemStack(
+		TConstructRegistry.getTableCasting().addCastingRecipe(new ItemStack(
 				partRivet, 1, ID), new FluidStack(fluid, (int) (144 * 0.5D)), new ItemStack(
 						metalPattern, 1, 0), 50);
-		TConstructRegistry.instance.getTableCasting().addCastingRecipe(new ItemStack(
+		TConstructRegistry.getTableCasting().addCastingRecipe(new ItemStack(
 				partClasp, 1, ID), new FluidStack(fluid, (int) (144 * 1.0D)), new ItemStack(
 						metalPattern, 1, 1), 50);
-		TConstructRegistry.instance.getTableCasting().addCastingRecipe(new ItemStack(
+		TConstructRegistry.getTableCasting().addCastingRecipe(new ItemStack(
 				partChainmaille, 1, ID), new FluidStack(fluid,
 						(int) (144 * 4.0D)), new ItemStack(metalPattern, 1, 3), 50);
 	}

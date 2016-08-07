@@ -11,12 +11,12 @@ import net.minecraft.item.ItemStack;
  *
  */
 
-public interface IWarpingGear {
-	
+public interface IWarpingGear
+{
+
 	/**
 	 * returns how much warp this item adds while worn or held. 
 	 */
 	public int getWarp(ItemStack itemstack, EntityPlayer player);
-	
 
 }

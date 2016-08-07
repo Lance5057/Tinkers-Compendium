@@ -9,7 +9,7 @@ public class ListUtils
 {
 	public static <V> List<V> inverse(List<V> list)
 	{
-		List<V> toReturn = new ArrayList<V>();
+		final List<V> toReturn = new ArrayList<V>();
 
 		for(int i = list.size() - 1; i >= 0; i--)
 		{
@@ -27,10 +27,11 @@ public class ListUtils
 		{
 			toReturn = copy(list);
 		}
-		else {
+		else
+		{
 			int count = 0;
 
-			for(V obj : list)
+			for(final V obj : list)
 			{
 				count++;
 
@@ -48,9 +49,9 @@ public class ListUtils
 
 	public static <V> List<V> copy(List<V> list)
 	{
-		List<V> toReturn = new ArrayList<V>();
+		final List<V> toReturn = new ArrayList<V>();
 
-		for(V obj : list)
+		for(final V obj : list)
 		{
 			toReturn.add(obj);
 		}
@@ -60,14 +61,14 @@ public class ListUtils
 
 	public static <V> List<V> merge(List<V> listOne, List<V> listTwo)
 	{
-		List<V> newList = new ArrayList<V>();
+		final List<V> newList = new ArrayList<V>();
 
-		for(V obj : listOne)
+		for(final V obj : listOne)
 		{
 			newList.add(obj);
 		}
 
-		for(V obj : listTwo)
+		for(final V obj : listTwo)
 		{
 			newList.add(obj);
 		}
@@ -77,19 +78,20 @@ public class ListUtils
 
 	public static <V> List<V> capRemains(List<V> list, int cap)
 	{
-		List<V> toReturn = new ArrayList<V>();
+		final List<V> toReturn = new ArrayList<V>();
 
 		if(list.size() <= cap)
 		{
 			return toReturn;
 		}
-		else {
-			List<V> inverse = inverse(list);
+		else
+		{
+			inverse(list);
 
-			int iterNeeded = list.size() - cap;
+			final int iterNeeded = list.size() - cap;
 			int count = 0;
 
-			for(V obj : list)
+			for(final V obj : list)
 			{
 				count++;
 
@@ -108,18 +110,18 @@ public class ListUtils
 	public static <V> ArrayList<List<V>> split(List<V> list, int divide)
 	{
 		int remain = list.size() % divide;
-		int size = (list.size() - remain) / divide;
+		final int size = (list.size() - remain) / divide;
 
-		ArrayList<List<V>> toReturn = new ArrayList<List<V>>();
+		final ArrayList<List<V>> toReturn = new ArrayList<List<V>>();
 
 		for(int i = 0; i < divide; i++)
 		{
 			toReturn.add(i, new ArrayList<V>());
 		}
 
-		for(List<V> iterSet : toReturn)
+		for(final List<V> iterSet : toReturn)
 		{
-			List<V> removed = new ArrayList<V>();
+			final List<V> removed = new ArrayList<V>();
 
 			int toAdd = size;
 
@@ -129,7 +131,7 @@ public class ListUtils
 				toAdd++;
 			}
 
-			for(V obj : list)
+			for(final V obj : list)
 			{
 				if(toAdd == 0)
 				{
@@ -141,7 +143,7 @@ public class ListUtils
 				toAdd--;
 			}
 
-			for(V obj : removed)
+			for(final V obj : removed)
 			{
 				list.remove(obj);
 			}
@@ -152,7 +154,7 @@ public class ListUtils
 
 	public static <V> V getTop(List<V> list)
 	{
-		for(V obj : list)
+		for(final V obj : list)
 		{
 			return obj;
 		}
@@ -162,22 +164,22 @@ public class ListUtils
 
 	public static <V> List<V> asList(Set<V> set)
 	{
-		return (List<V>)Arrays.asList(set.toArray());
+		return (List<V>) Arrays.asList(set.toArray());
 	}
 
 	public static <V> List<V> asList(V... values)
 	{
-		return (List<V>)Arrays.asList(values);
+		return Arrays.asList(values);
 	}
 
 	public static double[] splitDouble(int size, double num)
 	{
-		double[] split = new double[size];
+		final double[] split = new double[size];
 
 		for(int i = 0; i < size; i++)
 		{
-			double remain = num%size;
-			double ret = (num-remain)/size;
+			final double remain = num % size;
+			double ret = (num - remain) / size;
 			ret += remain;
 
 			split[i] = ret;
@@ -189,14 +191,17 @@ public class ListUtils
 
 	public static double[] percent(double[] values)
 	{
-		double[] ret = new double[values.length];
+		final double[] ret = new double[values.length];
 		double total = 0;
 
-		for(double d : values) total += d;
+		for(final double d : values)
+		{
+			total += d;
+		}
 
 		for(int i = 0; i < values.length; i++)
 		{
-			ret[i] = values[i]/total;
+			ret[i] = values[i] / total;
 		}
 
 		return ret;
@@ -204,23 +209,26 @@ public class ListUtils
 
 	public static int[] calcPercentInt(double[] percent, int val)
 	{
-		int[] ret = new int[percent.length];
+		final int[] ret = new int[percent.length];
 
 		for(int i = 0; i < percent.length; i++)
 		{
-			ret[i] = (int)Math.round(val*percent[i]);
+			ret[i] = (int) Math.round(val * percent[i]);
 		}
 
 		int newTotal = 0;
-		for(int i : ret) newTotal += i;
+		for(final int i : ret)
+		{
+			newTotal += i;
+		}
 
-		int diff = val-newTotal;
+		int diff = val - newTotal;
 
 		if(diff != val)
 		{
 			for(int i = 0; i < ret.length; i++)
 			{
-				int num = ret[i];
+				final int num = ret[i];
 
 				if(diff < 0 && num == 0)
 				{
@@ -250,12 +258,12 @@ public class ListUtils
 
 	public static int[] splitInt(int size, int num)
 	{
-		int[] split = new int[size];
+		final int[] split = new int[size];
 
 		for(int i = 0; i < size; i++)
 		{
-			int remain = num%size;
-			int ret = (num-remain)/size;
+			final int remain = num % size;
+			int ret = (num - remain) / size;
 			ret += remain;
 
 			split[i] = ret;
@@ -267,14 +275,17 @@ public class ListUtils
 
 	public static double[] percent(int[] values)
 	{
-		double[] ret = new double[values.length];
+		final double[] ret = new double[values.length];
 		double total = 0;
 
-		for(double d : values) total += d;
+		for(final double d : values)
+		{
+			total += d;
+		}
 
 		for(int i = 0; i < values.length; i++)
 		{
-			ret[i] = values[i]/total;
+			ret[i] = values[i] / total;
 		}
 
 		return ret;

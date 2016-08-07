@@ -11,7 +11,8 @@ import net.minecraftforge.common.util.ForgeDirection;
  * @author King Lemming
  *
  */
-public interface IEnergyConnection {
+public interface IEnergyConnection
+{
 
 	/**
 	 * Returns TRUE if the TileEntity can connect on a given side.

@@ -10,7 +10,7 @@ import net.minecraft.creativetab.CreativeTabs;
 public final class TabProxy
 {
 	/** The 'Mekanism' class where the tab instance is stored. */
-	public static Class Mekanism;
+	public static Class	Mekanism;
 
 	/**
 	 * Attempts to get the Mekanism creative tab instance from the 'Mekanism' class. Will return
@@ -20,21 +20,24 @@ public final class TabProxy
 	 */
 	public static CreativeTabs tabMekanism(CreativeTabs preferred)
 	{
-		try {
+		try
+		{
 			if(Mekanism == null)
 			{
 				Mekanism = Class.forName("mekanism.common.Mekanism");
 			}
 
-			Object ret = Mekanism.getField("tabMekanism").get(null);
+			final Object ret = Mekanism.getField("tabMekanism").get(null);
 
 			if(ret instanceof CreativeTabs)
 			{
-				return (CreativeTabs)ret;
+				return (CreativeTabs) ret;
 			}
 
 			return preferred;
-		} catch(Exception e) {
+		}
+		catch(final Exception e)
+		{
 			System.err.println("Error retrieving Mekanism creative tab.");
 			return preferred;
 		}

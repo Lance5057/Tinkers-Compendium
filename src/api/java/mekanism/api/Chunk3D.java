@@ -13,11 +13,11 @@ import net.minecraft.world.chunk.Chunk;
  */
 public class Chunk3D
 {
-	public int dimensionId;
-	
-	public int xCoord;
-	public int zCoord;
-	
+	public int	dimensionId;
+
+	public int	xCoord;
+	public int	zCoord;
+
 	/**
 	 * Creates a Chunk3D object from the given x and z coordinates, as well as a dimension.
 	 * @param x - chunk x location
@@ -28,22 +28,22 @@ public class Chunk3D
 	{
 		xCoord = x;
 		zCoord = z;
-		
+
 		dimensionId = dimension;
 	}
-	
+
 	/**
 	 * Creates a Chunk3D from an entity based on it's location and dimension.
 	 * @param entity - the entity to get the Chunk3D object from
 	 */
 	public Chunk3D(Entity entity)
 	{
-		xCoord = ((int)entity.posX) >> 4;
-		zCoord = ((int)entity.posZ) >> 4;
-		
+		xCoord = ((int) entity.posX) >> 4;
+		zCoord = ((int) entity.posZ) >> 4;
+
 		dimensionId = entity.dimension;
 	}
-	
+
 	/**
 	 * Creates a Chunk3D from a Coord4D based on it's coordinates and dimension.
 	 * @param coord - the Coord4D object to get this Chunk3D from
@@ -52,10 +52,10 @@ public class Chunk3D
 	{
 		xCoord = coord.xCoord >> 4;
 		zCoord = coord.zCoord >> 4;
-		
+
 		dimensionId = coord.dimensionId;
 	}
-	
+
 	/**
 	 * Whether or not this chunk exists in the given world.
 	 * @param world - the world to check in
@@ -65,7 +65,7 @@ public class Chunk3D
 	{
 		return world.getChunkProvider().chunkExists(xCoord, zCoord);
 	}
-	
+
 	/**
 	 * Gets a Chunk object corresponding to this Chunk3D's coordinates.
 	 * @param world - the world to get the Chunk object from
@@ -75,7 +75,7 @@ public class Chunk3D
 	{
 		return world.getChunkFromChunkCoords(xCoord, zCoord);
 	}
-	
+
 	/**
 	 * Returns this Chunk3D in the Minecraft-based ChunkCoordIntPair format.
 	 * @return this Chunk3D as a ChunkCoordIntPair
@@ -84,7 +84,7 @@ public class Chunk3D
 	{
 		return new ChunkCoordIntPair(xCoord, zCoord);
 	}
-	
+
 	@Override
 	public Coord4D clone()
 	{
@@ -100,10 +100,7 @@ public class Chunk3D
 	@Override
 	public boolean equals(Object obj)
 	{
-		return obj instanceof Chunk3D &&
-				((Chunk3D)obj).xCoord == xCoord &&
-				((Chunk3D)obj).zCoord == zCoord &&
-				((Chunk3D)obj).dimensionId == dimensionId;
+		return obj instanceof Chunk3D && ((Chunk3D) obj).xCoord == xCoord && ((Chunk3D) obj).zCoord == zCoord && ((Chunk3D) obj).dimensionId == dimensionId;
 	}
 
 	@Override

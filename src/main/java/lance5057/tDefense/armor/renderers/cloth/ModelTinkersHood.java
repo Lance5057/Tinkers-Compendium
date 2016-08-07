@@ -23,17 +23,19 @@ public class ModelTinkersHood extends ArmorRenderer
 	public ModelRenderer	Tip_2;
 	public ModelRenderer	ScarfExtra;
 	public ModelRenderer	ScarfExtra_1;
+	public ModelRenderer	BandExtra;
+	public ModelRenderer	BandExtra_1;
 
 	public ModelTinkersHood()
 	{
-		super(0.1f, 0, 128, 64);
+		super(0.2f, 0, 128, 64);
 
 		textureWidth = 128;
 		textureHeight = 64;
 
 		bipedHeadwear = new ModelRenderer(this, "Headwear");
 		bipedHeadwear.setTextureOffset(32, 0);
-		bipedHeadwear.addBox(-4.0F, -8.0F, -4.0F, 8, 8, 8, 0.1f + 0.5F);
+		bipedHeadwear.addBox(-4.0F, -8.0F, -4.0F, 8, 8, 8, 0.2f + 0.5F);
 		bipedHeadwear.setRotationPoint(0.0F, 0.0F + 0, 0.0F);
 
 		Flop = new ModelRenderer(this, "Flop");
@@ -90,7 +92,7 @@ public class ModelTinkersHood extends ArmorRenderer
 		bipedHead.addChild(HatTopTall);
 
 		Rim = new ModelRenderer(this, "Rim");
-		Rim.setTextureOffset(64, 20);
+		Rim.setTextureOffset(65, 20);
 		Rim.setRotationPoint(0.0F, 0.0F, 0.0F);
 		Rim.addBox(-6.0F, -5.5F, -6.0F, 12, 1, 12, 0.1F);
 		bipedHead.addChild(Rim);
@@ -105,8 +107,22 @@ public class ModelTinkersHood extends ArmorRenderer
 		Band = new ModelRenderer(this, "Band");
 		Band.setTextureOffset(64, 9);
 		Band.setRotationPoint(0.0F, 0.0F, 0.0F);
-		Band.addBox(-4.5F, -6.7F, -4.5F, 9, 2, 9, 0.2F);
+		Band.addBox(-4.5F, -7F, -4.5F, 9, 3, 9, -0.3F);
 		bipedHead.addChild(Band);
+
+		BandExtra = new ModelRenderer(this, "BandExtra");
+		BandExtra.setTextureOffset(44, 32);
+		BandExtra.setRotationPoint(0.0F, 0.0F, 0.0F);
+		BandExtra.addBox(0.2F, -6.0F, 3.4F, 3, 5, 1, -0.3F);
+		setRotateAngle(BandExtra, 0.0F, 0.0F, -0.17453292519943295F);
+		bipedHead.addChild(BandExtra);
+
+		BandExtra_1 = new ModelRenderer(this, "BandExtra 1");
+		BandExtra_1.setTextureOffset(36, 32);
+		BandExtra_1.setRotationPoint(0.0F, 0.0F, 0.0F);
+		BandExtra_1.addBox(-3.2F, -6.0F, 3.4F, 3, 7, 1, -0.3F);
+		setRotateAngle(BandExtra_1, 0.0F, 0.0F, 0.17453292519943295F);
+		bipedHead.addChild(BandExtra_1);
 
 		Tip = new ModelRenderer(this, "Tip");
 		Tip.setTextureOffset(0, 44);

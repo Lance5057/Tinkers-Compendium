@@ -3,7 +3,8 @@ package ic2.api.recipe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
-public interface IMachineRecipeManagerExt extends IMachineRecipeManager {
+public interface IMachineRecipeManagerExt extends IMachineRecipeManager
+{
 	/**
 	 * Adds a recipe to the machine.
 	 *

@@ -11,7 +11,7 @@ public class Handler_CrestMount implements IMessageHandler<Message_CrestMount, I
 	@Override
 	public IMessage onMessage(Message_CrestMount message, MessageContext ctx)
 	{
-		TileEntity te = ctx.getServerHandler().playerEntity.worldObj.getTileEntity(message.x, message.y, message.z);
+		final TileEntity te = ctx.getServerHandler().playerEntity.worldObj.getTileEntity(message.x, message.y, message.z);
 		if(te instanceof TileEntity_CrestMount)
 		{
 			((TileEntity_CrestMount) te).flip = message.flip;

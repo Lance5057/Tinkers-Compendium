@@ -4,7 +4,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import mekanism.api.util.BlockInfo;
-
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraftforge.oredict.OreDictionary;
@@ -13,14 +12,14 @@ import cpw.mods.fml.common.eventhandler.Event;
 public class MekanismAPI
 {
 	//Add a BlockInfo value here if you don't want a certain block to be picked up by cardboard boxes
-	private static Set<BlockInfo> cardboardBoxIgnore = new HashSet<BlockInfo>();
-	
+	private static Set<BlockInfo>	cardboardBoxIgnore	= new HashSet<BlockInfo>();
+
 	/** Mekanism debug mode */
-	public static boolean debug = false;
+	public static boolean			debug				= false;
 
 	public static boolean isBlockCompatible(Item item, int meta)
 	{
-		for(BlockInfo i : cardboardBoxIgnore)
+		for(final BlockInfo i : cardboardBoxIgnore)
 		{
 			if(i.block == Block.getBlockFromItem(item) && (i.meta == OreDictionary.WILDCARD_VALUE || i.meta == meta))
 			{
@@ -46,5 +45,7 @@ public class MekanismAPI
 		return cardboardBoxIgnore;
 	}
 
-	public static class BoxBlacklistEvent extends Event {}
+	public static class BoxBlacklistEvent extends Event
+	{
+	}
 }

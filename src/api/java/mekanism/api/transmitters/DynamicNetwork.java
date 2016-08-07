@@ -1,10 +1,13 @@
 package mekanism.api.transmitters;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-import com.google.common.collect.Sets;
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.eventhandler.Event;
+import java.util.Collection;
+import java.util.EnumSet;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
+import java.util.Map.Entry;
+import java.util.Set;
+
 import mekanism.api.Coord4D;
 import mekanism.api.IClientTicker;
 import mekanism.api.Range4D;
@@ -14,31 +17,35 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.ForgeDirection;
 
-import java.util.*;
-import java.util.Map.Entry;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import com.google.common.collect.Sets;
+
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.eventhandler.Event;
 
 public abstract class DynamicNetwork<A, N extends DynamicNetwork<A, N>> implements IClientTicker, INetworkDataHandler
 {
-	public LinkedHashSet<IGridTransmitter<A, N>> transmitters = Sets.newLinkedHashSet();
-	public LinkedHashSet<IGridTransmitter<A, N>> transmittersToAdd = Sets.newLinkedHashSet();
-	public LinkedHashSet<IGridTransmitter<A, N>> transmittersAdded = Sets.newLinkedHashSet();
+	public LinkedHashSet<IGridTransmitter<A, N>>					transmitters		= Sets.newLinkedHashSet();
+	public LinkedHashSet<IGridTransmitter<A, N>>					transmittersToAdd	= Sets.newLinkedHashSet();
+	public LinkedHashSet<IGridTransmitter<A, N>>					transmittersAdded	= Sets.newLinkedHashSet();
 
-	public HashMap<Coord4D, A> possibleAcceptors = new HashMap<Coord4D, A>();
-	public HashMap<Coord4D, EnumSet<ForgeDirection>> acceptorDirections = new HashMap<Coord4D, EnumSet<ForgeDirection>>();
-	public HashMap<IGridTransmitter<A, N>, EnumSet<ForgeDirection>> changedAcceptors = Maps.newHashMap();
+	public HashMap<Coord4D, A>										possibleAcceptors	= new HashMap<Coord4D, A>();
+	public HashMap<Coord4D, EnumSet<ForgeDirection>>				acceptorDirections	= new HashMap<Coord4D, EnumSet<ForgeDirection>>();
+	public HashMap<IGridTransmitter<A, N>, EnumSet<ForgeDirection>>	changedAcceptors	= Maps.newHashMap();
 
-	private Set<DelayQueue> updateQueue = new LinkedHashSet<DelayQueue>();
+	private final Set<DelayQueue>											updateQueue			= new LinkedHashSet<DelayQueue>();
 
-	protected Range4D packetRange = null;
+	protected Range4D												packetRange			= null;
 
-	protected int capacity = 0;
-	protected double meanCapacity = 0;
+	protected int													capacity			= 0;
+	protected double												meanCapacity		= 0;
 
-	protected boolean needsUpdate = false;
-	protected int updateDelay = 0;
+	protected boolean												needsUpdate			= false;
+	protected int													updateDelay			= 0;
 
-	protected boolean firstUpdate = true;
-	protected World worldObj = null;
+	protected boolean												firstUpdate			= true;
+	protected World													worldObj			= null;
 
 	public void addNewTransmitters(Collection<IGridTransmitter<A, N>> newTransmitters)
 	{
@@ -49,7 +56,7 @@ public abstract class DynamicNetwork<A, N extends DynamicNetwork<A, N>> implemen
 	{
 		if(!transmittersToAdd.isEmpty())
 		{
-			for(IGridTransmitter<A, N> transmitter : transmittersToAdd)
+			for(final IGridTransmitter<A, N> transmitter : transmittersToAdd)
 			{
 				if(transmitter.isValid())
 				{
@@ -58,17 +65,17 @@ public abstract class DynamicNetwork<A, N extends DynamicNetwork<A, N>> implemen
 						worldObj = transmitter.world();
 					}
 
-					for(ForgeDirection side : ForgeDirection.VALID_DIRECTIONS)
+					for(final ForgeDirection side : ForgeDirection.VALID_DIRECTIONS)
 					{
 						updateTransmitterOnSide(transmitter, side);
 					}
-					
-					transmitter.setTransmitterNetwork((N)this);
+
+					transmitter.setTransmitterNetwork((N) this);
 					absorbBuffer(transmitter);
 					transmitters.add(transmitter);
 				}
 			}
-			
+
 			updateCapacity();
 			clampBuffer();
 			queueClientUpdate(Lists.newArrayList(transmittersToAdd));
@@ -77,30 +84,30 @@ public abstract class DynamicNetwork<A, N extends DynamicNetwork<A, N>> implemen
 
 		if(!changedAcceptors.isEmpty())
 		{
-			for(Entry<IGridTransmitter<A, N>, EnumSet<ForgeDirection>> entry : changedAcceptors.entrySet())
+			for(final Entry<IGridTransmitter<A, N>, EnumSet<ForgeDirection>> entry : changedAcceptors.entrySet())
 			{
-				IGridTransmitter<A, N> transmitter = entry.getKey();
-				
+				final IGridTransmitter<A, N> transmitter = entry.getKey();
+
 				if(transmitter.isValid())
 				{
-					EnumSet<ForgeDirection> directionsChanged = entry.getValue();
+					final EnumSet<ForgeDirection> directionsChanged = entry.getValue();
 
-					for(ForgeDirection side : directionsChanged)
+					for(final ForgeDirection side : directionsChanged)
 					{
 						updateTransmitterOnSide(transmitter, side);
 					}
 				}
 			}
-			
+
 			changedAcceptors.clear();
 		}
 	}
 
 	public void updateTransmitterOnSide(IGridTransmitter<A, N> transmitter, ForgeDirection side)
 	{
-		A acceptor = transmitter.getAcceptor(side);
-		Coord4D acceptorCoord = transmitter.coord().getFromSide(side);
-		EnumSet<ForgeDirection> directions = acceptorDirections.get(acceptorCoord);
+		final A acceptor = transmitter.getAcceptor(side);
+		final Coord4D acceptorCoord = transmitter.coord().getFromSide(side);
+		final EnumSet<ForgeDirection> directions = acceptorDirections.get(acceptorCoord);
 
 		if(acceptor != null)
 		{
@@ -110,11 +117,13 @@ public abstract class DynamicNetwork<A, N extends DynamicNetwork<A, N>> implemen
 			{
 				directions.add(side.getOpposite());
 			}
-			else {
+			else
+			{
 				acceptorDirections.put(acceptorCoord, EnumSet.of(side.getOpposite()));
 			}
 		}
-		else {
+		else
+		{
 			if(directions != null)
 			{
 				directions.remove(side.getOpposite());
@@ -125,7 +134,8 @@ public abstract class DynamicNetwork<A, N extends DynamicNetwork<A, N>> implemen
 					acceptorDirections.remove(acceptorCoord);
 				}
 			}
-			else {
+			else
+			{
 				possibleAcceptors.remove(acceptorCoord);
 				acceptorDirections.remove(acceptorCoord);
 			}
@@ -139,33 +149,33 @@ public abstract class DynamicNetwork<A, N extends DynamicNetwork<A, N>> implemen
 
 	public void invalidate()
 	{
-        //Remove invalid transmitters first for share calculations
-        for(Iterator<IGridTransmitter<A, N>> iter = transmitters.iterator(); iter.hasNext();)
-        {
-            IGridTransmitter<A, N> transmitter = iter.next();
+		//Remove invalid transmitters first for share calculations
+		for(final Iterator<IGridTransmitter<A, N>> iter = transmitters.iterator(); iter.hasNext();)
+		{
+			final IGridTransmitter<A, N> transmitter = iter.next();
 
-            if(!transmitter.isValid())
-            {
-                iter.remove();
-                continue;
-            }
-        }
+			if(!transmitter.isValid())
+			{
+				iter.remove();
+				continue;
+			}
+		}
 
-        //Clamp the new buffer
-        clampBuffer();
+		//Clamp the new buffer
+		clampBuffer();
 
-        //Update all shares
-        for(IGridTransmitter<A, N> transmitter : transmitters)
-        {
-            transmitter.updateShare();
-        }
+		//Update all shares
+		for(final IGridTransmitter<A, N> transmitter : transmitters)
+		{
+			transmitter.updateShare();
+		}
 
-        //Now invalidate the transmitters
-		for(IGridTransmitter<A, N> transmitter : transmitters)
+		//Now invalidate the transmitters
+		for(final IGridTransmitter<A, N> transmitter : transmitters)
 		{
 			invalidateTransmitter(transmitter);
 		}
-		
+
 		transmitters.clear();
 		deregister();
 	}
@@ -182,39 +192,41 @@ public abstract class DynamicNetwork<A, N extends DynamicNetwork<A, N>> implemen
 
 	public void acceptorChanged(IGridTransmitter<A, N> transmitter, ForgeDirection side)
 	{
-		EnumSet<ForgeDirection> directions = changedAcceptors.get(transmitter);
-		
+		final EnumSet<ForgeDirection> directions = changedAcceptors.get(transmitter);
+
 		if(directions != null)
 		{
 			directions.add(side);
-		} 
-		else {
+		}
+		else
+		{
 			changedAcceptors.put(transmitter, EnumSet.of(side));
 		}
-		
+
 		TransmitterNetworkRegistry.registerChangedNetwork(this);
 	}
 
 	public void adoptTransmittersAndAcceptorsFrom(N net)
 	{
-		for(IGridTransmitter<A, N> transmitter : net.transmitters)
+		for(final IGridTransmitter<A, N> transmitter : net.transmitters)
 		{
-			transmitter.setTransmitterNetwork((N)this);
+			transmitter.setTransmitterNetwork((N) this);
 			transmitters.add(transmitter);
 			transmittersAdded.add(transmitter);
 		}
-		
+
 		possibleAcceptors.putAll(net.possibleAcceptors);
-		
-		for(Entry<Coord4D, EnumSet<ForgeDirection>> entry : net.acceptorDirections.entrySet())
+
+		for(final Entry<Coord4D, EnumSet<ForgeDirection>> entry : net.acceptorDirections.entrySet())
 		{
-			Coord4D coord = entry.getKey();
-			
+			final Coord4D coord = entry.getKey();
+
 			if(acceptorDirections.containsKey(coord))
 			{
 				acceptorDirections.get(coord).addAll(entry.getValue());
 			}
-			else {
+			else
+			{
 				acceptorDirections.put(coord, entry.getValue());
 			}
 		}
@@ -227,10 +239,10 @@ public abstract class DynamicNetwork<A, N extends DynamicNetwork<A, N>> implemen
 		{
 			return genPacketRange();
 		}
-		
+
 		return packetRange;
 	}
-	
+
 	protected Range4D genPacketRange()
 	{
 		if(getSize() == 0)
@@ -239,29 +251,48 @@ public abstract class DynamicNetwork<A, N extends DynamicNetwork<A, N>> implemen
 			return null;
 		}
 
-		IGridTransmitter<A, N> initTransmitter = transmitters.iterator().next();
-		Coord4D initCoord = initTransmitter.coord();
-		
+		final IGridTransmitter<A, N> initTransmitter = transmitters.iterator().next();
+		final Coord4D initCoord = initTransmitter.coord();
+
 		int minX = initCoord.xCoord;
 		int minY = initCoord.yCoord;
 		int minZ = initCoord.zCoord;
 		int maxX = initCoord.xCoord;
 		int maxY = initCoord.yCoord;
 		int maxZ = initCoord.zCoord;
-		
-		for(IGridTransmitter transmitter : transmitters)
+
+		for(final IGridTransmitter transmitter : transmitters)
 		{
-			Coord4D coord = transmitter.coord();
-			
-			if(coord.xCoord < minX) minX = coord.xCoord;
-			if(coord.yCoord < minY) minY = coord.yCoord;
-			if(coord.zCoord < minZ) minZ = coord.zCoord;
-			if(coord.xCoord > maxX) maxX = coord.xCoord;
-			if(coord.yCoord > maxY) maxY = coord.yCoord;
-			if(coord.zCoord > maxZ) maxZ = coord.zCoord;
+			final Coord4D coord = transmitter.coord();
+
+			if(coord.xCoord < minX)
+			{
+				minX = coord.xCoord;
+			}
+			if(coord.yCoord < minY)
+			{
+				minY = coord.yCoord;
+			}
+			if(coord.zCoord < minZ)
+			{
+				minZ = coord.zCoord;
+			}
+			if(coord.xCoord > maxX)
+			{
+				maxX = coord.xCoord;
+			}
+			if(coord.yCoord > maxY)
+			{
+				maxY = coord.yCoord;
+			}
+			if(coord.zCoord > maxZ)
+			{
+				maxZ = coord.zCoord;
+			}
 		}
-		
-		return new Range4D(minX, minY, minZ, maxX, maxY, maxZ, initTransmitter.world().provider.dimensionId);
+
+		return new Range4D(minX, minY, minZ, maxX, maxY, maxZ,
+				initTransmitter.world().provider.dimensionId);
 	}
 
 	public void register()
@@ -270,8 +301,9 @@ public abstract class DynamicNetwork<A, N extends DynamicNetwork<A, N>> implemen
 		{
 			TransmitterNetworkRegistry.getInstance().registerNetwork(this);
 		}
-		else {
-			MinecraftForge.EVENT_BUS.post(new ClientTickUpdate(this, (byte)1));
+		else
+		{
+			MinecraftForge.EVENT_BUS.post(new ClientTickUpdate(this, (byte) 1));
 		}
 	}
 
@@ -283,8 +315,9 @@ public abstract class DynamicNetwork<A, N extends DynamicNetwork<A, N>> implemen
 		{
 			TransmitterNetworkRegistry.getInstance().removeNetwork(this);
 		}
-		else {
-			MinecraftForge.EVENT_BUS.post(new ClientTickUpdate(this, (byte)0));
+		else
+		{
+			MinecraftForge.EVENT_BUS.post(new ClientTickUpdate(this, (byte) 0));
 		}
 	}
 
@@ -298,31 +331,32 @@ public abstract class DynamicNetwork<A, N extends DynamicNetwork<A, N>> implemen
 		return possibleAcceptors.size();
 	}
 
-	public synchronized void updateCapacity() 
+	public synchronized void updateCapacity()
 	{
 		updateMeanCapacity();
-		capacity = (int)meanCapacity * transmitters.size();
+		capacity = (int) meanCapacity * transmitters.size();
 	}
 
-    /**
-     * Override this if things can have variable capacity along the network.
-     * @return An 'average' value of capacity. Calculate it how you will.
-     */
-	protected synchronized void updateMeanCapacity() 
+	/**
+	 * Override this if things can have variable capacity along the network.
+	 * @return An 'average' value of capacity. Calculate it how you will.
+	 */
+	protected synchronized void updateMeanCapacity()
 	{
-		if(transmitters.size() > 0) 
+		if(transmitters.size() > 0)
 		{
 			meanCapacity = transmitters.iterator().next().getCapacity();
-		} 
-		else {
+		}
+		else
+		{
 			meanCapacity = 0;
 		}
 	}
-	
-    public int getCapacity()
-    {
-    	return capacity;
-    }
+
+	public int getCapacity()
+	{
+		return capacity;
+	}
 
 	public World getWorld()
 	{
@@ -340,24 +374,29 @@ public abstract class DynamicNetwork<A, N extends DynamicNetwork<A, N>> implemen
 	{
 		if(FMLCommonHandler.instance().getEffectiveSide().isServer())
 		{
-			Iterator<DelayQueue> i = updateQueue.iterator();
+			final Iterator<DelayQueue> i = updateQueue.iterator();
 
-			try {
+			try
+			{
 				while(i.hasNext())
 				{
-					DelayQueue q = i.next();
+					final DelayQueue q = i.next();
 
 					if(q.delay > 0)
 					{
 						q.delay--;
-					} 
-					else {
+					}
+					else
+					{
 						transmittersAdded.addAll(transmitters);
 						updateDelay = 1;
 						i.remove();
 					}
 				}
-			} catch(Exception e) {}
+			}
+			catch(final Exception e)
+			{
+			}
 
 			if(updateDelay > 0)
 			{
@@ -365,7 +404,8 @@ public abstract class DynamicNetwork<A, N extends DynamicNetwork<A, N>> implemen
 
 				if(updateDelay == 0)
 				{
-					MinecraftForge.EVENT_BUS.post(new TransmittersAddedEvent(this, firstUpdate, (Collection)transmittersAdded));
+					MinecraftForge.EVENT_BUS.post(new TransmittersAddedEvent(
+							this, firstUpdate, (Collection) transmittersAdded));
 					firstUpdate = false;
 					transmittersAdded.clear();
 					needsUpdate = true;
@@ -381,7 +421,9 @@ public abstract class DynamicNetwork<A, N extends DynamicNetwork<A, N>> implemen
 	}
 
 	@Override
-	public void clientTick() {}
+	public void clientTick()
+	{
+	}
 
 	public void queueClientUpdate(Collection<IGridTransmitter<A, N>> newTransmitters)
 	{
@@ -391,9 +433,9 @@ public abstract class DynamicNetwork<A, N extends DynamicNetwork<A, N>> implemen
 
 	public static class TransmittersAddedEvent extends Event
 	{
-		public DynamicNetwork<?, ?> network;
-		public boolean newNetwork;
-		public Collection<IGridTransmitter> newTransmitters;
+		public DynamicNetwork<?, ?>			network;
+		public boolean						newNetwork;
+		public Collection<IGridTransmitter>	newTransmitters;
 
 		public TransmittersAddedEvent(DynamicNetwork net, boolean newNet, Collection<IGridTransmitter> added)
 		{
@@ -405,8 +447,8 @@ public abstract class DynamicNetwork<A, N extends DynamicNetwork<A, N>> implemen
 
 	public static class ClientTickUpdate extends Event
 	{
-		public DynamicNetwork network;
-		public byte operation; /*0 remove, 1 add*/
+		public DynamicNetwork	network;
+		public byte				operation;	/*0 remove, 1 add*/
 
 		public ClientTickUpdate(DynamicNetwork net, byte b)
 		{
@@ -417,7 +459,7 @@ public abstract class DynamicNetwork<A, N extends DynamicNetwork<A, N>> implemen
 
 	public static class NetworkClientRequest extends Event
 	{
-		public TileEntity tileEntity;
+		public TileEntity	tileEntity;
 
 		public NetworkClientRequest(TileEntity tile)
 		{
@@ -432,8 +474,8 @@ public abstract class DynamicNetwork<A, N extends DynamicNetwork<A, N>> implemen
 
 	public static class DelayQueue
 	{
-		public EntityPlayer player;
-		public int delay;
+		public EntityPlayer	player;
+		public int			delay;
 
 		public DelayQueue(EntityPlayer p)
 		{
@@ -450,7 +492,7 @@ public abstract class DynamicNetwork<A, N extends DynamicNetwork<A, N>> implemen
 		@Override
 		public boolean equals(Object o)
 		{
-			return o instanceof DelayQueue && ((DelayQueue)o).player.equals(this.player);
+			return o instanceof DelayQueue && ((DelayQueue) o).player.equals(this.player);
 		}
 	}
 }

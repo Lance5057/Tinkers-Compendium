@@ -5,8 +5,8 @@ import net.minecraft.item.ItemStack;
 
 public class BlockInfo
 {
-	public Block block;
-	public int meta;
+	public Block	block;
+	public int		meta;
 
 	public BlockInfo(Block b, int j)
 	{
@@ -16,15 +16,14 @@ public class BlockInfo
 
 	public static BlockInfo get(ItemStack stack)
 	{
-		return new BlockInfo(Block.getBlockFromItem(stack.getItem()), stack.getItemDamage());
+		return new BlockInfo(Block.getBlockFromItem(stack.getItem()),
+				stack.getItemDamage());
 	}
 
 	@Override
 	public boolean equals(Object obj)
 	{
-		return obj instanceof BlockInfo &&
-				((BlockInfo)obj).block == block &&
-				((BlockInfo)obj).meta == meta;
+		return obj instanceof BlockInfo && ((BlockInfo) obj).block == block && ((BlockInfo) obj).meta == meta;
 	}
 
 	@Override

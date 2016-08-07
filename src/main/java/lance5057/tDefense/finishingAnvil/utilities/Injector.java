@@ -1,14 +1,23 @@
 package lance5057.tDefense.finishingAnvil.utilities;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.nio.file.FileSystem;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import lance5057.tDefense.TinkersDefense;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.Item;
 import net.minecraft.util.IIcon;
+import net.minecraft.util.ResourceLocation;
 import tconstruct.library.TConstructRegistry;
 import tconstruct.library.crafting.PatternBuilder;
 import tconstruct.library.crafting.PatternBuilder.MaterialSet;
@@ -28,11 +37,52 @@ public class Injector extends ToolCore
 		super(0);
 	}
 
-	protected void loadHeads(IIconRegister iconRegister)
+	protected void loadHeads(IIconRegister iconRegister) throws IOException, URISyntaxException
 	{
+
+		//		final URL jarFile =
+		//				TinkersDefense.class.getResource("assets/tinkersdefense/textures/items/");
 
 		final int toolLength = TConstructRegistry.tools.size();
 		for(int i = 0; i < toolLength; i++)
+		{
+			final String toolName = TConstructRegistry.tools.get(i).getUnlocalizedName().toLowerCase().substring(TConstructRegistry.tools.get(i).getUnlocalizedName().lastIndexOf('.') + 1, TConstructRegistry.tools.get(i).getUnlocalizedName().length());
+			final String path = "/assets/tinkersdefense/textures/items/" + toolName + "/";
+
+			final ResourceLocation loc = new ResourceLocation(
+					"tinkersdefense:textures/items/");
+			//final InputStream in = Minecraft.getMinecraft().getResourceManager().getResource(loc).getInputStream();
+			//final List<String> filenames = new ArrayList<String>();
+			//final File files = new File(Minecraft.getMinecraft().mcDataDir.getPath() + "/mods/tinkersdefense-1.3.6.jar");
+
+			final Path zipfile = Paths.get(Minecraft.getMinecraft().mcDataDir.getPath() + "/mods/tinkersdefense-1.3.6.jar");
+			final FileSystem fs = FileSystems.newFileSystem(zipfile, Minecraft.class.getClassLoader());
+
+			final Path root = fs.getPath(path);
+			//final Iterable<FileStore> files = fs.getFileStores();
+			final FileGetter fileget = new FileGetter();
+
+			Files.walkFileTree(root, fileget);
+
+			//IDE
+			//final File files = new File(url.toURI());
+
+			if(TinkersDefense.config.debug)
+			{
+				for(final String file : fileget.filenames)
+				{
+					System.out.println(file);
+				}
+			}
+			setup(TConstructRegistry.tools.get(i), toolName, fileget.filenames, iconRegister);
+		}
+	}
+
+	//}
+	//}
+
+	private void setup(ToolCore tool, String name, List<String> filenames, IIconRegister iconRegister)
+	{
 		{
 			heads.clear();
 			accessories.clear();
@@ -48,45 +98,116 @@ public class Injector extends ToolCore
 			extraStrings.clear();
 			extraIcons.clear();
 
-			final ToolCore tool = TConstructRegistry.tools.get(i);
-
 			final IIcon origHead = tool.headIcons.get(-1);
 			final IIcon origAccessory = tool.accessoryIcons.get(-1);
 			final IIcon origHandle = tool.handleIcons.get(-1);
 			final IIcon origExtra = tool.extraIcons.get(-1);
 
-			if(tool.getToolName().equals("Battleaxe"))
+			final ToolCoreTip tt = new ToolCoreTip();
+
+			tt.accessory = "Accessory";
+			tt.head = "Head";
+			tt.handle = "Handle";
+			tt.extra = "Extra";
+
+			tt.headTT.add("Standard");
+			tt.accessoryTT.add("Standard");
+			tt.handleTT.add("Standard");
+			tt.extraTT.add("Standard");
+
+			for(int i = 0; i < filenames.size(); i++)
 			{
-				BattleAxe();
+				final String filename = filenames.get(i);
+
+				if(filename.contains("head"))
+				{
+					String formatted = filename.substring(0, filename.indexOf(".png"));
+					heads.add(formatted);
+					formatted = formatted.substring(1, formatted.length());
+					formatted = formatted.replace('_', ' ');
+					tt.headTT.add(formatted);
+				}
+
+				if(filename.contains("accessory"))
+				{
+					String formatted = filename.substring(0, filename.indexOf(".png"));
+					accessories.add(formatted);
+					formatted = formatted.substring(1, formatted.length());
+					formatted.replace("_", " ");
+					tt.accessoryTT.add(formatted);
+				}
+
+				if(filename.contains("handle"))
+				{
+					String formatted = filename.substring(0, filename.indexOf(".png"));
+					handles.add(formatted);
+					formatted = formatted.substring(1, formatted.length());
+					formatted.replace("_", " ");
+					tt.handleTT.add(formatted);
+				}
+
+				if(filename.contains("extra"))
+				{
+					String formatted = filename.substring(0, filename.indexOf(".png"));
+					extras.add(formatted);
+					formatted = formatted.substring(1, formatted.length());
+					formatted.replace("_", " ");
+					tt.extraTT.add(formatted);
+				}
 			}
-			if(tool.getToolName().equals("Arrow"))
-			{
-				Arrow();
-			}
-			if(tool.getToolName().equals("Broadsword"))
-			{
-				Broadsword();
-			}
-			if(tool.getToolName().equals("Battlesign"))
-			{
-				Battlesign();
-			}
-			if(tool.getToolName().equals("Hatchet"))
-			{
-				Axe();
-			}
-			if(tool.getToolName().equals("Mattock"))
-			{
-				Mattock();
-			}
-			if(tool.getToolName().equals("Longbow"))
-			{
-				Longbow();
-			}
-			if(tool.getToolName().equals("HeaterShield"))
-			{
-				HeaterShield();
-			}
+			//			tt.headTT.add("Magic Backhead");
+			//			tt.headTT.add("Scythe Backhead");
+			//
+			//			extras.add("_magic_extra");
+			//			extras.add("_scythe_extra");
+			//			extras.add("_halbard_extra");
+			//			extras.add("_ornate_extra");
+			//
+			//			tt.extraTT.add("Halbard Head");
+			//			tt.extraTT.add("Magic Head");
+			//			tt.extraTT.add("Scythe Head");
+			//			tt.extraTT.add("Ornate Head");
+			//
+			//			accessories.add("_magic_accessory");
+			//			accessories.add("_halbard_accessory");
+			//			accessories.add("_knob_accessory");
+
+			//Metallurgy 5
+
+			tools.put(name, tt);
+
+			//			if(tool.getToolName().equals("Battleaxe"))
+			//			{
+			//				BattleAxe();
+			//			}
+			//			if(tool.getToolName().equals("Arrow"))
+			//			{
+			//				Arrow();
+			//			}
+			//			if(tool.getToolName().equals("Broadsword"))
+			//			{
+			//				Broadsword();
+			//			}
+			//			if(tool.getToolName().equals("Battlesign"))
+			//			{
+			//				Battlesign();
+			//			}
+			//			if(tool.getToolName().equals("Hatchet"))
+			//			{
+			//				Axe();
+			//			}
+			//			if(tool.getToolName().equals("Mattock"))
+			//			{
+			//				Mattock();
+			//			}
+			//			if(tool.getToolName().equals("Longbow"))
+			//			{
+			//				Longbow();
+			//			}
+			//			if(tool.getToolName().equals("HeaterShield"))
+			//			{
+			//				HeaterShield();
+			//			}
 			setupIcons(tool, iconRegister, heads, headStrings, headIcons);
 			setupIcons(tool, iconRegister, accessories, accessoryStrings, accessoryIcons);
 			setupIcons(tool, iconRegister, handles, handleStrings, handleIcons);
@@ -114,7 +235,18 @@ public class Injector extends ToolCore
 	@Override
 	public void registerIcons(IIconRegister iconRegister)
 	{
-		loadHeads(iconRegister);
+		try
+		{
+			loadHeads(iconRegister);
+		}
+		catch(final IOException e)
+		{
+			System.out.print("No Finishing Anvil for you");
+		}
+		catch(final URISyntaxException e)
+		{
+			System.out.print("No Finishing Anvil for you");
+		}
 	}
 
 	@Override

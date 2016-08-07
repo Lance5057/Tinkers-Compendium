@@ -4,7 +4,8 @@ import java.util.Map;
 
 import net.minecraftforge.fluids.Fluid;
 
-public interface ILiquidHeatExchangerManager extends ILiquidAcceptManager {
+public interface ILiquidHeatExchangerManager extends ILiquidAcceptManager
+{
 
 	/**
 	 * Add a new fluid heatup/cooldown recipe.
@@ -26,14 +27,16 @@ public interface ILiquidHeatExchangerManager extends ILiquidAcceptManager {
 	 */
 	ILiquidAcceptManager getSingleDirectionLiquidManager();
 
-	public static class HeatExchangeProperty {
-		public HeatExchangeProperty(Fluid outputFluid, int huPerMB) {
+	public static class HeatExchangeProperty
+	{
+		public HeatExchangeProperty(Fluid outputFluid, int huPerMB)
+		{
 			this.outputFluid = outputFluid;
 			this.huPerMB = huPerMB;
 		}
 
-		public final Fluid outputFluid;
-		public final int huPerMB;
+		public final Fluid	outputFluid;
+		public final int	huPerMB;
 	}
 
 }

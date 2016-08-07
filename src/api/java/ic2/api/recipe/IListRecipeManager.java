@@ -9,7 +9,8 @@ import net.minecraft.item.ItemStack;
  * 
  * @author Richard
  */
-public interface IListRecipeManager extends Iterable<IRecipeInput> {
+public interface IListRecipeManager extends Iterable<IRecipeInput>
+{
 	/**
 	 * Adds a stack to the list.
 	 * 

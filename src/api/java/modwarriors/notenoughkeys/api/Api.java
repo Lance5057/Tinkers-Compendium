@@ -10,14 +10,16 @@ import cpw.mods.fml.relauncher.SideOnly;
  * @author TheTemportalist
  */
 @SideOnly(Side.CLIENT)
-public class Api {
+public class Api
+{
 
 	/**
 	 * Checks if NotEnoughKeys is loaded in the current environment
 	 *
 	 * @return 'true' if loaded
 	 */
-	public static boolean isLoaded() {
+	public static boolean isLoaded()
+	{
 		return Loader.isModLoaded("notenoughkeys");
 	}
 
@@ -27,12 +29,14 @@ public class Api {
 	 * @param modname        The NAME of the mod registering the key
 	 * @param keyDecriptions A String[] (Array[String]) of the key descriptions. i.e. new String[]{"key.hotbar1"}
 	 */
-	public static void registerMod(String modname, String[] keyDecriptions) {
-		try {
-			Class.forName("modwarriors.notenoughkeys.keys.KeyHelper").getMethod(
-					"registerMod", String.class, String[].class
-			).invoke(null, modname, keyDecriptions);
-		} catch (Exception e) {
+	public static void registerMod(String modname, String[] keyDecriptions)
+	{
+		try
+		{
+			Class.forName("modwarriors.notenoughkeys.keys.KeyHelper").getMethod("registerMod", String.class, String[].class).invoke(null, modname, keyDecriptions);
+		}
+		catch(final Exception e)
+		{
 			e.printStackTrace();
 		}
 	}

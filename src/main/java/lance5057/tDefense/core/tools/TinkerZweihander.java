@@ -11,6 +11,7 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
+import tconstruct.library.tools.AbilityHelper;
 import tconstruct.library.tools.Weapon;
 import tconstruct.tools.TinkerTools;
 import cpw.mods.fml.common.Optional;
@@ -50,6 +51,19 @@ public class TinkerZweihander extends Weapon
 	}
 
 	@Override
+	public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity entity)
+	{
+		if(AbilityHelper.onLeftClickEntity(stack, player, entity, this))
+		{
+			if(entity.riddenByEntity != null || entity.ridingEntity != null)
+			{
+				player.attackTargetEntityWithCurrentItem(entity);
+			}
+		}
+		return true;
+	}
+
+	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
 	{
 		if(!player.isPotionActive(Potion.moveSlowdown))
@@ -83,12 +97,6 @@ public class TinkerZweihander extends Weapon
 	public float getDurabilityModifier()
 	{
 		return 2.5f;
-	}
-
-	@Override
-	public float getDamageModifier()
-	{
-		return 1.4f;
 	}
 
 	@Override

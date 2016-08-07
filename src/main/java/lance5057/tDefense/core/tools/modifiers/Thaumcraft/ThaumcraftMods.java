@@ -1,9 +1,7 @@
 package lance5057.tDefense.core.tools.modifiers.Thaumcraft;
 
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-import cpw.mods.fml.common.FMLLog;
 import lance5057.tDefense.TinkersDefense;
 import lance5057.tDefense.core.tools.modifiers.ModifiersBase;
 import net.minecraft.entity.Entity;
@@ -19,7 +17,7 @@ import tconstruct.library.tools.ToolCore;
 import thaumcraft.api.ItemApi;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
-import thaumcraft.api.internal.DummyInternalMethodHandler;
+import cpw.mods.fml.common.FMLLog;
 
 public class ThaumcraftMods extends ModifiersBase
 {
@@ -43,9 +41,12 @@ public class ThaumcraftMods extends ModifiersBase
 	@Override
 	public void RegisterModifiers()
 	{
-		ModifyBuilder.registerModifier(new modifierRepairVis(new ItemStack[] {ItemApi.getItem("itemWandCap", 0)}, TinkersDefense.config.CapsModID, "Caps", EnumChatFormatting.GOLD.toString(), "Caps"));
-		
-		for(ToolCore tool : TConstructRegistry.getToolMapping())
+		ModifyBuilder.registerModifier(new modifierRepairVis(
+				new ItemStack[] {ItemApi.getItem("itemWandCap", 0)},
+				TinkersDefense.config.CapsModID, "Caps",
+				EnumChatFormatting.GOLD.toString(), "Caps"));
+
+		for(final ToolCore tool : TConstructRegistry.getToolMapping())
 		{
 			TConstructClientRegistry.addEffectRenderMapping(tool, TinkersDefense.config.CapsModID, "tinker", "cap", true);
 		}
@@ -57,7 +58,9 @@ public class ThaumcraftMods extends ModifiersBase
 		if(!world.isRemote)
 		{
 			if(tags.hasKey("Caps"))
+			{
 				UpdateRepairVis(tool, stack, world, entity, tags);
+			}
 		}
 	}
 
@@ -67,7 +70,7 @@ public class ThaumcraftMods extends ModifiersBase
 	{
 		if(tags.getInteger("Damage") > 0)
 		{
-			AspectList cost = new AspectList();
+			final AspectList cost = new AspectList();
 			cost.add(Aspect.AIR, (int) (10 * tags.getFloat("Caps")));
 			cost.add(Aspect.WATER, (int) (30 * tags.getFloat("Caps")));
 			cost.add(Aspect.FIRE, (int) (10 * tags.getFloat("Caps")));
@@ -82,9 +85,9 @@ public class ThaumcraftMods extends ModifiersBase
 				{
 					consumeVisFromInventory = Class.forName("thaumcraft.common.items.wands.WandManager").getMethod("consumeVisFromInventory", EntityPlayer.class, AspectList.class);
 				}
-				success = (Boolean) consumeVisFromInventory.invoke(null, (EntityPlayer) entity, cost);
+				success = (Boolean) consumeVisFromInventory.invoke(null, entity, cost);
 			}
-			catch(Exception ex)
+			catch(final Exception ex)
 			{
 				FMLLog.warning("Thaumcraft is missing, you shouldn't see this, please report");
 			}
@@ -93,9 +96,13 @@ public class ThaumcraftMods extends ModifiersBase
 				if(success)
 				{
 					if(tags.getInteger("Damage") >= 4)
+					{
 						tags.setInteger("Damage", tags.getInteger("Damage") - 4);
+					}
 					else
+					{
 						tags.setInteger("Damage", 0);
+					}
 				}
 			}
 		}

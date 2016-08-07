@@ -4,6 +4,7 @@ import lance5057.tDefense.TDIntegration;
 import lance5057.tDefense.TinkersDefense;
 import lance5057.tDefense.armor.parts.ClothMaterial;
 import lance5057.tDefense.armor.renderers.ArmorRenderer;
+import lance5057.tDefense.core.tools.modifiers.Modifiers;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -32,14 +33,14 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-@Optional.InterfaceList({@Optional.Interface(modid = "Thaumcraft", iface = "thaumcraft.api.IRunicArmor", striprefs = true)})
+@Optional.InterfaceList({@Optional.Interface(modid = "Thaumcraft", iface = "thaumcraft.api.IRunicArmor", striprefs = true), @Optional.Interface(modid = "Botania", iface = "vazkii.botania.api.item.IPixieSpawner", striprefs = true)})
 public abstract class ArmorCore extends ToolCore implements ISpecialArmor, IRunicArmor, IPixieSpawner
 {
 	int				slot;
 	public float	reductionPercent	= 0f;
 	protected int	maxReduction		= 100;
 
-	public String[]	renderParts;
+	//public String[]	renderParts;
 
 	//Thaumcraft
 	boolean			Charge				= false;
@@ -208,7 +209,7 @@ public abstract class ArmorCore extends ToolCore implements ISpecialArmor, IRuni
 	public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack)
 	{
 
-		TinkersDefense.mods.AMod.UpdateAll((ToolCore) itemStack.getItem(), itemStack, world, player, itemStack.getTagCompound().getCompoundTag("InfiTool"));
+		Modifiers.AMod.UpdateAll((ToolCore) itemStack.getItem(), itemStack, world, player, itemStack.getTagCompound().getCompoundTag("InfiTool"));
 	}
 
 	@Override
@@ -276,17 +277,17 @@ public abstract class ArmorCore extends ToolCore implements ISpecialArmor, IRuni
 			case 3:
 				renderReturn = extraStrings.get(tags.getInteger("RenderExtra"));
 				break;
-
-			default:
-				if(tags != null && tags.hasKey("Effect" + (pass - getPartAmount())))
-				{
-					final String effect = effectStrings.get(tags.getInteger("Effect" + (pass - getPartAmount())));
-					if(effect != null)
-						return effect.substring(effect.lastIndexOf("/") + 1);
-					else
-						return "";
-
-				}
+				//
+				//			default:
+				//				if(tags != null && tags.hasKey("Effect" + (pass - getPartAmount())))
+				//				{
+				//					final String effect = effectStrings.get(tags.getInteger("Effect" + (pass - getPartAmount())));
+				//					if(effect != null)
+				//						return effect.substring(effect.lastIndexOf("/") + 1);
+				//					else
+				//						return "";
+				//
+				//				}
 		}
 		if(renderReturn != null && renderReturn != "")
 		{

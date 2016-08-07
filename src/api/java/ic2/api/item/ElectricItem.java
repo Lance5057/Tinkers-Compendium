@@ -8,20 +8,21 @@ import net.minecraft.item.ItemStack;
 /**
  * Allows for charging, discharging and using electric items (IElectricItem).
  */
-public final class ElectricItem {
+public final class ElectricItem
+{
 	/**
 	 * IElectricItemManager to use for interacting with IElectricItem ItemStacks.
 	 * 
 	 * This manager will act as a gateway and delegate the tasks to the final implementation
 	 * (rawManager or a custom one) as necessary.
 	 */
-	public static IElectricItemManager manager;
+	public static IElectricItemManager	manager;
 
 	/**
 	 * Standard IElectricItemManager implementation, only call it directly from another
 	 * IElectricItemManager. Use manager instead.
 	 */
-	public static IElectricItemManager rawManager;
+	public static IElectricItemManager	rawManager;
 
 	/**
 	 * Register an electric item manager for items not implementing IElectricItem.
@@ -33,7 +34,8 @@ public final class ElectricItem {
 	 * 
 	 * @param manager Manager to register.
 	 */
-	public static void registerBackupManager(IBackupElectricItemManager manager) {
+	public static void registerBackupManager(IBackupElectricItemManager manager)
+	{
 		backupManagers.add(manager);
 	}
 
@@ -45,15 +47,18 @@ public final class ElectricItem {
 	 * @param stack ItemStack to be handled.
 	 * @return First suitable electric item manager.
 	 */
-	public static IBackupElectricItemManager getBackupManager(ItemStack stack) {
-		for (IBackupElectricItemManager manager : backupManagers) {
-			if (manager.handles(stack)) return manager;
+	public static IBackupElectricItemManager getBackupManager(ItemStack stack)
+	{
+		for(final IBackupElectricItemManager manager : backupManagers)
+		{
+			if(manager.handles(stack))
+			{
+				return manager;
+			}
 		}
 
 		return null;
 	}
 
-
-	private static final List<IBackupElectricItemManager> backupManagers = new ArrayList<IBackupElectricItemManager>();
+	private static final List<IBackupElectricItemManager>	backupManagers	= new ArrayList<IBackupElectricItemManager>();
 }
-

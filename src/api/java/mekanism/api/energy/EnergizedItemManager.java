@@ -16,11 +16,11 @@ public class EnergizedItemManager
 		{
 			if(itemStack.getItem() instanceof IEnergizedItem)
 			{
-				IEnergizedItem energizedItem = (IEnergizedItem)itemStack.getItem();
+				final IEnergizedItem energizedItem = (IEnergizedItem) itemStack.getItem();
 
 				if(energizedItem.canSend(itemStack))
 				{
-					double energyToUse = Math.min(energizedItem.getMaxTransfer(itemStack), Math.min(energizedItem.getEnergy(itemStack), amount));
+					final double energyToUse = Math.min(energizedItem.getMaxTransfer(itemStack), Math.min(energizedItem.getEnergy(itemStack), amount));
 					energizedItem.setEnergy(itemStack, energizedItem.getEnergy(itemStack) - energyToUse);
 
 					return energyToUse;
@@ -43,11 +43,11 @@ public class EnergizedItemManager
 		{
 			if(itemStack.getItem() instanceof IEnergizedItem)
 			{
-				IEnergizedItem energizedItem = (IEnergizedItem)itemStack.getItem();
+				final IEnergizedItem energizedItem = (IEnergizedItem) itemStack.getItem();
 
 				if(energizedItem.canReceive(itemStack))
 				{
-					double energyToSend = Math.min(energizedItem.getMaxTransfer(itemStack), Math.min(energizedItem.getMaxEnergy(itemStack) - energizedItem.getEnergy(itemStack), amount));
+					final double energyToSend = Math.min(energizedItem.getMaxTransfer(itemStack), Math.min(energizedItem.getMaxEnergy(itemStack) - energizedItem.getEnergy(itemStack), amount));
 					energizedItem.setEnergy(itemStack, energizedItem.getEnergy(itemStack) + energyToSend);
 
 					return energyToSend;

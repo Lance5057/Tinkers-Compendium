@@ -2,11 +2,12 @@ package ic2.api.energy.tile;
 
 import net.minecraftforge.common.util.ForgeDirection;
 
-public interface IKineticSource {
+public interface IKineticSource
+{
 	/*
 	 *  Return max kinetic energy transmission peer Tick (only theoretical bandwidth not available amount)
 	 */
-	int  maxrequestkineticenergyTick(ForgeDirection directionFrom);
+	int maxrequestkineticenergyTick(ForgeDirection directionFrom);
 
 	/*
 	 * @param requested amount of kinetic energy to transfer

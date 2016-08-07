@@ -41,7 +41,6 @@ public class modLapisShears extends ModLapis
 		tags.setIntArray(key, keyPair);
 		final ToolCore toolcore = (ToolCore) tool.getItem();
 		final String[] types = toolcore.getTraits();
-		final boolean weapon = false;
 		boolean harvest = false;
 		for(final String s : types)
 		{

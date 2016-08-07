@@ -29,11 +29,11 @@ public class Message_FinishingAnvil implements IMessage
 	@Override
 	public void fromBytes(ByteBuf buf)
 	{
-		this.x = buf.readInt();
-		this.y = buf.readInt();
-		this.z = buf.readInt();
+		x = buf.readInt();
+		y = buf.readInt();
+		z = buf.readInt();
 
-		this.item = bbu.readItemStack(buf);
+		item = ByteBufUtils.readItemStack(buf);
 	}
 
 	@Override
@@ -43,7 +43,7 @@ public class Message_FinishingAnvil implements IMessage
 		buf.writeInt(y);
 		buf.writeInt(z);
 
-		bbu.writeItemStack(buf, item);
+		ByteBufUtils.writeItemStack(buf, item);
 	}
 
 }

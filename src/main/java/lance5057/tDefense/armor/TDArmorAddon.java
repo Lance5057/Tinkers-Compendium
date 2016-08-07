@@ -68,9 +68,9 @@ public class TDArmorAddon
 			{
 				return ToolBuilder.instance.buildTool(new ItemStack(
 						TinkerTools.largePlate, 1, 2), new ItemStack(
-								TinkerTools.toughRod, 1, 2), new ItemStack(
-										TinkersDefense.partArmorplate, 1, 2), new ItemStack(
-												TinkersDefense.partChainmaille, 1, 2), "ArmorTab").getItem();
+						TinkerTools.toughRod, 1, 2), new ItemStack(
+						TinkersDefense.partArmorplate, 1, 2), new ItemStack(
+						TinkersDefense.partChainmaille, 1, 2), "ArmorTab").getItem();
 			}
 
 		};
@@ -139,7 +139,7 @@ public class TDArmorAddon
 	public void init(FMLInitializationEvent e)
 	{
 
-		TConstructRegistry.addToolRecipe(armor_TinkerHelm, TinkerTools.frypanHead, TinkersDefense.partChainmaille, TinkersDefense.partArmorplate, TinkerTools.toughRod);
+		TConstructRegistry.addToolRecipe(armor_TinkerHelm, TinkerTools.frypanHead, TinkerTools.toughRod, TinkersDefense.partArmorplate, TinkersDefense.partChainmaille);
 		TConstructRegistry.addToolRecipe(armor_TinkerBreastplate, TinkerTools.largePlate, TinkerTools.toughRod, TinkersDefense.partArmorplate, TinkersDefense.partChainmaille);
 		TConstructRegistry.addToolRecipe(armor_TinkerGrieves, TinkersDefense.partArmorplate, TinkerTools.toughRod, TinkersDefense.partChainmaille, TinkersDefense.partCloth);
 		TConstructRegistry.addToolRecipe(armor_TinkerSabatons, TinkersDefense.partArmorplate, TinkerTools.toughRod, TinkersDefense.partArmorplate, TinkersDefense.partCloth);
@@ -150,7 +150,7 @@ public class TDArmorAddon
 		TConstructRegistry.addToolRecipe(armor_TinkerHood, TinkersDefense.partCloth, TinkerTools.toolRod, TinkersDefense.partCloth);
 		TConstructRegistry.addToolRecipe(armor_TinkerShoes, TinkersDefense.partCloth, TinkersDefense.partRivet, TinkersDefense.partCloth);
 
-		TConstructRegistry.addToolRecipe(armor_TinkerCoif, TinkersDefense.partChainmaille, TinkersDefense.partCloth, TinkerTools.toughRod);
+		TConstructRegistry.addToolRecipe(armor_TinkerCoif, TinkersDefense.partChainmaille, TinkerTools.toughRod, TinkersDefense.partCloth);
 		TConstructRegistry.addToolRecipe(armor_TinkerHauberk, TinkersDefense.partChainmaille, TinkerTools.largePlate, TinkersDefense.partCloth);
 		TConstructRegistry.addToolRecipe(armor_TinkerChausses, TinkersDefense.partChainmaille, TinkersDefense.partArmorplate, TinkersDefense.partCloth);
 		TConstructRegistry.addToolRecipe(armor_TinkerBoots, TinkersDefense.partChainmaille, TinkersDefense.partCloth, TinkersDefense.partRivet);

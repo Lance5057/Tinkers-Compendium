@@ -5,7 +5,8 @@ package ic2.api.energy.tile;
  * 
  * See ic2/api/energy/usage.txt for an overall description of the energy net api.
  */
-public interface IEnergySource extends IEnergyEmitter {
+public interface IEnergySource extends IEnergyEmitter
+{
 	/**
 	 * Energy output provided by the source this tick.
 	 * This is typically Math.min(stored energy, max output/tick).
@@ -35,4 +36,3 @@ public interface IEnergySource extends IEnergyEmitter {
 	 */
 	int getSourceTier();
 }
-

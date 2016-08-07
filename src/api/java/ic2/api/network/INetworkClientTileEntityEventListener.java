@@ -5,7 +5,8 @@ import net.minecraft.entity.player.EntityPlayer;
 /**
  * Allows a tile entity to receive network events received from clients.
  */
-public interface INetworkClientTileEntityEventListener {
+public interface INetworkClientTileEntityEventListener
+{
 	/**
 	 * Called when a network event is received.
 	 * 
@@ -14,4 +15,3 @@ public interface INetworkClientTileEntityEventListener {
 	 */
 	void onNetworkEvent(EntityPlayer player, int event);
 }
-

@@ -1,6 +1,5 @@
 package thaumcraft.api;
 
-
 /**
  * 
  * @author Azanor
@@ -9,6 +8,7 @@ package thaumcraft.api;
  *
  */
 
-public interface IScribeTools {
-	
+public interface IScribeTools
+{
+
 }

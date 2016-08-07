@@ -40,9 +40,9 @@ public class ModifierBoolExclusive extends ModBoolean
 
 		if(exclusive.length > 0)
 		{
-			for(int i = 0; i < exclusive.length; i++)
+			for(final String element : exclusive)
 			{
-				if(list.contains(exclusive[i]))
+				if(list.contains(element))
 				{
 					isExclusive = true;
 				}
@@ -55,9 +55,9 @@ public class ModifierBoolExclusive extends ModBoolean
 
 		if(modExclusions != null)
 		{
-			for(int i = 0; i < modExclusions.length; i++)
+			for(final String modExclusion : modExclusions)
 			{
-				if(tags.hasKey(modExclusions[i]))
+				if(tags.hasKey(modExclusion))
 				{
 					hasModRejection = true;
 				}

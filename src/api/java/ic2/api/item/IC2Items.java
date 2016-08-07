@@ -13,7 +13,8 @@ import net.minecraft.item.ItemStack;
  *   Blocks: Block.blocksList[x.itemID]
  *   Items: x.getItem()
  */
-public final class IC2Items {
+public final class IC2Items
+{
 	/**
 	 * Get an ItemStack for a specific item name, example: Items.getItem("resin")
 	 * See the list below for item names.
@@ -22,18 +23,26 @@ public final class IC2Items {
 	 * @param name item name
 	 * @return The item or null if the item does not exist or an error occurred
 	 */
-	public static ItemStack getItem(String name) {
-		try {
-			if (Ic2Items == null) Ic2Items = Class.forName(getPackage() + ".core.Ic2Items");
+	public static ItemStack getItem(String name)
+	{
+		try
+		{
+			if(Ic2Items == null)
+			{
+				Ic2Items = Class.forName(getPackage() + ".core.Ic2Items");
+			}
 
-			Object ret = Ic2Items.getField(name).get(null);
+			final Object ret = Ic2Items.getField(name).get(null);
 
-			if (ret instanceof ItemStack) {
+			if(ret instanceof ItemStack)
+			{
 				return (ItemStack) ret;
 			}
 			return null;
-		} catch (Exception e) {
-			System.out.println("IC2 API: Call getItem failed for "+name);
+		}
+		catch(final Exception e)
+		{
+			System.out.println("IC2 API: Call getItem failed for " + name);
 
 			return null;
 		}
@@ -581,11 +590,13 @@ public final class IC2Items {
 	 * 
 	 * @return IC2 package name, if unable to be determined defaults to ic2
 	 */
-	private static String getPackage() {
-		Package pkg = IC2Items.class.getPackage();
+	private static String getPackage()
+	{
+		final Package pkg = IC2Items.class.getPackage();
 
-		if (pkg != null) {
-			String packageName = pkg.getName();
+		if(pkg != null)
+		{
+			final String packageName = pkg.getName();
 
 			return packageName.substring(0, packageName.length() - ".api.item".length());
 		}
@@ -593,6 +604,5 @@ public final class IC2Items {
 		return "ic2";
 	}
 
-	private static Class<?> Ic2Items;
+	private static Class<?>	Ic2Items;
 }
-

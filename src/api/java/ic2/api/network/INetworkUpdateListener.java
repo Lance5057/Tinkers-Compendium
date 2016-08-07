@@ -3,7 +3,8 @@ package ic2.api.network;
 /**
  * Allows a tile entity to receive field sync updates received from the server. 
  */
-public interface INetworkUpdateListener {
+public interface INetworkUpdateListener
+{
 	/**
 	 * Called when a field is synchronized.
 	 * 
@@ -11,4 +12,3 @@ public interface INetworkUpdateListener {
 	 */
 	void onNetworkUpdate(String field);
 }
-

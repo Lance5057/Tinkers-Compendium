@@ -3,7 +3,6 @@ package lance5057.tDefense.core.tools.modifiers.Botania;
 import lance5057.tDefense.TDIntegration;
 import lance5057.tDefense.TinkersDefense;
 import lance5057.tDefense.core.tools.modifiers.ModifierBoolExclusive;
-import lance5057.tDefense.core.tools.modifiers.ModifierIntExclusive;
 import lance5057.tDefense.core.tools.modifiers.ModifiersBase;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -39,7 +38,7 @@ public class BotaniaMods extends ModifiersBase
 {
 	public BotaniaMods()
 	{
-		super(new String[] {"corpseIvyGraft", "corpseIvy", "terraCore", "manaCore", "elementiumcore"}, "modItemsBotania");
+		super(new String[] {"corpseIvyGraft", "corpseIvy", "terraCore", "manaCore"}, "modItemsBotania");
 	}
 
 	@Override
@@ -49,8 +48,8 @@ public class BotaniaMods extends ModifiersBase
 				new ItemStack(modItems, 1, 0),
 				new Object[] {"fsf", "oio", "fgf", 'f', ItemBlockSpecialFlower.ofType(LibBlockNames.SUBTILE_BELLETHORN), 'i', new ItemStack(
 						ModItems.keepIvy, 1, 0), 's', LibOreDict.MANA_STRING, 'g', new ItemStack(
-								TinkerTools.craftedSoil, 1, 3), 'o', new ItemStack(
-										ModItems.fertilizer, 1, 1)}));
+						TinkerTools.craftedSoil, 1, 3), 'o', new ItemStack(
+						ModItems.fertilizer, 1, 1)}));
 
 		GameRegistry.addShapedRecipe(new ItemStack(modItems, 1, 2), new Object[] {"sis", "idi", "sis", 'i', new ItemStack(
 				ModItems.manaResource, 1, 4), 's', new ItemStack(
@@ -70,15 +69,6 @@ public class BotaniaMods extends ModifiersBase
 		BotaniaAPI.registerManaAlchemyRecipe(new ItemStack(modItems, 1, 1), new ItemStack(
 				modItems, 1, 0), 100000);
 
-		GameRegistry.addShapedRecipe(new ItemStack(modItems, 4, 0), new Object[] {"sis", "idi", "sis", 'i', new ItemStack(
-				ModItems.manaResource, 1, 7), 's', new ItemStack(
-				ModItems.manaResource, 1, 12), 'd', new ItemStack(
-				ModItems.manaResource, 1, 2)});
-
-		GameRegistry.addShapedRecipe(new ItemStack(modItems, 4, 0), new Object[] {"sis", "idi", "sis", 'i', new ItemStack(
-				ModItems.manaResource, 1, 7), 's', new ItemStack(
-				ModItems.manaResource, 1, 12), 'd', new ItemStack(
-				ModItems.manaResource, 1, 1)});
 	}
 
 	@Override
@@ -102,18 +92,11 @@ public class BotaniaMods extends ModifiersBase
 				EnumChatFormatting.AQUA.toString(), "ManaCore",
 				new String[] {}, 1, new String[] {"CorpseIvy"}));
 
-		ModifyBuilder.registerModifier(new ModifierIntExclusive(
-				new ItemStack[] {new ItemStack(modItems, 1, 4)},
-				TinkersDefense.config.ArmorPixieCoreModID, "ElementiumCore", 1,
-				EnumChatFormatting.LIGHT_PURPLE.toString(), "Elementium Core",
-				new String[] {"armor", "weapon"}, 1, new String[] {}));
-
 		for(final ToolCore tool : TConstructRegistry.getToolMapping())
 		{
 			TConstructClientRegistry.addEffectRenderMapping(tool, TinkersDefense.config.CorpseIvyModID, "tinker", "corpseivy", true);
 			TConstructClientRegistry.addEffectRenderMapping(tool, TinkersDefense.config.TerraCoreModID, "tinker", "terracore", true);
 			TConstructClientRegistry.addEffectRenderMapping(tool, TinkersDefense.config.ManaRepairModID, "tinker", "manacore", true);
-			TConstructClientRegistry.addEffectRenderMapping(tool, TinkersDefense.config.ArmorPixieCoreModID, "tinker", "elementiumcore", true);
 
 		}
 	}

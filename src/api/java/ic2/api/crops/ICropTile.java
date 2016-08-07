@@ -9,7 +9,8 @@ import net.minecraft.world.World;
 /**
  * Interface implemented by the crop tile entity.
  */
-public interface ICropTile {
+public interface ICropTile
+{
 	/**
 	 * Get the crop.
 	 *

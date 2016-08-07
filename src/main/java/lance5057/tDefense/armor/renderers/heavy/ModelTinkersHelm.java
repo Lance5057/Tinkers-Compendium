@@ -204,6 +204,22 @@ public class ModelTinkersHelm extends ArmorRenderer
 		HornL_2.addChild(HornTipL_2);
 		HornR_2.addChild(HornTipR_2);
 
+		HornL.isHidden = true;
+		HornR.isHidden = true;
+		HornL_1.isHidden = true;
+		HornL_2.isHidden = true;
+		HornR_1.isHidden = true;
+		HornR_2.isHidden = true;
+		FeatherBase.isHidden = true;
+		FeatherRod.isHidden = true;
+		Feathers.isHidden = true;
+		Spike1.isHidden = true;
+		Spike2.isHidden = true;
+		SpikeBase.isHidden = true;
+		WingL.isHidden = true;
+		WingR.isHidden = true;
+		Helm2.isHidden = true;
+
 		init();
 	}
 

@@ -1,20 +1,17 @@
 package ic2.api.energy.prefab;
 
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
-
-import cpw.mods.fml.common.FMLCommonHandler;
-
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.util.ForgeDirection;
-
 import ic2.api.energy.EnergyNet;
 import ic2.api.energy.event.EnergyTileLoadEvent;
 import ic2.api.energy.event.EnergyTileUnloadEvent;
 import ic2.api.energy.tile.IEnergySource;
 import ic2.api.info.Info;
 import ic2.api.item.ElectricItem;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.util.ForgeDirection;
+import cpw.mods.fml.common.FMLCommonHandler;
 
 /**
  * BasicSource is a simple adapter to provide an ic2 energy source.
@@ -87,7 +84,8 @@ import ic2.api.item.ElectricItem;
  * }
  * @endcode
  */
-public class BasicSource extends TileEntity implements IEnergySource {
+public class BasicSource extends TileEntity implements IEnergySource
+{
 	// **********************************
 	// *** Methods for use by the mod ***
 	// **********************************
@@ -99,12 +97,13 @@ public class BasicSource extends TileEntity implements IEnergySource {
 	 * @param capacity1 Maximum amount of eu to store.
 	 * @param tier1 IC2 tier, 1 = LV, 2 = MV, ...
 	 */
-	public BasicSource(TileEntity parent1, double capacity1, int tier1) {
-		double power = EnergyNet.instance.getPowerFromTier(tier1);
+	public BasicSource(TileEntity parent1, double capacity1, int tier1)
+	{
+		final double power = EnergyNet.instance.getPowerFromTier(tier1);
 
-		this.parent = parent1;
-		this.capacity = capacity1 < power ? power : capacity1;
-		this.tier = tier1;
+		parent = parent1;
+		capacity = capacity1 < power ? power : capacity1;
+		tier = tier1;
 		this.power = power;
 	}
 
@@ -115,18 +114,22 @@ public class BasicSource extends TileEntity implements IEnergySource {
 	 * Either updateEntity or onLoaded have to be used.
 	 */
 	@Override
-	public void updateEntity() {
-		if (!addedToEnet) onLoaded();
+	public void updateEntity()
+	{
+		if(!addedToEnet)
+		{
+			onLoaded();
+		}
 	}
 
 	/**
 	 * Notification that the base TileEntity finished loading, for advanced uses.
 	 * Either updateEntity or onLoaded have to be used.
 	 */
-	public void onLoaded() {
-		if (!addedToEnet &&
-				!FMLCommonHandler.instance().getEffectiveSide().isClient() &&
-				Info.isIc2Available()) {
+	public void onLoaded()
+	{
+		if(!addedToEnet && !FMLCommonHandler.instance().getEffectiveSide().isClient() && Info.isIc2Available())
+		{
 			worldObj = parent.getWorldObj();
 			xCoord = parent.xCoord;
 			yCoord = parent.yCoord;
@@ -143,7 +146,8 @@ public class BasicSource extends TileEntity implements IEnergySource {
 	 * Both invalidate and onChunkUnload have to be used.
 	 */
 	@Override
-	public void invalidate() {
+	public void invalidate()
+	{
 		super.invalidate();
 
 		onChunkUnload();
@@ -154,9 +158,10 @@ public class BasicSource extends TileEntity implements IEnergySource {
 	 * Both invalidate and onChunkUnload have to be used.
 	 */
 	@Override
-	public void onChunkUnload() {
-		if (addedToEnet &&
-				Info.isIc2Available()) {
+	public void onChunkUnload()
+	{
+		if(addedToEnet && Info.isIc2Available())
+		{
 			MinecraftForge.EVENT_BUS.post(new EnergyTileUnloadEvent(this));
 
 			addedToEnet = false;
@@ -169,10 +174,11 @@ public class BasicSource extends TileEntity implements IEnergySource {
 	 * @param tag Compound tag as supplied by TileEntity.readFromNBT()
 	 */
 	@Override
-	public void readFromNBT(NBTTagCompound tag) {
+	public void readFromNBT(NBTTagCompound tag)
+	{
 		super.readFromNBT(tag);
 
-		NBTTagCompound data = tag.getCompoundTag("IC2BasicSource");
+		final NBTTagCompound data = tag.getCompoundTag("IC2BasicSource");
 
 		energyStored = data.getDouble("energy");
 	}
@@ -183,14 +189,18 @@ public class BasicSource extends TileEntity implements IEnergySource {
 	 * @param tag Compound tag as supplied by TileEntity.writeToNBT()
 	 */
 	@Override
-	public void writeToNBT(NBTTagCompound tag) {
-		try {
+	public void writeToNBT(NBTTagCompound tag)
+	{
+		try
+		{
 			super.writeToNBT(tag);
-		} catch (RuntimeException e) {
+		}
+		catch(final RuntimeException e)
+		{
 			// happens if this is a delegate, ignore
 		}
 
-		NBTTagCompound data = new NBTTagCompound();
+		final NBTTagCompound data = new NBTTagCompound();
 
 		data.setDouble("energy", energyStored);
 
@@ -205,7 +215,8 @@ public class BasicSource extends TileEntity implements IEnergySource {
 	 * 
 	 * @return Capacity in EU.
 	 */
-	public double getCapacity() {
+	public double getCapacity()
+	{
 		return capacity;
 	}
 
@@ -214,10 +225,14 @@ public class BasicSource extends TileEntity implements IEnergySource {
 	 * 
 	 * @param capacity1 Capacity in EU.
 	 */
-	public void setCapacity(double capacity1) {
-		if (capacity1 < power) capacity1 = power;
+	public void setCapacity(double capacity1)
+	{
+		if(capacity1 < power)
+		{
+			capacity1 = power;
+		}
 
-		this.capacity = capacity1;
+		capacity = capacity1;
 	}
 
 	/**
@@ -225,7 +240,8 @@ public class BasicSource extends TileEntity implements IEnergySource {
 	 * 
 	 * @return IC2 Tier.
 	 */
-	public int getTier() {
+	public int getTier()
+	{
 		return tier;
 	}
 
@@ -234,22 +250,26 @@ public class BasicSource extends TileEntity implements IEnergySource {
 	 * 
 	 * @param tier1 IC2 Tier.
 	 */
-	public void setTier(int tier1) {
-		double power = EnergyNet.instance.getPowerFromTier(tier1);
+	public void setTier(int tier1)
+	{
+		final double power = EnergyNet.instance.getPowerFromTier(tier1);
 
-		if (capacity < power) capacity = power;
+		if(capacity < power)
+		{
+			capacity = power;
+		}
 
-		this.tier = tier1;
+		tier = tier1;
 		this.power = power;
 	}
-
 
 	/**
 	 * Determine the energy stored in the source's output buffer.
 	 * 
 	 * @return amount in EU
 	 */
-	public double getEnergyStored() {
+	public double getEnergyStored()
+	{
 		return energyStored;
 	}
 
@@ -261,7 +281,8 @@ public class BasicSource extends TileEntity implements IEnergySource {
 	 * 
 	 * @param amount
 	 */
-	public void setEnergyStored(double amount) {
+	public void setEnergyStored(double amount)
+	{
 		energyStored = amount;
 	}
 
@@ -270,7 +291,8 @@ public class BasicSource extends TileEntity implements IEnergySource {
 	 * 
 	 * @return amount in EU
 	 */
-	public double getFreeCapacity() {
+	public double getFreeCapacity()
+	{
 		return capacity - energyStored;
 	}
 
@@ -280,9 +302,16 @@ public class BasicSource extends TileEntity implements IEnergySource {
 	 * @param amount maximum amount of energy to add
 	 * @return amount added/used, NOT remaining
 	 */
-	public double addEnergy(double amount) {
-		if (FMLCommonHandler.instance().getEffectiveSide().isClient()) return 0;
-		if (amount > capacity - energyStored) amount = capacity - energyStored;
+	public double addEnergy(double amount)
+	{
+		if(FMLCommonHandler.instance().getEffectiveSide().isClient())
+		{
+			return 0;
+		}
+		if(amount > capacity - energyStored)
+		{
+			amount = capacity - energyStored;
+		}
 
 		energyStored += amount;
 
@@ -295,10 +324,14 @@ public class BasicSource extends TileEntity implements IEnergySource {
 	 * @param stack ItemStack to charge (null is ignored)
 	 * @return true if energy was transferred
 	 */
-	public boolean charge(ItemStack stack) {
-		if (stack == null || !Info.isIc2Available()) return false;
+	public boolean charge(ItemStack stack)
+	{
+		if(stack == null || !Info.isIc2Available())
+		{
+			return false;
+		}
 
-		double amount = ElectricItem.manager.charge(stack, energyStored, tier, false, false);
+		final double amount = ElectricItem.manager.charge(stack, energyStored, tier, false, false);
 
 		energyStored -= amount;
 
@@ -310,27 +343,32 @@ public class BasicSource extends TileEntity implements IEnergySource {
 	// backwards compatibility (ignore these) >>
 
 	@Deprecated
-	public void onUpdateEntity() {
+	public void onUpdateEntity()
+	{
 		updateEntity();
 	}
 
 	@Deprecated
-	public void onInvalidate() {
+	public void onInvalidate()
+	{
 		invalidate();
 	}
 
 	@Deprecated
-	public void onOnChunkUnload() {
+	public void onOnChunkUnload()
+	{
 		onChunkUnload();
 	}
 
 	@Deprecated
-	public void onReadFromNbt(NBTTagCompound tag) {
+	public void onReadFromNbt(NBTTagCompound tag)
+	{
 		readFromNBT(tag);
 	}
 
 	@Deprecated
-	public void onWriteToNbt(NBTTagCompound tag) {
+	public void onWriteToNbt(NBTTagCompound tag)
+	{
 		writeToNBT(tag);
 	}
 
@@ -343,33 +381,36 @@ public class BasicSource extends TileEntity implements IEnergySource {
 	// energy net interface >>
 
 	@Override
-	public boolean emitsEnergyTo(TileEntity receiver, ForgeDirection direction) {
+	public boolean emitsEnergyTo(TileEntity receiver, ForgeDirection direction)
+	{
 		return true;
 	}
 
 	@Override
-	public double getOfferedEnergy() {
+	public double getOfferedEnergy()
+	{
 		return Math.min(energyStored, power);
 	}
 
 	@Override
-	public void drawEnergy(double amount) {
+	public void drawEnergy(double amount)
+	{
 		energyStored -= amount;
 	}
 
 	@Override
-	public int getSourceTier() {
+	public int getSourceTier()
+	{
 		return tier;
 	}
 
 	// << energy net interface
 
+	public final TileEntity	parent;
 
-	public final TileEntity parent;
-
-	protected double capacity;
-	protected int tier;
-	protected double power;
-	protected double energyStored;
-	protected boolean addedToEnet;
+	protected double		capacity;
+	protected int			tier;
+	protected double		power;
+	protected double		energyStored;
+	protected boolean		addedToEnet;
 }

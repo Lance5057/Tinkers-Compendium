@@ -258,9 +258,13 @@ public class ModifierSoulHandler
 	{
 		final int lines = getAmountOfLines("soul." + name + "." + type + ".");
 		if(lines > 0)
+		{
 			return StatCollector.translateToLocal("soul." + name + "." + type + "." + world.rand.nextInt(lines));
+		}
 		if(TinkersDefense.config.debug)
+		{
 			return "Error: No lines (" + type + " chat)";
+		}
 		return "";
 	}
 
@@ -315,8 +319,8 @@ public class ModifierSoulHandler
 	@SubscribeEvent
 	public void ModifySoulEvent(ModifyEvent event)
 	{
-		if(event.modifier.stacks != null && !event.modifier.stacks.isEmpty() && event.modifier.stacks.get(0) != null && ((ItemStack) event.modifier.stacks.get(0)).areItemStacksEqual((ItemStack) event.modifier.stacks.get(0), new ItemStack(
-				TinkersDefense.mods.TMod.modItems, 1, 3)))
+		if(event.modifier.stacks != null && !event.modifier.stacks.isEmpty() && event.modifier.stacks.get(0) != null && ItemStack.areItemStacksEqual((ItemStack) event.modifier.stacks.get(0), new ItemStack(
+				Modifiers.TMod.modItems, 1, 3)))
 		{
 			newlymade = true;
 

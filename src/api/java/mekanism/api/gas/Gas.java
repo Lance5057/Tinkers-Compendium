@@ -13,17 +13,17 @@ import net.minecraftforge.fluids.FluidRegistry;
  */
 public class Gas
 {
-	private String name;
+	private String	name;
 
-	private String unlocalizedName;
+	private String	unlocalizedName;
 
-	private Fluid fluid;
+	private Fluid	fluid;
 
-	private IIcon icon;
+	private IIcon	icon;
 
-	private boolean visible = true;
+	private boolean	visible		= true;
 
-	private boolean from_fluid = false;
+	private boolean	from_fluid	= false;
 
 	/**
 	 * Creates a new Gas object with a defined name or key value.
@@ -113,9 +113,9 @@ public class Gas
 	{
 		if(from_fluid)
 		{
-			return this.getFluid().getIcon();
+			return getFluid().getIcon();
 		}
-		
+
 		return icon;
 	}
 
@@ -132,9 +132,9 @@ public class Gas
 		{
 			fluid.setIcons(getIcon());
 		}
-		
+
 		from_fluid = false;
-		
+
 		return this;
 	}
 
@@ -205,7 +205,8 @@ public class Gas
 				fluid = new Fluid(getName()).setGaseous(true);
 				FluidRegistry.registerFluid(fluid);
 			}
-			else {
+			else
+			{
 				fluid = FluidRegistry.getFluid(getName());
 			}
 		}

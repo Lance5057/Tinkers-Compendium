@@ -38,7 +38,7 @@ public class TD_Config
 	public int[]	CrestLightID;
 
 	//public int		JokeInsultID;
-	public int		JokePyrotechID;
+	//public int		JokePyrotechID;
 	//public int		JokeCompensateID;
 
 	public int		SoulSteveID;
@@ -171,7 +171,7 @@ public class TD_Config
 		ScabbingModID = config.getInt("Scabbing Modifier ID", "BloodMagic Addon", count++, 18, Int.MaxValue(), null);
 
 		//JokeInsultID = config.getInt("Insult ID", "Joke Modifier Configs", count++, 18, Int.MaxValue(), null);
-		JokePyrotechID = config.getInt("Pyrotech ID", "Joke Modifier Configs", count++, 18, Int.MaxValue(), null);
+		//JokePyrotechID = config.getInt("Pyrotech ID", "Joke Modifier Configs", count++, 18, Int.MaxValue(), null);
 
 		config.save();
 	}

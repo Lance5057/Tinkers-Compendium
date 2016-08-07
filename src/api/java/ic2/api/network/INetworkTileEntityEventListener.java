@@ -3,7 +3,8 @@ package ic2.api.network;
 /**
  * Allows a tile entity to receive network events received from the server.
  */
-public interface INetworkTileEntityEventListener {
+public interface INetworkTileEntityEventListener
+{
 	/**
 	 * Called when a network event is received.
 	 * 
@@ -11,4 +12,3 @@ public interface INetworkTileEntityEventListener {
 	 */
 	void onNetworkEvent(int event);
 }
-

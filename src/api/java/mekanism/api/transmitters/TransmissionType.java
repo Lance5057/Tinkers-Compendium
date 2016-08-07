@@ -1,37 +1,32 @@
 package mekanism.api.transmitters;
 
 import mekanism.api.gas.IGasTransmitter;
-
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.StatCollector;
 
 public enum TransmissionType
 {
-	ENERGY("EnergyNetwork", "Energy"),
-	FLUID("FluidNetwork", "Fluids"),
-	GAS("GasNetwork", "Gases"),
-	ITEM("InventoryNetwork", "Items"),
-	HEAT("HeatNetwork", "Heat");
-	
-	private String name;
-	private String transmission;
-	
+	ENERGY("EnergyNetwork", "Energy"), FLUID("FluidNetwork", "Fluids"), GAS("GasNetwork", "Gases"), ITEM("InventoryNetwork", "Items"), HEAT("HeatNetwork", "Heat");
+
+	private String	name;
+	private String	transmission;
+
 	private TransmissionType(String n, String t)
 	{
 		name = n;
 		transmission = t;
 	}
-	
+
 	public String getName()
 	{
 		return name;
 	}
-	
+
 	public String getTransmission()
 	{
 		return transmission;
 	}
-	
+
 	public String localize()
 	{
 		return StatCollector.translateToLocal("transmission." + getTransmission());
@@ -61,7 +56,7 @@ public enum TransmissionType
 	{
 		if(sideTile instanceof ITransmitter)
 		{
-			if(((ITransmitter)sideTile).getTransmissionType() == this)
+			if(((ITransmitter) sideTile).getTransmissionType() == this)
 			{
 				return true;
 			}
@@ -69,7 +64,7 @@ public enum TransmissionType
 
 		if(this == GAS && currentTile instanceof IGasTransmitter)
 		{
-			if(((IGasTransmitter)currentTile).canTransferGasToTube(sideTile))
+			if(((IGasTransmitter) currentTile).canTransferGasToTube(sideTile))
 			{
 				return true;
 			}

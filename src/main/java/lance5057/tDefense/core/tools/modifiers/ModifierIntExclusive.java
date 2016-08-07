@@ -27,7 +27,7 @@ public class ModifierIntExclusive extends ModInteger
 		initialIncrease = secondaryIncrease = increase;
 		color = c;
 		tooltipName = tip;
-		this.modExclusions = excludeMods;
+		modExclusions = excludeMods;
 	}
 
 	public ModifierIntExclusive(ItemStack[] items, int effect, String dataKey, int increase, String c, String tip, String[] exclusive, int modsNeeded, int max)
@@ -44,27 +44,22 @@ public class ModifierIntExclusive extends ModInteger
 	@Override
 	protected boolean canModify(ItemStack tool, ItemStack[] input)
 	{
-		List list = Arrays.asList(((ToolCore) tool.getItem()).getTraits());
-		NBTTagCompound tags = tool.getTagCompound().getCompoundTag("InfiTool");
+		final List list = Arrays.asList(((ToolCore) tool.getItem()).getTraits());
+		final NBTTagCompound tags = tool.getTagCompound().getCompoundTag("InfiTool");
 
-		boolean isExclusive = false;
-		boolean hasModRejection = false;
-
-		for(int i = 0; i < exclusive.length; i++)
+		for(final String element : exclusive)
 		{
-			if(list.contains(exclusive[i]))
+			if(list.contains(element))
 			{
-				isExclusive = true;
 			}
 		}
 
 		if(modExclusions != null)
 		{
-			for(int i = 0; i < modExclusions.length; i++)
+			for(final String modExclusion : modExclusions)
 			{
-				if(tags.hasKey(modExclusions[i]))
+				if(tags.hasKey(modExclusion))
 				{
-					hasModRejection = true;
 				}
 			}
 		}
@@ -75,7 +70,7 @@ public class ModifierIntExclusive extends ModInteger
 	@Override
 	public void modify(ItemStack[] input, ItemStack tool)
 	{
-		NBTTagCompound tags = tool.getTagCompound().getCompoundTag("InfiTool");
+		final NBTTagCompound tags = tool.getTagCompound().getCompoundTag("InfiTool");
 		if(tags.hasKey(key))
 		{
 			int increase = tags.getInteger(key);

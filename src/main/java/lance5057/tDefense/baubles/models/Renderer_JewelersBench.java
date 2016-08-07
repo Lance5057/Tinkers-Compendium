@@ -24,7 +24,7 @@ public class Renderer_JewelersBench extends TileEntitySpecialRenderer
 		GL11.glTranslatef((float) x + 0.5F, (float) y + 1.5F, (float) z + 0.5F);
 
 		final ResourceLocation textures = (new ResourceLocation(
-				"tinkersdefense:textures/blocks/JewelersBench.png"));
+				"tinkersdefense:textures/blocks/jewelersbench.png"));
 
 		Minecraft.getMinecraft().renderEngine.bindTexture(textures);
 

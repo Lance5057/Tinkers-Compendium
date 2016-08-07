@@ -12,8 +12,9 @@ import net.minecraft.item.ItemStack;
  *
  */
 
-public interface IGoggles {
-	
+public interface IGoggles
+{
+
 	/*
 	 * If this method returns true things like block essentia contents will be shown.
 	 */

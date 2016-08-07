@@ -16,13 +16,13 @@ public interface IFilterAccess
 	 * @return the NBTTagCompound that now contains the TileEntity's filter card data
 	 */
 	public NBTTagCompound getFilterData(NBTTagCompound nbtTags);
-	
+
 	/**
 	 * Retrieves the TileEntity's data contained in the filter card based on the given NBTTagCompopund.
 	 * @param nbtTags - the NBTTagCompound of the filter card ItemStack
 	 */
 	public void setFilterData(NBTTagCompound nbtTags);
-	
+
 	/**
 	 * A String name of this TileEntity that will be displayed as the type of data on the filter card.
 	 * @return the String name of this TileEntity

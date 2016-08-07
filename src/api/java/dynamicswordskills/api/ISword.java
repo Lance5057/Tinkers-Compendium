@@ -22,6 +22,7 @@ package dynamicswordskills.api;
  * {@link LeapingBlow}, {@link MortalDraw}, and {@link RisingCut}
  *
  */
-public interface ISword {
+public interface ISword
+{
 
 }

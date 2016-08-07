@@ -91,9 +91,13 @@ public class Shears extends ToolCore
 	public boolean onBlockDestroyed(ItemStack p_150894_1_, World p_150894_2_, Block p_150894_3_, int p_150894_4_, int p_150894_5_, int p_150894_6_, EntityLivingBase p_150894_7_)
 	{
 		if(p_150894_3_.getMaterial() != Material.leaves && p_150894_3_ != Blocks.web && p_150894_3_ != Blocks.tallgrass && p_150894_3_ != Blocks.vine && p_150894_3_ != Blocks.tripwire && !(p_150894_3_ instanceof IShearable))
+		{
 			return super.onBlockDestroyed(p_150894_1_, p_150894_2_, p_150894_3_, p_150894_4_, p_150894_5_, p_150894_6_, p_150894_7_);
+		}
 		else
+		{
 			return true;
+		}
 	}
 
 	@Override
@@ -115,7 +119,9 @@ public class Shears extends ToolCore
 	public boolean itemInteractionForEntity(ItemStack itemstack, EntityPlayer player, EntityLivingBase entity)
 	{
 		if(entity.worldObj.isRemote)
+		{
 			return false;
+		}
 		if(entity instanceof IShearable)
 		{
 			final IShearable target = (IShearable) entity;
@@ -154,7 +160,9 @@ public class Shears extends ToolCore
 	public boolean onBlockStartBreak(ItemStack itemstack, int x, int y, int z, EntityPlayer player)
 	{
 		if(player.worldObj.isRemote)
+		{
 			return false;
+		}
 		final Block block = player.worldObj.getBlock(x, y, z);
 		if(block instanceof IShearable)
 		{

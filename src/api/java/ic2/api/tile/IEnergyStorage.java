@@ -5,7 +5,8 @@ import net.minecraftforge.common.util.ForgeDirection;
 /**
  * Interface implemented by the tile entity of energy storage blocks.
  */
-public interface IEnergyStorage {
+public interface IEnergyStorage
+{
 	/**
 	 * Get the amount of energy currently stored in the block.
 	 * 

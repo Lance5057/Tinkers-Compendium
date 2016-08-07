@@ -11,31 +11,35 @@ import org.lwjgl.opengl.GL11;
 
 public class RenderItem_FinishingAnvil extends RenderItem
 {
-	private Gui_FinishingAnvil	anvilGui;
+	private final Gui_FinishingAnvil	anvilGui;
+	float								sx;
+	float								sy;
+	float								sz;
 
-	RenderItem_FinishingAnvil(Gui_FinishingAnvil gui)
+	RenderItem_FinishingAnvil(Gui_FinishingAnvil gui, float sx, float sy, float sz)
 	{
 		super();
 		anvilGui = gui;
+		this.sx = sx;
+		this.sy = sy;
+		this.sz = sz;
 	}
 
 	@Override
 	public void renderItemAndEffectIntoGUI(FontRenderer fontRenderer, TextureManager textureManager, ItemStack itemStack, int x, int y)
 	{
 		if(itemStack == null)
-		{
 			return;
-		}
 
 		RenderHelper.enableGUIStandardItemLighting();
 
-		Slot slot = anvilGui.inventorySlots.getSlotFromInventory(anvilGui.inventory, 0);
+		final Slot slot = anvilGui.inventorySlots.getSlotFromInventory(anvilGui.inventory, 0);
 
 		if(slot.getStack() != null)
 		{
 			GL11.glPushMatrix();
 
-			GL11.glScalef(3.438f, 3.43f, 1.0f);
+			GL11.glScalef(sx, sy, sz);
 			super.renderItemAndEffectIntoGUI(fontRenderer, textureManager, itemStack, x, y);
 
 			GL11.glPopMatrix();

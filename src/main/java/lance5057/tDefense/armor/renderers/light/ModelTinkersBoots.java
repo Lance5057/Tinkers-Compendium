@@ -25,10 +25,21 @@ public class ModelTinkersBoots extends ArmorRenderer
 		textureWidth = 64;
 		textureHeight = 64;
 
+		bipedRightLeg = new ModelRenderer(this, "Right Leg");
+		bipedRightLeg.setTextureOffset(0, 16);
+		bipedRightLeg.addBox(-2.0F, 0.0F, -2.0F, 4, 12, 4, 0.05f);
+		bipedRightLeg.setRotationPoint(-1.9F, 12.0F + 0, 0.0F);
+
+		bipedLeftLeg = new ModelRenderer(this, "Left Leg");
+		bipedLeftLeg.setTextureOffset(0, 16);
+		bipedLeftLeg.mirror = true;
+		bipedLeftLeg.addBox(-2.0F, 0.0F, -2.0F, 4, 12, 4, 0.05f);
+		bipedLeftLeg.setRotationPoint(1.9F, 12.0F + 0, 0.0F);
+
 		FootR = new ModelRenderer(this, "FootR");
 		FootR.setTextureOffset(0, 41);
 		FootR.setRotationPoint(0f, 0f, 0f);
-		FootR.addBox(-2.0F, 10.0F, -3.0F, 4, 2, 1, 0.0F);
+		FootR.addBox(-2.0F, 10.0F, -3.0F, 4, 2, 1, 0.1F);
 		bipedRightLeg.addChild(FootR);
 
 		BootTopR = new ModelRenderer(this, "BootTopR");
@@ -61,7 +72,7 @@ public class ModelTinkersBoots extends ArmorRenderer
 		FootL.setTextureOffset(0, 41);
 		FootL.mirror = true;
 		FootL.setRotationPoint(0f, 0f, 0f);
-		FootL.addBox(-2.0F, 10.0F, -3.0F, 4, 2, 1, 0.0F);
+		FootL.addBox(-2.0F, 10.0F, -3.0F, 4, 2, 1, 0.1F);
 		bipedLeftLeg.addChild(FootL);
 
 		LegGuardL = new ModelRenderer(this, "LegGuardL");
@@ -82,6 +93,8 @@ public class ModelTinkersBoots extends ArmorRenderer
 		BootTopR.isHidden = true;
 		FootTipL.isHidden = true;
 		FootTipR.isHidden = true;
+		LegGuardL.isHidden = true;
+		LegGuardR.isHidden = true;
 
 		init();
 	}

@@ -10,7 +10,8 @@ import net.minecraft.item.ItemStack;
  * All IC2 ReactorComponents implement and use this Interface
  *
  */
-public interface IReactorComponent {
+public interface IReactorComponent
+{
 	/**
 	 * Called by reactor upon iterating through it's inventory (every cycle).
 	 * Perform all necessary calculation/interaction here

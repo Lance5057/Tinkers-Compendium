@@ -8,9 +8,9 @@ public class RawGem extends Item
 {
 	public RawGem(String name)
 	{
-		this.setCreativeTab(TinkersDefense.tabName);
-		this.setMaxStackSize(64);
-		this.setUnlocalizedName("raw" + name);
-		this.setTextureName(Reference.MOD_ID + ":raw" + name);
+		setCreativeTab(TinkersDefense.tabName);
+		setMaxStackSize(64);
+		setUnlocalizedName("raw" + name);
+		setTextureName(Reference.MOD_ID + ":raw" + name);
 	}
 }

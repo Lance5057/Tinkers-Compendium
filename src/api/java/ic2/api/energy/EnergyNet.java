@@ -1,6 +1,5 @@
 package ic2.api.energy;
 
-
 /**
  * Provides access to the energy network.
  * 
@@ -9,10 +8,10 @@ package ic2.api.energy;
  * 
  * See ic2/api/energy/usage.txt for an overall description of the energy net api.
  */
-public final class EnergyNet {
+public final class EnergyNet
+{
 	/**
 	 * Instance of the global EnergyNet class.
 	 */
-	public static IEnergyNet instance;
+	public static IEnergyNet	instance;
 }
-

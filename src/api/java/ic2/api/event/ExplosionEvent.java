@@ -3,18 +3,14 @@ package ic2.api.event;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.world.World;
-
+import net.minecraftforge.event.world.WorldEvent;
 import cpw.mods.fml.common.eventhandler.Cancelable;
 
-import net.minecraftforge.event.world.WorldEvent;
-
 @Cancelable
-public class ExplosionEvent extends WorldEvent {
-	public ExplosionEvent(World world, Entity entity,
-			double x, double y, double z,
-			double power,
-			EntityLivingBase igniter,
-			int radiationRange, double rangeLimit) {
+public class ExplosionEvent extends WorldEvent
+{
+	public ExplosionEvent(World world, Entity entity, double x, double y, double z, double power, EntityLivingBase igniter, int radiationRange, double rangeLimit)
+	{
 		super(world);
 
 		this.entity = entity;
@@ -30,15 +26,15 @@ public class ExplosionEvent extends WorldEvent {
 	/**
 	 * Entity representing the explosive, may be null.
 	 */
-	public final Entity entity;
-	public double x;
-	public double y;
-	public double z;
-	public double power;
+	public final Entity				entity;
+	public double					x;
+	public double					y;
+	public double					z;
+	public double					power;
 	/**
 	 * Entity causing the explosion, may be null.
 	 */
-	public final EntityLivingBase igniter;
-	public final int radiationRange;
-	public final double rangeLimit;
+	public final EntityLivingBase	igniter;
+	public final int				radiationRange;
+	public final double				rangeLimit;
 }

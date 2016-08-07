@@ -6,7 +6,8 @@ import net.minecraft.item.ItemStack;
 /**
  * Implement this interface on subclasses of Item to have that item work as a tool for CoFH mods.
  */
-public interface IToolHammer {
+public interface IToolHammer
+{
 
 	/**
 	 * Called to ensure that the tool can be used.

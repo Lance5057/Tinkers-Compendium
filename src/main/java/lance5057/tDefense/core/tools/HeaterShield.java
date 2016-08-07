@@ -1,19 +1,11 @@
 package lance5057.tDefense.core.tools;
 
-import java.util.List;
-
 import lance5057.tDefense.TinkersDefense;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import tconstruct.tools.TinkerTools;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class HeaterShield extends Shield
 {
@@ -22,7 +14,7 @@ public class HeaterShield extends Shield
 	public HeaterShield()
 	{
 		super(0);
-		this.setUnlocalizedName("heatershield");
+		setUnlocalizedName("heatershield");
 	}
 
 	@Override

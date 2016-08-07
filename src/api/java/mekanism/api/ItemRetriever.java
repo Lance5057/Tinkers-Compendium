@@ -13,10 +13,10 @@ import net.minecraft.item.ItemStack;
 public final class ItemRetriever
 {
 	/** The 'MekanismItems' class that items are retrieved from. */
-	private static Class MekanismItems;
-	
+	private static Class	MekanismItems;
+
 	/** The 'MekanismBlocks' class that blocks are retrieved from. */
-	private static Class MekanismBlocks;
+	private static Class	MekanismBlocks;
 
 	/**
 	 * Attempts to retrieve an ItemStack of an item with the declared identifier.
@@ -43,27 +43,31 @@ public final class ItemRetriever
 	 */
 	public static ItemStack getItem(String identifier)
 	{
-		try {
+		try
+		{
 			if(MekanismItems == null)
 			{
 				MekanismItems = Class.forName("mekanism.common.MekanismItems");
 			}
 
-			Object ret = MekanismItems.getField(identifier).get(null);
+			final Object ret = MekanismItems.getField(identifier).get(null);
 
 			if(ret instanceof Item)
 			{
-				return new ItemStack((Item)ret, 1);
+				return new ItemStack((Item) ret, 1);
 			}
-			else {
+			else
+			{
 				return null;
 			}
-		} catch(Exception e) {
+		}
+		catch(final Exception e)
+		{
 			System.err.println("Error retrieving item with identifier '" + identifier + "': " + e.getMessage());
 			return null;
 		}
 	}
-	
+
 	/**
 	 * Attempts to retrieve an ItemStack of a block with the declared identifier.
 	 *
@@ -89,22 +93,26 @@ public final class ItemRetriever
 	 */
 	public static ItemStack getBlock(String identifier)
 	{
-		try {
+		try
+		{
 			if(MekanismBlocks == null)
 			{
 				MekanismBlocks = Class.forName("mekanism.common.MekanismBlocks");
 			}
 
-			Object ret = MekanismBlocks.getField(identifier).get(null);
+			final Object ret = MekanismBlocks.getField(identifier).get(null);
 
 			if(ret instanceof Block)
 			{
-				return new ItemStack((Block)ret, 1);
+				return new ItemStack((Block) ret, 1);
 			}
-			else {
+			else
+			{
 				return null;
 			}
-		} catch(Exception e) {
+		}
+		catch(final Exception e)
+		{
 			System.err.println("Error retrieving block with identifier '" + identifier + "': " + e.getMessage());
 			return null;
 		}
