@@ -29,7 +29,7 @@ public class modifierRepairVis extends ModBoolean
 				for(final WandCap cp : WandCap.caps.values())
 				{
 					final ItemStack test = cp.getItem();
-					if(element.getItem() == test.getItem() && element.getItemDamage() == test.getItemDamage())
+					if(test != null && element.getItem() == test.getItem() && element.getItemDamage() == test.getItemDamage())
 					{
 						cap = cp;
 						break;
@@ -39,13 +39,9 @@ public class modifierRepairVis extends ModBoolean
 		}
 
 		if(!canModify(input, recipe))
-		{
 			return false;
-		}
 		if(cap == null)
-		{
 			return false;
-		}
 		return true;
 	}
 

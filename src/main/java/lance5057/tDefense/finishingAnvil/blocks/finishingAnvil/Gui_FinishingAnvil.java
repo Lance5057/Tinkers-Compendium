@@ -36,16 +36,16 @@ public class Gui_FinishingAnvil extends GuiContainer
 	private ItemStack						bigCopy;
 	NBTTagCompound							bigCopyTags;
 	private final RenderItem				bigRender		= new RenderItem_FinishingAnvil(
-			this,
-			3.5f,
-			3.5f, 1.0f);
+																	this,
+																	3.5f,
+																	3.5f, 1.0f);
 
 	private ItemStack						rightCopy1, rightCopy2, rightCopy3;
 	NBTTagCompound							rightCopyTags1, rightCopyTags2,
-	rightCopyTags3;
+											rightCopyTags3;
 	private final RenderItem				normalRender	= new RenderItem_FinishingAnvil(
-			this, 1.0f,
-			1.0f, 1.0f);
+																	this, 1.0f,
+																	1.0f, 1.0f);
 
 	//private Boolean							isNull			= true;
 	private ItemStack						editItem;
@@ -68,8 +68,8 @@ public class Gui_FinishingAnvil extends GuiContainer
 	InventoryPlayer							player;
 
 	private static final ResourceLocation	iconLocation	= new ResourceLocation(
-			"tinkersdefense",
-			"textures/gui/finishinganvil.png");
+																	"tinkersdefense",
+																	"textures/gui/finishinganvil.png");
 
 	public Gui_FinishingAnvil(InventoryPlayer invPlayer, TileEntity_FinishingAnvil te)
 	{
@@ -511,12 +511,38 @@ public class Gui_FinishingAnvil extends GuiContainer
 			final int test = button.getHoverState(mousehover);
 			if(test == 2)
 			{
-				if(bigCopy != null && bigCopy.getItem() instanceof ToolCore)
+				final List<String> list = new ArrayList();
+
+				if(bigCopy.getItem() instanceof ArmorCore)
+				{
+					bigCopy.getTagCompound().getCompoundTag("ArmorRenderer");
+					final ArmorCore armor = (ArmorCore) bigCopy.getItem();
+					final List<ModelRenderer> boxes = armor.getRenderer().boxList;
+
+					switch(i)
+					{
+						case 0:
+						case 1:
+						case 2:
+							break;
+
+						case 3:
+							list.add(boxes.get(rightButtonPos + 9).boxName);
+							break;
+						case 4:
+							list.add(boxes.get(rightButtonPos + 1 + 9).boxName);
+							break;
+						case 5:
+							list.add(boxes.get(rightButtonPos + 2 + 9).boxName);
+							break;
+					}
+					func_146283_a(list, x, y);
+				}
+				else if(bigCopy != null && bigCopy.getItem() instanceof ToolCore)
 				{
 					final ToolCore tool = (ToolCore) bigCopy.getItem();
 					final String toolName = tool.getUnlocalizedName().toLowerCase().substring(tool.getUnlocalizedName().lastIndexOf('.') + 1, tool.getUnlocalizedName().length());
 					final ToolCoreTip tt = ((Injector) TinkersDefense.tcInject).tools.get(toolName);
-					final List<String> list = new ArrayList();
 
 					if(tt != null)
 					{
@@ -549,31 +575,7 @@ public class Gui_FinishingAnvil extends GuiContainer
 						}
 						func_146283_a(list, x, y);
 					}
-					else if(bigCopy.getItem() instanceof ArmorCore)
-					{
-						bigCopy.getTagCompound().getCompoundTag("ArmorRenderer");
-						final ArmorCore armor = (ArmorCore) bigCopy.getItem();
-						final List<ModelRenderer> boxes = armor.getRenderer().boxList;
 
-						switch(i)
-						{
-							case 0:
-							case 1:
-							case 2:
-								break;
-
-							case 3:
-								list.add(boxes.get(rightButtonPos + 9).boxName);
-								break;
-							case 4:
-								list.add(boxes.get(rightButtonPos + 1 + 9).boxName);
-								break;
-							case 5:
-								list.add(boxes.get(rightButtonPos + 2 + 9).boxName);
-								break;
-						}
-						func_146283_a(list, x, y);
-					}
 					else
 					{
 						list.add("Error - No name/desc!");

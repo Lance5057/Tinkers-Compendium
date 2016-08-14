@@ -1,7 +1,6 @@
 package lance5057.tDefense.finishingAnvil.utilities;
 
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.nio.file.FileSystem;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
@@ -12,6 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import lance5057.tDefense.Reference;
 import lance5057.tDefense.TinkersDefense;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -37,7 +37,7 @@ public class Injector extends ToolCore
 		super(0);
 	}
 
-	protected void loadHeads(IIconRegister iconRegister) throws IOException, URISyntaxException
+	protected void loadHeads(IIconRegister iconRegister)
 	{
 
 		//		final URL jarFile =
@@ -55,14 +55,38 @@ public class Injector extends ToolCore
 			//final List<String> filenames = new ArrayList<String>();
 			//final File files = new File(Minecraft.getMinecraft().mcDataDir.getPath() + "/mods/tinkersdefense-1.3.6.jar");
 
-			final Path zipfile = Paths.get(Minecraft.getMinecraft().mcDataDir.getPath() + "/mods/tinkersdefense-1.3.6.jar");
-			final FileSystem fs = FileSystems.newFileSystem(zipfile, Minecraft.class.getClassLoader());
+			final Path zipfile = Paths.get(Minecraft.getMinecraft().mcDataDir.getPath() + "/mods/" + Reference.MOD_ID + "-" + Reference.VERSION + ".jar");
+			//			if(Files.exists(zipfile))
+			//			{
+			Path root = null;
+			FileSystem fs;
+			try
+			{
+				fs = FileSystems.newFileSystem(zipfile, Minecraft.class.getClassLoader());
+				root = fs.getPath(path);
+			}
+			catch(final IOException e)
+			{
+				// TODO Auto-generated catch block
+				//e.printStackTrace();
+				continue;
+			}
 
-			final Path root = fs.getPath(path);
 			//final Iterable<FileStore> files = fs.getFileStores();
 			final FileGetter fileget = new FileGetter();
 
-			Files.walkFileTree(root, fileget);
+			if(root != null)
+			{
+				try
+				{
+					Files.walkFileTree(root, fileget);
+				}
+				catch(final IOException e)
+				{
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 
 			//IDE
 			//final File files = new File(url.toURI());
@@ -77,6 +101,8 @@ public class Injector extends ToolCore
 			setup(TConstructRegistry.tools.get(i), toolName, fileget.filenames, iconRegister);
 		}
 	}
+
+	//	}
 
 	//}
 	//}
@@ -235,18 +261,7 @@ public class Injector extends ToolCore
 	@Override
 	public void registerIcons(IIconRegister iconRegister)
 	{
-		try
-		{
-			loadHeads(iconRegister);
-		}
-		catch(final IOException e)
-		{
-			System.out.print("No Finishing Anvil for you");
-		}
-		catch(final URISyntaxException e)
-		{
-			System.out.print("No Finishing Anvil for you");
-		}
+		loadHeads(iconRegister);
 	}
 
 	@Override

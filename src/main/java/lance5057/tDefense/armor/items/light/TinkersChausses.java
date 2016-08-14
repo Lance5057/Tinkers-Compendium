@@ -10,6 +10,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class TinkersChausses extends ArmorCore
 {
@@ -107,6 +109,7 @@ public class TinkersChausses extends ArmorCore
 	//	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
 		return "tinkersdefense:textures/armor/TinkersChausses.png";
@@ -133,6 +136,7 @@ public class TinkersChausses extends ArmorCore
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public ArmorRenderer getRenderer()
 	{
 		return ClientProxy.chausses;

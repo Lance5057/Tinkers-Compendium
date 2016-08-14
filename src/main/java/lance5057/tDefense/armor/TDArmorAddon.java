@@ -4,6 +4,8 @@ import lance5057.tDefense.TinkersDefense;
 import lance5057.tDefense.armor.blocks.GlowstoneCrumbs;
 import lance5057.tDefense.armor.blocks.UnstableBlock;
 import lance5057.tDefense.armor.blocks.UnstableItemBlock;
+import lance5057.tDefense.armor.events.ArmorModEvents;
+import lance5057.tDefense.armor.events.ArmorRenderEvent;
 import lance5057.tDefense.armor.items.Sheath;
 import lance5057.tDefense.armor.items.TinkersGauntlets;
 import lance5057.tDefense.armor.items.cloth.TinkersHood;
@@ -23,6 +25,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.MinecraftForgeClient;
+import net.minecraftforge.common.MinecraftForge;
 import tconstruct.client.FlexibleToolRenderer;
 import tconstruct.library.TConstructRegistry;
 import tconstruct.library.crafting.ToolBuilder;
@@ -32,6 +35,7 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.relauncher.Side;
 
 public class TDArmorAddon
 {
@@ -74,6 +78,13 @@ public class TDArmorAddon
 			}
 
 		};
+
+		if(e.getSide() == Side.CLIENT)
+		{
+			MinecraftForge.EVENT_BUS.register(new ArmorRenderEvent());
+		}
+
+		MinecraftForge.EVENT_BUS.register(new ArmorModEvents());
 
 		armor_TinkerHelm = new TinkersHelm();
 		armor_TinkerBreastplate = new TinkersBreastplate();

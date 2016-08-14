@@ -12,6 +12,8 @@ import thaumcraft.api.IVisDiscountGear;
 import thaumcraft.api.aspects.Aspect;
 import vazkii.botania.api.mana.IManaDiscountArmor;
 import cpw.mods.fml.common.Optional;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 @Optional.InterfaceList({@Optional.Interface(modid = "Thaumcraft", iface = "thaumcraft.api.IVisDiscountGear", striprefs = true), @Optional.Interface(modid = "Botania", iface = "vazkii.botania.api.mana.IManaDiscountArmor", striprefs = true)})
 public class TinkersShoes extends ArmorCore implements IVisDiscountGear, IManaDiscountArmor
@@ -108,6 +110,7 @@ public class TinkersShoes extends ArmorCore implements IVisDiscountGear, IManaDi
 	//	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
 		return "tinkersdefense:textures/armor/TinkersShoes.png";
@@ -133,6 +136,7 @@ public class TinkersShoes extends ArmorCore implements IVisDiscountGear, IManaDi
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public ArmorRenderer getRenderer()
 	{
 		return ClientProxy.shoes;

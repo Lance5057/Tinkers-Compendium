@@ -96,6 +96,7 @@ public class Sheath extends ArmorCore implements IAccessory
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public ArmorRenderer getRenderer()
 	{
 		// TODO Auto-generated method stub

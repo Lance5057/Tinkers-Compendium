@@ -8,6 +8,8 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class TinkersBoots extends ArmorCore
 {
@@ -105,6 +107,7 @@ public class TinkersBoots extends ArmorCore
 	//	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
 		return "tinkersdefense:textures/armor/TinkersBoots.png";
@@ -123,6 +126,7 @@ public class TinkersBoots extends ArmorCore
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public ArmorRenderer getRenderer()
 	{
 		return ClientProxy.boots;

@@ -16,6 +16,8 @@ import thaumcraft.api.nodes.IRevealer;
 import WayofTime.alchemicalWizardry.api.alchemy.energy.IAlchemyGoggles;
 import WayofTime.alchemicalWizardry.api.items.interfaces.ILPGauge;
 import cpw.mods.fml.common.Optional;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 @Optional.InterfaceList({@Optional.Interface(modid = "Thaumcraft", iface = "thaumcraft.api.IGoggles", striprefs = true), @Optional.Interface(modid = "Thaumcraft", iface = "thaumcraft.api.nodes.IRevealer", striprefs = true), @Optional.Interface(modid = "AWWayofTime", iface = "WayofTime.alchemicalWizardry.api.items.interfaces.ILPGauge", striprefs = true), @Optional.Interface(modid = "AWWayofTime", iface = "WayofTime.alchemicalWizardry.api.alchemy.energy.IAlchemyGoggles", striprefs = true)})
 public class TinkersHelm extends ArmorCore implements IRevealer, IGoggles, ILPGauge, IAlchemyGoggles
@@ -122,6 +124,7 @@ public class TinkersHelm extends ArmorCore implements IRevealer, IGoggles, ILPGa
 	//	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
 		return "tinkersdefense:textures/armor/TinkersHelm.png";
@@ -134,6 +137,7 @@ public class TinkersHelm extends ArmorCore implements IRevealer, IGoggles, ILPGa
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public ArmorRenderer getRenderer()
 	{
 		return ClientProxy.helm;

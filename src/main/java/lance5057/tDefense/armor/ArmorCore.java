@@ -16,12 +16,10 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ISpecialArmor;
-import net.minecraftforge.common.MinecraftForge;
 
 import org.lwjgl.opengl.GL11;
 
 import tconstruct.library.TConstructRegistry;
-import tconstruct.library.event.ToolCraftEvent.NormalTool;
 import tconstruct.library.tools.AbilityHelper;
 import tconstruct.library.tools.CustomMaterial;
 import tconstruct.library.tools.ToolCore;
@@ -29,7 +27,6 @@ import thaumcraft.api.IRunicArmor;
 import vazkii.botania.api.item.IPixieSpawner;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.Optional;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -51,7 +48,7 @@ public abstract class ArmorCore extends ToolCore implements ISpecialArmor, IRuni
 
 		this.slot = slot;
 
-		MinecraftForge.EVENT_BUS.register(this);
+		//MinecraftForge.EVENT_BUS.register(this);
 	}
 
 	@Override
@@ -243,6 +240,7 @@ public abstract class ArmorCore extends ToolCore implements ISpecialArmor, IRuni
 		}
 	}
 
+	@SideOnly(Side.CLIENT)
 	public void renderArmor(Entity entity, float f, float f1, float f2, float f3, float f4, float f5, String[] colors, ItemStack stack, int pass)
 	{
 
@@ -259,6 +257,7 @@ public abstract class ArmorCore extends ToolCore implements ISpecialArmor, IRuni
 
 	}
 
+	@SideOnly(Side.CLIENT)
 	public String getTexture(int pass, ItemStack stack)
 	{
 		final NBTTagCompound tags = stack.getTagCompound().getCompoundTag("InfiTool");
@@ -306,31 +305,5 @@ public abstract class ArmorCore extends ToolCore implements ISpecialArmor, IRuni
 	{
 		final float chance = stack.getTagCompound().getCompoundTag("InfiTool").getInteger("ElementiumCore") * 5 / 100f;
 		return chance;
-	}
-
-	@SubscribeEvent
-	public void ToolCraftedEvent(NormalTool event)
-	{
-		if(event.tool instanceof ArmorCore)
-		{
-			final ArmorCore armor = (ArmorCore) event.tool;
-			final ArmorRenderer render = armor.getRenderer();
-			final NBTTagCompound tooltags = event.toolTag;
-			final NBTTagCompound tags = render.defaultTags;//stack.setTagCompound();
-
-			//			for(int i = 0; i < render.defaultTags.; i++)
-			//			{
-			//				final String rendertag = ((ModelRenderer) render.boxList.get(i)).boxName;
-			//				if(rendertag != null)
-			//				{
-			//					tags.setBoolean(rendertag, ((ModelRenderer) render.boxList.get(i)).isHidden);
-			//				}
-			//			}
-
-			if(!tags.hasNoTags())
-			{
-				tooltags.setTag("ArmorRenderer", tags);
-			}
-		}
 	}
 }

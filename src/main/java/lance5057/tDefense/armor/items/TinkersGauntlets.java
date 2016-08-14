@@ -9,6 +9,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import tconstruct.library.accessory.IAccessory;
 import tconstruct.tools.TinkerTools;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class TinkersGauntlets extends ArmorCore implements IAccessory
 {
@@ -111,6 +113,7 @@ public class TinkersGauntlets extends ArmorCore implements IAccessory
 	// }
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
 		return "tinkersdefense:textures/armor/Tinkersgauntlet.png";
@@ -123,6 +126,7 @@ public class TinkersGauntlets extends ArmorCore implements IAccessory
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public ArmorRenderer getRenderer()
 	{
 		return ClientProxy.gauntlets;

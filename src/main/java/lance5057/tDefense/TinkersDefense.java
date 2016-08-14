@@ -8,8 +8,6 @@ import java.util.Iterator;
 import java.util.List;
 
 import lance5057.tDefense.armor.TDArmorAddon;
-import lance5057.tDefense.armor.events.ArmorModEvents;
-import lance5057.tDefense.armor.events.ArmorRenderEvent;
 import lance5057.tDefense.armor.parts.Cloth;
 import lance5057.tDefense.armor.parts.ClothMaterial;
 import lance5057.tDefense.baubles.blocks.JewelersBench;
@@ -194,9 +192,6 @@ public class TinkersDefense
 		};
 
 		PacketHandler.init();
-
-		MinecraftForge.EVENT_BUS.register(new ArmorRenderEvent());
-		MinecraftForge.EVENT_BUS.register(new ArmorModEvents());
 
 		NetworkRegistry.INSTANCE.registerGuiHandler(TinkersDefense.instance, new CommonProxy());
 		MinecraftForge.EVENT_BUS.register(this);
@@ -395,11 +390,17 @@ public class TinkersDefense
 			}
 		}
 
-		StencilBuilder.registerStencil(50, woodPattern, 0); // rivets
-		StencilBuilder.registerStencil(51, woodPattern, 1); // clasp
-		StencilBuilder.registerStencil(52, woodPattern, 2); // armorplate
-		StencilBuilder.registerStencil(53, woodPattern, 3); // cloth
-		StencilBuilder.registerStencil(54, woodPattern, 4); // chainmaille
+		final int[] stencils = new int[5];
+		for(int i = 0; i < 5; i++)
+		{
+			stencils[i] = StencilBuilder.getStencilCount() + i;
+		}
+
+		StencilBuilder.registerStencil(stencils[0], woodPattern, 0); // rivets
+		StencilBuilder.registerStencil(stencils[1], woodPattern, 1); // clasp
+		StencilBuilder.registerStencil(stencils[2], woodPattern, 2); // armorplate
+		StencilBuilder.registerStencil(stencils[3], woodPattern, 3); // cloth
+		StencilBuilder.registerStencil(stencils[4], woodPattern, 4); // chainmaille
 
 		PatternBuilder.instance.addToolPattern(woodPattern);
 
@@ -420,6 +421,22 @@ public class TinkersDefense
 		buildParts(partArmorplate, 2);
 		//buildParts(partCloth, 3);
 		buildParts(partChainmaille, 4);
+
+		TConstructClientRegistry.stencilButtons2.add(new StencilGuiElement(0,
+				0, stencils[0],
+				"tinkersdefense", "textures/gui/icons.png"));
+		TConstructClientRegistry.stencilButtons2.add(new StencilGuiElement(0,
+				0, stencils[1],
+				"tinkersdefense", "textures/gui/icons.png"));
+		TConstructClientRegistry.stencilButtons2.add(new StencilGuiElement(0,
+				0, stencils[2],
+				"tinkersdefense", "textures/gui/icons.png"));
+		TConstructClientRegistry.stencilButtons2.add(new StencilGuiElement(0,
+				0, stencils[3],
+				"tinkersdefense", "textures/gui/icons.png"));
+		TConstructClientRegistry.stencilButtons2.add(new StencilGuiElement(0,
+				0, stencils[4],
+				"tinkersdefense", "textures/gui/icons.png"));
 
 		final PatternBuilder pb = PatternBuilder.instance;
 
@@ -576,17 +593,6 @@ public class TinkersDefense
 				StatCollector.translateToLocal("gui.toolstation.shears.name"),
 				StatCollector.translateToLocal("gui.toolstation.shears.desc"),
 				"tinkersdefense", "textures/gui/icons.png"));
-
-		TConstructClientRegistry.stencilButtons2.add(new StencilGuiElement(0,
-				0, 50, "tinkersdefense", "textures/gui/icons.png"));
-		TConstructClientRegistry.stencilButtons2.add(new StencilGuiElement(0,
-				0, 51, "tinkersdefense", "textures/gui/icons.png"));
-		TConstructClientRegistry.stencilButtons2.add(new StencilGuiElement(0,
-				0, 52, "tinkersdefense", "textures/gui/icons.png"));
-		TConstructClientRegistry.stencilButtons2.add(new StencilGuiElement(0,
-				0, 53, "tinkersdefense", "textures/gui/icons.png"));
-		TConstructClientRegistry.stencilButtons2.add(new StencilGuiElement(0,
-				0, 54, "tinkersdefense", "textures/gui/icons.png"));
 
 		// aeonsteel
 		pb.registerMaterialSet("aeonsteel", new ItemStack(
@@ -941,7 +947,7 @@ public class TinkersDefense
 						metalPattern, 1, 1), 50);
 		TConstructRegistry.getTableCasting().addCastingRecipe(new ItemStack(
 				partChainmaille, 1, ID), new FluidStack(fluid,
-						(int) (144 * 4.0D)), new ItemStack(metalPattern, 1, 3), 50);
+						(int) (144 * 4.0D)), new ItemStack(metalPattern, 1, 4), 50);
 	}
 
 	public void buildParts(Item item, int meta)
@@ -949,7 +955,7 @@ public class TinkersDefense
 		final int[] nonMetals = {0, 1, 3, 4, 5, 6, 7, 8, 9, 17};
 		final int[] liquidDamage = new int[] {2, 13, 10, 11, 12, 14, 15, 6, 16, 18};
 
-		for(int mat = 0; mat < nonMetals.length; mat++)
+		for(int mat = 0; mat < nonMetals.length; mat++) //
 		{
 			TConstructRegistry.addPartMapping(woodPattern, meta, mat, new ItemStack(
 					item, 1, mat));

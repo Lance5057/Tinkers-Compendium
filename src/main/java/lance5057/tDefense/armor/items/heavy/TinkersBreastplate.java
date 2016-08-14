@@ -8,6 +8,8 @@ import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import tconstruct.tools.TinkerTools;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class TinkersBreastplate extends ArmorCore
 {
@@ -106,6 +108,7 @@ public class TinkersBreastplate extends ArmorCore
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
 		return "tinkersdefense:textures/armor/Tinkersbreastplate.png";
@@ -118,6 +121,7 @@ public class TinkersBreastplate extends ArmorCore
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public ArmorRenderer getRenderer()
 	{
 		return ClientProxy.breastplate;

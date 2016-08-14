@@ -2,6 +2,7 @@ package lance5057.tDefense.armor.events;
 
 import lance5057.tDefense.TinkersDefense;
 import lance5057.tDefense.armor.ArmorCore;
+import lance5057.tDefense.armor.renderers.ArmorRenderer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -9,10 +10,40 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import tconstruct.library.event.ToolCraftEvent.NormalTool;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ArmorModEvents
 {
+	@SideOnly(Side.CLIENT)
+	@SubscribeEvent
+	public void ToolCraftedEvent(NormalTool event)
+	{
+		if(event.tool instanceof ArmorCore)
+		{
+			final ArmorCore armor = (ArmorCore) event.tool;
+			final ArmorRenderer render = armor.getRenderer();
+			final NBTTagCompound tooltags = event.toolTag;
+			final NBTTagCompound tags = armor.getRenderer().defaultTags;//stack.setTagCompound();
+
+			//			for(int i = 0; i < render.defaultTags.; i++)
+			//			{
+			//				final String rendertag = ((ModelRenderer) render.boxList.get(i)).boxName;
+			//				if(rendertag != null)
+			//				{
+			//					tags.setBoolean(rendertag, ((ModelRenderer) render.boxList.get(i)).isHidden);
+			//				}
+			//			}
+
+			if(!tags.hasNoTags())
+			{
+				tooltags.setTag("ArmorRenderer", tags);
+			}
+		}
+	}
+
 	@SubscribeEvent
 	public void AddProtections(LivingHurtEvent event)
 	{
