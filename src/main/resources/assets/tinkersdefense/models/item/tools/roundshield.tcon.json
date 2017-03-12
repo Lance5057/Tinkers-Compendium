@@ -1,0 +1,64 @@
+{
+    "textures": {
+        "layer0": "tinkersdefense:items/shield/edge",
+        "layer1": "tinkersdefense:items/shield/face",
+		"layer2": "tinkersdefense:items/shield/boss",
+		"broken1": "tinkersdefense:items/shield/face_broken"
+    },
+    "display": {
+        "thirdperson_righthand": {
+            "rotation": [ 0, 90, 0 ],
+            "translation": [ 2, 0, 2 ],
+            "scale": [ 0.75, 0.75, 1 ]
+        },
+        "thirdperson_lefthand": {
+            "rotation": [ 0, 90, 0 ],
+            "translation": [ 2, 0, 2 ],
+            "scale": [ 0.75, 0.75, 1 ]
+        },
+        "firstperson_righthand": {
+            "rotation": [ 0, 135, 5 ],
+            "translation": [ 10, -10, -10 ],
+            "scale": [ 1.5, 1.5, 2 ]
+        },
+        "firstperson_lefthand": {
+            "rotation": [ 0, 135, 5 ],
+            "translation": [ 10, -16, -10 ],
+            "scale": [ 1.5, 1.5, 2 ]
+        },
+        "fixed": {
+            "rotation": [ 0, 180, 0 ],
+            "translation": [ -2, 4, -5],
+            "scale":[ 0.5, 0.5, 0.5]
+        }
+	},
+    "overrides": [
+        {
+            "predicate": {
+                "block": 1
+            },
+            "display": {
+				"thirdperson_righthand": {
+					"rotation": [ 30, 145, 0 ],
+					"translation": [ 2, 0, -1 ],
+					"scale": [ 0.75, 0.75, 1 ]
+				},
+				"thirdperson_lefthand": {
+					"rotation": [ 30, 145, 0 ],
+					"translation": [ 2, 0, -1 ],
+					"scale": [ 0.75, 0.75, 1 ]
+				},
+				"firstperson_righthand": {
+					"rotation": [ 0, 180, 0 ],
+					"translation": [ 0, -8, -10 ],
+					"scale": [ 1.5, 1.5, 2 ]
+				},
+				"firstperson_lefthand": {
+					"rotation": [ 0, 180, 0 ],
+					"translation": [ 0, -8, -10 ],
+					"scale": [ 1.5, 1.5, 2 ]
+				}
+			}
+        }
+    ]
+}

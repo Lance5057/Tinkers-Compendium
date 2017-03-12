@@ -1,8 +1,9 @@
 package lance5057.tDefense;
 
+import lance5057.tDefense.util.Color16Util;
 import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import scala.Int;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
 public class TD_Config
 {
@@ -178,11 +179,11 @@ public class TD_Config
 
 	private int[] ConfigCrest(Configuration config, String name)
 	{
-		final int[] crest = new int[TinkersDefense.colors.length];
+		final int[] crest = new int[Color16Util.colors.length];
 
-		for(int i = 0; i < TinkersDefense.colors.length; i++)
+		for(int i = 0; i < Color16Util.colors.length; i++)
 		{
-			crest[i] = config.getInt("Crest of " + name + " (" + TinkersDefense.colors[i] + ") ID", "Shield Modifier Configs", count++, 18, Int.MaxValue(), null);
+			crest[i] = config.getInt("Crest of " + name + " (" + Color16Util.colors[i] + ") ID", "Shield Modifier Configs", count++, 18, Int.MaxValue(), null);
 		}
 
 		return crest;
