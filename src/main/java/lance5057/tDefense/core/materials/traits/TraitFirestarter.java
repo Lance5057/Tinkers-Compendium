@@ -37,7 +37,7 @@ public class TraitFirestarter extends AbstractTrait {
 					{
 						Vec3d vec = player.getLookVec();
 						BlockPos block = player.getPosition().add(vec.xCoord,-1,vec.zCoord);
-						player.worldObj.setBlockState(block, Blocks.FIRE.getDefaultState());
+						player.world.setBlockState(block, Blocks.FIRE.getDefaultState());
 					}
 				}
 			}

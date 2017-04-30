@@ -7,7 +7,7 @@ import net.minecraft.client.model.ModelRenderer;
  * ModelBiped - Either Mojang or a mod author
  * Created using Tabula 4.1.1
  */
-public class ModelTinkersBreastplate extends ArmorRenderer
+public class ModelTinkersBreastplate extends ArmorRenderer 
 {
 	public ModelRenderer	BackPlate;
 	public ModelRenderer	BreastPlate;

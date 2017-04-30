@@ -13,7 +13,7 @@ import net.minecraft.nbt.NBTTagCompound;
 
 import org.lwjgl.opengl.GL11;
 
-public class ArmorRenderer extends ModelBiped
+public class ArmorRenderer extends ModelBiped 
 {
 	public String[]				colors;
 
@@ -23,6 +23,7 @@ public class ArmorRenderer extends ModelBiped
 	private final int[]			order		= new int[] {1, 2, 3, 0, 4, 5, 6, 7, 8, 9};
 
 	public List<ModelRenderer>	boxes		= new ArrayList<ModelRenderer>();
+
 	public NBTTagCompound		defaultTags	= new NBTTagCompound();
 
 	public ArmorRenderer(float a, float b, int c, int d)
@@ -74,16 +75,16 @@ public class ArmorRenderer extends ModelBiped
 
 		for(int i = 0; i < 10; i++)
 		{
-			final String texture = ((ArmorCore) stack.getItem()).getTexture(order[i], stack);
-			if(texture != "")
-			{
-				GL11.glPushMatrix();
-
-				((ArmorCore) stack.getItem()).renderArmor(entity, f, f1, f2, f3, f4, f5, colors, stack, order[i]);
-				super.render(entity, f, f1, f2, f3, f4, f5);
-
-				GL11.glPopMatrix();
-			}
+			//final String texture = ((ArmorCore) stack.getItem()).getTexture(order[i], stack);
+//			if(texture != "")
+//			{
+//				GL11.glPushMatrix();
+//
+//				//((ArmorCore) stack.getItem()).renderArmor(entity, f, f1, f2, f3, f4, f5, colors, stack, order[i]);
+//				super.render(entity, f, f1, f2, f3, f4, f5);
+//
+//				GL11.glPopMatrix();
+//			}
 		}
 
 		if(TinkersDefense.config.transparency)

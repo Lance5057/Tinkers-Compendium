@@ -15,7 +15,7 @@ public class GumDropSlimeRenderer extends RenderTinkerSlime
 	public static final Factory FACTORY_GumDropSlime = new Factory();
 	
 	public GumDropSlimeRenderer(RenderManager renderManager) {
-		super(renderManager, Color16Util.colorsHex[Minecraft.getMinecraft().theWorld.rand.nextInt(16)],
+		super(renderManager, Color16Util.colorsHex[Minecraft.getMinecraft().world.rand.nextInt(16)],
 				new ResourceLocation(Reference.MOD_ID,"textures/entity/slime.png"));
 		// TODO Auto-generated constructor stub
 	}

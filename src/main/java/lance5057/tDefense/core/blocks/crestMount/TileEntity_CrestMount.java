@@ -6,8 +6,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.NetworkManager;
-import net.minecraft.network.Packet;
-import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
+import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.Constants;
 
@@ -27,30 +26,17 @@ public class TileEntity_CrestMount extends TileEntity implements IInventory
 	}
 
 	@Override
-	public void updateEntity()
-	{
-		super.updateEntity();
-		//		if (!worldObj.isRemote)
-		//		{
-
-		//			 getWorldObj().markBlockForUpdate(xCoord, yCoord, zCoord);
-		//			 markDirty();
-		//			
-		//		}
-	}
-
-	@Override
-	public Packet getDescriptionPacket()
+	public SPacketUpdateTileEntity getUpdatePacket()
 	{
 		final NBTTagCompound tag = new NBTTagCompound();
 		writeToNBT(tag);
-		return new S35PacketUpdateTileEntity(xCoord, yCoord, zCoord, 0, tag);
+		return new SPacketUpdateTileEntity(getPos(), 1, tag);
 	}
 
 	@Override
-	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt)
+	public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity packet)
 	{
-		readFromNBT(pkt.func_148857_g());
+		readFromNBT(packet.getNbtCompound());
 	}
 
 	@Override
@@ -88,19 +74,20 @@ public class TileEntity_CrestMount extends TileEntity implements IInventory
 			markDirty();
 		}
 		return stack;
+		
 	}
 
-	@Override
-	public ItemStack getStackInSlotOnClosing(int slot)
-	{
-		final ItemStack stack = getStackInSlot(slot);
-
-		if(stack != null)
-		{
-			setInventorySlotContents(slot, stack);
-		}
-		return stack;
-	}
+//	@Override
+//	public ItemStack getStackInSlotOnClosing(int slot)
+//	{
+//		final ItemStack stack = getStackInSlot(slot);
+//
+//		if(stack != null)
+//		{
+//			setInventorySlotContents(slot, stack);
+//		}
+//		return stack;
+//	}
 
 	@Override
 	public void setInventorySlotContents(int slot, ItemStack itemstack)
@@ -116,13 +103,13 @@ public class TileEntity_CrestMount extends TileEntity implements IInventory
 	}
 
 	@Override
-	public String getInventoryName()
+	public String getName()
 	{
 		return name;
 	}
 
 	@Override
-	public boolean hasCustomInventoryName()
+	public boolean hasCustomName()
 	{
 		return name.length() > 0;
 	}
@@ -134,19 +121,19 @@ public class TileEntity_CrestMount extends TileEntity implements IInventory
 	}
 
 	@Override
-	public boolean isUseableByPlayer(EntityPlayer p_70300_1_)
+	public boolean isUsableByPlayer(EntityPlayer player)
 	{
 		return true;
 	}
 
 	@Override
-	public void openInventory()
+	public void openInventory(EntityPlayer player)
 	{
 
 	}
 
 	@Override
-	public void closeInventory()
+	public void closeInventory(EntityPlayer player)
 	{
 
 	}
@@ -158,7 +145,7 @@ public class TileEntity_CrestMount extends TileEntity implements IInventory
 	}
 
 	@Override
-	public void writeToNBT(NBTTagCompound compound)
+	public NBTTagCompound writeToNBT(NBTTagCompound compound)
 	{
 		super.writeToNBT(compound);
 		if(flip != null)
@@ -170,6 +157,7 @@ public class TileEntity_CrestMount extends TileEntity implements IInventory
 		}
 
 		writeInventoryToNBT(compound);
+		return compound;
 	}
 
 	@Override
@@ -214,5 +202,35 @@ public class TileEntity_CrestMount extends TileEntity implements IInventory
 		}
 
 		tags.setTag("Items", nbttaglist);
+	}
+
+	@Override
+	public ItemStack removeStackFromSlot(int index) {
+		// TODO Auto-generated method stub
+		return this.getStackInSlot(index);
+	}
+
+	@Override
+	public int getField(int id) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void setField(int id, int value) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public int getFieldCount() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void clear() {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -3,6 +3,7 @@ package lance5057.tDefense;
 import java.util.Iterator;
 import java.util.List;
 
+import lance5057.tDefense.baubles.BaublesBase;
 import lance5057.tDefense.core.CoreBase;
 import lance5057.tDefense.core.materials.TDMaterials;
 import lance5057.tDefense.core.tools.TDTools;
@@ -29,14 +30,17 @@ public class TinkersDefense {
 
 	private static int modGuiIndex = 0;
 	public static final int GUI_CREST_INV = modGuiIndex++;
-	public static final int GUI_ANVIL_INV = modGuiIndex++;
-	public static final int GUI_GUIDEBOOK = modGuiIndex++;
+	//public static final int GUI_ANVIL_INV = modGuiIndex++;
+	//public static final int GUI_GUIDEBOOK = modGuiIndex++;
 
 	@Instance(Reference.MOD_ID)
 	public static TinkersDefense instance = new TinkersDefense();
+	
+	PacketHandler phandler = new PacketHandler();
 
 	HolidayBase holiday;
 	ModuleBase core;
+	ModuleBase baubles;
 
 	// public static TDEventHandler TDevents;
 
@@ -117,6 +121,8 @@ public class TinkersDefense {
 	public void preInit(FMLPreInitializationEvent e) {
 		core = new CoreBase();
 		holiday = new HolidayBase();
+		baubles = new BaublesBase();
+		
 		mats = new TDMaterials();
 		tools = new TDTools();
 		config = new TD_Config(e);
@@ -315,9 +321,10 @@ public class TinkersDefense {
 		// mods.preInit();
 		// proxy.registerRenderers();
 
-		core.preInit();
-		holiday.preInit();
+		core.preInit(e);
+		holiday.preInit(e);
 		tools.preInit(e);
+		baubles.preInit(e);
 		proxy.preInit();
 	}
 
@@ -326,16 +333,20 @@ public class TinkersDefense {
 
 		// I reject your moss and substitute my own!
 		if (config.mossEnabled || config.mossHard) {
-		}
+		
 		final List<IRecipe> recipes = CraftingManager.getInstance()
 				.getRecipeList();
 		final Iterator<IRecipe> recipe = recipes.iterator();
+		}
 
-		core.init();
-		holiday.init();
+		core.init(e);
+		holiday.init(e);
 		mats.setupMaterials(e);
 		tools.init(e);
-		proxy.Init();
+		baubles.init(e);
+		proxy.init();
+		
+		phandler.init();
 	}
 
 	@EventHandler

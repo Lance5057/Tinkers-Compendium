@@ -44,22 +44,22 @@ public class TD_Commands extends CommandBase implements ICommand
 //	}
 
 	@Override
-	public String getCommandName()
+	public String getName()
 	{
 		return "TinkersDefense";
 	}
 
 	@Override
-	public String getCommandUsage(ICommandSender p_71518_1_)
+	public String getUsage(ICommandSender p_71518_1_)
 	{
 		return "TinkersDefense <text>";
 	}
 
-	@Override
-	public List getCommandAliases()
-	{
-		return aliases;
-	}
+//	@Override
+//	public List getCommandAliases()
+//	{
+//		return aliases;
+//	}
 
 	@Override
 	public void execute(MinecraftServer server, ICommandSender p_71515_1_, String[] p_71515_2_)
@@ -93,12 +93,12 @@ public class TD_Commands extends CommandBase implements ICommand
 				TinkersDefense.config.debug = !TinkersDefense.config.debug;
 				if(TinkersDefense.config.debug)
 				{
-					p_71515_1_.addChatMessage(new TextComponentString(
+					p_71515_1_.sendMessage(new TextComponentString(
 							"§9[TDefense]§f - Debug Mode on."));
 				}
 				else
 				{
-					p_71515_1_.addChatMessage(new TextComponentString(
+					p_71515_1_.sendMessage(new TextComponentString(
 							"§9[TDefense]§f - Debug Mode off."));
 				}
 
@@ -109,7 +109,7 @@ public class TD_Commands extends CommandBase implements ICommand
 			}
 			else
 			{
-				p_71515_1_.addChatMessage(new TextComponentString(
+				p_71515_1_.sendMessage(new TextComponentString(
 						"§c[TDefense]§f - Invalid Command"));
 			}
 		}
@@ -132,6 +132,7 @@ public class TD_Commands extends CommandBase implements ICommand
 	{
 		return false;
 	}
+
 
 //	public void reloadModels()
 //	{

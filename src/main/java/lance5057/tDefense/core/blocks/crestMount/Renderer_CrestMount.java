@@ -1,17 +1,20 @@
 package lance5057.tDefense.core.blocks.crestMount;
 
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.entity.RenderItem;
+import net.minecraft.client.renderer.RenderItem;
+import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
-
-import org.lwjgl.opengl.GL11;
-
-import tconstruct.library.tools.ToolCore;
+import slimeknights.tconstruct.library.tools.ToolCore;
 
 public class Renderer_CrestMount extends TileEntitySpecialRenderer
 {
@@ -28,7 +31,7 @@ public class Renderer_CrestMount extends TileEntitySpecialRenderer
 	}
 
 	@Override
-	public void renderTileEntityAt(TileEntity te, double x, double y, double z, float scale)
+	public void renderTileEntityAt(TileEntity te, double x, double y, double z, float partialTicks, int destroyStage)
 	{
 		final TileEntity_CrestMount tileEntity = (TileEntity_CrestMount) te;
 
@@ -64,16 +67,16 @@ public class Renderer_CrestMount extends TileEntitySpecialRenderer
 		switch(meta)
 		{
 			case 1:
-				rotation = 0;
-				break;
-			case 2:
 				rotation = 180;
 				break;
+			case 2:
+				rotation = 0;
+				break;
 			case 3:
-				rotation = 90;
+				rotation = -90;
 				break;
 			case 4:
-				rotation = -90;
+				rotation = 90;
 				break;
 		}
 		GL11.glRotatef(rotation, 0.0F, 1.0F, 0.0F);
@@ -88,136 +91,16 @@ public class Renderer_CrestMount extends TileEntitySpecialRenderer
 		//Render Inventory            
 
 		//right slot
-		int slot = 1;
-		if(tileEntity.getStackInSlot(slot) != null)
-		{
-			if((entItem == null) || entItem.getEntityItem().getItem() != tileEntity.getStackInSlot(slot).getItem())
-			{
-				entItem = new EntityItem(tileEntity.getWorldObj(), 0, 0, 0,
-						tileEntity.getStackInSlot(slot));
-			}
-			GL11.glPushMatrix();
-			entItem.hoverStart = 0.0F;
-			RenderItem.renderInFrame = true;
-			GL11.glScalef(2f, 2f, 2f);
-			GL11.glRotatef(90, 0, 0, -1);
-			GL11.glRotatef(rotation, -1.0F, 0.0F, 0.0F);
-			//GL11.glTranslatef(0.4f/*up - down*/, -0.3f/*left - right*/, 0.22f);
-			if(tileEntity.flip[1] == true)
-			{
-				GL11.glRotatef(180, 0, 0, 1);
-				GL11.glTranslatef(-0.8f, 0.2f, 0);
-			}
-
-			if(tileEntity.getStackInSlot(1).getItem() instanceof ToolCore)
-			{
-				GL11.glRotatef(90F, 0.0F, 0.0F, 1.0F);
-				GL11.glTranslatef(-0.505f, -0.32f, 0);
-			}
-
-			RenderManager.instance.renderEntityWithPosYaw(entItem, 0.4f/*up - down*/, -0.3f/*left - right*/, 0.23f, 0, 0);
-			RenderItem.renderInFrame = false;
-			GL11.glPopMatrix();
-		}
+		renderSlot(tileEntity, x, y, z, 1, rotation, tileEntity.flip[1]);
 
 		//left slot
-		slot = 0;
-		if(tileEntity.getStackInSlot(slot) != null)
-		{
-			if((entItem2 == null) || entItem2.getEntityItem().getItem() != tileEntity.getStackInSlot(slot).getItem())
-			{
-				entItem2 = new EntityItem(tileEntity.getWorldObj(), x, y, z,
-						tileEntity.getStackInSlot(slot));
-			}
-			GL11.glPushMatrix();
-			entItem2.hoverStart = 0.0F;
-			RenderItem.renderInFrame = true;
-			//GL11.glTranslatef((float)te.xCoord + 0.5F, (float)te.yCoord + 1.02F, (float)te.zCoord + 0.3F);
-			GL11.glScalef(2f, 2f, 2f);
-			GL11.glRotatef(180, 0, 0, 1);
-			GL11.glRotatef(rotation, 0.0F, -1.0F, 0.0F);
-			if(tileEntity.flip[0] == true)
-			{
-				GL11.glRotatef(180, 0, 0, 1);
-				GL11.glTranslatef(0.2f, -0.8f, 0);
-			}
-
-			if(tileEntity.getStackInSlot(0).getItem() instanceof ToolCore)
-			{
-				GL11.glRotatef(90F, 0.0F, 0.0F, 1.0F);
-				GL11.glTranslatef(0.5f, -0.325f, 0);
-			}
-
-			RenderManager.instance.renderEntityWithPosYaw(entItem2, -0.1, 0.2, 0.23, 0, 0);
-			RenderItem.renderInFrame = false;
-			GL11.glPopMatrix();
-		}
+		renderSlot(tileEntity, x, y, z, 0, rotation, tileEntity.flip[0]);
 
 		//middle slot
-		slot = 2;
-		if(tileEntity.getStackInSlot(slot) != null)
-		{
-			if((entItem3 == null) || entItem3.getEntityItem().getItem() != tileEntity.getStackInSlot(slot).getItem())
-			{
-				entItem3 = new EntityItem(tileEntity.getWorldObj(), x, y, z,
-						tileEntity.getStackInSlot(slot));
-			}
-			GL11.glPushMatrix();
-			entItem3.hoverStart = 0.0F;
-			RenderItem.renderInFrame = true;
-			GL11.glScalef(2f, 2f, 2f);
-			if(rotation == 90)
-			{
-				GL11.glTranslatef(0.3f, 0, 0.0f);
-			}
-			if(rotation == -90)
-			{
-				GL11.glTranslatef(-0.3f, 0, 0.0f);
-			}
-			GL11.glRotatef(225, 0, 0, 1);
-			GL11.glRotatef(rotation, 1F, 1F, 0F);
-			if(tileEntity.flip[2] == true)
-			{
-				GL11.glRotatef(180, 0, 0, 1);
-				GL11.glTranslatef(-0.5f, -0.5f, 0);
-			}
-
-			if(tileEntity.getStackInSlot(2).getItem() instanceof ToolCore)
-			{
-				GL11.glRotatef(90F, 0.0F, 0.0F, 1.0F);
-				GL11.glTranslatef(-0.1125f, -0.5125f, 0);
-			}
-
-			RenderManager.instance.renderEntityWithPosYaw(entItem3, 0.3, 0.1, 0.16, 0, 0);
-			RenderItem.renderInFrame = false;
-			GL11.glPopMatrix();
-		}
+		renderSlot(tileEntity, x, y, z, 2, rotation, tileEntity.flip[2]);
 
 		//shield slot
-		slot = 3;
-		if(tileEntity.getStackInSlot(slot) != null)
-		{
-			if((entItem4 == null) || entItem4.getEntityItem().getItem() != tileEntity.getStackInSlot(slot).getItem())
-			{
-				entItem4 = new EntityItem(tileEntity.getWorldObj(), x, y, z,
-						tileEntity.getStackInSlot(slot));
-			}
-			GL11.glPushMatrix();
-			entItem4.hoverStart = 0.0F;
-			RenderItem.renderInFrame = true;
-			GL11.glScalef(2f, 2f, 2f);
-			GL11.glRotatef(180, 0.0F, 1.0F, 0.0F);
-			GL11.glRotatef(rotation, 0.0F, 1.0F, 0.0F);
-			if(tileEntity.flip[3] == true)
-			{
-				GL11.glRotatef(180, 0, 0, 1);
-				GL11.glTranslatef(0.0f, 1.0f, 0);
-			}
-
-			RenderManager.instance.renderEntityWithPosYaw(entItem4, 0, -0.7, -0.01, 0, 0);
-			RenderItem.renderInFrame = false;
-			GL11.glPopMatrix();
-		}
+		renderSlot(tileEntity, x, y, z, 3, rotation, tileEntity.flip[3]);
 
 		GL11.glPopMatrix();
 
@@ -225,6 +108,31 @@ public class Renderer_CrestMount extends TileEntitySpecialRenderer
 		entItem2 = null;
 		entItem3 = null;
 		entItem4 = null;
+	}
+	
+	private void renderSlot(TileEntity_CrestMount te, double x, double y, double z, int slot, float rotation, boolean flip)
+	{
+		if(te.getStackInSlot(slot) != null)
+		{
+			GL11.glPushMatrix();
+			
+			Minecraft.getMinecraft().renderEngine.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
+
+			GL11.glScalef(2f, 2f, 2f);
+			GL11.glRotatef(180, 0.0F, 1.0F, 0.0F);
+			GL11.glRotatef(rotation, 0.0F, 1.0F, 0.0F);
+			
+			if(te.flip[3] == true)
+			{
+				GL11.glRotatef(180, 0, 0, 1);
+				GL11.glTranslatef(0.0f, 1.0f, 0);
+			}
+
+			Minecraft.getMinecraft().getRenderItem().renderItem(te.getStackInSlot(slot),
+					ItemCameraTransforms.TransformType.NONE);
+			
+			GL11.glPopMatrix();
+		}
 	}
 
 }

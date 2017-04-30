@@ -36,7 +36,7 @@ public class TraitAxeLover extends AbstractTrait {
 						|| held.getItem() instanceof ItemAxe
 						|| held.getItem() instanceof Hatchet
 						|| held.getItem() instanceof Mattock) {
-					if (player.worldObj.rand.nextInt(100) < 5) {
+					if (player.world.rand.nextInt(100) < 5) {
 						liv.entityDropItem(liv.getHeldItemMainhand(), 0f);
 						liv.setHeldItem(EnumHand.MAIN_HAND, null);
 					}

@@ -1,24 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>TinkersDefense110</name>
+	<name>Tinkers-Defense</name>
 	<comment></comment>
-	<projects>
-	</projects>
-	<buildSpec>
-		<buildCommand>
-			<name>org.eclipse.jdt.core.javabuilder</name>
-			<arguments>
-			</arguments>
-		</buildCommand>
-	</buildSpec>
+	<projects/>
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<buildSpec>
+		<buildCommand>
+			<name>org.eclipse.jdt.core.javabuilder</name>
+			<arguments/>
+		</buildCommand>
+	</buildSpec>
 	<linkedResources>
 		<link>
-			<name>.link0</name>
+			<name>.link1</name>
 			<type>2</type>
-			<location>C:/Users/T/.gradle/caches/minecraft/net/minecraftforge/forge/1.10.2-12.18.2.2151/start</location>
+			<location>C:/Users/Tyler/.gradle/caches/minecraft/net/minecraftforge/forge/1.10.2-12.18.3.2254/start</location>
 		</link>
 	</linkedResources>
 </projectDescription>

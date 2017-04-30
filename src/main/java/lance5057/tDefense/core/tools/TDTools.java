@@ -22,6 +22,7 @@ public class TDTools
   // Tools
 	public static ToolCore roundshield = new RoundShield();
 	public static ToolCore heatershield = new HeaterShield();
+	public static ToolCore zweihander = new Zweihander();
 	
   // Tool Parts
 
@@ -58,9 +59,11 @@ public class TDTools
 	  
 	  regTool(roundshield, "roundshield");
 	  regTool(heatershield, "heatershield");
+	  regTool(zweihander, "zweihander");
 	  
 	  TinkerRegistry.registerToolStationCrafting(roundshield);
 	  TinkerRegistry.registerToolForgeCrafting(heatershield);
+	  TinkerRegistry.registerToolForgeCrafting(zweihander);
   }
   
   private void regTool(ToolCore tool, String name)
@@ -86,6 +89,7 @@ public class TDTools
   private void regToolBuilding() {
     TinkerRegistry.registerToolCrafting(roundshield);
     TinkerRegistry.registerToolForgeCrafting(heatershield);
+    TinkerRegistry.registerToolForgeCrafting(zweihander);
   }
 
   private void regRecipies() {

@@ -7,8 +7,8 @@
  "mcversion": "1.10.2",
  "url": "",
  "authorList": ["Sir Lance"],
- "requiredMods": [ "Forge", "tconstruct"],
- "dependencies": ["tconstruct"],
+ "requiredMods": [ "Forge", "tconstruct","Baubles"],
+ "dependencies": ["tconstruct","Baubles"],
  "useDependencyInformation": "true"
 }
 ]

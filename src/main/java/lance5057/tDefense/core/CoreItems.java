@@ -1,12 +1,12 @@
 package lance5057.tDefense.core;
 
-import lance5057.tDefense.Reference;
-import lance5057.tDefense.proxy.ClientProxy;
 import lance5057.tDefense.util.ItemsBase;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 public class CoreItems extends ItemsBase
 {
@@ -21,18 +21,23 @@ public class CoreItems extends ItemsBase
 		
 	}
 	
-	public void preInit()
+	@Override
+	public void preInit(FMLPreInitializationEvent e)
 	{
-		this.setTab("TDefense_Items", new ItemStack(Items.SHIELD));
 	}
 	
-	public void init() 
+	@Override
+	public void init(FMLInitializationEvent e) 
 	{
-		item_aeonsteelIngot = register("aeonsteelingot", 64);
-		item_queensgoldIngot = register("queensgoldingot", 64);
-		item_dogbeariumIngot = register("dogbeariumingot", 64);
+		item_aeonsteelIngot = register("aeonsteelingot", 64, CoreBase.tab);
+		item_queensgoldIngot = register("queensgoldingot", 64, CoreBase.tab);
+		item_dogbeariumIngot = register("dogbeariumingot", 64, CoreBase.tab);
+	}
 
-		this.tabName.setDisplayIcon(new ItemStack(item_aeonsteelIngot));
+	@Override
+	public void postInit(FMLPostInitializationEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

@@ -2,18 +2,15 @@ package lance5057.tDefense.util;
 
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 public abstract class ModuleBase 
-{
-	protected ItemsBase items;
+{	
+	public abstract void preInit(FMLPreInitializationEvent e);
 	
-	public void preInit()
-	{
-		items.preInit();
-	}
+	public abstract void init(FMLInitializationEvent e);
 	
-	public void init()
-	{
-		items.init();
-	}
+	public abstract void postInit(FMLPostInitializationEvent e);
 }

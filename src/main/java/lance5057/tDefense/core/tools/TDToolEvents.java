@@ -27,7 +27,8 @@ public class TDToolEvents {
 			EntityPlayer player = (EntityPlayer) event.getEntityLiving();
 			if (player.getActiveItemStack() != null
 					&& player.getActiveItemStack().getItem() != null
-					&& player.getActiveItemStack().getItem() instanceof Shield) {
+					&& player.getActiveItemStack().getItem() instanceof Shield
+					&& !ToolHelper.isBroken(player.getActiveItemStack())) {
 				ItemStack shield = player.getActiveItemStack();
 
 				int damage = event.getAmount() < 2f ? 1 : Math.round(event
