@@ -1,5 +1,9 @@
 package lance5057.tDefense.armor;
 
+import java.util.List;
+
+import lance5057.tDefense.armor.materials.MaterialArmor;
+import lance5057.tDefense.armor.materials.MaterialCloth;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -12,6 +16,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import slimeknights.tconstruct.library.tinkering.PartMaterialType;
 import slimeknights.tconstruct.library.tools.ToolCore;
+import slimeknights.tconstruct.library.tools.ToolNBT;
 
 //@Optional.InterfaceList({@Optional.Interface(modid = "Thaumcraft", iface = "thaumcraft.api.IRunicArmor", striprefs = true), @Optional.Interface(modid = "Botania", iface = "vazkii.botania.api.item.IPixieSpawner", striprefs = true)})
 public abstract class ArmorCore extends ToolCore implements ISpecialArmor// ,
@@ -21,6 +26,13 @@ public abstract class ArmorCore extends ToolCore implements ISpecialArmor// ,
 	public final EntityEquipmentSlot armorType;
 	public float reductionPercent = 0f;
 	protected int maxReduction = 100;
+	
+	protected static PartMaterialType ArmorplateMat = new PartMaterialType(ArmorBase.armorPlate, MaterialArmor.TYPE);
+	protected static PartMaterialType ChainmailMat = new PartMaterialType(ArmorBase.chainmail, MaterialArmor.TYPE);
+	protected static PartMaterialType RivetMat = new PartMaterialType(ArmorBase.rivets, MaterialArmor.TYPE);
+	protected static PartMaterialType ClaspMat = new PartMaterialType(ArmorBase.clasp, MaterialArmor.TYPE);
+	
+	protected static PartMaterialType ClothMat = new PartMaterialType(ArmorBase.cloth, MaterialCloth.TYPE);
 
 	// public String[] renderParts;
 
@@ -63,6 +75,13 @@ public abstract class ArmorCore extends ToolCore implements ISpecialArmor// ,
 	@SideOnly(Side.CLIENT)
 	public ModelBiped getModel(String[] color, NBTTagCompound tags) {
 		return null;
+	}
+	
+	@Override
+	public NBTTagCompound buildTag(
+			List<slimeknights.tconstruct.library.materials.Material> materials) {
+		ToolNBT data = buildDefaultTag(materials);
+		return data.get();
 	}
 
 //	@Override

@@ -3,6 +3,7 @@ package lance5057.tDefense;
 import java.util.Iterator;
 import java.util.List;
 
+import lance5057.tDefense.armor.ArmorBase;
 import lance5057.tDefense.baubles.BaublesBase;
 import lance5057.tDefense.core.CoreBase;
 import lance5057.tDefense.core.materials.TDMaterials;
@@ -41,6 +42,7 @@ public class TinkersDefense {
 	HolidayBase holiday;
 	ModuleBase core;
 	ModuleBase baubles;
+	ModuleBase armor;
 
 	// public static TDEventHandler TDevents;
 
@@ -122,6 +124,7 @@ public class TinkersDefense {
 		core = new CoreBase();
 		holiday = new HolidayBase();
 		baubles = new BaublesBase();
+		armor = new ArmorBase();
 		
 		mats = new TDMaterials();
 		tools = new TDTools();
@@ -322,6 +325,7 @@ public class TinkersDefense {
 		// proxy.registerRenderers();
 
 		core.preInit(e);
+		armor.preInit(e);
 		holiday.preInit(e);
 		tools.preInit(e);
 		baubles.preInit(e);
@@ -340,6 +344,7 @@ public class TinkersDefense {
 		}
 
 		core.init(e);
+		armor.init(e);
 		holiday.init(e);
 		mats.setupMaterials(e);
 		tools.init(e);
@@ -356,6 +361,7 @@ public class TinkersDefense {
 		// {
 		// ArmorAddon.postInit(e);
 		// }
+		armor.postInit(e);
 		tools.postInit(e);
 	}
 

@@ -61,9 +61,9 @@ public class TDTools
 	  regTool(heatershield, "heatershield");
 	  regTool(zweihander, "zweihander");
 	  
-	  TinkerRegistry.registerToolStationCrafting(roundshield);
-	  TinkerRegistry.registerToolForgeCrafting(heatershield);
-	  TinkerRegistry.registerToolForgeCrafting(zweihander);
+//	  TinkerRegistry.registerToolStationCrafting(roundshield);
+//	  TinkerRegistry.registerToolForgeCrafting(heatershield);
+//	  TinkerRegistry.registerToolForgeCrafting(zweihander);
   }
   
   private void regTool(ToolCore tool, String name)

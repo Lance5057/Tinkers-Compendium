@@ -17,7 +17,7 @@ public class RoundShield extends Shield
 	    super(PartMaterialType.handle(TinkerTools.toolRod),
 	    		ShieldMat,
 	            PartMaterialType.head(TinkerTools.panHead));
-		setUnlocalizedName("shield");
+		setUnlocalizedName("roundshield");
 	}
 
 	@Override
