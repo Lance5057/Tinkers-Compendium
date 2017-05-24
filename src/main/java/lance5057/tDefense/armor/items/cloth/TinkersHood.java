@@ -23,7 +23,7 @@ public class TinkersHood extends ArmorCore
 
 	public TinkersHood()
 	{
-	    super(EntityEquipmentSlot.HEAD,
+	    super(EntityEquipmentSlot.CHEST, 
 	    		ClothMat,
 	    		ClothMat,
 	    		RivetMat);
