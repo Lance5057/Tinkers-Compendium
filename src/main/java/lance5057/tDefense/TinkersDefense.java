@@ -327,6 +327,7 @@ public class TinkersDefense {
 		core.preInit(e);
 		armor.preInit(e);
 		holiday.preInit(e);
+		mats.registerMaterials();
 		tools.preInit(e);
 		baubles.preInit(e);
 		proxy.preInit();

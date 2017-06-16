@@ -2,7 +2,6 @@ package lance5057.tDefense.proxy;
 
 import lance5057.tDefense.Reference;
 import lance5057.tDefense.TD_Commands;
-import lance5057.tDefense.armor.proxy.ArmorClientProxy;
 import lance5057.tDefense.baubles.BaublesClientProxy;
 import lance5057.tDefense.core.CoreClientProxy;
 import lance5057.tDefense.core.CoreItems;
@@ -51,7 +50,7 @@ public class ClientProxy extends CommonProxy
 	
 	public static CoreClientProxy coreProxy = new CoreClientProxy();
 	public static HolidayClientProxy holiProxy = new HolidayClientProxy();
-	public static ArmorClientProxy armorProxy = new ArmorClientProxy();
+	//public static ArmorClientProxy armorProxy = new ArmorClientProxy();
 	
 	@Override
 	public void preInit()
@@ -60,7 +59,7 @@ public class ClientProxy extends CommonProxy
 		registerToolRenderers();
 		
 		coreProxy.preInit();
-		armorProxy.preInit();
+		//armorProxy.preInit();
 		baubles.preInit();
 	}
 	
@@ -80,7 +79,7 @@ public class ClientProxy extends CommonProxy
 		registerItemRenderer(CoreItems.item_queensgoldIngot, 0, CoreItems.item_queensgoldIngot.getUnlocalizedName());
 		
 		coreProxy.init();
-		armorProxy.init();
+		//armorProxy.init();
 		holiProxy.Init();
 		baubles.init();
 	}

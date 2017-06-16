@@ -36,7 +36,7 @@ import slimeknights.tconstruct.tools.TinkerTools;
 public class ArmorBase extends ModuleBase {
 	public static CreativeTabs tabName;
 
-	private static List<ToolCore> tools = Lists.newLinkedList();
+	private static List<Item> tools = Lists.newLinkedList();
 	private static List<ToolPart> toolParts = Lists.newLinkedList();
 	private static List<IModifier> modifiers = Lists.newLinkedList();
 	private static List<Pair<Item, ToolPart>> toolPartPatterns = Lists.newLinkedList();
@@ -64,7 +64,7 @@ public class ArmorBase extends ModuleBase {
 	public static Material orange;
 	public static Material white;
 
-	public static ToolCore armor_TinkerHood;
+	public static ArmorCore armor_TinkerHood;
 	public static ToolCore armor_TinkerShawl;
 	public static ToolCore armor_TinkerRobe;
 	public static ToolCore armor_TinkerShoes;
@@ -103,14 +103,13 @@ public class ArmorBase extends ModuleBase {
 			registerStencil(toolPartPattern.getLeft(), toolPartPattern.getRight());
 		}
 
-		
+		//regTool(armor_TinkerHood, "tinkerhood");
 		registerTools();
 	}
 
 	@Override
 	public void init(FMLInitializationEvent e) {
-		// TODO Auto-generated method stub
-
+		regToolBuilding();
 	}
 
 	@Override
@@ -238,10 +237,14 @@ public class ArmorBase extends ModuleBase {
 	{
 		armor_TinkerHood = new TinkersHood();
 		regTool(armor_TinkerHood, "tinkerhood");
-		TinkerRegistry.registerToolCrafting(armor_TinkerHood);
+		//TinkerRegistry.registerToolCrafting(armor_TinkerHood);
 	}
 	
-	private static <T extends ToolCore> T registerTool(T item, String name) {
+	private void regToolBuilding() {
+	    TinkerRegistry.registerToolCrafting(armor_TinkerHood);
+	  }
+	
+	private static <T extends Item> T registerTool(T item, String name) {
 		tools.add(item);
 		return registerItem(item, name);
 	}

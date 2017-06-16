@@ -2,9 +2,7 @@ package lance5057.tDefense.armor.items.cloth;
 
 import java.util.List;
 
-import lance5057.tDefense.armor.ArmorBase;
 import lance5057.tDefense.armor.ArmorCore;
-import lance5057.tDefense.armor.materials.MaterialArmor;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -13,8 +11,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import slimeknights.tconstruct.library.materials.Material;
-import slimeknights.tconstruct.library.tinkering.PartMaterialType;
-import slimeknights.tconstruct.tools.TinkerTools;
 
 public class TinkersHood extends ArmorCore
 {
@@ -23,8 +19,7 @@ public class TinkersHood extends ArmorCore
 
 	public TinkersHood()
 	{
-	    super(EntityEquipmentSlot.CHEST, 
-	    		ClothMat,
+	    super(ClothMat,
 	    		ClothMat,
 	    		RivetMat);
 		setUnlocalizedName("tinkerhood");
@@ -38,7 +33,7 @@ public class TinkersHood extends ArmorCore
 	}
 
 	@Override
-	public float damagePotential() { 
+	public float damagePotential() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
@@ -49,9 +44,5 @@ public class TinkersHood extends ArmorCore
 		return 0;
 	}
 
-	@Override
-	public void damageArmor(EntityLivingBase entity, ItemStack stack, DamageSource source, int damage, int slot) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 }
