@@ -3,10 +3,10 @@ package lance5057.tDefense;
 import java.util.Iterator;
 import java.util.List;
 
-import lance5057.tDefense.armor.ArmorBase;
 import lance5057.tDefense.baubles.BaublesBase;
 import lance5057.tDefense.core.CoreBase;
 import lance5057.tDefense.core.materials.TDMaterials;
+import lance5057.tDefense.core.parts.TDParts;
 import lance5057.tDefense.core.tools.TDTools;
 import lance5057.tDefense.holiday.HolidayBase;
 import lance5057.tDefense.proxy.CommonProxy;
@@ -33,6 +33,7 @@ public class TinkersDefense {
 	public static final int GUI_CREST_INV = modGuiIndex++;
 	//public static final int GUI_ANVIL_INV = modGuiIndex++;
 	//public static final int GUI_GUIDEBOOK = modGuiIndex++;
+	public static final int GUI_STRAPS_INV = modGuiIndex++;
 
 	@Instance(Reference.MOD_ID)
 	public static TinkersDefense instance = new TinkersDefense();
@@ -42,7 +43,7 @@ public class TinkersDefense {
 	HolidayBase holiday;
 	ModuleBase core;
 	ModuleBase baubles;
-	ModuleBase armor;
+	//ModuleBase armor;
 
 	// public static TDEventHandler TDevents;
 
@@ -54,7 +55,7 @@ public class TinkersDefense {
 	public static Modifiers mods;
 
 	// public static Item item_Guidebook;
-
+	TDParts parts;
 	TDTools tools;
 	TDMaterials mats;
 
@@ -121,12 +122,15 @@ public class TinkersDefense {
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent e) {
+		NetworkRegistry.INSTANCE.registerGuiHandler(TinkersDefense.instance, new CommonProxy());
+		
 		core = new CoreBase();
 		holiday = new HolidayBase();
 		baubles = new BaublesBase();
-		armor = new ArmorBase();
+		//armor = new ArmorBase();
 		
 		mats = new TDMaterials();
+		parts = new TDParts();
 		tools = new TDTools();
 		config = new TD_Config(e);
 		// mods = new Modifiers();
@@ -325,9 +329,10 @@ public class TinkersDefense {
 		// proxy.registerRenderers();
 
 		core.preInit(e);
-		armor.preInit(e);
+		//armor.preInit(e);
 		holiday.preInit(e);
 		mats.registerMaterials();
+		parts.preInit(e);
 		tools.preInit(e);
 		baubles.preInit(e);
 		proxy.preInit();
@@ -345,9 +350,10 @@ public class TinkersDefense {
 		}
 
 		core.init(e);
-		armor.init(e);
+		//armor.init(e);
 		holiday.init(e);
 		mats.setupMaterials(e);
+		parts.init(e);
 		tools.init(e);
 		baubles.init(e);
 		proxy.init();
@@ -362,7 +368,8 @@ public class TinkersDefense {
 		// {
 		// ArmorAddon.postInit(e);
 		// }
-		armor.postInit(e);
+		parts.postInit(e);
+		//armor.postInit(e);
 		tools.postInit(e);
 	}
 

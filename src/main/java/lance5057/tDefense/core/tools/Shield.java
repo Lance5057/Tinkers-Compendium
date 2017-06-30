@@ -38,8 +38,6 @@ import slimeknights.tconstruct.tools.TinkerTools;
 //@Optional.InterfaceList({@Optional.Interface(modid = "battlegear2", iface = "mods.battlegear2.api.ISheathed"), @Optional.Interface(modid = "battlegear2", iface = "mods.battlegear2.api.shield.IArrowCatcher"), @Optional.Interface(modid = "battlegear2", iface = "mods.battlegear2.api.shield.IArrowDisplay"), @Optional.Interface(modid = "battlegear2", iface = "mods.battlegear2.api.shield.IShield")})
 public class Shield extends ToolCore //implements IShield, ISheathed, IArrowCatcher, IArrowDisplay
 {
-	protected static PartMaterialType ShieldMat = new PartMaterialType(TinkerTools.largePlate, ShieldMaterialStats.TYPE);
-	
 	public Shield(PartMaterialType... requiredComponents)
 	{
 		super(requiredComponents);

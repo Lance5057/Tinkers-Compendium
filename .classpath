@@ -61,7 +61,7 @@
 	<classpathentry kind="lib" path="C:/Users/Tyler/.gradle/caches/modules-2/files-2.1/org.lwjgl.lwjgl/lwjgl-platform/2.9.4-nightly-20150209/b84d5102b9dbfabfeb5e43c7e2828d98a7fc80e0/lwjgl-platform-2.9.4-nightly-20150209-natives-windows.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Tyler/.gradle/caches/modules-2/files-2.1/org.lwjgl.lwjgl/lwjgl-platform/2.9.4-nightly-20150209/931074f46c795d2f7b30ed6395df5715cfd7675b/lwjgl-platform-2.9.4-nightly-20150209-natives-linux.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Tyler/.gradle/caches/modules-2/files-2.1/org.lwjgl.lwjgl/lwjgl-platform/2.9.4-nightly-20150209/bcab850f8f487c3f4c4dbabde778bb82bd1a40ed/lwjgl-platform-2.9.4-nightly-20150209-natives-osx.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Tyler/Documents/Tinkers-Defense/libs/Mantle-1.10.2-1.1.5.DEV.a1d5c31-deobf.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Tyler/Documents/Tinkers-Defense/libs/Mantle-1.10.2-1.1.5.DEV.a1d5c31-deobf.jar" sourcepath="libs/Mantle-1.10.2-1.1.5.DEV.a1d5c31-sources.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Tyler/Documents/Tinkers-Defense/libs/Mantle-1.10.2-1.1.5.DEV.a1d5c31-sources.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Tyler/Documents/Tinkers-Defense/libs/TConstruct-1.10.2-2.6.3.DEV.f7fa401-deobf.jar" sourcepath="libs/TConstruct-1.10.2-2.6.3.DEV.f7fa401-sources.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Tyler/Documents/Tinkers-Defense/libs/TConstruct-1.10.2-2.6.3.DEV.f7fa401-sources.jar"/>

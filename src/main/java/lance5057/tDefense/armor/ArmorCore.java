@@ -63,13 +63,6 @@ public abstract class ArmorCore extends ToolCore
 {
 	public float reductionPercent = 0f;
 	public int maxReduction = 100;
-	
-	protected static PartMaterialType ArmorplateMat = new PartMaterialType(ArmorBase.armorPlate, MaterialArmor.TYPE);
-	protected static PartMaterialType ChainmailMat = new PartMaterialType(ArmorBase.chainmail, MaterialArmor.TYPE);
-	protected static PartMaterialType RivetMat = new PartMaterialType(ArmorBase.rivets, MaterialArmor.TYPE);
-	protected static PartMaterialType ClaspMat = new PartMaterialType(ArmorBase.clasp, MaterialArmor.TYPE);
-	
-	protected static PartMaterialType ClothMat = new PartMaterialType(ArmorBase.cloth, MaterialCloth.TYPE);
 
 	public ArmorCore(PartMaterialType... rc) {
 		super(rc);

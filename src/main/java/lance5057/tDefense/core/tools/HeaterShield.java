@@ -1,10 +1,6 @@
 package lance5057.tDefense.core.tools;
 
-import lance5057.tDefense.TinkersDefense;
-import net.minecraft.entity.Entity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
+import lance5057.tDefense.core.parts.TDParts;
 import slimeknights.tconstruct.library.tinkering.PartMaterialType;
 import slimeknights.tconstruct.tools.TinkerTools;
 
@@ -15,9 +11,9 @@ public class HeaterShield extends Shield
 	public HeaterShield()
 	{
 		super(PartMaterialType.handle(TinkerTools.toughToolRod),
-	            ShieldMat,
-	            ShieldMat,
-	            PartMaterialType.extra(TinkerTools.toughBinding));
+				TDParts.ShieldMat,
+	            TDParts.ShieldMat,
+	            TDParts.RivetMat);
 		setUnlocalizedName("heatershield");
 	}
 

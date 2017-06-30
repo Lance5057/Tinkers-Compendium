@@ -3,11 +3,14 @@ package lance5057.tDefense;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 
@@ -121,11 +124,11 @@ public class TD_Commands extends CommandBase implements ICommand
 //		return true;
 //	}
 //
-//	@Override
-//	public List addTabCompletionOptions(ICommandSender p_71516_1_, String[] p_71516_2_)
-//	{
-//		return commands;
-//	}
+	@Override
+	public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos pos)
+	{
+		return commands;
+	}
 
 	@Override
 	public boolean isUsernameIndex(String[] p_82358_1_, int p_82358_2_)

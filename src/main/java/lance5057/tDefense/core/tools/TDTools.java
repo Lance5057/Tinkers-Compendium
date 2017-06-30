@@ -1,106 +1,144 @@
 package lance5057.tDefense.core.tools;
 
+import com.google.common.eventbus.Subscribe;
+
+import lance5057.tDefense.armor.items.cloth.TinkersHood;
+import lance5057.tDefense.armor.items.cloth.TinkersRobe;
+import lance5057.tDefense.armor.items.cloth.TinkersShawl;
+import lance5057.tDefense.armor.items.cloth.TinkersShoes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import slimeknights.tconstruct.common.CommonProxy;
 import slimeknights.tconstruct.library.TinkerRegistry;
 import slimeknights.tconstruct.library.tools.ToolCore;
 
-import com.google.common.eventbus.Subscribe;
-
 //@Pulse(id = TDTools.PulseId, description = "All the tools and everything related to it.")
-public class TDTools
-{
+public class TDTools {
 
 	TDToolEvents events = new TDToolEvents();
 
-  // Tools
-	public static ToolCore roundshield = new RoundShield();
-	public static ToolCore heatershield = new HeaterShield();
-	public static ToolCore zweihander = new Zweihander();
-	
-  // Tool Parts
+	// Tools
+	public static ToolCore roundshield;
+	public static ToolCore heatershield;
+	public static ToolCore zweihander;
+	public static ToolCore shears;
+	public static ToolCore fishingRod;
 
-  // Modifiers
+	public static ToolCore hood;
+	public static ToolCore shawl;
+	public static ToolCore robe;
+	public static ToolCore shoes;
 
-  // Helper stuff
-//  static List<ToolCore> tools = Lists.newLinkedList();      // contains all tools registered in this pulse
-//  static List<ToolPart> toolparts = Lists.newLinkedList();  // ^ all toolparts
-//  static List<IModifier> modifiers = Lists.newLinkedList(); // ^ all modifiers
+	public static ToolCore coif;
+	public static ToolCore hauberk;
+	public static ToolCore chausses;
+	public static ToolCore boots;
 
-  // PRE-INITIALIZATION
-  @Subscribe
-  public void preInit(FMLPreInitializationEvent event) {
-    // register items
-	  MinecraftForge.EVENT_BUS.register(events);
+	public static ToolCore helm;
+	public static ToolCore breastplate;
+	public static ToolCore grieves;
+	public static ToolCore sabatons;
 
-    regToolParts();
-    regTools();
-    registerModifiers();
+	// Tool Parts
 
-    // register blocks
+	// Modifiers
 
-    // register entities
-    
-    //proxy.preInit();
-  }
+	// Helper stuff
+	// static List<ToolCore> tools = Lists.newLinkedList(); // contains all
+	// tools registered in this pulse
+	// static List<ToolPart> toolparts = Lists.newLinkedList(); // ^ all
+	// toolparts
+	// static List<IModifier> modifiers = Lists.newLinkedList(); // ^ all
+	// modifiers
 
-  private void regToolParts() {
-    // The order the items are registered in represents the order in the stencil table GUI too
-	  
-  }
+	// PRE-INITIALIZATION
+	@Subscribe
+	public void preInit(FMLPreInitializationEvent event) {
+		// register items
+		roundshield = new RoundShield();
+		heatershield = new HeaterShield();
+		zweihander = new Zweihander();
+		shears = new Shears();
+		fishingRod = new FishingRod();
 
-  private void regTools() {
-	  
-	  regTool(roundshield, "roundshield");
-	  regTool(heatershield, "heatershield");
-	  regTool(zweihander, "zweihander");
-	  
-//	  TinkerRegistry.registerToolStationCrafting(roundshield);
-//	  TinkerRegistry.registerToolForgeCrafting(heatershield);
-//	  TinkerRegistry.registerToolForgeCrafting(zweihander);
-  }
-  
-  private void regTool(ToolCore tool, String name)
-  {
-	  tool.setRegistryName(new ResourceLocation("tinkersdefense:" + name));
-	  TinkerRegistry.registerTool(tool);
-	  GameRegistry.register(tool);
-  }
+		hood = new TinkersHood();
+		shawl = new TinkersShawl();
+		robe = new TinkersRobe();
+		shoes = new TinkersShoes();
 
-  private void registerModifiers() {
+		MinecraftForge.EVENT_BUS.register(events);
 
-  }
+		regTools();
+		registerModifiers();
 
-  // INITIALIZATION
-  @Subscribe
-  public void init(FMLInitializationEvent event) {
-    regToolBuilding();
-    regRecipies();
+		// register blocks
 
-    //proxy.init();
-  }
+		// register entities
 
-  private void regToolBuilding() {
-    TinkerRegistry.registerToolCrafting(roundshield);
-    TinkerRegistry.registerToolForgeCrafting(heatershield);
-    TinkerRegistry.registerToolForgeCrafting(zweihander);
-  }
+		// proxy.preInit();
+	}
 
-  private void regRecipies() {
+	private void regTools() {
 
-  }
-  
-  // POST-INITIALIZATION
-  @Subscribe
-  public void postInit(FMLPostInitializationEvent event) {
-    //proxy.postInit();
-  }
-  
-  
+		regTool(roundshield, "roundshield");
+		regTool(heatershield, "heatershield");
+		regTool(zweihander, "zweihander");
+		regTool(shears, "shears");
+		regTool(fishingRod, "fishingRod");
+
+		regTool(hood, "hood");
+		regTool(shawl, "shawl");
+		regTool(robe, "robe");
+		regTool(shoes, "shoes");
+
+		// TinkerRegistry.registerToolStationCrafting(roundshield);
+		// TinkerRegistry.registerToolForgeCrafting(heatershield);
+		// TinkerRegistry.registerToolForgeCrafting(zweihander);
+	}
+
+	private void regTool(ToolCore tool, String name) {
+		tool.setRegistryName(new ResourceLocation("tinkersdefense:" + name));
+		TinkerRegistry.registerTool(tool);
+		GameRegistry.register(tool);
+	}
+
+	private void registerModifiers() {
+
+	}
+
+	// INITIALIZATION
+	@Subscribe
+	public void init(FMLInitializationEvent event) {
+		regToolBuilding();
+		regRecipies();
+
+		// proxy.init();
+	}
+
+	private void regToolBuilding() {
+		TinkerRegistry.registerToolCrafting(roundshield);
+		TinkerRegistry.registerToolForgeCrafting(heatershield);
+		TinkerRegistry.registerToolForgeCrafting(zweihander);
+		TinkerRegistry.registerToolCrafting(shears);
+		TinkerRegistry.registerToolCrafting(fishingRod);
+
+		TinkerRegistry.registerToolCrafting(hood);
+		TinkerRegistry.registerToolCrafting(shawl);
+		TinkerRegistry.registerToolCrafting(robe);
+		TinkerRegistry.registerToolCrafting(shoes);
+	}
+
+	private void regRecipies() {
+
+	}
+
+	// POST-INITIALIZATION
+	@Subscribe
+	public void postInit(FMLPostInitializationEvent event) {
+		// proxy.postInit();
+	}
+
 }

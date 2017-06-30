@@ -1,12 +1,19 @@
 package lance5057.tDefense.proxy;
 
 import lance5057.tDefense.TinkersDefense;
+import lance5057.tDefense.armor.items.straps.ItemStrapsInv;
+import lance5057.tDefense.armor.items.straps.StrapsContainer;
+import lance5057.tDefense.armor.items.straps.StrapsGui;
 import lance5057.tDefense.core.blocks.crestMount.Container_CrestMount;
 import lance5057.tDefense.core.blocks.crestMount.Gui_CrestMount;
 import lance5057.tDefense.core.blocks.crestMount.TileEntity_CrestMount;
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fml.common.network.IGuiHandler;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 
@@ -21,7 +28,7 @@ public class CommonProxy implements IGuiHandler
 
 	public void init()
 	{
-		NetworkRegistry.INSTANCE.registerGuiHandler(TinkersDefense.instance, this);
+		
 	}
 
 	public void registerTileEntitySpecialRenderer()
@@ -63,6 +70,8 @@ public class CommonProxy implements IGuiHandler
 //		if(ID == TinkersDefense.GUI_ANVIL_INV)
 //			return new Container_FinishingAnvil(player.inventory,
 //					(TileEntity_FinishingAnvil) world.getTileEntity(x, y, z));
+		if(ID == TinkersDefense.GUI_STRAPS_INV)
+			return new StrapsContainer(player, player.inventory, new ItemStrapsInv(player.getHeldItem(EnumHand.MAIN_HAND)));
 
 		return null;
 	}
@@ -76,6 +85,23 @@ public class CommonProxy implements IGuiHandler
 //		if(ID == TinkersDefense.GUI_ANVIL_INV)
 //			return new Gui_FinishingAnvil(player.inventory,
 //					(TileEntity_FinishingAnvil) world.getTileEntity(x, y, z));
+		if(ID == TinkersDefense.GUI_STRAPS_INV)
+			return new StrapsGui((StrapsContainer) new StrapsContainer(player, player.inventory, new ItemStrapsInv(player.getHeldItem(EnumHand.MAIN_HAND))));
 		return null;
+	}
+	
+	public void registerItemRenderer(Item item, int meta, String id)
+	{
+		
+	}
+	
+	public void registerFluidModels(Fluid fluid)
+	{
+		
+	}
+	
+	public void registerItemBlockRenderer(Block block, int meta, String file) 
+	{
+		
 	}
 }

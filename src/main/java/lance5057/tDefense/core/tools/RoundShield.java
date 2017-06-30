@@ -1,6 +1,7 @@
 package lance5057.tDefense.core.tools;
 
 import lance5057.tDefense.TinkersDefense;
+import lance5057.tDefense.core.parts.TDParts;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -15,7 +16,7 @@ public class RoundShield extends Shield
 	public RoundShield()
 	{
 	    super(PartMaterialType.handle(TinkerTools.toolRod),
-	    		ShieldMat,
+	    		TDParts.ShieldMat,
 	            PartMaterialType.head(TinkerTools.panHead));
 		setUnlocalizedName("roundshield");
 	}

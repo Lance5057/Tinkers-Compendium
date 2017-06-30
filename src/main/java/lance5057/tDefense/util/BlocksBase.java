@@ -3,6 +3,8 @@ package lance5057.tDefense.util;
 import lance5057.tDefense.Reference;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -24,20 +26,22 @@ public abstract class BlocksBase {
 	
 	public abstract void postInit(FMLPostInitializationEvent e);
 	
-	protected Block register(String name, CreativeTabs tabName, float hardness) 
+	protected Block setupRegister(String name, CreativeTabs tabName, float hardness) 
 	{
 		Block block = new Block(Material.IRON).setCreativeTab(tabName).setUnlocalizedName(name).setRegistryName(Reference.MOD_ID, name).setHardness(hardness);
 		GameRegistry.register(block);
 		return block;
 	}
 	
-	protected ItemBlock register(String name, int size, CreativeTabs tabName, Block block) 
+	protected ItemBlock setupRegister(String name, int size, CreativeTabs tabName, Block block) 
 	{
 		ItemBlock item = new ItemBlock(block);
 		item.setCreativeTab(tabName).setMaxStackSize(size).setUnlocalizedName(name).setRegistryName(Reference.MOD_ID, name).setCreativeTab(tabName);
 		GameRegistry.register(item);
 		return item;
 	}
+	
+
 }
 	
 //	protected MetaItem registerMeta(String name, String[] names,int size) 

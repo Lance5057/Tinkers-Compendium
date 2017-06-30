@@ -1,0 +1,134 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "forge:fluid"
+  },
+	"variants": {
+		"aeonsteel_fluid": [
+		  {
+			"custom": {
+			  "fluid": "aeonsteel_fluid"
+			}
+		  }
+		],
+		"queensgold_fluid": [
+		  {
+			"custom": {
+			  "fluid": "queensgold_fluid"
+			}
+		  }
+		],
+		"dogbearium_fluid": [
+		  {
+			"custom": {
+			  "fluid": "dogbearium_fluid"
+			}
+		  }
+		],
+		"vile_fluid": [
+		  {
+			"custom": {
+			  "fluid": "vile_fluid"
+			}
+		  }
+		],
+		"redcandy_fluid": [
+		  {
+			"custom": {
+			  "fluid": "redcandy_fluid"
+			}
+		  }
+		],
+		"greencandy_fluid": [
+		  {
+			"custom": {
+			  "fluid": "greencandy_fluid"
+			}
+		  }
+		],
+		"sinisterium_fluid": [
+		  {
+			"custom": {
+			  "fluid": "sinisterium_fluid"
+			}
+		  }
+		],
+		"nihilite_fluid": [
+		  {
+			"custom": {
+			  "fluid": "nihilite_fluid"
+			}
+		  }
+		],
+		"vibrant_fluid": [
+		  {
+			"custom": {
+			  "fluid": "vibrant_fluid"
+			}
+		  }
+		],
+		"orichalcum_fluid": [
+		  {
+			"custom": {
+			  "fluid": "orichalcum_fluid"
+			}
+		  }
+		],
+		"pandorium_fluid": [
+		  {
+			"custom": {
+			  "fluid": "pandorium_fluid"
+			}
+		  }
+		],
+		"chorusjuice_fluid": [
+		  {
+			"custom": {
+			  "fluid": "chorusjuice_fluid"
+			}
+		  }
+		],
+		"dragonsbreath_fluid": [
+		  {
+			"custom": {
+			  "fluid": "dragonsbreath_fluid"
+			}
+		  }
+		],
+		"rosegold_fluid": [
+		  {
+			"custom": {
+			  "fluid": "rosegold_fluid"
+			}
+		  }
+		],
+		"platinum_fluid": [
+		  {
+			"custom": {
+			  "fluid": "platinum_fluid"
+			}
+		  }
+		],
+		"brass_fluid": [
+		  {
+			"custom": {
+			  "fluid": "brass_fluid"
+			}
+		  }
+		],
+		"silver_fluid": [
+		  {
+			"custom": {
+			  "fluid": "silver_fluid"
+			}
+		  }
+		],
+		"cheese_fluid": [
+		  {
+			"custom": {
+			  "fluid": "cheese_fluid"
+			}
+		  }
+		]
+	}
+}
