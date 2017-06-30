@@ -31,10 +31,14 @@ public class VileFluid extends BlockFluidClassic {
 			((EntityZombie) entity).setZombieType(ZombieType.HUSK);
 		}
 		if (entity instanceof EntityHorse) {
-			if (world.rand.nextInt(2) == 0 && !(((EntityHorse) entity).getType() != HorseType.SKELETON || ((EntityHorse) entity).getType() != HorseType.ZOMBIE))
-				((EntityHorse) entity).setType(HorseType.SKELETON);
-			else
-				((EntityHorse) entity).setType(HorseType.ZOMBIE);
+			if (((EntityHorse) entity).getType() != HorseType.SKELETON
+					&& ((EntityHorse) entity).getType() != HorseType.ZOMBIE)
+			{
+				if (world.rand.nextInt(2) == 0)
+					((EntityHorse) entity).setType(HorseType.SKELETON);
+				else
+					((EntityHorse) entity).setType(HorseType.ZOMBIE);
+			}
 		}
 		if (entity instanceof EntityPig) {
 			EntityPigZombie pig = new EntityPigZombie(world);

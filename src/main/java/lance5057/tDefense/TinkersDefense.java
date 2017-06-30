@@ -331,7 +331,7 @@ public class TinkersDefense {
 		core.preInit(e);
 		//armor.preInit(e);
 		holiday.preInit(e);
-		mats.registerMaterials();
+		mats.preInit(e);
 		parts.preInit(e);
 		tools.preInit(e);
 		baubles.preInit(e);
@@ -352,7 +352,7 @@ public class TinkersDefense {
 		core.init(e);
 		//armor.init(e);
 		holiday.init(e);
-		mats.setupMaterials(e);
+		mats.init(e);
 		parts.init(e);
 		tools.init(e);
 		baubles.init(e);
