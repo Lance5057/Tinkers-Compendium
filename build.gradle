@@ -20,7 +20,7 @@ plugins {
     id "net.minecraftforge.gradle.forge" version "2.0.2"
 }
 */
-version = "1.4.0.8a"
+version = "1.4.1.1a"
 group= "lance5057.tDefense" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "tinkersdefense"
 
@@ -28,7 +28,7 @@ srcCompat = JavaVersion.VERSION_1_8
 targetCompat = JavaVersion.VERSION_1_8
 
 minecraft {
-    version = "1.10.2-12.18.3.2254"
+    version = "1.10.2-12.18.3.2422"
     runDir = "run"
     
     // the mappings can be changed at any time, and must be in the following format.

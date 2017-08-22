@@ -1,5 +1,6 @@
 package lance5057.tDefense.core.tools;
 
+import lance5057.tDefense.core.tools.bases.Shield;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;

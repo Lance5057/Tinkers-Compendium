@@ -33,16 +33,7 @@ public class StrapsContainer extends Container
 
 		// ITEM INVENTORY - you'll need to adjust the slot locations to match your texture file
 		// I have them set vertically in columns of 4 to the right of the player model
-		for (i = 0; i < ItemStrapsInv.INVSIZE; ++i)
-		{
-			// You can make a custom Slot if you need different behavior,
-			// such as only certain item types can be put into this slot
-			// We made a custom slot to prevent our inventory-storing item
-			// from being stored within itself, but if you want to allow that and
-			// you followed my advice at the end of the above step, then you
-			// could get away with using the vanilla Slot class
-			this.addSlotToContainer(new Slot(this.inventory, i, 80 + (18 * (int)(i/4)), 8 + (18*(i%4))));
-		}
+		this.addSlotToContainer(new Slot(this.inventory, 0, 80, 8+23));
 
 		// If you want, you can add ARMOR SLOTS here as well, but you need to
 		// make a public version of SlotArmor. I won't be doing that in this tutorial.

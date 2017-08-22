@@ -11,12 +11,6 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class CoreItems extends ItemsBase
 {
-	
-	
-	public static Item							item_aeonsteelIngot;
-	public static Item							item_queensgoldIngot;
-	public static Item							item_dogbeariumIngot;
-	
 	public static Item item_straps;
 	
 	public CoreItems()
@@ -32,9 +26,6 @@ public class CoreItems extends ItemsBase
 	@Override
 	public void init(FMLInitializationEvent e) 
 	{
-		item_aeonsteelIngot = register("aeonsteelingot", 64, CoreBase.tab);
-		item_queensgoldIngot = register("queensgoldingot", 64, CoreBase.tab);
-		item_dogbeariumIngot = register("dogbeariumingot", 64, CoreBase.tab);
 		
 		item_straps = new ItemStraps().setMaxStackSize(1).setUnlocalizedName("straps").setRegistryName(Reference.MOD_ID, "straps");
 		GameRegistry.register(item_straps);

@@ -3,6 +3,7 @@ package lance5057.tDefense.armor.items.straps;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
+import lance5057.tDefense.Reference;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RenderHelper;
@@ -24,7 +25,7 @@ public class StrapsGui extends GuiContainer
 	 * I have provided a sample texture file that works with this tutorial. Download it
 	 * from Forge_Tutorials/textures/gui/
 	 */
-	private static final ResourceLocation iconLocation = new ResourceLocation("inventoryitemmod", "textures/gui/inventoryitem.png");
+	private static final ResourceLocation iconLocation = new ResourceLocation(Reference.MOD_ID, "textures/gui/straps_helm.png");
 
 	/** The inventory to render on screen */
 	private final ItemStrapsInv inventory;

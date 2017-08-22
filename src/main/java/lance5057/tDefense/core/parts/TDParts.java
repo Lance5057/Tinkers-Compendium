@@ -43,6 +43,12 @@ public class TDParts extends ModuleBase
 	@Override
 	public void preInit(FMLPreInitializationEvent e) {
 		armorPlate = regToolPart(Material.VALUE_Ingot * 4, "armor_plate");
+//		armorPlate = new ToolPart(Material.VALUE_Ingot * 4);
+//		armorPlate.setUnlocalizedName("armor_plate").setRegistryName("tinkersdefense:armor_plate");
+//		GameRegistry.register(armorPlate);
+//		
+//		TinkerRegistry.registerStencilTableCrafting(Pattern.setTagForPart(new ItemStack(TinkerTools.pattern), armorPlate));
+//		
 		chainmail = regToolPart(Material.VALUE_Ingot * 3, "chainmail");
 		cloth = regToolPart(Material.VALUE_Ingot * 3, "cloth");
 		rivets = regToolPart(Material.VALUE_Ingot * 1, "rivets");
@@ -79,6 +85,7 @@ public class TDParts extends ModuleBase
 		part.setUnlocalizedName(name).setRegistryName("tinkersdefense:"+name);
 		GameRegistry.register(part);
 		TinkerRegistry.registerStencilTableCrafting(Pattern.setTagForPart(new ItemStack(TinkerTools.pattern), part));
+		//TinkerRegistry.registerTableCasting(output, cast, fluid, amount);
 		
 		return part;
 	}

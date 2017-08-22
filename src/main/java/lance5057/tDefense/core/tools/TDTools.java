@@ -6,6 +6,14 @@ import lance5057.tDefense.armor.items.cloth.TinkersHood;
 import lance5057.tDefense.armor.items.cloth.TinkersRobe;
 import lance5057.tDefense.armor.items.cloth.TinkersShawl;
 import lance5057.tDefense.armor.items.cloth.TinkersShoes;
+import lance5057.tDefense.core.tools.basic.FishingRod;
+import lance5057.tDefense.core.tools.basic.HeaterShield;
+import lance5057.tDefense.core.tools.basic.RoundShield;
+import lance5057.tDefense.core.tools.basic.Shears;
+import lance5057.tDefense.core.tools.basic.Zweihander;
+import lance5057.tDefense.core.tools.baubles.Amulet;
+import lance5057.tDefense.core.tools.baubles.Ring;
+import lance5057.tDefense.core.tools.baubles.Sheathe;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -27,6 +35,7 @@ public class TDTools {
 	public static ToolCore shears;
 	public static ToolCore fishingRod;
 
+	//armor
 	public static ToolCore hood;
 	public static ToolCore shawl;
 	public static ToolCore robe;
@@ -41,6 +50,11 @@ public class TDTools {
 	public static ToolCore breastplate;
 	public static ToolCore grieves;
 	public static ToolCore sabatons;
+	
+	//baubles
+	public static ToolCore sheathe;
+	public static ToolCore ring;
+	public static ToolCore amulet;
 
 	// Tool Parts
 
@@ -68,6 +82,10 @@ public class TDTools {
 		shawl = new TinkersShawl();
 		robe = new TinkersRobe();
 		shoes = new TinkersShoes();
+		
+		sheathe = new Sheathe();
+		ring = new Ring();
+		amulet = new Amulet();
 
 		MinecraftForge.EVENT_BUS.register(events);
 
@@ -93,6 +111,10 @@ public class TDTools {
 		regTool(shawl, "shawl");
 		regTool(robe, "robe");
 		regTool(shoes, "shoes");
+		
+		regTool(sheathe, "sheathe");
+		regTool(ring, "ring");
+		regTool(amulet, "amulet");
 
 		// TinkerRegistry.registerToolStationCrafting(roundshield);
 		// TinkerRegistry.registerToolForgeCrafting(heatershield);
@@ -129,6 +151,10 @@ public class TDTools {
 		TinkerRegistry.registerToolCrafting(shawl);
 		TinkerRegistry.registerToolCrafting(robe);
 		TinkerRegistry.registerToolCrafting(shoes);
+		
+		TinkerRegistry.registerToolCrafting(sheathe);
+		TinkerRegistry.registerToolCrafting(ring);
+		TinkerRegistry.registerToolCrafting(amulet);
 	}
 
 	private void regRecipies() {
