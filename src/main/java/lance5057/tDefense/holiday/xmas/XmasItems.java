@@ -3,7 +3,6 @@ package lance5057.tDefense.holiday.xmas;
 import lance5057.tDefense.util.Color16Util;
 import lance5057.tDefense.util.ItemsBase;
 import lance5057.tDefense.util.MetaItem;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

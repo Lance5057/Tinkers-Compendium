@@ -1,8 +1,5 @@
 package lance5057.tDefense;
 
-import java.util.Iterator;
-import java.util.List;
-
 import lance5057.tDefense.core.CoreBase;
 import lance5057.tDefense.core.materials.TDMaterials;
 import lance5057.tDefense.core.parts.TDParts;
@@ -10,9 +7,8 @@ import lance5057.tDefense.core.tools.TDTools;
 import lance5057.tDefense.holiday.HolidayBase;
 import lance5057.tDefense.proxy.CommonProxy;
 import lance5057.tDefense.util.ModuleBase;
+import lance5057.tDefense.util.RegEvents;
 import net.minecraft.block.Block;
-import net.minecraft.item.crafting.CraftingManager;
-import net.minecraft.item.crafting.IRecipe;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -24,6 +20,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import scala.reflect.internal.Trees.Modifiers;
+
 
 @Mod(modid = Reference.MOD_ID, version = Reference.VERSION, name = Reference.MOD_NAME)
 public class TinkersDefense {
@@ -50,68 +47,15 @@ public class TinkersDefense {
 	public static final SimpleNetworkWrapper INSTANCE = NetworkRegistry.INSTANCE
 			.newSimpleChannel(Reference.MOD_ID);
 
+	public static RegEvents reg;
+	
 	public static Modifiers mods;
 
 	// public static Item item_Guidebook;
-	TDParts parts;
-	TDTools tools;
-	TDMaterials mats;
-
-	public static Block block_aeonsteelBlock;
-	public static Fluid moltenaeonsteel;
-	public static Block moltenaeonsteelBlock;
-
-	public static Block block_queensgoldBlock;
-	public static Fluid moltenqueensgold;
-	public static Block moltenqueensgoldBlock;
-
-	public static Block block_dogbeariumBlock;
-	public static Fluid moltendogbearium;
-	public static Block moltendogbeariumBlock;
-
-	public static Block block_redmintBlock;
-	public static Fluid moltenredmint;
-	public static Block moltenredmintBlock;
-
-	public static Block block_greenmintBlock;
-	public static Fluid moltengreenmint;
-	public static Block moltengreenmintBlock;
-
-	// public static Item item_RawSapphire;
-	// public static Item item_RawRuby;
-	// public static Item item_RawAmethyst;
-	// public static Item item_RawAmber;
-	//
-	// public static Block block_SapphireOre;
-	// public static Block block_RubyOre;
-	// public static Block block_AmethystOre;
-	// public static Block block_AmberOre;
-
-	// public static ToolCore tool_roundShield;
-	// public static ToolCore tool_heaterShield;
-	// public static ToolCore tool_wrench;
-	// public static ToolCore tool_zweihander;
-	// public static ToolCore tool_shears;
-	// public static ToolCore tool_hookshot;
-
-	// public static Block block_CrestMount;
-	// public static Block block_ArmorAnvil;
-	// public static Block block_JewelersBench;
-	//
-	// //public static Item item_ChainArmor;
-	// public static Pattern woodPattern;
-	// public static Pattern metalPattern;
-	//
-	// public static Item partRivet;
-	// public static Item partArmorplate;
-	// public static Item partClasp;
-	// public static Item partCloth;
-	// public static Item partChainmaille;
-	//
-	// public static ToolCore tcInject;
-
-	// public static BotaniaMods flowermod;
-
+	public static TDParts parts;
+	public static TDTools tools;
+	public static TDMaterials mats;
+	
 	@SidedProxy(clientSide = "lance5057.tDefense.proxy.ClientProxy", serverSide = "lance5057.tDefense.proxy.CommonProxy")
 	public static CommonProxy proxy;
 	public static int month;
@@ -122,6 +66,8 @@ public class TinkersDefense {
 	public void preInit(FMLPreInitializationEvent e) {
 		NetworkRegistry.INSTANCE.registerGuiHandler(TinkersDefense.instance, new CommonProxy());
 		
+		//reg = new RegEvents();
+		
 		core = new CoreBase();
 		holiday = new HolidayBase();
 		//armor = new ArmorBase();
@@ -129,7 +75,7 @@ public class TinkersDefense {
 		mats = new TDMaterials();
 		parts = new TDParts();
 		tools = new TDTools();
-		config = new TD_Config(e);
+		//config = new TD_Config(e);
 		// mods = new Modifiers();
 
 		// Blocks
@@ -333,19 +279,21 @@ public class TinkersDefense {
 		tools.preInit(e);
 		proxy.preInit();
 		
-		mats.integrate(mats.materials, mats.materialIntegrations, mats.deferredMaterials);
+		
 	}
+	
+
 
 	@EventHandler
 	public void init(FMLInitializationEvent e) {
 
-		// I reject your moss and substitute my own!
-		if (config.mossEnabled || config.mossHard) {
-		
-		final List<IRecipe> recipes = CraftingManager.getInstance()
-				.getRecipeList();
-		final Iterator<IRecipe> recipe = recipes.iterator();
-		}
+//		// I reject your moss and substitute my own!
+//		if (config.mossEnabled || config.mossHard) {
+//		
+//		final List<IRecipe> recipes = CraftingManager.class
+//				.getRecipeList();
+//		final Iterator<IRecipe> recipe = recipes.iterator();
+//		}
 
 		core.init(e);
 		//armor.init(e);
@@ -356,6 +304,8 @@ public class TinkersDefense {
 		proxy.init();
 		
 		phandler.init();
+		
+		mats.integrate(mats.materials, mats.materialIntegrations, mats.deferredMaterials);
 	}
 
 	@EventHandler
@@ -369,158 +319,5 @@ public class TinkersDefense {
 		//armor.postInit(e);
 		tools.postInit(e);
 	}
-
-	public void castmolten(Fluid fluid, int ID) {
-		// // .addCastingRecipe(output, fluid, cast, hardeningDelay)
-		// TConstructRegistry.getTableCasting().addCastingRecipe(new ItemStack(
-		// TinkerTools.toolRod, 1, ID), new FluidStack(fluid,
-		// (int) (144 * 0.5D)), TConstructRegistry.getItemStack("toolRodCast"),
-		// 50);
-		// TConstructRegistry.getTableCasting().addCastingRecipe(new ItemStack(
-		// TinkerTools.pickaxeHead, 1, ID), new FluidStack(fluid,
-		// (int) (144 * 1.0D)),
-		// TConstructRegistry.getItemStack("pickaxeHeadCast"), 50);
-		// TConstructRegistry.getTableCasting().addCastingRecipe(new ItemStack(
-		// TinkerTools.shovelHead, 1, ID), new FluidStack(fluid,
-		// (int) (144 * 1.0D)),
-		// TConstructRegistry.getItemStack("shovelHeadCast"), 50);
-		// TConstructRegistry.getTableCasting().addCastingRecipe(new ItemStack(
-		// TinkerTools.hatchetHead, 1, ID), new FluidStack(fluid,
-		// (int) (144 * 1.0D)),
-		// TConstructRegistry.getItemStack("hatchetHeadCast"), 50);
-		// TConstructRegistry.getTableCasting().addCastingRecipe(new ItemStack(
-		// TinkerTools.swordBlade, 1, ID), new FluidStack(fluid,
-		// (int) (144 * 1.0D)),
-		// TConstructRegistry.getItemStack("swordBladeCast"), 50);
-		// TConstructRegistry.getTableCasting().addCastingRecipe(new ItemStack(
-		// TinkerTools.fullGuard, 1, ID), new FluidStack(fluid,
-		// (int) (144 * 3.0D)),
-		// TConstructRegistry.getItemStack("fullGuardCast"), 50);
-		// TConstructRegistry.getTableCasting().addCastingRecipe(new ItemStack(
-		// TinkerTools.wideGuard, 1, ID), new FluidStack(fluid,
-		// (int) (144 * 0.5D)),
-		// TConstructRegistry.getItemStack("wideGuardCast"), 50);
-		// TConstructRegistry.getTableCasting().addCastingRecipe(new ItemStack(
-		// TinkerTools.crossbar, 1, ID), new FluidStack(fluid,
-		// (int) (144 * 0.5D)), TConstructRegistry.getItemStack("crossbarCast"),
-		// 50);
-		// TConstructRegistry.getTableCasting().addCastingRecipe(new ItemStack(
-		// TinkerTools.binding, 1, ID), new FluidStack(fluid,
-		// (int) (144 * 0.5D)), TConstructRegistry.getItemStack("bindingCast"),
-		// 50);
-		// TConstructRegistry.getTableCasting().addCastingRecipe(new ItemStack(
-		// TinkerTools.handGuard, 1, ID), new FluidStack(fluid,
-		// (int) (144 * 0.5D)),
-		// TConstructRegistry.getItemStack("handGuardCast"), 50);
-		// TConstructRegistry.getTableCasting().addCastingRecipe(new ItemStack(
-		// TinkerTools.frypanHead, 1, ID), new FluidStack(fluid,
-		// (int) (144 * 1.0D)),
-		// TConstructRegistry.getItemStack("frypanHeadCast"), 50);
-		// TConstructRegistry.getTableCasting().addCastingRecipe(new ItemStack(
-		// TinkerTools.signHead, 1, ID), new FluidStack(fluid,
-		// (int) (144 * 1.0D)), TConstructRegistry.getItemStack("signHeadCast"),
-		// 50);
-		// TConstructRegistry.getTableCasting().addCastingRecipe(new ItemStack(
-		// TinkerTools.knifeBlade, 1, ID), new FluidStack(fluid,
-		// (int) (144 * 0.5D)),
-		// TConstructRegistry.getItemStack("knifeBladeCast"), 50);
-		// TConstructRegistry.getTableCasting().addCastingRecipe(new ItemStack(
-		// TinkerTools.chiselHead, 1, ID), new FluidStack(fluid,
-		// (int) (144 * 0.5D)),
-		// TConstructRegistry.getItemStack("chiselHeadCast"), 50);
-		// TConstructRegistry.getTableCasting().addCastingRecipe(new ItemStack(
-		// TinkerTools.toughRod, 1, ID), new FluidStack(fluid,
-		// (int) (144 * 3.0D)), TConstructRegistry.getItemStack("toughRodCast"),
-		// 50);
-		// TConstructRegistry.getTableCasting().addCastingRecipe(new ItemStack(
-		// TinkerTools.toughBinding, 1, ID), new FluidStack(fluid,
-		// (int) (144 * 3.0D)),
-		// TConstructRegistry.getItemStack("toughBindingCast"), 50);
-		// TConstructRegistry.getTableCasting().addCastingRecipe(new ItemStack(
-		// TinkerTools.largePlate, 1, ID), new FluidStack(fluid,
-		// (int) (144 * 8.0D)),
-		// TConstructRegistry.getItemStack("largePlateCast"), 50);
-		// TConstructRegistry.getTableCasting().addCastingRecipe(new ItemStack(
-		// TinkerTools.broadAxeHead, 1, ID), new FluidStack(fluid,
-		// (int) (144 * 8.0D)),
-		// TConstructRegistry.getItemStack("broadAxeHeadCast"), 50);
-		// TConstructRegistry.getTableCasting().addCastingRecipe(new ItemStack(
-		// TinkerTools.scytheBlade, 1, ID), new FluidStack(fluid,
-		// (int) (144 * 8.0D)),
-		// TConstructRegistry.getItemStack("scytheHeadCast"), 50);
-		// TConstructRegistry.getTableCasting().addCastingRecipe(new ItemStack(
-		// TinkerTools.excavatorHead, 1, ID), new FluidStack(fluid,
-		// (int) (144 * 8.0D)),
-		// TConstructRegistry.getItemStack("excavatorHeadCast"), 50);
-		// TConstructRegistry.getTableCasting().addCastingRecipe(new ItemStack(
-		// TinkerTools.largeSwordBlade, 1, ID), new FluidStack(fluid,
-		// (int) (144 * 8.0D)),
-		// TConstructRegistry.getItemStack("largeBladeCast"), 50);
-		// TConstructRegistry.getTableCasting().addCastingRecipe(new ItemStack(
-		// TinkerTools.hammerHead, 1, ID), new FluidStack(fluid,
-		// (int) (144 * 8.0D)),
-		// TConstructRegistry.getItemStack("hammerHeadCast"), 50);
-		// TConstructRegistry.getTableCasting().addCastingRecipe(new ItemStack(
-		// TinkerTools.arrowhead, 1, ID), new FluidStack(fluid,
-		// (int) (144 * 1.0D)),
-		// TConstructRegistry.getItemStack("arrowheadCast"), 50);
-		// TConstructRegistry.getTableCasting().addCastingRecipe(new ItemStack(
-		// partArmorplate, 1, ID), new FluidStack(fluid,
-		// (int) (144 * 4.0D)), new ItemStack(metalPattern, 1, 2), 50);
-		// TConstructRegistry.getTableCasting().addCastingRecipe(new ItemStack(
-		// partRivet, 1, ID), new FluidStack(fluid, (int) (144 * 0.5D)), new
-		// ItemStack(
-		// metalPattern, 1, 0), 50);
-		// TConstructRegistry.getTableCasting().addCastingRecipe(new ItemStack(
-		// partClasp, 1, ID), new FluidStack(fluid, (int) (144 * 1.0D)), new
-		// ItemStack(
-		// metalPattern, 1, 1), 50);
-		// TConstructRegistry.getTableCasting().addCastingRecipe(new ItemStack(
-		// partChainmaille, 1, ID), new FluidStack(fluid,
-		// (int) (144 * 4.0D)), new ItemStack(metalPattern, 1, 4), 50);
-	}
-
-	// public void buildParts(Item item, int meta)
-	// {
-	// final int[] nonMetals = {0, 1, 3, 4, 5, 6, 7, 8, 9, 17};
-	// final int[] liquidDamage = new int[] {2, 13, 10, 11, 12, 14, 15, 6, 16,
-	// 18};
-	//
-	// for(int mat = 0; mat < nonMetals.length; mat++) //
-	// {
-	// TConstructRegistry.addPartMapping(woodPattern, meta, mat, new ItemStack(
-	// item, 1, mat));
-	// }
-	//
-	// final LiquidCasting tableCasting = TConstructRegistry.getTableCasting();
-	// // patternOutputs = new Item[] { partShuriken, partCrossbowLimb,
-	// // partCrossbowBody, partBowLimb };
-	//
-	// final ItemStack cast = new ItemStack(metalPattern, 1, meta);
-	//
-	// tableCasting.addCastingRecipe(cast, new FluidStack(
-	// TinkerSmeltery.moltenAlubrassFluid, TConstruct.ingotLiquidValue), new
-	// ItemStack(
-	// item, 1, Short.MAX_VALUE), false, 50);
-	// tableCasting.addCastingRecipe(cast, new FluidStack(
-	// TinkerSmeltery.moltenGoldFluid, TConstruct.ingotLiquidValue * 2), new
-	// ItemStack(
-	// item, 1, Short.MAX_VALUE), false, 50);
-	//
-	// for(int iterTwo = 0; iterTwo < TinkerSmeltery.liquids.length; iterTwo++)
-	// {
-	// final Fluid fs = TinkerSmeltery.liquids[iterTwo].getFluid();
-	// final int fluidAmount = metalPattern.getPatternCost(cast) *
-	// TConstruct.ingotLiquidValue / 2;
-	// final ItemStack metalCast = new ItemStack(item, 1,
-	// liquidDamage[iterTwo]);
-	// tableCasting.addCastingRecipe(metalCast, new FluidStack(fs,
-	// fluidAmount), cast, 50);
-	// Smeltery.addMelting(FluidType.getFluidType(fs), metalCast, 0,
-	// fluidAmount);
-	// }
-	// }
-
-	
 
 }

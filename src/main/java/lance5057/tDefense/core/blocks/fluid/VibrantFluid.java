@@ -24,8 +24,8 @@ public class VibrantFluid extends BlockFluidClassic {
 	}
 
 	@Override
-	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn) {
-		super.neighborChanged(state, worldIn, pos, blockIn);
+	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos npos) {
+		super.neighborChanged(state, worldIn, pos, blockIn, npos);
 		dirtToGrass(state, worldIn, pos);
 	}
 

@@ -28,7 +28,7 @@ public class CoreItems extends ItemsBase
 	{
 		
 		item_straps = new ItemStraps().setMaxStackSize(1).setUnlocalizedName("straps").setRegistryName(Reference.MOD_ID, "straps");
-		GameRegistry.register(item_straps);
+		itemList.add(item_straps);
 	}
 
 	@Override

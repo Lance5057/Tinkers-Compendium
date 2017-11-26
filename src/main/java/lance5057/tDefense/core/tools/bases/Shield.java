@@ -5,35 +5,27 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import lance5057.tDefense.core.materials.ShieldMaterialStats;
-import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
+import lance5057.tDefense.core.parts.TDParts;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.IProjectile;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.IItemPropertyGetter;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ActionResult;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.common.Optional;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import slimeknights.tconstruct.library.client.model.ToolModelLoader;
 import slimeknights.tconstruct.library.tinkering.PartMaterialType;
 import slimeknights.tconstruct.library.tools.ToolCore;
 import slimeknights.tconstruct.library.tools.ToolNBT;
-import slimeknights.tconstruct.tools.TinkerTools;
 
 //@Optional.InterfaceList({@Optional.Interface(modid = "battlegear2", iface = "mods.battlegear2.api.ISheathed"), @Optional.Interface(modid = "battlegear2", iface = "mods.battlegear2.api.shield.IArrowCatcher"), @Optional.Interface(modid = "battlegear2", iface = "mods.battlegear2.api.shield.IArrowDisplay"), @Optional.Interface(modid = "battlegear2", iface = "mods.battlegear2.api.shield.IShield")})
 public class Shield extends ToolCore //implements IShield, ISheathed, IArrowCatcher, IArrowDisplay
@@ -41,7 +33,6 @@ public class Shield extends ToolCore //implements IShield, ISheathed, IArrowCatc
 	public Shield(PartMaterialType... requiredComponents)
 	{
 		super(requiredComponents);
-		
 		this.addPropertyOverride(new ResourceLocation("block"), new IItemPropertyGetter()
         {
             @SideOnly(Side.CLIENT)
@@ -92,7 +83,7 @@ public class Shield extends ToolCore //implements IShield, ISheathed, IArrowCatc
 	
 	public EnumActionResult onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
-        return super.onItemUse(stack, playerIn, worldIn, pos, hand, facing, hitX, hitY, hitZ);
+        return super.onItemUse(playerIn, worldIn, pos, hand, facing, hitX, hitY, hitZ);
     }
 
 	/**

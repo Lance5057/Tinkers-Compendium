@@ -3,14 +3,15 @@ package lance5057.tDefense.core.blocks.fluid;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.monster.EntityHusk;
 import net.minecraft.entity.monster.EntityPigZombie;
 import net.minecraft.entity.monster.EntitySkeleton;
+import net.minecraft.entity.monster.EntityWitherSkeleton;
 import net.minecraft.entity.monster.EntityZombie;
-import net.minecraft.entity.monster.SkeletonType;
-import net.minecraft.entity.monster.ZombieType;
 import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.entity.passive.EntityPig;
-import net.minecraft.entity.passive.HorseType;
+import net.minecraft.entity.passive.EntitySkeletonHorse;
+import net.minecraft.entity.passive.EntityZombieHorse;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.BlockFluidClassic;
@@ -25,19 +26,28 @@ public class VileFluid extends BlockFluidClassic {
 	@Override
 	public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity) {
 		if (entity instanceof EntitySkeleton) {
-			((EntitySkeleton) entity).setSkeletonType(SkeletonType.WITHER);
+			EntityWitherSkeleton wither = new EntityWitherSkeleton(world);
+			wither.setPosition(entity.posX, entity.posY, entity.posZ);
+			world.spawnEntity(wither);
+			entity.setDead();
 		}
 		if (entity instanceof EntityZombie) {
-			((EntityZombie) entity).setZombieType(ZombieType.HUSK);
+			EntityHusk husk = new EntityHusk(world);
+			husk.setPosition(entity.posX, entity.posY, entity.posZ);
+			world.spawnEntity(husk);
+			entity.setDead();
 		}
 		if (entity instanceof EntityHorse) {
-			if (((EntityHorse) entity).getType() != HorseType.SKELETON
-					&& ((EntityHorse) entity).getType() != HorseType.ZOMBIE)
-			{
-				if (world.rand.nextInt(2) == 0)
-					((EntityHorse) entity).setType(HorseType.SKELETON);
-				else
-					((EntityHorse) entity).setType(HorseType.ZOMBIE);
+			if (world.rand.nextInt(2) == 0) {
+				EntitySkeletonHorse horse = new EntitySkeletonHorse(world);
+				horse.setPosition(entity.posX, entity.posY, entity.posZ);
+				world.spawnEntity(horse);
+				entity.setDead();
+			} else {
+				EntityZombieHorse horse = new EntityZombieHorse(world);
+				horse.setPosition(entity.posX, entity.posY, entity.posZ);
+				world.spawnEntity(horse);
+				entity.setDead();
 			}
 		}
 		if (entity instanceof EntityPig) {

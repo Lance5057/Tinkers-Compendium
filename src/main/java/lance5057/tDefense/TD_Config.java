@@ -1,25 +1,143 @@
 package lance5057.tDefense;
 
 import lance5057.tDefense.util.Color16Util;
+import net.minecraftforge.common.config.Config;
+import net.minecraftforge.common.config.ConfigManager;
 import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.fml.client.event.ConfigChangedEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import scala.Int;
+import slimeknights.tconstruct.library.materials.Material;
 
+@Config(modid = Reference.MOD_ID)
 public class TD_Config
 {
-	public boolean	debug;
-	public boolean	ArmorAddon;
-	public boolean	transparency;
-	public boolean	mossEnabled;
-	public boolean	mossHard;
+	@Config.Comment("Enable Debug Features")
+	public static boolean debug = false;
+//	public boolean	ArmorAddon;
+//	public boolean	transparency;
+//	public boolean	mossEnabled;
+//	public boolean	mossHard;
+	
+	@Config.Name("Shields")
+	public static final Shields shields = new Shields();
+	@Config.Name("Tools")
+	public static final Tools tools = new Tools();
+	@Config.Name("Materials")
+	public static final Materials materials = new Materials();
+	@Config.Name("Addons")
+	public static final Addons addons = new Addons();
+	
+	public static class Shields
+	{
+		@Config.RequiresMcRestart()
+		@Config.Comment("Enable Shields")
+		public static boolean enableShields= true;
+		
+		@Config.RequiresMcRestart()
+		public static boolean enableHeaterShield= true;
+		
+		@Config.RequiresMcRestart()
+		public static boolean enableBuckler= true;
+		
+		@Config.Comment("How much damage should a shield block percentage wise if the material has no shield data built in?")
+		public static int defaultShieldBlockPercentage = 33;
+	}
+	
+	public static class Tools
+	{
+		@Config.RequiresMcRestart()
+		public static boolean enableZweihander= true;
+		
+		@Config.RequiresMcRestart()
+		public static boolean enableShears= true;
+		
+		@Config.RequiresMcRestart()
+		public static boolean enableFishingRod= true;
+	}
+	
+	public static class Materials
+	{
+		@Config.RequiresMcRestart()
+		public static boolean enableCustomMaterials= true;
+		
+		@Config.RequiresMcRestart()
+		public static boolean enableBaseMaterials= true;
+		
+		@Config.RequiresMcRestart()
+		public static boolean enableJokeMaterials= true;
+		
+		@Config.RequiresMcRestart()
+		public static boolean enableHolidayMaterials= true;
+		
+		@Config.RequiresMcRestart()
+		public static boolean enableGemMaterials= true;
+		
+		@Config.RequiresMcRestart()
+		public static boolean enableBloodMagicMaterials= true;
+		
+		@Config.RequiresMcRestart()
+		public static boolean enableTwilightForestMaterials= true;
+		
+		@Config.RequiresMcRestart()
+		public static boolean enableHarvestCraftMaterials= true;
 
-	static int		count	= 18;
-	public int		AeonsteelMatID;
-	public int		QueensGoldMatID;
-	public int		DogbeariumMatID;
-	public int		RedMintMatID;
-	public int		GreenMintMatID;
+		@Config.RequiresMcRestart()
+		public static boolean enableAeonsteel= true;
 
+		@Config.RequiresMcRestart()
+		public static boolean enableQueensGold= true;
+
+		@Config.RequiresMcRestart()
+		public static boolean enableDogbearium= true;
+
+		@Config.RequiresMcRestart()
+		public static boolean enableRedCandy= true;
+
+		@Config.RequiresMcRestart()
+		public static boolean enableGreenCandy= true;
+
+		@Config.RequiresMcRestart()
+		public static boolean enableSinisterium= true;
+
+		@Config.RequiresMcRestart()
+		public static boolean enableNihilite= true;
+
+		@Config.RequiresMcRestart()
+		public static boolean enableVibrant= true;
+
+		@Config.RequiresMcRestart()
+		public static boolean enableOrichalcum= true;
+
+		@Config.RequiresMcRestart()
+		public static boolean enablePandorium= true;
+
+		@Config.RequiresMcRestart()
+		public static boolean enableRoseGold= true;
+
+		@Config.RequiresMcRestart()
+		public static boolean enablePlatinum= true;
+
+		@Config.RequiresMcRestart()
+		public static boolean enableBrass= true;
+
+		@Config.RequiresMcRestart()
+		public static boolean enableSilver= true;
+
+		@Config.RequiresMcRestart()
+		public static boolean enableCheese= true;
+
+		@Config.RequiresMcRestart()
+		public static boolean enableGold= true;
+	}
+	
+	public static class Addons
+	{
+		
+	}
+	
 	public int		SoulBoundID;
 	public int		DazeID;
 	public int		RainbowID;
@@ -65,10 +183,6 @@ public class TD_Config
 	public int		ArmorHighstepID;
 	public int		ArmorKnockbackResistID;
 
-	public int		MaterialIndex;
-
-	public boolean	MineAndBladeAddon;
-
 	public boolean	BotaniaAddon;
 	public int		CorpseIvyModID;
 	public int		ManaRepairModID;
@@ -76,10 +190,10 @@ public class TD_Config
 	public int		ArmorPixieCoreModID;
 	public int		ArmorManaDiscountModID;
 
-	public boolean	ThaumcraftAddon;
-	public int		RevealingModID;
-	public int		VisDiscountModID;
-	public int		CapsModID;
+//	public boolean	ThaumcraftAddon;
+//	public int		RevealingModID;
+//	public int		VisDiscountModID;
+//	public int		CapsModID;
 	//public int		SpellbindModID;
 
 	public boolean	BloodMagicAddon;
@@ -88,104 +202,19 @@ public class TD_Config
 	public int		ScabbingModID;
 	public int		DivinationModID;
 
-	public TD_Config(FMLPreInitializationEvent e)
-	{
-		final Configuration config = new Configuration(
-				e.getSuggestedConfigurationFile());
+	@Mod.EventBusSubscriber(modid = Reference.MOD_ID)
+	private static class EventHandler {
 
-		config.load();
-
-		debug = config.getBoolean("Should debug mode be enabled?", "Debug Mode", false, null);
-		ArmorAddon = config.getBoolean("Should the armor addon be enabled?", "Armor Addon", true, null);
-		transparency = config.getBoolean("Should Transparent Textures be enabled?", "General Settings", true, "May help fps if disabled");
-		mossEnabled = config.getBoolean("Should the moss recipe be enabled?", "General Settings", true, null);
-		mossHard = config.getBoolean("Should the moss recipe be hard?", "General Settings", true, null);
-
-		MaterialIndex = config.getInt("Material Index", "Highest material ID", 206, 30, Int.MaxValue(), "TDefense - 206 MFR - 1001 ExtraTIC - 1024");
-
-		AeonsteelMatID = config.getInt("Aeonsteel Material ID", "Material Configs", 201, 30, Int.MaxValue(), null);
-		QueensGoldMatID = config.getInt("QueensGold Material ID", "Material Configs", 202, 30, Int.MaxValue(), null);
-		DogbeariumMatID = config.getInt("Dogbearium Material ID", "Material Configs", 203, 30, Int.MaxValue(), null);
-		RedMintMatID = config.getInt("RedMint Material ID", "Material Configs", 204, 30, Int.MaxValue(), null);
-		GreenMintMatID = config.getInt("GreenMint Material ID", "Material Configs", 205, 30, Int.MaxValue(), null);
-
-		DazeID = config.getInt("Daze ID", "Modifier Configs", count++, 18, Int.MaxValue(), null);
-		SoulBoundID = config.getInt("Soulbound ID", "Modifier Configs", count++, 18, Int.MaxValue(), null);
-		RainbowID = config.getInt("Rainbow ID", "Modifier Configs", count++, 18, Int.MaxValue(), null);
-		XPBoostID = config.getInt("XPBoost ID", "Modifier Configs", count++, 18, Int.MaxValue(), null);
-		ShearFortuneID = config.getInt("Fortune for Shears ID", "Modifier Configs", count++, 18, Int.MaxValue(), null);
-
-		CrestFeathersID = ConfigCrest(config, "Feathers");
-		CrestMirrorsID = ConfigCrest(config, "Mirrors");
-		CrestLegendsID = ConfigCrest(config, "Legends");
-		CrestBladesID = ConfigCrest(config, "Blades");
-		CrestGluttonyID = ConfigCrest(config, "Gluttony");
-		CrestPitchID = ConfigCrest(config, "Pitch");
-		CrestThornsID = ConfigCrest(config, "Thorns");
-		CrestSanguisugaID = ConfigCrest(config, "Sanguisuga");
-		CrestWindsID = ConfigCrest(config, "Winds");
-		CrestRetributionID = ConfigCrest(config, "Retribution");
-		CrestLightID = ConfigCrest(config, "Light");
-
-		SoulSteveID = config.getInt("Soulstone Steve ID", "Modifier Configs", count++, 18, Int.MaxValue(), null);
-
-		ArmorProtectionID = config.getInt("Protection ID", "Armor Modifier Configs", count++, 18, Int.MaxValue(), null);
-		ArmorFireProtectionID = config.getInt("Fire Protection ID", "Armor Modifier Configs", count++, 18, Int.MaxValue(), null);
-		ArmorBlastProtectionID = config.getInt("Blast Protection ID", "Armor Modifier Configs", count++, 18, Int.MaxValue(), null);
-		ArmorProjectileProtectionID = config.getInt("Projectile Protection ID", "Armor Modifier Configs", count++, 18, Int.MaxValue(), null);
-		ArmorFeatherfallID = config.getInt("Featherfall ID", "Armor Modifier Configs", count++, 18, Int.MaxValue(), null);
-		ArmorGlowstepID = config.getInt("Glowstep ID", "Armor Modifier Configs", count++, 18, Int.MaxValue(), null);
-		ArmorFrostwalkerID = config.getInt("Frostwalker ID", "Armor Modifier Configs", count++, 18, Int.MaxValue(), null);
-		ArmorFirewalkerID = config.getInt("Firewalker ID", "Armor Modifier Configs", count++, 18, Int.MaxValue(), null);
-		ArmorDepthstriderID = config.getInt("Depthstrider ID", "Armor Modifier Configs", count++, 18, Int.MaxValue(), null);
-		ArmorRebreatherID = config.getInt("Rebreather ID", "Armor Modifier Configs", count++, 18, Int.MaxValue(), null);
-		ArmorNightvisionID = config.getInt("Nightvision ID", "Armor Modifier Configs", count++, 18, Int.MaxValue(), null);
-		ArmorAntiBlindnessID = config.getInt("Anti Blindness ID", "Armor Modifier Configs", count++, 18, Int.MaxValue(), null);
-		ArmorPumpkinID = config.getInt("Pumpkin ID", "Armor Modifier Configs", count++, 18, Int.MaxValue(), null);
-		ArmorDodgeID = config.getInt("Dodge ID", "Armor Modifier Configs", count++, 18, Int.MaxValue(), null);
-		ArmorThornsID = config.getInt("Thorns ID", "Armor Modifier Configs", count++, 18, Int.MaxValue(), null);
-		ArmorAbsorptionID = config.getInt("Absorbtion ID", "Armor Modifier Configs", count++, 18, Int.MaxValue(), null);
-		ArmorJumpboostID = config.getInt("Jump Boost ID", "Armor Modifier Configs", count++, 18, Int.MaxValue(), null);
-		ArmorSpeedID = config.getInt("Speed ID", "Armor Modifier Configs", count++, 18, Int.MaxValue(), null);
-		ArmorHighstepID = config.getInt("High Step ID", "Armor Modifier Configs", count++, 18, Int.MaxValue(), null);
-		ArmorKnockbackResistID = config.getInt("Knockback Resistance ID", "Armor Modifier Configs", count++, 18, Int.MaxValue(), null);
-
-		MineAndBladeAddon = config.getBoolean("Enable Mine and Blade Addon", "Integration", true, "");
-
-		BotaniaAddon = config.getBoolean("Enable Botania Addon", "Integration", true, "");
-		CorpseIvyModID = config.getInt("Corpse Drinker Ivy Modifier ID", "Botania Addon", count++, 18, Int.MaxValue(), null);
-		ManaRepairModID = config.getInt("Mana Repair Modifier ID", "Botania Addon", count++, 18, Int.MaxValue(), null);
-		TerraCoreModID = config.getInt("Terra Core Modifier ID", "Botania Addon", count++, 18, Int.MaxValue(), null);
-		ArmorPixieCoreModID = config.getInt("Elementium Core Modifier ID", "Botania Addon", count++, 18, Int.MaxValue(), null);
-		ArmorManaDiscountModID = config.getInt("Mana Embroidery Modifier ID", "Botania Addon", count++, 18, Int.MaxValue(), null);
-
-		ThaumcraftAddon = config.getBoolean("Enable Thaumcraft Addon", "Integration", true, "Requires Thaumcraft to use");
-		RevealingModID = config.getInt("Revealing Modifier ID", "Thaumcraft Addon", count++, 18, Int.MaxValue(), null);
-		VisDiscountModID = config.getInt("Vis Discount Modifier ID", "Thaumcraft Addon", count++, 18, Int.MaxValue(), null);
-		CapsModID = config.getInt("Cap Repair Modifier ID", "Thaumcraft Addon", count++, 18, Int.MaxValue(), null);
-		//SpellbindModID = config.getIntInt("Spellbinding Modifier ID", "Thaumcraft Addon", 73, 0, Integer.MAX_VALUE, "");
-
-		BloodMagicAddon = config.getBoolean("Enable BloodMagic Addon", "Integration", true, "Requires BloodMagic to use");
-		DivinationModID = config.getInt("Divination Modifier ID", "BloodMagic Addon", count++, 18, Int.MaxValue(), null);
-		SuppingModID = config.getInt("Supping Modifier ID", "BloodMagic Addon", count++, 18, Int.MaxValue(), null);
-		BloodOathModID = config.getInt("Blood Oath Modifier ID", "BloodMagic Addon", count++, 18, Int.MaxValue(), null);
-		ScabbingModID = config.getInt("Scabbing Modifier ID", "BloodMagic Addon", count++, 18, Int.MaxValue(), null);
-
-		//JokeInsultID = config.getInt("Insult ID", "Joke Modifier Configs", count++, 18, Int.MaxValue(), null);
-		//JokePyrotechID = config.getInt("Pyrotech ID", "Joke Modifier Configs", count++, 18, Int.MaxValue(), null);
-
-		config.save();
-	}
-
-	private int[] ConfigCrest(Configuration config, String name)
-	{
-		final int[] crest = new int[Color16Util.colors.length];
-
-		for(int i = 0; i < Color16Util.colors.length; i++)
-		{
-			crest[i] = config.getInt("Crest of " + name + " (" + Color16Util.colors[i] + ") ID", "Shield Modifier Configs", count++, 18, Int.MaxValue(), null);
+		/**
+		 * Inject the new values and save to the config file when the config has been changed from the GUI.
+		 *
+		 * @param event The event
+		 */
+		@SubscribeEvent
+		public static void onConfigChanged(final ConfigChangedEvent.OnConfigChangedEvent event) {
+			if (event.getModID().equals(Reference.MOD_ID)) {
+				ConfigManager.sync(Reference.MOD_ID, Config.Type.INSTANCE);
+			}
 		}
-
-		return crest;
-	}
+}
 }

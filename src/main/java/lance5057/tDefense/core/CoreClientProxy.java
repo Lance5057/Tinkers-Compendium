@@ -9,7 +9,7 @@ public class CoreClientProxy
 {
 	
 	public void preInit() {
-		CoreBlocks.crestMount.initModel();
+		//CoreBlocks.crestMount.initModel();
 	}
 
 	public void init() {

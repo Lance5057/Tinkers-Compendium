@@ -1,16 +1,21 @@
 package lance5057.tDefense.util;
 
+import java.util.ArrayList;
+
 import lance5057.tDefense.Reference;
+import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import slimeknights.mantle.client.CreativeTab;
+import net.minecraftforge.registries.IForgeRegistry;
 
 public abstract class ItemsBase {
+	protected static ArrayList<Item> itemList = new ArrayList<Item>(); 
 	public ItemsBase()
 	{
 		
@@ -22,10 +27,18 @@ public abstract class ItemsBase {
 	
 	public abstract void postInit(FMLPostInitializationEvent e);
 	
+	@SubscribeEvent
+	public static void registerItems(final RegistryEvent.Register<Item> event)
+	{
+		final IForgeRegistry registry = event.getRegistry();
+		
+		registry.registerAll((Item[]) itemList.toArray());
+	}
+	
 	protected Item register(String name, int size, CreativeTabs tabName) 
 	{
 		Item item = new Item().setCreativeTab(tabName).setMaxStackSize(size).setUnlocalizedName(name).setRegistryName(Reference.MOD_ID, name);
-		GameRegistry.register(item);
+		itemList.add(item);
 		return item;
 	}
 	
@@ -33,7 +46,7 @@ public abstract class ItemsBase {
 	{
 		Item item = new MetaItem(names).setCreativeTab(tabName).setMaxStackSize(size).setUnlocalizedName(name).setRegistryName(Reference.MOD_ID, name);
 
-		GameRegistry.register(item);
+		itemList.add(item);
 		return (MetaItem) item;
 	}
 }

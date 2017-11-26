@@ -1,5 +1,7 @@
 package lance5057.tDefense.util;
 
+import java.util.ArrayList;
+
 import lance5057.tDefense.Reference;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -14,7 +16,8 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public abstract class BlocksBase {
-	
+	protected static ArrayList<Block> blockList = new ArrayList<Block>(); 
+	protected static ArrayList<Item> itemList = new ArrayList<Item>(); 
 	public BlocksBase()
 	{
 		
@@ -29,7 +32,7 @@ public abstract class BlocksBase {
 	protected Block setupRegister(String name, CreativeTabs tabName, float hardness) 
 	{
 		Block block = new Block(Material.IRON).setCreativeTab(tabName).setUnlocalizedName(name).setRegistryName(Reference.MOD_ID, name).setHardness(hardness);
-		GameRegistry.register(block);
+		blockList.add(block);
 		return block;
 	}
 	
@@ -37,7 +40,7 @@ public abstract class BlocksBase {
 	{
 		ItemBlock item = new ItemBlock(block);
 		item.setCreativeTab(tabName).setMaxStackSize(size).setUnlocalizedName(name).setRegistryName(Reference.MOD_ID, name).setCreativeTab(tabName);
-		GameRegistry.register(item);
+		itemList.add(item);
 		return item;
 	}
 	

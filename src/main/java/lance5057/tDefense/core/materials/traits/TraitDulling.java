@@ -1,12 +1,16 @@
 package lance5057.tDefense.core.materials.traits;
 
+import java.util.Optional;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import slimeknights.mantle.util.RecipeMatch.Match;
 import slimeknights.tconstruct.library.tools.ToolCore;
 import slimeknights.tconstruct.library.traits.AbstractTrait;
 import slimeknights.tconstruct.library.utils.ToolHelper;
@@ -20,7 +24,7 @@ public class TraitDulling extends AbstractTrait {
 	@Override
 	public void onBlock(ItemStack tool, EntityPlayer player,
 			LivingHurtEvent event) {
-		Entity src = event.getSource().getSourceOfDamage();
+		Entity src = event.getSource().getTrueSource();
 		if (src != null && src instanceof EntityLiving) {
 			EntityLivingBase liv = (EntityLivingBase) src;
 
@@ -36,5 +40,11 @@ public class TraitDulling extends AbstractTrait {
 				}
 			}
 		}
+	}
+
+	@Override
+	public Optional<Match> matches(NonNullList<ItemStack> arg0) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

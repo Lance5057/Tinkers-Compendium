@@ -5,6 +5,7 @@ import java.util.List;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 
 public class MetaItem extends Item 
 {
@@ -22,11 +23,11 @@ public class MetaItem extends Item
 	}
 	
 	@Override
-    public void getSubItems(Item itemIn, CreativeTabs tab, List<ItemStack> subItems)
+    public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> subItems)
     {
 		for(int i = 0; i < items.length; i++)
 		{
-			subItems.add(new ItemStack(itemIn, 1, i));
+			subItems.add(new ItemStack(this, 1, i));
 		}
 	}
 }

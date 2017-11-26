@@ -1,7 +1,11 @@
 package lance5057.tDefense.core.tools;
 
+import java.util.ArrayList;
+
 import com.google.common.eventbus.Subscribe;
 
+import lance5057.tDefense.Reference;
+import lance5057.tDefense.TinkersDefense;
 import lance5057.tDefense.armor.items.cloth.TinkersHood;
 import lance5057.tDefense.armor.items.cloth.TinkersRobe;
 import lance5057.tDefense.armor.items.cloth.TinkersShawl;
@@ -14,15 +18,20 @@ import lance5057.tDefense.core.tools.basic.Zweihander;
 import lance5057.tDefense.core.tools.baubles.Amulet;
 import lance5057.tDefense.core.tools.baubles.Ring;
 import lance5057.tDefense.core.tools.baubles.Sheathe;
+import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.registries.IForgeRegistry;
 import slimeknights.tconstruct.library.TinkerRegistry;
 import slimeknights.tconstruct.library.tools.ToolCore;
 
+@Mod.EventBusSubscriber(modid = Reference.MOD_ID)
 //@Pulse(id = TDTools.PulseId, description = "All the tools and everything related to it.")
 public class TDTools {
 
@@ -55,6 +64,8 @@ public class TDTools {
 	public static ToolCore sheathe;
 	public static ToolCore ring;
 	public static ToolCore amulet;
+	
+	static ArrayList<Item> itemList = new ArrayList<Item>();
 
 	// Tool Parts
 
@@ -71,7 +82,20 @@ public class TDTools {
 	// PRE-INITIALIZATION
 	@Subscribe
 	public void preInit(FMLPreInitializationEvent event) {
-		// register items
+		
+	}
+
+	private void regTools() {
+
+		
+
+		// TinkerRegistry.registerToolStationCrafting(roundshield);
+		// TinkerRegistry.registerToolForgeCrafting(heatershield);
+		// TinkerRegistry.registerToolForgeCrafting(zweihander);
+	}
+	
+	public void registerItems(final RegistryEvent.Register<Item> event)
+	{
 		roundshield = new RoundShield();
 		heatershield = new HeaterShield();
 		zweihander = new Zweihander();
@@ -86,46 +110,35 @@ public class TDTools {
 		sheathe = new Sheathe();
 		ring = new Ring();
 		amulet = new Amulet();
-
-		MinecraftForge.EVENT_BUS.register(events);
-
-		regTools();
-		registerModifiers();
-
-		// register blocks
-
-		// register entities
-
-		// proxy.preInit();
-	}
-
-	private void regTools() {
-
-		regTool(roundshield, "roundshield");
-		regTool(heatershield, "heatershield");
-		regTool(zweihander, "zweihander");
-		regTool(shears, "shears");
-		regTool(fishingRod, "fishingRod");
-
-		regTool(hood, "hood");
-		regTool(shawl, "shawl");
-		regTool(robe, "robe");
-		regTool(shoes, "shoes");
 		
-		regTool(sheathe, "sheathe");
-		regTool(ring, "ring");
-		regTool(amulet, "amulet");
+		regTool(roundshield, "roundshield", event);
+		regTool(heatershield, "heatershield", event);
+		regTool(zweihander, "zweihander", event);
+		regTool(shears, "shears", event);
+		regTool(fishingRod, "fishingRod", event);
 
-		// TinkerRegistry.registerToolStationCrafting(roundshield);
-		// TinkerRegistry.registerToolForgeCrafting(heatershield);
-		// TinkerRegistry.registerToolForgeCrafting(zweihander);
+		regTool(hood, "hood", event);
+		regTool(shawl, "shawl", event);
+		regTool(robe, "robe", event);
+		regTool(shoes, "shoes", event);
+		
+		regTool(sheathe, "sheathe", event);
+		regTool(ring, "ring", event);
+		regTool(amulet, "amulet", event);
+		
+//		final IForgeRegistry registry = event.getRegistry();
+//		for (Item i : itemList) {
+//			event.getRegistry().register(i);
+//		}
 	}
 
-	private void regTool(ToolCore tool, String name) {
+	private static void regTool(ToolCore tool, String name, RegistryEvent.Register<Item> event) {
 		tool.setRegistryName(new ResourceLocation("tinkersdefense:" + name));
+		event.getRegistry().register(tool);
 		TinkerRegistry.registerTool(tool);
-		GameRegistry.register(tool);
-	}
+		TinkersDefense.proxy.registerToolModel(tool);
+		itemList.add(tool);
+	} 
 
 	private void registerModifiers() {
 
@@ -134,6 +147,14 @@ public class TDTools {
 	// INITIALIZATION
 	@Subscribe
 	public void init(FMLInitializationEvent event) {
+		// register items
+				
+
+				// register blocks
+
+				// register entities
+
+				// proxy.preInit();
 		regToolBuilding();
 		regRecipies();
 
@@ -165,6 +186,11 @@ public class TDTools {
 	@Subscribe
 	public void postInit(FMLPostInitializationEvent event) {
 		// proxy.postInit();
-	}
+		
 
+		MinecraftForge.EVENT_BUS.register(events);
+
+		regTools();
+		registerModifiers();
+	}
 }

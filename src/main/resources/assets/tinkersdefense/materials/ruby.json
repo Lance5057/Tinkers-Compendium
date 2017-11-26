@@ -1,0 +1,10 @@
+{
+    "type": "metal_textured",
+    "parameters": {
+        "texture": "tinkersdefense:materials/facetedgem",
+        "color": "ff0061",
+        "shinyness": 0.6,
+        "brightness": 0.4,
+        "hueshift": 0.1
+    }
+}

@@ -161,7 +161,7 @@ public class StrapsContainer extends Container
 				}
 			}
 
-			if (itemstack1.stackSize == 0)
+			if (itemstack1.getItemDamage() == 0)
 			{
 				slot.putStack((ItemStack) null);
 			}
@@ -170,12 +170,12 @@ public class StrapsContainer extends Container
 				slot.onSlotChanged();
 			}
 
-			if (itemstack1.stackSize == itemstack.stackSize)
+			if (itemstack1.getItemDamage() == itemstack.getItemDamage())
 			{
 				return null;
 			}
 
-			slot.onPickupFromSlot(par1EntityPlayer, itemstack1);
+			slot.onTake(par1EntityPlayer, itemstack1);
 		}
 
 		return itemstack;

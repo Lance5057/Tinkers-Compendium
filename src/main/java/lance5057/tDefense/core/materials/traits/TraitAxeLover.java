@@ -1,5 +1,7 @@
 package lance5057.tDefense.core.materials.traits;
 
+import java.util.Optional;
+
 import lance5057.tDefense.util.TDToolHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
@@ -9,8 +11,10 @@ import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemAxe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import slimeknights.mantle.util.RecipeMatch.Match;
 import slimeknights.tconstruct.library.traits.AbstractTrait;
 import slimeknights.tconstruct.library.utils.ToolHelper;
 import slimeknights.tconstruct.tools.tools.Hatchet;
@@ -26,7 +30,7 @@ public class TraitAxeLover extends AbstractTrait {
 	@Override
 	public void onBlock(ItemStack tool, EntityPlayer player,
 			LivingHurtEvent event) {
-		Entity src = event.getSource().getSourceOfDamage();
+		Entity src = event.getSource().getTrueSource();
 		if (src != null && src instanceof EntityLiving) {
 			EntityLivingBase liv = (EntityLivingBase) src;
 
@@ -43,5 +47,11 @@ public class TraitAxeLover extends AbstractTrait {
 				}
 			}
 		}
+	}
+
+	@Override
+	public Optional<Match> matches(NonNullList<ItemStack> arg0) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

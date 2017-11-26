@@ -29,16 +29,16 @@ public class ItemStraps extends ItemArmor
 	}
    
     	@Override
-	public ActionResult<ItemStack> onItemRightClick(ItemStack itemStack, World world, EntityPlayer player, EnumHand hand)
+	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
 	{
-		if (!world.isRemote)
+		if (!worldIn.isRemote)
 		{
 			// If player not sneaking, open the inventory gui
-			if (!player.isSneaking()) {
-				player.openGui(TinkersDefense.instance, TinkersDefense.GUI_STRAPS_INV, world, 0, 0, 0);
+			if (!playerIn.isSneaking()) {
+				playerIn.openGui(TinkersDefense.instance, TinkersDefense.GUI_STRAPS_INV, worldIn, 0, 0, 0);
 			}
 		}
 		
-		return new ActionResult(EnumActionResult.PASS, itemStack);
+		return new ActionResult(EnumActionResult.PASS, playerIn.getHeldItem(handIn));
 	}
 }

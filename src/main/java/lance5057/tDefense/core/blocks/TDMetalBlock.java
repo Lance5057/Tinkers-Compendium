@@ -13,6 +13,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.NonNullList;
 
 public class TDMetalBlock extends Block {
 	public static final PropertyEnum METAL = PropertyEnum.create("metal", TDMetalBlock.EnumMetal.class);
@@ -48,10 +49,10 @@ public class TDMetalBlock extends Block {
 	}
 
 	@Override
-	public void getSubBlocks(Item itemIn, CreativeTabs tab, List list) {
+	public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> tab) {
 		EnumMetal[] all = EnumMetal.values();
 		for (EnumMetal block : all) {
-			list.add(new ItemStack(itemIn, 1, block.getID()));
+			tab.add(new ItemStack(this, 1, block.getID()));
 		}
 	}
 

@@ -23,7 +23,7 @@ public class XmasBase extends ModuleBase {
 	public void preInit(FMLPreInitializationEvent e) {
 		// TODO Auto-generated method stub
 		items.preInit(e);
-		EntityRegistry.registerModEntity(GumDropSlime.class, "gumdropslime", 0,
+		EntityRegistry.registerModEntity(null, GumDropSlime.class, "gumdropslime", 0,
 				TinkersDefense.instance, 64, 5, true, 0x963430, 0xDDDDDD);
 		//LootTableList.register(GumDropSlime.LOOT_TABLE);
 	}

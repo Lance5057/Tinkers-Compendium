@@ -49,7 +49,7 @@ public class ItemStrapsInv implements IInventory {
 			// Just double-checking that the saved slot index is within our
 			// inventory array bounds
 			if (slot >= 0 && slot < getSizeInventory()) {
-				inventory[slot] = ItemStack.loadItemStackFromNBT(item);
+				inventory[slot] = new ItemStack(item);
 			}
 		}
 	}
@@ -111,7 +111,7 @@ public class ItemStrapsInv implements IInventory {
 	public ItemStack decrStackSize(int index, int count) {
 		ItemStack stack = getStackInSlot(index);
 		if (stack != null) {
-			if (stack.stackSize > count) {
+			if (stack.getCount() > count) {
 				stack = stack.splitStack(count);
 				// Don't forget this line or your inventory will not be saved!
 				markDirty();
@@ -135,8 +135,8 @@ public class ItemStrapsInv implements IInventory {
 	public void setInventorySlotContents(int index, ItemStack stack) {
 		inventory[index] = stack;
 
-		if (stack != null && stack.stackSize > getInventoryStackLimit()) {
-			stack.stackSize = getInventoryStackLimit();
+		if (stack != null && stack.getCount() > getInventoryStackLimit()) {
+			stack.setCount(getInventoryStackLimit());
 		}
 
 		// Don't forget this line or your inventory will not be saved!
@@ -151,7 +151,7 @@ public class ItemStrapsInv implements IInventory {
 	@Override
 	public void markDirty() {
 		for (int i = 0; i < getSizeInventory(); ++i) {
-			if (getStackInSlot(i) != null && getStackInSlot(i).stackSize == 0) {
+			if (getStackInSlot(i) != null && getStackInSlot(i).getCount() == 0) {
 				inventory[i] = null;
 			}
 		}
@@ -202,5 +202,11 @@ public class ItemStrapsInv implements IInventory {
 	public void clear() {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public boolean isEmpty() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

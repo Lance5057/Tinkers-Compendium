@@ -31,8 +31,8 @@ public class TDToolHelper {
 			{
 				ItemTool i = (ItemTool) item.getItem();
 				
-				if(i.getToolMaterial() != i.getToolMaterial().WOOD ||
-						i.getToolMaterial() != i.getToolMaterial().STONE)
+				if(i.getToolMaterialName() != "WOOD" ||
+						i.getToolMaterialName() != "STONE")
 				{
 					
 				}

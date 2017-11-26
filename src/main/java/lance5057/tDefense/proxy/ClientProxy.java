@@ -12,13 +12,16 @@ import lance5057.tDefense.core.renderers.BaubleRenderer;
 import lance5057.tDefense.core.renderers.SheatheModel;
 import lance5057.tDefense.core.tools.TDTools;
 import lance5057.tDefense.holiday.HolidayClientProxy;
+import lance5057.tDefense.renderers.deserializers.AlphaColorTextureDeserializer;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemMeshDefinition;
+import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.client.renderer.entity.RenderPlayer;
+import net.minecraft.client.resources.IReloadableResourceManager;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -26,9 +29,12 @@ import net.minecraftforge.client.ClientCommandHandler;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fluids.Fluid;
 import slimeknights.tconstruct.common.ModelRegisterUtil;
-import slimeknights.tconstruct.library.TinkerRegistry;
 import slimeknights.tconstruct.library.TinkerRegistryClient;
 import slimeknights.tconstruct.library.client.ToolBuildGuiInfo;
+import slimeknights.tconstruct.library.client.material.MaterialRenderInfoLoader;
+import slimeknights.tconstruct.library.materials.Material;
+import slimeknights.tconstruct.library.tools.ToolCore;
+import slimeknights.tconstruct.library.tools.ToolPart;
 
 //import lance5057.tDefense.core.renderer.TestSkinChanger;
 
@@ -74,8 +80,8 @@ public class ClientProxy extends CommonProxy {
 	@Override
 	public void preInit() {
 		ClientCommandHandler.instance.registerCommand(new TD_Commands());
-		registerToolRenderers();
-		registerPartModels();
+		
+		MaterialRenderInfoLoader.addRenderInfo("alpha_color", AlphaColorTextureDeserializer.class);
 
 		coreProxy.preInit();
 	}
@@ -89,7 +95,7 @@ public class ClientProxy extends CommonProxy {
 
 		render = skinMap.get("slim");
 		render.addLayer(new BaubleRenderer());
-
+		
 		createToolGuis();
 		setToolGuis();
 		registerToolGuis();
@@ -99,22 +105,45 @@ public class ClientProxy extends CommonProxy {
 		// armorProxy.init();
 		holiProxy.Init();
 	}
+	
+	@Override
+	public void postInit()
+	{
+		//IReloadableResourceManager resourceManager = (IReloadableResourceManager) mc.getResourceManager();
+	    //resourceManager.registerReloadListener(TDMaterialRenderInfoLoader.INSTANCE);
+	}
+	
+	@Override
+	public void registerFluidModels(Fluid fluid) {
+		if (fluid == null) return;
+		Block block = fluid.getBlock();
+		if (block != null) {
+			Item item = Item.getItemFromBlock(block);
+			FluidStateMapper mapper = new FluidStateMapper(fluid);
+			if (item != null) {
+				ModelBakery.registerItemVariants(item);
+				ModelLoader.setCustomMeshDefinition(item, mapper);
+			}
+			ModelLoader.setCustomStateMapper(block, mapper);
+		}
+}
 
-	public void registerToolRenderers() {
-		ModelRegisterUtil.registerToolModel(TDTools.roundshield);
-		ModelRegisterUtil.registerToolModel(TDTools.heatershield);
-		ModelRegisterUtil.registerToolModel(TDTools.zweihander);
-		ModelRegisterUtil.registerToolModel(TDTools.shears);
-		ModelRegisterUtil.registerToolModel(TDTools.fishingRod);
-
-		ModelRegisterUtil.registerToolModel(TDTools.hood);
-		ModelRegisterUtil.registerToolModel(TDTools.shawl);
-		ModelRegisterUtil.registerToolModel(TDTools.robe);
-		ModelRegisterUtil.registerToolModel(TDTools.shoes);
-
-		ModelRegisterUtil.registerToolModel(TDTools.sheathe);
-		ModelRegisterUtil.registerToolModel(TDTools.ring);
-		ModelRegisterUtil.registerToolModel(TDTools.amulet);
+	@Override
+	public void registerToolModel(ToolCore tool)
+	{
+		ModelRegisterUtil.registerToolModel(tool);
+	}
+	
+	@Override
+	public void registerPartModel(ToolPart part)
+	{
+		ModelRegisterUtil.registerPartModel(part);
+	}
+	
+	@Override
+	public void registerMatColor(Material mat, int color)
+	{
+		mat.setRenderInfo(color);
 	}
 
 	public void createToolGuis() {
@@ -281,27 +310,6 @@ public class ClientProxy extends CommonProxy {
 	public void registerItemRenderer(Item item, int meta, String id) {
 		ModelLoader.setCustomModelResourceLocation(item, meta,
 				new ModelResourceLocation(Reference.MOD_ID + ":" + id, "inventory"));
-	}
-
-	@Override
-	public void registerFluidModels(Fluid fluid) {
-		if (fluid == null) {
-			return;
-		}
-
-		Block block = fluid.getBlock();
-		if (block != null) {
-			Item item = Item.getItemFromBlock(block);
-			FluidStateMapper mapper = new FluidStateMapper(fluid);
-
-			// item-model
-			if (item != null) {
-				ModelLoader.registerItemVariants(item);
-				ModelLoader.setCustomMeshDefinition(item, mapper);
-			}
-			// block-model
-			ModelLoader.setCustomStateMapper(block, mapper);
-		}
 	}
 
 	@Override

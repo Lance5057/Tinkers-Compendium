@@ -1,5 +1,7 @@
 package lance5057.tDefense.core.materials.traits;
 
+import java.util.Optional;
+
 import net.minecraft.block.BlockFence;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -11,10 +13,12 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import slimeknights.mantle.util.RecipeMatch.Match;
 import slimeknights.tconstruct.library.traits.AbstractTrait;
 
 public class TraitDogToy extends AbstractTrait {
@@ -27,7 +31,7 @@ public class TraitDogToy extends AbstractTrait {
 	@Override
 	public void onBlock(ItemStack tool, EntityPlayer player, LivingHurtEvent event) {
 
-		if (event.getSource().getSourceOfDamage() instanceof EntityLiving || event.getSource().getEntity() instanceof EntityLiving ) {
+		if (event.getSource().getTrueSource() instanceof EntityLiving || event.getSource().getImmediateSource() instanceof EntityLiving ) {
 			BlockPos pos = new BlockPos(player.posX + player.world.rand.nextInt(10) - 5, player.posY,
 					player.posZ + player.world.rand.nextInt(10) - 5);
 			IBlockState iblockstate = player.world.getBlockState(pos);
@@ -57,10 +61,10 @@ public class TraitDogToy extends AbstractTrait {
 			entWolf.onInitialSpawn(player.world.getDifficultyForLocation(new BlockPos(entWolf)),
 					(IEntityLivingData) null);
 			
-			if(event.getSource().getSourceOfDamage() instanceof EntityLiving)
-				entWolf.setAttackTarget((EntityLivingBase) event.getSource().getSourceOfDamage());
+			if(event.getSource().getTrueSource() instanceof EntityLiving)
+				entWolf.setAttackTarget((EntityLivingBase) event.getSource().getTrueSource());
 			else
-				entWolf.setAttackTarget((EntityLivingBase) event.getSource().getEntity());
+				entWolf.setAttackTarget((EntityLivingBase) event.getSource().getImmediateSource());
 			
 			entWolf.setAngry(true);
 			entWolf.setCollarColor(EnumDyeColor.BLACK);
@@ -73,5 +77,11 @@ public class TraitDogToy extends AbstractTrait {
 
 			// applyItemEntityDataToEntity(player.world, player, null, entity);
 		}
+	}
+
+	@Override
+	public Optional<Match> matches(NonNullList<ItemStack> arg0) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
