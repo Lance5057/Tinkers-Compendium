@@ -85,6 +85,9 @@ public class TD_Config
 		public static boolean enableHarvestCraftMaterials= true;
 
 		@Config.RequiresMcRestart()
+		public static boolean enableCornucopiaMaterials= true;
+		
+		@Config.RequiresMcRestart()
 		public static boolean enableAeonsteel= true;
 
 		@Config.RequiresMcRestart()
