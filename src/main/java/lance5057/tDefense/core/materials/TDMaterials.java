@@ -197,11 +197,11 @@ public class TDMaterials {
 	public static TDOreDictItem grain;
 	public static TDOreDictItem gem;
 
-	public static final AbstractTrait axelover = new TraitAxeLover();
-	public static final AbstractTrait dulling = new TraitDulling();
-	public static final AbstractTrait firestarter = new TraitFirestarter();
-	public static final AbstractTrait barbed = new TraitBarbed();
-	public static final AbstractTrait dogtoy = new TraitDogToy();
+//	public static final AbstractTrait axelover = new TraitAxeLover();
+//	public static final AbstractTrait dulling = new TraitDulling();
+//	public static final AbstractTrait firestarter = new TraitFirestarter();
+//	public static final AbstractTrait barbed = new TraitBarbed();
+	//public static final AbstractTrait dogtoy = new TraitDogToy();
 
 	static ArrayList<Item> itemList = new ArrayList<Item>();
 	static ArrayList<Block> blockList = new ArrayList<Block>();
@@ -285,21 +285,21 @@ public class TDMaterials {
 		// TinkerRegistry.addMaterialStats(Material.UNKNOWN,
 		// new ShieldMaterialStats(35, 33));
 		TinkerRegistry.addMaterialStats(TinkerMaterials.wood, new ShieldMaterialStats(35, 33));
-		TinkerMaterials.wood.addTrait(axelover, SHIELD);
+		//TinkerMaterials.wood.addTrait(axelover, SHIELD);
 
 		TinkerRegistry.addMaterialStats(TinkerMaterials.stone, new ShieldMaterialStats(120, 33));
 		// TinkerRegistry.addMaterialTrait(TinkerMaterials.stone, dulling,
 		// SHIELD);
-		TinkerMaterials.stone.addTrait(dulling, SHIELD);
+		//TinkerMaterials.stone.addTrait(dulling, SHIELD);
 
 		TinkerRegistry.addMaterialStats(TinkerMaterials.flint, new ShieldMaterialStats(150, 33));
-		TinkerRegistry.addMaterialTrait(TinkerMaterials.flint, firestarter, SHIELD);
+		//TinkerRegistry.addMaterialTrait(TinkerMaterials.flint, firestarter, SHIELD);
 
 		TinkerRegistry.addMaterialStats(TinkerMaterials.cactus, new ShieldMaterialStats(210, 33));
-		TinkerRegistry.addMaterialTrait(TinkerMaterials.cactus, barbed, SHIELD);
+		//TinkerRegistry.addMaterialTrait(TinkerMaterials.cactus, barbed, SHIELD);
 
 		TinkerRegistry.addMaterialStats(TinkerMaterials.bone, new ShieldMaterialStats(200, 33));
-		TinkerRegistry.addMaterialTrait(TinkerMaterials.bone, dogtoy, SHIELD);
+		//TinkerRegistry.addMaterialTrait(TinkerMaterials.bone, dogtoy, SHIELD);
 
 		TinkerRegistry.addMaterialStats(TinkerMaterials.obsidian, new ShieldMaterialStats(139, 33));
 		TinkerRegistry.addMaterialStats(TinkerMaterials.prismarine, new ShieldMaterialStats(430, 33));
