@@ -20,6 +20,8 @@ import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMapperBase;
+import net.minecraft.client.renderer.color.IItemColor;
+import net.minecraft.client.renderer.color.ItemColors;
 import net.minecraft.client.renderer.entity.RenderPlayer;
 import net.minecraft.client.resources.IReloadableResourceManager;
 import net.minecraft.item.Item;
@@ -317,6 +319,14 @@ public class ClientProxy extends CommonProxy {
 		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(block), meta,
 				new ModelResourceLocation(Reference.MOD_ID + ":" + file, "inventory"));
 	}
+	
+	@Override
+	public void registerItemColorHandler(IItemColor c, Item i)
+	{
+		ItemColors itemcolors = Minecraft.getMinecraft().getItemColors();
+		itemcolors.registerItemColorHandler(c, i);
+	}
+
 
 	public static class FluidStateMapper extends StateMapperBase implements ItemMeshDefinition {
 

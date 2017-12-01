@@ -315,6 +315,7 @@ public class TinkersDefense {
 		// {
 		// ArmorAddon.postInit(e);
 		// }
+		mats.postInit(e);
 		parts.postInit(e);
 		//armor.postInit(e);
 		tools.postInit(e);
