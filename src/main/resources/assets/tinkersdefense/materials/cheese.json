@@ -1,10 +1,6 @@
 {
-    "type": "metal_textured",
+    "type": "block",
     "parameters": {
-        "texture": "minecraft:blocks/sponge",
-        "color": "ffff88",
-        "shinyness": 1.0,
-        "brightness": 0.0,
-        "hueshift": 0.0
+        "texture": "tinkersdefense:materials/cheese"
     }
 }

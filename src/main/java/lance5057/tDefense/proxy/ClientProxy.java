@@ -6,6 +6,7 @@ import javax.annotation.Nonnull;
 
 import lance5057.tDefense.Reference;
 import lance5057.tDefense.TD_Commands;
+import lance5057.tDefense.TinkersDefense;
 import lance5057.tDefense.core.CoreClientProxy;
 import lance5057.tDefense.core.parts.TDParts;
 import lance5057.tDefense.core.renderers.BaubleRenderer;
@@ -23,13 +24,14 @@ import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.client.renderer.color.ItemColors;
 import net.minecraft.client.renderer.entity.RenderPlayer;
-import net.minecraft.client.resources.IReloadableResourceManager;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.ClientCommandHandler;
+import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import slimeknights.tconstruct.common.ModelRegisterUtil;
 import slimeknights.tconstruct.library.TinkerRegistryClient;
 import slimeknights.tconstruct.library.client.ToolBuildGuiInfo;
@@ -82,7 +84,7 @@ public class ClientProxy extends CommonProxy {
 	@Override
 	public void preInit() {
 		ClientCommandHandler.instance.registerCommand(new TD_Commands());
-		
+
 		MaterialRenderInfoLoader.addRenderInfo("alpha_color", AlphaColorTextureDeserializer.class);
 
 		coreProxy.preInit();
@@ -97,7 +99,7 @@ public class ClientProxy extends CommonProxy {
 
 		render = skinMap.get("slim");
 		render.addLayer(new BaubleRenderer());
-		
+
 		createToolGuis();
 		setToolGuis();
 		registerToolGuis();
@@ -107,17 +109,18 @@ public class ClientProxy extends CommonProxy {
 		// armorProxy.init();
 		holiProxy.Init();
 	}
-	
+
 	@Override
-	public void postInit()
-	{
-		//IReloadableResourceManager resourceManager = (IReloadableResourceManager) mc.getResourceManager();
-	    //resourceManager.registerReloadListener(TDMaterialRenderInfoLoader.INSTANCE);
+	public void postInit() {
+		// IReloadableResourceManager resourceManager =
+		// (IReloadableResourceManager) mc.getResourceManager();
+		// resourceManager.registerReloadListener(TDMaterialRenderInfoLoader.INSTANCE);
 	}
-	
+
 	@Override
 	public void registerFluidModels(Fluid fluid) {
-		if (fluid == null) return;
+		if (fluid == null)
+			return;
 		Block block = fluid.getBlock();
 		if (block != null) {
 			Item item = Item.getItemFromBlock(block);
@@ -128,23 +131,20 @@ public class ClientProxy extends CommonProxy {
 			}
 			ModelLoader.setCustomStateMapper(block, mapper);
 		}
-}
+	}
 
 	@Override
-	public void registerToolModel(ToolCore tool)
-	{
+	public void registerToolModel(ToolCore tool) {
 		ModelRegisterUtil.registerToolModel(tool);
 	}
-	
+
 	@Override
-	public void registerPartModel(ToolPart part)
-	{
+	public void registerPartModel(ToolPart part) {
 		ModelRegisterUtil.registerPartModel(part);
 	}
-	
+
 	@Override
-	public void registerMatColor(Material mat, int color)
-	{
+	public void registerMatColor(Material mat, int color) {
 		mat.setRenderInfo(color);
 	}
 
@@ -297,7 +297,7 @@ public class ClientProxy extends CommonProxy {
 		ringGUI.addSlotPosition(34, 15);
 		ringGUI.addSlotPosition(34, 33);
 		ringGUI.addSlotPosition(34, 51);
-		
+
 		amuletGUI.positions.clear();
 		amuletGUI.addSlotPosition(34, 15);
 		amuletGUI.addSlotPosition(34, 33);
@@ -307,6 +307,8 @@ public class ClientProxy extends CommonProxy {
 	void createToolModels() {
 		sheathe = new SheatheModel();
 	}
+
+	
 
 	@Override
 	public void registerItemRenderer(Item item, int meta, String id) {
@@ -319,14 +321,12 @@ public class ClientProxy extends CommonProxy {
 		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(block), meta,
 				new ModelResourceLocation(Reference.MOD_ID + ":" + file, "inventory"));
 	}
-	
+
 	@Override
-	public void registerItemColorHandler(IItemColor c, Item i)
-	{
+	public void registerItemColorHandler(IItemColor c, Item i) {
 		ItemColors itemcolors = Minecraft.getMinecraft().getItemColors();
 		itemcolors.registerItemColorHandler(c, i);
 	}
-
 
 	public static class FluidStateMapper extends StateMapperBase implements ItemMeshDefinition {
 

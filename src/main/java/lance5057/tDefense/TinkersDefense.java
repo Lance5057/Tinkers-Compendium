@@ -8,8 +8,16 @@ import lance5057.tDefense.holiday.HolidayBase;
 import lance5057.tDefense.proxy.CommonProxy;
 import lance5057.tDefense.util.ModuleBase;
 import lance5057.tDefense.util.RegEvents;
-import net.minecraft.block.Block;
-import net.minecraftforge.fluids.Fluid;
+import net.minecraft.world.storage.loot.LootEntry;
+import net.minecraft.world.storage.loot.LootEntryItem;
+import net.minecraft.world.storage.loot.LootTable;
+import net.minecraft.world.storage.loot.RandomValueRange;
+import net.minecraft.world.storage.loot.conditions.LootCondition;
+import net.minecraft.world.storage.loot.conditions.RandomChance;
+import net.minecraft.world.storage.loot.functions.LootFunction;
+import net.minecraft.world.storage.loot.functions.SetMetadata;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -17,6 +25,7 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import scala.reflect.internal.Trees.Modifiers;
@@ -36,8 +45,8 @@ public class TinkersDefense {
 	
 	PacketHandler phandler = new PacketHandler();
 
-	HolidayBase holiday;
-	ModuleBase core;
+	public static HolidayBase holiday;
+	public static ModuleBase core; 
 	//ModuleBase armor;
 
 	// public static TDEventHandler TDevents;
@@ -270,6 +279,7 @@ public class TinkersDefense {
 		// TDIntegration.Integrate();
 		// mods.preInit();
 		// proxy.registerRenderers();
+		
 
 		core.preInit(e);
 		//armor.preInit(e);
@@ -320,5 +330,4 @@ public class TinkersDefense {
 		//armor.postInit(e);
 		tools.postInit(e);
 	}
-
 }

@@ -40,8 +40,10 @@ public class TDOreDictItem extends Item {
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
-		for (int i = 0; i < mats.size(); i++) {
-			items.add(new ItemStack(this, 1, i));
+		if (this.isInCreativeTab(tab)) {
+			for (int i = 0; i < mats.size(); i++) {
+				items.add(new ItemStack(this, 1, i));
+			}
 		}
 	}
 
@@ -52,6 +54,15 @@ public class TDOreDictItem extends Item {
 			}
 		}
 		return null;
+	}
+	
+	public int getIDbyName(String name) {
+		for (int i = 0; i < mats.size(); i++) {
+			if (mats.get(i).equals(name)) {
+				return i;
+			}
+		}
+		return 0;
 	}
 
 	public int getColor(ItemStack i) {
