@@ -2,13 +2,11 @@ package lance5057.tDefense.proxy;
 
 import lance5057.tDefense.Reference;
 import lance5057.tDefense.TinkersDefense;
-import lance5057.tDefense.armor.items.straps.ItemStrapsInv;
-import lance5057.tDefense.armor.items.straps.StrapsContainer;
-import lance5057.tDefense.armor.items.straps.StrapsGui;
+import lance5057.tDefense.core.tools.armor.straps.ItemStrapsInv;
+import lance5057.tDefense.core.tools.armor.straps.StrapsContainer;
+import lance5057.tDefense.core.tools.armor.straps.StrapsGui;
 import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.color.IItemColor;
-import net.minecraft.client.renderer.color.ItemColors;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.util.EnumHand;
@@ -69,7 +67,7 @@ public class CommonProxy implements IGuiHandler {
 		if (ID == TinkersDefense.GUI_STRAPS_INV)
 			return new StrapsContainer(player, player.inventory,
 					new ItemStrapsInv(player.getHeldItem(EnumHand.MAIN_HAND)));
-
+ 
 		return null;
 	}
 

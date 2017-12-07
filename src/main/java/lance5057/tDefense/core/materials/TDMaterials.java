@@ -62,6 +62,11 @@ public class TDMaterials
 	// public static final List<Material> materials = Lists.newArrayList();
 
 	String SHIELD = ShieldMaterialStats.TYPE;
+	String HELM = HelmMaterialStats.TYPE;
+	String CHEST = ChestMaterialStats.TYPE;
+	String LEGS = LegsMaterialStats.TYPE;
+	String BOOTS = BootsMaterialStats.TYPE;
+	String BAUBLE = BaubleMaterialStats.TYPE;
 
 	public static final Map<String, Material>				materials				= new THashMap<>();
 	public static final Map<String, MaterialIntegration>	materialIntegrations	= new THashMap<>();
@@ -345,6 +350,11 @@ public class TDMaterials
 		ingot = new TDOreDictItem("ingot", getMatNames(ingotMaster), getMatColors(ingotMaster));
 
 		Material.UNKNOWN.addStats(new ShieldMaterialStats(35, 33));
+		Material.UNKNOWN.addStats(new HelmMaterialStats(35, 1, 0));
+		Material.UNKNOWN.addStats(new ChestMaterialStats(35, 1, 0));
+		Material.UNKNOWN.addStats(new LegsMaterialStats(35, 1, 0));
+		Material.UNKNOWN.addStats(new BootsMaterialStats(35, 1, 0));
+		Material.UNKNOWN.addStats(new BaubleMaterialStats(35));
 
 		// TinkerRegistry.addMaterialStats(Material.UNKNOWN,
 		// new ShieldMaterialStats(35, 33));
@@ -352,6 +362,7 @@ public class TDMaterials
 		// TinkerRegistry.addMaterialStats(Material.UNKNOWN,
 		// new ShieldMaterialStats(35, 33));
 		TinkerRegistry.addMaterialStats(TinkerMaterials.wood, new ShieldMaterialStats(35, 33));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.wood, new HelmMaterialStats(35, 0, 0));
 		// TinkerMaterials.wood.addTrait(axelover, SHIELD);
 
 		TinkerRegistry.addMaterialStats(TinkerMaterials.stone, new ShieldMaterialStats(120, 33));
@@ -417,7 +428,8 @@ public class TDMaterials
 
 		for (TDMatHelper m : materials_master)
 		{
-			if (m.createMat)
+			Material test = TinkerRegistry.getMaterial(m.name);
+			if (m.createMat &&  test.getIdentifier() == "unknown" && !TinkersDefense.config.materials.isBlacklisted(m.name))
 				createMaterial(m);
 		}
 
@@ -632,11 +644,7 @@ public class TDMaterials
 	@Subscribe
 	public void postInit(FMLPostInitializationEvent event)
 	{
-		TinkersDefense.proxy.registerItemColorHandler(new TDOreDictItem.ColorHandler(), ingot);
-		TinkersDefense.proxy.registerItemColorHandler(new TDOreDictItem.ColorHandler(), gem);
-		TinkersDefense.proxy.registerItemColorHandler(new TDOreDictItem.ColorHandler(), dust);
-		TinkersDefense.proxy.registerItemColorHandler(new TDOreDictItem.ColorHandler(), nugget);
-		TinkersDefense.proxy.registerItemColorHandler(new TDOreDictItem.ColorHandler(), grain);
+		
 	}
 
 	@SideOnly(Side.CLIENT)

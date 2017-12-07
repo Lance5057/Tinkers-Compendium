@@ -1,4 +1,4 @@
-package lance5057.tDefense.armor.items.straps;
+package lance5057.tDefense.core.tools.armor.straps;
 
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;

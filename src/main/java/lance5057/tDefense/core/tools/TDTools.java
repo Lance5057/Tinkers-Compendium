@@ -6,10 +6,11 @@ import com.google.common.eventbus.Subscribe;
 
 import lance5057.tDefense.Reference;
 import lance5057.tDefense.TinkersDefense;
-import lance5057.tDefense.armor.items.cloth.TinkersHood;
-import lance5057.tDefense.armor.items.cloth.TinkersRobe;
-import lance5057.tDefense.armor.items.cloth.TinkersShawl;
-import lance5057.tDefense.armor.items.cloth.TinkersShoes;
+import lance5057.tDefense.core.tools.armor.cloth.TinkersHood;
+import lance5057.tDefense.core.tools.armor.cloth.TinkersRobe;
+import lance5057.tDefense.core.tools.armor.cloth.TinkersShawl;
+import lance5057.tDefense.core.tools.armor.cloth.TinkersShoes;
+import lance5057.tDefense.core.tools.armor.straps.ItemStraps;
 import lance5057.tDefense.core.tools.basic.FishingRod;
 import lance5057.tDefense.core.tools.basic.HeaterShield;
 import lance5057.tDefense.core.tools.basic.RoundShield;
@@ -26,7 +27,6 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistry;
 import slimeknights.tconstruct.library.TinkerRegistry;
 import slimeknights.tconstruct.library.tools.ToolCore;
@@ -45,6 +45,8 @@ public class TDTools {
 	public static ToolCore fishingRod;
 
 	//armor
+	public static ItemStraps straps;
+	
 	public static ToolCore hood;
 	public static ToolCore shawl;
 	public static ToolCore robe;
@@ -82,7 +84,8 @@ public class TDTools {
 	// PRE-INITIALIZATION
 	@Subscribe
 	public void preInit(FMLPreInitializationEvent event) {
-		
+		straps = new ItemStraps();
+		itemList.add(straps);
 	}
 
 	private void regTools() {
@@ -96,12 +99,13 @@ public class TDTools {
 	
 	public void registerItems(final RegistryEvent.Register<Item> event)
 	{
+		
 		roundshield = new RoundShield();
 		heatershield = new HeaterShield();
 		zweihander = new Zweihander();
 		shears = new Shears();
 		fishingRod = new FishingRod();
-
+ 
 		hood = new TinkersHood();
 		shawl = new TinkersShawl();
 		robe = new TinkersRobe();
@@ -126,10 +130,10 @@ public class TDTools {
 		regTool(ring, "ring", event);
 		regTool(amulet, "amulet", event);
 		
-//		final IForgeRegistry registry = event.getRegistry();
-//		for (Item i : itemList) {
-//			event.getRegistry().register(i);
-//		}
+		final IForgeRegistry registry = event.getRegistry();
+		for (Item i : itemList) {
+			registry.register(i);
+		}
 	}
 
 	private static void regTool(ToolCore tool, String name, RegistryEvent.Register<Item> event) {

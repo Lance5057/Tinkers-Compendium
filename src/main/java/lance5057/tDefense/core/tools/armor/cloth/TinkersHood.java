@@ -1,22 +1,22 @@
-package lance5057.tDefense.armor.items.cloth;
+package lance5057.tDefense.core.tools.armor.cloth;
 
-import lance5057.tDefense.armor.ArmorCore;
 import lance5057.tDefense.core.parts.TDParts;
+import lance5057.tDefense.core.tools.bases.ArmorCore;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class TinkersRobe extends ArmorCore
+public class TinkersHood extends ArmorCore
 {
 	int	induceDamage	= 0;
 	
 
-	public TinkersRobe()
+	public TinkersHood()
 	{
 	    super(TDParts.ClothMat,
 	    		TDParts.ClothMat,
-	    		TDParts.ClaspMat);
-		setUnlocalizedName("tinkerrobe");
+	    		TDParts.RivetMat);
+		setUnlocalizedName("tinkerhood");
 	}
 
 	@Override

@@ -4,15 +4,17 @@ import java.util.Map;
 
 import javax.annotation.Nonnull;
 
+import com.google.common.collect.ImmutableList;
+
 import lance5057.tDefense.Reference;
 import lance5057.tDefense.TD_Commands;
 import lance5057.tDefense.TinkersDefense;
-import lance5057.tDefense.core.CoreClientProxy;
+import lance5057.tDefense.core.items.TDOreDictItem;
+import lance5057.tDefense.core.materials.TDMaterials;
 import lance5057.tDefense.core.parts.TDParts;
 import lance5057.tDefense.core.renderers.BaubleRenderer;
 import lance5057.tDefense.core.renderers.SheatheModel;
 import lance5057.tDefense.core.tools.TDTools;
-import lance5057.tDefense.holiday.HolidayClientProxy;
 import lance5057.tDefense.renderers.deserializers.AlphaColorTextureDeserializer;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -28,11 +30,10 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.ClientCommandHandler;
-import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import slimeknights.tconstruct.common.ModelRegisterUtil;
+import slimeknights.tconstruct.library.TinkerRegistry;
 import slimeknights.tconstruct.library.TinkerRegistryClient;
 import slimeknights.tconstruct.library.client.ToolBuildGuiInfo;
 import slimeknights.tconstruct.library.client.material.MaterialRenderInfoLoader;
@@ -77,17 +78,12 @@ public class ClientProxy extends CommonProxy {
 
 	public static SheatheModel sheathe;
 
-	public static CoreClientProxy coreProxy = new CoreClientProxy();
-	public static HolidayClientProxy holiProxy = new HolidayClientProxy();
-	// public static ArmorClientProxy armorProxy = new ArmorClientProxy();
-
 	@Override
 	public void preInit() {
 		ClientCommandHandler.instance.registerCommand(new TD_Commands());
 
 		MaterialRenderInfoLoader.addRenderInfo("alpha_color", AlphaColorTextureDeserializer.class);
 
-		coreProxy.preInit();
 	}
 
 	@Override
@@ -104,17 +100,17 @@ public class ClientProxy extends CommonProxy {
 		setToolGuis();
 		registerToolGuis();
 		createToolModels();
-
-		coreProxy.init();
-		// armorProxy.init();
-		holiProxy.Init();
 	}
 
 	@Override
 	public void postInit() {
-		// IReloadableResourceManager resourceManager =
-		// (IReloadableResourceManager) mc.getResourceManager();
-		// resourceManager.registerReloadListener(TDMaterialRenderInfoLoader.INSTANCE);
+		registerItemColorHandler(new TDOreDictItem.ColorHandler(), TDMaterials.ingot);
+		registerItemColorHandler(new TDOreDictItem.ColorHandler(), TDMaterials.gem);
+		registerItemColorHandler(new TDOreDictItem.ColorHandler(), TDMaterials.dust);
+		registerItemColorHandler(new TDOreDictItem.ColorHandler(), TDMaterials.nugget);
+		registerItemColorHandler(new TDOreDictItem.ColorHandler(), TDMaterials.grain);
+		
+		TinkersDefense.tab.setDisplayIcon(TDTools.heatershield.buildItemForRendering(ImmutableList.of(TinkerRegistry.getMaterial("iron"),TinkerRegistry.getMaterial("cobalt"),TinkerRegistry.getMaterial("cobalt"),TinkerRegistry.getMaterial("iron"))));
 	}
 
 	@Override

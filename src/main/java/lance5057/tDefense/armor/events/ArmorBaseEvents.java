@@ -2,13 +2,11 @@ package lance5057.tDefense.armor.events;
 
 import com.google.common.collect.ImmutableList;
 
-import lance5057.tDefense.armor.ArmorCore;
+import lance5057.tDefense.core.tools.bases.ArmorCore;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.eventhandler.Event;
-import slimeknights.tconstruct.library.events.TinkerEvent.OnItemBuilding;
 import slimeknights.tconstruct.library.materials.Material;
-import slimeknights.tconstruct.library.tinkering.TinkersItem;
 
 public abstract class ArmorBaseEvents extends Event {
 	public static class OnArmorBuilding extends ArmorBaseEvents {

@@ -43,28 +43,7 @@ public class Shield extends ToolCore //implements IShield, ISheathed, IArrowCatc
             }
         });
 	}
-
-	protected float baseSpeed()
-	{
-		return 1.5f;
-	}
-
-	protected float effectiveSpeed()
-	{
-		return 15f;
-	}
-
-	public float breakSpeedModifier()
-	{
-		return 1.0f;
-	}
-
-//	@Override
-//	public float getDigSpeed(ItemStack stack, Block block, int meta)
-//	{
-//		return 0.0f;
-//	}
-
+	
 	/**
 	 * returns the action that specifies what animation to play when the items
 	 * is being used
@@ -119,14 +98,12 @@ public class Shield extends ToolCore //implements IShield, ISheathed, IArrowCatc
 
 	@Override
 	public float damagePotential() {
-		// TODO Auto-generated method stub
-		return 0.1f;
+		return 0.0f;
 	}
 
 	@Override
 	public double attackSpeed() {
-		// TODO Auto-generated method stub
-		return 4;
+		return 0;
 	}
 
 	@Override

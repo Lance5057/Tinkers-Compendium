@@ -1,4 +1,4 @@
-package lance5057.tDefense.armor.items.straps;
+package lance5057.tDefense.core.tools.armor.straps;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -7,6 +7,7 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
+import net.minecraftforge.items.SlotItemHandler;
 
 public class StrapsContainer extends Container
 {
@@ -23,7 +24,7 @@ public class StrapsContainer extends Container
 
 	// If you're planning to add armor slots, put those first like this:
 	// ARMOR_START = InventoryItem.INV_SIZE, ARMOR_END = ARMOR_START+3,
-	// INV_START = ARMOR_END+1, and then carry on like above.
+	// INV_START = ARMOR_END+1, and then carry on like above. 
 
 	public StrapsContainer(EntityPlayer par1Player, InventoryPlayer inventoryPlayer, ItemStrapsInv inventoryItem)
 	{
@@ -33,7 +34,7 @@ public class StrapsContainer extends Container
 
 		// ITEM INVENTORY - you'll need to adjust the slot locations to match your texture file
 		// I have them set vertically in columns of 4 to the right of the player model
-		this.addSlotToContainer(new Slot(this.inventory, 0, 80, 8+23));
+		this.addSlotToContainer(new SlotItemHandler(this.inventory, 0, 80, 8+23));
 
 		// If you want, you can add ARMOR SLOTS here as well, but you need to
 		// make a public version of SlotArmor. I won't be doing that in this tutorial.
@@ -64,9 +65,7 @@ public class StrapsContainer extends Container
 	@Override
 	public boolean canInteractWith(EntityPlayer entityplayer)
 	{
-		// be sure to return the inventory's isUseableByPlayer method
-		// if you defined special behavior there:
-		return inventory.isUsableByPlayer(entityplayer);
+		return true;
 	}
 
 	/**
@@ -74,7 +73,7 @@ public class StrapsContainer extends Container
 	 */
 	public ItemStack transferStackInSlot(EntityPlayer par1EntityPlayer, int index)
 	{
-		ItemStack itemstack = null;
+		ItemStack itemstack = ItemStack.EMPTY;
 		Slot slot = (Slot) this.inventorySlots.get(index);
 
 		if (slot != null && slot.getHasStack())
@@ -88,7 +87,7 @@ public class StrapsContainer extends Container
 				// try to place in player inventory / action bar
 				if (!this.mergeItemStack(itemstack1, INV_START, HOTBAR_END+1, true))
 				{
-					return null;
+					return ItemStack.EMPTY;
 				}
 
 				slot.onSlotChange(itemstack1, itemstack);
@@ -135,35 +134,35 @@ public class StrapsContainer extends Container
 					// place in custom inventory
 					if (!this.mergeItemStack(itemstack1, 0, INV_START, false))
 					{
-						return null;
+						return ItemStack.EMPTY;
 					}
 				}
 				
-				/**
-				 * Implementation number 2: Shift-click items between action bar and inventory
-				 */
-				// item is in player's inventory, but not in action bar
-				if (index >= INV_START && index < HOTBAR_START)
-				{
-					// place in action bar
-					if (!this.mergeItemStack(itemstack1, HOTBAR_START, HOTBAR_END+1, false))
-					{
-						return null;
-					}
-				}
-				// item in action bar - place in player inventory
-				else if (index >= HOTBAR_START && index < HOTBAR_END+1)
-				{
-					if (!this.mergeItemStack(itemstack1, INV_START, INV_END+1, false))
-					{
-						return null;
-					}
-				}
+//				/**
+//				 * Implementation number 2: Shift-click items between action bar and inventory
+//				 */
+//				// item is in player's inventory, but not in action bar
+//				if (index >= INV_START && index < HOTBAR_START)
+//				{
+//					// place in action bar
+//					if (!this.mergeItemStack(itemstack1, HOTBAR_START, HOTBAR_END+1, false))
+//					{
+//						return ItemStack.EMPTY;
+//					}
+//				}
+//				// item in action bar - place in player inventory
+//				else if (index >= HOTBAR_START && index < HOTBAR_END+1)
+//				{
+//					if (!this.mergeItemStack(itemstack1, INV_START, INV_END+1, false))
+//					{
+//						return ItemStack.EMPTY;
+//					}
+//				}
 			}
 
 			if (itemstack1.getItemDamage() == 0)
 			{
-				slot.putStack((ItemStack) null);
+				slot.putStack(ItemStack.EMPTY);
 			}
 			else
 			{
@@ -172,26 +171,12 @@ public class StrapsContainer extends Container
 
 			if (itemstack1.getItemDamage() == itemstack.getItemDamage())
 			{
-				return null;
+				return ItemStack.EMPTY;
 			}
 
 			slot.onTake(par1EntityPlayer, itemstack1);
 		}
 
 		return itemstack;
-	}
-
-	/**
-	 * You should override this method to prevent the player from moving the stack that
-	 * opened the inventory, otherwise if the player moves it, the inventory will not
-	 * be able to save properly
-	 */
-	@Override
-	public ItemStack slotClick(int slotId, int dragType, ClickType clickTypeIn, EntityPlayer player) {
-		// this will prevent the player from interacting with the item that opened the inventory:
-		if (slotId >= 0 && getSlot(slotId) != null && (getSlot(slotId).getStack() == player.getHeldItem(EnumHand.MAIN_HAND) || getSlot(slotId).getStack() == player.getHeldItem(EnumHand.OFF_HAND))) {
-			return null;
-		}
-		return super.slotClick(slotId, dragType, clickTypeIn, player);
 	}
 }

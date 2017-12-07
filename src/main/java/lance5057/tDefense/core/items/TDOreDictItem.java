@@ -1,10 +1,9 @@
 package lance5057.tDefense.core.items;
 
-import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
-import lance5057.tDefense.core.CoreBase;
+import lance5057.tDefense.TinkersDefense;
 import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -25,7 +24,7 @@ public class TDOreDictItem extends Item {
 		prefix = pre;
 		mats = materials_master;
 		colors = materials_colors;
-		this.setCreativeTab(CoreBase.tab);
+		this.setCreativeTab(TinkersDefense.tab);
 		this.hasSubtypes = true;
 	}
 
