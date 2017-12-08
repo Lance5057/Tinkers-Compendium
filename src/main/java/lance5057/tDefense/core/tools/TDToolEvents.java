@@ -1,9 +1,13 @@
 package lance5057.tDefense.core.tools;
 
+import lance5057.tDefense.Reference;
+import lance5057.tDefense.core.tools.armor.straps.ItemStraps;
+import lance5057.tDefense.core.tools.armor.straps.ItemStrapsInv;
 import lance5057.tDefense.core.tools.bases.Shield;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.DamageSource;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;

@@ -46,7 +46,7 @@ public class ItemStraps extends ItemArmor implements ISpecialArmor
 		return new InvProvider();
 	}
 
-	private static class InvProvider implements ICapabilitySerializable
+	public static class InvProvider implements ICapabilitySerializable
 	{
 
 		private final IItemHandler inv = new ItemStackHandler(1);
