@@ -14,7 +14,6 @@ import gnu.trove.map.hash.THashMap;
 import gnu.trove.set.hash.THashSet;
 import lance5057.tDefense.Reference;
 import lance5057.tDefense.TinkersDefense;
-import lance5057.tDefense.armor.materials.MaterialCloth;
 import lance5057.tDefense.core.items.TDOreDictItem;
 import lance5057.tDefense.util.TDMatHelper;
 import net.minecraft.block.Block;
@@ -61,12 +60,12 @@ public class TDMaterials
 
 	// public static final List<Material> materials = Lists.newArrayList();
 
-	String SHIELD = ShieldMaterialStats.TYPE;
-	String HELM = HelmMaterialStats.TYPE;
-	String CHEST = ChestMaterialStats.TYPE;
-	String LEGS = LegsMaterialStats.TYPE;
-	String BOOTS = BootsMaterialStats.TYPE;
-	String BAUBLE = BaubleMaterialStats.TYPE;
+	String	SHIELD	= ShieldMaterialStats.TYPE;
+	String	HELM	= HelmMaterialStats.TYPE;
+	String	CHEST	= ChestMaterialStats.TYPE;
+	String	LEGS	= LegsMaterialStats.TYPE;
+	String	BOOTS	= BootsMaterialStats.TYPE;
+	String	BAUBLE	= BaubleMaterialStats.TYPE;
 
 	public static final Map<String, Material>				materials				= new THashMap<>();
 	public static final Map<String, MaterialIntegration>	materialIntegrations	= new THashMap<>();
@@ -349,20 +348,38 @@ public class TDMaterials
 		gem = new TDOreDictItem("gem", getMatNames(gemMaster), getMatColors(gemMaster));
 		ingot = new TDOreDictItem("ingot", getMatNames(ingotMaster), getMatColors(ingotMaster));
 
+		registerClothMaterials();
+
 		Material.UNKNOWN.addStats(new ShieldMaterialStats(35, 33));
 		Material.UNKNOWN.addStats(new HelmMaterialStats(35, 1, 0));
 		Material.UNKNOWN.addStats(new ChestMaterialStats(35, 1, 0));
 		Material.UNKNOWN.addStats(new LegsMaterialStats(35, 1, 0));
 		Material.UNKNOWN.addStats(new BootsMaterialStats(35, 1, 0));
+		Material.UNKNOWN.addStats(new ClothMaterialStats(35, 0));
 		Material.UNKNOWN.addStats(new BaubleMaterialStats(35));
 
-		// TinkerRegistry.addMaterialStats(Material.UNKNOWN,
-		// new ShieldMaterialStats(35, 33));
+		TinkerRegistry.addMaterialStats(this.white, new ClothMaterialStats(100, 10));
+		TinkerRegistry.addMaterialStats(this.black, new ClothMaterialStats(100, 10));
+		TinkerRegistry.addMaterialStats(this.blue, new ClothMaterialStats(100, 10));
+		TinkerRegistry.addMaterialStats(this.brown, new ClothMaterialStats(100, 10));
+		TinkerRegistry.addMaterialStats(this.cyan, new ClothMaterialStats(100, 10));
+		TinkerRegistry.addMaterialStats(this.gray, new ClothMaterialStats(100, 10));
+		TinkerRegistry.addMaterialStats(this.green, new ClothMaterialStats(100, 10));
+		TinkerRegistry.addMaterialStats(this.lightblue, new ClothMaterialStats(100, 10));
+		TinkerRegistry.addMaterialStats(this.lightgray, new ClothMaterialStats(100, 10));
+		TinkerRegistry.addMaterialStats(this.lime, new ClothMaterialStats(100, 10));
+		TinkerRegistry.addMaterialStats(this.magenta, new ClothMaterialStats(100, 10));
+		TinkerRegistry.addMaterialStats(this.orange, new ClothMaterialStats(100, 10));
+		TinkerRegistry.addMaterialStats(this.pink, new ClothMaterialStats(100, 10));
+		TinkerRegistry.addMaterialStats(this.purple, new ClothMaterialStats(100, 10));
+		TinkerRegistry.addMaterialStats(this.red, new ClothMaterialStats(100, 10));
+		TinkerRegistry.addMaterialStats(this.yellow, new ClothMaterialStats(100, 10));
 
-		// TinkerRegistry.addMaterialStats(Material.UNKNOWN,
-		// new ShieldMaterialStats(35, 33));
 		TinkerRegistry.addMaterialStats(TinkerMaterials.wood, new ShieldMaterialStats(35, 33));
 		TinkerRegistry.addMaterialStats(TinkerMaterials.wood, new HelmMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.wood, new ChestMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.wood, new LegsMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.wood, new BootsMaterialStats(35, 0, 0));
 		// TinkerMaterials.wood.addTrait(axelover, SHIELD);
 
 		TinkerRegistry.addMaterialStats(TinkerMaterials.stone, new ShieldMaterialStats(120, 33));
@@ -429,7 +446,7 @@ public class TDMaterials
 		for (TDMatHelper m : materials_master)
 		{
 			Material test = TinkerRegistry.getMaterial(m.name);
-			if (m.createMat &&  test.getIdentifier() == "unknown" && !TinkersDefense.config.materials.isBlacklisted(m.name))
+			if (m.createMat && test.getIdentifier() == "unknown" && !TinkersDefense.config.materials.isBlacklisted(m.name))
 				createMaterial(m);
 		}
 
@@ -447,7 +464,6 @@ public class TDMaterials
 			}
 		}
 
-		registerClothMaterials();
 	}
 
 	void createMaterial(TDMatHelper tdmat)
@@ -644,7 +660,7 @@ public class TDMaterials
 	@Subscribe
 	public void postInit(FMLPostInitializationEvent event)
 	{
-		
+
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -722,74 +738,108 @@ public class TDMaterials
 		orange = new Material("orangeCloth", 0xDB7D3E);
 		white = new Material("whiteCloth", 0xDDDDDD);
 
-		Material.UNKNOWN.addStats(new MaterialCloth(100));
-		black.addItem(new ItemStack(Blocks.WOOL, 15), 1, Material.VALUE_Ingot);
-		red.addItem(new ItemStack(Blocks.WOOL, 14), 1, Material.VALUE_Ingot);
-		green.addItem(new ItemStack(Blocks.WOOL, 13), 1, Material.VALUE_Ingot);
-		brown.addItem(new ItemStack(Blocks.WOOL, 12), 1, Material.VALUE_Ingot);
-		blue.addItem(new ItemStack(Blocks.WOOL, 11), 1, Material.VALUE_Ingot);
-		purple.addItem(new ItemStack(Blocks.WOOL, 10), 1, Material.VALUE_Ingot);
-		cyan.addItem(new ItemStack(Blocks.WOOL, 9), 1, Material.VALUE_Ingot);
-		lightgray.addItem(new ItemStack(Blocks.WOOL, 8), 1, Material.VALUE_Ingot);
-		gray.addItem(new ItemStack(Blocks.WOOL, 7), 1, Material.VALUE_Ingot);
-		pink.addItem(new ItemStack(Blocks.WOOL, 6), 1, Material.VALUE_Ingot);
-		lime.addItem(new ItemStack(Blocks.WOOL, 5), 1, Material.VALUE_Ingot);
-		yellow.addItem(new ItemStack(Blocks.WOOL, 4), 1, Material.VALUE_Ingot);
-		lightblue.addItem(new ItemStack(Blocks.WOOL, 3), 1, Material.VALUE_Ingot);
-		magenta.addItem(new ItemStack(Blocks.WOOL, 2), 1, Material.VALUE_Ingot);
-		orange.addItem(new ItemStack(Blocks.WOOL, 1), 1, Material.VALUE_Ingot);
-		white.addItem(new ItemStack(Blocks.WOOL, 0), 1, Material.VALUE_Ingot);
+		//Material.UNKNOWN.addStats(new MaterialCloth(100));
+		black.addItem(new ItemStack(Blocks.WOOL, 1, 15), 1, Material.VALUE_Ingot);
+		red.addItem(new ItemStack(Blocks.WOOL, 1, 14), 1, Material.VALUE_Ingot);
+		green.addItem(new ItemStack(Blocks.WOOL, 1, 13), 1, Material.VALUE_Ingot);
+		brown.addItem(new ItemStack(Blocks.WOOL, 1, 12), 1, Material.VALUE_Ingot);
+		blue.addItem(new ItemStack(Blocks.WOOL, 1, 11), 1, Material.VALUE_Ingot);
+		purple.addItem(new ItemStack(Blocks.WOOL, 1, 10), 1, Material.VALUE_Ingot);
+		cyan.addItem(new ItemStack(Blocks.WOOL, 1, 9), 1, Material.VALUE_Ingot);
+		lightgray.addItem(new ItemStack(Blocks.WOOL, 1, 8), 1, Material.VALUE_Ingot);
+		gray.addItem(new ItemStack(Blocks.WOOL, 1, 7), 1, Material.VALUE_Ingot);
+		pink.addItem(new ItemStack(Blocks.WOOL, 1, 6), 1, Material.VALUE_Ingot);
+		lime.addItem(new ItemStack(Blocks.WOOL, 1, 5), 1, Material.VALUE_Ingot);
+		yellow.addItem(new ItemStack(Blocks.WOOL, 1, 4), 1, Material.VALUE_Ingot);
+		lightblue.addItem(new ItemStack(Blocks.WOOL, 1, 3), 1, Material.VALUE_Ingot);
+		magenta.addItem(new ItemStack(Blocks.WOOL, 1, 2), 1, Material.VALUE_Ingot);
+		orange.addItem(new ItemStack(Blocks.WOOL, 1, 1), 1, Material.VALUE_Ingot);
+		white.addItem(new ItemStack(Blocks.WOOL, 1, 0), 1, Material.VALUE_Ingot);
 
-		black.setRepresentativeItem(new ItemStack(Blocks.WOOL, 15));
-		red.setRepresentativeItem(new ItemStack(Blocks.WOOL, 14));
-		green.setRepresentativeItem(new ItemStack(Blocks.WOOL, 13));
-		brown.setRepresentativeItem(new ItemStack(Blocks.WOOL, 12));
-		blue.setRepresentativeItem(new ItemStack(Blocks.WOOL, 11));
-		purple.setRepresentativeItem(new ItemStack(Blocks.WOOL, 10));
-		cyan.setRepresentativeItem(new ItemStack(Blocks.WOOL, 9));
-		lightgray.setRepresentativeItem(new ItemStack(Blocks.WOOL, 8));
-		gray.setRepresentativeItem(new ItemStack(Blocks.WOOL, 7));
-		pink.setRepresentativeItem(new ItemStack(Blocks.WOOL, 6));
-		lime.setRepresentativeItem(new ItemStack(Blocks.WOOL, 5));
-		yellow.setRepresentativeItem(new ItemStack(Blocks.WOOL, 4));
-		lightblue.setRepresentativeItem(new ItemStack(Blocks.WOOL, 3));
-		magenta.setRepresentativeItem(new ItemStack(Blocks.WOOL, 2));
-		orange.setRepresentativeItem(new ItemStack(Blocks.WOOL, 1));
-		white.setRepresentativeItem(new ItemStack(Blocks.WOOL, 0));
+		black.setRepresentativeItem(new ItemStack(Blocks.WOOL, 1, 15));
+		red.setRepresentativeItem(new ItemStack(Blocks.WOOL, 1, 14));
+		green.setRepresentativeItem(new ItemStack(Blocks.WOOL, 1, 13));
+		brown.setRepresentativeItem(new ItemStack(Blocks.WOOL, 1, 12));
+		blue.setRepresentativeItem(new ItemStack(Blocks.WOOL, 1, 11));
+		purple.setRepresentativeItem(new ItemStack(Blocks.WOOL, 1, 10));
+		cyan.setRepresentativeItem(new ItemStack(Blocks.WOOL, 1, 9));
+		lightgray.setRepresentativeItem(new ItemStack(Blocks.WOOL, 1, 8));
+		gray.setRepresentativeItem(new ItemStack(Blocks.WOOL, 1, 7));
+		pink.setRepresentativeItem(new ItemStack(Blocks.WOOL, 1, 6));
+		lime.setRepresentativeItem(new ItemStack(Blocks.WOOL, 1, 5));
+		yellow.setRepresentativeItem(new ItemStack(Blocks.WOOL, 1, 4));
+		lightblue.setRepresentativeItem(new ItemStack(Blocks.WOOL, 1, 3));
+		magenta.setRepresentativeItem(new ItemStack(Blocks.WOOL, 1, 2));
+		orange.setRepresentativeItem(new ItemStack(Blocks.WOOL, 1, 1));
+		white.setRepresentativeItem(new ItemStack(Blocks.WOOL, 1, 0));
 
-		TinkerRegistry.addMaterial(black);
-		TinkerRegistry.addMaterial(red);
-		TinkerRegistry.addMaterial(green);
-		TinkerRegistry.addMaterial(brown);
-		TinkerRegistry.addMaterial(blue);
-		TinkerRegistry.addMaterial(purple);
-		TinkerRegistry.addMaterial(cyan);
-		TinkerRegistry.addMaterial(lightgray);
-		TinkerRegistry.addMaterial(gray);
-		TinkerRegistry.addMaterial(pink);
-		TinkerRegistry.addMaterial(lime);
-		TinkerRegistry.addMaterial(yellow);
-		TinkerRegistry.addMaterial(lightblue);
-		TinkerRegistry.addMaterial(magenta);
-		TinkerRegistry.addMaterial(orange);
-		TinkerRegistry.addMaterial(white);
-
-		TinkerRegistry.addMaterialStats(black, new MaterialCloth(100));
-		TinkerRegistry.addMaterialStats(red, new MaterialCloth(100));
-		TinkerRegistry.addMaterialStats(green, new MaterialCloth(100));
-		TinkerRegistry.addMaterialStats(brown, new MaterialCloth(100));
-		TinkerRegistry.addMaterialStats(blue, new MaterialCloth(100));
-		TinkerRegistry.addMaterialStats(purple, new MaterialCloth(100));
-		TinkerRegistry.addMaterialStats(cyan, new MaterialCloth(100));
-		TinkerRegistry.addMaterialStats(lightgray, new MaterialCloth(100));
-		TinkerRegistry.addMaterialStats(gray, new MaterialCloth(100));
-		TinkerRegistry.addMaterialStats(pink, new MaterialCloth(100));
-		TinkerRegistry.addMaterialStats(lime, new MaterialCloth(100));
-		TinkerRegistry.addMaterialStats(yellow, new MaterialCloth(100));
-		TinkerRegistry.addMaterialStats(lightblue, new MaterialCloth(100));
-		TinkerRegistry.addMaterialStats(magenta, new MaterialCloth(100));
-		TinkerRegistry.addMaterialStats(orange, new MaterialCloth(100));
-		TinkerRegistry.addMaterialStats(white, new MaterialCloth(100));
+//		TinkerRegistry.addMaterial(black);
+//		TinkerRegistry.addMaterial(red);
+//		TinkerRegistry.addMaterial(green);
+//		TinkerRegistry.addMaterial(brown);
+//		TinkerRegistry.addMaterial(blue);
+//		TinkerRegistry.addMaterial(purple);
+//		TinkerRegistry.addMaterial(cyan);
+//		TinkerRegistry.addMaterial(lightgray);
+//		TinkerRegistry.addMaterial(gray);
+//		TinkerRegistry.addMaterial(pink);
+//		TinkerRegistry.addMaterial(lime);
+//		TinkerRegistry.addMaterial(yellow);
+//		TinkerRegistry.addMaterial(lightblue);
+//		TinkerRegistry.addMaterial(magenta);
+//		TinkerRegistry.addMaterial(orange);
+//		TinkerRegistry.addMaterial(white);
+		
+		materials.put("white", white);
+		materials.put("orange", orange);
+		materials.put("magenta", magenta);
+		materials.put("lightblue", lightblue);
+		materials.put("yellow", yellow);
+		materials.put("lime", lime);
+		materials.put("pink", pink);
+		materials.put("gray", gray);
+		materials.put("lightgray", lightgray);
+		materials.put("cyan", cyan);
+		materials.put("purple", purple);
+		materials.put("blue", blue);
+		materials.put("brown", brown);
+		materials.put("green", green);
+		materials.put("red", red);
+		materials.put("black", black);
+		
+		TinkerRegistry.integrate(new MaterialIntegration(white).toolforge()).preInit();
+		TinkerRegistry.integrate(new MaterialIntegration(orange).toolforge()).preInit();
+		TinkerRegistry.integrate(new MaterialIntegration(magenta).toolforge()).preInit();
+		TinkerRegistry.integrate(new MaterialIntegration(lightblue).toolforge()).preInit();
+		TinkerRegistry.integrate(new MaterialIntegration(yellow).toolforge()).preInit();
+		TinkerRegistry.integrate(new MaterialIntegration(lime).toolforge()).preInit();
+		TinkerRegistry.integrate(new MaterialIntegration(pink).toolforge()).preInit();
+		TinkerRegistry.integrate(new MaterialIntegration(gray).toolforge()).preInit();
+		TinkerRegistry.integrate(new MaterialIntegration(lightgray).toolforge()).preInit();
+		TinkerRegistry.integrate(new MaterialIntegration(cyan).toolforge()).preInit();
+		TinkerRegistry.integrate(new MaterialIntegration(purple).toolforge()).preInit();
+		TinkerRegistry.integrate(new MaterialIntegration(blue).toolforge()).preInit();
+		TinkerRegistry.integrate(new MaterialIntegration(brown).toolforge()).preInit();
+		TinkerRegistry.integrate(new MaterialIntegration(green).toolforge()).preInit();
+		TinkerRegistry.integrate(new MaterialIntegration(red).toolforge()).preInit();
+		TinkerRegistry.integrate(new MaterialIntegration(black).toolforge()).preInit();
+		
+//		TinkerRegistry.addMaterialStats(black, new MaterialCloth(100));
+//		TinkerRegistry.addMaterialStats(red, new MaterialCloth(100));
+//		TinkerRegistry.addMaterialStats(green, new MaterialCloth(100));
+//		TinkerRegistry.addMaterialStats(brown, new MaterialCloth(100));
+//		TinkerRegistry.addMaterialStats(blue, new MaterialCloth(100));
+//		TinkerRegistry.addMaterialStats(purple, new MaterialCloth(100));
+//		TinkerRegistry.addMaterialStats(cyan, new MaterialCloth(100));
+//		TinkerRegistry.addMaterialStats(lightgray, new MaterialCloth(100));
+//		TinkerRegistry.addMaterialStats(gray, new MaterialCloth(100));
+//		TinkerRegistry.addMaterialStats(pink, new MaterialCloth(100));
+//		TinkerRegistry.addMaterialStats(lime, new MaterialCloth(100));
+//		TinkerRegistry.addMaterialStats(yellow, new MaterialCloth(100));
+//		TinkerRegistry.addMaterialStats(lightblue, new MaterialCloth(100));
+//		TinkerRegistry.addMaterialStats(magenta, new MaterialCloth(100));
+//		TinkerRegistry.addMaterialStats(orange, new MaterialCloth(100));
+//		TinkerRegistry.addMaterialStats(white, new MaterialCloth(100));
 	}
 
 	// PlusTIC to the rescue

@@ -3,7 +3,7 @@
         "layer0": "tinkersdefense:items/armor/shoes/_cloth",
         "layer1": "tinkersdefense:items/armor/shoes/_sole",
 		"layer2": "tinkersdefense:items/armor/shoes/_clasp",
-		"broken1": "tinkersdefense:items/armor/shoes/_broken"
+		"broken1": "tinkersdefense:items/armor/shoes/_cloth"
     },
     "display": {
         "thirdperson_righthand": {

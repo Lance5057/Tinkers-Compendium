@@ -1,10 +1,14 @@
 package lance5057.tDefense.core.tools.armor.cloth;
 
+import lance5057.tDefense.core.materials.ClothMaterialStats;
+import lance5057.tDefense.core.materials.HelmMaterialStats;
 import lance5057.tDefense.core.parts.TDParts;
 import lance5057.tDefense.core.tools.bases.ArmorCore;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import slimeknights.tconstruct.library.tinkering.PartMaterialType;
+import slimeknights.tconstruct.tools.TinkerTools;
 
 public class TinkersShoes extends ArmorCore
 {
@@ -13,9 +17,9 @@ public class TinkersShoes extends ArmorCore
 
 	public TinkersShoes()
 	{
-	    super(TDParts.ClothMat,
-	    		TDParts.ArmorplateMat,
-	    		TDParts.ClaspMat);
+	    super(new PartMaterialType(TDParts.cloth, ClothMaterialStats.TYPE),
+	    	PartMaterialType.extra(TDParts.rivets),
+	    	PartMaterialType.handle(TinkerTools.bowString));
 		setUnlocalizedName("tinkershoes");
 	}
 

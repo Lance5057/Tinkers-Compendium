@@ -3,7 +3,7 @@
         "layer0": "tinkersdefense:items/fishingrod/_rod",
         "layer1": "tinkersdefense:items/fishingrod/_string",
 		"layer2": "tinkersdefense:items/fishingrod/_hook",
-		"broken1": "tinkersdefense:items/fishingrod/broken"
+		"broken1": "tinkersdefense:items/fishingrod/_rod"
     },
     "display": {
         "thirdperson_righthand": {

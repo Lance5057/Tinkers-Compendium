@@ -3,7 +3,7 @@
         "layer0": "tinkersdefense:items/armor/hood/_cloth",
         "layer1": "tinkersdefense:items/armor/hood/_trim",
 		"layer2": "tinkersdefense:items/armor/hood/_rivet",
-		"broken1": "tinkersdefense:items/armor/hood/_broken"
+		"broken1": "tinkersdefense:items/armor/hood/_cloth"
     },
     "display": {
         "thirdperson_righthand": {

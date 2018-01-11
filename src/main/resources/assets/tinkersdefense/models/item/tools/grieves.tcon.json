@@ -1,0 +1,9 @@
+{
+    "textures": {
+        "layer0": "tinkersdefense:items/armor/grieves/_plate",
+        "layer1": "tinkersdefense:items/armor/grieves/_trim",
+		"layer2": "tinkersdefense:items/armor/grieves/_chain",
+		"layer3": "tinkersdefense:items/armor/grieves/_cloth",
+		"broken1": "tinkersdefense:items/armor/grieves/_plate"
+    }
+}

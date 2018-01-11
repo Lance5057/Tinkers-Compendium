@@ -5,6 +5,7 @@ import javax.annotation.Nullable;
 
 import baubles.api.IBauble;
 import lance5057.tDefense.TinkersDefense;
+import lance5057.tDefense.core.tools.bases.ArmorCore;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -111,14 +112,17 @@ public class ItemStraps extends ItemArmor implements ISpecialArmor
 	@Override
 	public int getArmorDisplay(EntityPlayer player, ItemStack armor, int slot)
 	{
-		// TODO Auto-generated method stub
+		ItemStack in = armor.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).getStackInSlot(0);
+		if(in.getItem() instanceof ArmorCore)
+		{
+			return ((ArmorCore)in.getItem()).getArmorDisplay();
+		}
 		return 0;
 	}
 
 	@Override
 	public void damageArmor(EntityLivingBase entity, ItemStack stack, DamageSource source, int damage, int slot)
 	{
-		// TODO Auto-generated method stub
-
+		stack.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).getStackInSlot(0).damageItem(damage, entity);
 	}
 }

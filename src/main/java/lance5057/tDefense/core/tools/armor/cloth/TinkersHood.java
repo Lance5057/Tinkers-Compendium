@@ -1,10 +1,13 @@
 package lance5057.tDefense.core.tools.armor.cloth;
 
+import lance5057.tDefense.core.materials.ClothMaterialStats;
+import lance5057.tDefense.core.materials.HelmMaterialStats;
 import lance5057.tDefense.core.parts.TDParts;
 import lance5057.tDefense.core.tools.bases.ArmorCore;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import slimeknights.tconstruct.library.tinkering.PartMaterialType;
 
 public class TinkersHood extends ArmorCore
 {
@@ -13,9 +16,9 @@ public class TinkersHood extends ArmorCore
 
 	public TinkersHood()
 	{
-	    super(TDParts.ClothMat,
-	    		TDParts.ClothMat,
-	    		TDParts.RivetMat);
+	    super(new PartMaterialType(TDParts.cloth, ClothMaterialStats.TYPE),
+	    	new PartMaterialType(TDParts.cloth, ClothMaterialStats.TYPE),
+	    	PartMaterialType.extra(TDParts.rivets));
 		setUnlocalizedName("tinkerhood");
 	}
 

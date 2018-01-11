@@ -98,6 +98,7 @@ public class TinkersDefense {
 		mats.postInit(e);
 		parts.postInit(e);
 		tools.postInit(e);
+		proxy.postInit();
 	}
 	
 	

@@ -10,6 +10,8 @@ import lance5057.tDefense.core.tools.armor.cloth.TinkersHood;
 import lance5057.tDefense.core.tools.armor.cloth.TinkersRobe;
 import lance5057.tDefense.core.tools.armor.cloth.TinkersShawl;
 import lance5057.tDefense.core.tools.armor.cloth.TinkersShoes;
+import lance5057.tDefense.core.tools.armor.heavy.TinkersBreastplate;
+import lance5057.tDefense.core.tools.armor.heavy.TinkersHelm;
 import lance5057.tDefense.core.tools.armor.straps.ItemStraps;
 import lance5057.tDefense.core.tools.basic.FishingRod;
 import lance5057.tDefense.core.tools.basic.HeaterShield;
@@ -90,11 +92,6 @@ public class TDTools {
 
 	private void regTools() {
 
-		
-
-		// TinkerRegistry.registerToolStationCrafting(roundshield);
-		// TinkerRegistry.registerToolForgeCrafting(heatershield);
-		// TinkerRegistry.registerToolForgeCrafting(zweihander);
 	}
 	
 	public void registerItems(final RegistryEvent.Register<Item> event)
@@ -111,6 +108,11 @@ public class TDTools {
 		robe = new TinkersRobe();
 		shoes = new TinkersShoes();
 		
+		helm = new TinkersHelm();
+		breastplate = new TinkersBreastplate();
+		grieves = new TinkersHelm();
+		sabatons = new TinkersBreastplate();
+		
 		sheathe = new Sheathe();
 		ring = new Ring();
 		amulet = new Amulet();
@@ -125,6 +127,11 @@ public class TDTools {
 		regTool(shawl, "shawl", event);
 		regTool(robe, "robe", event);
 		regTool(shoes, "shoes", event);
+		
+		regTool(helm, "helm", event);
+		regTool(breastplate, "breastplate", event);
+		regTool(grieves, "grieves", event);
+		regTool(sabatons, "sabatons", event);
 		
 		regTool(sheathe, "sheathe", event);
 		regTool(ring, "ring", event);
@@ -176,6 +183,11 @@ public class TDTools {
 		TinkerRegistry.registerToolCrafting(shawl);
 		TinkerRegistry.registerToolCrafting(robe);
 		TinkerRegistry.registerToolCrafting(shoes);
+		
+		TinkerRegistry.registerToolCrafting(helm);
+		TinkerRegistry.registerToolCrafting(breastplate);
+		TinkerRegistry.registerToolCrafting(grieves);
+		TinkerRegistry.registerToolCrafting(sabatons);
 		
 		TinkerRegistry.registerToolCrafting(sheathe);
 		TinkerRegistry.registerToolCrafting(ring);

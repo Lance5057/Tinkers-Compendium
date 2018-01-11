@@ -155,6 +155,11 @@ public class ClientProxy extends CommonProxy {
 		shawlGUI = new ToolBuildGuiInfo(TDTools.shawl);
 		robeGUI = new ToolBuildGuiInfo(TDTools.robe);
 		shoesGUI = new ToolBuildGuiInfo(TDTools.shoes);
+		
+		helmGUI = new ToolBuildGuiInfo(TDTools.helm);
+		breastplateGUI = new ToolBuildGuiInfo(TDTools.breastplate);
+		grievesGUI = new ToolBuildGuiInfo(TDTools.grieves);
+		sabatonsGUI = new ToolBuildGuiInfo(TDTools.sabatons);
 
 		sheatheGUI = new ToolBuildGuiInfo(TDTools.sheathe);
 		ringGUI = new ToolBuildGuiInfo(TDTools.ring);
@@ -200,6 +205,16 @@ public class ClientProxy extends CommonProxy {
 		ringGUI.addSlotPosition(34, 15 + 8);
 		ringGUI.addSlotPosition(43, 33 + 8);
 		ringGUI.addSlotPosition(34, 51 + 8);
+		
+		breastplateGUI.addSlotPosition(34, 15 + 8);
+		breastplateGUI.addSlotPosition(43, 33 + 8);
+		breastplateGUI.addSlotPosition(34, 51 + 8);
+		breastplateGUI.addSlotPosition(43, 51 + 8);
+		
+		helmGUI.addSlotPosition(34, 15 + 8);
+		helmGUI.addSlotPosition(43, 33 + 8);
+		helmGUI.addSlotPosition(34, 51 + 8);
+		helmGUI.addSlotPosition(43, 51 + 8);
 	}
 
 	public void registerToolGuis() {
@@ -217,6 +232,11 @@ public class ClientProxy extends CommonProxy {
 		TinkerRegistryClient.addToolBuilding(sheatheGUI);
 		TinkerRegistryClient.addToolBuilding(ringGUI);
 		TinkerRegistryClient.addToolBuilding(amuletGUI);
+		
+		TinkerRegistryClient.addToolBuilding(helmGUI);
+		TinkerRegistryClient.addToolBuilding(breastplateGUI);
+		TinkerRegistryClient.addToolBuilding(grievesGUI);
+		TinkerRegistryClient.addToolBuilding(sabatonsGUI);
 	}
 
 	public void registerPartModels() {
@@ -273,7 +293,31 @@ public class ClientProxy extends CommonProxy {
 		shoesGUI.addSlotPosition(34, 15 + 8);
 		shoesGUI.addSlotPosition(43, 33 + 8);
 		shoesGUI.addSlotPosition(34, 51 + 8);
+		
+		breastplateGUI.positions.clear();
+		breastplateGUI.addSlotPosition(34, 15 + 8);
+		breastplateGUI.addSlotPosition(43, 33 + 8);
+		breastplateGUI.addSlotPosition(34, 51 + 8);
+		breastplateGUI.addSlotPosition(43, 51 + 8);
+		
+		helmGUI.positions.clear();
+		helmGUI.addSlotPosition(34, 15 + 8);
+		helmGUI.addSlotPosition(43, 33 + 8);
+		helmGUI.addSlotPosition(34, 51 + 8);
+		helmGUI.addSlotPosition(43, 51 + 8);
 
+		sabatonsGUI.positions.clear();
+		sabatonsGUI.addSlotPosition(34, 15 + 8);
+		sabatonsGUI.addSlotPosition(43, 33 + 8);
+		sabatonsGUI.addSlotPosition(34, 51 + 8);
+		sabatonsGUI.addSlotPosition(43, 51 + 8);
+		
+		grievesGUI.positions.clear();
+		grievesGUI.addSlotPosition(34, 15 + 8);
+		grievesGUI.addSlotPosition(43, 33 + 8);
+		grievesGUI.addSlotPosition(34, 51 + 8);
+		grievesGUI.addSlotPosition(43, 51 + 8);
+		
 		shearsGUI.positions.clear();
 		shearsGUI.addSlotPosition(34, 15 + 8);
 		shearsGUI.addSlotPosition(43, 33 + 8);

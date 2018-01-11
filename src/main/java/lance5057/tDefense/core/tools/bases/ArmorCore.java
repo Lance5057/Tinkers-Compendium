@@ -53,4 +53,9 @@ public class ArmorCore extends ToolCore
 		ToolNBT data = buildDefaultTag(materials);
 		return data.get();
 	}
+	
+	public int getArmorDisplay()
+	{
+		return 0;
+	}
 }
