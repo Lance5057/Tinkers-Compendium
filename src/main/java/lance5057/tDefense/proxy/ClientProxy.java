@@ -15,6 +15,7 @@ import lance5057.tDefense.core.parts.TDParts;
 import lance5057.tDefense.core.renderers.BaubleRenderer;
 import lance5057.tDefense.core.renderers.SheatheModel;
 import lance5057.tDefense.core.tools.TDTools;
+import lance5057.tDefense.core.tools.bases.ArmorCore;
 import lance5057.tDefense.renderers.deserializers.AlphaColorTextureDeserializer;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -35,6 +36,7 @@ import net.minecraftforge.fluids.Fluid;
 import slimeknights.tconstruct.common.ModelRegisterUtil;
 import slimeknights.tconstruct.library.TinkerRegistry;
 import slimeknights.tconstruct.library.TinkerRegistryClient;
+import slimeknights.tconstruct.library.client.CustomTextureCreator;
 import slimeknights.tconstruct.library.client.ToolBuildGuiInfo;
 import slimeknights.tconstruct.library.client.material.MaterialRenderInfoLoader;
 import slimeknights.tconstruct.library.materials.Material;
@@ -52,7 +54,8 @@ public class ClientProxy extends CommonProxy {
 
 	ToolBuildGuiInfo roundshieldGUI;
 	ToolBuildGuiInfo heatershieldGUI;
-
+	ToolBuildGuiInfo towershieldGUI;
+	
 	ToolBuildGuiInfo zweihanderGUI;
 	ToolBuildGuiInfo shearsGUI;
 	ToolBuildGuiInfo fishingRodGUI;
@@ -83,6 +86,9 @@ public class ClientProxy extends CommonProxy {
 		ClientCommandHandler.instance.registerCommand(new TD_Commands());
 
 		MaterialRenderInfoLoader.addRenderInfo("alpha_color", AlphaColorTextureDeserializer.class);
+		
+		//register all armor textures into tinkers
+		//CustomTextureCreator.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/hood/_hood_cloth"));
 
 	}
 
@@ -147,6 +153,7 @@ public class ClientProxy extends CommonProxy {
 	public void createToolGuis() {
 		roundshieldGUI = new ToolBuildGuiInfo(TDTools.roundshield);
 		heatershieldGUI = new ToolBuildGuiInfo(TDTools.heatershield);
+		towershieldGUI = new ToolBuildGuiInfo(TDTools.towershield);
 		zweihanderGUI = new ToolBuildGuiInfo(TDTools.zweihander);
 		shearsGUI = new ToolBuildGuiInfo(TDTools.shears);
 		fishingRodGUI = new ToolBuildGuiInfo(TDTools.fishingRod);
@@ -176,6 +183,11 @@ public class ClientProxy extends CommonProxy {
 		heatershieldGUI.addSlotPosition(25, 33 + 8);
 		heatershieldGUI.addSlotPosition(43, 33 + 8);
 		heatershieldGUI.addSlotPosition(34, 51 + 8);
+		
+		towershieldGUI.addSlotPosition(34, 15 + 8);
+		towershieldGUI.addSlotPosition(25, 33 + 8);
+		towershieldGUI.addSlotPosition(43, 33 + 8);
+		towershieldGUI.addSlotPosition(34, 51 + 8);
 
 		zweihanderGUI.addSlotPosition(34, 15 + 8);
 		zweihanderGUI.addSlotPosition(25, 33 + 8);
@@ -195,7 +207,8 @@ public class ClientProxy extends CommonProxy {
 		robeGUI.addSlotPosition(34, 51 + 8);
 
 		shoesGUI.addSlotPosition(34, 15 + 8);
-		shoesGUI.addSlotPosition(43, 33 + 8);
+		shoesGUI.addSlotPosition(25, 33 + 8);
+		shoesGUI.addSlotPosition(43, 51 + 8);
 		shoesGUI.addSlotPosition(34, 51 + 8);
 
 		shearsGUI.addSlotPosition(34, 15 + 8);
@@ -220,6 +233,7 @@ public class ClientProxy extends CommonProxy {
 	public void registerToolGuis() {
 		TinkerRegistryClient.addToolBuilding(roundshieldGUI);
 		TinkerRegistryClient.addToolBuilding(heatershieldGUI);
+		TinkerRegistryClient.addToolBuilding(towershieldGUI);
 		TinkerRegistryClient.addToolBuilding(zweihanderGUI);
 		TinkerRegistryClient.addToolBuilding(shearsGUI);
 		TinkerRegistryClient.addToolBuilding(fishingRodGUI);
@@ -267,6 +281,12 @@ public class ClientProxy extends CommonProxy {
 		heatershieldGUI.addSlotPosition(25, 33);
 		heatershieldGUI.addSlotPosition(43, 33);
 		heatershieldGUI.addSlotPosition(34, 51);
+		
+		towershieldGUI.positions.clear();
+		towershieldGUI.addSlotPosition(34, 15);
+		towershieldGUI.addSlotPosition(25, 33);
+		towershieldGUI.addSlotPosition(43, 33);
+		towershieldGUI.addSlotPosition(34, 51);
 
 		zweihanderGUI.positions.clear();
 		zweihanderGUI.addSlotPosition(34, 15);
@@ -291,7 +311,8 @@ public class ClientProxy extends CommonProxy {
 
 		shoesGUI.positions.clear();
 		shoesGUI.addSlotPosition(34, 15 + 8);
-		shoesGUI.addSlotPosition(43, 33 + 8);
+		shoesGUI.addSlotPosition(25, 33 + 8);
+		shoesGUI.addSlotPosition(43, 51 + 8);
 		shoesGUI.addSlotPosition(34, 51 + 8);
 		
 		breastplateGUI.positions.clear();
@@ -347,8 +368,6 @@ public class ClientProxy extends CommonProxy {
 	void createToolModels() {
 		sheathe = new SheatheModel();
 	}
-
-	
 
 	@Override
 	public void registerItemRenderer(Item item, int meta, String id) {

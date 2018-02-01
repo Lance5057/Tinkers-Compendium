@@ -6,6 +6,8 @@ import javax.annotation.Nullable;
 import baubles.api.IBauble;
 import lance5057.tDefense.TinkersDefense;
 import lance5057.tDefense.core.tools.bases.ArmorCore;
+import net.minecraft.client.model.ModelBiped;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -23,22 +25,51 @@ import net.minecraftforge.common.ISpecialArmor;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
 public class ItemStraps extends ItemArmor implements ISpecialArmor
 {
-	public ItemStraps()
+	public EntityEquipmentSlot equipSlot;
+	public ItemStraps(EntityEquipmentSlot slot)
 	{
-		super(ArmorMaterial.LEATHER, 0, EntityEquipmentSlot.HEAD);
+		super(ArmorMaterial.LEATHER, 0, slot);
 		// ItemStacks that store an NBT Tag Compound are limited to stack size
 		// of 1
 		setMaxStackSize(1);
 		// you'll want to set a creative tab as well, so you can get your item
 		setCreativeTab(TinkersDefense.tab);
-		this.setRegistryName("straps").setUnlocalizedName("straps");
+		this.setRegistryName("straps" + slot.getName()).setUnlocalizedName("straps" + slot.getName());
 	}
+	
+	@Override
+	@Nullable
+	@SideOnly(Side.CLIENT)
+	public final String getArmorTexture(ItemStack stack, Entity entity, EntityEquipmentSlot slot, String type)
+	{
+		ItemStack in = stack.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).getStackInSlot(0);
+		if(in.getItem() instanceof ArmorCore)
+		{
+			return ((ArmorCore)in.getItem()).getArmorTexture(stack, 0);
+		}
+		return null;
+	}
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+    @Nullable
+    public net.minecraft.client.model.ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, EntityEquipmentSlot armorSlot, net.minecraft.client.model.ModelBiped _default)
+    {
+		ItemStack in = itemStack.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).getStackInSlot(0);
+		if(in.getItem() instanceof ArmorCore)
+		{
+			return ((ArmorCore)in.getItem()).getArmorModel(in);
+		}
+		return null;
+    }
 
 	@Nonnull
 	@Override

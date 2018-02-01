@@ -1,6 +1,7 @@
 package lance5057.tDefense.core.renderers;
 
 import lance5057.tDefense.core.tools.bases.Shield;
+import lance5057.tDefense.core.tools.basic.TowerShield;
 import lance5057.tDefense.core.tools.basic.Zweihander;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBiped;
@@ -81,7 +82,7 @@ public class SheatheModel extends ModelBiped {
 			
 			if(weapon.getItem() instanceof Zweihander || weapon.getItem() instanceof Cleaver)
 			{
-				GlStateManager.scale(2f, 2f, 1f);
+				GlStateManager.scale(1.5f, 1.5f, 1f);
 			}
 
 			Minecraft.getMinecraft().getRenderItem().renderItem(weapon, ItemCameraTransforms.TransformType.NONE);
@@ -99,7 +100,10 @@ public class SheatheModel extends ModelBiped {
 			GlStateManager.translate(-0.1F, 0.175f, 0.3f);
 			
 			if (shield.getItem() instanceof Shield) {
-				
+				if(shield.getItem() instanceof TowerShield)
+				{
+					GlStateManager.scale(1.5f, 1.5f, 1f);
+				}
 				GlStateManager.rotate(180 - 45, 0, 0, 1);
 				GlStateManager.translate(-0.0F, -0.3f, 0.1f);
 				GlStateManager.scale(1.35, 1.35, 1.35);

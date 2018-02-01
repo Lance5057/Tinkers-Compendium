@@ -1,17 +1,17 @@
 //package lance5057.tDefense.armor.events;
 //
-//import lance5057.tDefense.armor.ArmorCore;
+//import lance5057.tDefense.core.tools.bases.ArmorCore;
 //import net.minecraft.client.model.ModelBiped;
 //import net.minecraft.entity.player.EntityPlayer;
 //import net.minecraft.item.EnumAction;
 //import net.minecraft.item.ItemStack;
 //import net.minecraftforge.client.event.RenderPlayerEvent;
+//import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+//import net.minecraftforge.fml.relauncher.Side;
+//import net.minecraftforge.fml.relauncher.SideOnly;
+//import slimeknights.tconstruct.library.tools.ToolCore;
 //import tconstruct.armor.ArmorProxyClient;
 //import tconstruct.armor.player.ArmorExtended;
-//import tconstruct.library.tools.ToolCore;
-//import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-//import cpw.mods.fml.relauncher.Side;
-//import cpw.mods.fml.relauncher.SideOnly;
 //
 //public class ArmorRenderEvent
 //{

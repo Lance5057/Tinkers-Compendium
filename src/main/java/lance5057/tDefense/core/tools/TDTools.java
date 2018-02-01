@@ -11,16 +11,20 @@ import lance5057.tDefense.core.tools.armor.cloth.TinkersRobe;
 import lance5057.tDefense.core.tools.armor.cloth.TinkersShawl;
 import lance5057.tDefense.core.tools.armor.cloth.TinkersShoes;
 import lance5057.tDefense.core.tools.armor.heavy.TinkersBreastplate;
+import lance5057.tDefense.core.tools.armor.heavy.TinkersGrieves;
 import lance5057.tDefense.core.tools.armor.heavy.TinkersHelm;
+import lance5057.tDefense.core.tools.armor.heavy.TinkersSabatons;
 import lance5057.tDefense.core.tools.armor.straps.ItemStraps;
 import lance5057.tDefense.core.tools.basic.FishingRod;
 import lance5057.tDefense.core.tools.basic.HeaterShield;
 import lance5057.tDefense.core.tools.basic.RoundShield;
 import lance5057.tDefense.core.tools.basic.Shears;
+import lance5057.tDefense.core.tools.basic.TowerShield;
 import lance5057.tDefense.core.tools.basic.Zweihander;
 import lance5057.tDefense.core.tools.baubles.Amulet;
 import lance5057.tDefense.core.tools.baubles.Ring;
 import lance5057.tDefense.core.tools.baubles.Sheathe;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
@@ -42,12 +46,16 @@ public class TDTools {
 	// Tools
 	public static ToolCore roundshield;
 	public static ToolCore heatershield;
+	public static ToolCore towershield;
 	public static ToolCore zweihander;
 	public static ToolCore shears;
 	public static ToolCore fishingRod;
 
 	//armor
-	public static ItemStraps straps;
+	public static ItemStraps strapsHead;
+	public static ItemStraps strapsChest;
+	public static ItemStraps strapsLegs;
+	public static ItemStraps strapsFeet;
 	
 	public static ToolCore hood;
 	public static ToolCore shawl;
@@ -86,8 +94,15 @@ public class TDTools {
 	// PRE-INITIALIZATION
 	@Subscribe
 	public void preInit(FMLPreInitializationEvent event) {
-		straps = new ItemStraps();
-		itemList.add(straps);
+		strapsHead = new ItemStraps(EntityEquipmentSlot.HEAD);
+		strapsChest = new ItemStraps(EntityEquipmentSlot.CHEST);
+		strapsLegs = new ItemStraps(EntityEquipmentSlot.LEGS);
+		strapsFeet = new ItemStraps(EntityEquipmentSlot.FEET);
+		
+		itemList.add(strapsHead);
+		itemList.add(strapsChest);
+		itemList.add(strapsLegs);
+		itemList.add(strapsFeet);
 	}
 
 	private void regTools() {
@@ -99,6 +114,7 @@ public class TDTools {
 		
 		roundshield = new RoundShield();
 		heatershield = new HeaterShield();
+		towershield = new TowerShield();
 		zweihander = new Zweihander();
 		shears = new Shears();
 		fishingRod = new FishingRod();
@@ -110,8 +126,8 @@ public class TDTools {
 		
 		helm = new TinkersHelm();
 		breastplate = new TinkersBreastplate();
-		grieves = new TinkersHelm();
-		sabatons = new TinkersBreastplate();
+		grieves = new TinkersGrieves();
+		sabatons = new TinkersSabatons();
 		
 		sheathe = new Sheathe();
 		ring = new Ring();
@@ -119,6 +135,7 @@ public class TDTools {
 		
 		regTool(roundshield, "roundshield", event);
 		regTool(heatershield, "heatershield", event);
+		regTool(towershield, "towershield", event);
 		regTool(zweihander, "zweihander", event);
 		regTool(shears, "shears", event);
 		regTool(fishingRod, "fishingRod", event);
@@ -148,7 +165,7 @@ public class TDTools {
 		event.getRegistry().register(tool);
 		TinkerRegistry.registerTool(tool);
 		TinkersDefense.proxy.registerToolModel(tool);
-		itemList.add(tool);
+		//itemList.add(tool);
 	} 
 
 	private void registerModifiers() {
@@ -175,6 +192,7 @@ public class TDTools {
 	private void regToolBuilding() {
 		TinkerRegistry.registerToolCrafting(roundshield);
 		TinkerRegistry.registerToolForgeCrafting(heatershield);
+		TinkerRegistry.registerToolForgeCrafting(towershield);
 		TinkerRegistry.registerToolForgeCrafting(zweihander);
 		TinkerRegistry.registerToolCrafting(shears);
 		TinkerRegistry.registerToolCrafting(fishingRod);

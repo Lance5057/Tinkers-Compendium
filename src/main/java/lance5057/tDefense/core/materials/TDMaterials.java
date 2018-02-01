@@ -383,57 +383,173 @@ public class TDMaterials
 		// TinkerMaterials.wood.addTrait(axelover, SHIELD);
 
 		TinkerRegistry.addMaterialStats(TinkerMaterials.stone, new ShieldMaterialStats(120, 33));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.stone, new HelmMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.stone, new ChestMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.stone, new LegsMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.stone, new BootsMaterialStats(35, 0, 0));
 		// TinkerRegistry.addMaterialTrait(TinkerMaterials.stone, dulling,
 		// SHIELD);
 		// TinkerMaterials.stone.addTrait(dulling, SHIELD);
 
 		TinkerRegistry.addMaterialStats(TinkerMaterials.flint, new ShieldMaterialStats(150, 33));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.flint, new HelmMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.flint, new ChestMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.flint, new LegsMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.flint, new BootsMaterialStats(35, 0, 0));
 		// TinkerRegistry.addMaterialTrait(TinkerMaterials.flint, firestarter,
 		// SHIELD);
 
 		TinkerRegistry.addMaterialStats(TinkerMaterials.cactus, new ShieldMaterialStats(210, 33));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.cactus, new HelmMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.cactus, new ChestMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.cactus, new LegsMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.cactus, new BootsMaterialStats(35, 0, 0));
 		// TinkerRegistry.addMaterialTrait(TinkerMaterials.cactus, barbed,
 		// SHIELD);
 
 		TinkerRegistry.addMaterialStats(TinkerMaterials.bone, new ShieldMaterialStats(200, 33));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.bone, new HelmMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.bone, new ChestMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.bone, new LegsMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.bone, new BootsMaterialStats(35, 0, 0));
 		// TinkerRegistry.addMaterialTrait(TinkerMaterials.bone, dogtoy,
 		// SHIELD);
 
 		TinkerRegistry.addMaterialStats(TinkerMaterials.obsidian, new ShieldMaterialStats(139, 33));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.obsidian, new HelmMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.obsidian, new ChestMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.obsidian, new LegsMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.obsidian, new BootsMaterialStats(35, 0, 0));
+		
 		TinkerRegistry.addMaterialStats(TinkerMaterials.prismarine, new ShieldMaterialStats(430, 33));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.prismarine, new HelmMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.prismarine, new ChestMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.prismarine, new LegsMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.prismarine, new BootsMaterialStats(35, 0, 0));
+		
 		TinkerRegistry.addMaterialStats(TinkerMaterials.endstone, new ShieldMaterialStats(420, 33));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.endstone, new HelmMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.endstone, new ChestMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.endstone, new LegsMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.endstone, new BootsMaterialStats(35, 0, 0));
+		
 		TinkerRegistry.addMaterialStats(TinkerMaterials.paper, new ShieldMaterialStats(12, 33));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.paper, new HelmMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.paper, new ChestMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.paper, new LegsMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.paper, new BootsMaterialStats(35, 0, 0));
+		
 		TinkerRegistry.addMaterialStats(TinkerMaterials.sponge, new ShieldMaterialStats(550, 33));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.sponge, new HelmMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.sponge, new ChestMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.sponge, new LegsMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.sponge, new BootsMaterialStats(35, 0, 0));
+		
 		TinkerRegistry.addMaterialStats(TinkerMaterials.firewood, new ShieldMaterialStats(550, 33));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.firewood, new HelmMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.firewood, new ChestMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.firewood, new LegsMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.firewood, new BootsMaterialStats(35, 0, 0));
 
 		// Slime
 		TinkerRegistry.addMaterialStats(TinkerMaterials.slime, new ShieldMaterialStats(1000, 33));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.slime, new HelmMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.slime, new ChestMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.slime, new LegsMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.slime, new BootsMaterialStats(35, 0, 0));
+		
 		TinkerRegistry.addMaterialStats(TinkerMaterials.blueslime, new ShieldMaterialStats(780, 33));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.blueslime, new HelmMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.blueslime, new ChestMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.blueslime, new LegsMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.blueslime, new BootsMaterialStats(35, 0, 0));
+		
 		TinkerRegistry.addMaterialStats(TinkerMaterials.knightslime, new ShieldMaterialStats(850, 33));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.knightslime, new HelmMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.knightslime, new ChestMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.knightslime, new LegsMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.knightslime, new BootsMaterialStats(35, 0, 0));
+		
 		TinkerRegistry.addMaterialStats(TinkerMaterials.magmaslime, new ShieldMaterialStats(600, 33));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.magmaslime, new HelmMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.magmaslime, new ChestMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.magmaslime, new LegsMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.magmaslime, new BootsMaterialStats(35, 0, 0));
 
 		// Nether
 		TinkerRegistry.addMaterialStats(TinkerMaterials.netherrack, new ShieldMaterialStats(270, 33));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.netherrack, new HelmMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.netherrack, new ChestMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.netherrack, new LegsMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.netherrack, new BootsMaterialStats(35, 0, 0));
+		
 		TinkerRegistry.addMaterialStats(TinkerMaterials.cobalt, new ShieldMaterialStats(780, 33));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.cobalt, new HelmMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.cobalt, new ChestMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.cobalt, new LegsMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.cobalt, new BootsMaterialStats(35, 0, 0));
+		
 		TinkerRegistry.addMaterialStats(TinkerMaterials.ardite, new ShieldMaterialStats(990, 33));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.ardite, new HelmMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.ardite, new ChestMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.ardite, new LegsMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.ardite, new BootsMaterialStats(35, 0, 0));
+		
 		TinkerRegistry.addMaterialStats(TinkerMaterials.manyullyn, new ShieldMaterialStats(820, 33));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.manyullyn, new HelmMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.manyullyn, new ChestMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.manyullyn, new LegsMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.manyullyn, new BootsMaterialStats(35, 0, 0));
 
 		// Metals
 		TinkerRegistry.addMaterialStats(TinkerMaterials.iron, new ShieldMaterialStats(204, 33));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.iron, new HelmMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.iron, new ChestMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.iron, new LegsMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.iron, new BootsMaterialStats(35, 0, 0));
+		
 		TinkerRegistry.addMaterialStats(TinkerMaterials.pigiron, new ShieldMaterialStats(380, 33));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.pigiron, new HelmMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.pigiron, new ChestMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.pigiron, new LegsMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.pigiron, new BootsMaterialStats(35, 0, 0));
 
 		// Mod Integration
 		TinkerRegistry.addMaterialStats(TinkerMaterials.copper, new ShieldMaterialStats(210, 33));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.copper, new HelmMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.copper, new ChestMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.copper, new LegsMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.copper, new BootsMaterialStats(35, 0, 0));
 
 		TinkerRegistry.addMaterialStats(TinkerMaterials.bronze, new ShieldMaterialStats(430, 33));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.bronze, new HelmMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.bronze, new ChestMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.bronze, new LegsMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.bronze, new BootsMaterialStats(35, 0, 0));
 
 		TinkerRegistry.addMaterialStats(TinkerMaterials.lead, new ShieldMaterialStats(334, 33));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.lead, new HelmMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.lead, new ChestMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.lead, new LegsMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.lead, new BootsMaterialStats(35, 0, 0));
 
 		TinkerRegistry.addMaterialStats(TinkerMaterials.silver, new ShieldMaterialStats(250, 33));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.silver, new HelmMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.silver, new ChestMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.silver, new LegsMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.silver, new BootsMaterialStats(35, 0, 0));
 
 		TinkerRegistry.addMaterialStats(TinkerMaterials.electrum, new ShieldMaterialStats(50, 33));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.electrum, new HelmMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.electrum, new ChestMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.electrum, new LegsMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.electrum, new BootsMaterialStats(35, 0, 0));
 
 		TinkerRegistry.addMaterialStats(TinkerMaterials.steel, new ShieldMaterialStats(540, 33));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.steel, new HelmMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.steel, new ChestMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.steel, new LegsMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.steel, new BootsMaterialStats(35, 0, 0));
 
 		for (String s : fluids.keySet())
 		{

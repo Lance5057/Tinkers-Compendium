@@ -40,6 +40,8 @@ public class TDParts extends ModuleBase {
 	public static ToolPart setting;
 	public static ToolPart wire;
 	public static ToolPart filigree;
+	
+	public static ToolPart armor_hoodCloth;
 
 	protected static ArrayList<Item> itemList = new ArrayList<Item>();
 
@@ -90,6 +92,8 @@ public class TDParts extends ModuleBase {
 //		ClothMat = new PartMaterialType(cloth, MaterialCloth.TYPE);
 
 		//registry.registerAll((Item[]) itemList.toArray());
+		
+		armor_hoodCloth = regToolPart(Material.VALUE_Ingot * 1, "armor_hood_cloth", event);
 	}
 
 	private static ToolPart regToolPart(int castVolume, String name, RegistryEvent.Register<Item> event) {

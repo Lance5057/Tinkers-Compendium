@@ -1,9 +1,10 @@
 package lance5057.tDefense.core.tools.armor.cloth;
 
 import lance5057.tDefense.core.materials.ClothMaterialStats;
-import lance5057.tDefense.core.materials.HelmMaterialStats;
 import lance5057.tDefense.core.parts.TDParts;
+import lance5057.tDefense.core.tools.armor.renderers.cloth.ModelTinkersRobe;
 import lance5057.tDefense.core.tools.bases.ArmorCore;
+import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -39,6 +40,25 @@ public class TinkersRobe extends ArmorCore
 	public double attackSpeed() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public String getArmorTexture(ItemStack stack, int layer) 
+	{
+		String s = "";
+		switch(layer)
+		{
+			case 0: s = "textures/armor/robe/_robe_cloth.png"; break;
+			case 1: s = "textures/armor/robe/_robe_trim.png"; break;
+			case 2: s = "textures/armor/robe/_robe_metal.png"; break;
+		}
+		return s;
+	}
+
+	@Override
+	public ModelBiped getArmorModel(ItemStack stack)
+	{
+		return new ModelTinkersRobe(stack);
 	}
 
 	

@@ -68,6 +68,7 @@ public class TDOreDictItem extends Item {
 		return colors.get(i.getMetadata());
 	}
 
+	@SideOnly(Side.CLIENT)
 	public static class ColorHandler implements IItemColor {
 		@Override
 		public int getColorFromItemstack(ItemStack stack, int tintIndex) {
