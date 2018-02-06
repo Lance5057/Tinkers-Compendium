@@ -6,7 +6,6 @@ import lance5057.tDefense.core.tools.armor.straps.ItemStrapsInv;
 import lance5057.tDefense.core.tools.armor.straps.StrapsContainer;
 import lance5057.tDefense.core.tools.armor.straps.StrapsGui;
 import net.minecraft.block.Block;
-import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.util.EnumHand;
@@ -95,11 +94,6 @@ public class CommonProxy implements IGuiHandler {
 
 	public void registerItemBlockRenderer(Block block, int meta, String file) {
 
-	}
-
-	public void registerItemColorHandler(IItemColor c, Item i)
-	{
-		
 	}
 
 	@SubscribeEvent

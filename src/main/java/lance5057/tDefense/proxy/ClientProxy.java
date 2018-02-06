@@ -381,7 +381,6 @@ public class ClientProxy extends CommonProxy {
 				new ModelResourceLocation(Reference.MOD_ID + ":" + file, "inventory"));
 	}
 
-	@Override
 	public void registerItemColorHandler(IItemColor c, Item i) {
 		ItemColors itemcolors = Minecraft.getMinecraft().getItemColors();
 		itemcolors.registerItemColorHandler(c, i);

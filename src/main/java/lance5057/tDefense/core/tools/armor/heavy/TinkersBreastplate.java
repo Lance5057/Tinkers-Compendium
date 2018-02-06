@@ -6,6 +6,8 @@ import lance5057.tDefense.core.tools.armor.renderers.heavy.ModelTinkersBreastpla
 import lance5057.tDefense.core.tools.bases.ArmorCore;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import slimeknights.tconstruct.library.tinkering.PartMaterialType;
 import slimeknights.tconstruct.tools.TinkerTools;
 
@@ -20,6 +22,7 @@ public class TinkersBreastplate extends ArmorCore
 		setUnlocalizedName("tinkersbreastplate");
 	}
 
+	@SideOnly(Side.CLIENT)
 	@Override
 	public String getArmorTexture(ItemStack stack, int layer)
 	{
@@ -34,6 +37,7 @@ public class TinkersBreastplate extends ArmorCore
 		return s;
 	}
 
+	@SideOnly(Side.CLIENT)
 	@Override
 	public ModelBiped getArmorModel(ItemStack stack)
 	{

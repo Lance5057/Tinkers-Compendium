@@ -8,6 +8,8 @@ import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import slimeknights.tconstruct.library.tinkering.PartMaterialType;
 
 public class TinkersRobe extends ArmorCore
@@ -42,6 +44,7 @@ public class TinkersRobe extends ArmorCore
 		return 0;
 	}
 
+	@SideOnly(Side.CLIENT)
 	@Override
 	public String getArmorTexture(ItemStack stack, int layer) 
 	{
@@ -55,6 +58,7 @@ public class TinkersRobe extends ArmorCore
 		return s;
 	}
 
+	@SideOnly(Side.CLIENT)
 	@Override
 	public ModelBiped getArmorModel(ItemStack stack)
 	{
