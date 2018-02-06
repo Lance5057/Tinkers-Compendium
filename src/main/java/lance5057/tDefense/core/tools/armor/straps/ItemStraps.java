@@ -50,11 +50,11 @@ public class ItemStraps extends ItemArmor implements ISpecialArmor
 	@SideOnly(Side.CLIENT)
 	public final String getArmorTexture(ItemStack stack, Entity entity, EntityEquipmentSlot slot, String type)
 	{
-		ItemStack in = stack.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).getStackInSlot(0);
-		if(in.getItem() instanceof ArmorCore)
-		{
-			return ((ArmorCore)in.getItem()).getArmorTexture(stack, 0);
-		}
+//		ItemStack in = stack.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).getStackInSlot(0);
+//		if(in.getItem() instanceof ArmorCore)
+//		{
+//			return ((ArmorCore)in.getItem()).getArmorTexture(stack, 0);
+//		}
 		return null;
 	}
 	

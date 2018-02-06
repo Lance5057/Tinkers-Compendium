@@ -14,6 +14,7 @@ import lance5057.tDefense.core.tools.armor.heavy.TinkersBreastplate;
 import lance5057.tDefense.core.tools.armor.heavy.TinkersGrieves;
 import lance5057.tDefense.core.tools.armor.heavy.TinkersHelm;
 import lance5057.tDefense.core.tools.armor.heavy.TinkersSabatons;
+import lance5057.tDefense.core.tools.armor.light.TinkersBoots;
 import lance5057.tDefense.core.tools.armor.straps.ItemStraps;
 import lance5057.tDefense.core.tools.basic.FishingRod;
 import lance5057.tDefense.core.tools.basic.HeaterShield;
@@ -124,6 +125,11 @@ public class TDTools {
 		robe = new TinkersRobe();
 		shoes = new TinkersShoes();
 		
+//		coif = new TinkersCoif();
+//		hauberk = new TinkersHauberk();
+//		chausses = new TinkersChausses();
+		boots = new TinkersBoots();
+		
 		helm = new TinkersHelm();
 		breastplate = new TinkersBreastplate();
 		grieves = new TinkersGrieves();
@@ -144,6 +150,8 @@ public class TDTools {
 		regTool(shawl, "shawl", event);
 		regTool(robe, "robe", event);
 		regTool(shoes, "shoes", event);
+		
+		regTool(boots, "boots", event);
 		
 		regTool(helm, "helm", event);
 		regTool(breastplate, "breastplate", event);
@@ -201,6 +209,8 @@ public class TDTools {
 		TinkerRegistry.registerToolCrafting(shawl);
 		TinkerRegistry.registerToolCrafting(robe);
 		TinkerRegistry.registerToolCrafting(shoes);
+		
+		TinkerRegistry.registerToolCrafting(boots);
 		
 		TinkerRegistry.registerToolCrafting(helm);
 		TinkerRegistry.registerToolCrafting(breastplate);

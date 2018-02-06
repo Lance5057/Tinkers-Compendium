@@ -25,10 +25,10 @@ public class ModelTinkersBreastplate extends ArmorRenderer {
         this.textureWidth = 128;
         this.textureHeight = 64;
 
-        this.ArmL = new ModelRenderer(this, 92, 12);
-        this.ArmL.setRotationPoint(0.0F, 0.0F, 0.0F);
-        this.ArmL.addBox(-1.0F, -2.3F, -3.0F, 5, 6, 6, 0.0F);
-        this.bipedLeftArm.addChild(ArmL);
+//        this.ArmL = new ModelRenderer(this, 92, 12);
+//        this.ArmL.setRotationPoint(0.0F, 0.0F, 0.0F);
+//        this.ArmL.addBox(-1.0F, -2.3F, -3.0F, 5, 6, 6, 0.0F);
+//        this.bipedLeftArm.addChild(ArmL);
 
         this.PauldronR = new ModelRenderer(this, 88, 0);
         this.PauldronR.mirror = true;
@@ -42,11 +42,11 @@ public class ModelTinkersBreastplate extends ArmorRenderer {
         this.Plackart.addBox(-4.0F, 5.0F, -3.0F, 8, 7, 6, 0.3F);
         this.bipedBody.addChild(Plackart);
         
-        this.ArmR = new ModelRenderer(this, 92, 12);
-        this.ArmR.mirror = true;
-        this.ArmR.setRotationPoint(0.0F, 0.0F, 0.0F);
-        this.ArmR.addBox(-4.0F, -2.3F, -3.0F, 5, 6, 6, 0.0F);
-        this.bipedRightArm.addChild(ArmR);
+//        this.ArmR = new ModelRenderer(this, 92, 12);
+//        this.ArmR.mirror = true;
+//        this.ArmR.setRotationPoint(0.0F, 0.0F, 0.0F);
+//        this.ArmR.addBox(-4.0F, -2.3F, -3.0F, 5, 6, 6, 0.0F); 
+//        this.bipedRightArm.addChild(ArmR);
         
         this.BackPlate = new ModelRenderer(this, 64, 24);
         this.BackPlate.setRotationPoint(0.0F, 0.0F, 0.0F);

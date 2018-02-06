@@ -1,130 +1,44 @@
-//package lance5057.tDefense.armor.items.light;
-//
-//import lance5057.tDefense.TinkersDefense;
-//import lance5057.tDefense.armor.ArmorCore;
-//import lance5057.tDefense.armor.renderers.ArmorRenderer;
-//import lance5057.tDefense.proxy.ClientProxy;
-//import net.minecraft.entity.Entity;
-//import net.minecraft.entity.player.EntityPlayer;
-//import net.minecraft.item.Item;
-//import net.minecraft.item.ItemStack;
-//
-//public class TinkersBoots extends ArmorCore
-//{
-//	public TinkersBoots()
-//	{
-//		super(1, 3);
-//		setUnlocalizedName("tinkersboots");
-//		maxReduction = 100;
-//		reductionPercent = 0.08f;
-//	}
-//
-//	@Override
-//	public Item getHeadItem()
-//	{
-//		return TinkersDefense.partChainmaille;
-//	}
-//
-//	@Override
-//	public Item getHandleItem()
-//	{
-//		return TinkersDefense.partCloth;
-//	}
-//
-//	@Override
-//	public Item getAccessoryItem()
-//	{
-//		return TinkersDefense.partRivet;
-//	}
-//
-//	@Override
-//	public int durabilityTypeAccessory()
-//	{
-//		return 1;
-//	}
-//
-//	@Override
-//	public float getRepairCost()
-//	{
-//		return 1.0f;
-//	}
-//
-//	@Override
-//	public float getDurabilityModifier()
-//	{
-//		return 1f;
-//	}
-//
-//	@Override
-//	public float getDamageModifier()
-//	{
-//		return 1f;
-//	}
-//
-//	@Override
-//	public int getPartAmount()
-//	{
-//		return 3;
-//	}
-//
-//	@Override
-//	public String getIconSuffix(int partType)
-//	{
-//		switch(partType)
-//		{
-//			case 0:
-//				return "_boots_chain";
-//			case 1:
-//				return "_boots_chain_broken";
-//			case 2:
-//				return "_boots_cloth";
-//			case 3:
-//				return "_boots_rivet";
-//			default:
-//				return "";
-//		}
-//	}
-//
-//	@Override
-//	public String getEffectSuffix()
-//	{
-//		return "_boots_effect";
-//	}
-//
-//	@Override
-//	public String getDefaultFolder()
-//	{
-//		return "armor/boots";
-//	}
-//
-//	//	@Override
-//	//	public void onUpdate(ItemStack stack, World world, Entity entity, int par4,
-//	//			boolean par5) {
-//	//		super.onUpdate(stack, world, entity, par4, par5);
-//	//
-//	//	}
-//
-//	@Override
-//	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
-//	{
-//		return "tinkersdefense:textures/armor/TinkersBoots.png";
-//	}
-//
-//	@Override
-//	public String[] getTraits()
-//	{
-//		return new String[] {"armor", "feet", "boots", "lightarmor"};
-//	}
-//
-//	@Override
-//	public int getArmorDisplay(EntityPlayer player, ItemStack armor, int slot)
-//	{
-//		return 2;
-//	}
-//
-//	@Override
-//	public ArmorRenderer getRenderer()
-//	{
-//		return ClientProxy.boots;
-//	}
-//}
+package lance5057.tDefense.core.tools.armor.light;
+
+import lance5057.tDefense.core.materials.BootsMaterialStats;
+import lance5057.tDefense.core.materials.ClothMaterialStats;
+import lance5057.tDefense.core.parts.TDParts;
+import lance5057.tDefense.core.tools.armor.renderers.light.ModelTinkersBoots;
+import lance5057.tDefense.core.tools.bases.ArmorCore;
+import net.minecraft.client.model.ModelBiped;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import slimeknights.tconstruct.library.tinkering.PartMaterialType;
+
+public class TinkersBoots extends ArmorCore
+{
+	public TinkersBoots()
+	{
+		super(new PartMaterialType(TDParts.chainmail, BootsMaterialStats.TYPE), 
+			new PartMaterialType(TDParts.cloth, ClothMaterialStats.TYPE), 
+			PartMaterialType.handle(TDParts.rivets));
+		setUnlocalizedName("tinkersboots");
+	}
+
+	@SideOnly(Side.CLIENT)
+	@Override
+	public String getArmorTexture(ItemStack stack, int layer)
+	{
+		String s = "";
+		switch(layer)
+		{
+			case 0: s = "textures/armor/boots/_boots_chain.png"; break;
+			case 1: s = "textures/armor/boots/_boots_cloth.png"; break;
+			case 2: s = "textures/armor/boots/_boots_rivet.png"; break;
+		}
+		return s;
+	}
+
+	@SideOnly(Side.CLIENT)
+	@Override
+	public ModelBiped getArmorModel(ItemStack stack)
+	{
+		return new ModelTinkersBoots(stack);
+	}
+}

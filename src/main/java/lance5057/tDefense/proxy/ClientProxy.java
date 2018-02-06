@@ -163,6 +163,8 @@ public class ClientProxy extends CommonProxy {
 		robeGUI = new ToolBuildGuiInfo(TDTools.robe);
 		shoesGUI = new ToolBuildGuiInfo(TDTools.shoes);
 		
+		bootsGUI = new ToolBuildGuiInfo(TDTools.boots);
+		
 		helmGUI = new ToolBuildGuiInfo(TDTools.helm);
 		breastplateGUI = new ToolBuildGuiInfo(TDTools.breastplate);
 		grievesGUI = new ToolBuildGuiInfo(TDTools.grieves);
@@ -210,6 +212,10 @@ public class ClientProxy extends CommonProxy {
 		shoesGUI.addSlotPosition(25, 33 + 8);
 		shoesGUI.addSlotPosition(43, 51 + 8);
 		shoesGUI.addSlotPosition(34, 51 + 8);
+		
+		bootsGUI.addSlotPosition(34, 15 + 8);
+		bootsGUI.addSlotPosition(43, 33 + 8);
+		bootsGUI.addSlotPosition(34, 51 + 8);
 
 		shearsGUI.addSlotPosition(34, 15 + 8);
 		shearsGUI.addSlotPosition(43, 33 + 8);
@@ -242,6 +248,8 @@ public class ClientProxy extends CommonProxy {
 		TinkerRegistryClient.addToolBuilding(shawlGUI);
 		TinkerRegistryClient.addToolBuilding(robeGUI);
 		TinkerRegistryClient.addToolBuilding(shoesGUI);
+		
+		TinkerRegistryClient.addToolBuilding(bootsGUI);
 
 		TinkerRegistryClient.addToolBuilding(sheatheGUI);
 		TinkerRegistryClient.addToolBuilding(ringGUI);
@@ -314,6 +322,11 @@ public class ClientProxy extends CommonProxy {
 		shoesGUI.addSlotPosition(25, 33 + 8);
 		shoesGUI.addSlotPosition(43, 51 + 8);
 		shoesGUI.addSlotPosition(34, 51 + 8);
+		
+		bootsGUI.positions.clear();
+		bootsGUI.addSlotPosition(34, 15 + 8);
+		bootsGUI.addSlotPosition(43, 33 + 8);
+		bootsGUI.addSlotPosition(34, 51 + 8);
 		
 		breastplateGUI.positions.clear();
 		breastplateGUI.addSlotPosition(34, 15 + 8);

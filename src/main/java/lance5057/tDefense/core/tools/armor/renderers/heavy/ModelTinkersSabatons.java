@@ -24,10 +24,17 @@ public class ModelTinkersSabatons extends ArmorRenderer {
     public ModelRenderer KneeGuardL;
 
     public ModelTinkersSabatons(ItemStack stack) {
-    	super(10.25f, 0, 96, 64, stack);
+    	super(0.25f, 0, 96, 64, stack);
         this.textureWidth = 96;
         this.textureHeight = 64;
 
+//        this.ShinGuardL = new ModelRenderer(this, 64, 48);
+//        this.ShinGuardL.mirror = true;
+//        this.ShinGuardL.setRotationPoint(0.0F, 0.0F, 0.0F);
+//        this.ShinGuardL.addBox(-2.0F, 4.0F, -2.5F, 40, 50, 30, 10.26F);
+//        this.setRotateAngle(ShinGuardL, 0.05759586531581287F, 0.0F, 0.0F);
+//        this.bipedLeftLeg.addChild(ShinGuardL);
+        
         this.ShinGuardL = new ModelRenderer(this, 64, 48);
         this.ShinGuardL.mirror = true;
         this.ShinGuardL.setRotationPoint(0.0F, 0.0F, 0.0F);
