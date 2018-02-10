@@ -376,10 +376,10 @@ public class TDMaterials
 		TinkerRegistry.addMaterialStats(this.yellow, new ClothMaterialStats(100, 10));
 
 		TinkerRegistry.addMaterialStats(TinkerMaterials.wood, new ShieldMaterialStats(35, 33));
-		TinkerRegistry.addMaterialStats(TinkerMaterials.wood, new HelmMaterialStats(35, 0, 0));
-		TinkerRegistry.addMaterialStats(TinkerMaterials.wood, new ChestMaterialStats(35, 0, 0));
-		TinkerRegistry.addMaterialStats(TinkerMaterials.wood, new LegsMaterialStats(35, 0, 0));
-		TinkerRegistry.addMaterialStats(TinkerMaterials.wood, new BootsMaterialStats(35, 0, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.wood, new HelmMaterialStats(35, 2, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.wood, new ChestMaterialStats(35, 5, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.wood, new LegsMaterialStats(35, 3, 0));
+		TinkerRegistry.addMaterialStats(TinkerMaterials.wood, new BootsMaterialStats(35, 1, 0));
 		// TinkerMaterials.wood.addTrait(axelover, SHIELD);
 
 		TinkerRegistry.addMaterialStats(TinkerMaterials.stone, new ShieldMaterialStats(120, 33));

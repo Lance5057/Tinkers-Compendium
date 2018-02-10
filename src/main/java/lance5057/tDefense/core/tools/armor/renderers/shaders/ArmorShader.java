@@ -56,6 +56,10 @@ public class ArmorShader
 			metalTexture(r1,r1, ((MaterialRenderInfo.MetalTextured) info).color);
 		else if(info instanceof MaterialRenderInfo.Metal)
 			colorize(r1, ((MaterialRenderInfo.Metal) info).color);
+		else if(info instanceof MaterialRenderInfo.MultiColor)
+			colorize(r1, ((MaterialRenderInfo.MultiColor) info).getVertexColor());
+		else if(info instanceof MaterialRenderInfo.InverseMultiColor)
+			colorize(r1, ((MaterialRenderInfo.InverseMultiColor) info).getVertexColor());
 		else
 			colorize(r1, ((MaterialRenderInfo.Default) info).color);
 		 

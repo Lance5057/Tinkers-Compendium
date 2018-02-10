@@ -2,6 +2,10 @@ package lance5057.tDefense.util;
 
 import javax.annotation.Nullable;
 
+import lance5057.tDefense.core.materials.BootsMaterialStats;
+import lance5057.tDefense.core.materials.ChestMaterialStats;
+import lance5057.tDefense.core.materials.HelmMaterialStats;
+import lance5057.tDefense.core.materials.LegsMaterialStats;
 import lance5057.tDefense.core.materials.ShieldMaterialStats;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -30,6 +34,10 @@ public class TDMatHelper
 	public BowStringMaterialStats	bowstring;
 	public HandleMaterialStats		handle;
 	public ArrowShaftMaterialStats	shaft;
+	public HelmMaterialStats 		helm;
+	public ChestMaterialStats 		chest;
+	public LegsMaterialStats 		legs;
+	public BootsMaterialStats 		boots;
 
 	public ItemStack	gem;
 	public ItemStack	ingot;
@@ -122,6 +130,30 @@ public class TDMatHelper
 	public TDMatHelper setShaft(ArrowShaftMaterialStats h)
 	{
 		shaft = h;
+		return this;
+	}
+	
+	public TDMatHelper setHelm(HelmMaterialStats h)
+	{
+		helm = h;
+		return this;
+	}
+	
+	public TDMatHelper setChest(ChestMaterialStats h)
+	{
+		chest = h;
+		return this;
+	}
+	
+	public TDMatHelper setLegs(LegsMaterialStats h)
+	{
+		legs = h;
+		return this;
+	}
+	
+	public TDMatHelper setBoots(BootsMaterialStats h)
+	{
+		boots = h;
 		return this;
 	}
 

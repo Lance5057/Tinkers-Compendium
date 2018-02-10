@@ -212,10 +212,10 @@ public class TDTools {
 		
 		TinkerRegistry.registerToolCrafting(boots);
 		
-		TinkerRegistry.registerToolCrafting(helm);
-		TinkerRegistry.registerToolCrafting(breastplate);
-		TinkerRegistry.registerToolCrafting(grieves);
-		TinkerRegistry.registerToolCrafting(sabatons);
+		TinkerRegistry.registerToolForgeCrafting(helm);
+		TinkerRegistry.registerToolForgeCrafting(breastplate);
+		TinkerRegistry.registerToolForgeCrafting(grieves);
+		TinkerRegistry.registerToolForgeCrafting(sabatons);
 		
 		TinkerRegistry.registerToolCrafting(sheathe);
 		TinkerRegistry.registerToolCrafting(ring);
