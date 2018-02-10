@@ -1,14 +1,16 @@
 [
 {
- "modid": "tinkersdefense",
- "name": "Tinkers' Defense",
- "description": "A defense related expansion for TConstruct",
- "version": "1.4.2.7a",
- "mcversion": "1.12.2",
- "url": "",
- "authorList": ["Sir Lance"],
- "requiredMods": [ "forge", "tconstruct","baubles"],
- "dependencies": ["tconstruct","baubles"],
- "useDependencyInformation": "true"
+  "modid": "examplemod",
+  "name": "Example Mod",
+  "description": "Example placeholder mod.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["ExampleDude"],
+  "credits": "The Forge and FML guys, for making this example",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
 }
 ]
