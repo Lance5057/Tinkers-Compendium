@@ -4,7 +4,6 @@ import java.util.Optional;
 
 import net.minecraft.block.BlockFence;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityLivingData;

@@ -4,8 +4,6 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import lance5057.tDefense.core.materials.ShieldMaterialStats;
-import lance5057.tDefense.core.parts.TDParts;
 import net.minecraft.block.BlockDispenser;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.Entity;

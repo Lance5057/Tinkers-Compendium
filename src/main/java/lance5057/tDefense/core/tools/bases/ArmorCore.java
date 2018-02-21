@@ -4,93 +4,78 @@ import java.util.ArrayList;
 import java.util.List;
 
 import lance5057.tDefense.Reference;
-import net.minecraft.client.Minecraft;
+import lance5057.tDefense.core.materials.ArmorMaterialStats;
+import lance5057.tDefense.util.ArmorNBT;
 import net.minecraft.client.model.ModelBiped;
-import net.minecraft.client.renderer.ItemModelMesher;
-import net.minecraft.client.renderer.block.model.BakedQuad;
-import net.minecraft.client.renderer.block.model.IBakedModel;
-import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import slimeknights.tconstruct.library.client.model.MaterialModel;
-import slimeknights.tconstruct.library.client.model.ModelHelper;
-import slimeknights.tconstruct.library.client.model.ToolModel;
+import slimeknights.tconstruct.library.materials.ExtraMaterialStats;
+import slimeknights.tconstruct.library.materials.HandleMaterialStats;
+import slimeknights.tconstruct.library.materials.Material;
+import slimeknights.tconstruct.library.materials.MaterialTypes;
 import slimeknights.tconstruct.library.tinkering.PartMaterialType;
 import slimeknights.tconstruct.library.tools.ToolCore;
-import slimeknights.tconstruct.library.tools.ToolNBT;
+import slimeknights.tconstruct.library.utils.TagUtil;
 
-public abstract class ArmorCore extends ToolCore
-{
-	public ArmorCore(PartMaterialType... requiredComponents)
-	{
+public abstract class ArmorCore extends ToolCore {
+	public ArmorCore(PartMaterialType... requiredComponents) {
 		super(requiredComponents);
 	}
 
-	protected String getHarvestType()
-	{
+	protected String getHarvestType() {
 		return null;
 	}
 
 	@Override
-	public float damagePotential()
-	{
+	public float damagePotential() {
 		return 0.0f;
 	}
 
 	@Override
-	public double attackSpeed()
-	{
+	public double attackSpeed() {
 		return 0;
 	}
 
 	@Override
-	public NBTTagCompound buildTag(List<slimeknights.tconstruct.library.materials.Material> materials)
-	{
-		ToolNBT data = buildDefaultTag(materials);
-		return data.get();
-	}
+	public abstract NBTTagCompound buildTag(List<slimeknights.tconstruct.library.materials.Material> materials);
 
-	public int getArmorDisplay()
-	{
-		return 0;
+	public int getArmorDisplay(ItemStack stack) {
+		return TagUtil.getToolStats(stack).get().getInteger("ArmorRating");
 	}
 
 	@SideOnly(Side.CLIENT)
-	public abstract String getArmorTexture(ItemStack stack,int layer);
+	public abstract String getArmorTexture(ItemStack stack, int layer);
 
 	@SideOnly(Side.CLIENT)
 	public abstract ModelBiped getArmorModel(ItemStack stack);
 
-	public List<TextureAtlasSprite> sprites;
+	public ArmorNBT buildDefaultArmorTag(List<Material> materials, String type) {
+		ArmorNBT data = new ArmorNBT();
 
-	@SideOnly(Side.CLIENT)
-	public void initTextures(ItemStack stack, EntityLivingBase entity)
-	{
-		sprites = new ArrayList<TextureAtlasSprite>();
-		
-		TextureAtlasSprite s = ((ToolCore)stack.getItem()).getMaterialForPartForGuiRendering(0).renderInfo.getTexture(new ResourceLocation(Reference.MOD_ID), "hood_cloth");
+		if (materials.size() >= 2) {
+			HandleMaterialStats handle = materials.get(0).getStatsOrUnknown(MaterialTypes.HANDLE);
+			ArmorMaterialStats head = materials.get(1).getStatsOrUnknown(type);
+			// start with head
+			data.head(head);
 
-//		ItemModelMesher mesher = Minecraft.getMinecraft().getRenderItem().getItemModelMesher();
-//		List<BakedQuad> list = new ArrayList<BakedQuad>();
-//
-//		IBakedModel m = Minecraft.getMinecraft().getRenderItem().getItemModelWithOverrides(stack, entity.world, entity);
-		//Minecraft.getMinecraft().getRenderItem().renderItem(stack, ItemCameraTransforms.TransformType.NONE);
-		//= ModelHelper.getBakedModelForItem(stack, entity.world, entity);
-		
-//		list.addAll(m.getQuads(null, null, 0));
-//		
-//		for (BakedQuad quad : list)
-//		{
-//			ResourceLocation loc1 = new ResourceLocation(quad.getSprite().getIconName());
-//
-//			sprites.add(Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(loc1.toString()));
-//		}
+			// add in accessoires if present
+			if (materials.size() >= 3) {
+				ExtraMaterialStats binding = materials.get(2).getStatsOrUnknown(MaterialTypes.EXTRA);
+				data.extra(binding);
+			}
+
+			// calculate handle impact
+			data.handle(handle);
+		}
+
+		// 3 free modifiers
+		data.modifiers = 5;
+
+		return data;
 	}
 }

@@ -6,7 +6,6 @@ import lance5057.tDefense.core.tools.bases.BaubleTool;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import slimeknights.tconstruct.library.tinkering.PartMaterialType;
-import slimeknights.tconstruct.tools.TinkerTools;
 
 public class Amulet extends BaubleTool
 {

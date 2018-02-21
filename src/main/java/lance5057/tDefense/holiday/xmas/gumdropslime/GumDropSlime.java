@@ -1,9 +1,7 @@
 package lance5057.tDefense.holiday.xmas.gumdropslime;
 
-import slimeknights.tconstruct.library.Util;
-import slimeknights.tconstruct.world.entity.EntityBlueSlime;
-import net.minecraft.entity.monster.EntitySlime;
 import net.minecraft.world.World;
+import slimeknights.tconstruct.world.entity.EntityBlueSlime;
 
 public class GumDropSlime extends EntityBlueSlime
 {

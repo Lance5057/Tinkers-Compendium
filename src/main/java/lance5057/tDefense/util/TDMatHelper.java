@@ -2,10 +2,10 @@ package lance5057.tDefense.util;
 
 import javax.annotation.Nullable;
 
-import lance5057.tDefense.core.materials.BootsMaterialStats;
-import lance5057.tDefense.core.materials.ChestMaterialStats;
-import lance5057.tDefense.core.materials.HelmMaterialStats;
-import lance5057.tDefense.core.materials.LegsMaterialStats;
+import lance5057.tDefense.core.materials.ArmorMaterialStats.ChestMaterialStats;
+import lance5057.tDefense.core.materials.ArmorMaterialStats.FeetMaterialStats;
+import lance5057.tDefense.core.materials.ArmorMaterialStats.HelmMaterialStats;
+import lance5057.tDefense.core.materials.ArmorMaterialStats.LegsMaterialStats;
 import lance5057.tDefense.core.materials.ShieldMaterialStats;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -37,7 +37,7 @@ public class TDMatHelper
 	public HelmMaterialStats 		helm;
 	public ChestMaterialStats 		chest;
 	public LegsMaterialStats 		legs;
-	public BootsMaterialStats 		boots;
+	public FeetMaterialStats 		boots;
 
 	public ItemStack	gem;
 	public ItemStack	ingot;
@@ -151,7 +151,7 @@ public class TDMatHelper
 		return this;
 	}
 	
-	public TDMatHelper setBoots(BootsMaterialStats h)
+	public TDMatHelper setBoots(FeetMaterialStats h)
 	{
 		boots = h;
 		return this;

@@ -4,9 +4,6 @@ import lance5057.tDefense.renderers.AlphaColorTexture;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.util.ResourceLocation;
 import slimeknights.tconstruct.library.client.MaterialRenderInfo;
-import slimeknights.tconstruct.library.client.MaterialRenderInfo.AbstractMaterialRenderInfo;
-import slimeknights.tconstruct.library.client.texture.SimpleColoredTexture;
-import slimeknights.tconstruct.library.client.texture.TinkerTexture;
 
 public interface TDMaterialRenderInfo {
 

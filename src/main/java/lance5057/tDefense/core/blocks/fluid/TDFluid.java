@@ -2,8 +2,6 @@ package lance5057.tDefense.core.blocks.fluid;
 
 import lance5057.tDefense.Reference;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockAccess;
 import slimeknights.tconstruct.library.fluid.FluidMolten;
 
 public class TDFluid extends FluidMolten 

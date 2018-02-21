@@ -3,7 +3,6 @@ package lance5057.tDefense.core.tools.armor.straps;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import baubles.api.IBauble;
 import lance5057.tDefense.TinkersDefense;
 import lance5057.tDefense.core.tools.bases.ArmorCore;
 import net.minecraft.client.model.ModelBiped;
@@ -25,6 +24,7 @@ import net.minecraftforge.common.ISpecialArmor;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
+import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.CapabilityItemHandler;
@@ -33,10 +33,18 @@ import net.minecraftforge.items.ItemStackHandler;
 
 public class ItemStraps extends ItemArmor implements ISpecialArmor
 {
+	public static ArmorMaterial ARMOR = EnumHelper.addArmorMaterial("NAME", "blank", 0, new int[] {0, 0, 0, 0}, 0, null, 0);
+	
 	public EntityEquipmentSlot equipSlot;
+	
+	@SideOnly(Side.CLIENT)
+	private ModelBiped model;
+	
+	private ItemStack stack;
+	
 	public ItemStraps(EntityEquipmentSlot slot)
 	{
-		super(ArmorMaterial.LEATHER, 0, slot);
+		super(ARMOR, 0, slot);
 		// ItemStacks that store an NBT Tag Compound are limited to stack size
 		// of 1
 		setMaxStackSize(1);
@@ -66,7 +74,12 @@ public class ItemStraps extends ItemArmor implements ISpecialArmor
 		ItemStack in = itemStack.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).getStackInSlot(0);
 		if(in.getItem() instanceof ArmorCore)
 		{
-			return ((ArmorCore)in.getItem()).getArmorModel(in);
+			if(model == null || stack == null || !stack.equals(in))
+			{
+				model = ((ArmorCore)in.getItem()).getArmorModel(in);
+				stack = in;
+			}
+			return model;
 		}
 		return null;
     }
@@ -78,39 +91,33 @@ public class ItemStraps extends ItemArmor implements ISpecialArmor
 		return new InvProvider();
 	}
 
-	public static class InvProvider implements ICapabilitySerializable
-	{
+	private static class InvProvider implements ICapabilitySerializable<NBTBase> {
 
 		private final IItemHandler inv = new ItemStackHandler(1);
 
 		@Override
-		public boolean hasCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing facing)
-		{
+		public boolean hasCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing facing) {
 			return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY;
 		}
 
 		@Override
-		public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing)
-		{
-			if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
+		public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing) {
+			if(capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
 				return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(inv);
-			else
-				return null;
+			else return null;
 		}
 
 		@Override
-		public NBTBase serializeNBT()
-		{
+		public NBTBase serializeNBT() {
 			return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.writeNBT(inv, null);
 		}
 
 		@Override
-		public void deserializeNBT(NBTBase nbt)
-		{
+		public void deserializeNBT(NBTBase nbt) {
 			CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.readNBT(inv, null, nbt);
 		}
 	}
-
+	
 	// Without this method, your inventory will NOT work!!!
 	@Override
 	public int getMaxItemUseDuration(ItemStack stack)
@@ -146,7 +153,8 @@ public class ItemStraps extends ItemArmor implements ISpecialArmor
 		ItemStack in = armor.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).getStackInSlot(0);
 		if(in.getItem() instanceof ArmorCore)
 		{
-			return ((ArmorCore)in.getItem()).getArmorDisplay();
+			int i = ((ArmorCore)in.getItem()).getArmorDisplay(in);
+			return i;
 		}
 		return 0;
 	}

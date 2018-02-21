@@ -1,11 +1,8 @@
 package lance5057.tDefense.holiday.xmas;
 
-import lance5057.tDefense.util.Color16Util;
 import lance5057.tDefense.util.ItemsBase;
 import lance5057.tDefense.util.MetaItem;
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;

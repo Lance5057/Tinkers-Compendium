@@ -1,15 +1,10 @@
 package lance5057.tDefense;
 
-import lance5057.tDefense.util.Color16Util;
 import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.ConfigManager;
-import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import scala.Int;
-import slimeknights.tconstruct.library.materials.Material;
 
 @Config(modid = Reference.MOD_ID)
 public class TD_Config

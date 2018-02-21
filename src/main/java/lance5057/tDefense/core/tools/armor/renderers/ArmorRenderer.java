@@ -1,5 +1,6 @@
 package lance5057.tDefense.core.tools.armor.renderers;
 
+import java.awt.image.BufferedImage;
 import java.util.List;
 
 import org.lwjgl.opengl.GL11;
@@ -7,7 +8,9 @@ import org.lwjgl.opengl.GL11;
 import lance5057.tDefense.Reference;
 import lance5057.tDefense.core.tools.armor.renderers.shaders.ArmorShader;
 import lance5057.tDefense.core.tools.bases.ArmorCore;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBiped;
+import net.minecraft.client.renderer.texture.DynamicTexture;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityArmorStand;
@@ -18,58 +21,66 @@ import slimeknights.tconstruct.library.materials.Material;
 import slimeknights.tconstruct.library.utils.TagUtil;
 import slimeknights.tconstruct.library.utils.TinkerUtil;
 
-public class ArmorRenderer extends ModelBiped
-{
+public class ArmorRenderer extends ModelBiped {
 	// public String[] partNames;
 
-	public ItemStack	stack;
-	public String		defaultFolder;
+	public ItemStack stack;
+	public String defaultFolder;
+	DynamicTexture texture;
 
 	// public List<ModelRenderer> boxes = new ArrayList<ModelRenderer>();
 
 	public NBTTagCompound defaultTags = new NBTTagCompound();
 
-	public ArmorRenderer(float a, float b, int c, int d, ItemStack stack)
-	{
+	public ArmorRenderer(float a, float b, int c, int d, ItemStack stack) {
 		super(a, b, c, d);
-
+		
 		this.stack = stack;
+		
+		initTexture();
 	}
 
-	@Override
-	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
-	{
-		GL11.glPushMatrix();
+	public void initTexture() {
+		BufferedImage buffImg = new BufferedImage(this.textureWidth, this.textureHeight, BufferedImage.TYPE_INT_ARGB);
 
-		for (int i = 0; i < TinkerUtil.getMaterialsFromTagList(TagUtil.getBaseMaterialsTagList(stack)).size(); i++)
-		{
-			GL11.glPushMatrix();
-
-			EntityLivingBase e = (EntityLivingBase) entity;
+		for (int i = 0; i < TinkerUtil.getMaterialsFromTagList(TagUtil.getBaseMaterialsTagList(stack)).size(); i++) {
 			String s = stack.getItem().getRegistryName().getResourceDomain();
 			List<Material> mats = TinkerUtil.getMaterialsFromTagList(TagUtil.getBaseMaterialsTagList(stack));
 
 			String o = mats.get(i).renderInfo.getTextureSuffix();
 
-			ArmorShader.selectRenderer(mats.get(i).renderInfo, new ResourceLocation(Reference.MOD_ID, ((ArmorCore) stack.getItem()).getArmorTexture(stack, i)));
-
-			super.render(entity, f, f1, f2, f3, f4, f5);
-
-			GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-			GL11.glDisable(GL11.GL_BLEND);
-			GL11.glPopMatrix();
+			ArmorShader.selectRenderer(buffImg, mats.get(i).renderInfo,
+					new ResourceLocation(Reference.MOD_ID, ((ArmorCore) stack.getItem()).getArmorTexture(stack, i)));
 		}
+		
+		texture = new DynamicTexture(buffImg);
+	}
+
+	@Override
+	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
+		GL11.glPushMatrix();
+
+		EntityLivingBase e = (EntityLivingBase) entity;
+		if (texture != null) {
+			Minecraft.getMinecraft().getTextureManager()
+					.bindTexture(Minecraft.getMinecraft().getTextureManager().getDynamicTextureLocation("tdarmor", texture));
+		}
+		else
+		{
+			initTexture();
+		}
+
+		super.render(entity, f, f1, f2, f3, f4, f5);
 
 		GL11.glPopMatrix();
 		GL11.glColor3d(1.0, 1.0, 1.0);
 	}
 
-	//Mojang plz
+	// Mojang plz
 	@Override
-	public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn)
-	{
-		if (entityIn instanceof EntityArmorStand)
-		{
+	public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw,
+			float headPitch, float scaleFactor, Entity entityIn) {
+		if (entityIn instanceof EntityArmorStand) {
 			EntityArmorStand entityarmorstand = (EntityArmorStand) entityIn;
 			this.bipedHead.rotateAngleX = 0.017453292F * entityarmorstand.getHeadRotation().getX();
 			this.bipedHead.rotateAngleY = 0.017453292F * entityarmorstand.getHeadRotation().getY();
@@ -94,6 +105,7 @@ public class ArmorRenderer extends ModelBiped
 			this.bipedRightLeg.setRotationPoint(-1.9F, 11.0F, 0.0F);
 			copyModelAngles(this.bipedHead, this.bipedHeadwear);
 		} else
-			super.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, entityIn);
+			super.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor,
+					entityIn);
 	}
 }

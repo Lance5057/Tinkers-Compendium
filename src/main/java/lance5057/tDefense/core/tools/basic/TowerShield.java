@@ -4,7 +4,6 @@ import lance5057.tDefense.core.materials.ShieldMaterialStats;
 import lance5057.tDefense.core.parts.TDParts;
 import lance5057.tDefense.core.tools.bases.Shield;
 import slimeknights.tconstruct.library.tinkering.PartMaterialType;
-import slimeknights.tconstruct.library.tools.IToolPart;
 import slimeknights.tconstruct.tools.TinkerTools;
 
 public class TowerShield extends Shield

@@ -1,13 +1,18 @@
 package lance5057.tDefense.core.tools.armor.heavy;
 
-import lance5057.tDefense.core.materials.ChestMaterialStats;
+import java.util.List;
+
+import lance5057.tDefense.core.materials.ArmorMaterialStats.ChestMaterialStats;
 import lance5057.tDefense.core.parts.TDParts;
 import lance5057.tDefense.core.tools.armor.renderers.heavy.ModelTinkersBreastplate;
 import lance5057.tDefense.core.tools.bases.ArmorCore;
+import lance5057.tDefense.util.ArmorNBT;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import slimeknights.tconstruct.library.materials.Material;
 import slimeknights.tconstruct.library.tinkering.PartMaterialType;
 import slimeknights.tconstruct.tools.TinkerTools;
 
@@ -42,5 +47,11 @@ public class TinkersBreastplate extends ArmorCore
 	public ModelBiped getArmorModel(ItemStack stack)
 	{
 		return new ModelTinkersBreastplate(stack);
+	}
+	
+	@Override
+	public NBTTagCompound buildTag(List<Material> materials) {
+		ArmorNBT data = buildDefaultArmorTag(materials, ChestMaterialStats.TYPE);
+	    return data.get();
 	}
 }

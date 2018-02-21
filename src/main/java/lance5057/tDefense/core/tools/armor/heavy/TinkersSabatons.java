@@ -1,22 +1,27 @@
 package lance5057.tDefense.core.tools.armor.heavy;
 
-import lance5057.tDefense.core.materials.BootsMaterialStats;
-import lance5057.tDefense.core.materials.ClothMaterialStats;
+import java.util.List;
+
+import lance5057.tDefense.core.materials.ArmorMaterialStats.ClothMaterialStats;
+import lance5057.tDefense.core.materials.ArmorMaterialStats.FeetMaterialStats;
 import lance5057.tDefense.core.parts.TDParts;
 import lance5057.tDefense.core.tools.armor.renderers.heavy.ModelTinkersSabatons;
 import lance5057.tDefense.core.tools.bases.ArmorCore;
+import lance5057.tDefense.util.ArmorNBT;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import slimeknights.tconstruct.library.materials.Material;
 import slimeknights.tconstruct.library.tinkering.PartMaterialType;
 
 public class TinkersSabatons extends ArmorCore
 {
 	public TinkersSabatons()
 	{
-		super(new PartMaterialType(TDParts.armorPlate, BootsMaterialStats.TYPE), 
-			new PartMaterialType(TDParts.armorPlate, BootsMaterialStats.TYPE),
+		super(new PartMaterialType(TDParts.armorPlate, FeetMaterialStats.TYPE), 
+			new PartMaterialType(TDParts.armorPlate, FeetMaterialStats.TYPE),
 				PartMaterialType.handle(TDParts.filigree),
 				new PartMaterialType(TDParts.cloth, ClothMaterialStats.TYPE));
 		setUnlocalizedName("tinkerssabatons");
@@ -42,5 +47,11 @@ public class TinkersSabatons extends ArmorCore
 	public ModelBiped getArmorModel(ItemStack stack)
 	{
 		return new ModelTinkersSabatons(stack);
+	}
+	
+	@Override
+	public NBTTagCompound buildTag(List<Material> materials) {
+		ArmorNBT data = buildDefaultArmorTag(materials, FeetMaterialStats.TYPE);
+	    return data.get();
 	}
 }

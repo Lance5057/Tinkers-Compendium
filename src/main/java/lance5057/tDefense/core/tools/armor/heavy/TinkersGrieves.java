@@ -1,14 +1,19 @@
 package lance5057.tDefense.core.tools.armor.heavy;
 
-import lance5057.tDefense.core.materials.ClothMaterialStats;
-import lance5057.tDefense.core.materials.LegsMaterialStats;
+import java.util.List;
+
+import lance5057.tDefense.core.materials.ArmorMaterialStats.ClothMaterialStats;
+import lance5057.tDefense.core.materials.ArmorMaterialStats.LegsMaterialStats;
 import lance5057.tDefense.core.parts.TDParts;
 import lance5057.tDefense.core.tools.armor.renderers.heavy.ModelTinkersGrieves;
 import lance5057.tDefense.core.tools.bases.ArmorCore;
+import lance5057.tDefense.util.ArmorNBT;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import slimeknights.tconstruct.library.materials.Material;
 import slimeknights.tconstruct.library.tinkering.PartMaterialType;
 
 public class TinkersGrieves extends ArmorCore
@@ -42,5 +47,11 @@ public class TinkersGrieves extends ArmorCore
 	public ModelBiped getArmorModel(ItemStack stack)
 	{
 		return new ModelTinkersGrieves(stack);
+	}
+	
+	@Override
+	public NBTTagCompound buildTag(List<Material> materials) {
+		ArmorNBT data = buildDefaultArmorTag(materials, LegsMaterialStats.TYPE);
+	    return data.get();
 	}
 }

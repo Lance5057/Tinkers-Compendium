@@ -1,17 +1,21 @@
 package lance5057.tDefense.core.tools.armor.cloth;
 
-import lance5057.tDefense.core.materials.ClothMaterialStats;
-import lance5057.tDefense.core.materials.HelmMaterialStats;
+import java.util.List;
+
+import lance5057.tDefense.core.materials.ArmorMaterialStats.ChestMaterialStats;
+import lance5057.tDefense.core.materials.ArmorMaterialStats.ClothMaterialStats;
 import lance5057.tDefense.core.parts.TDParts;
-import lance5057.tDefense.core.tools.armor.renderers.cloth.ModelTinkersRobe;
 import lance5057.tDefense.core.tools.armor.renderers.cloth.ModelTinkersShawl;
 import lance5057.tDefense.core.tools.bases.ArmorCore;
+import lance5057.tDefense.util.ArmorNBT;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import slimeknights.tconstruct.library.materials.Material;
 import slimeknights.tconstruct.library.tinkering.PartMaterialType;
 
 public class TinkersShawl extends ArmorCore
@@ -72,4 +76,9 @@ public class TinkersShawl extends ArmorCore
 		return new ModelTinkersShawl(stack);
 	}
 
+	@Override
+	public NBTTagCompound buildTag(List<Material> materials) {
+		ArmorNBT data = buildDefaultArmorTag(materials, ChestMaterialStats.TYPE);
+	    return data.get();
+	}
 }

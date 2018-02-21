@@ -2,16 +2,12 @@ package lance5057.tDefense.core.materials;
 
 import java.util.List;
 
-import net.minecraft.util.text.TextFormatting;
-
 import com.google.common.collect.Lists;
 
-import slimeknights.tconstruct.library.TinkerRegistry;
+import net.minecraft.util.text.TextFormatting;
 import slimeknights.tconstruct.library.Util;
 import slimeknights.tconstruct.library.client.CustomFontColor;
 import slimeknights.tconstruct.library.materials.AbstractMaterialStats;
-import slimeknights.tconstruct.library.materials.Material;
-import slimeknights.tconstruct.library.utils.HarvestLevels;
 
 public class ShieldMaterialStats extends AbstractMaterialStats  {
 

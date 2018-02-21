@@ -7,15 +7,15 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.ItemStackHandler;
 
-public class ItemStrapsInv extends ItemStackHandler
+public class ItemStrapsInv implements IItemHandlerModifiable
 {
 
 	private ItemStack		invItem	= ItemStack.EMPTY;
 	public static final int	INVSIZE	= 1;
 	private final String	name	= "ArmorHolder";
 
-	private final ItemStackHandler inventory;
-
+	private final IItemHandlerModifiable inventory;
+	
 	public ItemStrapsInv(ItemStack stack)
 	{
 		invItem = stack;

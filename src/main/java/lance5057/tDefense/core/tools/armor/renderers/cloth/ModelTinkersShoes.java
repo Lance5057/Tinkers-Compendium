@@ -2,7 +2,6 @@ package lance5057.tDefense.core.tools.armor.renderers.cloth;
 
 import lance5057.tDefense.core.tools.armor.renderers.ArmorRenderer;
 import net.minecraft.client.model.ModelRenderer;
-import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 
 /**

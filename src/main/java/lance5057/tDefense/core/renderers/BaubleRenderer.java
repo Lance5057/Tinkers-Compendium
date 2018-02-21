@@ -1,21 +1,7 @@
 package lance5057.tDefense.core.renderers;
 
-import lance5057.tDefense.core.tools.bases.Shield;
-import lance5057.tDefense.core.tools.basic.Zweihander;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.OpenGlHelper;
-import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
-import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.EntityEquipmentSlot;
-import net.minecraft.item.ItemShield;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemSword;
-import net.minecraft.util.EnumHand;
-import slimeknights.tconstruct.library.tools.ToolCore;
-import slimeknights.tconstruct.tools.melee.item.Cleaver;
 
 public class BaubleRenderer implements LayerRenderer<EntityPlayer> {
 

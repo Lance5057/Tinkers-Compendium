@@ -5,13 +5,10 @@ import lance5057.tDefense.core.parts.TDParts;
 import lance5057.tDefense.core.tools.TDTools;
 import lance5057.tDefense.holiday.HolidayBase;
 import lance5057.tDefense.proxy.CommonProxy;
-import lance5057.tDefense.util.ModuleBase;
 import lance5057.tDefense.util.RegEvents;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.Mod.EventHandler;
-import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -22,7 +19,7 @@ import scala.reflect.internal.Trees.Modifiers;
 import slimeknights.mantle.client.CreativeTab;
 
 
-@Mod(modid = Reference.MOD_ID, version = Reference.VERSION, name = Reference.MOD_NAME)
+@Mod(modid = Reference.MOD_ID, version = Reference.VERSION, name = Reference.MOD_NAME, dependencies = "required-after:tconstruct")
 public class TinkersDefense {
 
 	private static int modGuiIndex = 0;
