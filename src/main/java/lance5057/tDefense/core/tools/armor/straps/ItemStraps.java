@@ -76,7 +76,7 @@ public class ItemStraps extends ItemArmor implements ISpecialArmor
 		{
 			if(model == null || stack == null || !stack.equals(in))
 			{
-				model = ((ArmorCore)in.getItem()).getArmorModel(in);
+				//model = ((ArmorCore)in.getItem()).getArmorModel(in);
 				stack = in;
 			}
 			return model;

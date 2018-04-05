@@ -6,6 +6,7 @@ import javax.annotation.Nonnull;
 
 import com.google.common.collect.ImmutableList;
 
+import jline.internal.Log;
 import lance5057.tDefense.Reference;
 import lance5057.tDefense.TD_Commands;
 import lance5057.tDefense.TinkersDefense;
@@ -30,8 +31,13 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.ClientCommandHandler;
+import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import slimeknights.tconstruct.common.ModelRegisterUtil;
 import slimeknights.tconstruct.library.TinkerRegistry;
 import slimeknights.tconstruct.library.TinkerRegistryClient;
@@ -41,8 +47,7 @@ import slimeknights.tconstruct.library.materials.Material;
 import slimeknights.tconstruct.library.tools.ToolCore;
 import slimeknights.tconstruct.library.tools.ToolPart;
 
-//import lance5057.tDefense.core.renderer.TestSkinChanger;
-
+@Mod.EventBusSubscriber(modid = Reference.MOD_ID)
 public class ClientProxy extends CommonProxy {
 	// static final ToolModelLoader toolmodel = new ToolModelLoader();
 	// public static final ModelSheath sheath = new ModelSheath();

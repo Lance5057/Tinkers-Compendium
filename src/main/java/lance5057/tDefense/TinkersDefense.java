@@ -1,11 +1,12 @@
 package lance5057.tDefense;
 
+import lance5057.tDefense.core.events.TDEvents;
 import lance5057.tDefense.core.materials.TDMaterials;
+import lance5057.tDefense.core.materials.TDTraits;
 import lance5057.tDefense.core.parts.TDParts;
 import lance5057.tDefense.core.tools.TDTools;
 import lance5057.tDefense.holiday.HolidayBase;
 import lance5057.tDefense.proxy.CommonProxy;
-import lance5057.tDefense.util.RegEvents;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Mod;
@@ -42,14 +43,14 @@ public class TinkersDefense {
 
 	public static final SimpleNetworkWrapper INSTANCE = NetworkRegistry.INSTANCE
 			.newSimpleChannel(Reference.MOD_ID);
-
-	public static RegEvents reg;
 	
 	public static Modifiers mods;
 
 	public static TDParts parts;
 	public static TDTools tools;
 	public static TDMaterials mats;
+	public static TDTraits traits;
+	public static TDEvents events;
 	
 	@SidedProxy(clientSide = "lance5057.tDefense.proxy.ClientProxy", serverSide = "lance5057.tDefense.proxy.CommonProxy")
 	public static CommonProxy proxy;
@@ -57,13 +58,15 @@ public class TinkersDefense {
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent e) {
 		
-		NetworkRegistry.INSTANCE.registerGuiHandler(TinkersDefense.instance, new CommonProxy());
+		
 		
 		holiday = new HolidayBase();
 		
 		mats = new TDMaterials();
 		parts = new TDParts();
 		tools = new TDTools();
+		events = new TDEvents();
+		traits = new TDTraits();
 		config = new TD_Config();
 		
 		//core.preInit(e);
@@ -71,6 +74,8 @@ public class TinkersDefense {
 		mats.preInit(e);
 		parts.preInit(e);
 		tools.preInit(e);
+		traits.preInit();
+		events.preInit();
 		proxy.preInit();
 	}
 	
@@ -78,11 +83,14 @@ public class TinkersDefense {
 
 	@Mod.EventHandler
 	public void init(FMLInitializationEvent e) {
+		NetworkRegistry.INSTANCE.registerGuiHandler(this, proxy);
 		//core.init(e);
 		holiday.init(e);
 		mats.init(e);
 		parts.init(e);
 		tools.init(e);
+		traits.init();
+		events.init();
 		proxy.init();
 		
 		phandler.init();
@@ -95,6 +103,8 @@ public class TinkersDefense {
 		mats.postInit(e);
 		parts.postInit(e);
 		tools.postInit(e);
+		traits.postInit();
+		events.postInit();
 		proxy.postInit();
 	}
 	

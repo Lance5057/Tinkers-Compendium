@@ -3,12 +3,16 @@ package lance5057.tDefense.core.tools.bases;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.Nullable;
+
 import lance5057.tDefense.Reference;
 import lance5057.tDefense.core.materials.ArmorMaterialStats;
 import lance5057.tDefense.util.ArmorNBT;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
@@ -52,7 +56,9 @@ public abstract class ArmorCore extends ToolCore {
 	public abstract String getArmorTexture(ItemStack stack, int layer);
 
 	@SideOnly(Side.CLIENT)
-	public abstract ModelBiped getArmorModel(ItemStack stack);
+	@Override
+    @Nullable
+    public abstract ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, EntityEquipmentSlot armorSlot, net.minecraft.client.model.ModelBiped _default);
 
 	public ArmorNBT buildDefaultArmorTag(List<Material> materials, String type) {
 		ArmorNBT data = new ArmorNBT();
@@ -78,4 +84,12 @@ public abstract class ArmorCore extends ToolCore {
 
 		return data;
 	}
+	
+	@Override
+	public boolean isValidArmor(ItemStack stack, EntityEquipmentSlot armorType, Entity entity)
+    {
+        return armorType == getArmorSlot(stack, armorType);
+    }
+	
+	public abstract EntityEquipmentSlot getArmorSlot(ItemStack stack, EntityEquipmentSlot armorType);
 }

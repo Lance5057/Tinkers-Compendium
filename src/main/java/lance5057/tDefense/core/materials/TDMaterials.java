@@ -429,8 +429,7 @@ public class TDMaterials {
 		TinkerRegistry.addMaterialStats(TinkerMaterials.stone, ams.new ChestMaterialStats(120, 4, 0, 0));
 		TinkerRegistry.addMaterialStats(TinkerMaterials.stone, ams.new LegsMaterialStats(120, 3, 0, 0));
 		TinkerRegistry.addMaterialStats(TinkerMaterials.stone, ams.new FeetMaterialStats(120, 2, 0, 0));
-		// TinkerRegistry.addMaterialTrait(TinkerMaterials.stone, dulling,
-		// SHIELD);
+		//TinkerRegistry.addMaterialTrait(TinkerMaterials.stone, dulling, SHIELD);
 		// TinkerMaterials.stone.addTrait(dulling, SHIELD);
 
 		TinkerRegistry.addMaterialStats(TinkerMaterials.flint, new ShieldMaterialStats(150, 30));
@@ -709,16 +708,16 @@ public class TDMaterials {
 
 		if (tdm.shield != null)
 			TinkerRegistry.addMaterialStats(m, tdm.shield);
-		
+
 		if (tdm.helm != null)
 			TinkerRegistry.addMaterialStats(m, tdm.helm);
-		
+
 		if (tdm.chest != null)
 			TinkerRegistry.addMaterialStats(m, tdm.chest);
-		
+
 		if (tdm.legs != null)
 			TinkerRegistry.addMaterialStats(m, tdm.legs);
-		
+
 		if (tdm.boots != null)
 			TinkerRegistry.addMaterialStats(m, tdm.boots);
 	}

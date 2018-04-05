@@ -10,6 +10,8 @@ import lance5057.tDefense.core.tools.bases.ArmorCore;
 import lance5057.tDefense.util.ArmorNBT;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
@@ -65,13 +67,19 @@ public class TinkersHood extends ArmorCore {
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public ModelBiped getArmorModel(ItemStack stack) {
-		return new ModelTinkersHood(stack);
+	public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack,
+			EntityEquipmentSlot armorSlot, net.minecraft.client.model.ModelBiped _default) {
+		return new ModelTinkersHood(itemStack);
 	}
 
 	@Override
 	public NBTTagCompound buildTag(List<Material> materials) {
 		ArmorNBT data = buildDefaultArmorTag(materials, HelmMaterialStats.TYPE);
 		return data.get();
+	}
+
+	@Override
+	public EntityEquipmentSlot getArmorSlot(ItemStack stack, EntityEquipmentSlot armorType) {
+		return EntityEquipmentSlot.HEAD;
 	}
 }

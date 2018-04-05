@@ -1,4 +1,4 @@
-package lance5057.tDefense.core.materials.traits;
+package lance5057.tDefense.core.materials.traits.shields;
 
 import java.util.Optional;
 

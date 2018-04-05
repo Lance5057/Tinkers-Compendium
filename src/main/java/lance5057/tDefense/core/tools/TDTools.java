@@ -36,6 +36,7 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.registries.IForgeRegistry;
 import slimeknights.tconstruct.library.TinkerRegistry;
+import slimeknights.tconstruct.library.client.CustomTextureCreator;
 import slimeknights.tconstruct.library.tools.ToolCore;
 
 @Mod.EventBusSubscriber(modid = Reference.MOD_ID)
@@ -51,12 +52,6 @@ public class TDTools {
 	public static ToolCore zweihander;
 	public static ToolCore shears;
 	public static ToolCore fishingRod;
-
-	//armor
-	public static ItemStraps strapsHead;
-	public static ItemStraps strapsChest;
-	public static ItemStraps strapsLegs;
-	public static ItemStraps strapsFeet;
 	
 	public static ToolCore hood;
 	public static ToolCore shawl;
@@ -95,15 +90,6 @@ public class TDTools {
 	// PRE-INITIALIZATION
 	@Subscribe
 	public void preInit(FMLPreInitializationEvent event) {
-		strapsHead = new ItemStraps(EntityEquipmentSlot.HEAD);
-		strapsChest = new ItemStraps(EntityEquipmentSlot.CHEST);
-		strapsLegs = new ItemStraps(EntityEquipmentSlot.LEGS);
-		strapsFeet = new ItemStraps(EntityEquipmentSlot.FEET);
-		
-		itemList.add(strapsHead);
-		itemList.add(strapsChest);
-		itemList.add(strapsLegs);
-		itemList.add(strapsFeet);
 	}
 
 	private void regTools() {
@@ -157,6 +143,11 @@ public class TDTools {
 		regTool(breastplate, "breastplate", event);
 		regTool(grieves, "grieves", event);
 		regTool(sabatons, "sabatons", event);
+		
+		CustomTextureCreator.registerTexture(new ResourceLocation("tinkersdefense", "armor/helm/_helm_chain"));
+		CustomTextureCreator.registerTexture(new ResourceLocation("tinkersdefense", "armor/helm/_helm_plate"));
+		CustomTextureCreator.registerTexture(new ResourceLocation("tinkersdefense", "armor/helm/_helm_top"));
+		CustomTextureCreator.registerTexture(new ResourceLocation("tinkersdefense", "armor/helm/_helm_visor"));
 		
 		regTool(sheathe, "sheathe", event);
 		regTool(ring, "ring", event);

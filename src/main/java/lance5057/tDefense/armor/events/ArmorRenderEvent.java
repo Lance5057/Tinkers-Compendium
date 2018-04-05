@@ -10,17 +10,15 @@
 //import net.minecraftforge.fml.relauncher.Side;
 //import net.minecraftforge.fml.relauncher.SideOnly;
 //import slimeknights.tconstruct.library.tools.ToolCore;
-//import tconstruct.armor.ArmorProxyClient;
-//import tconstruct.armor.player.ArmorExtended;
 //
 //public class ArmorRenderEvent
 //{
 //
 //	@SideOnly(Side.CLIENT)
 //	@SubscribeEvent
-//	public void renderArmorEvent(RenderPlayerEvent.SetArmorModel event)
+//	public void renderArmorEvent(RenderPlayerEvent.Post event)
 //	{
-//		if(event.entityPlayer != null)
+//		if(event.getEntityPlayer() != null)
 //		{
 //			final ArmorExtended armorEx = ArmorProxyClient.armorExtended;
 //
@@ -82,7 +80,7 @@
 //				}
 //			}
 //
-//			final float yaw = event.entityPlayer.prevRotationYawHead + (event.entityPlayer.rotationYawHead - event.entityPlayer.prevRotationYawHead) * event.partialRenderTick;
+//			final float yaw = event.getEntityPlayer().prevRotationYawHead + (event.entityPlayer.rotationYawHead - event.entityPlayer.prevRotationYawHead) * event.partialRenderTick;
 //			final float yawOffset = event.entityPlayer.prevRenderYawOffset + (event.entityPlayer.renderYawOffset - event.entityPlayer.prevRenderYawOffset) * event.partialRenderTick;
 //			final float limbs = event.entityPlayer.prevLimbSwingAmount + (event.entityPlayer.limbSwingAmount - event.entityPlayer.prevLimbSwingAmount) * event.partialRenderTick;
 //			final float limbSwing = event.entityPlayer.limbSwing - event.entityPlayer.limbSwingAmount * (1.0F - event.partialRenderTick);

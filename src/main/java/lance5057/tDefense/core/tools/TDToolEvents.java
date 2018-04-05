@@ -1,14 +1,28 @@
 package lance5057.tDefense.core.tools;
 
+import lance5057.tDefense.core.materials.traits.AbstractTDTrait;
+import lance5057.tDefense.core.materials.traits.ITDTrait;
 import lance5057.tDefense.core.tools.bases.Shield;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent;
+import slimeknights.tconstruct.library.TinkerRegistry;
+import slimeknights.tconstruct.library.tools.ToolCore;
+import slimeknights.tconstruct.library.traits.ITrait;
+import slimeknights.tconstruct.library.utils.TagUtil;
 import slimeknights.tconstruct.library.utils.ToolHelper;
 
 public class TDToolEvents {
+
+	ItemStack prevHead = new ItemStack(Items.AIR);
+	ItemStack prevChest = new ItemStack(Items.AIR);
+	ItemStack prevLegs = new ItemStack(Items.AIR);
+	ItemStack prevFeet = new ItemStack(Items.AIR);
 
 	public TDToolEvents() {
 
@@ -17,22 +31,19 @@ public class TDToolEvents {
 	@SubscribeEvent(priority = EventPriority.LOW)
 	// lower priority so we get called later since we change tool NBT
 	public void reducedDamageBlocked(LivingHurtEvent event) {
-		if (event.getSource().isUnblockable()
-				|| event.getSource().isMagicDamage()
-				|| event.getSource().isExplosion() || event.isCanceled()) {
+		if (event.getSource().isUnblockable() || event.getSource().isMagicDamage() || event.getSource().isExplosion()
+				|| event.isCanceled()) {
 			return;
 		}
 
 		if (event.getEntityLiving() instanceof EntityPlayer) {
 			EntityPlayer player = (EntityPlayer) event.getEntityLiving();
-			if (player.getActiveItemStack() != null
-					&& player.getActiveItemStack().getItem() != null
+			if (player.getActiveItemStack() != null && player.getActiveItemStack().getItem() != null
 					&& player.getActiveItemStack().getItem() instanceof Shield
 					&& !ToolHelper.isBroken(player.getActiveItemStack())) {
 				ItemStack shield = player.getActiveItemStack();
 
-				int damage = event.getAmount() < 2f ? 1 : Math.round(event
-						.getAmount() / 2f);
+				int damage = event.getAmount() < 2f ? 1 : Math.round(event.getAmount() / 2f);
 
 				event.setAmount(event.getAmount() * 0.7f);
 				if (event.getSource().isProjectile()) {
@@ -40,6 +51,91 @@ public class TDToolEvents {
 				}
 
 				ToolHelper.damageTool(shield, damage, player);
+			}
+		}
+	}
+
+	@SubscribeEvent
+	public void ArmorTick(TickEvent.PlayerTickEvent event) {
+		prevFeet = armorChanged(event, prevFeet, event.player.inventory.armorInventory.get(0));
+		prevLegs = armorChanged(event, prevLegs, event.player.inventory.armorInventory.get(1));
+		prevChest = armorChanged(event, prevChest, event.player.inventory.armorInventory.get(2));
+		prevHead = armorChanged(event, prevHead, event.player.inventory.armorInventory.get(3));
+
+		onArmorTick(event);
+	}
+
+	ItemStack armorChanged(TickEvent.PlayerTickEvent event, ItemStack prev, ItemStack cur) {
+		if (prev.getItem() != cur.getItem()) {
+			if (prev != null && prev.getItem() instanceof ToolCore && !ToolHelper.isBroken(prev)) {
+				NBTTagList list = TagUtil.getTraitsTagList(prev);
+				for (int i = 0; i < list.tagCount(); i++) {
+					if (TinkerRegistry.getTrait(list.getStringTagAt(i)) instanceof ITrait) {
+						ITrait trait = TinkerRegistry.getTrait(list.getStringTagAt(i));
+						if (trait instanceof AbstractTDTrait) {
+							AbstractTDTrait t = (AbstractTDTrait) trait;
+							if (trait != null) {
+								t.onArmorUnequip(event.player);
+							}
+						}
+					}
+				}
+			}
+
+			if (cur != null && cur.getItem() instanceof ToolCore && !ToolHelper.isBroken(cur)) {
+				NBTTagList list = TagUtil.getTraitsTagList(cur);
+				for (int i = 0; i < list.tagCount(); i++) {
+					if (TinkerRegistry.getTrait(list.getStringTagAt(i)) instanceof ITrait) {
+						ITrait trait = TinkerRegistry.getTrait(list.getStringTagAt(i));
+						if (trait instanceof AbstractTDTrait) {
+							AbstractTDTrait t = (AbstractTDTrait) trait;
+							if (trait != null) {
+								t.onArmorEquip(event.player);
+							}
+						}
+					}
+				}
+			}
+			return cur;
+		}
+
+		return prev;
+	}
+
+	void onArmorTick(TickEvent.PlayerTickEvent event) {
+		for (ItemStack tool : event.player.getArmorInventoryList()) {
+			if (tool != null && tool.getItem() instanceof ToolCore && !ToolHelper.isBroken(tool)) {
+				NBTTagList list = TagUtil.getTraitsTagList(tool);
+				for (int i = 0; i < list.tagCount(); i++) {
+					if (TinkerRegistry.getTrait(list.getStringTagAt(i)) instanceof ITrait) {
+						ITrait trait = TinkerRegistry.getTrait(list.getStringTagAt(i));
+						if (trait != null) {
+							trait.onArmorTick(tool, event.player.world, event.player);
+						}
+					}
+				}
+			}
+		}
+	}
+
+	@SubscribeEvent
+	public void playerDamagedEvent(LivingHurtEvent event) {
+		if (event.getEntity() == null || !(event.getEntity() instanceof EntityPlayer)) {
+			return;
+		}
+
+		// we allow block traits to affect both main and offhand
+		for (ItemStack tool : event.getEntity().getArmorInventoryList()) {
+			if (tool != null && tool.getItem() instanceof ToolCore && !ToolHelper.isBroken(tool)) {
+				NBTTagList list = TagUtil.getTraitsTagList(tool);
+				for (int i = 0; i < list.tagCount(); i++) {
+					if (TinkerRegistry.getTrait(list.getStringTagAt(i)) instanceof ITDTrait) {
+						ITDTrait trait = (ITDTrait) TinkerRegistry.getTrait(list.getStringTagAt(i));
+						if (trait != null) {
+							trait.onDamageTaken(event);
+						}
+					}
+				}
 			}
 		}
 	}
