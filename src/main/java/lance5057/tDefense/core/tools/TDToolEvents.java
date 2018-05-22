@@ -19,11 +19,6 @@ import slimeknights.tconstruct.library.utils.ToolHelper;
 
 public class TDToolEvents {
 
-	ItemStack prevHead = new ItemStack(Items.AIR);
-	ItemStack prevChest = new ItemStack(Items.AIR);
-	ItemStack prevLegs = new ItemStack(Items.AIR);
-	ItemStack prevFeet = new ItemStack(Items.AIR);
-
 	public TDToolEvents() {
 
 	}
@@ -57,11 +52,6 @@ public class TDToolEvents {
 
 	@SubscribeEvent
 	public void ArmorTick(TickEvent.PlayerTickEvent event) {
-		prevFeet = armorChanged(event, prevFeet, event.player.inventory.armorInventory.get(0));
-		prevLegs = armorChanged(event, prevLegs, event.player.inventory.armorInventory.get(1));
-		prevChest = armorChanged(event, prevChest, event.player.inventory.armorInventory.get(2));
-		prevHead = armorChanged(event, prevHead, event.player.inventory.armorInventory.get(3));
-
 		onArmorTick(event);
 	}
 

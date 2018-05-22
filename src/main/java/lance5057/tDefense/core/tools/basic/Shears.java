@@ -70,7 +70,7 @@ public class Shears extends ToolCore {
     public float getStrVsBlock(ItemStack stack, IBlockState state)
     {
         Block block = state.getBlock();
-        return block != Blocks.WEB && state.getMaterial() != net.minecraft.block.material.Material.LEAVES ? (block == Blocks.WOOL ? 5.0F : super.getStrVsBlock(stack, state)) : 15.0F;
+        return block != Blocks.WEB && state.getMaterial() != net.minecraft.block.material.Material.LEAVES ? (block == Blocks.WOOL ? 5.0F : 15f) : 15.0F;
     }
 
 

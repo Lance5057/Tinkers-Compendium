@@ -61,7 +61,7 @@ public class Zweihander extends SwordCore {
 						EntityLivingBase.class, entity.getEntityBoundingBox().expand(2.0D, 0.25D, 2.0D))) {
 					if (entitylivingbase != player && entitylivingbase != entity
 							&& !player.isOnSameTeam(entitylivingbase)
-							&& player.getDistanceSqToEntity(entitylivingbase) < 9.0D) {
+							&& player.getDistanceSq(entitylivingbase) < 9.0D) {
 						entitylivingbase.knockBack(player, 0.4F,
 								(double) MathHelper.sin(player.rotationYaw * 0.017453292F),
 								(double) (-MathHelper.cos(player.rotationYaw * 0.017453292F)));
