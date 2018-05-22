@@ -6,7 +6,6 @@ import javax.annotation.Nonnull;
 
 import com.google.common.collect.ImmutableList;
 
-import jline.internal.Log;
 import lance5057.tDefense.Reference;
 import lance5057.tDefense.TD_Commands;
 import lance5057.tDefense.TinkersDefense;
@@ -16,7 +15,12 @@ import lance5057.tDefense.core.parts.TDParts;
 import lance5057.tDefense.core.renderers.BaubleRenderer;
 import lance5057.tDefense.core.renderers.SheatheModel;
 import lance5057.tDefense.core.tools.TDTools;
+import lance5057.tDefense.core.tools.armor.renderers.layers.LayerTDBipedArmor;
+import lance5057.tDefense.core.tools.bases.ArmorCore;
 import lance5057.tDefense.renderers.deserializers.AlphaColorTextureDeserializer;
+import lance5057.tDefense.util.ArmorBuildGuiInfo;
+import lance5057.tDefense.util.TDClientRegistry;
+import lance5057.tDefense.util.TDModelRegistar;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -31,13 +35,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.ClientCommandHandler;
-import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import slimeknights.tconstruct.common.ModelRegisterUtil;
 import slimeknights.tconstruct.library.TinkerRegistry;
 import slimeknights.tconstruct.library.TinkerRegistryClient;
@@ -63,20 +63,20 @@ public class ClientProxy extends CommonProxy {
 	ToolBuildGuiInfo shearsGUI;
 	ToolBuildGuiInfo fishingRodGUI;
 
-	ToolBuildGuiInfo hoodGUI;
-	ToolBuildGuiInfo shawlGUI;
-	ToolBuildGuiInfo robeGUI;
-	ToolBuildGuiInfo shoesGUI;
+	ArmorBuildGuiInfo hoodGUI;
+	ArmorBuildGuiInfo shawlGUI;
+	ArmorBuildGuiInfo robeGUI;
+	ArmorBuildGuiInfo shoesGUI;
 
-	ToolBuildGuiInfo coifGUI;
-	ToolBuildGuiInfo hauberkGUI;
-	ToolBuildGuiInfo chaussesGUI;
-	ToolBuildGuiInfo bootsGUI;
+	ArmorBuildGuiInfo coifGUI;
+	ArmorBuildGuiInfo hauberkGUI;
+	ArmorBuildGuiInfo chaussesGUI;
+	//ToolBuildGuiInfo bootsGUI;
 
-	ToolBuildGuiInfo helmGUI;
-	ToolBuildGuiInfo breastplateGUI;
-	ToolBuildGuiInfo grievesGUI;
-	ToolBuildGuiInfo sabatonsGUI;
+	ArmorBuildGuiInfo helmGUI;
+	ArmorBuildGuiInfo breastplateGUI;
+	ArmorBuildGuiInfo grievesGUI;
+	ArmorBuildGuiInfo sabatonsGUI;
 
 	ToolBuildGuiInfo sheatheGUI;
 	ToolBuildGuiInfo ringGUI;
@@ -101,9 +101,11 @@ public class ClientProxy extends CommonProxy {
 		RenderPlayer render;
 		render = skinMap.get("default");
 		render.addLayer(new BaubleRenderer());
+		render.addLayer(new LayerTDBipedArmor(render));
 
 		render = skinMap.get("slim");
 		render.addLayer(new BaubleRenderer());
+		render.addLayer(new LayerTDBipedArmor(render));
 
 		createToolGuis();
 		setToolGuis();
@@ -142,6 +144,11 @@ public class ClientProxy extends CommonProxy {
 	public void registerToolModel(ToolCore tool) {
 		ModelRegisterUtil.registerToolModel(tool);
 	}
+	
+	@Override
+	public void registerArmorModel(ArmorCore tool) {
+		TDModelRegistar.registerToolModel(tool);
+	}
 
 	@Override
 	public void registerPartModel(ToolPart part) {
@@ -161,17 +168,17 @@ public class ClientProxy extends CommonProxy {
 		shearsGUI = new ToolBuildGuiInfo(TDTools.shears);
 		fishingRodGUI = new ToolBuildGuiInfo(TDTools.fishingRod);
 
-		hoodGUI = new ToolBuildGuiInfo(TDTools.hood);
-		shawlGUI = new ToolBuildGuiInfo(TDTools.shawl);
-		robeGUI = new ToolBuildGuiInfo(TDTools.robe);
-		shoesGUI = new ToolBuildGuiInfo(TDTools.shoes);
+		hoodGUI = new ArmorBuildGuiInfo(TDTools.hood);
+		shawlGUI = new ArmorBuildGuiInfo(TDTools.shawl);
+		robeGUI = new ArmorBuildGuiInfo(TDTools.robe);
+		shoesGUI = new ArmorBuildGuiInfo(TDTools.shoes);
 		
-		bootsGUI = new ToolBuildGuiInfo(TDTools.boots);
+		//bootsGUI = new ToolBuildGuiInfo(TDTools.boots);
 		
-		helmGUI = new ToolBuildGuiInfo(TDTools.helm);
-		breastplateGUI = new ToolBuildGuiInfo(TDTools.breastplate);
-		grievesGUI = new ToolBuildGuiInfo(TDTools.grieves);
-		sabatonsGUI = new ToolBuildGuiInfo(TDTools.sabatons);
+		helmGUI = new ArmorBuildGuiInfo(TDTools.helm);
+		breastplateGUI = new ArmorBuildGuiInfo(TDTools.breastplate);
+		grievesGUI = new ArmorBuildGuiInfo(TDTools.grieves);
+		sabatonsGUI = new ArmorBuildGuiInfo(TDTools.sabatons);
 
 		sheatheGUI = new ToolBuildGuiInfo(TDTools.sheathe);
 		ringGUI = new ToolBuildGuiInfo(TDTools.ring);
@@ -216,9 +223,9 @@ public class ClientProxy extends CommonProxy {
 		shoesGUI.addSlotPosition(43, 51 + 8);
 		shoesGUI.addSlotPosition(34, 51 + 8);
 		
-		bootsGUI.addSlotPosition(34, 15 + 8);
-		bootsGUI.addSlotPosition(43, 33 + 8);
-		bootsGUI.addSlotPosition(34, 51 + 8);
+//		bootsGUI.addSlotPosition(34, 15 + 8);
+//		bootsGUI.addSlotPosition(43, 33 + 8);
+//		bootsGUI.addSlotPosition(34, 51 + 8);
 
 		shearsGUI.addSlotPosition(34, 15 + 8);
 		shearsGUI.addSlotPosition(43, 33 + 8);
@@ -247,21 +254,21 @@ public class ClientProxy extends CommonProxy {
 		TinkerRegistryClient.addToolBuilding(shearsGUI);
 		TinkerRegistryClient.addToolBuilding(fishingRodGUI);
 
-		TinkerRegistryClient.addToolBuilding(hoodGUI);
-		TinkerRegistryClient.addToolBuilding(shawlGUI);
-		TinkerRegistryClient.addToolBuilding(robeGUI);
-		TinkerRegistryClient.addToolBuilding(shoesGUI);
+		TDClientRegistry.addArmorBuilding(hoodGUI);
+		TDClientRegistry.addArmorBuilding(shawlGUI);
+		TDClientRegistry.addArmorBuilding(robeGUI);
+		TDClientRegistry.addArmorBuilding(shoesGUI);
 		
-		TinkerRegistryClient.addToolBuilding(bootsGUI);
+		//TinkerRegistryClient.addToolBuilding(bootsGUI);
 
 		TinkerRegistryClient.addToolBuilding(sheatheGUI);
 		TinkerRegistryClient.addToolBuilding(ringGUI);
 		TinkerRegistryClient.addToolBuilding(amuletGUI);
 		
-		TinkerRegistryClient.addToolBuilding(helmGUI);
-		TinkerRegistryClient.addToolBuilding(breastplateGUI);
-		TinkerRegistryClient.addToolBuilding(grievesGUI);
-		TinkerRegistryClient.addToolBuilding(sabatonsGUI);
+		TDClientRegistry.addArmorBuilding(helmGUI);
+		TDClientRegistry.addArmorBuilding(breastplateGUI);
+		TDClientRegistry.addArmorBuilding(grievesGUI);
+		TDClientRegistry.addArmorBuilding(sabatonsGUI);
 	}
 
 	public void registerPartModels() {
@@ -326,10 +333,10 @@ public class ClientProxy extends CommonProxy {
 		shoesGUI.addSlotPosition(43, 51 + 8);
 		shoesGUI.addSlotPosition(34, 51 + 8);
 		
-		bootsGUI.positions.clear();
-		bootsGUI.addSlotPosition(34, 15 + 8);
-		bootsGUI.addSlotPosition(43, 33 + 8);
-		bootsGUI.addSlotPosition(34, 51 + 8);
+//		bootsGUI.positions.clear();
+//		bootsGUI.addSlotPosition(34, 15 + 8);
+//		bootsGUI.addSlotPosition(43, 33 + 8);
+//		bootsGUI.addSlotPosition(34, 51 + 8);
 		
 		breastplateGUI.positions.clear();
 		breastplateGUI.addSlotPosition(34, 15 + 8);

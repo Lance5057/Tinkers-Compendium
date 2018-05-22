@@ -4,7 +4,7 @@ import net.minecraftforge.common.MinecraftForge;
 
 public class TDEvents {
 	public void preInit() {
-		MinecraftForge.EVENT_BUS.register(ArmorRenderEvent.class);
+		//MinecraftForge.EVENT_BUS.register(ArmorRenderEvent.class);
 	}
 
 	public void init() {

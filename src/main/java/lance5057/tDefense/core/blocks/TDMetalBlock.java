@@ -5,6 +5,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
+import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
@@ -13,14 +14,17 @@ import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.NonNullList;
 
 public class TDMetalBlock extends Block {
-	public static final PropertyEnum METAL = PropertyEnum.create("metal", TDMetalBlock.EnumMetal.class);
+	public static PropertyInteger METAL;
+	public int maxmeta;
 
-	public TDMetalBlock() {
+	public TDMetalBlock(int max) {
 		super(Material.IRON);
+		maxmeta = max;
 		this.setCreativeTab(TinkersDefense.tab);
 		this.setHardness(5);
 		this.setResistance(30);
-		this.setDefaultState(this.blockState.getBaseState().withProperty(METAL, EnumMetal.AEONSTEEL));
+		METAL = PropertyInteger.create("metal", 0, max);
+		this.setDefaultState(this.blockState.getBaseState().withProperty(METAL, 0));
 	}
 
 	@Override
@@ -30,14 +34,13 @@ public class TDMetalBlock extends Block {
 
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
-		EnumMetal colour = EnumMetal.byMetadata(meta);
-		return this.getDefaultState().withProperty(METAL, colour);
+		return this.getDefaultState().withProperty(METAL, meta);
 	}
 
 	@Override
 	public int getMetaFromState(IBlockState state) {
-		EnumMetal type = (EnumMetal) state.getValue(METAL);
-		return type.getID();
+		int type = state.getValue(METAL);
+		return type;
 	}
 
 	@Override
@@ -47,64 +50,9 @@ public class TDMetalBlock extends Block {
 
 	@Override
 	public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> tab) {
-		EnumMetal[] all = EnumMetal.values();
-		for (EnumMetal block : all) {
-			tab.add(new ItemStack(this, 1, block.getID()));
+		for (int i = 0; i < maxmeta; i++) {
+			tab.add(new ItemStack(this, 1, i));
 		}
 	}
 
-	public enum EnumMetal implements IStringSerializable {
-		AEONSTEEL(0, "aeonsteel"),
-		QUEENSGOLD(1, "queensgold"),
-		DOGBEARIUM(2, "dogbearium"),
-		REDCANDY(3, "redcandy"),
-		GREENCANDY(4, "greencandy"),
-		SINISTERIUM(5, "sinisterium"),
-		NIHILITE(6, "nihilite"),
-		ORICHALCUM(7, "orichalcum"),
-		PANDORIUM(8, "pandorium"),
-		ROSEGOLD(9, "rosegold"),
-		PLATINUM(10, "platinum"),
-		BRASS(11, "brass"),
-		SILVER(12, "silver"),
-		CHEESE(13, "cheese");
-
-		private int ID;
-		private String name;
-
-		private EnumMetal(int ID, String name) {
-			this.ID = ID;
-			this.name = name;
-		}
-
-		@Override
-		public String getName() {
-			return name;
-		}
-
-		public int getID() {
-			return ID;
-		}
-
-		@Override
-		public String toString() {
-			return getName();
-		}
-
-		public static EnumMetal byMetadata(int meta) {
-			if (meta < 0 || meta >= META_LOOKUP.length) {
-				meta = 0;
-			}
-
-			return META_LOOKUP[meta];
-		}
-
-		private static final EnumMetal[] META_LOOKUP = new EnumMetal[values().length];
-
-		static {
-			for (EnumMetal colour : values()) {
-				META_LOOKUP[colour.getID()] = colour;
-			}
-		}
-	}
 }

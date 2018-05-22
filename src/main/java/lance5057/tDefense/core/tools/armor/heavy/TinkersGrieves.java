@@ -1,18 +1,22 @@
 package lance5057.tDefense.core.tools.armor.heavy;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import lance5057.tDefense.core.materials.ArmorMaterialStats.ClothMaterialStats;
 import lance5057.tDefense.core.materials.ArmorMaterialStats.LegsMaterialStats;
 import lance5057.tDefense.core.parts.TDParts;
+import lance5057.tDefense.core.tools.armor.renderers.ArmorRenderer;
 import lance5057.tDefense.core.tools.armor.renderers.heavy.ModelTinkersGrieves;
 import lance5057.tDefense.core.tools.bases.ArmorCore;
 import lance5057.tDefense.util.ArmorNBT;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.DamageSource;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import slimeknights.tconstruct.library.materials.Material;
@@ -22,7 +26,7 @@ public class TinkersGrieves extends ArmorCore
 {
 	public TinkersGrieves()
 	{
-		super(new PartMaterialType(TDParts.armorPlate, LegsMaterialStats.TYPE), 
+		super(EntityEquipmentSlot.LEGS,new PartMaterialType(TDParts.armorPlate, LegsMaterialStats.TYPE), 
 			new PartMaterialType(TDParts.chainmail, LegsMaterialStats.TYPE),
 				PartMaterialType.handle(TDParts.filigree),
 				new PartMaterialType(TDParts.cloth, ClothMaterialStats.TYPE));
@@ -31,23 +35,19 @@ public class TinkersGrieves extends ArmorCore
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public String getArmorTexture(ItemStack stack, int layer)
+	public List<String> getArmorTexture(ItemStack stack)
 	{
-		String s = "";
-		switch(layer)
-		{
-			case 0: s = "textures/armor/grieves/_grieves_plate.png"; break;
-			case 1: s = "textures/armor/grieves/_grieves_chain.png"; break;
-			case 2: s = "textures/armor/grieves/_grieves_trim.png"; break;
-			case 3: s = "textures/armor/grieves/_grieves_cloth.png"; break;
-		}
-		return s;
+		List<String> textures = new ArrayList();
+		textures.add("textures/armor/grieves/_grieves_plate.png");
+		textures.add("textures/armor/grieves/_grieves_chain.png");
+		textures.add("textures/armor/grieves/_grieves_trim.png");
+		textures.add("textures/armor/grieves/_grieves_cloth.png");
+		return textures;
 	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack,
-			EntityEquipmentSlot armorSlot, net.minecraft.client.model.ModelBiped _default)
+	public ArmorRenderer getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack)
 	{
 		return new ModelTinkersGrieves(itemStack);
 	}
@@ -61,5 +61,36 @@ public class TinkersGrieves extends ArmorCore
 	@Override
 	public EntityEquipmentSlot getArmorSlot(ItemStack stack, EntityEquipmentSlot armorType) {
 		return EntityEquipmentSlot.LEGS;
+	}
+
+	@Override
+	public void getTooltipDetailed(ItemStack stack, List<String> tooltips) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void getTooltipComponents(ItemStack stack, List<String> tooltips) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public ArmorProperties getProperties(EntityLivingBase player, ItemStack armor, DamageSource source, double damage,
+			int slot) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int getArmorDisplay(EntityPlayer player, ItemStack armor, int slot) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void damageArmor(EntityLivingBase entity, ItemStack stack, DamageSource source, int damage, int slot) {
+		// TODO Auto-generated method stub
+		
 	}
 }

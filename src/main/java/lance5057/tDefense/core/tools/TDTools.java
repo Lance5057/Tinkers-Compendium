@@ -14,8 +14,7 @@ import lance5057.tDefense.core.tools.armor.heavy.TinkersBreastplate;
 import lance5057.tDefense.core.tools.armor.heavy.TinkersGrieves;
 import lance5057.tDefense.core.tools.armor.heavy.TinkersHelm;
 import lance5057.tDefense.core.tools.armor.heavy.TinkersSabatons;
-import lance5057.tDefense.core.tools.armor.light.TinkersBoots;
-import lance5057.tDefense.core.tools.armor.straps.ItemStraps;
+import lance5057.tDefense.core.tools.bases.ArmorCore;
 import lance5057.tDefense.core.tools.basic.FishingRod;
 import lance5057.tDefense.core.tools.basic.HeaterShield;
 import lance5057.tDefense.core.tools.basic.RoundShield;
@@ -25,7 +24,7 @@ import lance5057.tDefense.core.tools.basic.Zweihander;
 import lance5057.tDefense.core.tools.baubles.Amulet;
 import lance5057.tDefense.core.tools.baubles.Ring;
 import lance5057.tDefense.core.tools.baubles.Sheathe;
-import net.minecraft.inventory.EntityEquipmentSlot;
+import lance5057.tDefense.util.TDRegistry;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
@@ -53,20 +52,20 @@ public class TDTools {
 	public static ToolCore shears;
 	public static ToolCore fishingRod;
 	
-	public static ToolCore hood;
-	public static ToolCore shawl;
-	public static ToolCore robe;
-	public static ToolCore shoes;
+	public static ArmorCore hood;
+	public static ArmorCore shawl;
+	public static ArmorCore robe;
+	public static ArmorCore shoes;
 
-	public static ToolCore coif;
-	public static ToolCore hauberk;
-	public static ToolCore chausses;
-	public static ToolCore boots;
+	public static ArmorCore coif;
+	public static ArmorCore hauberk;
+	public static ArmorCore chausses;
+	//public static ToolCore boots;
 
-	public static ToolCore helm;
-	public static ToolCore breastplate;
-	public static ToolCore grieves;
-	public static ToolCore sabatons;
+	public static ArmorCore helm;
+	public static ArmorCore breastplate;
+	public static ArmorCore grieves;
+	public static ArmorCore sabatons;
 	
 	//baubles
 	public static ToolCore sheathe;
@@ -114,7 +113,7 @@ public class TDTools {
 //		coif = new TinkersCoif();
 //		hauberk = new TinkersHauberk();
 //		chausses = new TinkersChausses();
-		boots = new TinkersBoots();
+		//boots = new TinkersBoots();
 		
 		helm = new TinkersHelm();
 		breastplate = new TinkersBreastplate();
@@ -132,23 +131,25 @@ public class TDTools {
 		regTool(shears, "shears", event);
 		regTool(fishingRod, "fishingRod", event);
 
-		regTool(hood, "hood", event);
-		regTool(shawl, "shawl", event);
-		regTool(robe, "robe", event);
-		regTool(shoes, "shoes", event);
+		regArmor(hood, "hood", event);
+		regArmor(shawl, "shawl", event);
+		regArmor(robe, "robe", event);
+		regArmor(shoes, "shoes", event);
 		
-		regTool(boots, "boots", event);
+		//regTool(boots, "boots", event);
 		
-		regTool(helm, "helm", event);
-		regTool(breastplate, "breastplate", event);
-		regTool(grieves, "grieves", event);
-		regTool(sabatons, "sabatons", event);
-		
+		regArmor(helm, "helm", event);
+		regArmor(breastplate, "breastplate", event);
+		regArmor(grieves, "grieves", event);
+		regArmor(sabatons, "sabatons", event);
+	
+//		CustomTextureCreator.registerTexture(new ResourceLocation("tinkersdefense", "items/battleaxe/_halbard_accessory"));
+
 		CustomTextureCreator.registerTexture(new ResourceLocation("tinkersdefense", "armor/helm/_helm_chain"));
 		CustomTextureCreator.registerTexture(new ResourceLocation("tinkersdefense", "armor/helm/_helm_plate"));
 		CustomTextureCreator.registerTexture(new ResourceLocation("tinkersdefense", "armor/helm/_helm_top"));
 		CustomTextureCreator.registerTexture(new ResourceLocation("tinkersdefense", "armor/helm/_helm_visor"));
-		
+//		
 		regTool(sheathe, "sheathe", event);
 		regTool(ring, "ring", event);
 		regTool(amulet, "amulet", event);
@@ -167,6 +168,14 @@ public class TDTools {
 		//itemList.add(tool);
 	} 
 
+	private static void regArmor(ArmorCore armor, String name, RegistryEvent.Register<Item> event) {
+		armor.setRegistryName(new ResourceLocation("tinkersdefense:" + name));
+		event.getRegistry().register(armor);
+		TDRegistry.registerTool(armor);
+		TinkersDefense.proxy.registerArmorModel(armor);
+		//itemList.add(tool);
+	} 
+	
 	private void registerModifiers() {
 
 	}
@@ -196,17 +205,17 @@ public class TDTools {
 		TinkerRegistry.registerToolCrafting(shears);
 		TinkerRegistry.registerToolCrafting(fishingRod);
 
-		TinkerRegistry.registerToolCrafting(hood);
-		TinkerRegistry.registerToolCrafting(shawl);
-		TinkerRegistry.registerToolCrafting(robe);
-		TinkerRegistry.registerToolCrafting(shoes);
+		TDRegistry.registerArmorCrafting(hood);
+		TDRegistry.registerArmorCrafting(shawl);
+		TDRegistry.registerArmorCrafting(robe);
+		TDRegistry.registerArmorCrafting(shoes);
 		
-		TinkerRegistry.registerToolCrafting(boots);
+		//TinkerRegistry.registerToolCrafting(boots);
 		
-		TinkerRegistry.registerToolForgeCrafting(helm);
-		TinkerRegistry.registerToolForgeCrafting(breastplate);
-		TinkerRegistry.registerToolForgeCrafting(grieves);
-		TinkerRegistry.registerToolForgeCrafting(sabatons);
+		TDRegistry.registerArmorForgeCrafting(helm);
+		TDRegistry.registerArmorForgeCrafting(breastplate);
+		TDRegistry.registerArmorForgeCrafting(grieves);
+		TDRegistry.registerArmorForgeCrafting(sabatons);
 		
 		TinkerRegistry.registerToolCrafting(sheathe);
 		TinkerRegistry.registerToolCrafting(ring);

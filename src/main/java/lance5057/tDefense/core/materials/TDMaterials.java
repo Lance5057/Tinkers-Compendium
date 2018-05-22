@@ -358,14 +358,14 @@ public class TDMaterials {
 
 		if (TinkersDefense.config.materials.enableBaseMaterials)
 			this.materials_master.addAll(materials_base);
-		if (TinkersDefense.config.materials.enableJokeMaterials)
-			this.materials_master.addAll(this.materials_joke);
-		if (TinkersDefense.config.materials.enableHolidayMaterials)
-			this.materials_master.addAll(materials_xmas);
-		if (TinkersDefense.config.materials.enableGemMaterials)
-			this.materials_master.addAll(materials_gems);
-		if (TinkersDefense.config.materials.enableCornucopiaMaterials)
-			this.materials_master.addAll(materials_cornucopia);
+//		if (TinkersDefense.config.materials.enableJokeMaterials)
+//			this.materials_master.addAll(this.materials_joke);
+//		if (TinkersDefense.config.materials.enableHolidayMaterials)
+//			this.materials_master.addAll(materials_xmas);
+//		if (TinkersDefense.config.materials.enableGemMaterials)
+//			this.materials_master.addAll(materials_gems);
+//		if (TinkersDefense.config.materials.enableCornucopiaMaterials)
+//			this.materials_master.addAll(materials_cornucopia);
 		// if (TinkersDefense.config.materials.enableTwilightForestMaterials)
 		// this.materials_master.addAll(materials_tf);
 		// if (TinkersDefense.config.materials.enableBloodMagicMaterials)

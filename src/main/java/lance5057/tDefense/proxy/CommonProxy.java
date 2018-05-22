@@ -2,13 +2,10 @@ package lance5057.tDefense.proxy;
 
 import lance5057.tDefense.Reference;
 import lance5057.tDefense.TinkersDefense;
-import lance5057.tDefense.core.tools.armor.straps.ItemStrapsInv;
-import lance5057.tDefense.core.tools.armor.straps.StrapsContainer;
-import lance5057.tDefense.core.tools.armor.straps.StrapsGui;
+import lance5057.tDefense.core.tools.bases.ArmorCore;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
-import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fluids.Fluid;
@@ -46,6 +43,10 @@ public class CommonProxy implements IGuiHandler {
 	public void registerToolModel(ToolCore tool) {
 
 	}
+	
+	public void registerArmorModel(ArmorCore tool) {
+
+	}
 
 	public void registerPartModel(ToolPart part) {
 
@@ -63,9 +64,6 @@ public class CommonProxy implements IGuiHandler {
 		// if(ID == TinkersDefense.GUI_ANVIL_INV)
 		// return new Container_FinishingAnvil(player.inventory,
 		// (TileEntity_FinishingAnvil) world.getTileEntity(x, y, z));
-		if (ID == TinkersDefense.GUI_STRAPS_INV)
-			return new StrapsContainer(player, player.inventory,
-					new ItemStrapsInv(player.getHeldItem(EnumHand.MAIN_HAND)));
  
 		return null;
 	}
@@ -78,9 +76,6 @@ public class CommonProxy implements IGuiHandler {
 		// if(ID == TinkersDefense.GUI_ANVIL_INV)
 		// return new Gui_FinishingAnvil(player.inventory,
 		// (TileEntity_FinishingAnvil) world.getTileEntity(x, y, z));
-		if (ID == TinkersDefense.GUI_STRAPS_INV)
-			return new StrapsGui((StrapsContainer) new StrapsContainer(player, player.inventory,
-					new ItemStrapsInv(player.getHeldItem(EnumHand.MAIN_HAND))));
 		return null;
 	}
 

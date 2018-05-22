@@ -22,7 +22,6 @@ public class TDMetalItemBlock extends ItemBlock {
 	  @Override
 	  public String getUnlocalizedName(ItemStack stack)
 	  {
-	    TDMetalBlock.EnumMetal metal = TDMetalBlock.EnumMetal.byMetadata(stack.getMetadata());
-	    return super.getUnlocalizedName() + "." + metal.toString();
+	    return super.getUnlocalizedName() + "." + stack.getMetadata();
 	}
 }
