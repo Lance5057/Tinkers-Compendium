@@ -9,10 +9,13 @@ import org.lwjgl.util.Point;
 
 import com.google.common.collect.Lists;
 
+import lance5057.tDefense.core.library.ArmorBuildGuiInfo;
+import lance5057.tDefense.core.library.TDClientRegistry;
+import lance5057.tDefense.core.library.TDRegistry;
+import lance5057.tDefense.core.network.ArmorStationSelectionPacket;
+import lance5057.tDefense.core.tileentities.ArmorStationTile;
+import lance5057.tDefense.core.tools.bases.ArmorBase;
 import lance5057.tDefense.core.tools.bases.ArmorCore;
-import lance5057.tDefense.util.ArmorBuildGuiInfo;
-import lance5057.tDefense.util.TDClientRegistry;
-import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
@@ -31,32 +34,21 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import slimeknights.mantle.client.gui.GuiElement;
 import slimeknights.mantle.client.gui.GuiElementScalable;
-import slimeknights.mantle.client.gui.GuiModule;
 import slimeknights.tconstruct.common.TinkerNetwork;
 import slimeknights.tconstruct.library.TinkerRegistry;
-import slimeknights.tconstruct.library.TinkerRegistryClient;
 import slimeknights.tconstruct.library.Util;
 import slimeknights.tconstruct.library.client.Icons;
-import slimeknights.tconstruct.library.client.ToolBuildGuiInfo;
 import slimeknights.tconstruct.library.modifiers.IModifier;
 import slimeknights.tconstruct.library.modifiers.ModifierNBT;
 import slimeknights.tconstruct.library.tinkering.IModifyable;
 import slimeknights.tconstruct.library.tinkering.IToolStationDisplay;
 import slimeknights.tconstruct.library.tinkering.PartMaterialType;
-import slimeknights.tconstruct.library.tinkering.TinkersItem;
 import slimeknights.tconstruct.library.tools.IToolPart;
-import slimeknights.tconstruct.library.tools.ToolCore;
 import slimeknights.tconstruct.library.utils.TagUtil;
-import slimeknights.tconstruct.tools.common.client.GuiButtonRepair;
 import slimeknights.tconstruct.tools.common.client.GuiTinkerStation;
-import slimeknights.tconstruct.tools.common.client.module.GuiButtonsToolStation;
 import slimeknights.tconstruct.tools.common.client.module.GuiInfoPanel;
-import slimeknights.tconstruct.tools.common.inventory.ContainerTinkerStation;
-import slimeknights.tconstruct.tools.common.inventory.ContainerToolStation;
 import slimeknights.tconstruct.tools.common.inventory.SlotToolStationIn;
-import slimeknights.tconstruct.tools.common.network.ToolStationSelectionPacket;
 import slimeknights.tconstruct.tools.common.network.ToolStationTextPacket;
-import slimeknights.tconstruct.tools.common.tileentity.TileToolStation;
 
 @SideOnly(Side.CLIENT)
 public class ArmorStationGui extends GuiTinkerStation {
@@ -99,8 +91,8 @@ public class ArmorStationGui extends GuiTinkerStation {
 
   public ArmorBuildGuiInfo currentInfo = ArmorStationGuiButtonRepair.info;
 
-  public ArmorStationGui(InventoryPlayer playerInv, World world, BlockPos pos, TileToolStation tile) {
-    super(world, pos, (ContainerTinkerStation) tile.createContainer(playerInv, world, pos));
+  public ArmorStationGui(InventoryPlayer playerInv, World world, BlockPos pos, ArmorStationTile armorStationTile) {
+    super(world, pos, (ArmorStationContainer) armorStationTile.createContainer(playerInv, world, pos));
 
     buttons = new ArmorStationGuiButtons(this, inventorySlots);
     this.addModule(buttons);
@@ -152,32 +144,32 @@ public class ArmorStationGui extends GuiTinkerStation {
     Keyboard.enableRepeatEvents(false);
   }
 
-  public Set<ToolCore> getBuildableItems() {
-    return TinkerRegistry.getToolStationCrafting();
+  public Set<ArmorCore> getBuildableItems() {
+    return TDRegistry.getArmorStationCrafting();
   }
 
   public void onToolSelection(ArmorBuildGuiInfo data) {
     activeSlots = Math.min(data.positions.size(), Table_slot_count);
     currentInfo = data;
 
-    ToolCore tool = null;
+    ArmorCore tool = null;
 
-    if(data.armor.getItem() instanceof ToolCore) {
-      tool = (ToolCore) data.armor.getItem();
+    if(data.armor.getItem() instanceof ArmorCore) {
+      tool = (ArmorCore) data.armor.getItem();
     }
 
-    ((ContainerToolStation) inventorySlots).setToolSelection(tool, activeSlots);
+    ((ArmorStationContainer) inventorySlots).setToolSelection(tool, activeSlots);
     // update the server (and others)
-    TinkerNetwork.sendToServer(new ToolStationSelectionPacket(tool, activeSlots));
+    TinkerNetwork.sendToServer(new ArmorStationSelectionPacket(tool, activeSlots));
     updateGUI();
   }
 
-  public void onToolSelectionPacket(ToolStationSelectionPacket packet) {
-    ArmorBuildGuiInfo info = TDClientRegistry.getArmorBuildInfoForArmor(packet.tool);
+  public void onToolSelectionPacket(ArmorStationSelectionPacket armorStationSelectionPacket) {
+    ArmorBuildGuiInfo info = TDClientRegistry.getArmorBuildInfoForArmor(armorStationSelectionPacket.armor);
     if(info == null) {
       info = ArmorStationGuiButtonRepair.info;
     }
-    activeSlots = packet.activeSlots;
+    activeSlots = armorStationSelectionPacket.activeSlots;
     currentInfo = info;
 
     buttons.setSelectedButtonByTool(currentInfo.armor);
@@ -218,7 +210,7 @@ public class ArmorStationGui extends GuiTinkerStation {
   @Override
   public void updateDisplay() {
     // tool info of existing or tool to build
-    ContainerToolStation container = (ContainerToolStation) inventorySlots;
+	  ArmorStationContainer container = (ArmorStationContainer) inventorySlots;
     ItemStack toolStack = container.getResult();
     if(toolStack.isEmpty()) {
       toolStack = inventorySlots.getSlot(0).getStack();
@@ -282,7 +274,7 @@ public class ArmorStationGui extends GuiTinkerStation {
     // tool build info
     else {
       ArmorCore tool = (ArmorCore) currentInfo.armor.getItem();
-      toolInfo.setCaption(tool.getLocalizedToolName());
+      toolInfo.setCaption(tool.getLocalizedToolName()); 
       toolInfo.setText(tool.getLocalizedDescription());
 
       // Components
@@ -338,7 +330,7 @@ public class ArmorStationGui extends GuiTinkerStation {
 
       textField.textboxKeyTyped(typedChar, keyCode);
       TinkerNetwork.sendToServer(new ToolStationTextPacket(textField.getText()));
-      ((ContainerToolStation) container).setToolName(textField.getText());
+      ((ArmorStationContainer) container).setToolName(textField.getText());
     }
   }
 
@@ -434,7 +426,7 @@ public class ArmorStationGui extends GuiTinkerStation {
     if(currentInfo == ArmorStationGuiButtonRepair.info) {
       drawRepairSlotIcons();
     }
-    else if(currentInfo.armor.getItem() instanceof TinkersItem) {
+    else if(currentInfo.armor.getItem() instanceof ArmorBase) {
       for(int i = 0; i < activeSlots; i++) {
         Slot slot = inventorySlots.getSlot(i);
         if(!(slot instanceof SlotToolStationIn)) {
@@ -555,7 +547,7 @@ public class ArmorStationGui extends GuiTinkerStation {
     buttons.metal();
 
     beamL = BeamLeft.shift(0, BeamLeft.h);
-    beamR = BeamRight.shift(0, BeamRight.h);
+    beamR = BeamRight.shift(0, BeamRight.h); 
     beamC = BeamCenter.shift(0, BeamCenter.h);
   }
 

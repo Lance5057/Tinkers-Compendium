@@ -1,9 +1,0 @@
-{
-    "textures": {
-        "layer0": "tinkersdefense:items/armor/helm/_top",
-        "layer1": "tinkersdefense:items/armor/helm/_plate",
-		"layer2": "tinkersdefense:items/armor/helm/_visor",
-		"layer3": "tinkersdefense:items/armor/helm/_chain",
-		"broken1": "tinkersdefense:items/armor/helm/_plate"
-    }
-}

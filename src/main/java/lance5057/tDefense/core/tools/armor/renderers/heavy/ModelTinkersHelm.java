@@ -15,9 +15,9 @@ public class ModelTinkersHelm extends ArmorRenderer {
     public ModelRenderer MouthGuard;
 
     public ModelTinkersHelm(ItemStack stack) {
-    	super(0.25f, 0, 96, 64, stack);
+    	super(0.25f, 0, 96, 96, stack);
         this.textureWidth = 96;
-        this.textureHeight = 64;
+        this.textureHeight = 96;
         
         this.MouthGuard = new ModelRenderer(this, 64, 32);
         this.MouthGuard.setRotationPoint(0.0F, 0.0F, 0.0F);

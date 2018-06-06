@@ -17,9 +17,9 @@ public class ModelTinkersShawl extends ArmorRenderer {
     public ModelRenderer ShawlRightTrimLong;
 
     public ModelTinkersShawl(ItemStack stack) {
-    	super(0.25f, 0, 96, 64, stack);
+    	super(0.25f, 0, 96, 96, stack);
         this.textureWidth = 96;
-        this.textureHeight = 64;
+        this.textureHeight = 96;
 
         this.TrimNeck = new ModelRenderer(this, 68, 49);
         this.TrimNeck.setRotationPoint(0.0F, 0.0F, 0.0F);

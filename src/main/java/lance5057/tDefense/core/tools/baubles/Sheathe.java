@@ -2,6 +2,8 @@ package lance5057.tDefense.core.tools.baubles;
 
 import baubles.api.BaubleType;
 import lance5057.tDefense.Reference;
+import lance5057.tDefense.core.materials.stats.FabricMaterialStats;
+import lance5057.tDefense.core.parts.TDParts;
 import lance5057.tDefense.core.tools.bases.BaubleTool;
 import lance5057.tDefense.proxy.ClientProxy;
 import net.minecraft.client.Minecraft;
@@ -16,8 +18,9 @@ public class Sheathe extends BaubleTool {
 	private static final ResourceLocation texture = new ResourceLocation(Reference.MOD_ID, "textures/model/sheathe.png");
 
 	public Sheathe(PartMaterialType... requiredComponents) {
-		super(PartMaterialType.head(TinkerTools.largePlate), PartMaterialType.handle(TinkerTools.toolRod),
-				PartMaterialType.bowstring(TinkerTools.bowString));
+		super(PartMaterialType.head(TDParts.armorPlate), PartMaterialType.handle(TDParts.clasp),
+			new PartMaterialType(TDParts.fabric, FabricMaterialStats.TYPE),
+			PartMaterialType.extra(TDParts.filigree));
 
 	}
 

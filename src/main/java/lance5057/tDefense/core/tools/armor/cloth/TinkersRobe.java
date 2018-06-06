@@ -3,25 +3,35 @@ package lance5057.tDefense.core.tools.armor.cloth;
 import java.util.ArrayList;
 import java.util.List;
 
-import lance5057.tDefense.core.materials.ArmorMaterialStats.ClothMaterialStats;
-import lance5057.tDefense.core.materials.ArmorMaterialStats.LegsMaterialStats;
+import lance5057.tDefense.core.library.ArmorNBT;
+import lance5057.tDefense.core.library.ArmorTags;
+import lance5057.tDefense.core.library.ArmorTextureBuilder;
+import lance5057.tDefense.core.materials.stats.ArmorMaterialStats;
+import lance5057.tDefense.core.materials.stats.FabricMaterialStats;
+import lance5057.tDefense.core.materials.stats.LegsMaterialStats;
 import lance5057.tDefense.core.parts.TDParts;
 import lance5057.tDefense.core.tools.armor.renderers.ArmorRenderer;
 import lance5057.tDefense.core.tools.armor.renderers.cloth.ModelTinkersRobe;
 import lance5057.tDefense.core.tools.bases.ArmorCore;
-import lance5057.tDefense.util.ArmorNBT;
+import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ISpecialArmor.ArmorProperties;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import slimeknights.tconstruct.library.materials.ExtraMaterialStats;
 import slimeknights.tconstruct.library.materials.Material;
+import slimeknights.tconstruct.library.materials.MaterialTypes;
 import slimeknights.tconstruct.library.tinkering.PartMaterialType;
+import slimeknights.tconstruct.library.utils.TagUtil;
 
 public class TinkersRobe extends ArmorCore
 {
@@ -30,11 +40,13 @@ public class TinkersRobe extends ArmorCore
 
 	public TinkersRobe()
 	{
-	    super(EntityEquipmentSlot.CHEST,new PartMaterialType(TDParts.cloth, ClothMaterialStats.TYPE),
-	    	new PartMaterialType(TDParts.cloth, ClothMaterialStats.TYPE),
+	    super(EntityEquipmentSlot.LEGS,new PartMaterialType(TDParts.fabric, FabricMaterialStats.TYPE),
+	    	new PartMaterialType(TDParts.fabric, FabricMaterialStats.TYPE),
 	    	PartMaterialType.extra(TDParts.clasp));
 		setUnlocalizedName("tinkerrobe");
 	}
+	
+	
 
 	@Override
 	public void onUpdate(ItemStack stack, World world, Entity entity, int par4, boolean par5)
@@ -43,27 +55,32 @@ public class TinkersRobe extends ArmorCore
 
 	}
 
-	@SideOnly(Side.CLIENT)
 	@Override
-	public List<String> getArmorTexture(ItemStack stack) {
-		List<String> textures = new ArrayList();
-		textures.add("textures/armor/robe/_robe_cloth.png");
-		textures.add("textures/armor/robe/_robe_trim.png");
-		textures.add("textures/armor/robe/_robe_metal.png");
+	@SideOnly(Side.CLIENT)
+	public NBTTagCompound setupTexture(List<Material> materials)
+	{
+		NBTTagCompound base = new NBTTagCompound();
 
-		return textures;
+		ResourceLocation rc = ArmorTextureBuilder.createArmorTexture("robe", new String[] { "cloth", "trim", "metal" }, materials);
+
+		if (rc != null)
+		{
+			base.setString(ArmorTags.TexLoc, rc.toString());
+			return base;
+		}
+		return null;
 	}
-
+	
 	@SideOnly(Side.CLIENT)
 	@Override
-	public ArmorRenderer getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack)
+	public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, EntityEquipmentSlot armorSlot, ModelBiped _default)
 	{
 		return new ModelTinkersRobe(itemStack);
 	}
 
 	@Override
 	public NBTTagCompound buildTag(List<Material> materials) {
-		ArmorNBT data = buildDefaultArmorTag(materials, LegsMaterialStats.TYPE);
+		ArmorNBT data = buildDefaultTag(materials);
 	    return data.get();
 	}
 	
@@ -71,35 +88,68 @@ public class TinkersRobe extends ArmorCore
 	public EntityEquipmentSlot getArmorSlot(ItemStack stack, EntityEquipmentSlot armorType) {
 		return EntityEquipmentSlot.LEGS;
 	}
-
+	
 	@Override
-	public void getTooltipDetailed(ItemStack stack, List<String> tooltips) {
-		// TODO Auto-generated method stub
-		
+	protected ArmorNBT buildDefaultTag(List<Material> materials)
+	{
+		ArmorNBT data = new ArmorNBT();
+
+		if (materials.size() >= 2)
+		{
+			ArmorMaterialStats handle = materials.get(0).getStatsOrUnknown(FabricMaterialStats.TYPE);
+			ArmorMaterialStats head = materials.get(1).getStatsOrUnknown(FabricMaterialStats.TYPE);
+			// start with head
+			data.head(head, handle);
+
+			// add in accessoires if present
+			if (materials.size() >= 3)
+			{
+				ExtraMaterialStats binding = materials.get(2).getStatsOrUnknown(MaterialTypes.EXTRA);
+				data.extra(binding);
+			}
+
+			// calculate handle impact
+			//data.head(handle);
+		}
+
+		// 3 free modifiers
+		data.modifiers = DEFAULT_MODIFIERS;
+
+		return data;
 	}
 
 	@Override
-	public void getTooltipComponents(ItemStack stack, List<String> tooltips) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public ArmorProperties getProperties(EntityLivingBase player, ItemStack armor, DamageSource source, double damage,
-			int slot) {
+	public ArmorProperties getProperties(EntityLivingBase player, ItemStack armor, DamageSource source, double damage, int slot)
+	{
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public int getArmorDisplay(EntityPlayer player, ItemStack armor, int slot) {
+	public int getArmorDisplay(EntityPlayer player, ItemStack armor, int slot)
+	{
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public void damageArmor(EntityLivingBase entity, ItemStack stack, DamageSource source, int damage, int slot) {
+	public void damageArmor(EntityLivingBase entity, ItemStack stack, DamageSource source, int damage, int slot)
+	{
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public float damagePotential()
+	{
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public double attackSpeed()
+	{
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }

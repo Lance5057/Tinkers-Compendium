@@ -2,6 +2,7 @@ package lance5057.tDefense.proxy;
 
 import lance5057.tDefense.Reference;
 import lance5057.tDefense.TinkersDefense;
+import lance5057.tDefense.core.library.ArmorPart;
 import lance5057.tDefense.core.tools.bases.ArmorCore;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
@@ -93,9 +94,22 @@ public class CommonProxy implements IGuiHandler {
 
 	@SubscribeEvent
 	public static void registerItems(RegistryEvent.Register<Item> event) {
-		TinkersDefense.mats.registerItems(event);
+		
+		
 		TinkersDefense.parts.registerItems(event);
+		TinkersDefense.mats.registerItems(event);
 		TinkersDefense.tools.registerItems(event);
 		TinkersDefense.holiday.registerItems(event);
+	}
+	
+	@SubscribeEvent
+	public static void registerBlocks(RegistryEvent.Register<Block> event) {
+		TinkersDefense.tools.registerBlocks(event);
+	}
+
+	public void registerArmorPartModel(ArmorPart part)
+	{
+		// TODO Auto-generated method stub
+		
 	}
 }

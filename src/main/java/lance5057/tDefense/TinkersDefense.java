@@ -20,7 +20,7 @@ import scala.reflect.internal.Trees.Modifiers;
 import slimeknights.mantle.client.CreativeTab;
 
 
-@Mod(modid = Reference.MOD_ID, version = Reference.VERSION, name = Reference.MOD_NAME, dependencies = "required-after:tconstruct")
+@Mod(modid = Reference.MOD_ID, version = Reference.VERSION, name = Reference.MOD_NAME, dependencies = "required-after: tconstruct")
 public class TinkersDefense {
 
 	private static int modGuiIndex = 0;
@@ -62,8 +62,9 @@ public class TinkersDefense {
 		
 		holiday = new HolidayBase();
 		
-		mats = new TDMaterials();
+		
 		parts = new TDParts();
+		mats = new TDMaterials();
 		tools = new TDTools();
 		events = new TDEvents();
 		traits = new TDTraits();
@@ -71,8 +72,11 @@ public class TinkersDefense {
 		
 		//core.preInit(e);
 		holiday.preInit(e);
-		mats.preInit(e);
+		
+		
+		
 		parts.preInit(e);
+		mats.preInit(e);
 		tools.preInit(e);
 		traits.preInit();
 		events.preInit();
@@ -86,9 +90,12 @@ public class TinkersDefense {
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, proxy);
 		//core.init(e);
 		holiday.init(e);
-		mats.init(e);
+		
+		
+		
 		parts.init(e);
-		tools.init(e);
+		mats.init(e);
+		tools.init(e); 
 		traits.init();
 		events.init();
 		proxy.init();
@@ -100,8 +107,11 @@ public class TinkersDefense {
 
 	@Mod.EventHandler
 	public void postInit(FMLPostInitializationEvent e) {
-		mats.postInit(e);
+		
+		
+		
 		parts.postInit(e);
+		mats.postInit(e);
 		tools.postInit(e);
 		traits.postInit();
 		events.postInit();

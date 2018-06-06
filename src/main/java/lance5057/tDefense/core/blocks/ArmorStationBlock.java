@@ -25,6 +25,8 @@ public class ArmorStationBlock extends BlockTable implements ITinkerStationBlock
 
     public ArmorStationBlock() {
         super(Material.WOOD);
+        this.setUnlocalizedName("armorstation");
+        this.setRegistryName("armorstation");
         this.setCreativeTab(TinkerRegistry.tabGeneral);
         this.setSoundType(SoundType.WOOD);
         this.setResistance(5f);

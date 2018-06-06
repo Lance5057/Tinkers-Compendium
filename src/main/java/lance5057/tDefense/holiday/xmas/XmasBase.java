@@ -1,9 +1,9 @@
 package lance5057.tDefense.holiday.xmas;
 
 import lance5057.tDefense.TinkersDefense;
+import lance5057.tDefense.core.library.ItemsBase;
+import lance5057.tDefense.core.library.ModuleBase;
 import lance5057.tDefense.holiday.xmas.gumdropslime.GumDropSlime;
-import lance5057.tDefense.util.ItemsBase;
-import lance5057.tDefense.util.ModuleBase;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;

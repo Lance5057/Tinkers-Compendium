@@ -1,0 +1,10 @@
+{
+    "type": "metal_textured",
+    "parameters": {
+        "texture": "tinkerscompendium:materials/stargem",
+        "color": "b00063",
+        "shinyness": 0.6,
+        "brightness": 0.4,
+        "hueshift": 0.1
+    }
+}

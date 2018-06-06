@@ -1,0 +1,8 @@
+{
+    "textures": {
+        "layer0": "tinkerscompendium:items/baubles/ring/_band",
+        "layer1": "tinkerscompendium:items/baubles/ring/_filigree",
+		"layer2": "tinkerscompendium:items/baubles/ring/_setting",
+		"broken1": "tinkerscompendium:items/baubles/ring/_broken"
+    }
+}

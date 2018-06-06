@@ -1,6 +1,7 @@
 package lance5057.tDefense.core.materials.traits.armor;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import lance5057.tDefense.core.materials.traits.AbstractTDTrait;
@@ -10,7 +11,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import scala.actors.threadpool.Arrays;
 import slimeknights.tconstruct.library.traits.AbstractTrait;
 
 public class TraitDamageSourceAlteration extends AbstractTDTrait {

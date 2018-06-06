@@ -21,9 +21,9 @@ public class ModelTinkersRobe extends ArmorRenderer {
     public ModelRenderer LeftFrontL;
 
     public ModelTinkersRobe(ItemStack stack) {
-    	super(0.25f, 0, 96, 64, stack);
+    	super(0.25f, 0, 96, 96, stack);
         this.textureWidth = 96;
-        this.textureHeight = 64;
+        this.textureHeight = 96;
         
         this.BeltStraight = new ModelRenderer(this, 66, 24);
         this.BeltStraight.setRotationPoint(0.0F, 10.0F, 0.0F);

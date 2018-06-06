@@ -1,8 +1,0 @@
-{
-    "textures": {
-        "layer0": "tinkersdefense:items/baubles/amulet/_setting",
-        "layer1": "tinkersdefense:items/baubles/amulet/_chain",
-		"layer2": "tinkersdefense:items/baubles/amulet/_clasp",
-		"broken1": "tinkersdefense:items/baubles/amulet/_broken"
-    }
-}

@@ -1,74 +1,66 @@
 package lance5057.tDefense.core.tools.armor.heavy;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import lance5057.tDefense.core.materials.ArmorMaterialStats.ClothMaterialStats;
-import lance5057.tDefense.core.materials.ArmorMaterialStats.FeetMaterialStats;
+import lance5057.tDefense.core.library.ArmorNBT;
+import lance5057.tDefense.core.materials.stats.ArmorMaterialStats;
+import lance5057.tDefense.core.materials.stats.FabricMaterialStats;
+import lance5057.tDefense.core.materials.stats.FeetMaterialStats;
 import lance5057.tDefense.core.parts.TDParts;
 import lance5057.tDefense.core.tools.armor.renderers.ArmorRenderer;
 import lance5057.tDefense.core.tools.armor.renderers.heavy.ModelTinkersSabatons;
 import lance5057.tDefense.core.tools.bases.ArmorCore;
-import lance5057.tDefense.util.ArmorNBT;
 import net.minecraft.client.model.ModelBiped;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.DamageSource;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import slimeknights.tconstruct.library.materials.ExtraMaterialStats;
 import slimeknights.tconstruct.library.materials.Material;
+import slimeknights.tconstruct.library.materials.MaterialTypes;
 import slimeknights.tconstruct.library.tinkering.PartMaterialType;
+import slimeknights.tconstruct.library.utils.TagUtil;
 
 public class TinkersSabatons extends ArmorCore {
 	public TinkersSabatons() {
 		super(EntityEquipmentSlot.FEET,new PartMaterialType(TDParts.armorPlate, FeetMaterialStats.TYPE),
 				new PartMaterialType(TDParts.armorPlate, FeetMaterialStats.TYPE),
 				PartMaterialType.handle(TDParts.filigree),
-				new PartMaterialType(TDParts.cloth, ClothMaterialStats.TYPE));
+				new PartMaterialType(TDParts.fabric, FabricMaterialStats.TYPE));
 		setUnlocalizedName("tinkerssabatons");
 	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public List<String> getArmorTexture(ItemStack stack) {
-		List<String> textures = new ArrayList();
-		textures.add("textures/armor/sabatons/_sabatons_plates.png");
-		textures.add("textures/armor/sabatons/_sabatons_caps.png");
-		textures.add("textures/armor/sabatons/_sabatons_trim.png");
-		textures.add("textures/armor/sabatons/_sabatons_soles.png");
-		return textures;
+	public String getArmorTexture(ItemStack stack, Entity entity, EntityEquipmentSlot slot, String type) {
+		String texture;
+		NBTTagList t = TagUtil.getBaseMaterialsTagList(stack);
+		texture = "textures/armor/sabatons/_sabatons_plate_" + t.getStringTagAt(0);
+		return texture;
 	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public ArmorRenderer getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack) {
+	public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, EntityEquipmentSlot armorSlot, ModelBiped _default)
+	{
 		return new ModelTinkersSabatons(itemStack);
 	}
 
 	@Override
 	public NBTTagCompound buildTag(List<Material> materials) {
-		ArmorNBT data = buildDefaultArmorTag(materials, FeetMaterialStats.TYPE);
+		ArmorNBT data = buildDefaultTag(materials);
 		return data.get();
 	}
 
 	@Override
 	public EntityEquipmentSlot getArmorSlot(ItemStack stack, EntityEquipmentSlot armorType) {
 		return EntityEquipmentSlot.FEET;
-	}
-
-	@Override
-	public void getTooltipDetailed(ItemStack stack, List<String> tooltips) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void getTooltipComponents(ItemStack stack, List<String> tooltips) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
@@ -88,5 +80,48 @@ public class TinkersSabatons extends ArmorCore {
 	public void damageArmor(EntityLivingBase entity, ItemStack stack, DamageSource source, int damage, int slot) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public float damagePotential()
+	{
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public double attackSpeed()
+	{
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
+	@Override
+	protected ArmorNBT buildDefaultTag(List<Material> materials)
+	{
+		ArmorNBT data = new ArmorNBT();
+
+		if (materials.size() >= 2)
+		{
+			ArmorMaterialStats handle = materials.get(0).getStatsOrUnknown(FabricMaterialStats.TYPE);
+			ArmorMaterialStats head = materials.get(1).getStatsOrUnknown(FabricMaterialStats.TYPE);
+			// start with head
+			data.head(head);
+
+			// add in accessoires if present
+			if (materials.size() >= 3)
+			{
+				ExtraMaterialStats binding = materials.get(2).getStatsOrUnknown(MaterialTypes.EXTRA);
+				data.extra(binding);
+			}
+
+			// calculate handle impact
+			data.head(handle);
+		}
+
+		// 3 free modifiers
+		data.modifiers = DEFAULT_MODIFIERS;
+
+		return data;
 	}
 }

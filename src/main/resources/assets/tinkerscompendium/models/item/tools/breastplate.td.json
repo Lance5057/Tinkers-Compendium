@@ -1,0 +1,9 @@
+{
+    "textures": {
+        "layer0": "tinkerscompendium:items/armor/breastplate/_plate",
+        "layer1": "tinkerscompendium:items/armor/breastplate/_smallplate",
+		"layer2": "tinkerscompendium:items/armor/breastplate/_trim",
+		"layer3": "tinkerscompendium:items/armor/breastplate/_chain",
+		"broken1": "tinkerscompendium:items/armor/breastplate/_plate"
+    }
+}

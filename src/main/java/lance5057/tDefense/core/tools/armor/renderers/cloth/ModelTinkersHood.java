@@ -15,10 +15,10 @@ public class ModelTinkersHood extends ArmorRenderer {
     public ModelRenderer ScarfNeck;
 
     public ModelTinkersHood(ItemStack stack) {
-    	super(0.25f, 0, 96, 64, stack);
+    	super(0.25f, 0, 96, 96, stack);
         this.textureWidth = 96;
-        this.textureHeight = 64;
-        
+        this.textureHeight = 96;
+       
         this.Flop_1 = new ModelRenderer(this, 77, 9);
         this.Flop_1.setRotationPoint(0.0F, 0.0F, 0.0F);
         this.Flop_1.addBox(-2.0F, -6.8F, -0.1F, 4, 4, 5, 0.5F);

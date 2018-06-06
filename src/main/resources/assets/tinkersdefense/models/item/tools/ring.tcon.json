@@ -1,8 +1,0 @@
-{
-    "textures": {
-        "layer0": "tinkersdefense:items/baubles/ring/_band",
-        "layer1": "tinkersdefense:items/baubles/ring/_filigree",
-		"layer2": "tinkersdefense:items/baubles/ring/_setting",
-		"broken1": "tinkersdefense:items/baubles/ring/_broken"
-    }
-}

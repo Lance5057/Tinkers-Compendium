@@ -1,0 +1,9 @@
+{
+    "textures": {
+        "layer0": "tinkerscompendium:items/armor/helm/_top",
+        "layer1": "tinkerscompendium:items/armor/helm/_plate",
+		"layer2": "tinkerscompendium:items/armor/helm/_visor",
+		"layer3": "tinkerscompendium:items/armor/helm/_chain",
+		"broken1": "tinkerscompendium:items/armor/helm/_plate"
+    }
+}

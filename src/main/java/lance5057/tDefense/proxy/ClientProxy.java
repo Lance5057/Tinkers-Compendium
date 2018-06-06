@@ -10,17 +10,19 @@ import lance5057.tDefense.Reference;
 import lance5057.tDefense.TD_Commands;
 import lance5057.tDefense.TinkersDefense;
 import lance5057.tDefense.core.items.TDOreDictItem;
+import lance5057.tDefense.core.library.ArmorBuildGuiInfo;
+import lance5057.tDefense.core.library.ArmorPart;
+import lance5057.tDefense.core.library.CustomArmorTextureCreator;
+import lance5057.tDefense.core.library.TDClientRegistry;
+import lance5057.tDefense.core.library.TDModelLoader;
+import lance5057.tDefense.core.library.TDModelRegistar;
 import lance5057.tDefense.core.materials.TDMaterials;
-import lance5057.tDefense.core.parts.TDParts;
 import lance5057.tDefense.core.renderers.BaubleRenderer;
 import lance5057.tDefense.core.renderers.SheatheModel;
 import lance5057.tDefense.core.tools.TDTools;
 import lance5057.tDefense.core.tools.armor.renderers.layers.LayerTDBipedArmor;
 import lance5057.tDefense.core.tools.bases.ArmorCore;
 import lance5057.tDefense.renderers.deserializers.AlphaColorTextureDeserializer;
-import lance5057.tDefense.util.ArmorBuildGuiInfo;
-import lance5057.tDefense.util.TDClientRegistry;
-import lance5057.tDefense.util.TDModelRegistar;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -36,11 +38,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.ClientCommandHandler;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.client.model.ModelLoaderRegistry;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fml.common.Mod;
 import slimeknights.tconstruct.common.ModelRegisterUtil;
 import slimeknights.tconstruct.library.TinkerRegistry;
 import slimeknights.tconstruct.library.TinkerRegistryClient;
+import slimeknights.tconstruct.library.client.CustomTextureCreator;
 import slimeknights.tconstruct.library.client.ToolBuildGuiInfo;
 import slimeknights.tconstruct.library.client.material.MaterialRenderInfoLoader;
 import slimeknights.tconstruct.library.materials.Material;
@@ -54,6 +59,8 @@ public class ClientProxy extends CommonProxy {
 	// ModifierSoulHandler SoulHandler;
 
 	// public static ModelTinkersTabard sheath;
+	
+	private static final TDModelLoader loader = new TDModelLoader();
 
 	ToolBuildGuiInfo roundshieldGUI;
 	ToolBuildGuiInfo heatershieldGUI;
@@ -79,20 +86,18 @@ public class ClientProxy extends CommonProxy {
 	ArmorBuildGuiInfo sabatonsGUI;
 
 	ToolBuildGuiInfo sheatheGUI;
-	ToolBuildGuiInfo ringGUI;
-	ToolBuildGuiInfo amuletGUI;
+//	ToolBuildGuiInfo ringGUI;
+//	ToolBuildGuiInfo amuletGUI;
 
 	public static SheatheModel sheathe;
 
 	@Override
 	public void preInit() {
 		ClientCommandHandler.instance.registerCommand(new TD_Commands());
-
+		ModelLoaderRegistry.registerLoader(loader);
 		MaterialRenderInfoLoader.addRenderInfo("alpha_color", AlphaColorTextureDeserializer.class);
 		
-		//register all armor textures into tinkers
-		//CustomTextureCreator.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/hood/_hood_cloth"));
-
+		MinecraftForge.EVENT_BUS.register(CustomArmorTextureCreator.INSTANCE);
 	}
 
 	@Override
@@ -101,11 +106,11 @@ public class ClientProxy extends CommonProxy {
 		RenderPlayer render;
 		render = skinMap.get("default");
 		render.addLayer(new BaubleRenderer());
-		render.addLayer(new LayerTDBipedArmor(render));
+		//render.addLayer(new LayerTDBipedArmor(render));
 
 		render = skinMap.get("slim");
 		render.addLayer(new BaubleRenderer());
-		render.addLayer(new LayerTDBipedArmor(render));
+		//render.addLayer(new LayerTDBipedArmor(render));
 
 		createToolGuis();
 		setToolGuis();
@@ -154,6 +159,11 @@ public class ClientProxy extends CommonProxy {
 	public void registerPartModel(ToolPart part) {
 		ModelRegisterUtil.registerPartModel(part);
 	}
+	
+	@Override
+	public void registerArmorPartModel(ArmorPart part) { 
+		ModelRegisterUtil.registerPartModel(part);
+	}
 
 	@Override
 	public void registerMatColor(Material mat, int color) {
@@ -181,8 +191,8 @@ public class ClientProxy extends CommonProxy {
 		sabatonsGUI = new ArmorBuildGuiInfo(TDTools.sabatons);
 
 		sheatheGUI = new ToolBuildGuiInfo(TDTools.sheathe);
-		ringGUI = new ToolBuildGuiInfo(TDTools.ring);
-		amuletGUI = new ToolBuildGuiInfo(TDTools.amulet);
+//		ringGUI = new ToolBuildGuiInfo(TDTools.ring);
+//		amuletGUI = new ToolBuildGuiInfo(TDTools.amulet);
 
 	}
 
@@ -231,9 +241,9 @@ public class ClientProxy extends CommonProxy {
 		shearsGUI.addSlotPosition(43, 33 + 8);
 		shearsGUI.addSlotPosition(34, 51 + 8);
 
-		ringGUI.addSlotPosition(34, 15 + 8);
-		ringGUI.addSlotPosition(43, 33 + 8);
-		ringGUI.addSlotPosition(34, 51 + 8);
+//		ringGUI.addSlotPosition(34, 15 + 8);
+//		ringGUI.addSlotPosition(43, 33 + 8);
+//		ringGUI.addSlotPosition(34, 51 + 8);
 		
 		breastplateGUI.addSlotPosition(34, 15 + 8);
 		breastplateGUI.addSlotPosition(43, 33 + 8);
@@ -262,26 +272,27 @@ public class ClientProxy extends CommonProxy {
 		//TinkerRegistryClient.addToolBuilding(bootsGUI);
 
 		TinkerRegistryClient.addToolBuilding(sheatheGUI);
-		TinkerRegistryClient.addToolBuilding(ringGUI);
-		TinkerRegistryClient.addToolBuilding(amuletGUI);
-		
+//		TinkerRegistryClient.addToolBuilding(ringGUI);
+//		TinkerRegistryClient.addToolBuilding(amuletGUI);
+//		
 		TDClientRegistry.addArmorBuilding(helmGUI);
 		TDClientRegistry.addArmorBuilding(breastplateGUI);
 		TDClientRegistry.addArmorBuilding(grievesGUI);
 		TDClientRegistry.addArmorBuilding(sabatonsGUI);
 	}
 
-	public void registerPartModels() {
-		ModelRegisterUtil.registerPartModel(TDParts.armorPlate);
-		ModelRegisterUtil.registerPartModel(TDParts.chainmail);
-		ModelRegisterUtil.registerPartModel(TDParts.clasp);
-		ModelRegisterUtil.registerPartModel(TDParts.cloth);
-		ModelRegisterUtil.registerPartModel(TDParts.filigree);
-		ModelRegisterUtil.registerPartModel(TDParts.ringShank);
-		ModelRegisterUtil.registerPartModel(TDParts.rivets);
-		ModelRegisterUtil.registerPartModel(TDParts.setting);
-		ModelRegisterUtil.registerPartModel(TDParts.wire);
-	}
+//	@Override
+//	public void registerPartModel(ToolPart part) {
+//		ModelRegisterUtil.registerPartModel(TDParts.armorPlate);
+//		ModelRegisterUtil.registerPartModel(TDParts.chainmail);
+//		ModelRegisterUtil.registerPartModel(TDParts.clasp);
+//		ModelRegisterUtil.registerPartModel(TDParts.cloth);
+//		ModelRegisterUtil.registerPartModel(TDParts.filigree);
+//		ModelRegisterUtil.registerPartModel(TDParts.ringShank);
+//		ModelRegisterUtil.registerPartModel(TDParts.rivets);
+//		ModelRegisterUtil.registerPartModel(TDParts.setting);
+//		ModelRegisterUtil.registerPartModel(TDParts.wire);
+//	}
 
 	@Override
 	public void reloadRenderers() {
@@ -376,16 +387,16 @@ public class ClientProxy extends CommonProxy {
 		sheatheGUI.addSlotPosition(34, 15);
 		sheatheGUI.addSlotPosition(34, 33);
 		sheatheGUI.addSlotPosition(34, 51);
-
-		ringGUI.positions.clear();
-		ringGUI.addSlotPosition(34, 15);
-		ringGUI.addSlotPosition(34, 33);
-		ringGUI.addSlotPosition(34, 51);
-
-		amuletGUI.positions.clear();
-		amuletGUI.addSlotPosition(34, 15);
-		amuletGUI.addSlotPosition(34, 33);
-		amuletGUI.addSlotPosition(34, 51);
+//
+//		ringGUI.positions.clear();
+//		ringGUI.addSlotPosition(34, 15);
+//		ringGUI.addSlotPosition(34, 33);
+//		ringGUI.addSlotPosition(34, 51);
+//
+//		amuletGUI.positions.clear();
+//		amuletGUI.addSlotPosition(34, 15);
+//		amuletGUI.addSlotPosition(34, 33);
+//		amuletGUI.addSlotPosition(34, 51);
 	}
 
 	void createToolModels() {

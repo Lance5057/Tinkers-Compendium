@@ -1,6 +1,6 @@
 package lance5057.tDefense.armor.events;
 
-import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableList; 
 
 import lance5057.tDefense.core.tools.bases.ArmorCore;
 import net.minecraft.nbt.NBTTagCompound;

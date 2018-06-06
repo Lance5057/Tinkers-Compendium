@@ -1,6 +1,7 @@
 package lance5057.tDefense.core.materials.traits.armor;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -14,7 +15,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import scala.actors.threadpool.Arrays;
 import slimeknights.tconstruct.library.traits.AbstractTrait;
 
 public class TraitReduceKnockback extends AbstractTrait {

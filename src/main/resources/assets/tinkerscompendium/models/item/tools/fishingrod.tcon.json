@@ -1,0 +1,35 @@
+{
+    "textures": {
+        "layer0": "tinkerscompendium:items/fishingrod/_rod",
+        "layer1": "tinkerscompendium:items/fishingrod/_string",
+		"layer2": "tinkerscompendium:items/fishingrod/_hook",
+		"broken1": "tinkerscompendium:items/fishingrod/_rod"
+    },
+    "display": {
+        "thirdperson_righthand": {
+            "rotation": [ 0, 90, 45 ],
+            "translation": [ 0, 4, 0 ],
+            "scale": [ 1, 1, 1 ]
+        },
+        "thirdperson_lefthand": {
+            "rotation": [ 0, 90, 45 ],
+            "translation": [ 0, 4, 0 ],
+            "scale": [ 1, 1, 1 ]
+        },
+        "firstperson_righthand": {
+            "rotation": [ 0, 90, 45 ],
+            "translation": [ 0, 4, 0 ],
+            "scale": [ 1, 1, 1 ]
+        },
+        "firstperson_lefthand": {
+            "rotation": [ 0, 90, 45 ],
+            "translation": [ 0, 4, 0 ],
+            "scale": [ 1, 1, 1 ]
+        },
+        "fixed": {
+            "rotation": [ 0, 180, 0 ],
+            "translation": [ -2, 4, -5],
+            "scale":[ 0.5, 0.5, 0.5]
+        }
+	}
+}

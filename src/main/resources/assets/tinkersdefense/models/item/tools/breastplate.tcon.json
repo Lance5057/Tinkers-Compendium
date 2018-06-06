@@ -1,9 +1,0 @@
-{
-    "textures": {
-        "layer0": "tinkersdefense:items/armor/breastplate/_plate",
-        "layer1": "tinkersdefense:items/armor/breastplate/_smallplate",
-		"layer2": "tinkersdefense:items/armor/breastplate/_trim",
-		"layer3": "tinkersdefense:items/armor/breastplate/_chain",
-		"broken1": "tinkersdefense:items/armor/breastplate/_plate"
-    }
-}

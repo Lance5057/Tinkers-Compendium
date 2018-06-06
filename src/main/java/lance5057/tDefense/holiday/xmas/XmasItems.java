@@ -1,7 +1,7 @@
 package lance5057.tDefense.holiday.xmas;
 
-import lance5057.tDefense.util.ItemsBase;
-import lance5057.tDefense.util.MetaItem;
+import lance5057.tDefense.core.library.ItemsBase;
+import lance5057.tDefense.core.library.MetaItem;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;

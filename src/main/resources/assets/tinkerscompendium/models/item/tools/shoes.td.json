@@ -1,0 +1,35 @@
+{
+    "textures": {
+        "layer0": "tinkerscompendium:items/armor/shoes/_cloth",
+        "layer1": "tinkerscompendium:items/armor/shoes/_sole",
+		"layer2": "tinkerscompendium:items/armor/shoes/_clasp",
+		"broken1": "tinkerscompendium:items/armor/shoes/_cloth"
+    },
+    "display": {
+        "thirdperson_righthand": {
+            "rotation": [ 0, 90, 45 ],
+            "translation": [ 0, 8, 0 ],
+            "scale": [ 1.5, 1.5, 1 ]
+        },
+        "thirdperson_lefthand": {
+            "rotation": [ 0, 90, 45 ],
+            "translation": [ 0, 8, 0 ],
+            "scale": [ 1.5, 1.5, 1 ]
+        },
+        "firstperson_righthand": {
+            "rotation": [ 0, 90, 45 ],
+            "translation": [ 0, 8, 0 ],
+            "scale": [ 1.5, 1.5, 1 ]
+        },
+        "firstperson_lefthand": {
+            "rotation": [ 0, 90, 45 ],
+            "translation": [ 0, 8, 0 ],
+            "scale": [ 1.5, 1.5, 1 ]
+        },
+        "fixed": {
+            "rotation": [ 0, 180, 0 ],
+            "translation": [ -2, 4, -5],
+            "scale":[ 0.5, 0.5, 0.5]
+        }
+	}
+}

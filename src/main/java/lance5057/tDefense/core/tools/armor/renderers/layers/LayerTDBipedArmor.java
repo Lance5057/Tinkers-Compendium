@@ -1,6 +1,6 @@
 package lance5057.tDefense.core.tools.armor.renderers.layers;
 
-import java.util.List;
+import java.util.List; 
 
 import lance5057.tDefense.core.tools.bases.ArmorCore;
 import net.minecraft.client.model.ModelBiped;
@@ -59,8 +59,8 @@ public class LayerTDBipedArmor extends LayerTDArmor<ModelBiped> {
 		if (entity instanceof EntityPlayer) {
 			EntityPlayer p = (EntityPlayer) entity;
 			ItemStack armor = p.inventory.armorItemInSlot(slot.getIndex());
-			List<String> l = ((ArmorCore)armor.getItem()).getArmorTexture(armor);
-			return l;
+			//List<String> l = ((ArmorCore)armor.getItem()).getArmorTexture(armor);
+			//return l;
 		}
 		return null;
 	}

@@ -3,12 +3,18 @@ package lance5057.tDefense.core.tools.armor.heavy;
 import java.util.ArrayList;
 import java.util.List;
 
-import lance5057.tDefense.core.materials.ArmorMaterialStats.HelmMaterialStats;
+import lance5057.tDefense.core.library.ArmorNBT;
+import lance5057.tDefense.core.library.ArmorTags;
+import lance5057.tDefense.core.library.ArmorTextureBuilder;
+import lance5057.tDefense.core.materials.stats.ArmorMaterialStats;
+import lance5057.tDefense.core.materials.stats.FabricMaterialStats;
+import lance5057.tDefense.core.materials.stats.HelmMaterialStats;
 import lance5057.tDefense.core.parts.TDParts;
 import lance5057.tDefense.core.tools.armor.renderers.ArmorRenderer;
 import lance5057.tDefense.core.tools.armor.renderers.heavy.ModelTinkersHelm;
 import lance5057.tDefense.core.tools.bases.ArmorCore;
-import lance5057.tDefense.util.ArmorNBT;
+import net.minecraft.client.model.ModelBiped;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -16,60 +22,60 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import slimeknights.tconstruct.library.materials.ExtraMaterialStats;
 import slimeknights.tconstruct.library.materials.Material;
+import slimeknights.tconstruct.library.materials.MaterialTypes;
 import slimeknights.tconstruct.library.tinkering.PartMaterialType;
 import slimeknights.tconstruct.library.utils.TagUtil;
+import slimeknights.tconstruct.library.utils.TinkerUtil;
 import slimeknights.tconstruct.tools.TinkerTools;
 
-public class TinkersHelm extends ArmorCore {
+public class TinkersHelm extends ArmorCore { 
 	public TinkersHelm() {
 		super(EntityEquipmentSlot.HEAD,new PartMaterialType(TinkerTools.panHead, HelmMaterialStats.TYPE),
 				new PartMaterialType(TDParts.armorPlate, HelmMaterialStats.TYPE),
-				PartMaterialType.handle(TDParts.filigree), PartMaterialType.extra(TDParts.chainmail));
+				PartMaterialType.handle(TDParts.filigree), PartMaterialType.extra(TDParts.rivets));
 		setUnlocalizedName("tinkershelm");
 	}
+	
 
+	
 	@SideOnly(Side.CLIENT)
 	@Override
-	public List<String> getArmorTexture(ItemStack stack) {
-		List<String> textures = new ArrayList();
-		NBTTagList t = TagUtil.getBaseMaterialsTagList(stack);
-		textures.add("textures/armor/helm/_helm_top_" + t.getStringTagAt(0));
-		textures.add("textures/armor/helm/_helm_plate_" + t.getStringTagAt(1));
-		textures.add("textures/armor/helm/_helm_visor_" + t.getStringTagAt(2));
-		textures.add("textures/armor/helm/_helm_chain_" + t.getStringTagAt(3));
-		return textures;
+	public NBTTagCompound setupTexture(List<Material> materials)
+	{
+		NBTTagCompound base = new NBTTagCompound();
+
+		ResourceLocation rc = ArmorTextureBuilder.createArmorTexture("helm", new String[] { "top", "plate", "visor", "chain" }, materials);
+
+		if (rc != null)
+		{
+			base.setString(ArmorTags.TexLoc, rc.toString());
+			return base;
+		}
+		return null;
 	}
 
+
 	@SideOnly(Side.CLIENT)
 	@Override
-	public ArmorRenderer getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack) {
+	public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, EntityEquipmentSlot armorSlot, ModelBiped _default)
+	{
 		return new ModelTinkersHelm(itemStack);
 	}
 
 	@Override
 	public NBTTagCompound buildTag(List<Material> materials) {
-		ArmorNBT data = buildDefaultArmorTag(materials, HelmMaterialStats.TYPE);
+		ArmorNBT data = buildDefaultTag(materials);
 		return data.get();
 	}
 
 	@Override
 	public EntityEquipmentSlot getArmorSlot(ItemStack stack, EntityEquipmentSlot armorType) {
 		return EntityEquipmentSlot.HEAD;
-	}
-
-	@Override
-	public void getTooltipDetailed(ItemStack stack, List<String> tooltips) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void getTooltipComponents(ItemStack stack, List<String> tooltips) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
@@ -89,5 +95,48 @@ public class TinkersHelm extends ArmorCore {
 	public void damageArmor(EntityLivingBase entity, ItemStack stack, DamageSource source, int damage, int slot) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public float damagePotential()
+	{
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public double attackSpeed()
+	{
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
+	@Override
+	protected ArmorNBT buildDefaultTag(List<Material> materials)
+	{
+		ArmorNBT data = new ArmorNBT();
+
+		if (materials.size() >= 2)
+		{
+			ArmorMaterialStats handle = materials.get(0).getStatsOrUnknown(FabricMaterialStats.TYPE);
+			ArmorMaterialStats head = materials.get(1).getStatsOrUnknown(FabricMaterialStats.TYPE);
+			// start with head
+			data.head(head);
+
+			// add in accessoires if present
+			if (materials.size() >= 3)
+			{
+				ExtraMaterialStats binding = materials.get(2).getStatsOrUnknown(MaterialTypes.EXTRA);
+				data.extra(binding);
+			}
+
+			// calculate handle impact
+			data.head(handle);
+		}
+
+		// 3 free modifiers
+		data.modifiers = DEFAULT_MODIFIERS;
+
+		return data;
 	}
 }

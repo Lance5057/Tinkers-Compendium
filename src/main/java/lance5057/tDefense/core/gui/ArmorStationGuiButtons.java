@@ -2,16 +2,14 @@ package lance5057.tDefense.core.gui;
 
 import java.io.IOException;
 
-import lance5057.tDefense.util.ArmorBuildGuiInfo;
-import lance5057.tDefense.util.TDClientRegistry;
+import lance5057.tDefense.core.library.ArmorBuildGuiInfo;
+import lance5057.tDefense.core.library.TDClientRegistry;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.inventory.Container;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import slimeknights.tconstruct.library.client.Icons;
-import slimeknights.tconstruct.library.client.ToolBuildGuiInfo;
 import slimeknights.tconstruct.tools.common.client.GuiButtonItem;
-import slimeknights.tconstruct.tools.common.client.GuiToolStation;
 import slimeknights.tconstruct.tools.common.client.module.GuiSideButtons;
 
 public class ArmorStationGuiButtons extends GuiSideButtons {
@@ -19,7 +17,7 @@ public class ArmorStationGuiButtons extends GuiSideButtons {
   protected final ArmorStationGui parent;
 
   public ArmorStationGuiButtons(ArmorStationGui parent, Container container) {
-    super(parent, container, GuiToolStation.Column_Count);
+    super(parent, container, ArmorStationGui.Column_Count);
 
     this.parent = parent;
   }
@@ -65,8 +63,8 @@ public class ArmorStationGuiButtons extends GuiSideButtons {
     for(Object o : buttonList) {
       if(o instanceof GuiButtonItem) {
         @SuppressWarnings("unchecked")
-        GuiButtonItem<ToolBuildGuiInfo> btn = (GuiButtonItem<ToolBuildGuiInfo>) o;
-        btn.pressed = ItemStack.areItemStacksEqual(btn.data.tool, stack);
+        GuiButtonItem<ArmorBuildGuiInfo> btn = (GuiButtonItem<ArmorBuildGuiInfo>) o;
+        btn.pressed = ItemStack.areItemStacksEqual(btn.data.armor, stack);
       }
     }
   }

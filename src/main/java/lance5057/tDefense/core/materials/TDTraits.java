@@ -1,9 +1,9 @@
 package lance5057.tDefense.core.materials;
 
-import lance5057.tDefense.core.materials.ArmorMaterialStats.ChestMaterialStats;
-import lance5057.tDefense.core.materials.ArmorMaterialStats.FeetMaterialStats;
-import lance5057.tDefense.core.materials.ArmorMaterialStats.HelmMaterialStats;
-import lance5057.tDefense.core.materials.ArmorMaterialStats.LegsMaterialStats;
+import lance5057.tDefense.core.materials.stats.ChestMaterialStats;
+import lance5057.tDefense.core.materials.stats.FeetMaterialStats;
+import lance5057.tDefense.core.materials.stats.HelmMaterialStats;
+import lance5057.tDefense.core.materials.stats.LegsMaterialStats;
 import lance5057.tDefense.core.materials.traits.armor.TraitDamageSourceAlteration;
 import lance5057.tDefense.core.materials.traits.armor.TraitPhotosynthetic;
 import lance5057.tDefense.core.materials.traits.armor.TraitReduceKnockback;

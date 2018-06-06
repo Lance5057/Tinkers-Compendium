@@ -1,6 +1,6 @@
 package lance5057.tDefense.core.gui;
 
-import lance5057.tDefense.util.ArmorBuildGuiInfo;
+import lance5057.tDefense.core.library.ArmorBuildGuiInfo;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.text.translation.I18n;
 import slimeknights.tconstruct.library.client.Icons;

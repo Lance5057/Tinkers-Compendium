@@ -2,7 +2,7 @@ package lance5057.tDefense.core.materials.traits.shields;
 
 import java.util.Optional;
 
-import lance5057.tDefense.util.TDToolHelper;
+import lance5057.tDefense.core.library.TDToolHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
