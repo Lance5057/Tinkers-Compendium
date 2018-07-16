@@ -1,36 +1,48 @@
 package lance5057.tDefense.core.tools.armor.renderers;
 
-import net.minecraft.client.model.ModelPlayer;
+import net.minecraft.client.model.ModelBiped;
+import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.texture.DynamicTexture;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityArmorStand;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
-public class ArmorRenderer extends ModelPlayer {
+public class ArmorRenderer extends ModelBiped {
 	// public String[] partNames;
 
 	public ItemStack stack;
 	public String defaultFolder;
 	DynamicTexture texture;
+	
+	protected boolean visor = false;
+	protected float visorTime = 0f;
+	
+	public EntityEquipmentSlot slot;
 
 	// public List<ModelRenderer> boxes = new ArrayList<ModelRenderer>();
 
 	public NBTTagCompound defaultTags = new NBTTagCompound();
 
 	public ArmorRenderer(float a, float b, int c, int d, ItemStack stack) {
-		super(a, false);
+		super(a, b, c, d);
 
 		this.stack = stack;
-		
-		this.bipedBodyWear.isHidden = true;
-		this.bipedHeadwear.isHidden = true;
-		this.bipedLeftArmwear.isHidden = true;
-		this.bipedLeftLegwear.isHidden = true;
-		this.bipedRightArmwear.isHidden = true;
-		this.bipedRightLegwear.isHidden = true;
-
 	}
+	
+	public ArmorRenderer(float a, float b, int c, int d, ItemStack stack, EntityEquipmentSlot s) {
+		super(a, b, c, d);
+
+		this.stack = stack;
+		slot = s;
+	}
+	
+	public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {
+        modelRenderer.rotateAngleX = x;
+        modelRenderer.rotateAngleY = y;
+        modelRenderer.rotateAngleZ = z;
+    }
 
 	// Mojang plz
 	@Override
@@ -63,5 +75,29 @@ public class ArmorRenderer extends ModelPlayer {
 		} else {
 			super.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, entityIn);
 		}
+	}
+	
+	protected ModelRenderer lerpModel(ModelRenderer from, ModelRenderer to, float time)
+	{
+		if(from.offsetX != to.offsetX)
+			from.offsetX = lerp(from.offsetX, to.offsetX, time);
+		if(from.offsetY != to.offsetY)
+			from.offsetY = lerp(from.offsetY, to.offsetY, time);
+		if(from.offsetZ != to.offsetZ)
+			from.offsetZ = lerp(from.offsetZ, to.offsetZ, time);
+		
+		if(from.rotateAngleX != to.rotateAngleX)
+			from.rotateAngleX = lerp(from.rotateAngleX, to.rotateAngleX, time);
+		if(from.rotateAngleY != to.rotateAngleY)
+			from.rotateAngleY = lerp(from.rotateAngleY, to.rotateAngleY, time);
+		if(from.rotateAngleZ != to.rotateAngleZ)
+			from.rotateAngleZ = lerp(from.rotateAngleZ, to.rotateAngleZ, time);
+		
+		return from;
+	}
+	
+	private float lerp(float from, float to, float time)
+	{
+		return (1 - time) * from + time * to;
 	}
 }

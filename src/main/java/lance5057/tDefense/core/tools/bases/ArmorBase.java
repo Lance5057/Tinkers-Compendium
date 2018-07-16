@@ -15,14 +15,13 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Sets;
 
 import gnu.trove.set.hash.THashSet;
-import jline.internal.Log;
 import lance5057.tDefense.core.library.ArmorBuilder;
 import lance5057.tDefense.core.library.ArmorEvent;
 import lance5057.tDefense.core.library.ArmorTags;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemArmor;
@@ -31,17 +30,15 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.nbt.NBTTagString;
 import net.minecraft.util.NonNullList;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ISpecialArmor;
+import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import slimeknights.mantle.util.RecipeMatch;
 import slimeknights.tconstruct.common.ClientProxy;
 import slimeknights.tconstruct.common.config.Config;
 import slimeknights.tconstruct.library.Util;
-import slimeknights.tconstruct.library.events.TinkerEvent;
 import slimeknights.tconstruct.library.materials.HeadMaterialStats;
 import slimeknights.tconstruct.library.materials.Material;
 import slimeknights.tconstruct.library.materials.MaterialTypes;
@@ -65,10 +62,12 @@ public abstract class ArmorBase extends ItemArmor implements ITinkerable, IModif
 	protected final PartMaterialType[] requiredComponents;
 	// used to classify what the thing can do
 	protected final Set<Category> categories = new THashSet<>();
+	
+	private static ArmorMaterial base = EnumHelper.addArmorMaterial("tcarmor", "", 0, new int[]{0,0,0,0}, 0, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 0);
 
 	public ArmorBase(EntityEquipmentSlot slot, PartMaterialType... requiredComponents)
 	{
-		super(ItemArmor.ArmorMaterial.LEATHER, 0, slot);
+		super(base, 0, slot);
 		this.requiredComponents = requiredComponents;
 
 		this.setMaxStackSize(1);
@@ -255,6 +254,17 @@ public abstract class ArmorBase extends ItemArmor implements ITinkerable, IModif
 
 		base.setTag(Tags.BASE_MATERIALS, materialList);
 		base.setTag(Tags.BASE_MODIFIERS, modifierList);
+		
+		//Armor Tags
+		NBTTagCompound armortags = new NBTTagCompound();
+		armortags.setBoolean(ArmorTags.Visor, true);
+		armortags.setFloat(ArmorTags.VisorTime, 0f);
+		
+		NBTTagCompound anviltags = new NBTTagCompound();
+		anviltags.setString(ArmorTags.ModelType, "");
+		armortags.setTag(ArmorTags.AnvilBase, anviltags);
+		
+		base.setTag(ArmorTags.ArmorBaseTag, armortags);
 
 		return base;
 	}

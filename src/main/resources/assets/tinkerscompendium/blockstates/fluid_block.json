@@ -4,129 +4,122 @@
     "model": "forge:fluid"
   },
 	"variants": {
-		"aeonsteel_fluid": [
+		"aeonsteel": [
 		  {
 			"custom": {
-			  "fluid": "aeonsteel_fluid"
+			  "fluid": "aeonsteel"
 			}
 		  }
 		],
-		"queensgold_fluid": [
+		"queensgold": [
 		  {
 			"custom": {
-			  "fluid": "queensgold_fluid"
+			  "fluid": "queensgold"
 			}
 		  }
 		],
-		"dogbearium_fluid": [
+		"dogbearium": [
 		  {
 			"custom": {
-			  "fluid": "dogbearium_fluid"
+			  "fluid": "dogbearium"
 			}
 		  }
 		],
-		"vile_fluid": [
+		"vile": [
 		  {
 			"custom": {
-			  "fluid": "vile_fluid"
+			  "fluid": "vile"
 			}
 		  }
 		],
-		"redcandy_fluid": [
+		"redcandy": [
 		  {
 			"custom": {
-			  "fluid": "redcandy_fluid"
+			  "fluid": "redcandy"
 			}
 		  }
 		],
-		"greencandy_fluid": [
+		"greencandy": [
 		  {
 			"custom": {
-			  "fluid": "greencandy_fluid"
+			  "fluid": "greencandy"
 			}
 		  }
 		],
-		"sinisterium_fluid": [
+		"sinisterium": [
 		  {
 			"custom": {
-			  "fluid": "sinisterium_fluid"
+			  "fluid": "sinisterium"
 			}
 		  }
 		],
-		"nihilite_fluid": [
+		"nihilite": [
 		  {
 			"custom": {
-			  "fluid": "nihilite_fluid"
+			  "fluid": "nihilite"
 			}
 		  }
 		],
-		"vibrant_fluid": [
+		"vibrant": [
 		  {
 			"custom": {
-			  "fluid": "vibrant_fluid"
+			  "fluid": "vibrant"
 			}
 		  }
 		],
-		"orichalcum_fluid": [
+		"orichalcum": [
 		  {
 			"custom": {
-			  "fluid": "orichalcum_fluid"
+			  "fluid": "orichalcum"
 			}
 		  }
 		],
-		"pandorium_fluid": [
+		"pandorium": [
 		  {
 			"custom": {
-			  "fluid": "pandorium_fluid"
+			  "fluid": "pandorium"
 			}
 		  }
 		],
-		"chorusjuice_fluid": [
+		"chorusjuice": [
 		  {
 			"custom": {
-			  "fluid": "chorusjuice_fluid"
+			  "fluid": "chorusjuice"
 			}
 		  }
 		],
-		"dragonsbreath_fluid": [
+		"dragonsbreath": [
 		  {
 			"custom": {
-			  "fluid": "dragonsbreath_fluid"
+			  "fluid": "dragonsbreath"
 			}
 		  }
 		],
-		"rosegold_fluid": [
+		"rosegold": [
 		  {
 			"custom": {
-			  "fluid": "rosegold_fluid"
+			  "fluid": "rosegold"
 			}
 		  }
 		],
-		"platinum_fluid": [
+		"platinum": [
 		  {
 			"custom": {
-			  "fluid": "platinum_fluid"
+			  "fluid": "platinum"
 			}
 		  }
 		],
-		"brass_fluid": [
+		"brass": [
 		  {
 			"custom": {
-			  "fluid": "brass_fluid"
+			  "fluid": "brass"
 			}
 		  }
 		],
-		"silver_fluid": [
+		"cheese": [
 		  {
 			"custom": {
-			  "fluid": "silver_fluid"
-			}
-		  }
-		],
-		"cheese_fluid": [
-		  {
-			"custom": {
-			  "fluid": "cheese_fluid"
+			  "fluid": "cheese"
 			}
 		  }
 		]

@@ -4,7 +4,9 @@ import lance5057.tDefense.Reference;
 import lance5057.tDefense.TinkersDefense;
 import lance5057.tDefense.core.library.ArmorPart;
 import lance5057.tDefense.core.tools.bases.ArmorCore;
+import lance5057.tDefense.proxy.ClientProxy.ColorHandler;
 import net.minecraft.block.Block;
+import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.world.World;
@@ -44,7 +46,7 @@ public class CommonProxy implements IGuiHandler {
 	public void registerToolModel(ToolCore tool) {
 
 	}
-	
+
 	public void registerArmorModel(ArmorCore tool) {
 
 	}
@@ -65,7 +67,7 @@ public class CommonProxy implements IGuiHandler {
 		// if(ID == TinkersDefense.GUI_ANVIL_INV)
 		// return new Container_FinishingAnvil(player.inventory,
 		// (TileEntity_FinishingAnvil) world.getTileEntity(x, y, z));
- 
+
 		return null;
 	}
 
@@ -94,22 +96,28 @@ public class CommonProxy implements IGuiHandler {
 
 	@SubscribeEvent
 	public static void registerItems(RegistryEvent.Register<Item> event) {
-		
-		
+
 		TinkersDefense.parts.registerItems(event);
 		TinkersDefense.mats.registerItems(event);
 		TinkersDefense.tools.registerItems(event);
+		TinkersDefense.modifiers.registerItems(event);
 		TinkersDefense.holiday.registerItems(event);
 	}
-	
+
 	@SubscribeEvent
 	public static void registerBlocks(RegistryEvent.Register<Block> event) {
+		TinkersDefense.mats.registerBlocks(event);
 		TinkersDefense.tools.registerBlocks(event);
+
 	}
 
-	public void registerArmorPartModel(ArmorPart part)
-	{
+	public void registerArmorPartModel(ArmorPart part) {
 		// TODO Auto-generated method stub
-		
+
+	}
+
+	public void registerItemColorHandler(IItemColor c, Item i) {
+		// TODO Auto-generated method stub
+
 	}
 }

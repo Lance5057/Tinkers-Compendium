@@ -5,6 +5,7 @@ import lance5057.tDefense.core.materials.TDMaterials;
 import lance5057.tDefense.core.materials.TDTraits;
 import lance5057.tDefense.core.parts.TDParts;
 import lance5057.tDefense.core.tools.TDTools;
+import lance5057.tDefense.core.tools.modifiers.TDModifiers;
 import lance5057.tDefense.holiday.HolidayBase;
 import lance5057.tDefense.proxy.CommonProxy;
 import net.minecraft.init.Items;
@@ -20,7 +21,7 @@ import scala.reflect.internal.Trees.Modifiers;
 import slimeknights.mantle.client.CreativeTab;
 
 
-@Mod(modid = Reference.MOD_ID, version = Reference.VERSION, name = Reference.MOD_NAME, dependencies = "required-after: tconstruct")
+@Mod(modid = Reference.MOD_ID, version = Reference.VERSION, name = Reference.MOD_NAME, dependencies = "required-after:tconstruct@[1.12-2.7.2.15,);")
 public class TinkersDefense {
 
 	private static int modGuiIndex = 0;
@@ -50,6 +51,7 @@ public class TinkersDefense {
 	public static TDTools tools;
 	public static TDMaterials mats;
 	public static TDTraits traits;
+	public static TDModifiers modifiers;
 	public static TDEvents events;
 	
 	@SidedProxy(clientSide = "lance5057.tDefense.proxy.ClientProxy", serverSide = "lance5057.tDefense.proxy.CommonProxy")
@@ -68,6 +70,7 @@ public class TinkersDefense {
 		tools = new TDTools();
 		events = new TDEvents();
 		traits = new TDTraits();
+		modifiers = new TDModifiers();
 		config = new TD_Config();
 		
 		//core.preInit(e);
@@ -79,6 +82,7 @@ public class TinkersDefense {
 		mats.preInit(e);
 		tools.preInit(e);
 		traits.preInit();
+		modifiers.preInit();
 		events.preInit();
 		proxy.preInit();
 	}
@@ -102,14 +106,11 @@ public class TinkersDefense {
 		
 		phandler.init();
 		
-		mats.integrate(mats.materials, mats.materialIntegrations, mats.deferredMaterials);
+		//mats.integrate();
 	}
 
 	@Mod.EventHandler
 	public void postInit(FMLPostInitializationEvent e) {
-		
-		
-		
 		parts.postInit(e);
 		mats.postInit(e);
 		tools.postInit(e);

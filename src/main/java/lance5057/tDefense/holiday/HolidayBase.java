@@ -26,7 +26,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.registries.IForgeRegistry;
 
-@Mod.EventBusSubscriber(modid = Reference.MOD_ID)
+//@Mod.EventBusSubscriber(modid = Reference.MOD_ID)
 public class HolidayBase extends ModuleBase
 {
 	public HolidayBase()

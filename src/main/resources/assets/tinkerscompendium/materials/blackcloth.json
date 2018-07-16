@@ -1,0 +1,6 @@
+{
+    "type": "block",
+    "parameters": {
+        "texture": "minecraft:blocks/wool_colored_black"
+    }
+}

@@ -11,13 +11,20 @@ public class TD_Config
 {
 	@Config.Comment("Enable Debug Features")
 	public static boolean debug = false;
-	// public boolean ArmorAddon;
-	// public boolean transparency;
-	// public boolean mossEnabled;
-	// public boolean mossHard;
+	
+	@Config.Comment("Turn off scary things")
+	public static boolean IAmEasilyStartled = false;
+	
+	@Config.Comment("Reduce nausea effects")
+	public static boolean KiddyCoastersMakeMeRetch = false;
+	
+	@Config.Comment("Stop filling my buckets!")
+	public static boolean DontTouchMyBucket = false;
 
 	@Config.Name("Shields")
 	public static Shields	shields		= new Shields();
+	@Config.Name("Armor")
+	public static Armor armor = new Armor();
 	@Config.Name("Tools")
 	public static Tools		tools		= new Tools();
 	@Config.Name("Materials")
@@ -103,6 +110,33 @@ public class TD_Config
 
 	}
 
+	public static class Armor
+	{
+		@Config.Comment("Toggle Helm Overlay")
+		public static boolean HelmOverlay = false;
+	}
+	
+	public static class Traits
+	{
+		@Config.Comment("Materials that should be considered flammable")
+		public static String[] incinerateMaterials = {
+				"wood",
+				"cactus",
+				"sponge",
+				"paper"
+		};
+		
+		public static boolean isFlammable(String s)
+		{
+			for(String str: incinerateMaterials)
+			{
+				if(str.equals(s))
+					return true;
+			}
+			return false;
+		}
+	}
+	
 	// public int SoulBoundID;
 	// public int DazeID;
 	// public int RainbowID;

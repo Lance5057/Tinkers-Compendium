@@ -2,6 +2,7 @@ package lance5057.tDefense.core.blocks;
 
 import javax.annotation.Nonnull;
 
+import lance5057.tDefense.TinkersDefense;
 import lance5057.tDefense.core.tileentities.ArmorStationTile;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -27,7 +28,7 @@ public class ArmorStationBlock extends BlockTable implements ITinkerStationBlock
         super(Material.WOOD);
         this.setUnlocalizedName("armorstation");
         this.setRegistryName("armorstation");
-        this.setCreativeTab(TinkerRegistry.tabGeneral);
+        this.setCreativeTab(TinkersDefense.tab);
         this.setSoundType(SoundType.WOOD);
         this.setResistance(5f);
         this.setHardness(1f);

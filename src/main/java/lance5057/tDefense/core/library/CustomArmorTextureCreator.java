@@ -15,6 +15,8 @@ import net.minecraftforge.client.model.IModel;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import org.apache.logging.log4j.Logger;
 
@@ -46,6 +48,7 @@ import slimeknights.tconstruct.library.tools.Pattern;
 /**
  * Textures registered with this creator will get a texture created/loaded for each material.
  */
+@SideOnly(Side.CLIENT)
 public class CustomArmorTextureCreator implements IResourceManagerReloadListener {
 
   public static final CustomArmorTextureCreator INSTANCE = new CustomArmorTextureCreator();

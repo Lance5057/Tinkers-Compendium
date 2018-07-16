@@ -7,6 +7,7 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
+import jline.internal.Log;
 import lance5057.tDefense.Reference;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.DynamicTexture;
@@ -30,11 +31,13 @@ public class ArmorTextureBuilder
 
 		for (int i = 0; i < materials.size(); i++)
 		{
+			String s;
 			BufferedImage bi = null;
 			if (materials.get(i).renderInfo instanceof MaterialRenderInfo.Default)
 			{
 				MaterialRenderInfo.Default render = (MaterialRenderInfo.Default)materials.get(i).renderInfo;
-				TextureAtlasSprite tex = map.getTextureExtry(String.format("tinkerscompendium:armor/%s/_%s_%s", type, type, parts[i]));
+				s = String.format("tinkerscompendium:armor/%s/anvil/_%s_%s", type, type, parts[i]);
+				TextureAtlasSprite tex = map.getTextureExtry(s);
 				bi = new BufferedImage(tex.getIconWidth(), tex.getIconHeight(), BufferedImage.TYPE_4BYTE_ABGR);
 				
 				Graphics2D g2d = bi.createGraphics();
@@ -49,12 +52,14 @@ public class ArmorTextureBuilder
 				
 			} else
 			{
-				String s = String.format("tinkerscompendium:armor/%s/_%s_%s_%s", type, type, parts[i], materials.get(i).identifier);
+				s = String.format("tinkerscompendium:armor/%s/anvil/_%s_%s_%s", type, type, parts[i], materials.get(i).identifier);
 				bi = createBufferedImage(map.getTextureExtry(s));
 			}
 
 			if (bi != null)
 				looseTex.add(bi);
+			else
+				Log.error(s + " not found!");
 		}
 
 		if (looseTex.size() != 0)

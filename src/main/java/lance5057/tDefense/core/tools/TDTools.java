@@ -23,6 +23,7 @@ import lance5057.tDefense.core.tools.armor.heavy.TinkersSabatons;
 import lance5057.tDefense.core.tools.bases.ArmorCore;
 import lance5057.tDefense.core.tools.basic.FishingRod;
 import lance5057.tDefense.core.tools.basic.HeaterShield;
+import lance5057.tDefense.core.tools.basic.RegDummy;
 import lance5057.tDefense.core.tools.basic.RoundShield;
 import lance5057.tDefense.core.tools.basic.Shears;
 import lance5057.tDefense.core.tools.basic.TowerShield;
@@ -42,12 +43,9 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
 import slimeknights.tconstruct.common.TinkerNetwork;
 import slimeknights.tconstruct.library.TinkerRegistry;
-import slimeknights.tconstruct.library.client.CustomTextureCreator;
 import slimeknights.tconstruct.library.tools.ToolCore;
 
 @Mod.EventBusSubscriber(modid = Reference.MOD_ID)
-// @Pulse(id = TDTools.PulseId, description = "All the tools and everything
-// related to it.")
 public class TDTools
 {
 	public static final List<ToolCore> tools = new ArrayList<>();
@@ -59,6 +57,8 @@ public class TDTools
 	public static Item stationItem;
 
 	// Tools
+	public static ToolCore	regDummy;
+	
 	public static ToolCore	roundshield;
 	public static ToolCore	heatershield;
 	public static ToolCore	towershield;
@@ -116,6 +116,8 @@ public class TDTools
 		
 		stationItem = new ItemBlock(station).setUnlocalizedName("stationitem").setRegistryName("stationitem");
 
+		regDummy = new RegDummy();
+		
 		roundshield = new RoundShield();
 		heatershield = new HeaterShield();
 		towershield = new TowerShield();
@@ -142,6 +144,7 @@ public class TDTools
 //		ring = new Ring();
 //		amulet = new Amulet();
 
+		regTool(regDummy, "regdummy", event);
 		regTool(roundshield, "roundshield", event);
 		regTool(heatershield, "heatershield", event);
 		regTool(towershield, "towershield", event);
@@ -150,43 +153,30 @@ public class TDTools
 		regTool(fishingRod, "fishingRod", event);
 
 		regArmor(hood, "hood", event);
-		CustomArmorTextureCreator.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/hood/_hood_cloth"));
-		CustomArmorTextureCreator.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/hood/_hood_trim"));
-		CustomArmorTextureCreator.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/hood/_hood_metal"));
+		
 
 		regArmor(shawl, "shawl", event);
-		CustomArmorTextureCreator.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/shawl/_shawl_cloth"));
-		CustomArmorTextureCreator.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/shawl/_shawl_trim"));
-		CustomArmorTextureCreator.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/shawl/_shawl_metal"));
+		
 		
 		regArmor(robe, "robe", event);
-		CustomArmorTextureCreator.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/robe/_robe_cloth"));
-		CustomArmorTextureCreator.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/robe/_robe_trim"));
-		CustomArmorTextureCreator.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/robe/_robe_metal"));
+		
 		
 		regArmor(shoes, "shoes", event);
-		CustomArmorTextureCreator.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/shoes/_shoes_cloth"));
-		CustomArmorTextureCreator.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/shoes/_shoes_trim"));
-		CustomArmorTextureCreator.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/shoes/_shoes_metal"));
-		CustomArmorTextureCreator.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/shoes/_shoes_string"));
-
+		
 		// regTool(boots, "boots", event);
 
 		regArmor(helm, "helm", event);
-		CustomArmorTextureCreator.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/helm/_helm_chain"));
-		CustomArmorTextureCreator.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/helm/_helm_plate"));
-		CustomArmorTextureCreator.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/helm/_helm_top"));
-		CustomArmorTextureCreator.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/helm/_helm_visor"));
+		
 		
 		regArmor(breastplate, "breastplate", event);
-		CustomArmorTextureCreator.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/breastplate/_breastplate_chain"));
-		CustomArmorTextureCreator.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/breastplate/_breastplate_plate"));
-		CustomArmorTextureCreator.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/breastplate/_breastplate_smallplate"));
-		CustomArmorTextureCreator.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/breastplate/_breastplate_trim"));
+		
 		
 		regArmor(grieves, "grieves", event);
+		
+		
 		regArmor(sabatons, "sabatons", event);
-
+		
+		
 		// CustomTextureCreator.registerTexture(new
 		// ResourceLocation("tinkersdefense",
 		// "items/battleaxe/_halbard_accessory"));
@@ -277,9 +267,9 @@ public class TDTools
 		// TinkerRegistry.registerToolCrafting(boots);
 
 		TDRegistry.registerArmorCrafting(helm);
-		TDRegistry.registerArmorForgeCrafting(breastplate);
-		TDRegistry.registerArmorForgeCrafting(grieves);
-		TDRegistry.registerArmorForgeCrafting(sabatons);
+		TDRegistry.registerArmorCrafting(breastplate);
+		TDRegistry.registerArmorCrafting(grieves);
+		TDRegistry.registerArmorCrafting(sabatons);
 
 		TinkerRegistry.registerToolCrafting(sheathe);
 //		TinkerRegistry.registerToolCrafting(ring);

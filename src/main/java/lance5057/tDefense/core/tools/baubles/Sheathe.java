@@ -11,6 +11,8 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import slimeknights.tconstruct.library.tinkering.PartMaterialType;
 import slimeknights.tconstruct.tools.TinkerTools;
 
@@ -31,6 +33,7 @@ public class Sheathe extends BaubleTool {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void onPlayerBaubleRender(ItemStack stack, EntityPlayer player, RenderType type, float partialTicks) { 
 		// TODO Auto-generated method stub
 
@@ -43,7 +46,7 @@ public class Sheathe extends BaubleTool {
 
 			Minecraft.getMinecraft().renderEngine.bindTexture(texture);
 
-			ClientProxy.sheathe.render(1f, player.inventory.getStackInSlot(0), player.inventory.getStackInSlot(1), player.getHeldItemMainhand(), player.getHeldItemOffhand());
+			//ClientProxy.sheathe.render(1f, player.inventory.getStackInSlot(0), player.inventory.getStackInSlot(1), player.getHeldItemMainhand(), player.getHeldItemOffhand());
 		}
 	}
 

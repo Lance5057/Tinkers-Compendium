@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.UUID;
 
 import lance5057.tDefense.core.materials.traits.AbstractTDTrait;
+import lance5057.tDefense.core.tools.TDToolEvents;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -14,50 +15,42 @@ import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import slimeknights.tconstruct.library.traits.AbstractTrait;
 
 public class TraitReduceKnockback extends AbstractTrait {
 
-	AttributeModifier knockback = new AttributeModifier(UUID.randomUUID(), "td_knockback", 0.5f, 0);
-	
 	List<IBlockState> blocks = new ArrayList<IBlockState>();
 	float percentReduced;
 
-	public TraitReduceKnockback(String name, int icolor, float percentReduced, IBlockState... iblocks) {
-		super(name, icolor);
+	public TraitReduceKnockback(String name, TextFormatting darkPurple, float percentReduced, IBlockState... iblocks) {
+		super(name, darkPurple);
 		blocks.addAll(Arrays.asList(iblocks));
 	}
-
-//	@Override
-//	public float knockBack(ItemStack tool, EntityLivingBase player, EntityLivingBase target, float damage,
-//			float knockback, float newKnockback, boolean isCritical) {
-//		if (blocks.isEmpty() || checkBlock(player))
-//			return knockback / percentReduced;
-//		return knockback;
-//	}
 	
-	public void onArmorUnequip(EntityPlayer e) {
-		IAttributeInstance att = e.getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE);
-		if(att.hasModifier(knockback))
-		{
-			att.removeModifier(knockback);
-		}
+	public TraitReduceKnockback(String name, int darkPurple, float percentReduced, IBlockState... iblocks) {
+		super(name, darkPurple);
+		blocks.addAll(Arrays.asList(iblocks));
+	}
+	
+	public TraitReduceKnockback(String name, TextFormatting darkPurple, float percentReduced) {
+		super(name, darkPurple);
 	}
 
 	@Override
 	public void onArmorTick(ItemStack tool, World world, EntityPlayer player) {
 		IAttributeInstance att = player.getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE);
 		boolean block = checkBlock(player);
-		if(!att.hasModifier(knockback))
+		if(blocks.isEmpty())
+		{
+			block = true;
+		}
+		
+		if(!att.hasModifier(TDToolEvents.td_stoned))
 		{
 			if(block)
-				att.applyModifier(knockback);
-		}
-		else
-		{
-			if(!block)
-				att.removeModifier(knockback);
+				att.applyModifier(TDToolEvents.td_stoned);
 		}
 	}
 

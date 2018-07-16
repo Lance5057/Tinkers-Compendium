@@ -17,6 +17,7 @@ import com.google.common.collect.Sets;
 import lance5057.tDefense.core.library.ArmorNBT;
 import lance5057.tDefense.core.library.ArmorTags;
 import lance5057.tDefense.core.tools.armor.renderers.ArmorRenderer;
+import lance5057.tDefense.util.ArmorTagUtil;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
@@ -45,6 +46,8 @@ import slimeknights.tconstruct.common.ClientProxy;
 import slimeknights.tconstruct.common.config.Config;
 import slimeknights.tconstruct.library.TinkerRegistry;
 import slimeknights.tconstruct.library.Util;
+import slimeknights.tconstruct.library.materials.ExtraMaterialStats;
+import slimeknights.tconstruct.library.materials.HandleMaterialStats;
 import slimeknights.tconstruct.library.materials.HeadMaterialStats;
 import slimeknights.tconstruct.library.materials.IMaterialStats;
 import slimeknights.tconstruct.library.materials.Material;
@@ -57,6 +60,7 @@ import slimeknights.tconstruct.library.tinkering.PartMaterialType;
 import slimeknights.tconstruct.library.tools.DualToolHarvestUtils;
 import slimeknights.tconstruct.library.tools.IAoeTool;
 import slimeknights.tconstruct.library.tools.IToolPart;
+import slimeknights.tconstruct.library.tools.ToolNBT;
 import slimeknights.tconstruct.library.traits.ITrait;
 import slimeknights.tconstruct.library.utils.TagUtil;
 import slimeknights.tconstruct.library.utils.TinkerUtil;
@@ -71,14 +75,12 @@ import slimeknights.tconstruct.tools.traits.InfiTool;
  * all the callbacks for blocks and enemies so tools and weapons can share
  * behaviour.
  */
-public abstract class ArmorCore extends ArmorBase implements IToolStationDisplay
-{
+public abstract class ArmorCore extends ArmorBase implements IToolStationDisplay {
 
-	public final static int		DEFAULT_MODIFIERS		= 3;
-	public static final String	TAG_SWITCHED_HAND_HAX	= "SwitchedHand";
+	public final static int DEFAULT_MODIFIERS = 3;
+	public static final String TAG_SWITCHED_HAND_HAX = "SwitchedHand";
 
-	public ArmorCore(EntityEquipmentSlot slot, PartMaterialType... requiredComponents)
-	{
+	public ArmorCore(EntityEquipmentSlot slot, PartMaterialType... requiredComponents) {
 		super(slot, requiredComponents);
 
 		this.setCreativeTab(TinkerRegistry.tabTools);
@@ -89,43 +91,37 @@ public abstract class ArmorCore extends ArmorBase implements IToolStationDisplay
 	}
 
 	@Override
-	public int getMaxDamage(ItemStack stack)
-	{
+	public int getMaxDamage(ItemStack stack) {
 		return ToolHelper.getDurabilityStat(stack);
 	}
 
 	@Override
-	public void setDamage(ItemStack stack, int damage)
-	{
+	public void setDamage(ItemStack stack, int damage) {
 		int max = getMaxDamage(stack);
 		super.setDamage(stack, Math.min(max, damage));
 
-		if (getDamage(stack) == max)
-		{
+		if (getDamage(stack) == max) {
 			ToolHelper.breakTool(stack, null);
 		}
 	}
 
 	@Override
-	public boolean isDamageable()
-	{
+	public boolean isDamageable() {
 		return true;
 	}
 
 	@Override
-	public boolean showDurabilityBar(ItemStack stack)
-	{
+	public boolean showDurabilityBar(ItemStack stack) {
 		return super.showDurabilityBar(stack) && !ToolHelper.isBroken(stack);
 	}
 
 	/* Tool and Weapon specific properties */
 
 	/**
-	 * Multiplier applied to the actual mining speed of the tool Internally a
-	 * hammer and pick have the same speed, but a hammer is 2/3 slower
+	 * Multiplier applied to the actual mining speed of the tool Internally a hammer
+	 * and pick have the same speed, but a hammer is 2/3 slower
 	 */
-	public float miningSpeedModifier()
-	{
+	public float miningSpeedModifier() {
 		return 1f;
 	}
 
@@ -133,21 +129,20 @@ public abstract class ArmorCore extends ArmorBase implements IToolStationDisplay
 	public abstract float damagePotential();
 
 	/**
-	 * A fixed damage value where the calculations start to apply dimishing
-	 * returns. Basically if you'd hit more than that damage with this tool, the
-	 * damage is gradually reduced depending on how much the cutoff is exceeded.
+	 * A fixed damage value where the calculations start to apply dimishing returns.
+	 * Basically if you'd hit more than that damage with this tool, the damage is
+	 * gradually reduced depending on how much the cutoff is exceeded.
 	 */
-	public float damageCutoff()
-	{
+	public float damageCutoff() {
 		return 15.0f; // in general this should be sufficient and only needs
 						// increasing if it's a stronger weapon
 		// fun fact: diamond sword with sharpness V has 15 damage
 	}
 
 	/**
-	 * Allows you set the base attack speed, can be changed by modifiers.
-	 * Equivalent to the vanilla attack speed. 4 is equal to any standard item.
-	 * Value has to be greater than zero.
+	 * Allows you set the base attack speed, can be changed by modifiers. Equivalent
+	 * to the vanilla attack speed. 4 is equal to any standard item. Value has to be
+	 * greater than zero.
 	 */
 	public abstract double attackSpeed();
 
@@ -155,8 +150,7 @@ public abstract class ArmorCore extends ArmorBase implements IToolStationDisplay
 	 * Knockback modifier. Basically this takes the vanilla knockback on hit and
 	 * modifies it by this factor.
 	 */
-	public float knockback()
-	{
+	public float knockback() {
 		return 1.0f;
 	}
 
@@ -167,17 +161,14 @@ public abstract class ArmorCore extends ArmorBase implements IToolStationDisplay
 	 * @return True if the entity was hit. Usually the return value of
 	 *         {@link Entity#attackEntityFrom(DamageSource, float)}
 	 */
-	public boolean dealDamage(ItemStack stack, EntityLivingBase player, Entity entity, float damage)
-	{
-		if (player instanceof EntityPlayer)
-		{
+	public boolean dealDamage(ItemStack stack, EntityLivingBase player, Entity entity, float damage) {
+		if (player instanceof EntityPlayer) {
 			return entity.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer) player), damage);
 		}
 		return entity.attackEntityFrom(DamageSource.causeMobDamage(player), damage);
 	}
 
-	protected boolean readyForSpecialAttack(EntityLivingBase player)
-	{
+	protected boolean readyForSpecialAttack(EntityLivingBase player) {
 		return player instanceof EntityPlayer && ((EntityPlayer) player).getCooledAttackStrength(0.5f) > 0.9f;
 	}
 
@@ -185,11 +176,9 @@ public abstract class ArmorCore extends ArmorBase implements IToolStationDisplay
 	 * Called when an entity is getting damaged with the tool. Reduce the tools
 	 * durability accordingly player can be null!
 	 */
-	public void reduceDurabilityOnHit(ItemStack stack, EntityPlayer player, float damage)
-	{
+	public void reduceDurabilityOnHit(ItemStack stack, EntityPlayer player, float damage) {
 		damage = Math.max(1f, damage / 10f);
-		if (!hasCategory(Category.WEAPON))
-		{
+		if (!hasCategory(Category.WEAPON)) {
 			damage *= 2;
 		}
 		ToolHelper.damageTool(stack, (int) damage, player);
@@ -203,24 +192,19 @@ public abstract class ArmorCore extends ArmorBase implements IToolStationDisplay
 	// return super.getStrVsBlock(stack, state);
 	// }
 
-	public boolean isEffective(IBlockState state)
-	{
+	public boolean isEffective(IBlockState state) {
 		return false;
 	}
 
 	@Override
-	public boolean canHarvestBlock(@Nonnull IBlockState state, ItemStack stack)
-	{
+	public boolean canHarvestBlock(@Nonnull IBlockState state, ItemStack stack) {
 		return isEffective(state);
 	}
 
 	@Override
-	public boolean onBlockStartBreak(ItemStack itemstack, BlockPos pos, EntityPlayer player)
-	{
-		if (!ToolHelper.isBroken(itemstack) && this instanceof IAoeTool && ((IAoeTool) this).isAoeHarvestTool())
-		{
-			for (BlockPos extraPos : ((IAoeTool) this).getAOEBlocks(itemstack, player.getEntityWorld(), player, pos))
-			{
+	public boolean onBlockStartBreak(ItemStack itemstack, BlockPos pos, EntityPlayer player) {
+		if (!ToolHelper.isBroken(itemstack) && this instanceof IAoeTool && ((IAoeTool) this).isAoeHarvestTool()) {
+			for (BlockPos extraPos : ((IAoeTool) this).getAOEBlocks(itemstack, player.getEntityWorld(), player, pos)) {
 				breakExtraBlock(itemstack, player.getEntityWorld(), player, extraPos, pos);
 			}
 		}
@@ -231,8 +215,7 @@ public abstract class ArmorCore extends ArmorBase implements IToolStationDisplay
 		// the game can't detect that. so we have to switch around the items in
 		// the hands for the break call
 		// it's switched back in onBlockDestroyed
-		if (DualToolHarvestUtils.shouldUseOffhand(player, pos, player.getHeldItemMainhand()))
-		{
+		if (DualToolHarvestUtils.shouldUseOffhand(player, pos, player.getHeldItemMainhand())) {
 			ItemStack off = player.getHeldItemOffhand();
 			switchItemsInHands(player);
 			// remember, off is in the mainhand now
@@ -255,14 +238,13 @@ public abstract class ArmorCore extends ArmorBase implements IToolStationDisplay
 	 *            Player instance
 	 * @return true if the normal block break code should be skipped
 	 */
-	protected boolean breakBlock(ItemStack itemstack, BlockPos pos, EntityPlayer player)
-	{
+	protected boolean breakBlock(ItemStack itemstack, BlockPos pos, EntityPlayer player) {
 		return super.onBlockStartBreak(itemstack, pos, player);
 	}
 
 	/**
-	 * Called when an AOE block is broken by the tool. Use to oveerride the
-	 * block breaking logic
+	 * Called when an AOE block is broken by the tool. Use to oveerride the block
+	 * breaking logic
 	 * 
 	 * @param tool
 	 *            Tool ItemStack
@@ -275,8 +257,7 @@ public abstract class ArmorCore extends ArmorBase implements IToolStationDisplay
 	 * @param refPos
 	 *            Base position
 	 */
-	protected void breakExtraBlock(ItemStack tool, World world, EntityPlayer player, BlockPos pos, BlockPos refPos)
-	{
+	protected void breakExtraBlock(ItemStack tool, World world, EntityPlayer player, BlockPos pos, BlockPos refPos) {
 		ToolHelper.breakExtraBlock(tool, world, player, pos, refPos);
 	}
 
@@ -287,8 +268,7 @@ public abstract class ArmorCore extends ArmorBase implements IToolStationDisplay
 	// }
 
 	@Override
-	public boolean onEntitySwing(EntityLivingBase entityLiving, ItemStack stack)
-	{
+	public boolean onEntitySwing(EntityLivingBase entityLiving, ItemStack stack) {
 		/*
 		 * if(attackSpeed() > 0) { int speed = Math.min(5, attackSpeed());
 		 * ToolHelper.swingItem(speed, entityLiving); return true; }
@@ -297,12 +277,10 @@ public abstract class ArmorCore extends ArmorBase implements IToolStationDisplay
 	}
 
 	@Override
-	public boolean hitEntity(ItemStack stack, EntityLivingBase target, EntityLivingBase attacker)
-	{
+	public boolean hitEntity(ItemStack stack, EntityLivingBase target, EntityLivingBase attacker) {
 		float speed = ToolHelper.getActualAttackSpeed(stack);
 		int time = Math.round(20f / speed);
-		if (time < target.hurtResistantTime / 2)
-		{
+		if (time < target.hurtResistantTime / 2) {
 			target.hurtResistantTime = (target.hurtResistantTime + time) / 2;
 			target.hurtTime = (target.hurtTime + time) / 2;
 		}
@@ -311,22 +289,21 @@ public abstract class ArmorCore extends ArmorBase implements IToolStationDisplay
 
 	@Nonnull
 	@Override
-	public Multimap<String, AttributeModifier> getAttributeModifiers(@Nonnull EntityEquipmentSlot slot, ItemStack stack)
-	{
+	public Multimap<String, AttributeModifier> getAttributeModifiers(@Nonnull EntityEquipmentSlot slot,
+			ItemStack stack) {
 		Multimap<String, AttributeModifier> multimap = super.getAttributeModifiers(slot, stack);
 
-		if (slot == EntityEquipmentSlot.MAINHAND && !ToolHelper.isBroken(stack))
-		{
-			multimap.put(SharedMonsterAttributes.ATTACK_DAMAGE.getName(), new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Weapon modifier", ToolHelper.getActualAttack(stack), 0));
-			multimap.put(SharedMonsterAttributes.ATTACK_SPEED.getName(), new AttributeModifier(ATTACK_SPEED_MODIFIER, "Weapon modifier", ToolHelper.getActualAttackSpeed(stack) - 4d, 0));
+		if (slot == EntityEquipmentSlot.MAINHAND && !ToolHelper.isBroken(stack)) {
+			multimap.put(SharedMonsterAttributes.ATTACK_DAMAGE.getName(), new AttributeModifier(ATTACK_DAMAGE_MODIFIER,
+					"Weapon modifier", ToolHelper.getActualAttack(stack), 0));
+			multimap.put(SharedMonsterAttributes.ATTACK_SPEED.getName(), new AttributeModifier(ATTACK_SPEED_MODIFIER,
+					"Weapon modifier", ToolHelper.getActualAttackSpeed(stack) - 4d, 0));
 		}
 
 		NBTTagList traitsTagList = TagUtil.getTraitsTagList(stack);
-		for (int i = 0; i < traitsTagList.tagCount(); i++)
-		{
+		for (int i = 0; i < traitsTagList.tagCount(); i++) {
 			ITrait trait = TinkerRegistry.getTrait(traitsTagList.getStringTagAt(i));
-			if (trait != null)
-			{
+			if (trait != null) {
 				trait.getAttributeModifiers(slot, stack, multimap);
 			}
 		}
@@ -335,57 +312,47 @@ public abstract class ArmorCore extends ArmorBase implements IToolStationDisplay
 	}
 
 	@Override
-	public List<String> getInformation(ItemStack stack)
-	{
+	public List<String> getInformation(ItemStack stack) {
 		return getInformation(stack, true);
 	}
 
 	@Override
-	public void getTooltip(ItemStack stack, List<String> tooltips)
-	{
-		if (ToolHelper.isBroken(stack))
-		{
+	public void getTooltip(ItemStack stack, List<String> tooltips) {
+		if (ToolHelper.isBroken(stack)) {
 			tooltips.add("" + TextFormatting.DARK_RED + TextFormatting.BOLD + getBrokenTooltip(stack));
 		}
 		super.getTooltip(stack, tooltips);
 	}
 
-	protected String getBrokenTooltip(ItemStack itemStack)
-	{
+	protected String getBrokenTooltip(ItemStack itemStack) {
 		return Util.translate(TooltipBuilder.LOC_Broken);
 	}
 
 	@Override
-	public void getTooltipDetailed(ItemStack stack, List<String> tooltips)
-	{
+	public void getTooltipDetailed(ItemStack stack, List<String> tooltips) {
 		tooltips.addAll(getInformation(stack, false));
 	}
 
-	public List<String> getInformation(ItemStack stack, boolean detailed)
-	{
+	public List<String> getInformation(ItemStack stack, boolean detailed) {
 		TooltipBuilder info = new TooltipBuilder(stack);
 
 		info.addDurability(!detailed);
-		if (hasCategory(Category.HARVEST))
-		{
+		if (hasCategory(Category.HARVEST)) {
 			info.addHarvestLevel();
 			info.addMiningSpeed();
 		}
-		if (hasCategory(Category.LAUNCHER))
-		{
+		if (hasCategory(Category.LAUNCHER)) {
 			info.addDrawSpeed();
 			info.addRange();
 			info.addProjectileBonusDamage();
 		}
 		info.addAttack();
 
-		if (ToolHelper.getFreeModifiers(stack) > 0)
-		{
+		if (ToolHelper.getFreeModifiers(stack) > 0) {
 			info.addFreeModifiers();
 		}
 
-		if (detailed)
-		{
+		if (detailed) {
 			info.addModifierInfo();
 		}
 
@@ -393,47 +360,38 @@ public abstract class ArmorCore extends ArmorBase implements IToolStationDisplay
 	}
 
 	@Override
-	public void getTooltipComponents(ItemStack stack, List<String> tooltips)
-	{
+	public void getTooltipComponents(ItemStack stack, List<String> tooltips) {
 		List<Material> materials = TinkerUtil.getMaterialsFromTagList(TagUtil.getBaseMaterialsTagList(stack));
 		List<PartMaterialType> component = getRequiredComponents();
 
-		if (materials.size() < component.size())
-		{
+		if (materials.size() < component.size()) {
 			return;
 		}
 
-		for (int i = 0; i < component.size(); i++)
-		{
+		for (int i = 0; i < component.size(); i++) {
 			PartMaterialType pmt = component.get(i);
 			Material material = materials.get(i);
 
 			// get (one possible) toolpart used to craft the thing
 			Iterator<IToolPart> partIter = pmt.getPossibleParts().iterator();
-			if (!partIter.hasNext())
-			{
+			if (!partIter.hasNext()) {
 				continue;
 			}
 
 			IToolPart part = partIter.next();
 			ItemStack partStack = part.getItemstackWithMaterial(material);
-			if (partStack != null)
-			{
+			if (partStack != null) {
 				// we have the part, add it
 				tooltips.add(material.getTextColor() + TextFormatting.UNDERLINE + partStack.getDisplayName());
 
 				Set<ITrait> usedTraits = Sets.newHashSet();
 				// find out which stats and traits it contributes and add it to
 				// the tooltip
-				for (IMaterialStats stats : material.getAllStats())
-				{
-					if (pmt.usesStat(stats.getIdentifier()))
-					{
+				for (IMaterialStats stats : material.getAllStats()) {
+					if (pmt.usesStat(stats.getIdentifier())) {
 						tooltips.addAll(stats.getLocalizedInfo());
-						for (ITrait trait : pmt.getApplicableTraitsForMaterial(material))
-						{
-							if (!usedTraits.contains(trait))
-							{
+						for (ITrait trait : pmt.getApplicableTraitsForMaterial(material)) {
+							if (!usedTraits.contains(trait)) {
 								tooltips.add(material.getTextColor() + trait.getLocalizedName());
 								usedTraits.add(trait);
 							}
@@ -448,22 +406,19 @@ public abstract class ArmorCore extends ArmorBase implements IToolStationDisplay
 	@Nonnull
 	@SideOnly(Side.CLIENT)
 	@Override
-	public FontRenderer getFontRenderer(ItemStack stack)
-	{
+	public FontRenderer getFontRenderer(ItemStack stack) {
 		return ClientProxy.fontRenderer;
 	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public boolean hasEffect(ItemStack stack)
-	{
+	public boolean hasEffect(ItemStack stack) {
 		return TagUtil.hasEnchantEffect(stack);
 	}
 
 	@Nonnull
 	@Override
-	public String getItemStackDisplayName(@Nonnull ItemStack stack)
-	{
+	public String getItemStackDisplayName(@Nonnull ItemStack stack) {
 		// if the tool is not named we use the repair tools for a prefix like
 		// thing
 		List<Material> materials = TinkerUtil.getMaterialsFromTagList(TagUtil.getBaseMaterialsTagList(stack));
@@ -471,10 +426,8 @@ public abstract class ArmorCore extends ArmorBase implements IToolStationDisplay
 		// material in it twice
 		Set<Material> nameMaterials = Sets.newLinkedHashSet();
 
-		for (int index : getRepairParts())
-		{
-			if (index < materials.size())
-			{
+		for (int index : getRepairParts()) {
+			if (index < materials.size()) {
 				nameMaterials.add(materials.get(index));
 			}
 		}
@@ -484,27 +437,21 @@ public abstract class ArmorCore extends ArmorBase implements IToolStationDisplay
 
 	// Creative tab items
 	@Override
-	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> subItems)
-	{
-		if (this.isInCreativeTab(tab))
-		{
+	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> subItems) {
+		if (this.isInCreativeTab(tab)) {
 			addDefaultSubItems(subItems);
 		}
 	}
 
-	protected void addDefaultSubItems(List<ItemStack> subItems, Material... fixedMaterials)
-	{
-		for (Material head : TinkerRegistry.getAllMaterials())
-		{
+	protected void addDefaultSubItems(List<ItemStack> subItems, Material... fixedMaterials) {
+		for (Material head : TinkerRegistry.getAllMaterials()) {
 			List<Material> mats = new ArrayList<>(requiredComponents.length);
 
-			for (int i = 0; i < requiredComponents.length; i++)
-			{
-				if (fixedMaterials.length > i && fixedMaterials[i] != null && requiredComponents[i].isValidMaterial(fixedMaterials[i]))
-				{
+			for (int i = 0; i < requiredComponents.length; i++) {
+				if (fixedMaterials.length > i && fixedMaterials[i] != null
+						&& requiredComponents[i].isValidMaterial(fixedMaterials[i])) {
 					mats.add(fixedMaterials[i]);
-				} else
-				{
+				} else {
 					// todo: check for applicability with stats
 					mats.add(head);
 				}
@@ -512,30 +459,26 @@ public abstract class ArmorCore extends ArmorBase implements IToolStationDisplay
 
 			ItemStack tool = buildItem(mats);
 			// only valid ones
-			if (hasValidMaterials(tool))
-			{
+			if (hasValidMaterials(tool)) {
 				subItems.add(tool);
-				if (!Config.listAllMaterials)
-				{
+				if (!Config.listAllMaterials) {
 					break;
 				}
 			}
 		}
 	}
 
-	protected void addInfiTool(List<ItemStack> subItems, String name)
-	{
+	protected void addInfiTool(List<ItemStack> subItems, String name) {
 		ItemStack tool = getInfiTool(name);
-		if (hasValidMaterials(tool))
-		{
+		if (hasValidMaterials(tool)) {
 			subItems.add(tool);
 		}
 	}
 
-	protected ItemStack getInfiTool(String name)
-	{
+	protected ItemStack getInfiTool(String name) {
 		// The InfiHarvester!
-		List<Material> materials = ImmutableList.of(TinkerMaterials.slime, TinkerMaterials.cobalt, TinkerMaterials.ardite, TinkerMaterials.ardite);
+		List<Material> materials = ImmutableList.of(TinkerMaterials.slime, TinkerMaterials.cobalt,
+				TinkerMaterials.ardite, TinkerMaterials.ardite);
 		materials = materials.subList(0, requiredComponents.length);
 		ItemStack tool = buildItem(materials);
 		tool.setStackDisplayName(name);
@@ -545,15 +488,13 @@ public abstract class ArmorCore extends ArmorBase implements IToolStationDisplay
 	}
 
 	@Override
-	public int getHarvestLevel(ItemStack stack, String toolClass, @Nullable EntityPlayer player, @Nullable IBlockState blockState)
-	{
-		if (ToolHelper.isBroken(stack))
-		{
+	public int getHarvestLevel(ItemStack stack, String toolClass, @Nullable EntityPlayer player,
+			@Nullable IBlockState blockState) {
+		if (ToolHelper.isBroken(stack)) {
 			return -1;
 		}
 
-		if (this.getToolClasses(stack).contains(toolClass))
-		{
+		if (this.getToolClasses(stack).contains(toolClass)) {
 			// will return 0 if the tag has no info anyway
 			return ToolHelper.getHarvestLevelStat(stack);
 		}
@@ -562,59 +503,49 @@ public abstract class ArmorCore extends ArmorBase implements IToolStationDisplay
 	}
 
 	@Override
-	public Set<String> getToolClasses(ItemStack stack)
-	{
+	public Set<String> getToolClasses(ItemStack stack) {
 		// no classes if broken
-		if (ToolHelper.isBroken(stack))
-		{
+		if (ToolHelper.isBroken(stack)) {
 			return Collections.emptySet();
 		}
 		return super.getToolClasses(stack);
 	}
 
 	/**
-	 * A simple string identifier for the tool, used for identification in
-	 * texture generation etc.
+	 * A simple string identifier for the tool, used for identification in texture
+	 * generation etc.
 	 */
-	public String getIdentifier()
-	{
+	public String getIdentifier() {
 		return getRegistryName().getResourcePath();
 	}
 
 	/** The tools name completely without material information */
 	@Override
-	public String getLocalizedToolName()
-	{
+	public String getLocalizedToolName() {
 		return Util.translate(getUnlocalizedName() + ".name");
 	}
 
 	/** The tools name with the given material. e.g. "Wooden Pickaxe" */
-	public String getLocalizedToolName(Material material)
-	{
+	public String getLocalizedToolName(Material material) {
 		return material.getLocalizedItemName(getLocalizedToolName());
 	}
 
 	/** Returns info about the Tool. Displayed in the tool stations etc. */
-	public String getLocalizedDescription()
-	{
+	public String getLocalizedDescription() {
 		return Util.translate(getUnlocalizedName() + ".desc");
 	}
 
 	@Override
-	protected int repairCustom(Material material, NonNullList<ItemStack> repairItems)
-	{
+	protected int repairCustom(Material material, NonNullList<ItemStack> repairItems) {
 		Optional<RecipeMatch.Match> matchOptional = RecipeMatch.of(TinkerTools.sharpeningKit).matches(repairItems);
-		if (!matchOptional.isPresent())
-		{
+		if (!matchOptional.isPresent()) {
 			return 0;
 		}
 
 		RecipeMatch.Match match = matchOptional.get();
-		for (ItemStack stacks : match.stacks)
-		{
+		for (ItemStack stacks : match.stacks) {
 			// invalid material?
-			if (TinkerTools.sharpeningKit.getMaterial(stacks) != material)
-			{
+			if (TinkerTools.sharpeningKit.getMaterial(stacks) != material) {
 				return 0;
 			}
 		}
@@ -629,48 +560,41 @@ public abstract class ArmorCore extends ArmorBase implements IToolStationDisplay
 	/* Additional Trait callbacks */
 
 	@Override
-	public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected)
-	{
+	public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
 		super.onUpdate(stack, worldIn, entityIn, itemSlot, isSelected);
 
 		onUpdateTraits(stack, worldIn, entityIn, itemSlot, isSelected);
 	}
 
-	protected void onUpdateTraits(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected)
-	{
-		if (!isSelected && entityIn instanceof EntityPlayer && ((EntityPlayer) entityIn).getHeldItemOffhand() == stack)
-		{
+	protected void onUpdateTraits(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
+		if (!isSelected && entityIn instanceof EntityPlayer
+				&& ((EntityPlayer) entityIn).getHeldItemOffhand() == stack) {
 			isSelected = true;
 		}
 		NBTTagList list = TagUtil.getTraitsTagList(stack);
-		for (int i = 0; i < list.tagCount(); i++)
-		{
+		for (int i = 0; i < list.tagCount(); i++) {
 			ITrait trait = TinkerRegistry.getTrait(list.getStringTagAt(i));
-			if (trait != null)
-			{
+			if (trait != null) {
 				trait.onUpdate(stack, worldIn, entityIn, itemSlot, isSelected);
 			}
 		}
 	}
 
 	@Override
-	public boolean onBlockDestroyed(ItemStack stack, World worldIn, IBlockState state, BlockPos pos, EntityLivingBase entityLiving)
-	{
+	public boolean onBlockDestroyed(ItemStack stack, World worldIn, IBlockState state, BlockPos pos,
+			EntityLivingBase entityLiving) {
 		// move item back into offhand. See onBlockBreakStart
-		if (stack != null && entityLiving != null && stack.hasTagCompound())
-		{
+		if (stack != null && entityLiving != null && stack.hasTagCompound()) {
 			NBTTagCompound tag = stack.getTagCompound();
 			assert tag != null;
-			if (tag.getLong(TAG_SWITCHED_HAND_HAX) == entityLiving.getEntityWorld().getTotalWorldTime())
-			{
+			if (tag.getLong(TAG_SWITCHED_HAND_HAX) == entityLiving.getEntityWorld().getTotalWorldTime()) {
 				tag.removeTag(TAG_SWITCHED_HAND_HAX);
 				stack.setTagCompound(tag);
 
 				switchItemsInHands(entityLiving);
 			}
 		}
-		if (ToolHelper.isBroken(stack))
-		{
+		if (ToolHelper.isBroken(stack)) {
 			return false;
 		}
 
@@ -682,22 +606,19 @@ public abstract class ArmorCore extends ArmorBase implements IToolStationDisplay
 		return hasCategory(Category.TOOL);
 	}
 
-	protected void switchItemsInHands(EntityLivingBase entityLiving)
-	{
+	protected void switchItemsInHands(EntityLivingBase entityLiving) {
 		ItemStack main = entityLiving.getHeldItemMainhand();
 		ItemStack off = entityLiving.getHeldItemOffhand();
 		entityLiving.setHeldItem(EnumHand.OFF_HAND, main);
 		entityLiving.setHeldItem(EnumHand.MAIN_HAND, off);
 	}
 
-	public void afterBlockBreak(ItemStack stack, World world, IBlockState state, BlockPos pos, EntityLivingBase player, int damage, boolean wasEffective)
-	{
+	public void afterBlockBreak(ItemStack stack, World world, IBlockState state, BlockPos pos, EntityLivingBase player,
+			int damage, boolean wasEffective) {
 		NBTTagList list = TagUtil.getTraitsTagList(stack);
-		for (int i = 0; i < list.tagCount(); i++)
-		{
+		for (int i = 0; i < list.tagCount(); i++) {
 			ITrait trait = TinkerRegistry.getTrait(list.getStringTagAt(i));
-			if (trait != null)
-			{
+			if (trait != null) {
 				trait.afterBlockBreak(stack, world, state, pos, player, wasEffective);
 			}
 		}
@@ -707,71 +628,59 @@ public abstract class ArmorCore extends ArmorBase implements IToolStationDisplay
 
 	// elevate to public
 	@Override
-	public RayTraceResult rayTrace(@Nonnull World worldIn, @Nonnull EntityPlayer playerIn, boolean useLiquids)
-	{
+	public RayTraceResult rayTrace(@Nonnull World worldIn, @Nonnull EntityPlayer playerIn, boolean useLiquids) {
 		return super.rayTrace(worldIn, playerIn, useLiquids);
 	}
 
-	protected void preventSlowDown(Entity entityIn, float originalSpeed)
-	{
+	protected void preventSlowDown(Entity entityIn, float originalSpeed) {
 		TinkerTools.proxy.preventPlayerSlowdown(entityIn, originalSpeed, this);
 	}
 
 	@Override
-	public boolean shouldCauseBlockBreakReset(ItemStack oldStack, ItemStack newStack)
-	{
+	public boolean shouldCauseBlockBreakReset(ItemStack oldStack, ItemStack newStack) {
 		return shouldCauseReequipAnimation(oldStack, newStack, false);
 	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public boolean shouldCauseReequipAnimation(ItemStack oldStack, @Nonnull ItemStack newStack, boolean slotChanged)
-	{
-		if (TagUtil.getResetFlag(newStack))
-		{
+	public boolean shouldCauseReequipAnimation(ItemStack oldStack, @Nonnull ItemStack newStack, boolean slotChanged) {
+		if (TagUtil.getResetFlag(newStack)) {
 			TagUtil.setResetFlag(newStack, false);
 			return true;
 		}
-		if (oldStack == newStack)
-		{
+		if (oldStack == newStack) {
 			return false;
 		}
-		if (slotChanged)
-		{
+		if (slotChanged) {
 			return true;
 		}
 
-		if (oldStack.hasEffect() != newStack.hasEffect())
-		{
+		if (oldStack.hasEffect() != newStack.hasEffect()) {
 			return true;
 		}
 
-		Multimap<String, AttributeModifier> attributesNew = newStack.getAttributeModifiers(EntityEquipmentSlot.MAINHAND);
-		Multimap<String, AttributeModifier> attributesOld = oldStack.getAttributeModifiers(EntityEquipmentSlot.MAINHAND);
+		Multimap<String, AttributeModifier> attributesNew = newStack
+				.getAttributeModifiers(EntityEquipmentSlot.MAINHAND);
+		Multimap<String, AttributeModifier> attributesOld = oldStack
+				.getAttributeModifiers(EntityEquipmentSlot.MAINHAND);
 
-		if (attributesNew.size() != attributesOld.size())
-		{
+		if (attributesNew.size() != attributesOld.size()) {
 			return true;
 		}
-		for (String key : attributesOld.keySet())
-		{
-			if (!attributesNew.containsKey(key))
-			{
+		for (String key : attributesOld.keySet()) {
+			if (!attributesNew.containsKey(key)) {
 				return true;
 			}
 			Iterator<AttributeModifier> iter1 = attributesNew.get(key).iterator();
 			Iterator<AttributeModifier> iter2 = attributesOld.get(key).iterator();
-			while (iter1.hasNext() && iter2.hasNext())
-			{
-				if (!iter1.next().equals(iter2.next()))
-				{
+			while (iter1.hasNext() && iter2.hasNext()) {
+				if (!iter1.next().equals(iter2.next())) {
 					return true;
 				}
 			}
 		}
 
-		if (oldStack.getItem() == newStack.getItem() && newStack.getItem() instanceof ArmorCore)
-		{
+		if (oldStack.getItem() == newStack.getItem() && newStack.getItem() instanceof ArmorCore) {
 			return !isEqualTinkersItem(oldStack, newStack);
 		}
 		return !ItemStack.areItemStacksEqual(oldStack, newStack);
@@ -780,20 +689,15 @@ public abstract class ArmorCore extends ArmorBase implements IToolStationDisplay
 	/**
 	 * Builds a default tool from: 1. Handle 2. Head 3. Accessoire (if present)
 	 */
-	protected ArmorNBT buildDefaultTag(List<Material> materials)
-	{
+	protected ArmorNBT buildDefaultTag(List<Material> materials) {
 		return null;
-		
 	}
 
-	public static boolean isEqualTinkersItem(ItemStack item1, ItemStack item2)
-	{
-		if (item1 == null || item2 == null || item1.getItem() != item2.getItem())
-		{
+	public static boolean isEqualTinkersItem(ItemStack item1, ItemStack item2) {
+		if (item1 == null || item2 == null || item1.getItem() != item2.getItem()) {
 			return false;
 		}
-		if (!(item1.getItem() instanceof ArmorCore))
-		{
+		if (!(item1.getItem() instanceof ArmorCore)) {
 			return false;
 		}
 
@@ -803,19 +707,16 @@ public abstract class ArmorCore extends ArmorBase implements IToolStationDisplay
 		NBTTagList mods1 = TagUtil.getModifiersTagList(tag1);
 		NBTTagList mods2 = TagUtil.getModifiersTagList(tag2);
 
-		if (mods1.tagCount() != mods1.tagCount())
-		{
+		if (mods1.tagCount() != mods1.tagCount()) {
 			return false;
 		}
 
 		// check modifiers
-		for (int i = 0; i < mods1.tagCount(); i++)
-		{
+		for (int i = 0; i < mods1.tagCount(); i++) {
 			NBTTagCompound tag = mods1.getCompoundTagAt(i);
 			ModifierNBT data = ModifierNBT.readTag(tag);
 			IModifier modifier = TinkerRegistry.getModifier(data.identifier);
-			if (modifier != null && !modifier.equalModifier(tag, mods2.getCompoundTagAt(i)))
-			{
+			if (modifier != null && !modifier.equalModifier(tag, mods2.getCompoundTagAt(i))) {
 				return false;
 			}
 		}
@@ -832,24 +733,21 @@ public abstract class ArmorCore extends ArmorBase implements IToolStationDisplay
 																								// stats
 	}
 
-	public EntityEquipmentSlot getArmorSlot(ItemStack stack, EntityEquipmentSlot armorType)
-	{
+	public EntityEquipmentSlot getArmorSlot(ItemStack stack, EntityEquipmentSlot armorType) {
 		return null;
 	}
 
 	@SideOnly(Side.CLIENT)
-	public ArmorRenderer getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack)
-	{
+	public ArmorRenderer getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack) {
 		return null;
 	}
-	
+
 	@Override
-	public String getArmorTexture(ItemStack stack, Entity entity, EntityEquipmentSlot slot, String type)
-	{
+	public String getArmorTexture(ItemStack stack, Entity entity, EntityEquipmentSlot slot, String type) {
 		String s = TagUtil.getTagSafe(TagUtil.getTagSafe(stack), ArmorTags.DynTex).getString(ArmorTags.TexLoc);
-		if((s == "" || s == null) || !checkForTexture(s))
-		{
-			NBTTagCompound texTag = setupTexture(TinkerUtil.getMaterialsFromTagList(TagUtil.getBaseMaterialsTagList(stack)));
+		if ((s == "" || s == null) || !checkForTexture(s)) {
+			NBTTagCompound texTag = setupTexture(
+					TinkerUtil.getMaterialsFromTagList(TagUtil.getBaseMaterialsTagList(stack)));
 			if (texTag != null)
 				TagUtil.getTagSafe(stack).setTag(ArmorTags.DynTex, texTag);
 			NBTTagCompound n = TagUtil.getTagSafe(TagUtil.getTagSafe(stack), ArmorTags.DynTex);
@@ -857,11 +755,34 @@ public abstract class ArmorCore extends ArmorBase implements IToolStationDisplay
 		}
 		return s;
 	}
-	
-	private boolean checkForTexture(String s)
-	{
-		if(Minecraft.getMinecraft().getTextureManager().getTexture(new ResourceLocation(s)) != null)
+
+	private boolean checkForTexture(String s) {
+		if (Minecraft.getMinecraft().getTextureManager().getTexture(new ResourceLocation(s)) != null)
 			return true;
 		return false;
+	}
+
+	@Override
+	public ArmorProperties getProperties(EntityLivingBase player, ItemStack armor, DamageSource source, double damage,
+			int slot) {
+		ArmorNBT tag = ArmorTagUtil.getOriginalToolStats(armor);
+		ArmorProperties a = new ArmorProperties(1, 0.8, 20);
+
+		a.Armor = tag.armorRating;
+		a.Toughness = tag.armorToughness;
+
+		return a;
+	}
+
+	@Override
+	public int getArmorDisplay(EntityPlayer player, ItemStack armor, int slot) {
+		ArmorNBT tag = ArmorTagUtil.getOriginalToolStats(armor);
+		return tag.armorRating;
+	}
+
+	@Override
+	public void damageArmor(EntityLivingBase entity, ItemStack stack, DamageSource source, int damage, int slot) {
+		// TODO Auto-generated method stub
+
 	}
 }

@@ -10,6 +10,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import slimeknights.tconstruct.library.traits.AbstractTrait;
 
@@ -21,9 +22,24 @@ public class TraitDamageSourceAlteration extends AbstractTDTrait {
 		damageTypes.addAll(Arrays.asList(itypes));
 	}
 	
+	public TraitDamageSourceAlteration(String name, TextFormatting icolor, DamagePercent... itypes) {
+		super(name, icolor);
+		damageTypes.addAll(Arrays.asList(itypes));
+	}
+	
 	@Override
-	public void onDamageTaken(LivingHurtEvent e) {
-		
+	public void onDamageTaken(ItemStack tool, LivingHurtEvent e) {
+		for(DamagePercent d: damageTypes)
+		{
+			if(e.getSource() == d.type)
+			{
+				float damage = e.getAmount();
+				float alteration = damage * d.percent;
+				
+				damage += alteration;
+				e.setAmount(damage);
+			}
+		}
 	}
 	
 	public static class DamagePercent

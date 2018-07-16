@@ -23,7 +23,7 @@ public class TDMatHelper
 {
 	public String		name;
 	public int			color;
-	public FluidMolten	fluid;
+	//public FluidMolten	fluid;
 
 	public boolean isGem;
 
@@ -54,7 +54,7 @@ public class TDMatHelper
 	{
 		name = n;
 		color = c;
-		fluid = f;
+		//fluid = f;
 		createMat = doMat;
 	}
 
@@ -87,7 +87,7 @@ public class TDMatHelper
 	{
 		name = n;
 		color = c;
-		fluid = f;
+		//fluid = f;
 
 		isGem = o;
 		createMat = doMat;

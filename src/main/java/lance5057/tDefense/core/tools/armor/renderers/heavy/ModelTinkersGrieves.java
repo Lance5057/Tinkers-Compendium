@@ -23,9 +23,9 @@ public class ModelTinkersGrieves extends ArmorRenderer {
     public ModelRenderer SecBeltL;
 
     public ModelTinkersGrieves(ItemStack stack) {
-    	super(0.25f, 0, 96, 64, stack);
+    	super(0.25f, 0, 96, 96, stack);
         this.textureWidth = 96;
-        this.textureHeight = 64;
+        this.textureHeight = 96;
         
         this.Belt = new ModelRenderer(this, 64, 0);
         this.Belt.setRotationPoint(0.0F, 0.0F, 0.0F);

@@ -89,15 +89,17 @@ public class ArmorNBT {
 
   public void read(NBTTagCompound tag) {
     durability = tag.getInteger(Tags.DURABILITY);
-    armorRating = tag.getInteger("ArmorRating");
-    armorToughness = tag.getInteger("ArmorToughness");
+    armorRating = tag.getInteger(ArmorTags.ArmorRating);
+    armorToughness = tag.getInteger(ArmorTags.ArmorToughness);
     modifiers = tag.getInteger(Tags.FREE_MODIFIERS);
+    
+    
   }
 
   public void write(NBTTagCompound tag) {
     tag.setInteger(Tags.DURABILITY, durability);
-    tag.setInteger("ArmorRating", armorRating);
-    tag.setInteger("ArmorToughness", armorToughness);
+    tag.setInteger(ArmorTags.ArmorRating, armorRating);
+    tag.setInteger(ArmorTags.ArmorToughness, armorToughness);
     tag.setInteger(Tags.FREE_MODIFIERS, modifiers);
   }
 

@@ -5,21 +5,23 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import lance5057.tDefense.util.ArmorTagUtil;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 
-public class TD_Commands extends CommandBase implements ICommand
-{
-	private final List	aliases;
-	private final List	commands;
+public class TD_Commands extends CommandBase implements ICommand {
+	private final List aliases;
+	private final List commands;
 
-	public TD_Commands()
-	{
+	public TD_Commands() {
 		aliases = new ArrayList();
 
 		aliases.add("TinkersDefense");
@@ -31,113 +33,112 @@ public class TD_Commands extends CommandBase implements ICommand
 		commands.add("reloadRenderers");
 		commands.add("toggleTransparency");
 		commands.add("toggleDebugMode");
+		commands.add("visor");
 	}
 
 	@Override
-	public int getRequiredPermissionLevel()
-	{
+	public int getRequiredPermissionLevel() {
 		return 0;
 	}
 
-//	@Override
-//	public int compareTo(Object arg0)
-//	{
-//		return 0;
-//	}
+	// @Override
+	// public int compareTo(Object arg0)
+	// {
+	// return 0;
+	// }
 
 	@Override
-	public String getName()
-	{
+	public String getName() {
 		return "TinkersDefense";
 	}
 
 	@Override
-	public String getUsage(ICommandSender p_71518_1_)
-	{
+	public String getUsage(ICommandSender p_71518_1_) {
 		return "TinkersDefense <text>";
 	}
 
-//	@Override
-//	public List getCommandAliases()
-//	{
-//		return aliases;
-//	}
+	// @Override
+	// public List getCommandAliases()
+	// {
+	// return aliases;
+	// }
 
 	@Override
-	public void execute(MinecraftServer server, ICommandSender p_71515_1_, String[] p_71515_2_)
-	{
-		final World world = p_71515_1_.getEntityWorld();
-		if(world.isRemote)
-		{
-//			if(p_71515_2_[0].equals("reloadRenderers"))
-//			{
-//				p_71515_1_.addChatMessage(new TextComponentString(
-//						"§9[TDefense]§f - Reloading All Renderers..."));
-//				reloadModels();
-//			}
-//			else if(p_71515_2_[0].equals("toggleTransparency"))
-//			{
-//				TinkersDefense.config.transparency = !TinkersDefense.config.transparency;
-//				if(TinkersDefense.config.transparency)
-//				{
-//					p_71515_1_.addChatMessage(new TextComponentString(
-//							"§9[TDefense]§f - Transparency on."));
-//				}
-//				else
-//				{
-//					p_71515_1_.addChatMessage(new TextComponentString(
-//							"§9[TDefense]§f - Transparency off."));
-//				}
-//
-//			}
-			if(p_71515_2_[0].equals("toggleDebugMode"))
-			{
+	public void execute(MinecraftServer server, ICommandSender sender, String[] commandIn) {
+		final World world = sender.getEntityWorld();
+		if (world.isRemote) {
+			// if(p_71515_2_[0].equals("reloadRenderers"))
+			// {
+			// p_71515_1_.addChatMessage(new TextComponentString(
+			// "§9[TDefense]§f - Reloading All Renderers..."));
+			// reloadModels();
+			// }
+			// else if(p_71515_2_[0].equals("toggleTransparency"))
+			// {
+			// TinkersDefense.config.transparency = !TinkersDefense.config.transparency;
+			// if(TinkersDefense.config.transparency)
+			// {
+			// p_71515_1_.addChatMessage(new TextComponentString(
+			// "§9[TDefense]§f - Transparency on."));
+			// }
+			// else
+			// {
+			// p_71515_1_.addChatMessage(new TextComponentString(
+			// "§9[TDefense]§f - Transparency off."));
+			// }
+			//
+			// }
+			if (commandIn[0].equals("toggleDebugMode")) {
 				TinkersDefense.config.debug = !TinkersDefense.config.debug;
-				if(TinkersDefense.config.debug)
-				{
-					p_71515_1_.sendMessage(new TextComponentString(
-							"§9[TDefense]§f - Debug Mode on."));
-				}
-				else
-				{
-					p_71515_1_.sendMessage(new TextComponentString(
-							"§9[TDefense]§f - Debug Mode off."));
+				if (TinkersDefense.config.debug) {
+					sender.sendMessage(new TextComponentString("§9[TDefense]§f - Debug Mode on."));
+				} else {
+					sender.sendMessage(new TextComponentString("§9[TDefense]§f - Debug Mode off."));
 				}
 
-			}
-			else if(p_71515_2_[0].equals("reloadRenderers"))
-			{
+			} else if (commandIn[0].equals("reloadRenderers")) {
 				TinkersDefense.proxy.reloadRenderers();
-			}
-			else
-			{
-				p_71515_1_.sendMessage(new TextComponentString(
-						"§c[TDefense]§f - Invalid Command"));
+			} else if (commandIn[0].equals("visor")) {
+				if (sender.getCommandSenderEntity() instanceof EntityPlayer) {
+					EntityPlayer p = (EntityPlayer) sender.getCommandSenderEntity();
+					for (ItemStack s : p.getArmorInventoryList()) {
+						if (s != null && s.getItem() != Items.AIR) {
+							ArmorTagUtil.setVisor(s, !ArmorTagUtil.getVisor(s));
+							ArmorTagUtil.setVisorTime(s, 0.0f);
+							if (TinkersDefense.config.debug) {
+								if (ArmorTagUtil.getVisor(s))
+									sender.sendMessage(new TextComponentString("§9[TDefense]§f - Visor closed."));
+								else
+									sender.sendMessage(new TextComponentString("§9[TDefense]§f - Visor opened."));
+							}
+						}
+					}
+				}
+			} else {
+				sender.sendMessage(new TextComponentString("§c[TDefense]§f - Invalid Command"));
 			}
 		}
 	}
 
-//	@Override
-//	public boolean canCommandSenderUseCommand(ICommandSender p_71519_1_)
-//	{
-//		return true;
-//	}
-//
+	// @Override
+	// public boolean canCommandSenderUseCommand(ICommandSender p_71519_1_)
+	// {
+	// return true;
+	// }
+	//
 	@Override
-	public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos pos)
-	{
+	public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args,
+			@Nullable BlockPos pos) {
 		return commands;
 	}
 
 	@Override
-	public boolean isUsernameIndex(String[] p_82358_1_, int p_82358_2_)
-	{
+	public boolean isUsernameIndex(String[] p_82358_1_, int p_82358_2_) {
 		return false;
 	}
 
-
-//	public void reloadModels()
-//	{
-//		TinkersDefense.proxy.registerRenderers();
-//	}
+	// public void reloadModels()
+	// {
+	// TinkersDefense.proxy.registerRenderers();
+	// }
 }

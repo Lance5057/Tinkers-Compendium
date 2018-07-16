@@ -85,25 +85,6 @@ public class TinkersShawl extends ArmorCore
 	}
 
 	@Override
-	public ArmorProperties getProperties(EntityLivingBase player, ItemStack armor, DamageSource source, double damage,
-			int slot) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public int getArmorDisplay(EntityPlayer player, ItemStack armor, int slot) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public void damageArmor(EntityLivingBase entity, ItemStack stack, DamageSource source, int damage, int slot) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public float damagePotential()
 	{
 		// TODO Auto-generated method stub

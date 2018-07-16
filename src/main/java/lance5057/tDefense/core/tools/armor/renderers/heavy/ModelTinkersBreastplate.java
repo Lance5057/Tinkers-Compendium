@@ -11,7 +11,7 @@ import net.minecraft.item.ItemStack;
 public class ModelTinkersBreastplate extends ArmorRenderer {
     public ModelRenderer BackPlate;
     public ModelRenderer BreastPlate;
-    public ModelRenderer Plackart;
+    public ModelRenderer Plackart; 
     public ModelRenderer PauldronR;
     public ModelRenderer PauldronL;
     public ModelRenderer ArmR;
@@ -20,9 +20,9 @@ public class ModelTinkersBreastplate extends ArmorRenderer {
     public ModelRenderer Pauldron2R;
 
     public ModelTinkersBreastplate(ItemStack stack) {
-    	super(0.25f, 0, 128, 64, stack);
+    	super(0.25f, 0, 128, 128, stack);
         this.textureWidth = 128;
-        this.textureHeight = 64;
+        this.textureHeight = 128;
 
         this.ArmL = new ModelRenderer(this, 92, 12);
         this.ArmL.setRotationPoint(0.0F, 0.0F, 0.0F);
@@ -76,14 +76,5 @@ public class ModelTinkersBreastplate extends ArmorRenderer {
         this.PauldronL.addBox(0.5F, -2.0F, -3.5F, 4, 5, 7, 0.1F);
         this.setRotateAngle(PauldronL, 0.0F, 0.0F, -0.4363323129985824F);
         this.bipedLeftArm.addChild(PauldronL);
-    }
-
-    /**
-     * This is a helper function from Tabula to set the rotation of model parts
-     */
-    public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {
-        modelRenderer.rotateAngleX = x;
-        modelRenderer.rotateAngleY = y;
-        modelRenderer.rotateAngleZ = z;
     }
 }
