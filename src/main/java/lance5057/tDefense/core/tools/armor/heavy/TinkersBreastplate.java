@@ -8,7 +8,7 @@ import lance5057.tDefense.core.library.ArmorTextureBuilder;
 import lance5057.tDefense.core.materials.stats.ArmorMaterialStats;
 import lance5057.tDefense.core.materials.stats.ChestMaterialStats;
 import lance5057.tDefense.core.parts.TDParts;
-import lance5057.tDefense.core.tools.armor.renderers.heavy.finishinganvil.ModelArmorTerrasteel;
+import lance5057.tDefense.core.tools.armor.renderers.heavy.ModelTinkersBreastplate;
 import lance5057.tDefense.core.tools.bases.ArmorCore;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.EntityLivingBase;
@@ -54,8 +54,8 @@ public class TinkersBreastplate extends ArmorCore {
 	@Override
 	public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, EntityEquipmentSlot armorSlot,
 			ModelBiped _default) {
-		//return new ModelTinkersBreastplate(itemStack);
-		return new ModelArmorTerrasteel(itemStack, armorSlot);
+		return new ModelTinkersBreastplate(itemStack);
+		//return new ModelArmorTerrasteel(itemStack, armorSlot);
 	}
 
 	@Override

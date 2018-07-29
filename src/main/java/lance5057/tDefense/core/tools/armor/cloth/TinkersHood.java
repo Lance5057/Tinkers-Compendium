@@ -12,7 +12,6 @@ import lance5057.tDefense.core.tools.armor.renderers.cloth.ModelTinkersHood;
 import lance5057.tDefense.core.tools.bases.ArmorCore;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBiped;
-import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;

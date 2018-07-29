@@ -1,0 +1,27 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "s",
+        "l",
+        "w"
+    ],
+    "key": {
+        "s": {
+            "item": "tconstruct:pattern",
+            "data": 0
+        },
+		"w": {
+            "item": "minecraft:log",
+            "data": 32767
+        },
+		"l": {
+            "item": "minecraft:leather",
+            "data": 0
+        }
+    },
+    "result": {
+        "item": "tinkerscompendium:armorstation",
+        "data": 0,
+        "count": 1
+    }
+}

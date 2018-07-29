@@ -2,18 +2,23 @@ package lance5057.tDefense.util;
 
 import java.util.Locale;
 
-import org.codehaus.plexus.util.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import lance5057.tDefense.Reference;
 import lance5057.tDefense.TinkersDefense;
+import lance5057.tDefense.core.blocks.ComponentDoor;
+import lance5057.tDefense.core.blocks.ComponentPane;
+import lance5057.tDefense.core.blocks.ComponentStake;
+import lance5057.tDefense.core.blocks.ComponentTrapDoor;
+import lance5057.tDefense.core.items.ComponentItemDoor;
 import lance5057.tDefense.core.materials.TDMaterials;
 import lance5057.tDefense.core.materials.stats.ChestMaterialStats;
 import lance5057.tDefense.core.materials.stats.FeetMaterialStats;
 import lance5057.tDefense.core.materials.stats.HelmMaterialStats;
 import lance5057.tDefense.core.materials.stats.LegsMaterialStats;
 import lance5057.tDefense.core.materials.stats.ShieldMaterialStats;
-import lance5057.tDefense.proxy.ClientProxy.ColorHandler;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockOre;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
@@ -30,7 +35,6 @@ import slimeknights.tconstruct.library.materials.ExtraMaterialStats;
 import slimeknights.tconstruct.library.materials.HandleMaterialStats;
 import slimeknights.tconstruct.library.materials.HeadMaterialStats;
 import slimeknights.tconstruct.library.materials.Material;
-import slimeknights.tconstruct.library.utils.HarvestLevels;
 import slimeknights.tconstruct.smeltery.block.BlockMolten;
 
 public class MaterialHelper {
@@ -95,6 +99,98 @@ public class MaterialHelper {
 	public Item gear;
 	public Item rod;
 
+	public BlockOre ore;
+	public Block block;
+	public ComponentDoor door;
+	public ComponentTrapDoor trapdoor;
+	public ComponentStake stake;
+	public ComponentPane bars;
+
+	public MaterialHelper setGenIngot(boolean genIngot) {
+		this.genIngot = genIngot;
+		return this;
+	}
+
+	public MaterialHelper setGenNugget(boolean genNugget) {
+		this.genNugget = genNugget;
+		return this;
+	}
+
+	public MaterialHelper setGenDust(boolean genDust) {
+		this.genDust = genDust;
+		return this;
+	}
+
+	public MaterialHelper setGenGrain(boolean genGrain) {
+		this.genGrain = genGrain;
+		return this;
+	}
+
+	public MaterialHelper setGenPlate(boolean genPlate) {
+		this.genPlate = genPlate;
+		return this;
+	}
+
+	public MaterialHelper setGenCoin(boolean genCoin) {
+		this.genCoin = genCoin;
+		return this;
+	}
+
+	public MaterialHelper setGenGear(boolean genGear) {
+		this.genGear = genGear;
+		return this;
+	}
+
+	public MaterialHelper setGenRod(boolean genRod) {
+		this.genRod = genRod;
+		return this;
+	}
+
+	public MaterialHelper setGenOre(boolean genOre) {
+		this.genOre = genOre;
+		return this;
+	}
+
+	public MaterialHelper setGenBlock(boolean genBlock) {
+		this.genBlock = genBlock;
+		return this;
+	}
+
+	public MaterialHelper setGenStake(boolean genStake) {
+		this.genStake = genStake;
+		return this;
+	}
+
+	public MaterialHelper setGenBars(boolean genBars) {
+		this.genBars = genBars;
+		return this;
+	}
+
+	public MaterialHelper setGenDoor(boolean genDoor) {
+		this.genDoor = genDoor;
+		return this;
+	}
+
+	public MaterialHelper setGenTrapdoor(boolean genTrapdoor) {
+		this.genTrapdoor = genTrapdoor;
+		return this;
+	}
+
+	public boolean genIngot = true;
+	public boolean genNugget = true;
+	public boolean genDust = true;
+	public boolean genGrain = true;
+	public boolean genPlate = true;
+	public boolean genCoin = true;
+	public boolean genGear = true;
+	public boolean genRod = true;
+	public boolean genOre = false;
+	public boolean genBlock = false;
+	public boolean genStake = true;
+	public boolean genBars = true;
+	public boolean genDoor = true;
+	public boolean genTrapdoor = true;
+
 	public String name;
 	public int color;
 	public int temp;
@@ -117,47 +213,102 @@ public class MaterialHelper {
 
 		// aeonsteel.addItem("ingotAeonsteel", 1, Material.VALUE_Ingot);
 
-		if (ingot == null) {
+		if (ingot == null && genIngot) {
 			ingot = registerItem("ingot_" + name);
 			TDMaterials.itemList.add(ingot);
 		}
 
-		if (nugget == null) {
+		if (nugget == null && genNugget) {
 			nugget = registerItem("nugget_" + name);
 			TDMaterials.itemList.add(nugget);
 		}
 
-		if (dust == null) {
+		if (dust == null && genDust) {
 			dust = registerItem("dust_" + name);
 			TDMaterials.itemList.add(dust);
 		}
-		if (grain == null) {
+		if (grain == null && genGrain) {
 			grain = registerItem("grain_" + name);
 			TDMaterials.itemList.add(grain);
 		}
 
-		if (plate == null) {
+		if (plate == null && genPlate) {
 			plate = registerItem("plate_" + name);
 			TDMaterials.itemList.add(plate);
 		}
 
-		if (coin == null) {
+		if (coin == null && genCoin) {
 			coin = registerItem("coin_" + name);
 			TDMaterials.itemList.add(coin);
 		}
 
-		if (gear == null) {
+		if (gear == null && genGear) {
 			gear = registerItem("gear_" + name);
 			TDMaterials.itemList.add(gear);
 		}
 
-		if (rod == null) {
+		if (rod == null && genRod) {
 			rod = registerItem("rod_" + name);
 			TDMaterials.itemList.add(rod);
 		}
 
+		if (block == null && genBlock) {
+			block = new Block(net.minecraft.block.material.Material.IRON)
+					.setRegistryName(new ResourceLocation(Reference.MOD_ID, "block_" + name))
+					.setUnlocalizedName("block_" + name);
+			TDMaterials.blockList.add(block);
+			TDMaterials.itemList.add(registerItemBlock("block_" + name, block));
+		}
+
+		if (ore == null && genOre) {
+			ore = new BlockOre();
+			ore.setRegistryName(new ResourceLocation(Reference.MOD_ID, "ore_" + name))
+					.setUnlocalizedName("ore_" + name);
+			TDMaterials.blockList.add(ore);
+			TDMaterials.itemList.add(registerItemBlock("ore_" + name, ore));
+		}
+
+		if (stake == null && genStake) {
+			stake = new ComponentStake();
+			stake.setRegistryName(new ResourceLocation(Reference.MOD_ID, "stake_" + name))
+					.setUnlocalizedName("stake_" + name);
+			TDMaterials.blockList.add(stake);
+			TDMaterials.itemList.add(registerItemBlock("stake_" + name, stake));
+		}
+
+		if (bars == null && genBars) {
+			bars = new ComponentPane(net.minecraft.block.material.Material.IRON, true);
+			bars.setRegistryName(new ResourceLocation(Reference.MOD_ID, "bars_" + name))
+					.setUnlocalizedName("bars_" + name);
+			TDMaterials.blockList.add(bars);
+			TDMaterials.itemList.add(registerItemBlock("bars_" + name, bars));
+		}
+
+		if (door == null && genDoor) {
+			door = new ComponentDoor(net.minecraft.block.material.Material.IRON);
+			door.setRegistryName(new ResourceLocation(Reference.MOD_ID, "door_" + name))
+					.setUnlocalizedName("door_" + name);
+			TDMaterials.blockList.add(door);
+			ComponentItemDoor b = new ComponentItemDoor(door);
+			b.setRegistryName(new ResourceLocation(Reference.MOD_ID, "door_" + name))
+					.setUnlocalizedName("door_" + name);
+			TDMaterials.itemList.add(b);
+			door.setItem(b);
+		}
+
+		if (trapdoor == null && genTrapdoor) {
+			trapdoor = new ComponentTrapDoor(net.minecraft.block.material.Material.IRON);
+			trapdoor.setRegistryName(new ResourceLocation(Reference.MOD_ID, "trapdoor_" + name))
+					.setUnlocalizedName("trapdoor_" + name);
+			TDMaterials.blockList.add(trapdoor);
+			TDMaterials.itemList.add(registerItemBlock("trapdoor_" + name, trapdoor));
+		}
+
 		if (genFluid)
+		{
 			fluid = fluidMetal(name, color, temp);
+			TDMaterials.fluids.put(name, fluid);
+		}
 
 		if (genMaterial) {
 			mat = new Material(name, color);
@@ -165,7 +316,6 @@ public class MaterialHelper {
 			if (fluid != null)
 				mat.setFluid(fluid);
 
-			
 			mat.setCraftable(!cast).setCastable(cast);
 
 			TinkerRegistry.addMaterialStats(mat, head);
@@ -178,7 +328,7 @@ public class MaterialHelper {
 			TinkerRegistry.addMaterialStats(mat, legs);
 			TinkerRegistry.addMaterialStats(mat, feet);
 
-			matint = new MaterialIntegration(mat, fluid, StringUtils.capitalise(name));
+			matint = new MaterialIntegration(mat, fluid, StringUtils.capitalize(name));
 			matint.toolforge().preInit();
 
 			TinkersDefense.proxy.registerMatColor(mat, color);
@@ -188,43 +338,111 @@ public class MaterialHelper {
 	}
 
 	public void setupPost() {
-		OreDictionary.registerOre("ingot" + StringUtils.capitalise(name), new ItemStack(ingot));
-		OreDictionary.registerOre("nugget" + StringUtils.capitalise(name), new ItemStack(nugget));
-		OreDictionary.registerOre("dust" + StringUtils.capitalise(name), new ItemStack(dust));
-		OreDictionary.registerOre("grain" + StringUtils.capitalise(name), new ItemStack(grain));
-		OreDictionary.registerOre("coin" + StringUtils.capitalise(name), new ItemStack(coin));
-		OreDictionary.registerOre("plate" + StringUtils.capitalise(name), new ItemStack(plate));
-		OreDictionary.registerOre("gear" + StringUtils.capitalise(name), new ItemStack(gear));
-		OreDictionary.registerOre("rod" + StringUtils.capitalise(name), new ItemStack(rod));
+		if (genIngot)
+			OreDictionary.registerOre("ingot" + StringUtils.capitalize(name), new ItemStack(ingot));
+		if (genNugget)
+			OreDictionary.registerOre("nugget" + StringUtils.capitalize(name), new ItemStack(nugget));
+		if (genDust)
+			OreDictionary.registerOre("dust" + StringUtils.capitalize(name), new ItemStack(dust));
+		if (genGrain)
+			OreDictionary.registerOre("grain" + StringUtils.capitalize(name), new ItemStack(grain));
+		if (genCoin)
+			OreDictionary.registerOre("coin" + StringUtils.capitalize(name), new ItemStack(coin));
+		if (genPlate)
+			OreDictionary.registerOre("plate" + StringUtils.capitalize(name), new ItemStack(plate));
+		if (genGear)
+			OreDictionary.registerOre("gear" + StringUtils.capitalize(name), new ItemStack(gear));
+		if (genRod)
+			OreDictionary.registerOre("rod" + StringUtils.capitalize(name), new ItemStack(rod));
+		
+		if(genBlock)
+			OreDictionary.registerOre("block" + StringUtils.capitalize(name), new ItemStack(block));
 
 		if (genMaterial)
 			matint.integrate();
 	}
 
 	public void setupModels() {
-		TinkersDefense.proxy.registerItemRenderer(ingot, 0, "ingot");
-		TinkersDefense.proxy.registerItemRenderer(dust, 0, "dust");
-		TinkersDefense.proxy.registerItemRenderer(nugget, 0, "nugget");
-		TinkersDefense.proxy.registerItemRenderer(grain, 0, "grain");
-		TinkersDefense.proxy.registerItemRenderer(coin, 0, "coin");
-		TinkersDefense.proxy.registerItemRenderer(plate, 0, "plate");
-		TinkersDefense.proxy.registerItemRenderer(rod, 0, "rod");
-		TinkersDefense.proxy.registerItemRenderer(gear, 0, "gear");
+		if (genIngot)
+			TinkersDefense.proxy.registerItemRenderer(ingot, 0, "ingot");
+		if (genDust)
+			TinkersDefense.proxy.registerItemRenderer(dust, 0, "dust");
+		if (genNugget)
+			TinkersDefense.proxy.registerItemRenderer(nugget, 0, "nugget");
+		if (genGrain)
+			TinkersDefense.proxy.registerItemRenderer(grain, 0, "grain");
+		if (genCoin)
+			TinkersDefense.proxy.registerItemRenderer(coin, 0, "coin");
+		if (genPlate)
+			TinkersDefense.proxy.registerItemRenderer(plate, 0, "plate");
+		if (genRod)
+			TinkersDefense.proxy.registerItemRenderer(rod, 0, "rod");
+		if (genGear)
+			TinkersDefense.proxy.registerItemRenderer(gear, 0, "gear");
+		
+		if (genBlock)
+		{
+			TinkersDefense.proxy.registerBlockRenderer(block, "block");
+			TinkersDefense.proxy.registerItemBlockRenderer(block, 0, "block");
+		}
+		if (genStake)
+		{
+			TinkersDefense.proxy.registerBlockRenderer(stake, "stake");
+			TinkersDefense.proxy.registerItemBlockRenderer(stake, 0, "stake");
+		}
+		if (genBars)
+		{
+			TinkersDefense.proxy.registerBlockRenderer(bars, "bars");
+			TinkersDefense.proxy.registerItemRenderer(Item.getItemFromBlock(bars), 0, "bars");
+		}
+		if (genDoor)
+		{
+			TinkersDefense.proxy.registerBlockRenderer(door, "door");
+			TinkersDefense.proxy.registerItemRenderer(Item.getItemFromBlock(door), 0, "door");
+		}
+		if (genTrapdoor)
+		{
+			TinkersDefense.proxy.registerBlockRenderer(trapdoor, "trapdoor");
+			TinkersDefense.proxy.registerItemRenderer(Item.getItemFromBlock(trapdoor), 0, "trapdoor");
+		}
 	}
 
 	public void setupClient() {
-		TinkersDefense.proxy.registerItemColorHandler(new ColorHandler(color), ingot);
-		TinkersDefense.proxy.registerItemColorHandler(new ColorHandler(color), nugget);
-		TinkersDefense.proxy.registerItemColorHandler(new ColorHandler(color), dust);
-		TinkersDefense.proxy.registerItemColorHandler(new ColorHandler(color), grain);
-		TinkersDefense.proxy.registerItemColorHandler(new ColorHandler(color), coin);
-		TinkersDefense.proxy.registerItemColorHandler(new ColorHandler(color), gear);
-		TinkersDefense.proxy.registerItemColorHandler(new ColorHandler(color), plate);
-		TinkersDefense.proxy.registerItemColorHandler(new ColorHandler(color), rod);
+		if (genIngot)
+			TinkersDefense.proxy.registerItemColorHandler(color, ingot);
+		if (genNugget)
+			TinkersDefense.proxy.registerItemColorHandler(color, nugget);
+		if (genDust)
+			TinkersDefense.proxy.registerItemColorHandler(color, dust);
+		if (genGrain)
+			TinkersDefense.proxy.registerItemColorHandler(color, grain);
+		if (genCoin)
+			TinkersDefense.proxy.registerItemColorHandler(color, coin);
+		if (genGear)
+			TinkersDefense.proxy.registerItemColorHandler(color, gear);
+		if (genPlate)
+			TinkersDefense.proxy.registerItemColorHandler(color, plate);
+		if (genRod)
+			TinkersDefense.proxy.registerItemColorHandler(color, rod);
+		
+		if (genBlock)
+		{
+			TinkersDefense.proxy.registerBlockColorHandler(color, block);
+			TinkersDefense.proxy.registerItemColorHandler(color, Item.getItemFromBlock(block));
+		}
 	}
 
 	public Item registerItem(String name) {
 		return new Item().setRegistryName(new ResourceLocation(Reference.MOD_ID, name)).setUnlocalizedName(name);
+	}
+
+	public Item registerItemBlock(String name, Block b) {
+		return new ItemBlock(b).setRegistryName(new ResourceLocation(Reference.MOD_ID, name)).setUnlocalizedName(name);
+	}
+
+	public Block registerBlock(String name) {
+		return new Block(net.minecraft.block.material.Material.IRON)
+				.setRegistryName(new ResourceLocation(Reference.MOD_ID, name)).setUnlocalizedName(name);
 	}
 
 	public FluidMolten fluidMetal(String name, int color, int temp) {

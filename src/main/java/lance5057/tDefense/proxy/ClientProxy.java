@@ -7,13 +7,13 @@ import com.google.common.collect.ImmutableList;
 import lance5057.tDefense.Reference;
 import lance5057.tDefense.TD_Commands;
 import lance5057.tDefense.TinkersDefense;
+import lance5057.tDefense.core.blocks.ColoredBlockMapper;
 import lance5057.tDefense.core.library.ArmorBuildGuiInfo;
 import lance5057.tDefense.core.library.ArmorPart;
 import lance5057.tDefense.core.library.CustomArmorTextureCreator;
 import lance5057.tDefense.core.library.TDClientRegistry;
 import lance5057.tDefense.core.library.TDModelLoader;
 import lance5057.tDefense.core.library.TDModelRegistar;
-import lance5057.tDefense.core.materials.TDMaterials;
 import lance5057.tDefense.core.tools.TDTools;
 import lance5057.tDefense.core.tools.bases.ArmorCore;
 import lance5057.tDefense.renderers.deserializers.AlphaColorTextureDeserializer;
@@ -24,11 +24,15 @@ import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMapperBase;
+import net.minecraft.client.renderer.color.BlockColors;
+import net.minecraft.client.renderer.color.IBlockColor;
 import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.client.renderer.color.ItemColors;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.client.ClientCommandHandler;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
@@ -116,15 +120,15 @@ public class ClientProxy extends CommonProxy {
 		CustomArmorTextureCreator.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/helm/_helm_cloth"));
 
 		CustomArmorTextureCreator
-				.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/breastplate/anvil/_breastplate_chain"));
+				.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/breastplate/_breastplate_chain"));
 		CustomArmorTextureCreator
-				.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/breastplate/anvil/_breastplate_plate"));
+				.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/breastplate/_breastplate_plate"));
 		CustomArmorTextureCreator.registerTexture(
-				new ResourceLocation(Reference.MOD_ID, "armor/breastplate/anvil/_breastplate_smallplate"));
+				new ResourceLocation(Reference.MOD_ID, "armor/breastplate/_breastplate_smallplate"));
 		CustomArmorTextureCreator
-				.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/breastplate/anvil/_breastplate_trim"));
+				.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/breastplate/_breastplate_trim"));
 		CustomArmorTextureCreator
-				.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/breastplate/anvil/_breastplate_cloth"));
+				.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/breastplate/_breastplate_cloth"));
 
 		CustomArmorTextureCreator
 				.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/grieves/_grieves_chain"));
@@ -156,7 +160,6 @@ public class ClientProxy extends CommonProxy {
 		setToolGuis();
 		registerToolGuis();
 		createToolModels();
-
 	}
 
 	@Override
@@ -394,13 +397,26 @@ public class ClientProxy extends CommonProxy {
 
 	@Override
 	public void registerItemBlockRenderer(Block block, int meta, String file) {
-		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(block), meta,
+		Item b = Item.getItemFromBlock(block);
+		ModelLoader.setCustomModelResourceLocation(b, meta,
 				new ModelResourceLocation(Reference.MOD_ID + ":" + file, "inventory"));
 	}
+	
+	@Override 
+	public void registerBlockRenderer(Block block, String file) {
+		ModelLoader.setCustomStateMapper(block, new ColoredBlockMapper(file));
+	}
 
-	public void registerItemColorHandler(IItemColor c, Item i) {
+	@Override
+	public void registerItemColorHandler(int c, Item i) {
 		ItemColors itemcolors = Minecraft.getMinecraft().getItemColors();
-		itemcolors.registerItemColorHandler(c, i);
+		itemcolors.registerItemColorHandler(new ItemColorHandler(c), i);
+	}
+	
+	@Override
+	public void registerBlockColorHandler(int c, Block i) { 
+		BlockColors blockcolors = Minecraft.getMinecraft().getBlockColors();
+		blockcolors.registerBlockColorHandler(new BlockColorHandler(c), i);
 	}
 
 	public static class FluidStateMapper extends StateMapperBase implements ItemMeshDefinition {
@@ -430,8 +446,8 @@ public class ClientProxy extends CommonProxy {
 	}
 
 	@SideOnly(Side.CLIENT)
-	public static class ColorHandler implements IItemColor {
-		public ColorHandler(int color) {
+	public static class ItemColorHandler implements IItemColor {
+		public ItemColorHandler(int color) {
 			this.color = color;
 		}
 
@@ -439,6 +455,23 @@ public class ClientProxy extends CommonProxy {
 		
 		@Override
 		public int colorMultiplier(ItemStack stack, int tintIndex) {
+			if (tintIndex == 0) {
+				return color;
+			}
+			return 0xFFFFFF;
+		}
+	}
+	
+	@SideOnly(Side.CLIENT)
+	public static class BlockColorHandler implements IBlockColor {
+		public BlockColorHandler(int color) {
+			this.color = color;
+		}
+
+		int color;
+
+		@Override
+		public int colorMultiplier(IBlockState state, IBlockAccess worldIn, BlockPos pos, int tintIndex) {
 			if (tintIndex == 0) {
 				return color;
 			}

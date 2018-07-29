@@ -4,14 +4,8 @@ import java.util.UUID;
 
 import lance5057.tDefense.Reference;
 import lance5057.tDefense.core.materials.traits.AbstractTDTrait;
-import lance5057.tDefense.core.tools.armor.heavy.TinkersHelm;
 import lance5057.tDefense.core.tools.bases.ArmorCore;
 import lance5057.tDefense.core.tools.bases.Shield;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.IAttributeInstance;
@@ -19,16 +13,14 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import slimeknights.tconstruct.library.TinkerRegistry;
 import slimeknights.tconstruct.library.traits.ITrait;
 import slimeknights.tconstruct.library.utils.TagUtil;
@@ -86,41 +78,38 @@ public class TDToolEvents {
 		onArmorTick(event);
 	}
 
-	ItemStack armorChanged(TickEvent.PlayerTickEvent event, ItemStack prev, ItemStack cur) {
-		if (prev.getItem() != cur.getItem()) {
-			if (prev != null && prev.getItem() instanceof ArmorCore && !ToolHelper.isBroken(prev)) {
-				NBTTagList list = TagUtil.getTraitsTagList(prev);
+	@SubscribeEvent
+	public void DamagePre(LivingAttackEvent e) {
+		for (ItemStack tool : e.getEntityLiving().getArmorInventoryList()) {
+			if (tool != null && tool.getItem() instanceof ArmorCore && !ToolHelper.isBroken(tool)) {
+				NBTTagList list = TagUtil.getTraitsTagList(tool);
 				for (int i = 0; i < list.tagCount(); i++) {
 					if (TinkerRegistry.getTrait(list.getStringTagAt(i)) instanceof ITrait) {
 						ITrait trait = TinkerRegistry.getTrait(list.getStringTagAt(i));
-						if (trait instanceof AbstractTDTrait) {
-							AbstractTDTrait t = (AbstractTDTrait) trait;
-							if (trait != null) {
-								t.onArmorUnequip(event.player);
-							}
+						if (trait != null && trait instanceof AbstractTDTrait) {
+							((AbstractTDTrait) trait).onDamagePre(tool, e);
 						}
 					}
 				}
 			}
-
-			if (cur != null && cur.getItem() instanceof ArmorCore && !ToolHelper.isBroken(cur)) {
-				NBTTagList list = TagUtil.getTraitsTagList(cur);
-				for (int i = 0; i < list.tagCount(); i++) {
-					if (TinkerRegistry.getTrait(list.getStringTagAt(i)) instanceof ITrait) {
-						ITrait trait = TinkerRegistry.getTrait(list.getStringTagAt(i));
-						if (trait instanceof AbstractTDTrait) {
-							AbstractTDTrait t = (AbstractTDTrait) trait;
-							if (trait != null) {
-								t.onArmorEquip(event.player);
-							}
-						}
-					}
-				}
-			}
-			return cur;
 		}
+	}
 
-		return prev;
+	@SubscribeEvent
+	void onItemPickup(EntityItemPickupEvent e) {
+		for (ItemStack tool : e.getEntityLiving().getArmorInventoryList()) {
+			if (tool != null && tool.getItem() instanceof ArmorCore && !ToolHelper.isBroken(tool)) {
+				NBTTagList list = TagUtil.getTraitsTagList(tool);
+				for (int i = 0; i < list.tagCount(); i++) {
+					if (TinkerRegistry.getTrait(list.getStringTagAt(i)) instanceof AbstractTDTrait) {
+						AbstractTDTrait trait = (AbstractTDTrait)TinkerRegistry.getTrait(list.getStringTagAt(i));
+						if (trait != null) {
+							trait.onItemPickup(e);
+						}
+					}
+				}
+			}
+		}
 	}
 
 	void onArmorTick(TickEvent.PlayerTickEvent event) {
@@ -141,7 +130,7 @@ public class TDToolEvents {
 
 	@SubscribeEvent
 	public void playerDamagedEvent(LivingHurtEvent event) {
-		if (event.getEntity() == null || !(event.getEntity() instanceof EntityPlayer)) {
+		if (event.getEntity() == null) {
 			return;
 		}
 

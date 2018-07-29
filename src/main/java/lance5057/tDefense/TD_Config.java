@@ -135,6 +135,24 @@ public class TD_Config
 			}
 			return false;
 		}
+		
+		@Config.Comment("Materials that should be considered magnetic")
+		public static String[] magneticMaterials = {
+				"iron",
+				"pigiron",
+				"steel",
+				"paper"
+		};
+		
+		public static boolean isMetal(String s)
+		{
+			for(String str: magneticMaterials)
+			{
+				if(str.equals(s))
+					return true;
+			}
+			return false;
+		}
 	}
 	
 	// public int SoulBoundID;

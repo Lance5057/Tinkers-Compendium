@@ -36,7 +36,7 @@ public class ArmorTextureBuilder
 			if (materials.get(i).renderInfo instanceof MaterialRenderInfo.Default)
 			{
 				MaterialRenderInfo.Default render = (MaterialRenderInfo.Default)materials.get(i).renderInfo;
-				s = String.format("tinkerscompendium:armor/%s/anvil/_%s_%s", type, type, parts[i]);
+				s = String.format("tinkerscompendium:armor/%s/_%s_%s", type, type, parts[i]);
 				TextureAtlasSprite tex = map.getTextureExtry(s);
 				bi = new BufferedImage(tex.getIconWidth(), tex.getIconHeight(), BufferedImage.TYPE_4BYTE_ABGR);
 				
@@ -52,7 +52,7 @@ public class ArmorTextureBuilder
 				
 			} else
 			{
-				s = String.format("tinkerscompendium:armor/%s/anvil/_%s_%s_%s", type, type, parts[i], materials.get(i).identifier);
+				s = String.format("tinkerscompendium:armor/%s/_%s_%s_%s", type, type, parts[i], materials.get(i).identifier);
 				bi = createBufferedImage(map.getTextureExtry(s));
 			}
 

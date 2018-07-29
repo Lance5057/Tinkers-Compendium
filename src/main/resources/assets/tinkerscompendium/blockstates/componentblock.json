@@ -1,0 +1,17 @@
+{
+    "forge_marker": 1,
+    "defaults": 
+    {
+        "textures": 
+        {
+            "all": "blocks/iron_block"
+        }
+    },
+    "variants": 
+    {
+        "normal": 
+        { 
+            "model": "tinkerscompendium:models/block/componentblock" 
+        }
+	}
+}

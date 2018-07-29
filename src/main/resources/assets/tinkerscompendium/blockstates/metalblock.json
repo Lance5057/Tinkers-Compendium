@@ -1,7 +1,0 @@
-{
-    "variants": {
-        "type=aeonsteel": { "model":"tinkerscompendium:blocks/aeonsteelblock" },
-        "type=queensgold": { "model":"tutorial:block_properties_black" }
-		"type=dogbearium": { "model":"tutorial:block_properties_black" }
-    }
-}

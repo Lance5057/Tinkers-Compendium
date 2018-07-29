@@ -4,9 +4,8 @@ import lance5057.tDefense.Reference;
 import lance5057.tDefense.TinkersDefense;
 import lance5057.tDefense.core.library.ArmorPart;
 import lance5057.tDefense.core.tools.bases.ArmorCore;
-import lance5057.tDefense.proxy.ClientProxy.ColorHandler;
+import lance5057.tDefense.proxy.ClientProxy.BlockColorHandler;
 import net.minecraft.block.Block;
-import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.world.World;
@@ -106,7 +105,7 @@ public class CommonProxy implements IGuiHandler {
 
 	@SubscribeEvent
 	public static void registerBlocks(RegistryEvent.Register<Block> event) {
-		TinkersDefense.mats.registerBlocks(event);
+		//TinkersDefense.mats.registerBlocks(event);
 		TinkersDefense.tools.registerBlocks(event);
 
 	}
@@ -115,9 +114,18 @@ public class CommonProxy implements IGuiHandler {
 		// TODO Auto-generated method stub
 
 	}
+	
+	public void registerItemColorHandler(int c, Item i) {
+		
+	}
 
-	public void registerItemColorHandler(IItemColor c, Item i) {
+	public void registerBlockColorHandler(int c, Block i) {
 		// TODO Auto-generated method stub
+		
+	}
 
+	public void registerBlockRenderer(Block block, String file) {
+		// TODO Auto-generated method stub
+		
 	}
 }
