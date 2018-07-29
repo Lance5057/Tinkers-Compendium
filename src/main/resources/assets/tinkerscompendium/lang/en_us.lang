@@ -1,0 +1,716 @@
+itemGroup.TinkersDefense=Tinkers' Compendium
+tile.armorstation.name=Armor Station
+item.null.name=[null]
+item.regdummy.name=[regdummy]
+
+//Materials
+item.ingot_aeonsteel.name=Aeonsteel Ingot
+item.nugget_aeonsteel.name=Aeonsteel Nugget
+item.dust_aeonsteel.name=Aeonsteel Dust
+item.grain_aeonsteel.name=Aeonsteel Grains
+item.plate_aeonsteel.name=Aeonsteel Plate
+item.coin_aeonsteel.name=Aeonsteel Coin
+item.gear_aeonsteel.name=Aeonsteel Gear
+item.rod_aeonsteel.name=Aeonsteel Tool Rod
+fluid.tinkerscompendium.aeonsteel.name=Molten Aeonsteel
+material.aeonsteel.name=Aeonsteel
+
+item.ingot_queensgold.name=Queensgold Ingot
+item.nugget_queensgold.name=Queensgold Nugget
+item.dust_queensgold.name=Queensgold Dust
+item.grain_queensgold.name=Queensgold Grains
+item.plate_queensgold.name=Queensgold Plate
+item.coin_queensgold.name=Queensgold Coin
+item.gear_queensgold.name=Queensgold Gear
+item.rod_queensgold.name=Queensgold Tool Tool Rod
+fluid.tinkerscompendium.queensgold.name=Molten Queensgold
+material.queensgold.name=Queensgold
+
+item.ingot_dogbearium.name=Dogbearium Ingot
+item.nugget_dogbearium.name=Dogbearium Nugget
+item.dust_dogbearium.name=Dogbearium Dust
+item.grain_dogbearium.name=Dogbearium Grains
+item.plate_dogbearium.name=Dogbearium Plate
+item.coin_dogbearium.name=Dogbearium Coin
+item.gear_dogbearium.name=Dogbearium Gear
+item.rod_dogbearium.name=Dogbearium Tool Rod
+fluid.tinkerscompendium.dogbearium.name=Molten Dogbearium
+material.dogbearium.name=Dogbearium
+
+item.ingot_froststeel.name=Froststeel Ingot
+item.nugget_froststeel.name=Froststeel Nugget
+item.dust_froststeel.name=Froststeel Dust
+item.grain_froststeel.name=Froststeel Grains
+item.plate_froststeel.name=Froststeel Plate
+item.coin_froststeel.name=Froststeel Coin
+item.gear_froststeel.name=Froststeel Gear
+item.rod_froststeel.name=Froststeel Tool Rod
+fluid.tinkerscompendium.froststeel.name=Molten Froststeel
+material.froststeel.name=Froststeel
+
+item.ingot_nihilite.name=Nihilite Ingot
+item.nugget_nihilite.name=Nihilite Nugget
+item.dust_nihilite.name=Nihilite Dust
+item.grain_nihilite.name=Nihilite Grains
+item.plate_nihilite.name=Nihilite Plate
+item.coin_nihilite.name=Nihilite Coin
+item.gear_nihilite.name=Nihilite Gear
+item.rod_nihilite.name=Nihilite Tool Rod
+fluid.tinkerscompendium.nihilite.name=Molten Nihilite
+material.nihilite.name=Nihilite
+
+item.ingot_rosegold.name=Rosegold Ingot
+item.nugget_rosegold.name=Rosegold Nugget
+item.dust_rosegold.name=Rosegold Dust
+item.grain_rosegold.name=Rosegold Grains
+item.plate_rosegold.name=Rosegold Plate
+item.coin_rosegold.name=Rosegold Coin
+item.gear_rosegold.name=Rosegold Gear
+item.rod_rosegold.name=Rosegold Tool Rod
+fluid.tinkerscompendium.rosegold.name=Molten Rosegold
+material.rosegold.name=Rosegold
+
+item.ingot_sinisterium.name=Sinisterium Ingot
+item.nugget_sinisterium.name=Sinisterium Nugget
+item.dust_sinisterium.name=Sinisterium Dust
+item.grain_sinisterium.name=Sinisterium Grains
+item.plate_sinisterium.name=Sinisterium Plate
+item.coin_sinisterium.name=Sinisterium Coin
+item.gear_sinisterium.name=Sinisterium Gear
+item.rod_sinisterium.name=Sinisterium Tool Rod
+fluid.tinkerscompendium.sinisterium.name=Molten Sinisterium
+material.sinisterium.name=Sinisterium
+
+item.ingot_valyriansteel.name=Valyriansteel Ingot
+item.nugget_valyriansteel.name=Valyriansteel Nugget
+item.dust_valyriansteel.name=Valyriansteel Dust
+item.grain_valyriansteel.name=Valyriansteel Grains
+item.plate_valyriansteel.name=Valyriansteel Plate
+item.coin_valyriansteel.name=Valyriansteel Coin
+item.gear_valyriansteel.name=Valyriansteel Gear
+item.rod_valyriansteel.name=Valyriansteel Tool Rod
+fluid.tinkerscompendium.valyriansteel.name=Molten Valyriansteel
+material.valyriansteel.name=Valyriansteel
+
+item.ingot_orichalcum.name=Orichalcum Ingot
+item.nugget_orichalcum.name=Orichalcum Nugget
+item.dust_orichalcum.name=Orichalcum Dust
+item.grain_orichalcum.name=Orichalcum Grains
+item.plate_orichalcum.name=Orichalcum Plate
+item.coin_orichalcum.name=Orichalcum Coin
+item.gear_orichalcum.name=Orichalcum Gear
+item.rod_orichalcum.name=Orichalcum Tool Rod
+fluid.tinkerscompendium.orichalcum.name=Molten Orichalcum
+material.orichalcum.name=Orichalcum
+
+item.ingot_pandorium.name=Pandorium Ingot
+item.nugget_pandorium.name=Pandorium Nugget
+item.dust_pandorium.name=Pandorium Dust
+item.grain_pandorium.name=Pandorium Grains
+item.plate_pandorium.name=Pandorium Plate
+item.coin_pandorium.name=Pandorium Coin
+item.gear_pandorium.name=Pandorium Gear
+item.rod_pandorium.name=Pandorium Tool Rod
+fluid.tinkerscompendium.pandorium.name=Molten Pandorium
+material.pandorium.name=Pandorium
+
+item.ingot_platinum.name=Platinum Ingot
+item.nugget_platinum.name=Platinum Nugget
+item.dust_platinum.name=Platinum Dust
+item.grain_platinum.name=Platinum Grains
+item.plate_platinum.name=Platinum Plate
+item.coin_platinum.name=Platinum Coin
+item.gear_platinum.name=Platinum Gear
+item.rod_platinum.name=Platinum Tool Rod
+fluid.tinkerscompendium.platinum.name=Molten Platinum
+material.platinum.name=Platinum
+
+material.whitecloth.name=White Wool
+material.orangecloth.name=Orange Wool
+material.magentacloth.name=Magenta Wool
+material.lightbluecloth.name=Lightblue Wool
+material.yellowcloth.name=Yellow Wool
+material.limecloth.name=Lime Wool
+material.pinkcloth.name=Pink Wool
+material.graycloth.name=Gray Wool
+material.lightgraycloth.name=Lightgray Wool
+material.cyancloth.name=Cyan Wool
+material.purplecloth.name=Purple Wool
+material.bluecloth.name=Blue Wool
+material.browncloth.name=Brown Wool
+material.greencloth.name=Green Wool
+material.redcloth.name=Red Wool
+material.blackcloth.name=Black Wool
+
+material.brass.name=Brass
+material.gold.name=Gold
+
+fluid.tinkerscompendium.chorusjuice.name=Chorus Juice
+fluid.tinkerscompendium.vile.name=Vile Liquid
+fluid.tinkerscompendium.vibrant.name=Vibrant Liquid
+fluid.tinkerscompendium.slush.name=Slush
+fluid.tinkerscompendium.quartz.name=Molten Nether Quartz
+fluid.tinkerscompendium.dragonsbreath.name=Dragons Breath
+
+//New Items
+item.canister.name=Filled Canister
+item.empty_canister.name=Empty Canister
+item.rebreather.name=Rebreather
+item.nightvisiongoggles.name=Night Vision Goggles
+item.glowsole.name=Glowing Crystal
+item.firesole.name=Fiery Crystal
+item.icesole.name=Frosty Crystal
+item.feathersole.name=Hermes' Feathers
+item.flippers.name=Flippers
+
+item.ingot_ice.name=Ice Ingot
+item.nugget_ice.name=Ice Nugget
+item.dust_ice.name=Ice Dust
+item.grain_ice.name=Ice Grains
+item.plate_ice.name=Ice Plate
+item.coin_ice.name=Ice Coin
+item.gear_ice.name=Ice Gear
+item.rod_ice.name=Ice Tool Rod
+
+item.ingot_purifiedgold.name=Purified Gold Ingot
+item.nugget_purifiedgold.name=Purified Gold Nugget
+item.dust_purifiedgold.name=Purified Gold Dust
+item.grain_purifiedgold.name=Purified Gold Grains
+item.plate_purifiedgold.name=Purified Gold Plate
+item.coin_purifiedgold.name=Purified Gold Coin
+item.gear_purifiedgold.name=Purified Gold Gear
+item.rod_purifiedgold.name=Purified Gold Tool Rod
+
+item.ingot_purifiedsilver.name=Purified Silver Ingot
+item.nugget_purifiedsilver.name=Purified Silver Nugget
+item.dust_purifiedsilver.name=Purified Silver Dust
+item.grain_purifiedsilver.name=Purified Silver Grains
+item.plate_purifiedsilver.name=Purified Silver Plate
+item.coin_purifiedsilver.name=Purified Silver Coin
+item.gear_purifiedsilver.name=Purified Silver Gear
+item.rod_purifiedsilver.name=Purified Silver Tool Rod
+
+item.ingot_silver.name=Silver Ingot
+item.nugget_silver.name=Silver Nugget
+item.dust_silver.name=Silver Dust
+item.grain_silver.name=Silver Grains
+item.plate_silver.name=Silver Plate
+item.coin_silver.name=Silver Coin
+item.gear_silver.name=Silver Gear
+item.rod_silver.name=Silver Tool Rod
+
+item.ingot_brass.name=Brass Ingot
+item.nugget_brass.name=Brass Nugget
+item.dust_brass.name=Brass Dust
+item.grain_brass.name=Brass Grains
+item.plate_brass.name=Brass Plate
+item.coin_brass.name=Brass Coin
+item.gear_brass.name=Brass Gear
+item.rod_brass.name=Brass Tool Rod
+
+item.ingot_gold.name=Gold Ingot
+item.nugget_gold.name=Gold Nugget
+item.dust_gold.name=Gold Dust
+item.grain_gold.name=Gold Grains
+item.plate_gold.name=Gold Plate
+item.coin_gold.name=Gold Coin
+item.gear_gold.name=Gold Gear
+item.rod_gold.name=Gold Tool Rod
+
+item.ingot_wood.name=Wood Ingot
+item.nugget_wood.name=Wood Nugget
+item.dust_wood.name=Wood Dust
+item.grain_wood.name=Wood Grains
+item.plate_wood.name=Wood Plate
+item.coin_wood.name=Wood Coin
+item.gear_wood.name=Wood Gear
+item.rod_wood.name=Wood Tool Rod
+
+item.ingot_stone.name=Stone Ingot
+item.nugget_stone.name=Stone Nugget
+item.dust_stone.name=Stone Dust
+item.grain_stone.name=Stone Grains
+item.plate_stone.name=Stone Plate
+item.coin_stone.name=Stone Coin
+item.gear_stone.name=Stone Gear
+item.rod_stone.name=Stone Tool Rod
+
+item.ingot_flint.name=Flint Ingot
+item.nugget_flint.name=Flint Nugget
+item.dust_flint.name=Flint Dust
+item.grain_flint.name=Flint Grains
+item.plate_flint.name=Flint Plate
+item.coin_flint.name=Flint Coin
+item.gear_flint.name=Flint Gear
+item.rod_flint.name=Flint Tool Rod
+
+item.ingot_bone.name=Bone Ingot
+item.nugget_bone.name=Bone Nugget
+item.dust_bone.name=Bone Dust
+item.grain_bone.name=Bone Grains
+item.plate_bone.name=Bone Plate
+item.coin_bone.name=Bone Coin
+item.gear_bone.name=Bone Gear
+item.rod_bone.name=Bone Tool Rod
+
+item.ingot_obsidian.name=Obsidian Ingot
+item.nugget_obsidian.name=Obsidian Nugget
+item.dust_obsidian.name=Obsidian Dust
+item.grain_obsidian.name=Obsidian Grains
+item.plate_obsidian.name=Obsidian Plate
+item.coin_obsidian.name=Obsidian Coin
+item.gear_obsidian.name=Obsidian Gear
+item.rod_obsidian.name=Obsidian Tool Rod
+
+item.ingot_prismarine.name=Prismarine Ingot
+item.nugget_prismarine.name=Prismarine Nugget
+item.dust_prismarine.name=Prismarine Dust
+item.grain_prismarine.name=Prismarine Grains
+item.plate_prismarine.name=Prismarine Plate
+item.coin_prismarine.name=Prismarine Coin
+item.gear_prismarine.name=Prismarine Gear
+item.rod_prismarine.name=Prismarine Tool Rod
+
+item.ingot_endstone.name=Endstone Ingot
+item.nugget_endstone.name=Endstone Nugget
+item.dust_endstone.name=Endstone Dust
+item.grain_endstone.name=Endstone Grains
+item.plate_endstone.name=Endstone Plate
+item.coin_endstone.name=Endstone Coin
+item.gear_endstone.name=Endstone Gear
+item.rod_endstone.name=Endstone Tool Rod
+
+item.ingot_paper.name=Paper Ingot
+item.nugget_paper.name=Paper Nugget
+item.dust_paper.name=Paper Dust
+item.grain_paper.name=Paper Grains
+item.plate_paper.name=Paper Plate
+item.coin_paper.name=Paper Coin
+item.gear_paper.name=Paper Gear
+item.rod_paper.name=Paper Tool Rod
+
+item.ingot_sponge.name=Sponge Ingot
+item.nugget_sponge.name=Sponge Nugget
+item.dust_sponge.name=Sponge Dust
+item.grain_sponge.name=Sponge Grains
+item.plate_sponge.name=Sponge Plate
+item.coin_sponge.name=Sponge Coin
+item.gear_sponge.name=Sponge Gear
+item.rod_sponge.name=Sponge Tool Rod
+
+item.ingot_firewood.name=Firewood Ingot
+item.nugget_firewood.name=Firewood Nugget
+item.dust_firewood.name=Firewood Dust
+item.grain_firewood.name=Firewood Grains
+item.plate_firewood.name=Firewood Plate
+item.coin_firewood.name=Firewood Coin
+item.gear_firewood.name=Firewood Gear
+item.rod_firewood.name=Firewood Tool Rod
+
+item.ingot_knightslime.name=Knightslime Ingot
+item.nugget_knightslime.name=Knightslime Nugget
+item.dust_knightslime.name=Knightslime Dust
+item.grain_knightslime.name=Knightslime Grains
+item.plate_knightslime.name=Knightslime Plate
+item.coin_knightslime.name=Knightslime Coin
+item.gear_knightslime.name=Knightslime Gear
+item.rod_knightslime.name=Knightslime Tool Rod
+
+item.ingot_slime.name=Slime Ingot
+item.nugget_slime.name=Slime Nugget
+item.dust_slime.name=Slime Dust
+item.grain_slime.name=Slime Grains
+item.plate_slime.name=Slime Plate
+item.coin_slime.name=Slime Coin
+item.gear_slime.name=Slime Gear
+item.rod_slime.name=Slime Tool Rod
+
+item.ingot_blueslime.name=Blue Slime Ingot
+item.nugget_blueslime.name=Blue Slime Nugget
+item.dust_blueslime.name=Blue Slime Dust
+item.grain_blueslime.name=Blue Slime Grains
+item.plate_blueslime.name=Blue Slime Plate
+item.coin_blueslime.name=Blue Slime Coin
+item.gear_blueslime.name=Blue Slime Gear
+item.rod_blueslime.name=Blue Slime Tool Rod
+
+item.ingot_magmaslime.name=Magma Slime Ingot
+item.nugget_magmaslime.name=Magma Slime Nugget
+item.dust_magmaslime.name=Magma Slime Dust
+item.grain_magmaslime.name=Magma Slime Grains
+item.plate_magmaslime.name=Magma Slime Plate
+item.coin_magmaslime.name=Magma Slime Coin
+item.gear_magmaslime.name=Magma Slime Gear
+item.rod_magmaslime.name=Magma Slime Tool Rod
+
+item.ingot_iron.name=Iron Ingot
+item.nugget_iron.name=Iron Nugget
+item.dust_iron.name=Iron Dust
+item.grain_iron.name=Iron Grains
+item.plate_iron.name=Iron Plate
+item.coin_iron.name=Iron Coin
+item.gear_iron.name=Iron Gear
+item.rod_iron.name=Iron Tool Rod
+
+item.ingot_pigiron.name=Pig Iron Ingot
+item.nugget_pigiron.name=Pig Iron Nugget
+item.dust_pigiron.name=Pig Iron Dust
+item.grain_pigiron.name=Pig Iron Grains
+item.plate_pigiron.name=Pig Iron Plate
+item.coin_pigiron.name=Pig Iron Coin
+item.gear_pigiron.name=Pig Iron Gear
+item.rod_pigiron.name=Pig Iron Tool Rod
+
+item.ingot_netherrack.name=Netherrack Ingot
+item.nugget_netherrack.name=Netherrack Nugget
+item.dust_netherrack.name=Netherrack Dust
+item.grain_netherrack.name=Netherrack Grains
+item.plate_netherrack.name=Netherrack Plate
+item.coin_netherrack.name=Netherrack Coin
+item.gear_netherrack.name=Netherrack Gear
+item.rod_netherrack.name=Netherrack Tool Rod
+
+item.ingot_ardite.name=Ardite Ingot
+item.nugget_ardite.name=Ardite Nugget
+item.dust_ardite.name=Ardite Dust
+item.grain_ardite.name=Ardite Grains
+item.plate_ardite.name=Ardite Plate
+item.coin_ardite.name=Ardite Coin
+item.gear_ardite.name=Ardite Gear
+item.rod_ardite.name=Ardite Tool Rod
+
+item.ingot_cobalt.name=Cobalt Ingot
+item.nugget_cobalt.name=Cobalt Nugget
+item.dust_cobalt.name=Cobalt Dust
+item.grain_cobalt.name=Cobalt Grains
+item.plate_cobalt.name=Cobalt Plate
+item.coin_cobalt.name=Cobalt Coin
+item.gear_cobalt.name=Cobalt Gear
+item.rod_cobalt.name=Cobalt Tool Rod
+
+item.ingot_manyullyn.name=Manyullyn Ingot
+item.nugget_manyullyn.name=Manyullyn Nugget
+item.dust_manyullyn.name=Manyullyn Dust
+item.grain_manyullyn.name=Manyullyn Grains
+item.plate_manyullyn.name=Manyullyn Plate
+item.coin_manyullyn.name=Manyullyn Coin
+item.gear_manyullyn.name=Manyullyn Gear
+item.rod_manyullyn.name=Manyullyn Tool Rod
+
+item.ingot_copper.name=Copper Ingot
+item.nugget_copper.name=Copper Nugget
+item.dust_copper.name=Copper Dust
+item.grain_copper.name=Copper Grains
+item.plate_copper.name=Copper Plate
+item.coin_copper.name=Copper Coin
+item.gear_copper.name=Copper Gear
+item.rod_copper.name=Copper Tool Rod
+
+item.ingot_bronze.name=Bronze Ingot
+item.nugget_bronze.name=Bronze Nugget
+item.dust_bronze.name=Bronze Dust
+item.grain_bronze.name=Bronze Grains
+item.plate_bronze.name=Bronze Plate
+item.coin_bronze.name=Bronze Coin
+item.gear_bronze.name=Bronze Gear
+item.rod_bronze.name=Bronze Tool Rod
+
+item.ingot_lead.name=Lead Ingot
+item.nugget_lead.name=Lead Nugget
+item.dust_lead.name=Lead Dust
+item.grain_lead.name=Lead Grains
+item.plate_lead.name=Lead Plate
+item.coin_lead.name=Lead Coin
+item.gear_lead.name=Lead Gear
+item.rod_lead.name=Lead Tool Rod
+
+item.ingot_electrum.name=Electrum Ingot
+item.nugget_electrum.name=Electrum Nugget
+item.dust_electrum.name=Electrum Dust
+item.grain_electrum.name=Electrum Grains
+item.plate_electrum.name=Electrum Plate
+item.coin_electrum.name=Electrum Coin
+item.gear_electrum.name=Electrum Gear
+item.rod_electrum.name=Electrum Tool Rod
+
+item.ingot_steel.name=Steel Ingot
+item.nugget_steel.name=Steel Nugget
+item.dust_steel.name=Steel Dust
+item.grain_steel.name=Steel Grains
+item.plate_steel.name=Steel Plate
+item.coin_steel.name=Steel Coin
+item.gear_steel.name=Steel Gear
+item.rod_steel.name=Steel Tool Rod
+
+//New Blocks
+tile.stake_aeonsteel.name=Aeonsteel Stake
+tile.stake_queensgold.name=Queensgold Stake
+tile.stake_dogbearium.name=Dogbearium Stake
+tile.stake_froststeel.name=Froststeel Stake
+tile.stake_ice.name=Ice Stake
+tile.stake_nihilite.name=Nihilite Stake
+tile.stake_purifiedgold.name=Purified Gold Stake
+tile.stake_purifiedsilver.name=Purified Silver Stake
+tile.stake_rosegold.name=Rosegold Stake
+tile.stake_silver.name=Silver Stake
+tile.stake_sinisterium.name=Sinisterium Stake
+tile.stake_valyriansteel.name=Valyriansteel Stake
+tile.stake_brass.name=Brass Stake
+tile.stake_orichalcum.name=Orichalcum Stake
+tile.stake_pandorium.name=Pandorium Stake
+tile.stake_platinum.name=Platinum Stake
+tile.stake_gold.name=Gold Stake
+tile.stake_wood.name=Wood Stake
+tile.stake_stone.name=Stone Stake
+tile.stake_flint.name=Flint Stake
+tile.stake_cactus.name=Cactus Stake
+tile.stake_bone.name=Bone Stake
+tile.stake_obsidian.name=Obsidian Stake
+tile.stake_prismarine.name=Prismarine Stake
+tile.stake_endstone.name=Endstone Stake
+tile.stake_paper.name=Paper Stake
+tile.stake_sponge.name=Sponge Stake
+tile.stake_firewood.name=Firewood Stake
+tile.stake_knightslime.name=Knightslime Stake
+tile.stake_slime.name=Slime Stake
+tile.stake_blueslime.name=Blue Slime Stake
+tile.stake_magmaslime.name=Magma Slime Stake
+tile.stake_iron.name=Iron Stake
+tile.stake_pigiron.name=Pigiron Stake
+tile.stake_netherrack.name=Netherrack Stake
+tile.stake_ardite.name=Ardite Stake
+tile.stake_cobalt.name=Cobalt Stake
+tile.stake_manyullyn.name=Manyullyn Stake
+tile.stake_copper.name=Copper Stake
+tile.stake_bronze.name=Bronze Stake
+tile.stake_electrum.name=Electrum Stake
+tile.stake_lead.name=Lead Stake
+tile.stake_steel.name=Steel Stake
+
+tile.bars_aeonsteel.name=Aeonsteel Bars
+tile.bars_queensgold.name=Queensgold Bars
+tile.bars_dogbearium.name=Dogbearium Bars
+tile.bars_froststeel.name=Froststeel Bars
+tile.bars_ice.name=Ice Bars
+tile.bars_nihilite.name=Nihilite Bars
+tile.bars_purifiedgold.name=Purified Gold Bars
+tile.bars_purifiedsilver.name=Purified Silver Bars
+tile.bars_rosegold.name=Rosegold Bars
+tile.bars_silver.name=Silver Bars
+tile.bars_sinisterium.name=Sinisterium Bars
+tile.bars_valyriansteel.name=Valyriansteel Bars
+tile.bars_brass.name=Brass Bars
+tile.bars_orichalcum.name=Orichalcum Bars
+tile.bars_pandorium.name=Pandorium Bars
+tile.bars_platinum.name=Platinum Bars
+tile.bars_gold.name=Gold Bars
+tile.bars_wood.name=Wood Bars
+tile.bars_stone.name=Stone Bars
+tile.bars_flint.name=Flint Bars
+tile.bars_cactus.name=Cactus Bars
+tile.bars_bone.name=Bone Bars
+tile.bars_obsidian.name=Obsidian Bars
+tile.bars_prismarine.name=Prismarine Bars
+tile.bars_endstone.name=Endstone Bars
+tile.bars_paper.name=Paper Bars
+tile.bars_sponge.name=Sponge Bars
+tile.bars_firewood.name=Firewood Bars
+tile.bars_knightslime.name=Knightslime Bars
+tile.bars_slime.name=Slime Bars
+tile.bars_blueslime.name=Blue Slime Bars
+tile.bars_magmaslime.name=Magma Slime Bars
+tile.bars_iron.name=Iron Bars
+tile.bars_pigiron.name=Pigiron Bars
+tile.bars_netherrack.name=Netherrack Bars
+tile.bars_ardite.name=Ardite Bars
+tile.bars_cobalt.name=Cobalt Bars
+tile.bars_manyullyn.name=Manyullyn Bars
+tile.bars_copper.name=Copper Bars
+tile.bars_bronze.name=Bronze Bars
+tile.bars_electrum.name=Electrum Bars
+tile.bars_lead.name=Lead Bars
+tile.bars_steel.name=Steel Bars
+
+item.door_aeonsteel.name=Aeonsteel Door
+item.door_queensgold.name=Queensgold Door
+item.door_dogbearium.name=Dogbearium Door
+item.door_froststeel.name=Froststeel Door
+item.door_ice.name=Ice Door
+item.door_nihilite.name=Nihilite Door
+item.door_purifiedgold.name=Purified Gold Door
+item.door_purifiedsilver.name=Purified Silver Door
+item.door_rosegold.name=Rosegold Door
+item.door_silver.name=Silver Door
+item.door_sinisterium.name=Sinisterium Door
+item.door_valyriansteel.name=Valyriansteel Door
+item.door_brass.name=Brass Door
+item.door_orichalcum.name=Orichalcum Door
+item.door_pandorium.name=Pandorium Door
+item.door_platinum.name=Platinum Door
+item.door_gold.name=Gold Door
+item.door_wood.name=Wood Door
+item.door_stone.name=Stone Door
+item.door_flint.name=Flint Door
+item.door_cactus.name=Cactus Door
+item.door_bone.name=Bone Door
+item.door_obsidian.name=Obsidian Door
+item.door_prismarine.name=Prismarine Door
+item.door_endstone.name=Endstone Door
+item.door_paper.name=Paper Door
+item.door_sponge.name=Sponge Door
+item.door_firewood.name=Firewood Door
+item.door_knightslime.name=Knightslime Door
+item.door_slime.name=Slime Door
+item.door_blueslime.name=Blue Slime Door
+item.door_magmaslime.name=Magma Slime Door
+item.door_iron.name=Iron Door
+item.door_pigiron.name=Pigiron Door
+item.door_netherrack.name=Netherrack Door
+item.door_ardite.name=Ardite Door
+item.door_cobalt.name=Cobalt Door
+item.door_manyullyn.name=Manyullyn Door
+item.door_copper.name=Copper Door
+item.door_bronze.name=Bronze Door
+item.door_electrum.name=Electrum Door
+item.door_lead.name=Lead Door
+item.door_steel.name=Steel Door
+
+tile.trapdoor_aeonsteel.name=Aeonsteel Trapdoor
+tile.trapdoor_queensgold.name=Queensgold Trapdoor
+tile.trapdoor_dogbearium.name=Dogbearium Trapdoor
+tile.trapdoor_froststeel.name=Froststeel Trapdoor
+tile.trapdoor_ice.name=Ice Trapdoor
+tile.trapdoor_nihilite.name=Nihilite Trapdoor
+tile.trapdoor_purifiedgold.name=Purified Gold Trapdoor
+tile.trapdoor_purifiedsilver.name=Purified Silver Trapdoor
+tile.trapdoor_rosegold.name=Rosegold Trapdoor
+tile.trapdoor_silver.name=Silver Trapdoor
+tile.trapdoor_sinisterium.name=Sinisterium Trapdoor
+tile.trapdoor_valyriansteel.name=Valyriansteel Trapdoor
+tile.trapdoor_brass.name=Brass Trapdoor
+tile.trapdoor_orichalcum.name=Orichalcum Trapdoor
+tile.trapdoor_pandorium.name=Pandorium Trapdoor
+tile.trapdoor_platinum.name=Platinum Trapdoor
+tile.trapdoor_gold.name=Gold Trapdoor
+tile.trapdoor_wood.name=Wood Trapdoor
+tile.trapdoor_stone.name=Stone Trapdoor
+tile.trapdoor_flint.name=Flint Trapdoor
+tile.trapdoor_cactus.name=Cactus Trapdoor
+tile.trapdoor_bone.name=Bone Trapdoor
+tile.trapdoor_obsidian.name=Obsidian Trapdoor
+tile.trapdoor_prismarine.name=Prismarine Trapdoor
+tile.trapdoor_endstone.name=Endstone Trapdoor
+tile.trapdoor_paper.name=Paper Trapdoor
+tile.trapdoor_sponge.name=Sponge Trapdoor
+tile.trapdoor_firewood.name=Firewood Trapdoor
+tile.trapdoor_knightslime.name=Knightslime Trapdoor
+tile.trapdoor_slime.name=Slime Trapdoor
+tile.trapdoor_blueslime.name=Blue Slime Trapdoor
+tile.trapdoor_magmaslime.name=Magma Slime Trapdoor
+tile.trapdoor_iron.name=Iron Trapdoor
+tile.trapdoor_pigiron.name=Pigiron Trapdoor
+tile.trapdoor_netherrack.name=Netherrack Trapdoor
+tile.trapdoor_ardite.name=Ardite Trapdoor
+tile.trapdoor_cobalt.name=Cobalt Trapdoor
+tile.trapdoor_manyullyn.name=Manyullyn Trapdoor
+tile.trapdoor_copper.name=Copper Trapdoor
+tile.trapdoor_bronze.name=Bronze Trapdoor
+tile.trapdoor_electrum.name=Electrum Trapdoor
+tile.trapdoor_lead.name=Lead Trapdoor
+tile.trapdoor_steel.name=Steel Trapdoor
+
+//Tools Armors & Descriptions
+item.fishingrod.desc=Fish big game or little, this modular fishing rod can do nearly everything except get that boot dropped into the water the other day.
+
+item.shears.desc=Shears are usefull to any farmer looking to have a steady flow of wool, to use in crafting or sell for profit.
+
+item.roundshield.name=Buckler
+item.roundshield.desc=A small shield with low protection but allows the user to maintain manuverablitly in combat.\n \nAbility : Counter attacks - \nWith a bish bash bosh of the shield, slowing down your oponenets is a breaze.\n \nUnfortunatly you can't cram much modifiers on this small sheild.
+
+item.heatershield.name=Heater Shield
+item.heatershield.desc=A standard shield designed to protect more incoming attacks while still being fairly mobile.\n \n
+
+item.towershield.name=Tower Shield
+item.towershield.desc=An oversized shield that protects from most attacks, however this is a cost for such protection.\n \nAbility : Encumbered - \nIts a heavy sheild, next to imposible to weild and defend yourself without two hands.
+
+item.zweihander.name=Zweihander
+item.zweihander.desc=A great two handed sword designed to take down horse and rider or keep enemies back with its long reach.\n \nx2 Damage against mounted enemies \n Ability: Great Swing - \n Hit all enemies close to you with a great arching slash. Leaves you slowed and weakened temporarily.
+
+item.tinkerhood.name=Hood
+item.tinkerhood.desc=Delicately stitched clothing for the head that offers little protection but is more accepting of magical modifiers.
+
+item.tinkershawl.name=Shawl
+item.tinkershawl.desc=Delicately stitched clothing for the chest that offers little protection but is more accepting of magical modifiers.
+
+item.tinkerrobe.name=Robe
+item.tinkerrobe.desc=Delicately stitched clothing for the legs that offers little protection but is more accepting of magical modifiers.
+
+item.tinkershoes.name=Shoes
+item.tinkershoes.desc=Delicately stitched clothing for the head that offers little protection but is more accepting of magical modifiers.
+
+item.tinkershelm.name=Helm
+item.tinkershelm.desc=A heavy set of interlocking plates to protect the head from most damage.
+
+item.tinkersbreastplate.name=Breastplate
+item.tinkersbreastplate.desc=A heavy set of interlocking plates to protect the chest from most damage.
+
+item.tinkersgrieves.name=Grieves
+item.tinkersgrieves.desc=A heavy set of interlocking plates to protect the legs from most damage.
+
+item.tinkerssabatons.name=Sabatons
+item.tinkerssabatons.desc=A heavy set of interlocking plates to protect the feet from most damage.
+
+//Stats
+stat.shield.name=Sheild
+stat.shield.durability.name=Durability
+stat.shield.percentblocked.name=Percent Blocked
+
+stat.armor.durability.name=Durability
+stat.armor.rating.name=Armor Level
+stat.armor.toughness.name=Armor Toughness
+stat.armor.potency.name=Armor Potency
+
+stat.fabric.name=Fabric
+
+//Modifiers
+modifier.photosynthetic.name=Photosynthetic
+modifier.blockhead.name=Blockhead
+modifier.glassine.name=Glassine
+modifier.peyote.name=Peyote
+modifier.thickheaded.name=Thickheaded
+modifier.peleshair.name=Peleshair
+modifier.gills.name=Gills
+modifier.warpedmind.name=Enderwarped
+modifier.arrowcatcher.name=Arrowcatcher
+modifier.novel.name=Novelty
+modifier.soggy.name=Soggy
+modifier.hothead.name=Hothead
+modifier.hardhat.name=Hardhat
+
+modifier.stoned.name=Stoned
+modifier.spiny.name=Spiny
+modifier.buoyant.name=Buoyant
+modifier.calcium.name=Calcium
+modifier.toasty.name=Toasty
+modifier.magnetism=Ferrous
+
+modifier.pricked.name=Prickly
+modifier.callagen.name=Collagen
+modifier.pillarsofttitans.name=Soft
+
+modifier.earthbound.name=Earthbound
+modifier.rooted.name=Rooted
+modifier.maglock.name=Maglock
+modifier.hotfoot.name=Hotfoot
+
+modifier.incinerate.name=Incinerate
+
+modifier.piggy.name=Piggy
+modifier.hog.nome=Hog
+
+//Misc
+item.armor_plate.name=Armor Plate
+item.chainmail.name=Chainmail
+item.rivets.name=Rivets
+item.clasp.name=Clasp
+item.filigree.name=Filigree
