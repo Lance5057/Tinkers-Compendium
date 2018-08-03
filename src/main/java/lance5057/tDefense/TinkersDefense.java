@@ -35,7 +35,7 @@ public class TinkersDefense {
 	
 	PacketHandler phandler = new PacketHandler();
 
-	public static CreativeTab tab = new CreativeTab("TinkersDefense", new ItemStack(Items.SHIELD));
+	public static CreativeTab tab = new CreativeTab("tinkerscompendium", new ItemStack(Items.SHIELD));
 	
 	public static HolidayBase holiday;
 	//public static ModuleBase core;
@@ -101,6 +101,7 @@ public class TinkersDefense {
 		mats.init(e);
 		tools.init(e); 
 		traits.init();
+		modifiers.init();
 		events.init();
 		proxy.init();
 		
@@ -115,6 +116,7 @@ public class TinkersDefense {
 		mats.postInit(e);
 		tools.postInit(e);
 		traits.postInit();
+		modifiers.postInit();
 		events.postInit();
 		proxy.postInit();
 	}

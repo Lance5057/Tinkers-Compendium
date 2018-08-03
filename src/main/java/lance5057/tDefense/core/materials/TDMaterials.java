@@ -630,22 +630,6 @@ public class TDMaterials {
 		TinkerRegistry.addMaterialStats(TinkerMaterials.steel, new LegsMaterialStats(540, 6, 1, -12));
 		TinkerRegistry.addMaterialStats(TinkerMaterials.steel, new FeetMaterialStats(540, 3, 1, -12));
 
-		// TAIGA TEST
-		Collection<Material> mats = TinkerRegistry.getAllMaterials();
-		for (Material m : TinkerRegistry.getAllMaterials()) {
-			if (!m.hasStats(SHIELD)) {
-				if (m.hasStats(MaterialTypes.HEAD)) {
-					int dur = ((HeadMaterialStats) m.getStats(MaterialTypes.HEAD)).durability;
-					m.addStats(new ShieldMaterialStats(dur, 33));
-					m.addStats(new HelmMaterialStats(dur, 1, 0, 0));
-					m.addStats(new ChestMaterialStats(dur, 1, 0, 0));
-					m.addStats(new LegsMaterialStats(dur, 1, 0, 0));
-					m.addStats(new FeetMaterialStats(dur, 1, 0, 0));
-					// m.addStats(new ClothMaterialStats(dur, 1, 0, 0));
-				}
-			}
-		}
-
 		// Collection<Material> mats = TinkerRegistry.getAllMaterials();
 		// mats.isEmpty();
 		//
@@ -1014,6 +998,26 @@ public class TDMaterials {
 		// TinkerRegistry.registerAlloy(new FluidStack(fluids.get("novagold"), 1), new
 		// FluidStack(TinkerFluids.gold, 1),
 		// new FluidStack(fluids.get("sundrop"), 1));
+		
+		for (MaterialHelper m : materials) {
+			if (!TD_Config.materials.isBlacklisted(m.name))
+				m.setupClient();
+		}
+		
+		Collection<Material> mats = TinkerRegistry.getAllMaterials();
+		for (Material m : TinkerRegistry.getAllMaterials()) {
+			if (!m.hasStats(SHIELD)) {
+				if (m.hasStats(MaterialTypes.HEAD)) {
+					int dur = ((HeadMaterialStats) m.getStats(MaterialTypes.HEAD)).durability;
+					m.addStats(new ShieldMaterialStats(dur, 33));
+					m.addStats(new HelmMaterialStats(dur, 1, 0, 0));
+					m.addStats(new ChestMaterialStats(dur, 1, 0, 0));
+					m.addStats(new LegsMaterialStats(dur, 1, 0, 0));
+					m.addStats(new FeetMaterialStats(dur, 1, 0, 0));
+					// m.addStats(new ClothMaterialStats(dur, 1, 0, 0));
+				}
+			}
+		}
 
 	}
 
@@ -1027,10 +1031,7 @@ public class TDMaterials {
 
 	@Subscribe
 	public void postInit(FMLPostInitializationEvent event) {
-		for (MaterialHelper m : materials) {
-			if (!TD_Config.materials.isBlacklisted(m.name))
-				m.setupClient();
-		}
+		
 	}
 
 	public static void registerAlloy(FluidStack output, FluidStack... components) {

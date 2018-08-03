@@ -4,6 +4,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
@@ -38,6 +39,10 @@ public abstract class AbstractTDTrait extends AbstractTrait {
 	}
 
 	public void onItemPickup(EntityItemPickupEvent e) {
+
+	}
+
+	public void onDeath(LivingDeathEvent e) {
 
 	}
 }

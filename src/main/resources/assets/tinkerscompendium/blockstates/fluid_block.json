@@ -116,6 +116,20 @@
 			}
 		  }
 		],
+		"froststeel": [
+		  {
+			"custom": {
+			  "fluid": "brass"
+			}
+		  }
+		],
+		"valyriansteel": [
+		  {
+			"custom": {
+			  "fluid": "brass"
+			}
+		  }
+		],
 		"cheese": [
 		  {
 			"custom": {

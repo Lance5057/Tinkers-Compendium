@@ -56,7 +56,7 @@ plugins {
     id "net.minecraftforge.gradle.forge" version "2.0.2"
 }
 */
-version = "1.4.2.14a"
+version = "1.4.2.15a"
 group= "lance5057.tDefense" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "tinkersdefense"
 

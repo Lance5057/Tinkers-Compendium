@@ -259,15 +259,15 @@ public class MaterialHelper {
 			TDMaterials.blockList.add(block);
 			TDMaterials.itemList.add(registerItemBlock("block_" + name, block));
 		}
-
-		if (ore == null && genOre) {
-			ore = new BlockOre();
-			ore.setRegistryName(new ResourceLocation(Reference.MOD_ID, "ore_" + name))
-					.setUnlocalizedName("ore_" + name);
-			TDMaterials.blockList.add(ore);
-			TDMaterials.itemList.add(registerItemBlock("ore_" + name, ore));
-		}
-
+//
+//		if (ore == null && genOre) {
+//			ore = new BlockOre();
+//			ore.setRegistryName(new ResourceLocation(Reference.MOD_ID, "ore_" + name))
+//					.setUnlocalizedName("ore_" + name);
+//			TDMaterials.blockList.add(ore);
+//			TDMaterials.itemList.add(registerItemBlock("ore_" + name, ore));
+//		}
+//
 		if (stake == null && genStake) {
 			stake = new ComponentStake();
 			stake.setRegistryName(new ResourceLocation(Reference.MOD_ID, "stake_" + name))
@@ -275,34 +275,34 @@ public class MaterialHelper {
 			TDMaterials.blockList.add(stake);
 			TDMaterials.itemList.add(registerItemBlock("stake_" + name, stake));
 		}
-
-		if (bars == null && genBars) {
-			bars = new ComponentPane(net.minecraft.block.material.Material.IRON, true);
-			bars.setRegistryName(new ResourceLocation(Reference.MOD_ID, "bars_" + name))
-					.setUnlocalizedName("bars_" + name);
-			TDMaterials.blockList.add(bars);
-			TDMaterials.itemList.add(registerItemBlock("bars_" + name, bars));
-		}
-
-		if (door == null && genDoor) {
-			door = new ComponentDoor(net.minecraft.block.material.Material.IRON);
-			door.setRegistryName(new ResourceLocation(Reference.MOD_ID, "door_" + name))
-					.setUnlocalizedName("door_" + name);
-			TDMaterials.blockList.add(door);
-			ComponentItemDoor b = new ComponentItemDoor(door);
-			b.setRegistryName(new ResourceLocation(Reference.MOD_ID, "door_" + name))
-					.setUnlocalizedName("door_" + name);
-			TDMaterials.itemList.add(b);
-			door.setItem(b);
-		}
-
-		if (trapdoor == null && genTrapdoor) {
-			trapdoor = new ComponentTrapDoor(net.minecraft.block.material.Material.IRON);
-			trapdoor.setRegistryName(new ResourceLocation(Reference.MOD_ID, "trapdoor_" + name))
-					.setUnlocalizedName("trapdoor_" + name);
-			TDMaterials.blockList.add(trapdoor);
-			TDMaterials.itemList.add(registerItemBlock("trapdoor_" + name, trapdoor));
-		}
+//
+//		if (bars == null && genBars) {
+//			bars = new ComponentPane(net.minecraft.block.material.Material.IRON, true);
+//			bars.setRegistryName(new ResourceLocation(Reference.MOD_ID, "bars_" + name))
+//					.setUnlocalizedName("bars_" + name);
+//			TDMaterials.blockList.add(bars);
+//			TDMaterials.itemList.add(registerItemBlock("bars_" + name, bars));
+//		}
+//
+//		if (door == null && genDoor) {
+//			door = new ComponentDoor(net.minecraft.block.material.Material.IRON);
+//			door.setRegistryName(new ResourceLocation(Reference.MOD_ID, "door_" + name))
+//					.setUnlocalizedName("door_" + name);
+//			TDMaterials.blockList.add(door);
+//			ComponentItemDoor b = new ComponentItemDoor(door);
+//			b.setRegistryName(new ResourceLocation(Reference.MOD_ID, "door_" + name))
+//					.setUnlocalizedName("door_" + name);
+//			TDMaterials.itemList.add(b);
+//			door.setItem(b);
+//		}
+//
+//		if (trapdoor == null && genTrapdoor) {
+//			trapdoor = new ComponentTrapDoor(net.minecraft.block.material.Material.IRON);
+//			trapdoor.setRegistryName(new ResourceLocation(Reference.MOD_ID, "trapdoor_" + name))
+//					.setUnlocalizedName("trapdoor_" + name);
+//			TDMaterials.blockList.add(trapdoor);
+//			TDMaterials.itemList.add(registerItemBlock("trapdoor_" + name, trapdoor));
+//		}
 
 		if (genFluid)
 		{
@@ -383,28 +383,28 @@ public class MaterialHelper {
 		if (genBlock)
 		{
 			TinkersDefense.proxy.registerBlockRenderer(block, "block");
-			TinkersDefense.proxy.registerItemBlockRenderer(block, 0, "block");
+			TinkersDefense.proxy.registerItemBlockRenderer(block, 0, "componentblock");
 		}
 		if (genStake)
 		{
 			TinkersDefense.proxy.registerBlockRenderer(stake, "stake");
 			TinkersDefense.proxy.registerItemBlockRenderer(stake, 0, "stake");
 		}
-		if (genBars)
-		{
-			TinkersDefense.proxy.registerBlockRenderer(bars, "bars");
-			TinkersDefense.proxy.registerItemRenderer(Item.getItemFromBlock(bars), 0, "bars");
-		}
-		if (genDoor)
-		{
-			TinkersDefense.proxy.registerBlockRenderer(door, "door");
-			TinkersDefense.proxy.registerItemRenderer(Item.getItemFromBlock(door), 0, "door");
-		}
-		if (genTrapdoor)
-		{
-			TinkersDefense.proxy.registerBlockRenderer(trapdoor, "trapdoor");
-			TinkersDefense.proxy.registerItemRenderer(Item.getItemFromBlock(trapdoor), 0, "trapdoor");
-		}
+//		if (genBars)
+//		{
+//			TinkersDefense.proxy.registerBlockRenderer(bars, "bars");
+//			TinkersDefense.proxy.registerItemRenderer(Item.getItemFromBlock(bars), 0, "bars");
+//		}
+//		if (genDoor)
+//		{
+//			TinkersDefense.proxy.registerBlockRenderer(door, "door");
+//			TinkersDefense.proxy.registerItemRenderer(Item.getItemFromBlock(door), 0, "door");
+//		}
+//		if (genTrapdoor)
+//		{
+//			TinkersDefense.proxy.registerBlockRenderer(trapdoor, "trapdoor");
+//			TinkersDefense.proxy.registerItemRenderer(Item.getItemFromBlock(trapdoor), 0, "trapdoor");
+//		}
 	}
 
 	public void setupClient() {
@@ -429,6 +429,12 @@ public class MaterialHelper {
 		{
 			TinkersDefense.proxy.registerBlockColorHandler(color, block);
 			TinkersDefense.proxy.registerItemColorHandler(color, Item.getItemFromBlock(block));
+		}
+		
+		if (genBlock)
+		{
+			TinkersDefense.proxy.registerBlockColorHandler(color, stake);
+			TinkersDefense.proxy.registerItemColorHandler(color, Item.getItemFromBlock(stake));
 		}
 	}
 

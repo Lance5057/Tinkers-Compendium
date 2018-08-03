@@ -14,6 +14,7 @@ import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
@@ -102,7 +103,7 @@ public class TDToolEvents {
 				NBTTagList list = TagUtil.getTraitsTagList(tool);
 				for (int i = 0; i < list.tagCount(); i++) {
 					if (TinkerRegistry.getTrait(list.getStringTagAt(i)) instanceof AbstractTDTrait) {
-						AbstractTDTrait trait = (AbstractTDTrait)TinkerRegistry.getTrait(list.getStringTagAt(i));
+						AbstractTDTrait trait = (AbstractTDTrait) TinkerRegistry.getTrait(list.getStringTagAt(i));
 						if (trait != null) {
 							trait.onItemPickup(e);
 						}
@@ -162,6 +163,23 @@ public class TDToolEvents {
 							if (trait != null) {
 								trait.onFoodEaten(e);
 							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	@SubscribeEvent
+	public void onDeath(LivingDeathEvent e) {
+		for (ItemStack tool : e.getEntity().getArmorInventoryList()) {
+			if (tool != null && tool.getItem() instanceof ArmorCore && !ToolHelper.isBroken(tool)) {
+				NBTTagList list = TagUtil.getTraitsTagList(tool);
+				for (int i = 0; i < list.tagCount(); i++) {
+					if (TinkerRegistry.getTrait(list.getStringTagAt(i)) instanceof AbstractTDTrait) {
+						AbstractTDTrait trait = (AbstractTDTrait) TinkerRegistry.getTrait(list.getStringTagAt(i));
+						if (trait != null) {
+							trait.onDeath(e);
 						}
 					}
 				}

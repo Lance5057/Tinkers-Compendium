@@ -39,6 +39,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ISpecialArmor.ArmorProperties;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import slimeknights.mantle.util.RecipeMatch;
@@ -766,7 +767,7 @@ public abstract class ArmorCore extends ArmorBase implements IToolStationDisplay
 	public ArmorProperties getProperties(EntityLivingBase player, ItemStack armor, DamageSource source, double damage,
 			int slot) {
 		ArmorNBT tag = ArmorTagUtil.getOriginalToolStats(armor);
-		ArmorProperties a = new ArmorProperties(1, 0.8, 20);
+		ArmorProperties a = new ArmorProperties(0, 0, Integer.MAX_VALUE);
 
 		a.Armor = tag.armorRating;
 		a.Toughness = tag.armorToughness;

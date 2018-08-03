@@ -1,6 +1,8 @@
 {
-"forge_marker": 1,
-    "parent": "block/block"
+"parent": "block/cube_all",
+	"textures": {
+		"all": "minecraft:blocks/iron_block"
+	},
   "elements": [
     {
       "from": [ 0, 0, 0 ],
@@ -14,4 +16,5 @@
         "east":  { "tintindex": 1, "texture": "#all", "cullface": "east" }
       }
     }
+	]
 }

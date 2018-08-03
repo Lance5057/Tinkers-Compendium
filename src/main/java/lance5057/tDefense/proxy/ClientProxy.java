@@ -123,8 +123,8 @@ public class ClientProxy extends CommonProxy {
 				.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/breastplate/_breastplate_chain"));
 		CustomArmorTextureCreator
 				.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/breastplate/_breastplate_plate"));
-		CustomArmorTextureCreator.registerTexture(
-				new ResourceLocation(Reference.MOD_ID, "armor/breastplate/_breastplate_smallplate"));
+		CustomArmorTextureCreator
+				.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/breastplate/_breastplate_smallplate"));
 		CustomArmorTextureCreator
 				.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/breastplate/_breastplate_trim"));
 		CustomArmorTextureCreator
@@ -164,16 +164,24 @@ public class ClientProxy extends CommonProxy {
 
 	@Override
 	public void postInit() {
-//		registerItemColorHandler(new ColorHandler(0xa470e0), TDMaterials.aeonsteelIngot);
-//		registerItemColorHandler(new ColorHandler(0xa470e0), TDMaterials.aeonsteelNugget);
-//		registerItemColorHandler(new ColorHandler(0xa470e0), TDMaterials.aeonsteelDust);
-//		registerItemColorHandler(new ColorHandler(0xa470e0), TDMaterials.aeonsteelGrain);
-//		registerItemColorHandler(new ColorHandler(0xa470e0), TDMaterials.aeonsteelCoin);
-//		registerItemColorHandler(new ColorHandler(0xa470e0), TDMaterials.aeonsteelGear);
-//		registerItemColorHandler(new ColorHandler(0xa470e0), TDMaterials.aeonsteelPlate);
-//		registerItemColorHandler(new ColorHandler(0xa470e0), TDMaterials.aeonsteelRod);
-		
-		//TDMaterials.queensgold.setupClient();
+		// registerItemColorHandler(new ColorHandler(0xa470e0),
+		// TDMaterials.aeonsteelIngot);
+		// registerItemColorHandler(new ColorHandler(0xa470e0),
+		// TDMaterials.aeonsteelNugget);
+		// registerItemColorHandler(new ColorHandler(0xa470e0),
+		// TDMaterials.aeonsteelDust);
+		// registerItemColorHandler(new ColorHandler(0xa470e0),
+		// TDMaterials.aeonsteelGrain);
+		// registerItemColorHandler(new ColorHandler(0xa470e0),
+		// TDMaterials.aeonsteelCoin);
+		// registerItemColorHandler(new ColorHandler(0xa470e0),
+		// TDMaterials.aeonsteelGear);
+		// registerItemColorHandler(new ColorHandler(0xa470e0),
+		// TDMaterials.aeonsteelPlate);
+		// registerItemColorHandler(new ColorHandler(0xa470e0),
+		// TDMaterials.aeonsteelRod);
+
+		// TDMaterials.queensgold.setupClient();
 
 		TinkersDefense.tab.setDisplayIcon(TDTools.heatershield.buildItemForRendering(
 				ImmutableList.of(TinkerRegistry.getMaterial("iron"), TinkerRegistry.getMaterial("cobalt"),
@@ -401,8 +409,8 @@ public class ClientProxy extends CommonProxy {
 		ModelLoader.setCustomModelResourceLocation(b, meta,
 				new ModelResourceLocation(Reference.MOD_ID + ":" + file, "inventory"));
 	}
-	
-	@Override 
+
+	@Override
 	public void registerBlockRenderer(Block block, String file) {
 		ModelLoader.setCustomStateMapper(block, new ColoredBlockMapper(file));
 	}
@@ -412,9 +420,9 @@ public class ClientProxy extends CommonProxy {
 		ItemColors itemcolors = Minecraft.getMinecraft().getItemColors();
 		itemcolors.registerItemColorHandler(new ItemColorHandler(c), i);
 	}
-	
+
 	@Override
-	public void registerBlockColorHandler(int c, Block i) { 
+	public void registerBlockColorHandler(int c, Block i) {
 		BlockColors blockcolors = Minecraft.getMinecraft().getBlockColors();
 		blockcolors.registerBlockColorHandler(new BlockColorHandler(c), i);
 	}
@@ -452,16 +460,13 @@ public class ClientProxy extends CommonProxy {
 		}
 
 		int color;
-		
+
 		@Override
 		public int colorMultiplier(ItemStack stack, int tintIndex) {
-			if (tintIndex == 0) {
-				return color;
-			}
-			return 0xFFFFFF;
+			return color;
 		}
 	}
-	
+
 	@SideOnly(Side.CLIENT)
 	public static class BlockColorHandler implements IBlockColor {
 		public BlockColorHandler(int color) {
@@ -472,10 +477,8 @@ public class ClientProxy extends CommonProxy {
 
 		@Override
 		public int colorMultiplier(IBlockState state, IBlockAccess worldIn, BlockPos pos, int tintIndex) {
-			if (tintIndex == 0) {
-				return color;
-			}
-			return 0xFFFFFF;
+			return color;
+
 		}
 	}
 }

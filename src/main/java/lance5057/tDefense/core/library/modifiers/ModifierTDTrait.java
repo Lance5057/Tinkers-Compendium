@@ -19,7 +19,7 @@ import slimeknights.tconstruct.library.utils.TinkerUtil;
  * Modifier can have multiple levels.
  * Since this is intended for modifiers it uses a modifier
  */
-public class ModifierTDTrait extends AbstractTDTrait implements IModifierDisplay {
+public class ModifierTDTrait extends AbstractTDTrait implements IModifierDisplay { 
 
   protected final int maxLevel;
 
