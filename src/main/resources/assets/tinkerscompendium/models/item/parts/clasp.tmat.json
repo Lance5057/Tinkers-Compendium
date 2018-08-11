@@ -1,5 +1,6 @@
 {
     "textures": {
-        "layer0": "tinkerscompendium:items/_clasp"
+        "layer0": "tinkerscompendium:items/_clasp",
+		"layer1": "tinkerscompendium:items/plate"
     }
 }

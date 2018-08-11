@@ -2,21 +2,23 @@
 <projectDescription>
 	<name>Tinkers-Defense</name>
 	<comment></comment>
-	<projects/>
-	<natures>
-		<nature>org.eclipse.jdt.core.javanature</nature>
-	</natures>
+	<projects>
+	</projects>
 	<buildSpec>
 		<buildCommand>
 			<name>org.eclipse.jdt.core.javabuilder</name>
-			<arguments/>
+			<arguments>
+			</arguments>
 		</buildCommand>
 	</buildSpec>
+	<natures>
+		<nature>org.eclipse.jdt.core.javanature</nature>
+	</natures>
 	<linkedResources>
 		<link>
-			<name>.link1</name>
+			<name>.link0</name>
 			<type>2</type>
-			<location>C:/Users/Tyler/.gradle/caches/minecraft/net/minecraftforge/forge/1.12.2-14.23.3.2702/start</location>
+			<location>C:/Users/Tyler/.gradle/caches/minecraft/net/minecraftforge/forge/1.12.2-14.23.4.2747/start</location>
 		</link>
 	</linkedResources>
 </projectDescription>

@@ -1,16 +1,13 @@
 {
-    "forge_marker": 1,
-    "defaults": {
-        "transform": "forge:default-block",
-        "model": "cube_all",
-
+        "parent": "block/block",
+		
 		"credit": "Made with Blockbench",
 		"textures": {
-			"0": "minecraft:blocks/log_oak_top",
-			"1": "minecraft:blocks/log_oak",
-			"2": "minecraft:blocks/planks_oak",
-			"3": "minecraft:blocks/anvil_top_damaged_0",
-			"particle": "minecraft:blocks/log_oak_top"
+			"0": "blocks/log_oak_top",
+			"1": "blocks/log_oak",
+			"2": "blocks/planks_oak",
+			"3": "blocks/anvil_top_damaged_0",
+			"particle": "blocks/log_oak_top"
 		},
 		"elements": [
 			{

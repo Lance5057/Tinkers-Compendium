@@ -76,12 +76,12 @@ public class MaterialHelper {
 			Item gear, Item rod) {
 		this.ingot = ingot;
 		this.nugget = nugget;
-		this.dust = dust;
-		this.grain = grain;
-		this.plate = plate;
-		this.coin = coin;
-		this.gear = gear;
-		this.rod = rod;
+//		this.dust = dust;
+//		this.grain = grain;
+		//this.plate = plate;
+//		this.coin = coin;
+//		this.gear = gear;
+//		this.rod = rod;
 		return this;
 	}
 
@@ -92,12 +92,12 @@ public class MaterialHelper {
 
 	public Item ingot;
 	public Item nugget;
-	public Item dust;
-	public Item grain;
-	public Item plate;
-	public Item coin;
-	public Item gear;
-	public Item rod;
+//	public Item dust;
+//	public Item grain;
+	//public Item plate;
+//	public Item coin;
+//	public Item gear;
+//	public Item rod;
 
 	public BlockOre ore;
 	public Block block;
@@ -223,34 +223,34 @@ public class MaterialHelper {
 			TDMaterials.itemList.add(nugget);
 		}
 
-		if (dust == null && genDust) {
-			dust = registerItem("dust_" + name);
-			TDMaterials.itemList.add(dust);
-		}
-		if (grain == null && genGrain) {
-			grain = registerItem("grain_" + name);
-			TDMaterials.itemList.add(grain);
-		}
-
-		if (plate == null && genPlate) {
-			plate = registerItem("plate_" + name);
-			TDMaterials.itemList.add(plate);
-		}
-
-		if (coin == null && genCoin) {
-			coin = registerItem("coin_" + name);
-			TDMaterials.itemList.add(coin);
-		}
-
-		if (gear == null && genGear) {
-			gear = registerItem("gear_" + name);
-			TDMaterials.itemList.add(gear);
-		}
-
-		if (rod == null && genRod) {
-			rod = registerItem("rod_" + name);
-			TDMaterials.itemList.add(rod);
-		}
+//		if (dust == null && genDust) {
+//			dust = registerItem("dust_" + name);
+//			TDMaterials.itemList.add(dust);
+//		}
+//		if (grain == null && genGrain) {
+//			grain = registerItem("grain_" + name);
+//			TDMaterials.itemList.add(grain);
+//		}
+////
+////		if (plate == null && genPlate) {
+////			plate = registerItem("plate_" + name);
+////			TDMaterials.itemList.add(plate);
+////		}
+//
+//		if (coin == null && genCoin) {
+//			coin = registerItem("coin_" + name);
+//			TDMaterials.itemList.add(coin);
+//		}
+//
+//		if (gear == null && genGear) {
+//			gear = registerItem("gear_" + name);
+//			TDMaterials.itemList.add(gear);
+//		}
+//
+//		if (rod == null && genRod) {
+//			rod = registerItem("rod_" + name);
+//			TDMaterials.itemList.add(rod);
+//		}
 
 		if (block == null && genBlock) {
 			block = new Block(net.minecraft.block.material.Material.IRON)
@@ -342,18 +342,18 @@ public class MaterialHelper {
 			OreDictionary.registerOre("ingot" + StringUtils.capitalize(name), new ItemStack(ingot));
 		if (genNugget)
 			OreDictionary.registerOre("nugget" + StringUtils.capitalize(name), new ItemStack(nugget));
-		if (genDust)
-			OreDictionary.registerOre("dust" + StringUtils.capitalize(name), new ItemStack(dust));
-		if (genGrain)
-			OreDictionary.registerOre("grain" + StringUtils.capitalize(name), new ItemStack(grain));
-		if (genCoin)
-			OreDictionary.registerOre("coin" + StringUtils.capitalize(name), new ItemStack(coin));
-		if (genPlate)
-			OreDictionary.registerOre("plate" + StringUtils.capitalize(name), new ItemStack(plate));
-		if (genGear)
-			OreDictionary.registerOre("gear" + StringUtils.capitalize(name), new ItemStack(gear));
-		if (genRod)
-			OreDictionary.registerOre("rod" + StringUtils.capitalize(name), new ItemStack(rod));
+//		if (genDust)
+//			OreDictionary.registerOre("dust" + StringUtils.capitalize(name), new ItemStack(dust));
+//		if (genGrain)
+//			OreDictionary.registerOre("grain" + StringUtils.capitalize(name), new ItemStack(grain));
+//		if (genCoin)
+//			OreDictionary.registerOre("coin" + StringUtils.capitalize(name), new ItemStack(coin));
+//		if (genPlate)
+//			OreDictionary.registerOre("plate" + StringUtils.capitalize(name), new ItemStack(plate));
+//		if (genGear)
+//			OreDictionary.registerOre("gear" + StringUtils.capitalize(name), new ItemStack(gear));
+//		if (genRod)
+//			OreDictionary.registerOre("rod" + StringUtils.capitalize(name), new ItemStack(rod));
 		
 		if(genBlock)
 			OreDictionary.registerOre("block" + StringUtils.capitalize(name), new ItemStack(block));
@@ -365,20 +365,20 @@ public class MaterialHelper {
 	public void setupModels() {
 		if (genIngot)
 			TinkersDefense.proxy.registerItemRenderer(ingot, 0, "ingot");
-		if (genDust)
-			TinkersDefense.proxy.registerItemRenderer(dust, 0, "dust");
+//		if (genDust)
+//			TinkersDefense.proxy.registerItemRenderer(dust, 0, "dust");
 		if (genNugget)
 			TinkersDefense.proxy.registerItemRenderer(nugget, 0, "nugget");
-		if (genGrain)
-			TinkersDefense.proxy.registerItemRenderer(grain, 0, "grain");
-		if (genCoin)
-			TinkersDefense.proxy.registerItemRenderer(coin, 0, "coin");
-		if (genPlate)
-			TinkersDefense.proxy.registerItemRenderer(plate, 0, "plate");
-		if (genRod)
-			TinkersDefense.proxy.registerItemRenderer(rod, 0, "rod");
-		if (genGear)
-			TinkersDefense.proxy.registerItemRenderer(gear, 0, "gear");
+//		if (genGrain)
+//			TinkersDefense.proxy.registerItemRenderer(grain, 0, "grain");
+//		if (genCoin)
+//			TinkersDefense.proxy.registerItemRenderer(coin, 0, "coin");
+////		if (genPlate)
+////			TinkersDefense.proxy.registerItemRenderer(plate, 0, "plate");
+//		if (genRod)
+//			TinkersDefense.proxy.registerItemRenderer(rod, 0, "rod");
+//		if (genGear)
+//			TinkersDefense.proxy.registerItemRenderer(gear, 0, "gear");
 		
 		if (genBlock)
 		{
@@ -412,18 +412,18 @@ public class MaterialHelper {
 			TinkersDefense.proxy.registerItemColorHandler(color, ingot);
 		if (genNugget)
 			TinkersDefense.proxy.registerItemColorHandler(color, nugget);
-		if (genDust)
-			TinkersDefense.proxy.registerItemColorHandler(color, dust);
-		if (genGrain)
-			TinkersDefense.proxy.registerItemColorHandler(color, grain);
-		if (genCoin)
-			TinkersDefense.proxy.registerItemColorHandler(color, coin);
-		if (genGear)
-			TinkersDefense.proxy.registerItemColorHandler(color, gear);
-		if (genPlate)
-			TinkersDefense.proxy.registerItemColorHandler(color, plate);
-		if (genRod)
-			TinkersDefense.proxy.registerItemColorHandler(color, rod);
+//		if (genDust)
+//			TinkersDefense.proxy.registerItemColorHandler(color, dust);
+//		if (genGrain)
+//			TinkersDefense.proxy.registerItemColorHandler(color, grain);
+//		if (genCoin)
+//			TinkersDefense.proxy.registerItemColorHandler(color, coin);
+//		if (genGear)
+//			TinkersDefense.proxy.registerItemColorHandler(color, gear);
+////		if (genPlate)
+////			TinkersDefense.proxy.registerItemColorHandler(color, plate);
+//		if (genRod)
+//			TinkersDefense.proxy.registerItemColorHandler(color, rod);
 		
 		if (genBlock)
 		{

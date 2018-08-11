@@ -1,10 +1,14 @@
 package lance5057.tDefense.core.materials;
 
+import static slimeknights.tconstruct.tools.TinkerTools.shard;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+
+import org.apache.commons.lang3.StringUtils;
 
 import com.google.common.eventbus.Subscribe;
 
@@ -12,7 +16,6 @@ import gnu.trove.map.hash.THashMap;
 import lance5057.tDefense.Reference;
 import lance5057.tDefense.TD_Config;
 import lance5057.tDefense.TinkersDefense;
-import lance5057.tDefense.core.library.TDMatHelper;
 import lance5057.tDefense.core.materials.stats.ArmorMaterialStats;
 import lance5057.tDefense.core.materials.stats.BaubleMaterialStats;
 import lance5057.tDefense.core.materials.stats.ChestMaterialStats;
@@ -21,6 +24,7 @@ import lance5057.tDefense.core.materials.stats.FeetMaterialStats;
 import lance5057.tDefense.core.materials.stats.HelmMaterialStats;
 import lance5057.tDefense.core.materials.stats.LegsMaterialStats;
 import lance5057.tDefense.core.materials.stats.ShieldMaterialStats;
+import lance5057.tDefense.core.parts.ComponentPart;
 import lance5057.tDefense.util.MaterialHelper;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
@@ -28,6 +32,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
@@ -43,8 +48,10 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryEntry;
+import slimeknights.tconstruct.common.ModelRegisterUtil;
 import slimeknights.tconstruct.library.MaterialIntegration;
 import slimeknights.tconstruct.library.TinkerRegistry;
 import slimeknights.tconstruct.library.Util;
@@ -57,6 +64,7 @@ import slimeknights.tconstruct.library.materials.HeadMaterialStats;
 import slimeknights.tconstruct.library.materials.Material;
 import slimeknights.tconstruct.library.materials.MaterialTypes;
 import slimeknights.tconstruct.library.smeltery.AlloyRecipe;
+import slimeknights.tconstruct.library.tools.Shard;
 import slimeknights.tconstruct.library.utils.HarvestLevels;
 import slimeknights.tconstruct.shared.TinkerCommons;
 import slimeknights.tconstruct.shared.TinkerFluids;
@@ -67,6 +75,15 @@ import slimeknights.tconstruct.tools.TinkerMaterials;
 @Mod.EventBusSubscriber(modid = Reference.MOD_ID)
 public class TDMaterials {
 
+	public static ComponentPart plate;
+	public static ComponentPart dust;
+	public static ComponentPart grain;
+	public static ComponentPart gear;
+	//public static ComponentPart rod;
+	public static ComponentPart coin;
+	public static ComponentPart wire;
+	public static ComponentPart foil;
+	
 	// public static final List<Material> materials = Lists.newArrayList();
 	ArmorMaterialStats ams = new ArmorMaterialStats(0, 0, 0, 0, "");
 
@@ -172,11 +189,16 @@ public class TDMaterials {
 			new HelmMaterialStats(99, 1, 1, 19.0f), new ChestMaterialStats(99, 4, 1, 19.0f),
 			new LegsMaterialStats(99, 3, 1, 19.0f), new FeetMaterialStats(99, 1, 1, 19.0f)).setGenBlock(true);
 
-//	public static MaterialHelper brass = new MaterialHelper("brass", 0xdbb332, 300,
-//			new HeadMaterialStats(380, 5f, 3f, HarvestLevels.IRON), new HandleMaterialStats(0.85f, 90),
-//			new ExtraMaterialStats(75), new ShieldMaterialStats(380 / 4, 50), new BowMaterialStats(0.1f, 0.5f, -1f),
-//			new HelmMaterialStats(380, 2, 1, 4.5f), new ChestMaterialStats(380, 3, 2, 4.5f),
-//			new LegsMaterialStats(380, 2, 2, 4.5f), new FeetMaterialStats(380, 2, 2, 4.5f)).setGenBlock(true);
+	// public static MaterialHelper brass = new MaterialHelper("brass", 0xdbb332,
+	// 300,
+	// new HeadMaterialStats(380, 5f, 3f, HarvestLevels.IRON), new
+	// HandleMaterialStats(0.85f, 90),
+	// new ExtraMaterialStats(75), new ShieldMaterialStats(380 / 4, 50), new
+	// BowMaterialStats(0.1f, 0.5f, -1f),
+	// new HelmMaterialStats(380, 2, 1, 4.5f), new ChestMaterialStats(380, 3, 2,
+	// 4.5f),
+	// new LegsMaterialStats(380, 2, 2, 4.5f), new FeetMaterialStats(380, 2, 2,
+	// 4.5f)).setGenBlock(true);
 
 	public static MaterialHelper silver = new MaterialHelper("silver", 0xefefef);
 
@@ -365,7 +387,32 @@ public class TDMaterials {
 
 	@Subscribe
 	public void preInit(FMLPreInitializationEvent event) {
-
+		
+		plate = registerComponent("plate", Material.VALUE_Ingot);
+		dust = registerComponent("dust", Material.VALUE_Ingot);
+		gear = registerComponent("gear", Material.VALUE_Ingot * 4);
+		grain = registerComponent("grain", Material.VALUE_Ingot / 4);
+		//rod = registerComponent("rod", Material.VALUE_Ingot / 2);
+		coin = registerComponent("coin", Material.VALUE_Nugget);
+		wire = registerComponent("wire", Material.VALUE_Ingot);
+		foil = registerComponent("foil", Material.VALUE_Ingot);
+		
+		dust.setCast(false).setCraft(false);
+		grain.setCast(false).setCraft(false);
+		plate.setCast(false);
+		gear.setCast(false);
+		foil.setCraft(false);
+		wire.setCraft(false);
+		
+		itemList.add(plate);
+		itemList.add(dust);
+		itemList.add(gear);
+		itemList.add(grain);
+		//itemList.add(rod);
+		itemList.add(coin);
+		itemList.add(wire);
+		itemList.add(foil);
+		
 		// if (TinkersDefense.config.materials.enableBaseMaterials)
 		// this.materials_master.addAll(materials_base);
 		// if (TinkersDefense.config.materials.enableJokeMaterials)
@@ -391,23 +438,41 @@ public class TDMaterials {
 		Material.UNKNOWN.addStats(new FabricMaterialStats(35, 0, 0, 0));
 		Material.UNKNOWN.addStats(new BaubleMaterialStats(35));
 
-		materials.add(aeonsteel);
-		materials.add(queensgold);
-		materials.add(dogbearium);
-		materials.add(froststeel);
-		materials.add(ice);
-		materials.add(nihilite);
-		materials.add(purifiedgold);
-		materials.add(purifiedsilver);
-		materials.add(rosegold);
-		materials.add(silver);
-		materials.add(sinisterium);
-		materials.add(valyriansteel);
-		//materials.add(brass);
-		materials.add(orichalcum);
-		materials.add(pandorium);
-		materials.add(platinum);
-		materials.add(gold);
+		if (TinkerRegistry.getMaterial(aeonsteel.name) == Material.UNKNOWN)
+			materials.add(aeonsteel);
+		if (TinkerRegistry.getMaterial(queensgold.name) == Material.UNKNOWN)
+			materials.add(queensgold);
+		if (TinkerRegistry.getMaterial(dogbearium.name) == Material.UNKNOWN)
+			materials.add(dogbearium);
+		if (TinkerRegistry.getMaterial(froststeel.name) == Material.UNKNOWN)
+			materials.add(froststeel);
+
+			materials.add(ice);
+			
+		if (TinkerRegistry.getMaterial(nihilite.name) == Material.UNKNOWN)
+			materials.add(nihilite);
+		if (TinkerRegistry.getMaterial(purifiedgold.name) == Material.UNKNOWN)
+			materials.add(purifiedgold);
+		if (TinkerRegistry.getMaterial(purifiedsilver.name) == Material.UNKNOWN)
+			materials.add(purifiedsilver);
+		if (TinkerRegistry.getMaterial(rosegold.name) == Material.UNKNOWN)
+			materials.add(rosegold);
+
+			materials.add(silver);
+			
+		if (TinkerRegistry.getMaterial(sinisterium.name) == Material.UNKNOWN)
+			materials.add(sinisterium);
+		if (TinkerRegistry.getMaterial(valyriansteel.name) == Material.UNKNOWN)
+			materials.add(valyriansteel);
+		// materials.add(brass);
+		if (TinkerRegistry.getMaterial(orichalcum.name) == Material.UNKNOWN)
+			materials.add(orichalcum);
+		if (TinkerRegistry.getMaterial(pandorium.name) == Material.UNKNOWN)
+			materials.add(pandorium);
+		if (TinkerRegistry.getMaterial(platinum.name) == Material.UNKNOWN)
+			materials.add(platinum);
+		if (TinkerRegistry.getMaterial(gold.name) == Material.UNKNOWN)
+			materials.add(gold);
 
 		materials.add(wood);
 		materials.add(stone);
@@ -629,17 +694,16 @@ public class TDMaterials {
 		TinkerRegistry.addMaterialStats(TinkerMaterials.steel, new ChestMaterialStats(540, 7, 1, -12));
 		TinkerRegistry.addMaterialStats(TinkerMaterials.steel, new LegsMaterialStats(540, 6, 1, -12));
 		TinkerRegistry.addMaterialStats(TinkerMaterials.steel, new FeetMaterialStats(540, 3, 1, -12));
-
-		// Collection<Material> mats = TinkerRegistry.getAllMaterials();
-		// mats.isEmpty();
-		//
-		// Set<IToolPart> parts = TinkerRegistry.getToolParts();
-		// parts.size();
-
 	}
 
 	public Item registerItem(String name) {
 		return new Item().setRegistryName(new ResourceLocation(Reference.MOD_ID, name)).setUnlocalizedName(name);
+	}
+	
+	public ComponentPart registerComponent(String name, int cost) {
+		ComponentPart p = new ComponentPart(cost);
+		p.setRegistryName(new ResourceLocation(Reference.MOD_ID, name)).setUnlocalizedName(name);
+		return p;
 	}
 
 	public static FluidMolten fluidMetal(String name, int color, int temp) {
@@ -677,172 +741,21 @@ public class TDMaterials {
 		return registerBlock(block, "molten_" + fluid.getName());
 	}
 
-	void createMaterial(TDMatHelper tdmat) {
-		// Material mat = new Material(tdmat.name, tdmat.color);
-		//
-		// if (tdmat.isGem) {
-		// if (tdmat.gem == null) {
-		// if (tdmat.createParts) {
-		// mat.addItem("gem" + tdmat.name.substring(0, 1).toUpperCase() +
-		// tdmat.name.substring(1));
-		// mat.addItem(gem.getItembyName(tdmat.name), 1, Material.VALUE_Ingot);
-		// }
-		// } else
-		// mat.addItem(tdmat.gem, 1, Material.VALUE_Ingot);
-		// } else {
-		// if (tdmat.ingot == null) {
-		// if (tdmat.createParts) {
-		// mat.addItem("ingot" + tdmat.name.substring(0, 1).toUpperCase() +
-		// tdmat.name.substring(1));
-		// Item it = new Item().setRegistryName(new ResourceLocation(Reference.MOD_ID,
-		// "ingot" + tdmat.name))
-		// .setUnlocalizedName("ingot" + tdmat.name);
-		// itemList.add(it);
-		// mat.addItem(new ItemStack(it), 1, Material.VALUE_Ingot);
-		// mat.setRepresentativeItem(it);
-		// }
-		// } else
-		// mat.addItem(tdmat.ingot, 1, Material.VALUE_Ingot);
-		// }
-		// if (tdmat.nugget == null) {
-		// if (tdmat.createParts) {
-		// mat.addItem("nugget" + tdmat.name.substring(0, 1).toUpperCase() +
-		// tdmat.name.substring(1));
-		// mat.addItem(nugget.getItembyName(tdmat.name), 1, Material.VALUE_Nugget);
-		// }
-		// } else
-		// mat.addItem(tdmat.nugget, 1, Material.VALUE_Nugget);
-		// if (tdmat.dust == null) {
-		// if (tdmat.createParts) {
-		// mat.addItem("dust" + tdmat.name.substring(0, 1).toUpperCase() +
-		// tdmat.name.substring(1));
-		// mat.addItem(dust.getItembyName(tdmat.name), 1, Material.VALUE_Ingot);
-		// }
-		// } else
-		// mat.addItem(tdmat.nugget, 1, Material.VALUE_Ingot);
-		// if (tdmat.grain == null) {
-		// if (tdmat.createParts) {
-		// mat.addItem("grain" + tdmat.name.substring(0, 1).toUpperCase() +
-		// tdmat.name.substring(1));
-		// mat.addItem(grain.getItembyName(tdmat.name), 1, Material.VALUE_Ingot / 4);
-		// }
-		// } else
-		// mat.addItem(tdmat.grain, 1, Material.VALUE_Nugget / 4);
-		//
-		// TinkersDefense.proxy.registerMatColor(mat, tdmat.color);
-		//
-		// // if (tdmat.fluid != null) {
-		// // createFluid(tdmat.name, tdmat.fluid);
-		// // tdmat.fluid.setTemperature(800);
-		// FluidMolten f = fluids.get(tdmat.name);
-		//
-		// if (f != null) {
-		// createFluid(tdmat.name, f);
-		// mat.setFluid(f);
-		// }
-		//
-		// if (tdmat.isGem)
-		// mat.setCraftable(true).setCastable(false);
-		// else
-		// mat.setCraftable(false).setCastable(true);
-		//
-		// ItemStack i;
-		// if (tdmat.isGem)
-		// i = gem.getItembyName(tdmat.name);
-		// else
-		// i = ingot.getItembyName(tdmat.name);
-		// mat.setRepresentativeItem(i);
-		//
-		// setStats(mat, tdmat);
-		// // materials.add(mat);
-		//
-		// if (fluids.get(tdmat.name) != null)
-		// TinkerRegistry.integrate(new MaterialIntegration(mat,
-		// fluids.get(tdmat.name)).toolforge()).preInit();
-		// else
-		// TinkerRegistry.integrate(new MaterialIntegration(mat).toolforge()).preInit();
-	}
-
-	// void setStats(Material m, TDMatHelper tdm) {
-	// if (tdm.head != null)
-	// TinkerRegistry.addMaterialStats(m, tdm.head);
-	//
-	// if (tdm.handle != null)
-	// TinkerRegistry.addMaterialStats(m, tdm.handle);
-	//
-	// if (tdm.extra != null)
-	// TinkerRegistry.addMaterialStats(m, tdm.extra);
-	//
-	// if (tdm.bow != null)
-	// TinkerRegistry.addMaterialStats(m, tdm.bow);
-	//
-	// if (tdm.shaft != null)
-	// TinkerRegistry.addMaterialStats(m, tdm.shaft);
-	//
-	// if (tdm.bowstring != null)
-	// TinkerRegistry.addMaterialStats(m, tdm.bowstring);
-	//
-	// if (tdm.shield != null)
-	// TinkerRegistry.addMaterialStats(m, tdm.shield);
-	//
-	// if (tdm.helm != null)
-	// TinkerRegistry.addMaterialStats(m, tdm.helm);
-	//
-	// if (tdm.chest != null)
-	// TinkerRegistry.addMaterialStats(m, tdm.chest);
-	//
-	// if (tdm.legs != null)
-	// TinkerRegistry.addMaterialStats(m, tdm.legs);
-	//
-	// if (tdm.boots != null)
-	// TinkerRegistry.addMaterialStats(m, tdm.boots);
-	//
-	// if (tdm.cloth != null)
-	// TinkerRegistry.addMaterialStats(m, tdm.cloth);
-	// }
-
 	public void registerItems(final RegistryEvent.Register<Item> event) {
 		final IForgeRegistry registry = event.getRegistry();
-
-		// nugget = new TDOreDictItem("nugget", getMatNames(materials_master),
-		// getMatColors(materials_master));
-		// dust = new TDOreDictItem("dust", getMatNames(materials_master),
-		// getMatColors(materials_master));
-		// grain = new TDOreDictItem("grain", getMatNames(materials_master),
-		// getMatColors(materials_master));
-		//
-		// List<TDMatHelper> gemMaster = new ArrayList<TDMatHelper>();
-		// List<TDMatHelper> ingotMaster = new ArrayList<TDMatHelper>();
-		//
-		// for (TDMatHelper i : materials_master) {
-		// if (i.isGem)
-		// gemMaster.add(i);
-		// else
-		// ingotMaster.add(i);
-		// }
-		//
-		// gem = new TDOreDictItem("gem", getMatNames(gemMaster),
-		// getMatColors(gemMaster));
-		// ingot = new TDOreDictItem("ingot", getMatNames(ingotMaster),
-		// getMatColors(ingotMaster));
-		// registry.register(ingot);
-		// registry.register(dust);
-		// registry.register(nugget);
-		// registry.register(grain);
-		// registry.register(gem);
-
-		// for (TDMatHelper m : materials_master) {
-		// Material test = TinkerRegistry.getMaterial(m.name);
-		// if (m.createMat && test.getIdentifier() == "unknown"
-		// && !TinkersDefense.config.materials.isBlacklisted(m.name)) {
-		// createMaterial(m);
-		// }
-		// }
 
 		for (Item i : itemList) {
 			registry.register(i);
 		}
-
+		
+		TinkerRegistry.registerToolPart(plate);
+		TinkerRegistry.registerToolPart(dust);
+		TinkerRegistry.registerToolPart(gear);
+		TinkerRegistry.registerToolPart(grain);
+		//TinkerRegistry.registerToolPart(rod);
+		TinkerRegistry.registerToolPart(coin);
+		TinkerRegistry.registerToolPart(wire);
+		TinkerRegistry.registerToolPart(foil);
 	}
 
 	@Subscribe
@@ -930,9 +843,11 @@ public class TDMaterials {
 			TinkerRegistry.registerAlloy(new FluidStack(getMaterialHelper("rosegold").fluid, 4),
 					new FluidStack(TinkerFluids.gold, 1), new FluidStack(TinkerFluids.copper, 3));
 
-//		if (!TD_Config.materials.isBlacklisted("brass"))
-//			TinkerRegistry.registerAlloy(new FluidStack(getMaterialHelper("brass").fluid, 3),
-//					new FluidStack(TinkerFluids.copper, 2), new FluidStack(TinkerFluids.zinc, 2));
+		// if (!TD_Config.materials.isBlacklisted("brass"))
+		// TinkerRegistry.registerAlloy(new FluidStack(getMaterialHelper("brass").fluid,
+		// 3),
+		// new FluidStack(TinkerFluids.copper, 2), new FluidStack(TinkerFluids.zinc,
+		// 2));
 
 		if (!TD_Config.materials.isBlacklisted("valyriansteel"))
 			TinkerRegistry.registerAlloy(new FluidStack(getMaterialHelper("valyriansteel").fluid, 4),
@@ -944,31 +859,45 @@ public class TDMaterials {
 					new FluidStack(TinkerFluids.steel, 2), new FluidStack(TinkerFluids.cobalt, 2),
 					new FluidStack(fluidSlush, 1));
 
-//		if (!TD_Config.materials.isBlacklisted("pureardite") && !TD_Config.materials.isBlacklisted("purifiedgold"))
-//			TinkerRegistry.registerAlloy(new FluidStack(getMaterialHelper("pureardite").fluid, 1),
-//					new FluidStack(TinkerFluids.ardite, 1), new FluidStack(fluidDragonsBreath, 2),
-//					new FluidStack(TinkerFluids.blood, 2), new FluidStack(getMaterialHelper("purifiedgold").fluid, 2));
-//
-//		if (!TD_Config.materials.isBlacklisted("purecobalt") &&!TD_Config.materials.isBlacklisted("purifiedsilver"))
-//			TinkerRegistry.registerAlloy(new FluidStack(getMaterialHelper("purecobalt").fluid, 1),
-//					new FluidStack(TinkerFluids.cobalt, 1), new FluidStack(fluidDragonsBreath, 2),
-//					new FluidStack(fluidSlush, 2), new FluidStack(getMaterialHelper("purifiedsilver").fluid, 2));
-//
-//		if (!TD_Config.materials.isBlacklisted("puremanyullyn") && !TD_Config.materials.isBlacklisted("purecobalt")
-//				&& !TD_Config.materials.isBlacklisted("pureardite"))
-//			TinkerRegistry.registerAlloy(new FluidStack(getMaterialHelper("puremanyullyn").fluid, 2),
-//					new FluidStack(getMaterialHelper("pureardite").fluid, 1),
-//					new FluidStack(getMaterialHelper("purecobalt").fluid, 1));
-//
-//		if (!TD_Config.materials.isBlacklisted("purifiedgold"))
-//			TinkerRegistry.registerAlloy(new FluidStack(getMaterialHelper("purifiedgold").fluid, 1),
-//					new FluidStack(TinkerFluids.gold, 1), new FluidStack(fluidQuartz, 8),
-//					new FluidStack(TinkerFluids.glass, 2), new FluidStack(TinkerFluids.purpleSlime, 2));
-//
-//		if (!TD_Config.materials.isBlacklisted("purifiedsilver"))
-//			TinkerRegistry.registerAlloy(new FluidStack(getMaterialHelper("purifiedsilver").fluid, 1),
-//					new FluidStack(TinkerFluids.silver, 1), new FluidStack(fluidQuartz, 8),
-//					new FluidStack(TinkerFluids.glass, 2), new FluidStack(TinkerFluids.purpleSlime, 2));
+		// if (!TD_Config.materials.isBlacklisted("pureardite") &&
+		// !TD_Config.materials.isBlacklisted("purifiedgold"))
+		// TinkerRegistry.registerAlloy(new
+		// FluidStack(getMaterialHelper("pureardite").fluid, 1),
+		// new FluidStack(TinkerFluids.ardite, 1), new FluidStack(fluidDragonsBreath,
+		// 2),
+		// new FluidStack(TinkerFluids.blood, 2), new
+		// FluidStack(getMaterialHelper("purifiedgold").fluid, 2));
+		//
+		// if (!TD_Config.materials.isBlacklisted("purecobalt")
+		// &&!TD_Config.materials.isBlacklisted("purifiedsilver"))
+		// TinkerRegistry.registerAlloy(new
+		// FluidStack(getMaterialHelper("purecobalt").fluid, 1),
+		// new FluidStack(TinkerFluids.cobalt, 1), new FluidStack(fluidDragonsBreath,
+		// 2),
+		// new FluidStack(fluidSlush, 2), new
+		// FluidStack(getMaterialHelper("purifiedsilver").fluid, 2));
+		//
+		// if (!TD_Config.materials.isBlacklisted("puremanyullyn") &&
+		// !TD_Config.materials.isBlacklisted("purecobalt")
+		// && !TD_Config.materials.isBlacklisted("pureardite"))
+		// TinkerRegistry.registerAlloy(new
+		// FluidStack(getMaterialHelper("puremanyullyn").fluid, 2),
+		// new FluidStack(getMaterialHelper("pureardite").fluid, 1),
+		// new FluidStack(getMaterialHelper("purecobalt").fluid, 1));
+		//
+		// if (!TD_Config.materials.isBlacklisted("purifiedgold"))
+		// TinkerRegistry.registerAlloy(new
+		// FluidStack(getMaterialHelper("purifiedgold").fluid, 1),
+		// new FluidStack(TinkerFluids.gold, 1), new FluidStack(fluidQuartz, 8),
+		// new FluidStack(TinkerFluids.glass, 2), new
+		// FluidStack(TinkerFluids.purpleSlime, 2));
+		//
+		// if (!TD_Config.materials.isBlacklisted("purifiedsilver"))
+		// TinkerRegistry.registerAlloy(new
+		// FluidStack(getMaterialHelper("purifiedsilver").fluid, 1),
+		// new FluidStack(TinkerFluids.silver, 1), new FluidStack(fluidQuartz, 8),
+		// new FluidStack(TinkerFluids.glass, 2), new
+		// FluidStack(TinkerFluids.purpleSlime, 2));
 
 		// if (!TD_Config.materials.isBlacklisted("nihilite"))
 		// TinkerRegistry.registerAlloy(new FluidStack(fluids.get("solarium"), 1),
@@ -998,12 +927,12 @@ public class TDMaterials {
 		// TinkerRegistry.registerAlloy(new FluidStack(fluids.get("novagold"), 1), new
 		// FluidStack(TinkerFluids.gold, 1),
 		// new FluidStack(fluids.get("sundrop"), 1));
-		
+
 		for (MaterialHelper m : materials) {
 			if (!TD_Config.materials.isBlacklisted(m.name))
 				m.setupClient();
 		}
-		
+
 		Collection<Material> mats = TinkerRegistry.getAllMaterials();
 		for (Material m : TinkerRegistry.getAllMaterials()) {
 			if (!m.hasStats(SHIELD)) {
@@ -1031,7 +960,28 @@ public class TDMaterials {
 
 	@Subscribe
 	public void postInit(FMLPostInitializationEvent event) {
+		oreDictComponent("plate", plate);
+		oreDictComponent("dust", dust);
+		oreDictComponent("grain", grain);
+		//oreDictComponent("rod", rod);
+		oreDictComponent("coin", coin);
+		oreDictComponent("gear", gear);
+		oreDictComponent("wire", wire);
+		oreDictComponent("foil", foil);
+	}
+	
+	void oreDictComponent(String name, ComponentPart item)
+	{
+		NonNullList<ItemStack> stacks = null;
+		stacks = NonNullList.create();
 		
+		item.getSubItems(item.getCreativeTab(), stacks);
+		
+		for(ItemStack s: stacks)
+		{
+			String str = s.getTagCompound().getString("Material");
+			OreDictionary.registerOre(name + StringUtils.capitalize(str), s);
+		}
 	}
 
 	public static void registerAlloy(FluidStack output, FluidStack... components) {
@@ -1052,42 +1002,19 @@ public class TDMaterials {
 	@SideOnly(Side.CLIENT)
 	@SubscribeEvent
 	public static void registerModels(ModelRegistryEvent event) {
-		// for (int i = 0; i < dust.mats.size(); i++) {
-		// ModelLoader.setCustomModelResourceLocation(dust, i,
-		// new ModelResourceLocation(Reference.MOD_ID + ":dust", "inventory"));
-		// }
-		//
-		// for (int i = 0; i < ingot.mats.size(); i++) {
-		// ModelLoader.setCustomModelResourceLocation(ingot, i,
-		// new ModelResourceLocation(Reference.MOD_ID + ":ingot", "inventory"));
-		// }
-		//
-		// for (int i = 0; i < gem.mats.size(); i++) {
-		// ModelLoader.setCustomModelResourceLocation(gem, i,
-		// new ModelResourceLocation(Reference.MOD_ID + ":gem", "inventory"));
-		// }
-		//
-		// for (int i = 0; i < nugget.mats.size(); i++) {
-		// ModelLoader.setCustomModelResourceLocation(nugget, i,
-		// new ModelResourceLocation(Reference.MOD_ID + ":nugget", "inventory"));
-		// }
-		//
-		// for (int i = 0; i < grain.mats.size(); i++) {
-		// ModelLoader.setCustomModelResourceLocation(grain, i,
-		// new ModelResourceLocation(Reference.MOD_ID + ":grain", "inventory"));
-		// }
-		//
-		// for (TDMatHelper m : materials_master) {
-		// if (fluids.get(m.name) != null)
-		// TinkersDefense.proxy.registerFluidModels(fluids.get(m.name));
-		// }
-
-		// TinkersDefense.proxy.registerFluidModels(fluidAeonsteel);
-
 		for (MaterialHelper m : materials) {
 			if (!TD_Config.materials.isBlacklisted(m.name))
 				m.setupModels();
 		}
+		
+		ModelRegisterUtil.registerPartModel(plate);
+		ModelRegisterUtil.registerPartModel(gear);
+		//ModelRegisterUtil.registerPartModel(rod);
+		ModelRegisterUtil.registerPartModel(coin);
+		ModelRegisterUtil.registerPartModel(grain);
+		ModelRegisterUtil.registerPartModel(dust);
+		ModelRegisterUtil.registerPartModel(wire);
+		ModelRegisterUtil.registerPartModel(foil);
 	}
 
 	@SubscribeEvent

@@ -32,11 +32,9 @@ import slimeknights.tconstruct.library.tinkering.IModifyable;
 import slimeknights.tconstruct.library.tinkering.IRepairable;
 import slimeknights.tconstruct.library.tinkering.PartMaterialType;
 import slimeknights.tconstruct.library.utils.TagUtil;
-import slimeknights.tconstruct.library.utils.ToolBuilder;
 import slimeknights.tconstruct.tools.common.client.GuiToolStation;
 import slimeknights.tconstruct.tools.common.inventory.ContainerTinkerStation;
 import slimeknights.tconstruct.tools.common.inventory.SlotToolStationIn;
-import slimeknights.tconstruct.tools.common.network.ToolStationSelectionPacket;
 import slimeknights.tconstruct.tools.common.network.ToolStationTextPacket;
 
 // also tool forge
@@ -73,7 +71,7 @@ public class ArmorStationContainer extends ContainerTinkerStation<ArmorStationTi
   @Override
   protected void syncNewContainer(EntityPlayerMP player) {
     this.activeSlots = tile.getSizeInventory();
-    TinkerNetwork.sendTo(new ToolStationSelectionPacket(null, tile.getSizeInventory()), player);
+    TinkerNetwork.sendTo(new ArmorStationSelectionPacket(null, tile.getSizeInventory()), player);
   }
 
   @Override
@@ -249,7 +247,7 @@ public class ArmorStationContainer extends ContainerTinkerStation<ArmorStationTi
       return ItemStack.EMPTY;
     }
 
-    return ToolBuilder.tryRepairTool(getInputs(), repairable, remove);
+    return ArmorBuilder.tryRepairTool(getInputs(), repairable, remove);
   }
 
   private ItemStack replaceToolParts(boolean remove) throws TinkerGuiException {
@@ -260,7 +258,7 @@ public class ArmorStationContainer extends ContainerTinkerStation<ArmorStationTi
     }
 
     NonNullList<ItemStack> inputs = getInputs();
-    ItemStack result = ToolBuilder.tryReplaceToolParts(tool, inputs, remove);
+    ItemStack result = ArmorBuilder.tryReplaceToolParts(tool, inputs, remove);
     if(!result.isEmpty()) {
       TinkerCraftingEvent.ToolPartReplaceEvent.fireEvent(result, player, inputs);
     }
@@ -275,7 +273,7 @@ public class ArmorStationContainer extends ContainerTinkerStation<ArmorStationTi
       return ItemStack.EMPTY;
     }
 
-    ItemStack result = ToolBuilder.tryModifyTool(getInputs(), modifyable, remove);
+    ItemStack result = ArmorBuilder.tryModifyTool(getInputs(), modifyable, remove);
     if(!result.isEmpty()) {
       TinkerCraftingEvent.ToolModifyEvent.fireEvent(result, player, modifyable.copy());
     }

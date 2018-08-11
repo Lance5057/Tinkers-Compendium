@@ -7,7 +7,6 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
-import jline.internal.Log;
 import lance5057.tDefense.Reference;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.DynamicTexture;
@@ -58,8 +57,8 @@ public class ArmorTextureBuilder
 
 			if (bi != null)
 				looseTex.add(bi);
-			else
-				Log.error(s + " not found!");
+//			else
+//				Log.error(s + " not found!");
 		}
 
 		if (looseTex.size() != 0)
