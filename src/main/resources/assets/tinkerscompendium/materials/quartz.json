@@ -1,6 +1,10 @@
 {
-    "type": "block",
+    "type": "metal_textured",
     "parameters": {
-        "texture": "minecraft:blocks/quartz_block_side"
+        "texture": "blocks/quartz_block_side",
+        "color": "ede8e8",
+       "shinyness": 1.0,
+        "brightness": 0.6,
+        "hueshift": 0.1
     }
 }

@@ -1,6 +1,10 @@
 {
-    "type": "block",
+    "type": "metal_textured",
     "parameters": {
-        "texture": "minecraft:blocks/diamond_block"
+        "texture": "blocks/diamond_block",
+        "color": "96ecf2",
+        "shinyness": 1.0,
+        "brightness": 1.0,
+        "hueshift": 0.0
     }
 }

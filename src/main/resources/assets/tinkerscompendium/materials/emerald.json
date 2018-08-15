@@ -1,6 +1,10 @@
 {
-    "type": "block",
+    "type": "metal_textured",
     "parameters": {
-        "texture": "minecraft:blocks/emerald_block"
+        "texture": "blocks/emerald_block",
+        "color": "16cc4f",
+        "shinyness": 1.0,
+        "brightness": 0.6,
+        "hueshift": 0.1
     }
 }

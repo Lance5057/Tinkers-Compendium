@@ -3,8 +3,8 @@
     "parameters": {
         "texture": "tinkerscompendium:materials/facetedgem",
         "color": "ff0061",
-        "shinyness": 0.6,
-        "brightness": 0.4,
+        "shinyness": 1.0,
+        "brightness": 0.6,
         "hueshift": 0.1
     }
 }
