@@ -1,0 +1,37 @@
+[
+  {
+    "name": "offhand",
+    "type": "imageText2",
+    "data": "tools/offhand.json"
+  },
+  {
+    "name": "repairing",
+    "type": "text",
+    "data": "tools/repairing.json"
+  },
+  {
+    "name": "hidden",
+    "type": "image with text below",
+    "data": "tools/repairing2.json"
+  },
+  {
+    "name": "bolt_core",
+    "type": "imageText2",
+    "data": "tools/bolt_crafting.json"
+  },
+  {
+    "name": "pickaxe",
+    "type": "tool",
+    "data": "tools/pickaxe.json"
+  },
+  {
+    "name": "shovel",
+    "type": "tool",
+    "data": "tools/shovel.json"
+  },
+  {
+    "name": "hatchet",
+    "type": "tool",
+    "data": "tools/hatchet.json"
+  }
+]

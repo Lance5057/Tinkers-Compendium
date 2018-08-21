@@ -1,0 +1,31 @@
+[
+  {
+    "name": "compendium_intro",
+    "data": "sections/compendium_intro.json",
+    "icon": {
+      "item": {
+        "id": "tinkerscompendium:armorstation",
+        "damage": 0
+      }
+    }
+  },
+  {
+    "name": "compendium_armor",
+    "data": "sections/compendium_armor.json",
+    "icon": {
+      "item": {
+        "id": "tinkerscompendium:helm",
+        "damage": 0
+      }
+    }
+  },
+  {
+    "name": "compendium_modifiers",
+    "data": "sections/compendium_modifiers.json",
+    "icon": {
+      "item": {
+        "id": "minecraft:redstone"
+      }
+    }
+  }
+]
