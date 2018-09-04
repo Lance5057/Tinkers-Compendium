@@ -1,4 +1,4 @@
-package lance5057.tDefense.core.gui;
+package lance5057.tDefense.core.gui.armorstation;
 
 import lance5057.tDefense.core.library.ArmorBuildGuiInfo;
 import net.minecraft.client.Minecraft;

@@ -1,8 +1,8 @@
 package lance5057.tDefense.core.network;
 
 import io.netty.buffer.ByteBuf;
-import lance5057.tDefense.core.gui.ArmorStationContainer;
-import lance5057.tDefense.core.gui.ArmorStationGui;
+import lance5057.tDefense.core.gui.armorstation.ArmorStationContainer;
+import lance5057.tDefense.core.gui.armorstation.ArmorStationGui;
 import lance5057.tDefense.core.tools.bases.ArmorCore;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.network.NetHandlerPlayClient;

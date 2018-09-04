@@ -1,4 +1,4 @@
-package lance5057.tDefense.core.gui;
+package lance5057.tDefense.core.gui.armorstation;
 
 import java.io.IOException;
 

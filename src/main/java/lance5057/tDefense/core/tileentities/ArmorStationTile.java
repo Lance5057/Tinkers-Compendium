@@ -1,7 +1,7 @@
 package lance5057.tDefense.core.tileentities;
 
-import lance5057.tDefense.core.gui.ArmorStationContainer;
-import lance5057.tDefense.core.gui.ArmorStationGui;
+import lance5057.tDefense.core.gui.armorstation.ArmorStationContainer;
+import lance5057.tDefense.core.gui.armorstation.ArmorStationGui;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockPane;
 import net.minecraft.client.gui.inventory.GuiContainer;
