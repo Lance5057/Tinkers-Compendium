@@ -10,6 +10,8 @@ import lance5057.tDefense.core.blocks.ComponentDoor;
 import lance5057.tDefense.core.blocks.ComponentPane;
 import lance5057.tDefense.core.blocks.ComponentStake;
 import lance5057.tDefense.core.blocks.ComponentTrapDoor;
+import lance5057.tDefense.core.blocks.TDOreBlock;
+import lance5057.tDefense.core.items.ComponentItemDoor;
 import lance5057.tDefense.core.materials.TDMaterials;
 import lance5057.tDefense.core.materials.stats.ChestMaterialStats;
 import lance5057.tDefense.core.materials.stats.FabricMaterialStats;
@@ -29,6 +31,7 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.registries.IForgeRegistry;
@@ -64,7 +67,7 @@ public class MaterialHelper {
 		this.name = name;
 		this.color = color;
 		this.fabric = fabric;
-		
+
 		genFluid = false;
 		genComponents = false;
 		cast = false;
@@ -104,7 +107,7 @@ public class MaterialHelper {
 	public MaterialIntegration matint;
 
 	public FluidMolten fluid;
-	
+
 	public ItemStack repItem;
 
 	public MaterialHelper setRepItem(ItemStack repItem) {
@@ -120,6 +123,7 @@ public class MaterialHelper {
 	public Item coin;
 	public Item gear;
 	public Item rod;
+	public Item oreClump;
 
 	public BlockOre ore;
 	public Block block;
@@ -306,15 +310,23 @@ public class MaterialHelper {
 				TDMaterials.blockList.add(block);
 				TDMaterials.itemList.add(registerItemBlock("block_" + name, block));
 			}
-			//
-			// if (ore == null && genOre) {
-			// ore = new BlockOre();
-			// ore.setRegistryName(new ResourceLocation(Reference.MOD_ID, "ore_" + name))
-			// .setUnlocalizedName("ore_" + name);
-			// TDMaterials.blockList.add(ore);
-			// TDMaterials.itemList.add(registerItemBlock("ore_" + name, ore));
-			// }
-			//
+
+			if (oreClump == null && genOre) {
+				oreClump = registerItem("clump_" + name);
+				TDMaterials.itemList.add(oreClump);
+			}
+
+			if (ore == null && genOre) {
+				if (oreClump != null)
+					ore = new TDOreBlock(oreClump);
+				else
+					ore = new TDOreBlock();
+				ore.setRegistryName(new ResourceLocation(Reference.MOD_ID, "ore_" + name))
+						.setUnlocalizedName("ore_" + name);
+				TDMaterials.blockList.add(ore);
+				TDMaterials.itemList.add(registerItemBlock("ore_" + name, ore));
+			}
+
 			if (stake == null && genStake) {
 				stake = new ComponentStake();
 				stake.setRegistryName(new ResourceLocation(Reference.MOD_ID, "stake_" + name))
@@ -322,35 +334,34 @@ public class MaterialHelper {
 				TDMaterials.blockList.add(stake);
 				TDMaterials.itemList.add(registerItemBlock("stake_" + name, stake));
 			}
-			//
-			// if (bars == null && genBars) {
-			// bars = new ComponentPane(net.minecraft.block.material.Material.IRON, true);
-			// bars.setRegistryName(new ResourceLocation(Reference.MOD_ID, "bars_" + name))
-			// .setUnlocalizedName("bars_" + name);
-			// TDMaterials.blockList.add(bars);
-			// TDMaterials.itemList.add(registerItemBlock("bars_" + name, bars));
-			// }
-			//
-			// if (door == null && genDoor) {
-			// door = new ComponentDoor(net.minecraft.block.material.Material.IRON);
-			// door.setRegistryName(new ResourceLocation(Reference.MOD_ID, "door_" + name))
-			// .setUnlocalizedName("door_" + name);
-			// TDMaterials.blockList.add(door);
-			// ComponentItemDoor b = new ComponentItemDoor(door);
-			// b.setRegistryName(new ResourceLocation(Reference.MOD_ID, "door_" + name))
-			// .setUnlocalizedName("door_" + name);
-			// TDMaterials.itemList.add(b);
-			// door.setItem(b);
-			// }
-			//
-			// if (trapdoor == null && genTrapdoor) {
-			// trapdoor = new ComponentTrapDoor(net.minecraft.block.material.Material.IRON);
-			// trapdoor.setRegistryName(new ResourceLocation(Reference.MOD_ID, "trapdoor_" +
-			// name))
-			// .setUnlocalizedName("trapdoor_" + name);
-			// TDMaterials.blockList.add(trapdoor);
-			// TDMaterials.itemList.add(registerItemBlock("trapdoor_" + name, trapdoor));
-			// }
+
+			if (bars == null && genBars) {
+				bars = new ComponentPane(net.minecraft.block.material.Material.IRON, true);
+				bars.setRegistryName(new ResourceLocation(Reference.MOD_ID, "bars_" + name))
+						.setUnlocalizedName("bars_" + name);
+				TDMaterials.blockList.add(bars);
+				TDMaterials.itemList.add(registerItemBlock("bars_" + name, bars));
+			}
+
+			if (door == null && genDoor) {
+				door = new ComponentDoor(net.minecraft.block.material.Material.IRON);
+				door.setRegistryName(new ResourceLocation(Reference.MOD_ID, "door_" + name))
+						.setUnlocalizedName("door_" + name);
+				TDMaterials.blockList.add(door);
+				ComponentItemDoor b = new ComponentItemDoor(door);
+				b.setRegistryName(new ResourceLocation(Reference.MOD_ID, "door_" + name))
+						.setUnlocalizedName("door_" + name);
+				TDMaterials.itemList.add(b);
+				door.setItem(b);
+			}
+
+			if (trapdoor == null && genTrapdoor) {
+				trapdoor = new ComponentTrapDoor(net.minecraft.block.material.Material.IRON);
+				trapdoor.setRegistryName(new ResourceLocation(Reference.MOD_ID, "trapdoor_" + name))
+						.setUnlocalizedName("trapdoor_" + name);
+				TDMaterials.blockList.add(trapdoor);
+				TDMaterials.itemList.add(registerItemBlock("trapdoor_" + name, trapdoor));
+			}
 		}
 
 		if (genFluid) {
@@ -386,8 +397,8 @@ public class MaterialHelper {
 				TinkerRegistry.addMaterialStats(mat, feet);
 			if (fabric != null)
 				TinkerRegistry.addMaterialStats(mat, fabric);
-			
-			if(repItem != null)
+
+			if (repItem != null)
 				mat.setRepresentativeItem(repItem);
 
 			matint = new MaterialIntegration(mat, fluid, StringUtils.capitalize(name));
@@ -451,6 +462,110 @@ public class MaterialHelper {
 					IForgeRegistry<IRecipe> registry = event.getRegistry();
 					registry.register(recipeGear);
 				}
+			}
+
+			if (genOre) {
+				if (genIngot) {
+					GameRegistry.addSmelting(ore, new ItemStack(ingot), 3f);
+					GameRegistry.addSmelting(oreClump, new ItemStack(ingot), 3f);
+				}
+
+				TinkerRegistry.registerMelting(ore, fluid, Material.VALUE_Ingot * 2);
+				TinkerRegistry.registerMelting(oreClump, fluid, Material.VALUE_Ingot * 2);
+			}
+
+			if (genDust) {
+				GameRegistry.addSmelting(dust, new ItemStack(ingot, 1), 0f);
+			}
+
+			if (genDoor) {
+				if (genGear && (genIngot || oreIngot != "" || rep != Items.AIR)) {
+					IRecipe recipe = null;
+
+					if (genIngot)
+						recipe = new ShapedOreRecipe(new ResourceLocation(Reference.MOD_ID, "door_recipe"),
+								new ItemStack(door, 3),
+								new Object[] { "ii ", "ii ", "ii ", 'i', new ItemStack(ingot) });
+					else if (oreIngot != "")
+						recipe = new ShapedOreRecipe(new ResourceLocation(Reference.MOD_ID, "door_recipe"),
+								new ItemStack(door, 3), new Object[] { "ii ", "ii ", "ii ", 'i', oreIngot });
+					else if (rep != Items.AIR)
+						recipe = new ShapedOreRecipe(new ResourceLocation(Reference.MOD_ID, "door_recipe"),
+								new ItemStack(door, 3), new Object[] { "ii ", "ii ", "ii ", 'i', new ItemStack(rep) });
+
+					if (recipe != null) {
+						recipe.setRegistryName(new ResourceLocation(Reference.MOD_ID, name + "DoorRecipe"));
+
+						IForgeRegistry<IRecipe> registry = event.getRegistry();
+						registry.register(recipe);
+					}
+				}
+
+				if (genIngot)
+					GameRegistry.addSmelting(door, new ItemStack(ingot, 2), 0f);
+				TinkerRegistry.registerMelting(door, fluid, Material.VALUE_Ingot * 2);
+			}
+
+			if (genTrapdoor) {
+				if (genGear && (genIngot || oreIngot != "" || rep != Items.AIR)) {
+					IRecipe recipe = null;
+
+					if (genIngot)
+						recipe = new ShapedOreRecipe(new ResourceLocation(Reference.MOD_ID, "trapdoor_recipe"),
+								new ItemStack(trapdoor, 3),
+								new Object[] { "   ", "iii", "iii", 'i', new ItemStack(ingot) });
+					else if (oreIngot != "")
+						recipe = new ShapedOreRecipe(new ResourceLocation(Reference.MOD_ID, "trapdoor_recipe"),
+								new ItemStack(trapdoor, 3), new Object[] { "   ", "iii", "iii", 'i', oreIngot });
+					else if (rep != Items.AIR)
+						recipe = new ShapedOreRecipe(new ResourceLocation(Reference.MOD_ID, "trapdoor_recipe"),
+								new ItemStack(trapdoor, 3),
+								new Object[] { "   ", "iii", "iii", 'i', new ItemStack(rep) });
+
+					if (recipe != null) {
+						recipe.setRegistryName(new ResourceLocation(Reference.MOD_ID, name + "TrapdoorRecipe"));
+
+						IForgeRegistry<IRecipe> registry = event.getRegistry();
+						registry.register(recipe);
+					}
+				}
+
+				if (genIngot)
+					GameRegistry.addSmelting(trapdoor, new ItemStack(ingot, 2), 0f);
+				TinkerRegistry.registerMelting(trapdoor, fluid, Material.VALUE_Ingot * 2);
+			}
+
+			if (genGear) {
+				if (genIngot)
+					GameRegistry.addSmelting(gear, new ItemStack(ingot, 4), 0f);
+			}
+
+			if (genStake) {
+				if (genGear && (genIngot || oreIngot != "" || rep != Items.AIR)) {
+					IRecipe recipe = null;
+
+					if (genIngot)
+						recipe = new ShapedOreRecipe(new ResourceLocation(Reference.MOD_ID, "stake_recipe"),
+								new ItemStack(stake, 1),
+								new Object[] { " i ", " i ", " i ", 'i', new ItemStack(ingot) });
+					else if (oreIngot != "")
+						recipe = new ShapedOreRecipe(new ResourceLocation(Reference.MOD_ID, "stake_recipe"),
+								new ItemStack(stake, 1), new Object[] { " i ", " i ", " i ", 'i', oreIngot });
+					else if (rep != Items.AIR)
+						recipe = new ShapedOreRecipe(new ResourceLocation(Reference.MOD_ID, "stake_recipe"),
+								new ItemStack(stake, 1), new Object[] { " i ", " i ", " i ", 'i', new ItemStack(rep) });
+
+					if (recipe != null) {
+						recipe.setRegistryName(new ResourceLocation(Reference.MOD_ID, name + "StakeRecipe"));
+
+						IForgeRegistry<IRecipe> registry = event.getRegistry();
+						registry.register(recipe);
+					}
+				}
+
+				if (genIngot)
+					GameRegistry.addSmelting(stake, new ItemStack(ingot, 3), 0f);
+				TinkerRegistry.registerMelting(trapdoor, fluid, Material.VALUE_Ingot * 3);
 			}
 		}
 	}
