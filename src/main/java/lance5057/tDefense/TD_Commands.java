@@ -105,6 +105,7 @@ public class TD_Commands extends CommandBase implements ICommand {
 						if (s != null && s.getItem() != Items.AIR) {
 							ArmorTagUtil.setVisor(s, !ArmorTagUtil.getVisor(s));
 							ArmorTagUtil.setVisorTime(s, 0.0f);
+							s.serializeNBT();
 							if (TinkersDefense.config.debug) {
 								if (ArmorTagUtil.getVisor(s))
 									sender.sendMessage(new TextComponentString("§9[TDefense]§f - Visor closed."));

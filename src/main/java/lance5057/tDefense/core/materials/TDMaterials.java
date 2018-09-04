@@ -68,18 +68,19 @@ import slimeknights.tconstruct.shared.TinkerFluids;
 import slimeknights.tconstruct.smeltery.block.BlockMolten;
 import slimeknights.tconstruct.smeltery.block.BlockTinkerFluid;
 import slimeknights.tconstruct.tools.TinkerMaterials;
+import slimeknights.tconstruct.tools.TinkerModifiers;
 
 @Mod.EventBusSubscriber(modid = Reference.MOD_ID)
 public class TDMaterials {
 
-//	public static ComponentPart plate;
-//	public static ComponentPart dust;
-//	public static ComponentPart grain;
-//	public static ComponentPart gear;
-//	// public static ComponentPart rod;
-//	public static ComponentPart coin;
-//	public static ComponentPart wire;
-//	public static ComponentPart foil;
+	// public static ComponentPart plate;
+	// public static ComponentPart dust;
+	// public static ComponentPart grain;
+	// public static ComponentPart gear;
+	// // public static ComponentPart rod;
+	// public static ComponentPart coin;
+	// public static ComponentPart wire;
+	// public static ComponentPart foil;
 
 	// public static final List<Material> materials = Lists.newArrayList();
 	ArmorMaterialStats ams = new ArmorMaterialStats(0, 0, 0, 0, "");
@@ -96,22 +97,39 @@ public class TDMaterials {
 	public static final Map<String, Integer> colors = new THashMap();
 	public static final Map<String, FluidMolten> fluids = new THashMap();
 
-	public static Material black;
-	public static Material red;
-	public static Material green;
-	public static Material brown;
-	public static Material blue;
-	public static Material purple;
-	public static Material cyan;
-	public static Material lightgray;
-	public static Material gray;
-	public static Material pink;
-	public static Material lime;
-	public static Material yellow;
-	public static Material lightblue;
-	public static Material magenta;
-	public static Material orange;
-	public static Material white;
+	public static MaterialHelper black = new MaterialHelper("blackcloth", 0x191616,
+			new FabricMaterialStats(100, 0, 0, 25));
+	public static MaterialHelper red = new MaterialHelper("redcloth", 0x963430, new FabricMaterialStats(100, 0, 0, 25));
+	public static MaterialHelper green = new MaterialHelper("greencloth", 0x35461B,
+			new FabricMaterialStats(100, 0, 0, 25));
+	public static MaterialHelper brown = new MaterialHelper("browncloth", 0x4F321F,
+			new FabricMaterialStats(100, 0, 0, 25));
+	public static MaterialHelper blue = new MaterialHelper("bluecloth", 0x2E388D,
+			new FabricMaterialStats(100, 0, 0, 25));
+	public static MaterialHelper purple = new MaterialHelper("purplecloth", 0x7E3DB5,
+			new FabricMaterialStats(100, 0, 0, 25));
+	public static MaterialHelper cyan = new MaterialHelper("cyancloth", 0x2E6E89,
+			new FabricMaterialStats(100, 0, 0, 25));
+	public static MaterialHelper lightgray = new MaterialHelper("lightgraycloth", 0x9AA1A1,
+			new FabricMaterialStats(100, 0, 0, 25));
+	public static MaterialHelper gray = new MaterialHelper("graycloth", 0x404040,
+			new FabricMaterialStats(100, 0, 0, 25));
+	public static MaterialHelper pink = new MaterialHelper("pinkcloth", 0xD08499,
+			new FabricMaterialStats(100, 0, 0, 25));
+	public static MaterialHelper lime = new MaterialHelper("limecloth", 0x41AE38,
+			new FabricMaterialStats(100, 0, 0, 25));
+	public static MaterialHelper yellow = new MaterialHelper("yellowcloth", 0xB1A627,
+			new FabricMaterialStats(100, 0, 0, 25));
+	public static MaterialHelper lightblue = new MaterialHelper("lightbluecloth", 0x6B8AC9,
+			new FabricMaterialStats(100, 0, 0, 25));
+	public static MaterialHelper magenta = new MaterialHelper("magentacloth", 0xB350BC,
+			new FabricMaterialStats(100, 0, 0, 25));
+	public static MaterialHelper orange = new MaterialHelper("orangecloth", 0xDB7D3E,
+			new FabricMaterialStats(100, 0, 0, 25));
+	public static MaterialHelper white = new MaterialHelper("whitecloth", 0xDDDDDD,
+			new FabricMaterialStats(100, 0, 0, 25));
+
+	public static MaterialHelper silky = new MaterialHelper("silky", 0xffdd7a, new FabricMaterialStats(100, 0, 0, 25));
 
 	// public static MaterialHelper aeonsteel = new MaterialHelper();
 	// public static MaterialHelper queensgold = new MaterialHelper("queensgold",
@@ -273,91 +291,106 @@ public class TDMaterials {
 			new HeadMaterialStats(320, 4f, 4f, HarvestLevels.OBSIDIAN), new HandleMaterialStats(1.3f, 10),
 			new ExtraMaterialStats(5), new ShieldMaterialStats(320 / 4, 45), whyWouldYouMakeABowOutOfThis,
 			new HelmMaterialStats(320, 3, 0, 10), new ChestMaterialStats(320, 6, 3, 15),
-			new LegsMaterialStats(320, 6, 0, 12.5f), new FeetMaterialStats(320, 3, 0, 10)).setGenFluid(false).setGenIngot(false);
+			new LegsMaterialStats(320, 6, 0, 12.5f), new FeetMaterialStats(320, 3, 0, 10)).setGenFluid(false)
+					.setGenIngot(false);
 
 	public static MaterialHelper ruby = new MaterialHelper("ruby", 0xff0061, 800,
 			new HeadMaterialStats(320, 4f, 10f, HarvestLevels.OBSIDIAN), new HandleMaterialStats(0.1f, 10),
 			new ExtraMaterialStats(5), new ShieldMaterialStats(320 / 4, 45), whyWouldYouMakeABowOutOfThis,
 			new HelmMaterialStats(320, 3, 0, 10), new ChestMaterialStats(320, 6, 3, 15),
-			new LegsMaterialStats(320, 6, 0, 12.5f), new FeetMaterialStats(320, 3, 0, 10)).setGenFluid(false).setGenIngot(false);
+			new LegsMaterialStats(320, 6, 0, 12.5f), new FeetMaterialStats(320, 3, 0, 10)).setGenFluid(false)
+					.setGenIngot(false);
 
 	public static MaterialHelper emerald = new MaterialHelper("emerald", 0x16cc4f, 800,
 			new HeadMaterialStats(320, 10f, 4f, HarvestLevels.OBSIDIAN), new HandleMaterialStats(0.1f, 10),
 			new ExtraMaterialStats(5), new ShieldMaterialStats(320 / 4, 45), whyWouldYouMakeABowOutOfThis,
 			new HelmMaterialStats(320, 3, 0, 10), new ChestMaterialStats(320, 6, 3, 15),
-			new LegsMaterialStats(320, 6, 0, 12.5f), new FeetMaterialStats(320, 3, 0, 10)).setGenFluid(false).setGenIngot(false);
+			new LegsMaterialStats(320, 6, 0, 12.5f), new FeetMaterialStats(320, 3, 0, 10)).setGenFluid(false)
+					.setGenIngot(false);
 
 	public static MaterialHelper diamond = new MaterialHelper("diamond", 0x96ecf2, 800,
 			new HeadMaterialStats(1006, 4f, 4f, HarvestLevels.OBSIDIAN), new HandleMaterialStats(0.1f, 100),
 			new ExtraMaterialStats(50), new ShieldMaterialStats(1006 / 4, 45), whyWouldYouMakeABowOutOfThis,
 			new HelmMaterialStats(1006, 3, 0, 10), new ChestMaterialStats(1006, 6, 3, 15),
-			new LegsMaterialStats(1006, 6, 0, 12.5f), new FeetMaterialStats(1006, 3, 0, 10)).setGenFluid(false).setGenIngot(false);
+			new LegsMaterialStats(1006, 6, 0, 12.5f), new FeetMaterialStats(1006, 3, 0, 10)).setGenFluid(false)
+					.setGenIngot(false);
 
 	public static MaterialHelper starsapphire = new MaterialHelper("starsapphire", 0x6e00ff, 800,
 			new HeadMaterialStats(115, 1f, 1f, HarvestLevels.COBALT), new HandleMaterialStats(1.5f, 5),
 			new ExtraMaterialStats(1), new ShieldMaterialStats(115 / 4, 55), whyWouldYouMakeABowOutOfThis,
 			new HelmMaterialStats(115, 3, 0, 20), new ChestMaterialStats(115, 6, 3, 25),
-			new LegsMaterialStats(115, 6, 0, 22.5f), new FeetMaterialStats(115, 3, 0, 20)).setGenFluid(false).setGenIngot(false);
+			new LegsMaterialStats(115, 6, 0, 22.5f), new FeetMaterialStats(115, 3, 0, 20)).setGenFluid(false)
+					.setGenIngot(false);
 
 	public static MaterialHelper starruby = new MaterialHelper("starruby", 0xff0061, 800,
 			new HeadMaterialStats(115, 1f, 12f, HarvestLevels.COBALT), new HandleMaterialStats(0.05f, 5),
 			new ExtraMaterialStats(1), new ShieldMaterialStats(115 / 4, 55), whyWouldYouMakeABowOutOfThis,
 			new HelmMaterialStats(115, 3, 0, 20), new ChestMaterialStats(115, 6, 3, 25),
-			new LegsMaterialStats(115, 6, 0, 22.5f), new FeetMaterialStats(115, 3, 0, 20)).setGenFluid(false).setGenIngot(false);
+			new LegsMaterialStats(115, 6, 0, 22.5f), new FeetMaterialStats(115, 3, 0, 20)).setGenFluid(false)
+					.setGenIngot(false);
 
 	public static MaterialHelper citrine = new MaterialHelper("citrine", 0xffe877, 800,
 			new HeadMaterialStats(430, 5.5f, 6.2f, HarvestLevels.IRON), new HandleMaterialStats(0.6f, -150),
 			new ExtraMaterialStats(100), new ShieldMaterialStats(430 / 4, 35), whyWouldYouMakeABowOutOfThis,
 			new HelmMaterialStats(430, 2, 0, 2.5f), new ChestMaterialStats(430, 5, 3, 3.5f),
-			new LegsMaterialStats(430, 5, 0, 3f), new FeetMaterialStats(430, 2, 0, 2.5f)).setGenFluid(false).setGenIngot(false);
+			new LegsMaterialStats(430, 5, 0, 3f), new FeetMaterialStats(430, 2, 0, 2.5f)).setGenFluid(false)
+					.setGenIngot(false);
 
 	public static MaterialHelper quartz = new MaterialHelper("quartz", 0xede8e8, 800,
 			new HeadMaterialStats(430, 5.5f, 7f, HarvestLevels.IRON), new HandleMaterialStats(0.6f, -150),
 			new ExtraMaterialStats(100), new ShieldMaterialStats(430 / 4, 35), whyWouldYouMakeABowOutOfThis,
 			new HelmMaterialStats(430, 2, 0, 2.5f), new ChestMaterialStats(430, 5, 3, 3.5f),
-			new LegsMaterialStats(430, 5, 0, 3f), new FeetMaterialStats(430, 2, 0, 2.5f)).setGenFluid(false).setGenIngot(false);
+			new LegsMaterialStats(430, 5, 0, 3f), new FeetMaterialStats(430, 2, 0, 2.5f)).setGenFluid(false)
+					.setGenIngot(false);
 
 	public static MaterialHelper amethyst = new MaterialHelper("amethyst", 0xb436e2, 800,
 			new HeadMaterialStats(530, 5.5f, 6.2f, HarvestLevels.IRON), new HandleMaterialStats(0.6f, -150),
 			new ExtraMaterialStats(100), new ShieldMaterialStats(430 / 4, 35), whyWouldYouMakeABowOutOfThis,
 			new HelmMaterialStats(530, 2, 0, 2.5f), new ChestMaterialStats(530, 5, 3, 3.5f),
-			new LegsMaterialStats(530, 5, 0, 3f), new FeetMaterialStats(530, 2, 0, 2.5f)).setGenFluid(false).setGenIngot(false);
+			new LegsMaterialStats(530, 5, 0, 3f), new FeetMaterialStats(530, 2, 0, 2.5f)).setGenFluid(false)
+					.setGenIngot(false);
 
 	public static MaterialHelper lapis = new MaterialHelper("lapis", 0x4349bc, 800,
 			new HeadMaterialStats(120, 2f, 2f, HarvestLevels.STONE), new HandleMaterialStats(1.1f, -150),
 			new ExtraMaterialStats(50), new ShieldMaterialStats(120 / 4, 35), whyWouldYouMakeABowOutOfThis,
 			new HelmMaterialStats(120, 2, 0, 2.5f), new ChestMaterialStats(120, 4, 3, 3.5f),
-			new LegsMaterialStats(120, 4, 0, 3f), new FeetMaterialStats(120, 2, 0, 2.5f)).setGenFluid(false).setGenIngot(false);
+			new LegsMaterialStats(120, 4, 0, 3f), new FeetMaterialStats(120, 2, 0, 2.5f)).setGenFluid(false)
+					.setGenIngot(false);
 
 	public static MaterialHelper topaz = new MaterialHelper("topaz", 0xffc551, 800,
 			new HeadMaterialStats(430, 5.5f, 6.2f, HarvestLevels.IRON), new HandleMaterialStats(0.7f, -150),
 			new ExtraMaterialStats(100), new ShieldMaterialStats(430 / 4, 35), whyWouldYouMakeABowOutOfThis,
 			new HelmMaterialStats(530, 2, 0, 2.5f), new ChestMaterialStats(530, 5, 3, 3.5f),
-			new LegsMaterialStats(530, 5, 0, 3f), new FeetMaterialStats(530, 2, 0, 2.5f)).setGenFluid(false).setGenIngot(false);
+			new LegsMaterialStats(530, 5, 0, 3f), new FeetMaterialStats(530, 2, 0, 2.5f)).setGenFluid(false)
+					.setGenIngot(false);
 
 	public static MaterialHelper garnet = new MaterialHelper("garnet", 0x9e1c1c, 800,
 			new HeadMaterialStats(430, 6.5f, 6.2f, HarvestLevels.IRON), new HandleMaterialStats(0.6f, -150),
 			new ExtraMaterialStats(100), new ShieldMaterialStats(430 / 4, 35), whyWouldYouMakeABowOutOfThis,
 			new HelmMaterialStats(530, 2, 0, 2.5f), new ChestMaterialStats(530, 5, 3, 3.5f),
-			new LegsMaterialStats(530, 5, 0, 3f), new FeetMaterialStats(530, 2, 0, 2.5f)).setGenFluid(false).setGenIngot(false);
+			new LegsMaterialStats(530, 5, 0, 3f), new FeetMaterialStats(530, 2, 0, 2.5f)).setGenFluid(false)
+					.setGenIngot(false);
 
 	public static MaterialHelper opal = new MaterialHelper("opal", 0xe2e2e2, 800,
 			new HeadMaterialStats(630, 5.5f, 6.2f, HarvestLevels.IRON), new HandleMaterialStats(0.6f, -150),
 			new ExtraMaterialStats(100), new ShieldMaterialStats(430 / 4, 35), whyWouldYouMakeABowOutOfThis,
 			new HelmMaterialStats(530, 2, 0, 2.5f), new ChestMaterialStats(530, 5, 3, 3.5f),
-			new LegsMaterialStats(530,5, 0, 3f), new FeetMaterialStats(530, 2, 0, 2.5f)).setGenFluid(false).setGenIngot(false);
+			new LegsMaterialStats(530, 5, 0, 3f), new FeetMaterialStats(530, 2, 0, 2.5f)).setGenFluid(false)
+					.setGenIngot(false);
 
 	public static MaterialHelper tanzinite = new MaterialHelper("tanzinite", 0x8860e5, 800,
 			new HeadMaterialStats(630, 5.5f, 6.2f, HarvestLevels.IRON), new HandleMaterialStats(0.6f, -150),
 			new ExtraMaterialStats(100), new ShieldMaterialStats(430 / 4, 35), whyWouldYouMakeABowOutOfThis,
 			new HelmMaterialStats(630, 2, 0, 2.5f), new ChestMaterialStats(630, 5, 3, 3.5f),
-			new LegsMaterialStats(630, 5, 0, 3f), new FeetMaterialStats(630, 2, 0, 2.5f)).setGenFluid(false).setGenIngot(false);
+			new LegsMaterialStats(630, 5, 0, 3f), new FeetMaterialStats(630, 2, 0, 2.5f)).setGenFluid(false)
+					.setGenIngot(false);
 
 	public static MaterialHelper amber = new MaterialHelper("amber", 0xdba827, 800,
 			new HeadMaterialStats(120, 2f, 3f, HarvestLevels.STONE), new HandleMaterialStats(1.1f, -150),
 			new ExtraMaterialStats(50), new ShieldMaterialStats(120 / 4, 35), whyWouldYouMakeABowOutOfThis,
 			new HelmMaterialStats(120, 2, 0, 2.5f), new ChestMaterialStats(120, 4, 3, 3.5f),
-			new LegsMaterialStats(120, 4, 0, 3f), new FeetMaterialStats(120, 2, 0, 2.5f)).setGenFluid(false).setGenIngot(false);
+			new LegsMaterialStats(120, 4, 0, 3f), new FeetMaterialStats(120, 2, 0, 2.5f)).setGenFluid(false)
+					.setGenIngot(false);
 	//
 	// // Cornucopia
 	// List<TDMatHelper> materials_cornucopia = new ArrayList<>(Arrays.asList(
@@ -400,15 +433,18 @@ public class TDMaterials {
 	// ArrayList<>(Arrays.asList("hardenedleather"));
 
 	// Vanilla TICO
-	public static MaterialHelper wood = new MaterialHelper("wood", 0x8e661b).setOreIngot("plankWood").setOreNugget("stickWood");
+	public static MaterialHelper wood = new MaterialHelper("wood", 0x8e661b).setOreIngot("plankWood")
+			.setOreNugget("stickWood");
 	public static MaterialHelper stone = new MaterialHelper("stone", 0x999999).setOreIngot("cobblestone");
 	public static MaterialHelper flint = new MaterialHelper("flint", 0x696969).setGenIngot(false).setGenNugget(false);
 	public static MaterialHelper cactus = new MaterialHelper("cactus", 0x00a10f).setGenIngot(false).setGenNugget(false);
 	public static MaterialHelper bone = new MaterialHelper("bone", 0xede6bf).setGenIngot(false).setGenNugget(false);
-	public static MaterialHelper obsidian = new MaterialHelper("obsidian", 0x601cc4).setGenIngot(false).setGenNugget(false);;
+	public static MaterialHelper obsidian = new MaterialHelper("obsidian", 0x601cc4).setGenIngot(false)
+			.setGenNugget(false);;
 	public static MaterialHelper prismarine = new MaterialHelper("prismarine", 0x7edebc).setGenIngot(false)
 			.setGenNugget(false);
-	public static MaterialHelper endstone = new MaterialHelper("endstone", 0xe0d890).setGenIngot(false).setGenNugget(false);;
+	public static MaterialHelper endstone = new MaterialHelper("endstone", 0xe0d890).setGenIngot(false)
+			.setGenNugget(false);;
 	public static MaterialHelper paper = new MaterialHelper("paper", 0xffffff).setGenIngot(false).setGenNugget(false);
 	public static MaterialHelper sponge = new MaterialHelper("sponge", 0xcacc4e).setGenIngot(false).setGenNugget(false);
 	public static MaterialHelper firewood = new MaterialHelper("firewood", 0xcc5300).setGenIngot(false)
@@ -456,30 +492,30 @@ public class TDMaterials {
 	@Subscribe
 	public void preInit(FMLPreInitializationEvent event) {
 
-//		plate = registerComponent("plate", Material.VALUE_Ingot);
-//		dust = registerComponent("dust", Material.VALUE_Ingot);
-//		gear = registerComponent("gear", Material.VALUE_Ingot * 4);
-//		grain = registerComponent("grain", Material.VALUE_Ingot / 4);
-//		// rod = registerComponent("rod", Material.VALUE_Ingot / 2);
-//		coin = registerComponent("coin", Material.VALUE_Nugget);
-//		wire = registerComponent("wire", Material.VALUE_Ingot);
-//		foil = registerComponent("foil", Material.VALUE_Ingot);
-//
-//		dust.setCast(false).setCraft(false);
-//		grain.setCast(false).setCraft(false);
-//		plate.setCast(false);
-//		gear.setCast(false);
-//		foil.setCraft(false);
-//		wire.setCraft(false);
-//
-//		itemList.add(plate);
-//		itemList.add(dust);
-//		itemList.add(gear);
-//		itemList.add(grain);
-//		// itemList.add(rod);
-//		itemList.add(coin);
-//		itemList.add(wire);
-//		itemList.add(foil);
+		// plate = registerComponent("plate", Material.VALUE_Ingot);
+		// dust = registerComponent("dust", Material.VALUE_Ingot);
+		// gear = registerComponent("gear", Material.VALUE_Ingot * 4);
+		// grain = registerComponent("grain", Material.VALUE_Ingot / 4);
+		// // rod = registerComponent("rod", Material.VALUE_Ingot / 2);
+		// coin = registerComponent("coin", Material.VALUE_Nugget);
+		// wire = registerComponent("wire", Material.VALUE_Ingot);
+		// foil = registerComponent("foil", Material.VALUE_Ingot);
+		//
+		// dust.setCast(false).setCraft(false);
+		// grain.setCast(false).setCraft(false);
+		// plate.setCast(false);
+		// gear.setCast(false);
+		// foil.setCraft(false);
+		// wire.setCraft(false);
+		//
+		// itemList.add(plate);
+		// itemList.add(dust);
+		// itemList.add(gear);
+		// itemList.add(grain);
+		// // itemList.add(rod);
+		// itemList.add(coin);
+		// itemList.add(wire);
+		// itemList.add(foil);
 
 		// if (TinkersDefense.config.materials.enableBaseMaterials)
 		// this.materials_master.addAll(materials_base);
@@ -541,7 +577,7 @@ public class TDMaterials {
 			materials.add(platinum);
 		if (TinkerRegistry.getMaterial(gold.name) == Material.UNKNOWN)
 			materials.add(gold);
-		
+
 		if (TinkerRegistry.getMaterial(sapphire.name) == Material.UNKNOWN)
 			materials.add(sapphire);
 		if (TinkerRegistry.getMaterial(emerald.name) == Material.UNKNOWN)
@@ -570,6 +606,42 @@ public class TDMaterials {
 			materials.add(tanzinite);
 		if (TinkerRegistry.getMaterial(amber.name) == Material.UNKNOWN)
 			materials.add(amber);
+
+		if (TinkerRegistry.getMaterial(black.name) == Material.UNKNOWN)
+			materials.add(black);
+		if (TinkerRegistry.getMaterial(red.name) == Material.UNKNOWN)
+			materials.add(red);
+		if (TinkerRegistry.getMaterial(green.name) == Material.UNKNOWN)
+			materials.add(green);
+		if (TinkerRegistry.getMaterial(brown.name) == Material.UNKNOWN)
+			materials.add(brown);
+		if (TinkerRegistry.getMaterial(blue.name) == Material.UNKNOWN)
+			materials.add(blue);
+		if (TinkerRegistry.getMaterial(purple.name) == Material.UNKNOWN)
+			materials.add(purple);
+		if (TinkerRegistry.getMaterial(cyan.name) == Material.UNKNOWN)
+			materials.add(cyan);
+		if (TinkerRegistry.getMaterial(lightgray.name) == Material.UNKNOWN)
+			materials.add(lightgray);
+		if (TinkerRegistry.getMaterial(gray.name) == Material.UNKNOWN)
+			materials.add(gray);
+		if (TinkerRegistry.getMaterial(pink.name) == Material.UNKNOWN)
+			materials.add(pink);
+		if (TinkerRegistry.getMaterial(lime.name) == Material.UNKNOWN)
+			materials.add(lime);
+		if (TinkerRegistry.getMaterial(yellow.name) == Material.UNKNOWN)
+			materials.add(yellow);
+		if (TinkerRegistry.getMaterial(lightblue.name) == Material.UNKNOWN)
+			materials.add(lightblue);
+		if (TinkerRegistry.getMaterial(magenta.name) == Material.UNKNOWN)
+			materials.add(magenta);
+		if (TinkerRegistry.getMaterial(orange.name) == Material.UNKNOWN)
+			materials.add(orange);
+		if (TinkerRegistry.getMaterial(white.name) == Material.UNKNOWN)
+			materials.add(white);
+
+		if (TinkerRegistry.getMaterial(silky.name) == Material.UNKNOWN)
+			materials.add(silky);
 
 		materials.add(wood);
 		materials.add(stone);
@@ -611,7 +683,7 @@ public class TDMaterials {
 				m.setupPre();
 		}
 
-		registerClothMaterials();
+		// registerClothMaterials();
 
 		TinkerRegistry.addMaterialStats(TinkerMaterials.wood, new ShieldMaterialStats(35, 25));
 		TinkerRegistry.addMaterialStats(TinkerMaterials.wood, new HelmMaterialStats(35, 1, 0, 0));
@@ -845,14 +917,14 @@ public class TDMaterials {
 			registry.register(i);
 		}
 
-//		TinkerRegistry.registerToolPart(plate);
-//		TinkerRegistry.registerToolPart(dust);
-//		TinkerRegistry.registerToolPart(gear);
-//		TinkerRegistry.registerToolPart(grain);
-//		// TinkerRegistry.registerToolPart(rod);
-//		TinkerRegistry.registerToolPart(coin);
-//		TinkerRegistry.registerToolPart(wire);
-//		TinkerRegistry.registerToolPart(foil);
+		// TinkerRegistry.registerToolPart(plate);
+		// TinkerRegistry.registerToolPart(dust);
+		// TinkerRegistry.registerToolPart(gear);
+		// TinkerRegistry.registerToolPart(grain);
+		// // TinkerRegistry.registerToolPart(rod);
+		// TinkerRegistry.registerToolPart(coin);
+		// TinkerRegistry.registerToolPart(wire);
+		// TinkerRegistry.registerToolPart(foil);
 	}
 
 	@Subscribe
@@ -906,37 +978,45 @@ public class TDMaterials {
 		TinkerRegistry.registerBasinCasting(new ItemStack(Blocks.ICE, 1, 0), ItemStack.EMPTY, fluidSlush,
 				Material.VALUE_Ingot);
 
-		if (!TD_Config.materials.isBlacklisted("aeonsteel"))
+		if (!TD_Config.materials.isBlacklisted("aeonsteel")
+				&& TinkerRegistry.getMaterial("aeonsteel") != Material.UNKNOWN)
 			registerAlloy(new FluidStack(getMaterialHelper("aeonsteel").fluid, 4), new FluidStack(fluidChorusJuice, 1),
 					new FluidStack(TinkerFluids.cobalt, 3));
 
-		if (!TD_Config.materials.isBlacklisted("queensgold"))
+		if (!TD_Config.materials.isBlacklisted("queensgold")
+				&& TinkerRegistry.getMaterial("queensgold") != Material.UNKNOWN)
 			TinkerRegistry.registerAlloy(new FluidStack(getMaterialHelper("queensgold").fluid, 2),
 					new FluidStack(TinkerFluids.gold, 1), new FluidStack(TinkerFluids.knightslime, 1));
 
-		if (!TD_Config.materials.isBlacklisted("dogbearium"))
+		if (!TD_Config.materials.isBlacklisted("dogbearium")
+				&& TinkerRegistry.getMaterial("dogbearium") != Material.UNKNOWN)
 			TinkerRegistry.registerAlloy(new FluidStack(getMaterialHelper("dogbearium").fluid, 4),
 					new FluidStack(TinkerFluids.ardite, 1), new FluidStack(fluidDragonsBreath, 3));
 
-		if (!TD_Config.materials.isBlacklisted("sinisterium"))
+		if (!TD_Config.materials.isBlacklisted("sinisterium")
+				&& TinkerRegistry.getMaterial("sinisterium") != Material.UNKNOWN)
 			TinkerRegistry.registerAlloy(new FluidStack(getMaterialHelper("sinisterium").fluid, 6),
 					new FluidStack(TinkerFluids.blood, 1), new FluidStack(fluidVile, 2),
 					new FluidStack(TinkerFluids.iron, 4));
 
-		if (!TD_Config.materials.isBlacklisted("nihilite"))
+		if (!TD_Config.materials.isBlacklisted("nihilite")
+				&& TinkerRegistry.getMaterial("nihilite") != Material.UNKNOWN)
 			TinkerRegistry.registerAlloy(new FluidStack(getMaterialHelper("nihilite").fluid, 3),
 					new FluidStack(TinkerFluids.cobalt, 1), new FluidStack(fluidVile, 2));
 
-		if (!TD_Config.materials.isBlacklisted("orichalcum"))
+		if (!TD_Config.materials.isBlacklisted("orichalcum")
+				&& TinkerRegistry.getMaterial("orichalcum") != Material.UNKNOWN)
 			TinkerRegistry.registerAlloy(new FluidStack(getMaterialHelper("orichalcum").fluid, 6),
 					new FluidStack(TinkerFluids.bronze, 4), new FluidStack(fluidVibrant, 2),
 					new FluidStack(TinkerFluids.gold, 1));
 
-		if (!TD_Config.materials.isBlacklisted("pandorium"))
+		if (!TD_Config.materials.isBlacklisted("pandorium")
+				&& TinkerRegistry.getMaterial("pandorium") != Material.UNKNOWN)
 			TinkerRegistry.registerAlloy(new FluidStack(getMaterialHelper("pandorium").fluid, 3),
 					new FluidStack(TinkerFluids.ardite, 1), new FluidStack(fluidVibrant, 2));
 
-		if (!TD_Config.materials.isBlacklisted("rosegold"))
+		if (!TD_Config.materials.isBlacklisted("rosegold")
+				&& TinkerRegistry.getMaterial("rosegold") != Material.UNKNOWN)
 			TinkerRegistry.registerAlloy(new FluidStack(getMaterialHelper("rosegold").fluid, 4),
 					new FluidStack(TinkerFluids.gold, 1), new FluidStack(TinkerFluids.copper, 3));
 
@@ -946,12 +1026,14 @@ public class TDMaterials {
 		// new FluidStack(TinkerFluids.copper, 2), new FluidStack(TinkerFluids.zinc,
 		// 2));
 
-		if (!TD_Config.materials.isBlacklisted("valyriansteel"))
+		if (!TD_Config.materials.isBlacklisted("valyriansteel")
+				&& TinkerRegistry.getMaterial("valyriansteel") != Material.UNKNOWN)
 			TinkerRegistry.registerAlloy(new FluidStack(getMaterialHelper("valyriansteel").fluid, 4),
 					new FluidStack(TinkerFluids.steel, 2), new FluidStack(TinkerFluids.obsidian, 2),
 					new FluidStack(fluidDragonsBreath, 1));
 
-		if (!TD_Config.materials.isBlacklisted("froststeel"))
+		if (!TD_Config.materials.isBlacklisted("froststeel")
+				&& TinkerRegistry.getMaterial("froststeel") != Material.UNKNOWN)
 			TinkerRegistry.registerAlloy(new FluidStack(getMaterialHelper("froststeel").fluid, 4),
 					new FluidStack(TinkerFluids.steel, 2), new FluidStack(TinkerFluids.cobalt, 2),
 					new FluidStack(fluidSlush, 1));
@@ -1057,13 +1139,13 @@ public class TDMaterials {
 
 	@Subscribe
 	public void postInit(FMLPostInitializationEvent event) {
-//		oreDictComponent("plate", plate);
-//		oreDictComponent("dust", dust);
-//		oreDictComponent("grain", grain);
-//		oreDictComponent("coin", coin);
-//		oreDictComponent("gear", gear);
-//		oreDictComponent("wire", wire);
-//		oreDictComponent("foil", foil);
+		// oreDictComponent("plate", plate);
+		// oreDictComponent("dust", dust);
+		// oreDictComponent("grain", grain);
+		// oreDictComponent("coin", coin);
+		// oreDictComponent("gear", gear);
+		// oreDictComponent("wire", wire);
+		// oreDictComponent("foil", foil);
 	}
 
 	void oreDictComponent(String name, ComponentPart item) {
@@ -1087,7 +1169,7 @@ public class TDMaterials {
 			if (TD_Config.materials.isBlacklisted(s)) {
 				return;
 			}
-		} 
+		}
 
 		AlloyRecipe r = new AlloyRecipe(null, components);
 		TinkerRegistry.registerAlloy(output, components);
@@ -1101,13 +1183,13 @@ public class TDMaterials {
 				m.setupModels();
 		}
 
-//		ModelRegisterUtil.registerPartModel(plate);
-//		ModelRegisterUtil.registerPartModel(gear);
-//		ModelRegisterUtil.registerPartModel(coin);
-//		ModelRegisterUtil.registerPartModel(grain);
-//		ModelRegisterUtil.registerPartModel(dust);
-//		ModelRegisterUtil.registerPartModel(wire);
-//		ModelRegisterUtil.registerPartModel(foil);
+		// ModelRegisterUtil.registerPartModel(plate);
+		// ModelRegisterUtil.registerPartModel(gear);
+		// ModelRegisterUtil.registerPartModel(coin);
+		// ModelRegisterUtil.registerPartModel(grain);
+		// ModelRegisterUtil.registerPartModel(dust);
+		// ModelRegisterUtil.registerPartModel(wire);
+		// ModelRegisterUtil.registerPartModel(foil);
 	}
 
 	@SubscribeEvent
@@ -1125,14 +1207,13 @@ public class TDMaterials {
 	}
 
 	@SubscribeEvent
-	public static void registerRecipes(RegistryEvent.Register<IRecipe> event)
-	{
+	public static void registerRecipes(RegistryEvent.Register<IRecipe> event) {
 		for (MaterialHelper m : materials) {
 			if (!TD_Config.materials.isBlacklisted(m.name))
 				m.setupRecipes(event);
 		}
 	}
-	
+
 	static FluidColored regFluid(String name, int color, RegistryEvent.Register<Block> event) {
 		FluidColored f = new FluidColored(name, color);
 		f.setUnlocalizedName(Reference.MOD_ID + "." + name);
@@ -1157,193 +1238,6 @@ public class TDMaterials {
 		TinkersDefense.proxy.registerFluidModels(f);
 
 		return f;
-	}
-
-	private void registerClothMaterials() {
-		black = new Material("blackcloth", 0x191616).setCraftable(true).setCastable(false);
-		;
-		red = new Material("redcloth", 0x963430).setCraftable(true).setCastable(false);
-		;
-		green = new Material("greencloth", 0x35461B).setCraftable(true).setCastable(false);
-		;
-		brown = new Material("browncloth", 0x4F321F).setCraftable(true).setCastable(false);
-		;
-		blue = new Material("bluecloth", 0x2E388D).setCraftable(true).setCastable(false);
-		;
-		purple = new Material("purplecloth", 0x7E3DB5).setCraftable(true).setCastable(false);
-		;
-		cyan = new Material("cyancloth", 0x2E6E89).setCraftable(true).setCastable(false);
-		;
-		lightgray = new Material("lightgraycloth", 0x9AA1A1).setCraftable(true).setCastable(false);
-		;
-		gray = new Material("graycloth", 0x404040).setCraftable(true).setCastable(false);
-		;
-		pink = new Material("pinkcloth", 0xD08499).setCraftable(true).setCastable(false);
-		;
-		lime = new Material("limecloth", 0x41AE38).setCraftable(true).setCastable(false);
-		;
-		yellow = new Material("yellowcloth", 0xB1A627).setCraftable(true).setCastable(false);
-		;
-		lightblue = new Material("lightbluecloth", 0x6B8AC9).setCraftable(true).setCastable(false);
-		;
-		magenta = new Material("magentacloth", 0xB350BC).setCraftable(true).setCastable(false);
-		;
-		orange = new Material("orangecloth", 0xDB7D3E).setCraftable(true).setCastable(false);
-		;
-		white = new Material("whitecloth", 0xDDDDDD).setCraftable(true).setCastable(false);
-		;
-
-		// Material.UNKNOWN.addStats(new MaterialCloth(100));
-		black.addItem(new ItemStack(Blocks.WOOL, 1, 15), 1, Material.VALUE_Ingot);
-		red.addItem(new ItemStack(Blocks.WOOL, 1, 14), 1, Material.VALUE_Ingot);
-		green.addItem(new ItemStack(Blocks.WOOL, 1, 13), 1, Material.VALUE_Ingot);
-		brown.addItem(new ItemStack(Blocks.WOOL, 1, 12), 1, Material.VALUE_Ingot);
-		blue.addItem(new ItemStack(Blocks.WOOL, 1, 11), 1, Material.VALUE_Ingot);
-		purple.addItem(new ItemStack(Blocks.WOOL, 1, 10), 1, Material.VALUE_Ingot);
-		cyan.addItem(new ItemStack(Blocks.WOOL, 1, 9), 1, Material.VALUE_Ingot);
-		lightgray.addItem(new ItemStack(Blocks.WOOL, 1, 8), 1, Material.VALUE_Ingot);
-		gray.addItem(new ItemStack(Blocks.WOOL, 1, 7), 1, Material.VALUE_Ingot);
-		pink.addItem(new ItemStack(Blocks.WOOL, 1, 6), 1, Material.VALUE_Ingot);
-		lime.addItem(new ItemStack(Blocks.WOOL, 1, 5), 1, Material.VALUE_Ingot);
-		yellow.addItem(new ItemStack(Blocks.WOOL, 1, 4), 1, Material.VALUE_Ingot);
-		lightblue.addItem(new ItemStack(Blocks.WOOL, 1, 3), 1, Material.VALUE_Ingot);
-		magenta.addItem(new ItemStack(Blocks.WOOL, 1, 2), 1, Material.VALUE_Ingot);
-		orange.addItem(new ItemStack(Blocks.WOOL, 1, 1), 1, Material.VALUE_Ingot);
-		white.addItem(new ItemStack(Blocks.WOOL, 1, 0), 1, Material.VALUE_Ingot);
-
-		black.setRepresentativeItem(new ItemStack(Blocks.WOOL, 1, 15));
-		red.setRepresentativeItem(new ItemStack(Blocks.WOOL, 1, 14));
-		green.setRepresentativeItem(new ItemStack(Blocks.WOOL, 1, 13));
-		brown.setRepresentativeItem(new ItemStack(Blocks.WOOL, 1, 12));
-		blue.setRepresentativeItem(new ItemStack(Blocks.WOOL, 1, 11));
-		purple.setRepresentativeItem(new ItemStack(Blocks.WOOL, 1, 10));
-		cyan.setRepresentativeItem(new ItemStack(Blocks.WOOL, 1, 9));
-		lightgray.setRepresentativeItem(new ItemStack(Blocks.WOOL, 1, 8));
-		gray.setRepresentativeItem(new ItemStack(Blocks.WOOL, 1, 7));
-		pink.setRepresentativeItem(new ItemStack(Blocks.WOOL, 1, 6));
-		lime.setRepresentativeItem(new ItemStack(Blocks.WOOL, 1, 5));
-		yellow.setRepresentativeItem(new ItemStack(Blocks.WOOL, 1, 4));
-		lightblue.setRepresentativeItem(new ItemStack(Blocks.WOOL, 1, 3));
-		magenta.setRepresentativeItem(new ItemStack(Blocks.WOOL, 1, 2));
-		orange.setRepresentativeItem(new ItemStack(Blocks.WOOL, 1, 1));
-		white.setRepresentativeItem(new ItemStack(Blocks.WOOL, 1, 0));
-
-		TinkerRegistry.addMaterialStats(this.white, new FabricMaterialStats(100, 0, 0, 25));
-		TinkerRegistry.addMaterialStats(this.black, new FabricMaterialStats(100, 0, 0, 25));
-		TinkerRegistry.addMaterialStats(this.blue, new FabricMaterialStats(100, 0, 0, 25));
-		TinkerRegistry.addMaterialStats(this.brown, new FabricMaterialStats(100, 0, 0, 25));
-		TinkerRegistry.addMaterialStats(this.cyan, new FabricMaterialStats(100, 0, 0, 25));
-		TinkerRegistry.addMaterialStats(this.gray, new FabricMaterialStats(100, 0, 0, 25));
-		TinkerRegistry.addMaterialStats(this.green, new FabricMaterialStats(100, 0, 0, 25));
-		TinkerRegistry.addMaterialStats(this.lightblue, new FabricMaterialStats(100, 0, 0, 25));
-		TinkerRegistry.addMaterialStats(this.lightgray, new FabricMaterialStats(100, 0, 0, 25));
-		TinkerRegistry.addMaterialStats(this.lime, new FabricMaterialStats(100, 0, 0, 25));
-		TinkerRegistry.addMaterialStats(this.magenta, new FabricMaterialStats(100, 0, 0, 25));
-		TinkerRegistry.addMaterialStats(this.orange, new FabricMaterialStats(100, 0, 0, 25));
-		TinkerRegistry.addMaterialStats(this.pink, new FabricMaterialStats(100, 0, 0, 25));
-		TinkerRegistry.addMaterialStats(this.purple, new FabricMaterialStats(100, 0, 0, 25));
-		TinkerRegistry.addMaterialStats(this.red, new FabricMaterialStats(100, 0, 0, 25));
-		TinkerRegistry.addMaterialStats(this.yellow, new FabricMaterialStats(100, 0, 0, 25));
-
-		TinkerRegistry.addMaterialStats(this.white, new ExtraMaterialStats(10));
-		TinkerRegistry.addMaterialStats(this.black, new ExtraMaterialStats(10));
-		TinkerRegistry.addMaterialStats(this.blue, new ExtraMaterialStats(10));
-		TinkerRegistry.addMaterialStats(this.brown, new ExtraMaterialStats(10));
-		TinkerRegistry.addMaterialStats(this.cyan, new ExtraMaterialStats(10));
-		TinkerRegistry.addMaterialStats(this.gray, new ExtraMaterialStats(10));
-		TinkerRegistry.addMaterialStats(this.green, new ExtraMaterialStats(10));
-		TinkerRegistry.addMaterialStats(this.lightblue, new ExtraMaterialStats(10));
-		TinkerRegistry.addMaterialStats(this.lightgray, new ExtraMaterialStats(10));
-		TinkerRegistry.addMaterialStats(this.lime, new ExtraMaterialStats(10));
-		TinkerRegistry.addMaterialStats(this.magenta, new ExtraMaterialStats(10));
-		TinkerRegistry.addMaterialStats(this.orange, new ExtraMaterialStats(10));
-		TinkerRegistry.addMaterialStats(this.pink, new ExtraMaterialStats(10));
-		TinkerRegistry.addMaterialStats(this.purple, new ExtraMaterialStats(10));
-		TinkerRegistry.addMaterialStats(this.red, new ExtraMaterialStats(10));
-		TinkerRegistry.addMaterialStats(this.yellow, new ExtraMaterialStats(10));
-
-		// TinkerRegistry.addMaterialStats(this.white, new
-		// ExtraMaterialStats(5));
-		// TinkerRegistry.addMaterialStats(this.black, new
-		// ExtraMaterialStats(5));
-		// TinkerRegistry.addMaterialStats(this.blue, new
-		// ExtraMaterialStats(5));
-		// TinkerRegistry.addMaterialStats(this.brown, new
-		// ExtraMaterialStats(5));
-		// TinkerRegistry.addMaterialStats(this.cyan, new
-		// ExtraMaterialStats(5));
-		// TinkerRegistry.addMaterialStats(this.gray, new
-		// ExtraMaterialStats(5));
-		// TinkerRegistry.addMaterialStats(this.green, new
-		// ExtraMaterialStats(5));
-		// TinkerRegistry.addMaterialStats(this.lightblue, new
-		// ExtraMaterialStats(5));
-		// TinkerRegistry.addMaterialStats(this.lightgray, new
-		// ExtraMaterialStats(5));
-		// TinkerRegistry.addMaterialStats(this.lime, new
-		// ExtraMaterialStats(5));
-		// TinkerRegistry.addMaterialStats(this.magenta, new
-		// ExtraMaterialStats(5));
-		// TinkerRegistry.addMaterialStats(this.orange, new
-		// ExtraMaterialStats(5));
-		// TinkerRegistry.addMaterialStats(this.pink, new
-		// ExtraMaterialStats(5));
-		// TinkerRegistry.addMaterialStats(this.purple, new
-		// ExtraMaterialStats(5));
-		// TinkerRegistry.addMaterialStats(this.red, new ExtraMaterialStats(5));
-		// TinkerRegistry.addMaterialStats(this.yellow, new
-		// ExtraMaterialStats(5));
-
-		// materials.add(white);
-		// materials.add(orange);
-		// materials.add(magenta);
-		// materials.add(lightblue);
-		// materials.add(yellow);
-		// materials.add(lime);
-		// materials.add(pink);
-		// materials.add(gray);
-		// materials.add(lightgray);
-		// materials.add(cyan);
-		// materials.add(purple);
-		// materials.add(blue);
-		// materials.add(brown);
-		// materials.add(green);
-		// materials.add(red);
-		// materials.add(black);
-
-		TinkerRegistry.integrate(new MaterialIntegration(white).toolforge()).preInit();
-		TinkerRegistry.integrate(new MaterialIntegration(orange).toolforge()).preInit();
-		TinkerRegistry.integrate(new MaterialIntegration(magenta).toolforge()).preInit();
-		TinkerRegistry.integrate(new MaterialIntegration(lightblue).toolforge()).preInit();
-		TinkerRegistry.integrate(new MaterialIntegration(yellow).toolforge()).preInit();
-		TinkerRegistry.integrate(new MaterialIntegration(lime).toolforge()).preInit();
-		TinkerRegistry.integrate(new MaterialIntegration(pink).toolforge()).preInit();
-		TinkerRegistry.integrate(new MaterialIntegration(gray).toolforge()).preInit();
-		TinkerRegistry.integrate(new MaterialIntegration(lightgray).toolforge()).preInit();
-		TinkerRegistry.integrate(new MaterialIntegration(cyan).toolforge()).preInit();
-		TinkerRegistry.integrate(new MaterialIntegration(purple).toolforge()).preInit();
-		TinkerRegistry.integrate(new MaterialIntegration(blue).toolforge()).preInit();
-		TinkerRegistry.integrate(new MaterialIntegration(brown).toolforge()).preInit();
-		TinkerRegistry.integrate(new MaterialIntegration(green).toolforge()).preInit();
-		TinkerRegistry.integrate(new MaterialIntegration(red).toolforge()).preInit();
-		TinkerRegistry.integrate(new MaterialIntegration(black).toolforge()).preInit();
-
-		// TinkerRegistry.addMaterialStats(black, new MaterialCloth(100));
-		// TinkerRegistry.addMaterialStats(red, new MaterialCloth(100));
-		// TinkerRegistry.addMaterialStats(green, new MaterialCloth(100));
-		// TinkerRegistry.addMaterialStats(brown, new MaterialCloth(100));
-		// TinkerRegistry.addMaterialStats(blue, new MaterialCloth(100));
-		// TinkerRegistry.addMaterialStats(purple, new MaterialCloth(100));
-		// TinkerRegistry.addMaterialStats(cyan, new MaterialCloth(100));
-		// TinkerRegistry.addMaterialStats(lightgray, new MaterialCloth(100));
-		// TinkerRegistry.addMaterialStats(gray, new MaterialCloth(100));
-		// TinkerRegistry.addMaterialStats(pink, new MaterialCloth(100));
-		// TinkerRegistry.addMaterialStats(lime, new MaterialCloth(100));
-		// TinkerRegistry.addMaterialStats(yellow, new MaterialCloth(100));
-		// TinkerRegistry.addMaterialStats(lightblue, new MaterialCloth(100));
-		// TinkerRegistry.addMaterialStats(magenta, new MaterialCloth(100));
-		// TinkerRegistry.addMaterialStats(orange, new MaterialCloth(100));
-		// TinkerRegistry.addMaterialStats(white, new MaterialCloth(100));
 	}
 
 	/** Registers a non-burning water based block for the fluid */

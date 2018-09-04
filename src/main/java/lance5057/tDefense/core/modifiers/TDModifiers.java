@@ -1,11 +1,12 @@
-package lance5057.tDefense.core.tools.modifiers;
+package lance5057.tDefense.core.modifiers;
 
 import java.util.ArrayList;
 
 import lance5057.tDefense.Reference;
 import lance5057.tDefense.TinkersDefense;
-import lance5057.tDefense.core.modifiers.ModDeadMansSwitch;
+import lance5057.tDefense.core.parts.TDParts;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Enchantments;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -15,7 +16,9 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.IForgeRegistry;
 import slimeknights.mantle.util.RecipeMatch;
 import slimeknights.tconstruct.library.TinkerRegistry;
+import slimeknights.tconstruct.library.materials.Material;
 import slimeknights.tconstruct.library.modifiers.Modifier;
+import slimeknights.tconstruct.tools.TinkerMaterials;
 
 @Mod.EventBusSubscriber(modid = Reference.MOD_ID)
 public class TDModifiers {
@@ -32,6 +35,10 @@ public class TDModifiers {
 	Item item_flippers;
 	
 	Modifier deadmansswitch = new ModDeadMansSwitch();
+	Modifier protection = new ModProtection("protection", 0xe2e2e2, Enchantments.PROTECTION);
+	Modifier projprotection = new ModProtection("projprotection", 0xffffff, Enchantments.PROJECTILE_PROTECTION);
+	Modifier blastprotection = new ModProtection("blastprotection", 0x0bad00, Enchantments.BLAST_PROTECTION);
+	Modifier fireprotection = new ModProtection("fireprotection", 0xfcb56a, Enchantments.FIRE_PROTECTION);
 	
 	static ArrayList<Item> itemList = new ArrayList<Item>();
 	
@@ -52,7 +59,14 @@ public class TDModifiers {
 	public void init()
 	{
 		deadmansswitch.addRecipeMatch(new RecipeMatch.ItemCombination(1, new ItemStack(Blocks.TNT),new ItemStack(Items.REPEATER),new ItemStack(Blocks.TNT)));
-		//TinkerRegistry.registerModifier(deadmansswitch);
+		
+		ItemStack plate = TDParts.armorPlate.getItemstackWithMaterial(TinkerMaterials.iron);
+		ItemStack rivet = TDParts.rivets.getItemstackWithMaterial(TinkerMaterials.iron);
+		
+		protection.addRecipeMatch(new RecipeMatch.Item(plate, 1));
+		fireprotection.addRecipeMatch(new RecipeMatch.Item(new ItemStack(Items.MAGMA_CREAM), 1));
+		blastprotection.addRecipeMatch(new RecipeMatch.Item(new ItemStack(Blocks.WOOL), 1));
+		projprotection.addRecipeMatch(new RecipeMatch.Item(rivet, 4));
 	}
 	
 	public void postInit()

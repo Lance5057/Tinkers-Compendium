@@ -11,6 +11,7 @@ public final class ArmorTags
 	  /** Finishing Anvil **/
 	  public static final String AnvilBase = "AnvilBase";
 	  public static final String ModelType = "Type";
+	  public static final String ModelParts = "ModelParts";
 	  
 	  /** Armor **/
 	  public static final String ArmorBaseTag = "Armor";

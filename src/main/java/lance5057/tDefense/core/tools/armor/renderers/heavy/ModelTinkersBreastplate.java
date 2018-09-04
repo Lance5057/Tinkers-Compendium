@@ -1,5 +1,6 @@
 package lance5057.tDefense.core.tools.armor.renderers.heavy;
 
+import lance5057.tDefense.core.library.interfaces.IFinishingAnvil;
 import lance5057.tDefense.core.tools.armor.renderers.ArmorRenderer;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.item.ItemStack;
@@ -8,7 +9,7 @@ import net.minecraft.item.ItemStack;
  * ModelPlayer - Either Mojang or a mod author
  * Created using Tabula 7.0.0
  */
-public class ModelTinkersBreastplate extends ArmorRenderer {
+public class ModelTinkersBreastplate extends ArmorRenderer implements IFinishingAnvil {
     public ModelRenderer BackPlate;
     public ModelRenderer BreastPlate;
     public ModelRenderer Plackart; 
@@ -76,5 +77,7 @@ public class ModelTinkersBreastplate extends ArmorRenderer {
         this.PauldronL.addBox(0.5F, -2.0F, -3.5F, 4, 5, 7, 0.1F);
         this.setRotateAngle(PauldronL, 0.0F, 0.0F, -0.4363323129985824F);
         this.bipedLeftArm.addChild(PauldronL);
+        
+        this.partsList = init(stack, this.boxList);
     }
 }

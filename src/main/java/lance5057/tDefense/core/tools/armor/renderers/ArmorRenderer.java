@@ -1,5 +1,7 @@
 package lance5057.tDefense.core.tools.armor.renderers;
 
+import java.util.Map;
+
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.texture.DynamicTexture;
@@ -10,7 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
 public class ArmorRenderer extends ModelBiped {
-	// public String[] partNames;
+	public Map<String, Boolean> partsList;
 
 	public ItemStack stack;
 	public String defaultFolder;

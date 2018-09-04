@@ -51,7 +51,7 @@ public class TinkersHelm extends ArmorCore {
 		super(EntityEquipmentSlot.HEAD, new PartMaterialType(TinkerTools.panHead, HelmMaterialStats.TYPE),
 				new PartMaterialType(TDParts.chainmail, HelmMaterialStats.TYPE),
 				PartMaterialType.handle(TDParts.filigree), PartMaterialType.extra(TDParts.armorPlate),
-				PartMaterialType.extra(TDParts.fabric));
+				new PartMaterialType(TDParts.fabric, FabricMaterialStats.TYPE));
 		setUnlocalizedName("tinkershelm");
 	}
 

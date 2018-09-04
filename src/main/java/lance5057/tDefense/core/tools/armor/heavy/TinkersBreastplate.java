@@ -7,6 +7,7 @@ import lance5057.tDefense.core.library.ArmorTags;
 import lance5057.tDefense.core.library.ArmorTextureBuilder;
 import lance5057.tDefense.core.materials.stats.ArmorMaterialStats;
 import lance5057.tDefense.core.materials.stats.ChestMaterialStats;
+import lance5057.tDefense.core.materials.stats.FabricMaterialStats;
 import lance5057.tDefense.core.parts.TDParts;
 import lance5057.tDefense.core.tools.armor.renderers.heavy.ModelTinkersBreastplate;
 import lance5057.tDefense.core.tools.bases.ArmorCore;
@@ -31,7 +32,7 @@ public class TinkersBreastplate extends ArmorCore {
 				new PartMaterialType(TDParts.armorPlate, ChestMaterialStats.TYPE),
 				PartMaterialType.handle(TDParts.filigree),
 				PartMaterialType.extra(TDParts.chainmail),
-				PartMaterialType.extra(TDParts.fabric));
+				new PartMaterialType(TDParts.fabric, FabricMaterialStats.TYPE));
 		setUnlocalizedName("tinkersbreastplate");
 	}
 

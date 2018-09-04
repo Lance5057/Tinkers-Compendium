@@ -38,7 +38,7 @@ public class TinkersSabatons extends ArmorCore {
 				new PartMaterialType(TDParts.armorPlate, FeetMaterialStats.TYPE),
 				PartMaterialType.handle(TDParts.filigree),
 				PartMaterialType.extra(TDParts.rivets),
-				PartMaterialType.extra(TDParts.fabric));
+				new PartMaterialType(TDParts.fabric, FabricMaterialStats.TYPE));
 		setUnlocalizedName("tinkerssabatons");
 	}
 
@@ -96,7 +96,7 @@ public class TinkersSabatons extends ArmorCore {
 		ArmorNBT data = new ArmorNBT();
 
 		ArmorMaterialStats head2 = materials.get(0).getStatsOrUnknown(FeetMaterialStats.TYPE);
-		ArmorMaterialStats head = materials.get(1).getStatsOrUnknown(FabricMaterialStats.TYPE);
+		ArmorMaterialStats head = materials.get(1).getStatsOrUnknown(FeetMaterialStats.TYPE);
 		HandleMaterialStats handle = materials.get(2).getStatsOrUnknown(MaterialTypes.HANDLE);
 		ExtraMaterialStats extra = materials.get(3).getStatsOrUnknown(MaterialTypes.EXTRA);
 		// start with head
