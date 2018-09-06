@@ -16,7 +16,16 @@ public class RegDummy extends ToolCore {
 	public static final float DURABILITY_MODIFIER = 1.0f;
 
 	public RegDummy() {
+		//Hardcore sword test
 		super(PartMaterialType.head(TDParts.chainmail));
+		
+//		super(PartMaterialType.head(TinkerTools.swordBlade), 
+//				PartMaterialType.handle(TinkerTools.toolRod), 
+//				PartMaterialType.extra(TinkerTools.wideGuard),
+//				PartMaterialType.extra(TDParts.rivets),
+//				PartMaterialType.extra(TDParts.fabric),
+//				PartMaterialType.extra(TDParts.filigree),
+//				PartMaterialType.extra(TinkerTools.arrowHead));
 
 		setUnlocalizedName("regdummy");
 	}
@@ -36,9 +45,9 @@ public class RegDummy extends ToolCore {
 	@Override
 	public NBTTagCompound buildTag(List<Material> materials) {
 		ToolNBT data = buildDefaultTag(materials);
-	    // 2 base damage, like vanilla swords
-	    data.attack += 1f;
-	    data.durability *= DURABILITY_MODIFIER;
-	    return data.get();
+		// 2 base damage, like vanilla swords
+		data.attack += 1f;
+		data.durability *= DURABILITY_MODIFIER;
+		return data.get();
 	}
 }

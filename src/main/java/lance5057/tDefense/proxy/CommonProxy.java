@@ -107,6 +107,7 @@ public class CommonProxy implements IGuiHandler {
 	public static void registerBlocks(RegistryEvent.Register<Block> event) {
 		//TinkersDefense.mats.registerBlocks(event);
 		TinkersDefense.tools.registerBlocks(event);
+		TinkersDefense.modifiers.registerBlocks(event);
 
 	}
 

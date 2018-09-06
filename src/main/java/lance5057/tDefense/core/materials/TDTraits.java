@@ -11,11 +11,15 @@ import lance5057.tDefense.core.materials.traits.TraitBoneSpurs;
 import lance5057.tDefense.core.materials.traits.TraitBuoyant;
 import lance5057.tDefense.core.materials.traits.TraitCurrentRider;
 import lance5057.tDefense.core.materials.traits.TraitDamageNegation;
+import lance5057.tDefense.core.materials.traits.TraitDamageReductionDimension;
 import lance5057.tDefense.core.materials.traits.TraitDamageSourceAlteration;
 import lance5057.tDefense.core.materials.traits.TraitEarthbound;
 import lance5057.tDefense.core.materials.traits.TraitFins;
+import lance5057.tDefense.core.materials.traits.TraitFirewalker;
+import lance5057.tDefense.core.materials.traits.TraitForestMask;
 import lance5057.tDefense.core.materials.traits.TraitGills;
 import lance5057.tDefense.core.materials.traits.TraitGlassine;
+import lance5057.tDefense.core.materials.traits.TraitGreenthumb;
 import lance5057.tDefense.core.materials.traits.TraitHog;
 import lance5057.tDefense.core.materials.traits.TraitHotFoot;
 import lance5057.tDefense.core.materials.traits.TraitHotHead;
@@ -29,11 +33,15 @@ import lance5057.tDefense.core.materials.traits.TraitPhotosynthetic;
 import lance5057.tDefense.core.materials.traits.TraitPiggy;
 import lance5057.tDefense.core.materials.traits.TraitPotionRemoval;
 import lance5057.tDefense.core.materials.traits.TraitPricked;
+import lance5057.tDefense.core.materials.traits.TraitPyrosynthesis;
 import lance5057.tDefense.core.materials.traits.TraitReduceKnockback;
+import lance5057.tDefense.core.materials.traits.TraitShifting;
 import lance5057.tDefense.core.materials.traits.TraitSoggy;
+import lance5057.tDefense.core.materials.traits.TraitSounder;
 import lance5057.tDefense.core.materials.traits.TraitSpiny;
 import lance5057.tDefense.core.materials.traits.TraitStoned;
 import lance5057.tDefense.core.materials.traits.TraitToasty;
+import lance5057.tDefense.core.materials.traits.TraitTrotters;
 import lance5057.tDefense.core.materials.traits.TraitVoidCall;
 import lance5057.tDefense.core.materials.traits.TraitWarp;
 import lance5057.tDefense.core.materials.traits.TraitWarpedMind;
@@ -42,6 +50,7 @@ import net.minecraft.init.MobEffects;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraft.world.DimensionType;
 import slimeknights.tconstruct.tools.TinkerMaterials;
 
 public class TDTraits {
@@ -109,6 +118,22 @@ public class TDTraits {
 	
 	public TraitPiggy piggy = new TraitPiggy();
 	public TraitHog hog = new TraitHog();
+	public TraitSounder sounder = new TraitSounder();
+	public TraitTrotters trotters = new TraitTrotters();
+	
+	public TraitShifting shifting = new TraitShifting(blockhead, glassine, hothead, incinerate, magnetism, novel, warp);
+	public TraitReduceKnockback gumshoe2 = new TraitReduceKnockback("gumshoe2",
+			TextFormatting.LIGHT_PURPLE, 0.5f);
+	
+	public TraitDamageReductionDimension hellbound = new TraitDamageReductionDimension("hellbound", TextFormatting.DARK_RED, DimensionType.NETHER, 0.75f);
+	public TraitPyrosynthesis pyrosynthetic = new TraitPyrosynthesis(1);
+	public TraitPyrosynthesis pyrosynthetic2 = new TraitPyrosynthesis(2);
+	public TraitFirewalker firewalker = new TraitFirewalker(3);
+	
+	public TraitForestMask forestmask = new TraitForestMask();
+	public TraitPotionRemoval slick = new TraitPotionRemoval("slick", TextFormatting.GREEN,
+			MobEffects.SLOWNESS, MobEffects.MINING_FATIGUE);
+	public TraitGreenthumb greenthumb = new TraitGreenthumb();
 
 	public void preInit() {
 
@@ -191,6 +216,28 @@ public class TDTraits {
 		
 		TinkerMaterials.pigiron.addTrait(piggy, HelmMaterialStats.TYPE);
 		TinkerMaterials.pigiron.addTrait(hog, ChestMaterialStats.TYPE);
+		TinkerMaterials.pigiron.addTrait(sounder, LegsMaterialStats.TYPE);
+		TinkerMaterials.pigiron.addTrait(trotters, FeetMaterialStats.TYPE);
+		
+		TinkerMaterials.knightslime.addTrait(shifting, HelmMaterialStats.TYPE);
+		TinkerMaterials.knightslime.addTrait(shifting, ChestMaterialStats.TYPE);
+		TinkerMaterials.knightslime.addTrait(shifting, LegsMaterialStats.TYPE);
+		TinkerMaterials.knightslime.addTrait(gumshoe2, FeetMaterialStats.TYPE);
+		
+		TinkerMaterials.magmaslime.addTrait(pyrosynthetic, HelmMaterialStats.TYPE);
+		TinkerMaterials.magmaslime.addTrait(pyrosynthetic2, ChestMaterialStats.TYPE);
+		TinkerMaterials.magmaslime.addTrait(slick, LegsMaterialStats.TYPE);
+		TinkerMaterials.magmaslime.addTrait(firewalker, FeetMaterialStats.TYPE);
+		TinkerMaterials.magmaslime.addTrait(hellbound, HelmMaterialStats.TYPE);
+		TinkerMaterials.magmaslime.addTrait(hellbound, ChestMaterialStats.TYPE);
+		TinkerMaterials.magmaslime.addTrait(hellbound, LegsMaterialStats.TYPE);
+		TinkerMaterials.magmaslime.addTrait(hellbound, FeetMaterialStats.TYPE);
+		
+		TinkerMaterials.slime.addTrait(forestmask, HelmMaterialStats.TYPE);
+		TinkerMaterials.slime.addTrait(photosynth, ChestMaterialStats.TYPE);
+		TinkerMaterials.slime.addTrait(slick, LegsMaterialStats.TYPE);
+		TinkerMaterials.slime.addTrait(greenthumb, FeetMaterialStats.TYPE);
+
 	}
 
 	public void postInit() {

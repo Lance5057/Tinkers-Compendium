@@ -7,7 +7,7 @@ import com.google.common.eventbus.Subscribe;
 
 import lance5057.tDefense.Reference;
 import lance5057.tDefense.TinkersDefense;
-import lance5057.tDefense.core.blocks.ArmorStationBlock;
+import lance5057.tDefense.core.blocks.workstation.ArmorStationBlock;
 import lance5057.tDefense.core.library.CustomArmorTextureCreator;
 import lance5057.tDefense.core.library.TDRegistry;
 import lance5057.tDefense.core.network.ArmorStationSelectionPacket;

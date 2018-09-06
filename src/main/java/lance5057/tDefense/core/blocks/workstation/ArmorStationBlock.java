@@ -1,4 +1,4 @@
-package lance5057.tDefense.core.blocks;
+package lance5057.tDefense.core.blocks.workstation;
 
 import javax.annotation.Nonnull;
 
@@ -36,23 +36,23 @@ import slimeknights.tconstruct.shared.block.BlockTable;
 import slimeknights.tconstruct.tools.common.block.ITinkerStationBlock;
 import slimeknights.tconstruct.tools.common.block.BlockToolTable.TableTypes;
 
-public class FinishingAnvilBlock extends BlockTable implements ITinkerStationBlock {
+public class ArmorStationBlock extends BlockTable implements ITinkerStationBlock {
 
-	public FinishingAnvilBlock() {
-		super(Material.IRON);
-		this.setUnlocalizedName("finishinganvil");
-		this.setRegistryName("finishinganvil");
+	public ArmorStationBlock() {
+		super(Material.WOOD);
+		this.setUnlocalizedName("armorstation");
+		this.setRegistryName("armorstation");
 		this.setCreativeTab(TinkersDefense.tab);
-		this.setSoundType(SoundType.ANVIL);
+		this.setSoundType(SoundType.WOOD);
 		this.setResistance(5f);
 		this.setHardness(1f);
-		this.setHarvestLevel("pickaxe", 0);
+		this.setHarvestLevel("axe", 0);
 	}
 
 	@Nonnull
 	@Override
 	public TileEntity createNewTileEntity(@Nonnull World worldIn, int meta) {
-		//return new ArmorStationTile();
+		return new ArmorStationTile();
 	}
 
 	@Nonnull
@@ -64,7 +64,7 @@ public class FinishingAnvilBlock extends BlockTable implements ITinkerStationBlo
 	@Override
 	public boolean openGui(EntityPlayer player, World world, BlockPos pos) {
 		if (!world.isRemote) {
-			player.openGui(TConstruct.instance, , world, pos.getX(), pos.getY(), pos.getZ());
+			player.openGui(TConstruct.instance, 0, world, pos.getX(), pos.getY(), pos.getZ());
 			if (player.openContainer instanceof BaseContainer) {
 				((BaseContainer) player.openContainer).syncOnOpen((EntityPlayerMP) player);
 			}
@@ -74,11 +74,11 @@ public class FinishingAnvilBlock extends BlockTable implements ITinkerStationBlo
 
 	@Override
 	public int getGuiNumber(IBlockState state) {
-		return 56;
+		return 55;
 	}
 
 	private static ImmutableList<AxisAlignedBB> BOUNDS_Table = ImmutableList
-			//.of(new AxisAlignedBB(0.5, 0.5, 0.5, 1, 1, 1));
+			.of(new AxisAlignedBB(0.5, 0.5, 0.5, 1, 1, 1));
 
 	@Override
 	public RayTraceResult collisionRayTrace(IBlockState blockState, @Nonnull World worldIn, @Nonnull BlockPos pos,

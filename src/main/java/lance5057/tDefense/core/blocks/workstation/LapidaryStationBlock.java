@@ -1,4 +1,4 @@
-package lance5057.tDefense.core.blocks;
+package lance5057.tDefense.core.blocks.workstation;
 
 import javax.annotation.Nonnull;
 

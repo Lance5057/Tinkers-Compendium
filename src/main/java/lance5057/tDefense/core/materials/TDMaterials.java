@@ -916,15 +916,6 @@ public class TDMaterials {
 		for (Item i : itemList) {
 			registry.register(i);
 		}
-
-		// TinkerRegistry.registerToolPart(plate);
-		// TinkerRegistry.registerToolPart(dust);
-		// TinkerRegistry.registerToolPart(gear);
-		// TinkerRegistry.registerToolPart(grain);
-		// // TinkerRegistry.registerToolPart(rod);
-		// TinkerRegistry.registerToolPart(coin);
-		// TinkerRegistry.registerToolPart(wire);
-		// TinkerRegistry.registerToolPart(foil);
 	}
 
 	@Subscribe
@@ -934,32 +925,6 @@ public class TDMaterials {
 			if (!TD_Config.materials.isBlacklisted(m.name))
 				m.setupPost();
 		}
-
-		// for (int i = 0; i < ingot.mats.size(); i++)
-		// OreDictionary.registerOre(
-		// "ingot" + ingot.mats.get(i).substring(0, 1).toUpperCase() +
-		// ingot.mats.get(i).substring(1),
-		// new ItemStack(ingot, 1, i));
-		// for (int i = 0; i < nugget.mats.size(); i++)
-		// OreDictionary.registerOre(
-		// "nugget" + nugget.mats.get(i).substring(0, 1).toUpperCase() +
-		// nugget.mats.get(i).substring(1),
-		// new ItemStack(nugget, 1, i));
-		// for (int i = 0; i < dust.mats.size(); i++)
-		// OreDictionary.registerOre(
-		// "dust" + dust.mats.get(i).substring(0, 1).toUpperCase() +
-		// dust.mats.get(i).substring(1),
-		// new ItemStack(dust, 1, i));
-		// for (int i = 0; i < grain.mats.size(); i++)
-		// OreDictionary.registerOre(
-		// "grain" + grain.mats.get(i).substring(0, 1).toUpperCase() +
-		// grain.mats.get(i).substring(1),
-		// new ItemStack(grain, 1, i));
-		// for (int i = 0; i < gem.mats.size(); i++)
-		// OreDictionary.registerOre(
-		// "gem" + gem.mats.get(i).substring(0, 1).toUpperCase() +
-		// gem.mats.get(i).substring(1),
-		// new ItemStack(gem, 1, i));
 
 		TinkerRegistry.registerMelting(Items.CHORUS_FRUIT, fluidChorusJuice, Material.VALUE_Nugget);
 		TinkerRegistry.registerMelting(Items.DRAGON_BREATH, fluidDragonsBreath, Material.VALUE_Ingot);
@@ -1019,12 +984,6 @@ public class TDMaterials {
 				&& TinkerRegistry.getMaterial("rosegold") != Material.UNKNOWN)
 			TinkerRegistry.registerAlloy(new FluidStack(getMaterialHelper("rosegold").fluid, 4),
 					new FluidStack(TinkerFluids.gold, 1), new FluidStack(TinkerFluids.copper, 3));
-
-		// if (!TD_Config.materials.isBlacklisted("brass"))
-		// TinkerRegistry.registerAlloy(new FluidStack(getMaterialHelper("brass").fluid,
-		// 3),
-		// new FluidStack(TinkerFluids.copper, 2), new FluidStack(TinkerFluids.zinc,
-		// 2));
 
 		if (!TD_Config.materials.isBlacklisted("valyriansteel")
 				&& TinkerRegistry.getMaterial("valyriansteel") != Material.UNKNOWN)

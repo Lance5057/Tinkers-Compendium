@@ -20,14 +20,20 @@ public class TraitPhotosynthetic extends AbstractTraitLeveled {
 
 	@Override
 	public void onArmorTick(ItemStack tool, World world, EntityPlayer player) {
-		if (!world.isRemote && random.nextInt(100) == 0) {
+		if (!world.isRemote && random.nextInt(200) == 0) {
 
 			ModifierNBT data = new ModifierNBT(TinkerUtil.getModifierTag(tool, name));
 
-			if (world.canBlockSeeSky(new BlockPos(player)))
-				player.getFoodStats().setFoodSaturationLevel(player.getFoodStats().getSaturationLevel() + (data.level * 0.5f));
-			if (world.isRainingAt(new BlockPos(player)))
-				player.getFoodStats().setFoodSaturationLevel(player.getFoodStats().getSaturationLevel() + (data.level * 0.5f));
+			if (player.getFoodStats().getSaturationLevel() < player.getFoodStats().getFoodLevel()) {
+				if (world.canBlockSeeSky(new BlockPos(player)))
+					player.getFoodStats()
+							.setFoodSaturationLevel(player.getFoodStats().getSaturationLevel() + (data.level * 0.5f));
+				if (world.isRainingAt(new BlockPos(player)))
+					player.getFoodStats()
+							.setFoodSaturationLevel(player.getFoodStats().getSaturationLevel() + (data.level * 0.5f));
+			}
+			if (player.getFoodStats().getSaturationLevel() < player.getFoodStats().getFoodLevel())
+				player.getFoodStats().setFoodSaturationLevel(player.getFoodStats().getFoodLevel());
 		}
 	}
 }

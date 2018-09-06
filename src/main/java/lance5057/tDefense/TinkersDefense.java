@@ -8,6 +8,7 @@ import lance5057.tDefense.core.parts.TDParts;
 import lance5057.tDefense.core.tools.TDTools;
 import lance5057.tDefense.holiday.HolidayBase;
 import lance5057.tDefense.proxy.CommonProxy;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Mod;
@@ -85,6 +86,7 @@ public class TinkersDefense {
 		modifiers.preInit();
 		events.preInit();
 		proxy.preInit();
+		
 	}
 	
 
