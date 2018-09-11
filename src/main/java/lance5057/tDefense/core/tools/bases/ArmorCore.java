@@ -16,6 +16,8 @@ import com.google.common.collect.Sets;
 
 import lance5057.tDefense.core.library.ArmorNBT;
 import lance5057.tDefense.core.library.ArmorTags;
+import lance5057.tDefense.core.materials.TDMaterials;
+import lance5057.tDefense.core.materials.stats.FabricMaterialStats;
 import lance5057.tDefense.core.tools.armor.renderers.ArmorRenderer;
 import lance5057.tDefense.util.ArmorTagUtil;
 import net.minecraft.block.state.IBlockState;
@@ -39,7 +41,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ISpecialArmor.ArmorProperties;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import slimeknights.mantle.util.RecipeMatch;
@@ -47,8 +48,6 @@ import slimeknights.tconstruct.common.ClientProxy;
 import slimeknights.tconstruct.common.config.Config;
 import slimeknights.tconstruct.library.TinkerRegistry;
 import slimeknights.tconstruct.library.Util;
-import slimeknights.tconstruct.library.materials.ExtraMaterialStats;
-import slimeknights.tconstruct.library.materials.HandleMaterialStats;
 import slimeknights.tconstruct.library.materials.HeadMaterialStats;
 import slimeknights.tconstruct.library.materials.IMaterialStats;
 import slimeknights.tconstruct.library.materials.Material;
@@ -61,7 +60,6 @@ import slimeknights.tconstruct.library.tinkering.PartMaterialType;
 import slimeknights.tconstruct.library.tools.DualToolHarvestUtils;
 import slimeknights.tconstruct.library.tools.IAoeTool;
 import slimeknights.tconstruct.library.tools.IToolPart;
-import slimeknights.tconstruct.library.tools.ToolNBT;
 import slimeknights.tconstruct.library.traits.ITrait;
 import slimeknights.tconstruct.library.utils.TagUtil;
 import slimeknights.tconstruct.library.utils.TinkerUtil;
@@ -449,12 +447,16 @@ public abstract class ArmorCore extends ArmorBase implements IToolStationDisplay
 			List<Material> mats = new ArrayList<>(requiredComponents.length);
 
 			for (int i = 0; i < requiredComponents.length; i++) {
-				if (fixedMaterials.length > i && fixedMaterials[i] != null
-						&& requiredComponents[i].isValidMaterial(fixedMaterials[i])) {
-					mats.add(fixedMaterials[i]);
+				if (requiredComponents[i].usesStat(FabricMaterialStats.TYPE)) {
+					mats.add(TDMaterials.white.mat);
 				} else {
-					// todo: check for applicability with stats
-					mats.add(head);
+					if (fixedMaterials.length > i && fixedMaterials[i] != null
+							&& requiredComponents[i].isValidMaterial(fixedMaterials[i])) {
+						mats.add(fixedMaterials[i]);
+					} else {
+						// todo: check for applicability with stats
+						mats.add(head);
+					}
 				}
 			}
 

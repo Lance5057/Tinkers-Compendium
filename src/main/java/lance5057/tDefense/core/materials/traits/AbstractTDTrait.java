@@ -3,11 +3,14 @@ package lance5057.tDefense.core.materials.traits;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.client.event.EntityViewRenderEvent.FogDensity;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import slimeknights.tconstruct.library.traits.AbstractTrait;
 
 public abstract class AbstractTDTrait extends AbstractTrait {
@@ -44,5 +47,11 @@ public abstract class AbstractTDTrait extends AbstractTrait {
 
 	public void onDeath(LivingDeathEvent e) {
 
+	}
+	
+	@SideOnly(Side.CLIENT)
+	public void alterFogDensity(FogDensity event)
+	{
+		
 	}
 }

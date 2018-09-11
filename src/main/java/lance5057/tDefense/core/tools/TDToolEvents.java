@@ -13,6 +13,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraftforge.client.event.EntityViewRenderEvent.FogDensity;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
@@ -22,6 +23,8 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import slimeknights.tconstruct.library.TinkerRegistry;
 import slimeknights.tconstruct.library.traits.ITrait;
 import slimeknights.tconstruct.library.utils.TagUtil;
@@ -42,6 +45,8 @@ public class TDToolEvents {
 
 	public static AttributeModifier td_hotfoot = new AttributeModifier(UUID.randomUUID(), "td_hotfoot", 0.1f, 0);
 
+	public static AttributeModifier td_supersonic = new AttributeModifier(UUID.randomUUID(), "td_supersonic", 0.1f, 0);
+	
 	public TDToolEvents() {
 
 	}
@@ -186,6 +191,24 @@ public class TDToolEvents {
 			}
 		}
 	}
+	
+	@SideOnly(Side.CLIENT)
+	@SubscribeEvent
+	public void alterFogDensity(FogDensity e) {
+		for (ItemStack tool : e.getEntity().getArmorInventoryList()) {
+			if (tool != null && tool.getItem() instanceof ArmorCore && !ToolHelper.isBroken(tool)) {
+				NBTTagList list = TagUtil.getTraitsTagList(tool);
+				for (int i = 0; i < list.tagCount(); i++) {
+					if (TinkerRegistry.getTrait(list.getStringTagAt(i)) instanceof AbstractTDTrait) {
+						AbstractTDTrait trait = (AbstractTDTrait) TinkerRegistry.getTrait(list.getStringTagAt(i));
+						if (trait != null) {
+							trait.alterFogDensity(e);
+						}
+					}
+				}
+			}
+		}
+	}
 
 	void removeAttributes(EntityPlayer player) {
 		// Speed Mods
@@ -199,6 +222,8 @@ public class TDToolEvents {
 			att.removeModifier(td_stoned);
 		if (att.hasModifier(td_hotfoot))
 			att.removeModifier(td_hotfoot);
+		if (att.hasModifier(td_supersonic))
+			att.removeModifier(td_supersonic);
 
 		// Knockback Mods
 		att = player.getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE);
