@@ -503,7 +503,7 @@ public class MaterialHelper {
 
 				if (genIngot)
 					GameRegistry.addSmelting(door, new ItemStack(ingot, 2), 0f);
-				TinkerRegistry.registerMelting(door, fluid, Material.VALUE_Ingot * 2);
+				//TinkerRegistry.registerMelting(door, fluid, Material.VALUE_Ingot * 2);
 			}
 
 			if (genTrapdoor) {
@@ -532,7 +532,7 @@ public class MaterialHelper {
 
 				if (genIngot)
 					GameRegistry.addSmelting(trapdoor, new ItemStack(ingot, 2), 0f);
-				TinkerRegistry.registerMelting(trapdoor, fluid, Material.VALUE_Ingot * 2);
+				//TinkerRegistry.registerMelting(trapdoor, fluid, Material.VALUE_Ingot * 2);
 			}
 
 			if (genGear) {
@@ -565,7 +565,7 @@ public class MaterialHelper {
 
 				if (genIngot)
 					GameRegistry.addSmelting(stake, new ItemStack(ingot, 3), 0f);
-				TinkerRegistry.registerMelting(trapdoor, fluid, Material.VALUE_Ingot * 3);
+				//TinkerRegistry.registerMelting(trapdoor, fluid, Material.VALUE_Ingot * 3);
 			}
 		}
 	}
