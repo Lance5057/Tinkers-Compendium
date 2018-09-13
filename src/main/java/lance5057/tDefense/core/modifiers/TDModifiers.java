@@ -28,6 +28,7 @@ public class TDModifiers {
 	public static Item item_canister;
 	public static Item item_emptycanister;
 	public static Item item_rebreather;
+	public static Item item_goggles;
 	public static Item item_nightvisiongoggles;
 
 	public static Item item_glowsole;
@@ -45,6 +46,11 @@ public class TDModifiers {
 	public static Modifier blastprotection = new ModProtection("blastprotection", 0x0bad00, Enchantments.BLAST_PROTECTION);
 	public static Modifier fireprotection = new ModProtection("fireprotection", 0xfcb56a, Enchantments.FIRE_PROTECTION);
 	
+	public static Modifier nightvision = new ModNightVision();
+	public static Modifier respirationI = new ModRespiration(1);
+	public static Modifier respirationII = new ModRespiration(2);
+	public static Modifier antiblindness = new ModAntiBlindness();
+	
 	static ArrayList<Item> itemList = new ArrayList<Item>();
 	static ArrayList<Block> blockList = new ArrayList<Block>();
 	
@@ -54,7 +60,8 @@ public class TDModifiers {
 		itemList.add(item_emptycanister = new Item().setRegistryName(new ResourceLocation(Reference.MOD_ID, "empty_canister")).setUnlocalizedName("empty_canister").setCreativeTab(TinkersDefense.tab));
 		itemList.add(item_rebreather = new Item().setRegistryName(new ResourceLocation(Reference.MOD_ID, "rebreather")).setUnlocalizedName("rebreather").setCreativeTab(TinkersDefense.tab));
 		itemList.add(item_nightvisiongoggles = new Item().setRegistryName(new ResourceLocation(Reference.MOD_ID, "nightvisiongoggles")).setUnlocalizedName("nightvisiongoggles").setCreativeTab(TinkersDefense.tab));
-		
+		itemList.add(item_goggles = new Item().setRegistryName(new ResourceLocation(Reference.MOD_ID, "goggles")).setUnlocalizedName("goggles").setCreativeTab(TinkersDefense.tab));
+
 		itemList.add(item_glowsole = new Item().setRegistryName(new ResourceLocation(Reference.MOD_ID, "glowsole")).setUnlocalizedName("glowsole").setCreativeTab(TinkersDefense.tab));
 		itemList.add(item_firesole = new Item().setRegistryName(new ResourceLocation(Reference.MOD_ID, "firesole")).setUnlocalizedName("firesole").setCreativeTab(TinkersDefense.tab));
 		itemList.add(item_icesole = new Item().setRegistryName(new ResourceLocation(Reference.MOD_ID, "icesole")).setUnlocalizedName("icesole").setCreativeTab(TinkersDefense.tab));
@@ -76,6 +83,12 @@ public class TDModifiers {
 		fireprotection.addRecipeMatch(new RecipeMatch.Item(new ItemStack(Items.MAGMA_CREAM), 1));
 		blastprotection.addRecipeMatch(new RecipeMatch.Item(new ItemStack(Blocks.WOOL), 1));
 		projprotection.addRecipeMatch(new RecipeMatch.Item(rivet, 4));
+		
+		nightvision.addRecipeMatch(new RecipeMatch.Item(new ItemStack(item_nightvisiongoggles), 1));
+		antiblindness.addRecipeMatch(new RecipeMatch.Item(new ItemStack(item_goggles), 1));
+		
+		respirationI.addRecipeMatch(new RecipeMatch.Item(new ItemStack(item_rebreather), 1));
+		//TODO add advanced respiration item
 	}
 	
 	public void postInit()

@@ -774,6 +774,16 @@ public abstract class ArmorCore extends ArmorBase implements IToolStationDisplay
 		a.Armor = tag.armorRating;
 		a.Toughness = tag.armorToughness;
 
+		int count = 0;
+		for (ItemStack oarmor : player.getArmorInventoryList()) {
+			if (TinkerUtil.hasTrait(TagUtil.getTagSafe(armor), "tempered")) {
+				count++;
+			}
+		}
+
+		if (count > 1)
+			a.Toughness += count - 1;
+
 		return a;
 	}
 

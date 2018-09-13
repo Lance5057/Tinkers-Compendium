@@ -5,6 +5,7 @@ import lance5057.tDefense.core.materials.stats.FeetMaterialStats;
 import lance5057.tDefense.core.materials.stats.HelmMaterialStats;
 import lance5057.tDefense.core.materials.stats.LegsMaterialStats;
 import lance5057.tDefense.core.materials.stats.ShieldMaterialStats;
+import lance5057.tDefense.core.materials.traits.TraitAcknowledged;
 import lance5057.tDefense.core.materials.traits.TraitApplyPotion;
 import lance5057.tDefense.core.materials.traits.TraitAqualung;
 import lance5057.tDefense.core.materials.traits.TraitArrowCatcher;
@@ -28,6 +29,7 @@ import lance5057.tDefense.core.materials.traits.TraitGlassine;
 import lance5057.tDefense.core.materials.traits.TraitGoggles;
 import lance5057.tDefense.core.materials.traits.TraitGreenthumb;
 import lance5057.tDefense.core.materials.traits.TraitHeavyweight;
+import lance5057.tDefense.core.materials.traits.TraitHeroic;
 import lance5057.tDefense.core.materials.traits.TraitHog;
 import lance5057.tDefense.core.materials.traits.TraitHotFoot;
 import lance5057.tDefense.core.materials.traits.TraitHotHead;
@@ -45,6 +47,8 @@ import lance5057.tDefense.core.materials.traits.TraitPricked;
 import lance5057.tDefense.core.materials.traits.TraitPyrosynthesis;
 import lance5057.tDefense.core.materials.traits.TraitReduceKnockback;
 import lance5057.tDefense.core.materials.traits.TraitReflex;
+import lance5057.tDefense.core.materials.traits.TraitRetribution;
+import lance5057.tDefense.core.materials.traits.TraitRigid;
 import lance5057.tDefense.core.materials.traits.TraitShifting;
 import lance5057.tDefense.core.materials.traits.TraitSoggy;
 import lance5057.tDefense.core.materials.traits.TraitSounder;
@@ -53,6 +57,7 @@ import lance5057.tDefense.core.materials.traits.TraitStatuesque;
 import lance5057.tDefense.core.materials.traits.TraitStoned;
 import lance5057.tDefense.core.materials.traits.TraitStonekin;
 import lance5057.tDefense.core.materials.traits.TraitSuperSonic;
+import lance5057.tDefense.core.materials.traits.TraitTempered;
 import lance5057.tDefense.core.materials.traits.TraitToasty;
 import lance5057.tDefense.core.materials.traits.TraitTrotters;
 import lance5057.tDefense.core.materials.traits.TraitVoidCall;
@@ -66,6 +71,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.DimensionType;
 import slimeknights.tconstruct.tools.TinkerMaterials;
+import slimeknights.tconstruct.tools.TinkerTraits;
 
 public class TDTraits {
 
@@ -161,14 +167,31 @@ public class TDTraits {
 			MobEffects.SLOWNESS);
 	public TraitSuperSonic supersonic = new TraitSuperSonic();
 	public TraitFlexible flexible = new TraitFlexible();
-	
+
 	public TraitStatuesque statuesque = new TraitStatuesque();
 	public TraitStonekin stonekin = new TraitStonekin();
 	public TraitHeavyweight heavyweight = new TraitHeavyweight();
-	
+
 	public TraitCombatAdvantage combatadvantage = new TraitCombatAdvantage();
-	public TraitBattleHardened battlehardened = new TraitBattleHardened();
+	public TraitBattleHardened battlehardened = new TraitBattleHardened("battlehardened", TextFormatting.DARK_PURPLE,
+			1);
 	public TraitReflex reflex = new TraitReflex();
+
+	public TraitAcknowledged acknowledged = new TraitAcknowledged();
+	public TraitBattleHardened workhardened = new TraitBattleHardened("workhardened", TextFormatting.RED, 5);
+
+	public TraitHeroic heroic = new TraitHeroic();
+
+	public TraitApplyPotion slowing = new TraitApplyPotion("slowing", TextFormatting.LIGHT_PURPLE, false,
+			new PotionEffect(MobEffects.SLOWNESS, 5, 1));
+
+	public TraitRetribution retribution_1 = new TraitRetribution(1);
+
+	public TraitRigid rigid = new TraitRigid();
+	public TraitTempered tempered = new TraitTempered();
+
+	public TraitDamageSourceAlteration ohm = new TraitDamageSourceAlteration("ohm", TextFormatting.YELLOW,
+			new TraitDamageSourceAlteration.DamagePercent(DamageSource.LIGHTNING_BOLT, -0.5f));
 
 	public void preInit() {
 
@@ -284,7 +307,38 @@ public class TDTraits {
 		TinkerMaterials.ardite.addTrait(stonekin, LegsMaterialStats.TYPE);
 		TinkerMaterials.ardite.addTrait(heavyweight, FeetMaterialStats.TYPE);
 
-		
+		TinkerMaterials.copper.addTrait(acknowledged, HelmMaterialStats.TYPE);
+		TinkerMaterials.copper.addTrait(workhardened, ChestMaterialStats.TYPE);
+		TinkerMaterials.copper.addTrait(workhardened, LegsMaterialStats.TYPE);
+		TinkerMaterials.copper.addTrait(acknowledged, FeetMaterialStats.TYPE);
+
+		TinkerMaterials.bronze.addTrait(TinkerTraits.dense, HelmMaterialStats.TYPE);
+		TinkerMaterials.bronze.addTrait(TinkerTraits.dense, ChestMaterialStats.TYPE);
+		TinkerMaterials.bronze.addTrait(TinkerTraits.dense, LegsMaterialStats.TYPE);
+		TinkerMaterials.bronze.addTrait(TinkerTraits.dense, FeetMaterialStats.TYPE);
+		TinkerMaterials.bronze.addTrait(heroic, HelmMaterialStats.TYPE);
+		TinkerMaterials.bronze.addTrait(heroic, ChestMaterialStats.TYPE);
+		TinkerMaterials.bronze.addTrait(heroic, LegsMaterialStats.TYPE);
+		TinkerMaterials.bronze.addTrait(heroic, FeetMaterialStats.TYPE);
+
+		TinkerMaterials.silver.addTrait(retribution_1, HelmMaterialStats.TYPE);
+		TinkerMaterials.silver.addTrait(retribution_1, ChestMaterialStats.TYPE);
+		TinkerMaterials.silver.addTrait(retribution_1, LegsMaterialStats.TYPE);
+		TinkerMaterials.silver.addTrait(retribution_1, FeetMaterialStats.TYPE);
+
+		TinkerMaterials.steel.addTrait(rigid, HelmMaterialStats.TYPE);
+		TinkerMaterials.steel.addTrait(rigid, ChestMaterialStats.TYPE);
+		TinkerMaterials.steel.addTrait(rigid, LegsMaterialStats.TYPE);
+		TinkerMaterials.steel.addTrait(rigid, FeetMaterialStats.TYPE);
+		TinkerMaterials.steel.addTrait(tempered, HelmMaterialStats.TYPE);
+		TinkerMaterials.steel.addTrait(tempered, ChestMaterialStats.TYPE);
+		TinkerMaterials.steel.addTrait(tempered, LegsMaterialStats.TYPE);
+		TinkerMaterials.steel.addTrait(tempered, FeetMaterialStats.TYPE);
+
+		TinkerMaterials.electrum.addTrait(tempered, HelmMaterialStats.TYPE);
+		TinkerMaterials.electrum.addTrait(tempered, ChestMaterialStats.TYPE);
+		TinkerMaterials.electrum.addTrait(tempered, LegsMaterialStats.TYPE);
+		TinkerMaterials.electrum.addTrait(maglock, FeetMaterialStats.TYPE);
 	}
 
 	public void postInit() {

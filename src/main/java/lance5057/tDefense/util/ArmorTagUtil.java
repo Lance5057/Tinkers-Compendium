@@ -81,4 +81,16 @@ public final class ArmorTagUtil {
 		NBTTagCompound atag = tag.getCompoundTag(Tags.BASE_DATA).getCompoundTag(ArmorTags.ArmorBaseTag);
 		return atag.getInteger(ArmorTags.Water);
 	}
+	
+	public static void setCharge(ItemStack stack, int charge) {
+		NBTTagCompound tag = stack.getTagCompound();
+		NBTTagCompound atag = tag.getCompoundTag(Tags.BASE_DATA).getCompoundTag(ArmorTags.ArmorBaseTag);
+		atag.setInteger(ArmorTags.Charge, charge);
+	}
+	
+	public static int getCharge(ItemStack stack) {
+		NBTTagCompound tag = stack.getTagCompound();
+		NBTTagCompound atag = tag.getCompoundTag(Tags.BASE_DATA).getCompoundTag(ArmorTags.ArmorBaseTag);
+		return atag.getInteger(ArmorTags.Charge);
+	}
 }

@@ -10,6 +10,7 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagList;
@@ -26,6 +27,8 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import slimeknights.tconstruct.library.TinkerRegistry;
+import slimeknights.tconstruct.library.events.TinkerCraftingEvent.ToolModifyEvent;
+import slimeknights.tconstruct.library.modifiers.IModifier;
 import slimeknights.tconstruct.library.traits.ITrait;
 import slimeknights.tconstruct.library.utils.TagUtil;
 import slimeknights.tconstruct.library.utils.ToolHelper;
@@ -232,49 +235,18 @@ public class TDToolEvents {
 			att.removeModifier(td_knockback);
 	}
 
-	// @SubscribeEvent
-	// public void attackEvent(LivingAttackEvent e) {
-	// boolean w = e.getEntity().worldObj.isRemote;
-	// //Minecraft.getMinecraft().theWorld.isRemote;
-	// if (!w) {
-	// float damage = e.getAmount();
-	// ItemStack activeItemStack;
-	// EntityPlayer player;
-	// if (!(e.getEntityLiving() instanceof EntityPlayer)) {
-	// return;
-	// }
-	// player = (EntityPlayer) e.getEntityLiving();
-	// if (player.getActiveItemStack() == null) {
-	// return;
-	// }
-	// activeItemStack = player.getActiveItemStack();
-	//
-	// if (damage > 0.0F && activeItemStack != null
-	// && activeItemStack.getItem() instanceof Shield) {
-	// int i = 1 + MathHelper.floor_float(damage);
-	// ToolHelper.damageTool(activeItemStack, i, player);
-	//
-	// if (activeItemStack.stackSize <= 0) {
-	// EnumHand enumhand = player.getActiveHand();
-	// net.minecraftforge.event.ForgeEventFactory
-	// .onPlayerDestroyItem(player, activeItemStack,
-	// enumhand);
-	//
-	// if (enumhand == EnumHand.MAIN_HAND) {
-	// player.setItemStackToSlot(EntityEquipmentSlot.MAINHAND,
-	// (ItemStack) null);
-	// } else {
-	// player.setItemStackToSlot(EntityEquipmentSlot.OFFHAND,
-	// (ItemStack) null);
-	// }
-	//
-	// activeItemStack = null;
-	// if (FMLCommonHandler.instance().getSide() == Side.CLIENT) {
-	// player.playSound(SoundEvents.ITEM_SHIELD_BREAK, 0.8F,
-	// 0.8F + player.worldObj.rand.nextFloat() * 0.4F);
-	// }
-	// }
-	// }
-	// }
-	// }
+	@SubscribeEvent(priority = EventPriority.LOW)
+	public void modifyEvent(ToolModifyEvent e)
+	{
+		Item tool = e.getToolBeforeModification().getItem();
+		
+		if(tool instanceof ArmorCore)
+		{
+			for(IModifier mod : e.getModifiers())
+			{
+				if(mod.getIdentifier() == "sharpness")
+					e.setCanceled(true);
+			}
+		}
+	}
 }
