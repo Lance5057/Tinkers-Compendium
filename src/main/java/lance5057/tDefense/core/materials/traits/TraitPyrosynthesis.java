@@ -18,7 +18,7 @@ public class TraitPyrosynthesis extends AbstractTDTrait {
 	int level;
 
 	public TraitPyrosynthesis(int level) {
-		super("pyrosynthetic", TextFormatting.DARK_RED);
+		super("pyrosynthetic_"+level, TextFormatting.DARK_RED);
 		this.level = level;
 	}
 
