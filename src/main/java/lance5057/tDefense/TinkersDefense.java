@@ -6,9 +6,9 @@ import lance5057.tDefense.core.materials.TDTraits;
 import lance5057.tDefense.core.modifiers.TDModifiers;
 import lance5057.tDefense.core.parts.TDParts;
 import lance5057.tDefense.core.tools.TDTools;
+import lance5057.tDefense.core.worldgen.OreGenerator;
 import lance5057.tDefense.holiday.HolidayBase;
 import lance5057.tDefense.proxy.CommonProxy;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Mod;
@@ -18,6 +18,7 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import scala.reflect.internal.Trees.Modifiers;
 import slimeknights.mantle.client.CreativeTab;
 
@@ -109,7 +110,7 @@ public class TinkersDefense {
 		
 		phandler.init();
 		
-		//mats.integrate();
+		GameRegistry.registerWorldGenerator(new OreGenerator(), 0);
 	}
 
 	@Mod.EventHandler

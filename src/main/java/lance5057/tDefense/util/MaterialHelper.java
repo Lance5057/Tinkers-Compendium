@@ -124,8 +124,66 @@ public class MaterialHelper {
 	public Item gear;
 	public Item rod;
 	public Item oreClump;
+	public Item oreGravelClump;
+	public Item oreSandClump;
 
 	public BlockOre ore;
+	
+	public boolean genOre = false;
+	public int oreDim;
+	public int oreYMax;
+	public int oreYMin;
+	public int oreSize;
+	public int oreChance;
+	
+	public void setupOre(int dim, int yMax, int yMin, int size, int chance)
+	{
+		this.genOre = true;
+		this.oreDim = dim;
+		this.oreYMax = yMax;
+		this.oreYMin = yMin;
+		this.oreSize = size;
+		this.oreChance = chance;
+	}
+	
+	public BlockOre gravelOre;
+	
+	public boolean genGravelOre = false;
+	public int gravelOreDim;
+	public int gravelOreYMax;
+	public int gravelOreYMin;
+	public int gravelOreSize;
+	public int gravelOreChance;
+	
+	public void setupGravelOre(int dim, int yMax, int yMin, int size, int chance)
+	{
+		this.genGravelOre = true;
+		this.gravelOreDim = dim;
+		this.gravelOreYMax = yMax;
+		this.gravelOreYMin = yMin;
+		this.gravelOreSize = size;
+		this.gravelOreChance = chance;
+	}
+	
+	public BlockOre sandOre;
+	
+	public boolean genSandOre = false;
+	public int sandOreDim;
+	public int sandOreYMax;
+	public int sandOreYMin;
+	public int sandOreSize;
+	public int sandOreChance;
+	
+	public void setupSandOre(int dim, int yMax, int yMin, int size, int chance)
+	{
+		this.genSandOre = true;
+		this.sandOreDim = dim;
+		this.sandOreYMax = yMax;
+		this.sandOreYMin = yMin;
+		this.sandOreSize = size;
+		this.sandOreChance = chance;
+	}
+	
 	public Block block;
 	public ComponentDoor door;
 	public ComponentTrapDoor trapdoor;
@@ -227,7 +285,7 @@ public class MaterialHelper {
 	public boolean genCoin = true;
 	public boolean genGear = true;
 	public boolean genRod = true;
-	public boolean genOre = false;
+	
 	public boolean genBlock = false;
 	public boolean genStake = true;
 	public boolean genBars = true;
@@ -313,18 +371,39 @@ public class MaterialHelper {
 
 			if (oreClump == null && genOre) {
 				oreClump = registerItem("clump_" + name);
+				oreGravelClump = registerItem("clumpGravel_" + name);
+				oreSandClump = registerItem("clumpSand_" + name);
+
 				TDMaterials.itemList.add(oreClump);
+				TDMaterials.itemList.add(oreGravelClump);
+				TDMaterials.itemList.add(oreSandClump);
 			}
 
 			if (ore == null && genOre) {
-				if (oreClump != null)
-					ore = new TDOreBlock(oreClump);
-				else
+				if (oreClump != null) {
+					ore = new TDOreBlock(oreClump, oreGravelClump);
+					gravelOre = new TDOreBlock(oreGravelClump, oreSandClump);
+					sandOre = new TDOreBlock(oreSandClump, dust);
+				} else {
 					ore = new TDOreBlock();
+					gravelOre = new TDOreBlock();
+					sandOre = new TDOreBlock();
+				}
+
 				ore.setRegistryName(new ResourceLocation(Reference.MOD_ID, "ore_" + name))
 						.setUnlocalizedName("ore_" + name);
 				TDMaterials.blockList.add(ore);
 				TDMaterials.itemList.add(registerItemBlock("ore_" + name, ore));
+
+				gravelOre.setRegistryName(new ResourceLocation(Reference.MOD_ID, "gravelOre_" + name))
+						.setUnlocalizedName("gravelOre_" + name);
+				TDMaterials.blockList.add(gravelOre);
+				TDMaterials.itemList.add(registerItemBlock("gravelOre_" + name, gravelOre));
+
+				sandOre.setRegistryName(new ResourceLocation(Reference.MOD_ID, "sandOre_" + name))
+						.setUnlocalizedName("sandOre_" + name);
+				TDMaterials.blockList.add(sandOre);
+				TDMaterials.itemList.add(registerItemBlock("sandOre_" + name, sandOre));
 			}
 
 			if (stake == null && genStake) {
@@ -503,7 +582,7 @@ public class MaterialHelper {
 
 				if (genIngot)
 					GameRegistry.addSmelting(door, new ItemStack(ingot, 2), 0f);
-				//TinkerRegistry.registerMelting(door, fluid, Material.VALUE_Ingot * 2);
+				// TinkerRegistry.registerMelting(door, fluid, Material.VALUE_Ingot * 2);
 			}
 
 			if (genTrapdoor) {
@@ -532,7 +611,7 @@ public class MaterialHelper {
 
 				if (genIngot)
 					GameRegistry.addSmelting(trapdoor, new ItemStack(ingot, 2), 0f);
-				//TinkerRegistry.registerMelting(trapdoor, fluid, Material.VALUE_Ingot * 2);
+				// TinkerRegistry.registerMelting(trapdoor, fluid, Material.VALUE_Ingot * 2);
 			}
 
 			if (genGear) {
@@ -565,7 +644,7 @@ public class MaterialHelper {
 
 				if (genIngot)
 					GameRegistry.addSmelting(stake, new ItemStack(ingot, 3), 0f);
-				//TinkerRegistry.registerMelting(trapdoor, fluid, Material.VALUE_Ingot * 3);
+				// TinkerRegistry.registerMelting(trapdoor, fluid, Material.VALUE_Ingot * 3);
 			}
 		}
 	}

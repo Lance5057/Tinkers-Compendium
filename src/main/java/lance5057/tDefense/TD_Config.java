@@ -20,6 +20,9 @@ public class TD_Config
 	
 	@Config.Comment("Stop filling my buckets!")
 	public static boolean DontTouchMyBucket = false;
+	
+	@Config.Comment("Make all Compendium ores drop clumps instead of blocks")
+	public static boolean OreClumps = false;
 
 	@Config.Name("Shields")
 	public static Shields	shields		= new Shields();

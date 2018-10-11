@@ -312,10 +312,10 @@ public class TDTraits {
 		TinkerMaterials.copper.addTrait(workhardened, LegsMaterialStats.TYPE);
 		TinkerMaterials.copper.addTrait(acknowledged, FeetMaterialStats.TYPE);
 
-		TinkerMaterials.bronze.addTrait(TinkerTraits.dense, HelmMaterialStats.TYPE);
-		TinkerMaterials.bronze.addTrait(TinkerTraits.dense, ChestMaterialStats.TYPE);
-		TinkerMaterials.bronze.addTrait(TinkerTraits.dense, LegsMaterialStats.TYPE);
-		TinkerMaterials.bronze.addTrait(TinkerTraits.dense, FeetMaterialStats.TYPE);
+//		TinkerMaterials.bronze.addTrait(TinkerTraits.dense, HelmMaterialStats.TYPE);
+//		TinkerMaterials.bronze.addTrait(TinkerTraits.dense, ChestMaterialStats.TYPE);
+//		TinkerMaterials.bronze.addTrait(TinkerTraits.dense, LegsMaterialStats.TYPE);
+//		TinkerMaterials.bronze.addTrait(TinkerTraits.dense, FeetMaterialStats.TYPE);
 		TinkerMaterials.bronze.addTrait(heroic, HelmMaterialStats.TYPE);
 		TinkerMaterials.bronze.addTrait(heroic, ChestMaterialStats.TYPE);
 		TinkerMaterials.bronze.addTrait(heroic, LegsMaterialStats.TYPE);
