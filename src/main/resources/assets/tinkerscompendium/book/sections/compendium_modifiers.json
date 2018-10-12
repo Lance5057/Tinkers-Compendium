@@ -1,0 +1,10 @@
+[
+  {
+    "type": "modifier",
+    "data": "modifiers/deadmansswitch.json"
+  },
+  {
+    "type": "modifier",
+    "data": "modifiers/protection.json"
+  }
+]

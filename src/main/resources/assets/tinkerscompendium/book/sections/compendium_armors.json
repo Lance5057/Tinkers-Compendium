@@ -1,0 +1,62 @@
+[
+  {
+    "name": "helm",
+    "type": "tool",
+    "data": "armors/helm.json"
+  },
+  {
+    "name": "breastplate",
+    "type": "tool",
+    "data": "armors/breastplate.json"
+  },
+  {
+    "name": "grieves",
+    "type": "tool",
+    "data": "armors/grieves.json"
+  },
+  {
+    "name": "sabatons",
+    "type": "tool",
+    "data": "armors/sabatons.json"
+  },
+  {
+    "name": "hauberk",
+    "type": "tool",
+    "data": "armors/hauberk.json"
+  },
+  {
+    "name": "coif",
+    "type": "tool",
+    "data": "armors/coif.json"
+  },
+  {
+    "name": "chausses",
+    "type": "tool",
+    "data": "armors/chausses.json"
+  },
+  {
+    "name": "boots",
+    "type": "tool",
+    "data": "armors/boots.json"
+  },
+  {
+    "name": "hood",
+    "type": "tool",
+    "data": "armors/hood.json"
+  },
+  {
+    "name": "shawl",
+    "type": "tool",
+    "data": "armors/shawl.json"
+  },
+  {
+    "name": "robes",
+    "type": "tool",
+    "data": "armors/robes.json"
+  },
+  {
+    "name": "shoes",
+    "type": "tool",
+    "data": "armors/shoes.json"
+  }
+]
