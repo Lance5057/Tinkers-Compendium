@@ -2,18 +2,16 @@
   "tool": "heatershield",
   "text": [
     {
-      "text": "Test"
+      "text": "A standard Heater shield with decent protection, equipment for a crusade."
     },
     {
       "text": "\n"
     },
     {
-      "text": "Test"
+      "text": "Offers less mobility than a Buckler, but greater protection."
     }
   ],
   "properties": [
-    "Full coverage, with the Visor shut",
-    "Can take a beating",
-    "Praise Lance-kun"
+    "TBA - Traits for all heatershields goes here"
   ]
 }

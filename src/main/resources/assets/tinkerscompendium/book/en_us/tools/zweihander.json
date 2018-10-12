@@ -2,18 +2,12 @@
   "tool": "zweihander",
   "text": [
     {
-      "text": "Test"
-    },
-    {
-      "text": "\n"
-    },
-    {
-      "text": "Test"
+      "text": "A great two handed sword designed to take down horse and rider or keep enemies back with its long reach."
     }
   ],
   "properties": [
-    "Full coverage, with the Visor shut",
-    "Can take a beating",
-    "Praise Lance-kun"
+    "VS Mounted - \n Does x2 Damage against mounted enemies.",
+    "Great Swing - \n Hit all enemies close to you with a great arching slash. \n Leaves you slowed and weakened temporarily.
+"
   ]
 }

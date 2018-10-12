@@ -2,18 +2,10 @@
   "tool": "shears",
   "text": [
     {
-      "text": "Test"
-    },
-    {
-      "text": "\n"
-    },
-    {
-      "text": "Test"
+      "text": "Shears are usefull to any farmer looking to have a steady flow of wool, wool for use in crafting or trade for profit."
     }
   ],
   "properties": [
-    "Full coverage, with the Visor shut",
-    "Can take a beating",
-    "Praise Lance-kun"
+    "Tinkerable - not al shears are created equal"
   ]
 }

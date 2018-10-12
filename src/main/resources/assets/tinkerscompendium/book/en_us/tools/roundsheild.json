@@ -2,18 +2,17 @@
   "tool": "roundshield",
   "text": [
     {
-      "text": "Test"
+      "text": "A small round shield with little protection, still better than nothing."
     },
     {
       "text": "\n"
     },
     {
-      "text": "Test"
+      "text": "Some prefer manuverablitly over large cumbersome sheilds."
     }
   ],
   "properties": [
-    "Full coverage, with the Visor shut",
-    "Can take a beating",
-    "Praise Lance-kun"
+    "Counter attacks - bashing and dashing",
+    "Small Stature - leaves little room for modifiers."
   ]
 }
