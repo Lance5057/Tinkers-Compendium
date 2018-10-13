@@ -2,61 +2,61 @@
   {
     "name": "helm",
     "type": "tool",
-    "data": "armors/helm.json"
+    "data": "armor/heavy/helm.json"
   },
   {
     "name": "breastplate",
     "type": "tool",
-    "data": "armors/breastplate.json"
+    "data": "armor/heavy/breastplate.json"
   },
   {
     "name": "grieves",
     "type": "tool",
-    "data": "armors/grieves.json"
+    "data": "armor/heavy/grieves.json"
   },
   {
     "name": "sabatons",
     "type": "tool",
-    "data": "armors/sabatons.json"
+    "data": "armor/heavy/sabatons.json"
   },
   {
     "name": "hauberk",
     "type": "tool",
-    "data": "armors/hauberk.json"
+    "data": "armor/light/hauberk.json"
   },
   {
     "name": "coif",
     "type": "tool",
-    "data": "armors/coif.json"
+    "data": "armor/light/coif.json"
   },
   {
     "name": "chausses",
     "type": "tool",
-    "data": "armors/chausses.json"
+    "data": "armor/light/chausses.json"
   },
   {
     "name": "boots",
     "type": "tool",
-    "data": "armors/boots.json"
+    "data": "armor/light/boots.json"
   },
   {
     "name": "hood",
     "type": "tool",
-    "data": "armors/hood.json"
+    "data": "armor/cloth/hood.json"
   },
   {
     "name": "shawl",
     "type": "tool",
-    "data": "armors/shawl.json"
+    "data": "armor/cloth/shawl.json"
   },
   {
     "name": "robes",
     "type": "tool",
-    "data": "armors/robes.json"
+    "data": "armor/cloth/robes.json"
   },
   {
     "name": "shoes",
     "type": "tool",
-    "data": "armors/shoes.json"
+    "data": "armor/cloth/shoes.json"
   }
 ]

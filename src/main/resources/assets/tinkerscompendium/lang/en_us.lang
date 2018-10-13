@@ -366,7 +366,7 @@ stat.armor.potency.name=Armor Potency
 
 stat.fabric.name=Fabric
 
-//Modifiers
+//Tinker Traits & Modifiers
 modifier.photosynthetic.name=Photosynthetic
 modifier.Photosynthetic.desc=Tasty tasty sunshine.
 modifier.blockhead.name=Blockhead
@@ -430,6 +430,23 @@ modifier.piggy.name=Piggy
 modifier.piggy.desc=Open up your face and feed it!
 modifier.hog.name=Hog
 modifier.hog.desc=My armor ate my homework...
+
+modifier.antiblindness.name=Anti-Blindness
+modifier.antiblindness.desc=results may vary, Dont look directly at the sun.
+modifier.deadmansswitch.name=Deadmans Switch
+modifier.deadmansswitch.desc=What comes around goes around.
+modifier.nightvision.name=Night Vision
+modifier.nightvision.name=Nights Eye's
+modifier.protection.name=Protection
+modifier.protection.name=Protection
+modifier.projprotection.name=Projectile Protection
+modifier.projprotection.name=Projectile Protection
+modifier.fireprotection.name=Fire Protection
+modifier.fireprotection.name=Fire Protection
+modifier.blastprotection.name=Blast Protection
+modifier.blastprotection.desc=Blast Protection
+modifier.respirationI.name=Respiration I
+modifier.respirationI.name=Armor with Gills
 
 //Misc
 item.armor_plate.name=Armor Plate

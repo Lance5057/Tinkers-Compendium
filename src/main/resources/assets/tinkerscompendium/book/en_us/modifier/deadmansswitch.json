@@ -1,0 +1,21 @@
+{
+  "modifier": "deadmansswitch",
+  "text": [
+    {
+      "text": "What goes around comes around? or is it What goes around comes around?"
+    },
+    {
+      "text": "\n"
+    },
+    {
+      "text": "... If you'd rather payback this is for you."
+    }
+  ],
+  "effects": [
+    "TBA - Needs a short yet sweet desc",
+    "or two"
+  ],
+  "demoTool": [
+    "tinkerscompendium:helm"
+  ]
+}
