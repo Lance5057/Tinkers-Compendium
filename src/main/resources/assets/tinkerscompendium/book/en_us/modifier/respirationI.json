@@ -2,21 +2,17 @@
   "modifier": "respirationI",
   "text": [
     {
-      "text": "Flavor Text Is hard, Lets just say it gives you gills."
-    },
-    {
-      "text": "\n"
-    },
-    {
-      "text": "... Or does it make a magic bubble?"
+      "text": "Lets just say it gives you gills. Or does it make a magic bubble?"
     }
   ],
   "effects": [
     "Unsure If Gills",
     "Or",
-    "Something Else"
+    "Something Else",
+    "Multiple levels?",
   ],
   "demoTool": [
-    "tinkerscompendium:helm"
+    "tinkerscompendium:helm",
+    "tinkerscompendium:hood"
   ]
 }

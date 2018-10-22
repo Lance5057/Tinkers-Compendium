@@ -2,18 +2,22 @@
   "modifier": "protection",
   "text": [
     {
-      "text": "Finding Armor doesnt protect enough? /nAditional armor plates might help remedy that."
+      "text": "Finding Armor doesnt protect enough? Iron armor plates can be used to add some extra protection."
     }
   ],
   "effects": [
-    "Unsure the exact protection values",
-    "Incoherent scribbles.",
-    "Not projectile proof."
+    "Protection & value",
+    "Not projectile proof.",
+    "Multiple Levels.",
   ],
   "demoTool": [
     "tinkerscompendium:helm",
     "tinkerscompendium:breastplate",
     "tinkerscompendium:grieves",
-    "tinkerscompendium:sabatons"
+    "tinkerscompendium:sabatons",
+    "tinkerscompendium:hood",
+    "tinkerscompendium:shawl",
+    "tinkerscompendium:robe",
+    "tinkerscompendium:shoes"
   ]
 }

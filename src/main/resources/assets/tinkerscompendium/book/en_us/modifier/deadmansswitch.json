@@ -2,10 +2,7 @@
   "modifier": "deadmansswitch",
   "text": [
     {
-      "text": "What goes around comes around? or is it What goes around comes around?"
-    },
-    {
-      "text": "\n"
+      "text": "What goes around comes around? Or is it what goes around comes around?     "
     },
     {
       "text": "... If you'd rather payback this is for you."
@@ -16,6 +13,13 @@
     "or two"
   ],
   "demoTool": [
-    "tinkerscompendium:helm"
+    "tinkerscompendium:helm",
+    "tinkerscompendium:breastplate",
+    "tinkerscompendium:grieves",
+    "tinkerscompendium:sabatons",
+    "tinkerscompendium:hood",
+    "tinkerscompendium:shawl",
+    "tinkerscompendium:robe",
+    "tinkerscompendium:shoes"
   ]
 }

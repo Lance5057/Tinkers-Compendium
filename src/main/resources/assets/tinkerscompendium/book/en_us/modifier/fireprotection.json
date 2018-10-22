@@ -2,16 +2,21 @@
   "modifier": "fireprotection",
   "text": [
     {
-      "text": "Getting caught on fire, it can get real serious. /nForging [Blank] into armor helps to eleviate that."
+      "text": "Getting caught on fire, can be a problem. A thin coating of magma cream offers fire protection, dont ask how."    
     }
   ],
   "effects": [
-    "Results may vary."
+    "Fire resistant.",
+    "Multiple Levels"
   ],
   "demoTool": [
     "tinkerscompendium:helm",
     "tinkerscompendium:breastplate",
     "tinkerscompendium:grieves",
-    "tinkerscompendium:sabatons"
+    "tinkerscompendium:sabatons",
+    "tinkerscompendium:hood",
+    "tinkerscompendium:shawl",
+    "tinkerscompendium:robe",
+    "tinkerscompendium:shoes"
   ]
 }

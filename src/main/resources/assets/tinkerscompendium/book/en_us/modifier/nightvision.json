@@ -2,16 +2,14 @@
   "modifier": "nightvision",
   "text": [
     {
-      "text": "Wandering around in the dark can be a pain/n Headwear can be modified with [Blank] to make the night just as bright as day."
-    },
+      "text": "Wandering around in darkness, not recomended. Night Vision incorperated into headgear make the night shine almost like day."    
+    }
   ],
   "effects": [
-    "Read this & laugh away a few more brain cells.",
-    "The code Is Lance-kun.",
-    "Multiple Highly Insane levels of Smithing Action."
+    "Perminant night vision?"
   ],
   "demoTool": [
-    "tinkerscompendium:helm"
+    "tinkerscompendium:helm",
     "tinkerscompendium:hood"
   ]
 }

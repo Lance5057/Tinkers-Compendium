@@ -2,7 +2,7 @@
   "modifier": "antiblindness",
   "text": [
     {
-      "text": "Incorehernt & Blurry scribbles can been clarified /nWhen applied to a 'helmet' of sots of course."
+      "text": "Goggles can be incorperated into headwear of course, offering visual clarity in any situation."
     }
   ],
   "effects": [
@@ -10,7 +10,7 @@
     "Can't be blind even with your eyes shut."
   ],
   "demoTool": [
-    "tinkerscompendium:helm"
+    "tinkerscompendium:helm",
     "tinkerscompendium:hood"
   ]
 }

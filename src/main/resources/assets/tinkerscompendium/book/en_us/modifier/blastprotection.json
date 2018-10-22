@@ -2,16 +2,21 @@
   "modifier": "blastprotection",
   "text": [
     {
-      "text": "Mining & tnt, a grand ol mix /nBe sure to forge [Blank] into your armor for some Blast Protection."
+      "text": "Mining & tnt without blast protection is just plain dangeous. A worthwile solution is wool padding."
     }
   ],
   "effects": [
     "Exploding & Saftey.",
+    "Multiple Levels."
   ],
   "demoTool": [
     "tinkerscompendium:helm",
     "tinkerscompendium:breastplate",
     "tinkerscompendium:grieves",
-    "tinkerscompendium:sabatons"
+    "tinkerscompendium:sabatons",
+    "tinkerscompendium:hood",
+    "tinkerscompendium:shawl",
+    "tinkerscompendium:robe",
+    "tinkerscompendium:shoes"
   ]
 }

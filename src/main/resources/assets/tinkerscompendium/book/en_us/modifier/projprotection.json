@@ -2,13 +2,22 @@
   "modifier": "projprotection",
   "text": [
     {
-      "text": "Projectiles can still make quick work of your armor/n Just in case some [blank] should render the threat a minimum "
+      "text": "Projectiles may pierce your armor. Iron Rivets offer protection, like magic."
     }
   ],
   "effects": [
     "Protects from UFO's.",
+    "Doesn't protect the knee.",
+    "Multiple Levels."
   ],
   "demoTool": [
-    "tinkerscompendium:grieves"
+    "tinkerscompendium:helm",
+    "tinkerscompendium:breastplate",
+    "tinkerscompendium:grieves",
+    "tinkerscompendium:sabatons",
+    "tinkerscompendium:hood",
+    "tinkerscompendium:shawl",
+    "tinkerscompendium:robe",
+    "tinkerscompendium:shoes"
   ]
 }
