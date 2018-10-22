@@ -436,17 +436,17 @@ modifier.antiblindness.desc=results may vary, Dont look directly at the sun.
 modifier.deadmansswitch.name=Deadmans Switch
 modifier.deadmansswitch.desc=What comes around goes around.
 modifier.nightvision.name=Night Vision
-modifier.nightvision.name=Nights Eye's
+modifier.nightvision.desc=Nights Eye's
 modifier.protection.name=Protection
-modifier.protection.name=Protection
+modifier.protection.desc=Protection Description
 modifier.projprotection.name=Projectile Protection
-modifier.projprotection.name=Projectile Protection
+modifier.projprotection.desc=Projectile Protection Description
 modifier.fireprotection.name=Fire Protection
-modifier.fireprotection.name=Fire Protection
+modifier.fireprotection.desc=Fire Protection Description
 modifier.blastprotection.name=Blast Protection
-modifier.blastprotection.desc=Blast Protection
+modifier.blastprotection.desc=Blast Protection Description
 modifier.respirationI.name=Respiration I
-modifier.respirationI.name=Armor with Gills
+modifier.respirationI.desc=Armor with Gills
 
 //Misc
 item.armor_plate.name=Armor Plate

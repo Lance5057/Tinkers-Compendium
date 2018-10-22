@@ -2,14 +2,8 @@
   "modifier": "nightvision",
   "text": [
     {
-      "text": "Incorehernt scribbles have been drawn all over the page ..."
+      "text": "Wandering around in the dark can be a pain/n Headwear can be modified with [Blank] to make the night just as bright as day."
     },
-    {
-      "text": "\n"
-    },
-    {
-      "text": "... Or is it a secret Code? To Block or To Protec ?"
-    }
   ],
   "effects": [
     "Read this & laugh away a few more brain cells.",
@@ -18,5 +12,6 @@
   ],
   "demoTool": [
     "tinkerscompendium:helm"
+    "tinkerscompendium:hood"
   ]
 }

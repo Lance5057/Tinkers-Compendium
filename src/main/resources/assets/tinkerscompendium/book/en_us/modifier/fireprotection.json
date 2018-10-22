@@ -2,21 +2,16 @@
   "modifier": "fireprotection",
   "text": [
     {
-      "text": "Incorehernt scribbles have been drawn all over the page ..."
-    },
-    {
-      "text": "\n"
-    },
-    {
-      "text": "... Or is it a secret Code? To Block or To Protec ?"
+      "text": "Getting caught on fire, it can get real serious. /nForging [Blank] into armor helps to eleviate that."
     }
   ],
   "effects": [
-    "Read this & laugh away a few more brain cells.",
-    "The code Is Lance-kun.",
-    "Multiple Highly Insane levels of Smithing Action."
+    "Results may vary."
   ],
   "demoTool": [
-    "tinkerscompendium:helm"
+    "tinkerscompendium:helm",
+    "tinkerscompendium:breastplate",
+    "tinkerscompendium:grieves",
+    "tinkerscompendium:sabatons"
   ]
 }

@@ -2,21 +2,18 @@
   "modifier": "protection",
   "text": [
     {
-      "text": "Incorehernt scribbles have been drawn all over the page ..."
-    },
-    {
-      "text": "\n"
-    },
-    {
-      "text": "... Or is it a secret Code? To Block or To Protec ?"
+      "text": "Finding Armor doesnt protect enough? /nAditional armor plates might help remedy that."
     }
   ],
   "effects": [
-    "Read this & laugh away a few more brain cells.",
-    "The code Is Lance-kun.",
-    "Multiple Highly Insane levels of Smithing Action."
+    "Unsure the exact protection values",
+    "Incoherent scribbles.",
+    "Not projectile proof."
   ],
   "demoTool": [
-    "tinkerscompendium:helm"
+    "tinkerscompendium:helm",
+    "tinkerscompendium:breastplate",
+    "tinkerscompendium:grieves",
+    "tinkerscompendium:sabatons"
   ]
 }
