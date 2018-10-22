@@ -1,4 +1,4 @@
-itemGroup.TinkersDefense=Tinkers' Compendium
+itemGroup.tinkerscompendium=Tinkers' Compendium
 tile.armorstation.name=Armor Station
 item.null.name=[null]
 item.regdummy.name=[regdummy]
@@ -53,13 +53,31 @@ material.greencloth.name=Green Wool
 material.redcloth.name=Red Wool
 material.blackcloth.name=Black Wool
 
+material.silky.name=Silky Enchanted
+
 material.brass.name=Brass
 material.gold.name=Gold
+
+material.saphire.name=Saphire
+material.emerald.name=Emerald
+material.diamond.name=Diamond
+material.ruby.name=Ruby
+material.starsaphire.name=Star Saphire
+material.citrine.name=Citrine
+material.Quartz.name=Quartz
+material.starruby.name=Star Ruby
+material.amethyst.name=Amethyst
+material.lapis.name=Lapis
+material.garnet.name=Garnet
+material.opal.name=Opal
+material.tanzanite.name=Tanzanite
+material.amber.name=Amber
 
 //New Items
 item.canister.name=Filled Canister
 item.empty_canister.name=Empty Canister
 item.rebreather.name=Rebreather
+item.goggles.name=Goggles
 item.nightvisiongoggles.name=Night Vision Goggles
 item.glowsole.name=Glowing Crystal
 item.firesole.name=Fiery Crystal
@@ -124,6 +142,11 @@ item.wire.name=Wire
 item.foil.name=Foil
 
 //New Blocks
+tile.stone_ore_silver.name=Silver Ore
+tile.stone_ore_copper.name=Copper Ore
+tile.stone_ore_platinum.name=Platinum Ore
+tile.stone_ore_lead.name=Lead Ore
+
 tile.block_aeonsteel.name=Aeonsteel Block
 tile.block_queensgold.name=Queensgold Block
 tile.block_dogbearium.name=Dogbearium Block
@@ -448,9 +471,10 @@ modifier.blastprotection.desc=Blast Protection Description
 modifier.respirationI.name=Respiration I
 modifier.respirationI.desc=Armor with Gills
 
-//Misc
+//Armor Materials
 item.armor_plate.name=Armor Plate
 item.chainmail.name=Chainmail
 item.rivets.name=Rivets
 item.clasp.name=Clasp
 item.filigree.name=Filigree
+item.fabric.name=Fabric
