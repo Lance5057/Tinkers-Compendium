@@ -10,10 +10,10 @@ import slimeknights.tconstruct.library.traits.AbstractTrait;
 import slimeknights.tconstruct.library.utils.TagUtil;
 import slimeknights.tconstruct.library.utils.TinkerUtil;
 
-public class TraitAcknowledged extends AbstractTrait {
+public class TraitAcknowledged extends AbstractTDTrait {
 
 	public TraitAcknowledged() {
-		super("established", 0xffffff);
+		super("acknowledged", 0xffffff);
 
 		MinecraftForge.EVENT_BUS.register(this);
 	}

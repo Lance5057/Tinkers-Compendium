@@ -11,7 +11,7 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import slimeknights.tconstruct.library.traits.AbstractTrait;
 
-public class TraitPricked extends AbstractTrait {
+public class TraitPricked extends AbstractTDTrait {
 	public TraitPricked() {
 		super("pricked", TextFormatting.GREEN);
 	}

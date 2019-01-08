@@ -2,8 +2,8 @@ package lance5057.tDefense.core.blocks;
 
 import java.util.Random;
 
-import lance5057.tDefense.TD_Config;
-import lance5057.tDefense.TinkersDefense;
+import lance5057.tDefense.TCConfig;
+import lance5057.tDefense.TinkersCompendium;
 import net.minecraft.block.BlockOre;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Items;
@@ -21,29 +21,21 @@ import slimeknights.tconstruct.library.utils.ToolHelper;
 public class TDOreBlock extends BlockOre {
 	// Item drop;
 	Item clump;
-	Item grindedDrop;
 
 	public TDOreBlock() {
 		super();
-		this.setCreativeTab(TinkersDefense.tab);
+		this.setCreativeTab(TinkersCompendium.tab);
 	}
-	
-	public TDOreBlock(Item clump) {
+
+	public TDOreBlock(Item clump, float hardness, float resistance, int mininglevel) {
 		super();
-		this.setCreativeTab(TinkersDefense.tab);
+		this.setCreativeTab(TinkersCompendium.tab);
 
 		// this.drop = drop;
 		this.clump = clump;
-		this.grindedDrop = null;
-	}
-
-	public TDOreBlock(Item clump, Item grindedDrop) {
-		super();
-		this.setCreativeTab(TinkersDefense.tab);
-
-		// this.drop = drop;
-		this.clump = clump;
-		this.grindedDrop = grindedDrop;
+		this.blockHardness = hardness;
+		this.blockResistance = resistance;
+		this.setHarvestLevel("pickaxe", mininglevel);
 	}
 
 	@Override
@@ -59,14 +51,13 @@ public class TDOreBlock extends BlockOre {
 		if (this.harvesters.get() != null) {
 			ItemStack stack = this.harvesters.get().getHeldItemMainhand();
 
-			if (stack.getItem() instanceof ToolCore) {
-				if (TinkerUtil.hasModifier(TagUtil.getBaseTag(stack), "silkluck") || TD_Config.OreClumps) {
-					drops.add(new ItemStack(clump, 1 + (rand.nextInt(fortune)), this.damageDropped(state)));
-					return;
-				}
+			if ((stack.getItem() instanceof ToolCore && TinkerUtil.hasModifier(TagUtil.getBaseTag(stack), "silkluck"))
+					|| TCConfig.OreClumps) {
+				drops.add(new ItemStack(clump,  1 + rand.nextInt(1 + fortune), 0));
+				return;
 			}
 		}
-		
+
 		super.getDrops(drops, world, pos, state, fortune);
 
 	}

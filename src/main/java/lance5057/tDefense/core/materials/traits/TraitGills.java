@@ -6,7 +6,7 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import slimeknights.tconstruct.library.traits.AbstractTrait;
 
-public class TraitGills extends AbstractTrait {
+public class TraitGills extends AbstractTDTrait {
 
 	public TraitGills() {
 		super("gills", TextFormatting.AQUA);

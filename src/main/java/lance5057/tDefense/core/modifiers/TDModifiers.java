@@ -3,7 +3,7 @@ package lance5057.tDefense.core.modifiers;
 import java.util.ArrayList;
 
 import lance5057.tDefense.Reference;
-import lance5057.tDefense.TinkersDefense;
+import lance5057.tDefense.TinkersCompendium;
 import lance5057.tDefense.core.blocks.UnstableBlock;
 import lance5057.tDefense.core.parts.TDParts;
 import net.minecraft.block.Block;
@@ -56,20 +56,20 @@ public class TDModifiers {
 	
 	public void preInit()
 	{
-		itemList.add(item_canister = new Item().setRegistryName(new ResourceLocation(Reference.MOD_ID, "canister")).setUnlocalizedName("canister").setCreativeTab(TinkersDefense.tab));
-		itemList.add(item_emptycanister = new Item().setRegistryName(new ResourceLocation(Reference.MOD_ID, "empty_canister")).setUnlocalizedName("empty_canister").setCreativeTab(TinkersDefense.tab));
-		itemList.add(item_rebreather = new Item().setRegistryName(new ResourceLocation(Reference.MOD_ID, "rebreather")).setUnlocalizedName("rebreather").setCreativeTab(TinkersDefense.tab));
-		itemList.add(item_nightvisiongoggles = new Item().setRegistryName(new ResourceLocation(Reference.MOD_ID, "nightvisiongoggles")).setUnlocalizedName("nightvisiongoggles").setCreativeTab(TinkersDefense.tab));
-		itemList.add(item_goggles = new Item().setRegistryName(new ResourceLocation(Reference.MOD_ID, "goggles")).setUnlocalizedName("goggles").setCreativeTab(TinkersDefense.tab));
+		itemList.add(item_canister = new Item().setRegistryName(new ResourceLocation(Reference.MOD_ID, "canister")).setUnlocalizedName("canister").setCreativeTab(TinkersCompendium.tab));
+		itemList.add(item_emptycanister = new Item().setRegistryName(new ResourceLocation(Reference.MOD_ID, "empty_canister")).setUnlocalizedName("empty_canister").setCreativeTab(TinkersCompendium.tab));
+		itemList.add(item_rebreather = new Item().setRegistryName(new ResourceLocation(Reference.MOD_ID, "rebreather")).setUnlocalizedName("rebreather").setCreativeTab(TinkersCompendium.tab));
+		itemList.add(item_nightvisiongoggles = new Item().setRegistryName(new ResourceLocation(Reference.MOD_ID, "nightvisiongoggles")).setUnlocalizedName("nightvisiongoggles").setCreativeTab(TinkersCompendium.tab));
+		itemList.add(item_goggles = new Item().setRegistryName(new ResourceLocation(Reference.MOD_ID, "goggles")).setUnlocalizedName("goggles").setCreativeTab(TinkersCompendium.tab));
 
-		itemList.add(item_glowsole = new Item().setRegistryName(new ResourceLocation(Reference.MOD_ID, "glowsole")).setUnlocalizedName("glowsole").setCreativeTab(TinkersDefense.tab));
-		itemList.add(item_firesole = new Item().setRegistryName(new ResourceLocation(Reference.MOD_ID, "firesole")).setUnlocalizedName("firesole").setCreativeTab(TinkersDefense.tab));
-		itemList.add(item_icesole = new Item().setRegistryName(new ResourceLocation(Reference.MOD_ID, "icesole")).setUnlocalizedName("icesole").setCreativeTab(TinkersDefense.tab));
-		itemList.add(item_feathersole = new Item().setRegistryName(new ResourceLocation(Reference.MOD_ID, "feathersole")).setUnlocalizedName("feathersole").setCreativeTab(TinkersDefense.tab));
-		itemList.add(item_flippers = new Item().setRegistryName(new ResourceLocation(Reference.MOD_ID, "flippers")).setUnlocalizedName("flippers").setCreativeTab(TinkersDefense.tab));
+		itemList.add(item_glowsole = new Item().setRegistryName(new ResourceLocation(Reference.MOD_ID, "glowsole")).setUnlocalizedName("glowsole").setCreativeTab(TinkersCompendium.tab));
+		itemList.add(item_firesole = new Item().setRegistryName(new ResourceLocation(Reference.MOD_ID, "firesole")).setUnlocalizedName("firesole").setCreativeTab(TinkersCompendium.tab));
+		itemList.add(item_icesole = new Item().setRegistryName(new ResourceLocation(Reference.MOD_ID, "icesole")).setUnlocalizedName("icesole").setCreativeTab(TinkersCompendium.tab));
+		itemList.add(item_feathersole = new Item().setRegistryName(new ResourceLocation(Reference.MOD_ID, "feathersole")).setUnlocalizedName("feathersole").setCreativeTab(TinkersCompendium.tab));
+		itemList.add(item_flippers = new Item().setRegistryName(new ResourceLocation(Reference.MOD_ID, "flippers")).setUnlocalizedName("flippers").setCreativeTab(TinkersCompendium.tab));
 		
-		blockList.add(unstable_obsidian = new UnstableBlock(Material.ROCK, MapColor.OBSIDIAN, Blocks.LAVA, 15, 0).setRegistryName(new ResourceLocation(Reference.MOD_ID, "unstableobsidian")).setUnlocalizedName("unstableobsidian").setCreativeTab(TinkersDefense.tab));
-		blockList.add(unstable_ice = new UnstableBlock(Material.ICE, MapColor.ICE, Blocks.WATER, 0, 0.98F).setRegistryName(new ResourceLocation(Reference.MOD_ID, "unstableice")).setUnlocalizedName("unstableice").setCreativeTab(TinkersDefense.tab));
+		blockList.add(unstable_obsidian = new UnstableBlock(Material.ROCK, MapColor.OBSIDIAN, Blocks.LAVA, 15, 0).setRegistryName(new ResourceLocation(Reference.MOD_ID, "unstableobsidian")).setUnlocalizedName("unstableobsidian").setCreativeTab(TinkersCompendium.tab));
+		blockList.add(unstable_ice = new UnstableBlock(Material.ICE, MapColor.ICE, Blocks.WATER, 0, 0.98F).setRegistryName(new ResourceLocation(Reference.MOD_ID, "unstableice")).setUnlocalizedName("unstableice").setCreativeTab(TinkersCompendium.tab));
 	}
 	
 	public void init()

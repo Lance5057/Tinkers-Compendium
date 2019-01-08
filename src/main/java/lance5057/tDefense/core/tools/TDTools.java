@@ -6,12 +6,10 @@ import java.util.List;
 import com.google.common.eventbus.Subscribe;
 
 import lance5057.tDefense.Reference;
-import lance5057.tDefense.TinkersDefense;
-import lance5057.tDefense.core.blocks.workstation.ArmorStationBlock;
+import lance5057.tDefense.TinkersCompendium;
 import lance5057.tDefense.core.library.CustomArmorTextureCreator;
-import lance5057.tDefense.core.library.TDRegistry;
+import lance5057.tDefense.core.library.TCRegistry;
 import lance5057.tDefense.core.network.ArmorStationSelectionPacket;
-import lance5057.tDefense.core.tileentities.ArmorStationTile;
 import lance5057.tDefense.core.tools.armor.cloth.TinkersHood;
 import lance5057.tDefense.core.tools.armor.cloth.TinkersRobe;
 import lance5057.tDefense.core.tools.armor.cloth.TinkersShawl;
@@ -29,6 +27,8 @@ import lance5057.tDefense.core.tools.basic.Shears;
 import lance5057.tDefense.core.tools.basic.TowerShield;
 import lance5057.tDefense.core.tools.basic.Zweihander;
 import lance5057.tDefense.core.tools.baubles.Sheathe;
+import lance5057.tDefense.core.workstations.blocks.ArmorStationBlock;
+import lance5057.tDefense.core.workstations.tileentities.ArmorStationTile;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -204,15 +204,15 @@ public class TDTools {
 		tool.setRegistryName(new ResourceLocation(Reference.MOD_ID, name));
 		event.getRegistry().register(tool);
 		TinkerRegistry.registerTool(tool);
-		TinkersDefense.proxy.registerToolModel(tool);
+		TinkersCompendium.proxy.registerToolModel(tool);
 		tools.add(tool);
 	}
 
 	private static void regArmor(ArmorCore armor, String name, RegistryEvent.Register<Item> event) {
 		armor.setRegistryName(new ResourceLocation(Reference.MOD_ID, name));
 		event.getRegistry().register(armor);
-		TDRegistry.registerTool(armor);
-		TinkersDefense.proxy.registerArmorModel(armor);
+		TCRegistry.registerTool(armor);
+		TinkersCompendium.proxy.registerArmorModel(armor);
 		armors.add(armor);
 	}
 
@@ -223,7 +223,7 @@ public class TDTools {
 	@SideOnly(Side.CLIENT)
 	@SubscribeEvent
 	public static void registerModels(ModelRegistryEvent event) {
-		TinkersDefense.proxy.registerItemBlockRenderer(station, 0, "armorstation");
+		TinkersCompendium.proxy.registerItemBlockRenderer(station, 0, "armorstation");
 	}
 
 	// INITIALIZATION
@@ -252,17 +252,17 @@ public class TDTools {
 		TinkerRegistry.registerToolCrafting(shears);
 		TinkerRegistry.registerToolCrafting(fishingRod);
 
-		TDRegistry.registerArmorCrafting(hood);
-		TDRegistry.registerArmorCrafting(shawl);
-		TDRegistry.registerArmorCrafting(robe);
-		TDRegistry.registerArmorCrafting(shoes);
+		TCRegistry.registerArmorCrafting(hood);
+		TCRegistry.registerArmorCrafting(shawl);
+		TCRegistry.registerArmorCrafting(robe);
+		TCRegistry.registerArmorCrafting(shoes);
 
 		// TinkerRegistry.registerToolCrafting(boots);
 
-		TDRegistry.registerArmorCrafting(helm);
-		TDRegistry.registerArmorCrafting(breastplate);
-		TDRegistry.registerArmorCrafting(grieves);
-		TDRegistry.registerArmorCrafting(sabatons);
+		TCRegistry.registerArmorCrafting(helm);
+		TCRegistry.registerArmorCrafting(breastplate);
+		TCRegistry.registerArmorCrafting(grieves);
+		TCRegistry.registerArmorCrafting(sabatons);
 
 		TinkerRegistry.registerToolCrafting(sheathe);
 		// TinkerRegistry.registerToolCrafting(ring);

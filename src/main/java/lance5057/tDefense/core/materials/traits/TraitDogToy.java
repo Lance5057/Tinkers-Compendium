@@ -20,7 +20,7 @@ import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import slimeknights.mantle.util.RecipeMatch.Match;
 import slimeknights.tconstruct.library.traits.AbstractTrait;
 
-public class TraitDogToy extends AbstractTrait {
+public class TraitDogToy extends AbstractTDTrait {
 
 	public TraitDogToy() {
 		super("dogtoy", TextFormatting.WHITE);

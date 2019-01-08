@@ -85,23 +85,23 @@ public class HolidayBase extends ModuleBase
 
 	}
 
-	@SubscribeEvent
-	public void EditLootTables(LootTableLoadEvent e)
-	{
-		if (Calendar.getInstance().get(Calendar.MONTH) == Calendar.DECEMBER)
-		{
-			LootTable t = e.getTable();
-			if (e.getName().toString().equals("minecraft:entities/skeleton") || e.getName().toString().equals("minecraft:entities/zombie"))
-			{
-				LootCondition[] testchance = { new RandomChance(1.01F) };
-				LootCondition[] chance = { new RandomChance(0.25F) };
-				t.getPool("main").addEntry(new LootEntryItem(item_redmintcane, 5, 1, new LootFunction[0], chance, "redcandy"));
-				t.getPool("main").addEntry(new LootEntryItem(item_greenmintcane, 5, 1, new LootFunction[0], chance, "greencandy"));
-
-				LootCondition[] chance2 = { new RandomChance(0.05F) };
-				t.getPool("main").addEntry(new LootEntryItem(item_gingerbread, 1, 5, new LootFunction[0], chance2, "gingerbread"));
-			}
-		}
-	}
+//	@SubscribeEvent
+//	public void EditLootTables(LootTableLoadEvent e)
+//	{
+//		if (Calendar.getInstance().get(Calendar.MONTH) == Calendar.DECEMBER)
+//		{
+//			LootTable t = e.getTable();
+//			if (e.getName().toString().equals("minecraft:entities/skeleton") || e.getName().toString().equals("minecraft:entities/zombie"))
+//			{
+//				LootCondition[] testchance = { new RandomChance(1.01F) };
+//				LootCondition[] chance = { new RandomChance(0.25F) };
+//				t.getPool("main").addEntry(new LootEntryItem(item_redmintcane, 5, 1, new LootFunction[0], chance, "redcandy"));
+//				t.getPool("main").addEntry(new LootEntryItem(item_greenmintcane, 5, 1, new LootFunction[0], chance, "greencandy"));
+//
+//				LootCondition[] chance2 = { new RandomChance(0.05F) };
+//				t.getPool("main").addEntry(new LootEntryItem(item_gingerbread, 1, 5, new LootFunction[0], chance2, "gingerbread"));
+//			}
+//		}
+//	}
 
 }

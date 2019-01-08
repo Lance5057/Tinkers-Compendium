@@ -8,7 +8,7 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import slimeknights.tconstruct.library.traits.AbstractTrait;
 
-public class TraitDemonic extends AbstractTrait {
+public class TraitDemonic extends AbstractTDTrait {
 
 	public TraitDemonic() {
 		super("demonic", TextFormatting.DARK_RED);

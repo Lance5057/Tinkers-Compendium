@@ -2,7 +2,7 @@ package lance5057.tDefense.core.materials.traits;
 
 import java.util.List;
 
-import lance5057.tDefense.TD_Config;
+import lance5057.tDefense.TCConfig;
 import lance5057.tDefense.util.ArmorTagUtil;
 import net.minecraft.block.BlockFarmland;
 import net.minecraft.block.state.IBlockState;

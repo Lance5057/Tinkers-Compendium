@@ -9,7 +9,7 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import slimeknights.tconstruct.library.traits.AbstractTrait;
 
-public class TraitHotFoot extends AbstractTrait {
+public class TraitHotFoot extends AbstractTDTrait {
 
 	public TraitHotFoot() {
 		super("hotfoot", TextFormatting.RED);

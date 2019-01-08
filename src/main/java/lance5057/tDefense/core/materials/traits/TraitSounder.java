@@ -13,7 +13,7 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import slimeknights.tconstruct.library.traits.AbstractTrait;
 
-public class TraitSounder extends AbstractTrait {
+public class TraitSounder extends AbstractTDTrait {
 
 	public TraitSounder() {
 		super("sounder", TextFormatting.RED);

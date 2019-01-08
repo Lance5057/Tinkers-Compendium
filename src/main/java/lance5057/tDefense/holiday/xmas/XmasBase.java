@@ -1,6 +1,6 @@
 package lance5057.tDefense.holiday.xmas;
 
-import lance5057.tDefense.TinkersDefense;
+import lance5057.tDefense.TinkersCompendium;
 import lance5057.tDefense.core.library.ItemsBase;
 import lance5057.tDefense.core.library.ModuleBase;
 import lance5057.tDefense.holiday.xmas.gumdropslime.GumDropSlime;
@@ -22,7 +22,7 @@ public class XmasBase extends ModuleBase {
 		// TODO Auto-generated method stub
 		items.preInit(e);
 		EntityRegistry.registerModEntity(null, GumDropSlime.class, "gumdropslime", 0,
-				TinkersDefense.instance, 64, 5, true, 0x963430, 0xDDDDDD);
+				TinkersCompendium.instance, 64, 5, true, 0x963430, 0xDDDDDD);
 		//LootTableList.register(GumDropSlime.LOOT_TABLE);
 	}
 

@@ -16,7 +16,7 @@ import com.google.common.collect.Sets;
 
 import lance5057.tDefense.core.library.ArmorNBT;
 import lance5057.tDefense.core.library.ArmorTags;
-import lance5057.tDefense.core.materials.TDMaterials;
+import lance5057.tDefense.core.materials.CompendiumMaterials;
 import lance5057.tDefense.core.materials.stats.FabricMaterialStats;
 import lance5057.tDefense.core.tools.armor.renderers.ArmorRenderer;
 import lance5057.tDefense.util.ArmorTagUtil;
@@ -448,7 +448,7 @@ public abstract class ArmorCore extends ArmorBase implements IToolStationDisplay
 
 			for (int i = 0; i < requiredComponents.length; i++) {
 				if (requiredComponents[i].usesStat(FabricMaterialStats.TYPE)) {
-					mats.add(TDMaterials.white.mat);
+					mats.add(CompendiumMaterials.white.mat);
 				} else {
 					if (fixedMaterials.length > i && fixedMaterials[i] != null
 							&& requiredComponents[i].isValidMaterial(fixedMaterials[i])) {

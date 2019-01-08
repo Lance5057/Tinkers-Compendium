@@ -11,7 +11,7 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import slimeknights.tconstruct.library.traits.AbstractTrait;
 
-public class TraitBoneSpurs extends AbstractTrait {
+public class TraitBoneSpurs extends AbstractTDTrait {
 
 	public TraitBoneSpurs() {
 		super("bonespurs", TextFormatting.WHITE);

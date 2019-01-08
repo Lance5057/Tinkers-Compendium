@@ -329,7 +329,7 @@ public class ComponentDoor extends Block
         return new ItemStack(this.getItem());
     }
 
-    private Item getItem()
+    public Item getItem()
     {
         return item;
     }

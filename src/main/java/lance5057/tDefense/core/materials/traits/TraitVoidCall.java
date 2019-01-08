@@ -7,7 +7,7 @@ import net.minecraft.world.World;
 import slimeknights.tconstruct.library.traits.AbstractTrait;
 import slimeknights.tconstruct.library.utils.ToolHelper;
 
-public class TraitVoidCall extends AbstractTrait
+public class TraitVoidCall extends AbstractTDTrait
 {
 	public TraitVoidCall() {
 		super("voidcall", TextFormatting.WHITE);

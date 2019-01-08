@@ -13,7 +13,7 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import slimeknights.tconstruct.library.traits.AbstractTrait;
 
-public class TraitApplyPotion extends AbstractTrait {
+public class TraitApplyPotion extends AbstractTDTrait {
 	List<PotionEffect> pots = new ArrayList<PotionEffect>();
 	boolean rand = false;
 

@@ -10,7 +10,7 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import slimeknights.tconstruct.library.traits.AbstractTrait;
 
-public class TraitHydrophobic extends AbstractTrait
+public class TraitHydrophobic extends AbstractTDTrait
 {
 	public TraitHydrophobic() {
 		super("hydrophobic", TextFormatting.WHITE);

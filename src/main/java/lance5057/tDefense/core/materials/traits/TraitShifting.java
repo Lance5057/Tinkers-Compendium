@@ -1,12 +1,12 @@
 package lance5057.tDefense.core.materials.traits;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import scala.actors.threadpool.Arrays;
 
 public class TraitShifting extends AbstractTDTrait
 {

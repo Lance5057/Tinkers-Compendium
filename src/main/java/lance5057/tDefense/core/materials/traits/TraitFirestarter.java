@@ -18,7 +18,7 @@ import slimeknights.mantle.util.RecipeMatch.Match;
 import slimeknights.tconstruct.library.tools.ToolCore;
 import slimeknights.tconstruct.library.traits.AbstractTrait;
 
-public class TraitFirestarter extends AbstractTrait {
+public class TraitFirestarter extends AbstractTDTrait {
 
 	public TraitFirestarter() {
 		super("firestarter", TextFormatting.RED);

@@ -8,7 +8,7 @@ import org.apache.commons.lang3.tuple.Pair;
 import com.google.common.collect.Lists;
 
 import lance5057.tDefense.Reference;
-import lance5057.tDefense.TinkersDefense;
+import lance5057.tDefense.TinkersCompendium;
 import lance5057.tDefense.core.library.ArmorPart;
 import lance5057.tDefense.core.library.ModuleBase;
 import net.minecraft.item.Item;
@@ -159,7 +159,7 @@ public class TDParts extends ModuleBase
 		    }
 		
 		TinkerRegistry.registerToolPart(part);
-		TinkersDefense.proxy.registerPartModel(part);
+		TinkersCompendium.proxy.registerPartModel(part);
 		TinkerRegistry.registerStencilTableCrafting(Pattern.setTagForPart(new ItemStack(TinkerTools.pattern), (Item) part));
 
 		// TinkerRegistry.registerTableCasting(output, cast, fluid, amount);
@@ -193,7 +193,7 @@ public class TDParts extends ModuleBase
 		    }
 		
 		TinkerRegistry.registerToolPart(part);
-		TinkersDefense.proxy.registerArmorPartModel(part);
+		TinkersCompendium.proxy.registerArmorPartModel(part);
 		TinkerRegistry.registerStencilTableCrafting(Pattern.setTagForPart(new ItemStack(TinkerTools.pattern), (Item) part));
 
 		// TinkerRegistry.registerTableCasting(output, cast, fluid, amount);

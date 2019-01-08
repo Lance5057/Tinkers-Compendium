@@ -11,7 +11,7 @@ import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import slimeknights.mantle.util.RecipeMatch.Match;
 import slimeknights.tconstruct.library.traits.AbstractTrait;
 
-public class TraitBarbed extends AbstractTrait {
+public class TraitBarbed extends AbstractTDTrait {
 
 	public TraitBarbed() {
 		super("barbed", TextFormatting.GREEN);

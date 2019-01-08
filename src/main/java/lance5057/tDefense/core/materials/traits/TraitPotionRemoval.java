@@ -10,7 +10,7 @@ import net.minecraft.world.World;
 import slimeknights.tconstruct.library.traits.AbstractTrait;
 import slimeknights.tconstruct.library.utils.ToolHelper;
 
-public class TraitPotionRemoval extends AbstractTrait
+public class TraitPotionRemoval extends AbstractTDTrait
 {
 	Potion[] effects;
 

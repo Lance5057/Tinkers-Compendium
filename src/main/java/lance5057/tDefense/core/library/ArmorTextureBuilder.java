@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import lance5057.tDefense.Reference;
+import lance5057.tDefense.TCConfig.Materials;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.DynamicTexture;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -69,8 +70,14 @@ public class ArmorTextureBuilder
 			for (BufferedImage tex : looseTex)
 				g2d.drawImage(tex, 0, 0, null);
 			g2d.dispose();
+			
+			String texName = Reference.MOD_ID + "_" + type;
+			for(Material m: materials)
+			{
+				texName += "_" + m.identifier;
+			}
 
-			return Minecraft.getMinecraft().getTextureManager().getDynamicTextureLocation(Reference.MOD_ID, new DynamicTexture(fullTex));
+			return Minecraft.getMinecraft().getTextureManager().getDynamicTextureLocation(texName, new DynamicTexture(fullTex));
 		}
 		return null;
 	}

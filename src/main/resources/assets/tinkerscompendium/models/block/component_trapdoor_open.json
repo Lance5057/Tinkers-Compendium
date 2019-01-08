@@ -1,6 +1,19 @@
 {
-    "parent": "block/trapdoor_open",
     "textures": {
-        "texture": "blocks/iron_trapdoor"
-    }
+		"tex": "minecraft:blocks/iron_trapdoor",
+        "particle": "minecraft:blocks/iron_trapdoor"
+    },
+    "elements": [
+        {   "from": [ 0, 0, 13 ],
+            "to": [ 16, 16, 16 ],
+            "faces": {
+                "down":  { "tintindex": 1, "uv": [  0, 13, 16, 16 ], "texture": "#tex", "cullface": "down" },
+                "up":    { "tintindex": 1, "uv": [  0, 16, 16, 13 ], "texture": "#tex", "cullface": "up" },
+                "north": { "tintindex": 1, "uv": [  0,  0, 16, 16 ], "texture": "#tex" },
+                "south": { "tintindex": 1, "uv": [  0,  0, 16, 16 ], "texture": "#tex", "cullface": "south" },
+                "west":  { "tintindex": 1, "uv": [ 16,  0, 13, 16 ], "texture": "#tex", "cullface": "west" },
+                "east":  { "tintindex": 1, "uv": [ 13,  0, 16, 16 ], "texture": "#tex", "cullface": "east" }
+            }
+        }
+    ]
 }

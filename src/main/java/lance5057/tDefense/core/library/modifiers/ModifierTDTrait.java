@@ -9,92 +9,97 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import slimeknights.mantle.util.RecipeMatch;
 import slimeknights.tconstruct.library.TinkerRegistry;
+import slimeknights.tconstruct.library.Util;
 import slimeknights.tconstruct.library.modifiers.IModifierDisplay;
 import slimeknights.tconstruct.library.modifiers.ModifierAspect;
 import slimeknights.tconstruct.library.modifiers.ModifierNBT;
 import slimeknights.tconstruct.library.utils.TinkerUtil;
 
 /**
- * Represents a modifier that has trait-logic
- * Modifier can have multiple levels.
+ * Represents a modifier that has trait-logic Modifier can have multiple levels.
  * Since this is intended for modifiers it uses a modifier
  */
-public class ModifierTDTrait extends AbstractTDTrait implements IModifierDisplay { 
+public class ModifierTDTrait extends AbstractTDTrait implements IModifierDisplay {
 
-  protected final int maxLevel;
+	protected final int maxLevel;
 
-  public ModifierTDTrait(String identifier, int color) {
-    this(identifier, color, 0, 0);
-  }
+	public ModifierTDTrait(String identifier, int color) {
+		this(identifier, color, 0, 0);
+	}
 
-  public ModifierTDTrait(String identifier, int color, int maxLevel, int countPerLevel) {
-    super(identifier, color);
+	public ModifierTDTrait(String identifier, int color, boolean ignoreMe) {
+		this.maxLevel = 0;
+		this.aspects.clear();
 
-    // register the modifier trait
-    TinkerRegistry.addTrait(this);
+		addAspects(new ModifierAspect.DataAspect(this, color), ModifierAspect.freeModifier);
+	}
 
-    this.maxLevel = maxLevel;
-    this.aspects.clear();
+	public ModifierTDTrait(String identifier, int color, int maxLevel, int countPerLevel) {
+		super(identifier, color);
 
-    if(maxLevel > 0 && countPerLevel > 0) {
-      addAspects(new ModifierAspect.MultiAspect(this, color, maxLevel, countPerLevel, 1));
-    }
-    else {
-      if(maxLevel > 0) {
-        addAspects(new ModifierAspect.LevelAspect(this, maxLevel));
-      }
-      addAspects(new ModifierAspect.DataAspect(this, color), ModifierAspect.freeModifier);
-    }
-  }
+		// register the modifier trait
+		TinkerRegistry.addTrait(this);
 
-  @Override
-  public boolean canApplyCustom(ItemStack stack) {
-    // not present yet, ok
-    if(super.canApplyCustom(stack)) {
-      return true;
-    }
-    // no max level
-    else if(maxLevel == 0) {
-      return false;
-    }
+		this.maxLevel = maxLevel;
+		this.aspects.clear();
 
-    // already present, limit by level
-    NBTTagCompound tag = TinkerUtil.getModifierTag(stack, identifier);
+		if (maxLevel > 0 && countPerLevel > 0) {
+			addAspects(new ModifierAspect.MultiAspect(this, color, maxLevel, countPerLevel, 1));
+		} else {
+			if (maxLevel > 0) {
+				addAspects(new ModifierAspect.LevelAspect(this, maxLevel));
+			}
+			addAspects(new ModifierAspect.DataAspect(this, color), ModifierAspect.freeModifier);
+		}
+	}
 
-    return ModifierNBT.readTag(tag).level <= maxLevel;
-  }
+	@Override
+	public boolean canApplyCustom(ItemStack stack) {
+		// not present yet, ok
+		if (super.canApplyCustom(stack)) {
+			return true;
+		}
+		// no max level
+		else if (maxLevel == 0) {
+			return false;
+		}
 
+		// already present, limit by level
+		NBTTagCompound tag = TinkerUtil.getModifierTag(stack, identifier);
 
-  @Override
-  public String getTooltip(NBTTagCompound modifierTag, boolean detailed) {
-    if(maxLevel > 0) {
-      return getLeveledTooltip(modifierTag, detailed);
-    }
-    return super.getTooltip(modifierTag, detailed);
-  }
+		return ModifierNBT.readTag(tag).level <= maxLevel;
+	}
 
-  @Override
-  public int getColor() {
-    return color;
-  }
+	@Override
+	public String getTooltip(NBTTagCompound modifierTag, boolean detailed) {
+		if (maxLevel > 0) {
+			return getLeveledTooltip(modifierTag, detailed);
+		}
+		return super.getTooltip(modifierTag, detailed);
+	}
 
-  @Override
-  public List<List<ItemStack>> getItems() {
-    ImmutableList.Builder<List<ItemStack>> builder = ImmutableList.builder();
+	@Override
+	public int getColor() {
+		return color;
+	}
 
-    for(RecipeMatch rm : items) {
-      List<ItemStack> in = rm.getInputs();
-      if(!in.isEmpty()) {
-        builder.add(in);
-      }
-    }
+	@Override
+	public List<List<ItemStack>> getItems() {
+		ImmutableList.Builder<List<ItemStack>> builder = ImmutableList.builder();
 
-    return builder.build();
-  }
+		for (RecipeMatch rm : items) {
+			List<ItemStack> in = rm.getInputs();
+			if (!in.isEmpty()) {
+				builder.add(in);
+			}
+		}
 
-  public ModifierNBT.IntegerNBT getData(ItemStack tool) {
-    NBTTagCompound tag = TinkerUtil.getModifierTag(tool, getModifierIdentifier());
-    return ModifierNBT.readInteger(tag);
-  }
+		return builder.build();
+	}
+
+	public ModifierNBT.IntegerNBT getData(ItemStack tool) {
+		NBTTagCompound tag = TinkerUtil.getModifierTag(tool, getModifierIdentifier());
+		return ModifierNBT.readInteger(tag);
+	}
 
 }

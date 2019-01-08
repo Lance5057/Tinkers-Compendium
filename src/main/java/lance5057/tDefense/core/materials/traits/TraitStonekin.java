@@ -11,7 +11,7 @@ import net.minecraft.world.World;
 import slimeknights.tconstruct.library.traits.AbstractTrait;
 import slimeknights.tconstruct.library.utils.ToolHelper;
 
-public class TraitStonekin extends AbstractTrait
+public class TraitStonekin extends AbstractTDTrait
 {
 	public TraitStonekin() {
 		super("stonekin", TextFormatting.RED);

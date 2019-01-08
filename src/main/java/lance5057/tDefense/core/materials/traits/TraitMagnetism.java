@@ -1,6 +1,6 @@
 package lance5057.tDefense.core.materials.traits;
 
-import lance5057.tDefense.TD_Config;
+import lance5057.tDefense.TCConfig;
 import lance5057.tDefense.core.tools.bases.ArmorCore;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -41,7 +41,7 @@ public class TraitMagnetism extends AbstractTDTrait {
 				NBTTagList tag = TagUtil.getBaseMaterialsTagList(i);
 				boolean isMagnetic = false;
 				for (NBTBase s : tag) {
-					if (TD_Config.Traits.isMetal(((NBTTagString) s).getString()))
+					if (TCConfig.traits.isMetal(((NBTTagString) s).getString()))
 						isMagnetic = true;
 				}
 				if (isMagnetic) {

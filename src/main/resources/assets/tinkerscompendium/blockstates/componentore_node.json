@@ -1,0 +1,38 @@
+{
+    "forge_marker": 1,
+    "variants": {
+    	"normal": [
+		{"model": "tinkerscompendium:ore_node_corner", "y":90},
+		{"model": "tinkerscompendium:ore_node_corner", "y":180},
+		{"model": "tinkerscompendium:ore_node_corner", "z": 180},
+		{"model": "tinkerscompendium:ore_node_corner", "y":90, "z": 180},
+		{"model": "tinkerscompendium:ore_node_corner", "y":180, "z": 180},
+		{"model": "tinkerscompendium:ore_node_center", "y":90},
+		{"model": "tinkerscompendium:ore_node_center", "y":180},
+		{"model": "tinkerscompendium:ore_node_center", "z": 180},
+		{"model": "tinkerscompendium:ore_node_center", "y":90, "z": 180},
+		{"model": "tinkerscompendium:ore_node_center", "y":180, "z": 180},
+		{"model": "tinkerscompendium:ore_node_sparse", "y":90},
+		{"model": "tinkerscompendium:ore_node_sparse", "y":180},
+		{"model": "tinkerscompendium:ore_node_sparse", "z": 180},
+		{"model": "tinkerscompendium:ore_node_sparse", "y":90, "z": 180},
+		{"model": "tinkerscompendium:ore_node_sparse", "y":180, "z": 180},
+		{"model": "tinkerscompendium:ore_node_corner_rust", "y":90},
+		{"model": "tinkerscompendium:ore_node_corner_rust", "y":180},
+		{"model": "tinkerscompendium:ore_node_corner_rust", "z": 180},
+		{"model": "tinkerscompendium:ore_node_corner_rust", "y":90, "z": 180},
+		{"model": "tinkerscompendium:ore_node_corner_rust", "y":180, "z": 180},
+		{"model": "tinkerscompendium:ore_node_center_rust", "y":90},
+		{"model": "tinkerscompendium:ore_node_center_rust", "y":180},
+		{"model": "tinkerscompendium:ore_node_center_rust", "z": 180},
+		{"model": "tinkerscompendium:ore_node_center_rust", "y":90, "z": 180},
+		{"model": "tinkerscompendium:ore_node_center_rust", "y":180, "z": 180},
+		{"model": "tinkerscompendium:ore_node_sparse_rust", "y":90},
+		{"model": "tinkerscompendium:ore_node_sparse_rust", "y":180},
+		{"model": "tinkerscompendium:ore_node_sparse_rust", "z": 180},
+		{"model": "tinkerscompendium:ore_node_sparse_rust", "y":90, "z": 180},
+		{"model": "tinkerscompendium:ore_node_sparse_rust", "y":180, "z": 180}
+		],
+    	"inventory": [{}]
+    }
+}

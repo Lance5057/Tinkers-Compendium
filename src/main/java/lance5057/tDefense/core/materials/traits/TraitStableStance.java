@@ -8,7 +8,7 @@ import net.minecraft.world.World;
 import slimeknights.tconstruct.library.traits.AbstractTrait;
 import slimeknights.tconstruct.library.utils.ToolHelper;
 
-public class TraitStableStance extends AbstractTrait {
+public class TraitStableStance extends AbstractTDTrait {
 
 	public TraitStableStance() {
 		super("stablestance", TextFormatting.DARK_PURPLE);

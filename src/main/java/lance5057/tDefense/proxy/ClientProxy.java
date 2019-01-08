@@ -7,8 +7,8 @@ import javax.annotation.Nonnull;
 import com.google.common.collect.ImmutableList;
 
 import lance5057.tDefense.Reference;
-import lance5057.tDefense.TD_Commands;
-import lance5057.tDefense.TinkersDefense;
+import lance5057.tDefense.TCCommands;
+import lance5057.tDefense.TinkersCompendium;
 import lance5057.tDefense.core.blocks.ColoredBlockMapper;
 import lance5057.tDefense.core.library.ArmorBuildGuiInfo;
 import lance5057.tDefense.core.library.ArmorPart;
@@ -16,7 +16,7 @@ import lance5057.tDefense.core.library.CustomArmorTextureCreator;
 import lance5057.tDefense.core.library.TDClientRegistry;
 import lance5057.tDefense.core.library.TDModelLoader;
 import lance5057.tDefense.core.library.TDModelRegistar;
-import lance5057.tDefense.core.materials.TDMaterials;
+import lance5057.tDefense.core.materials.CompendiumMaterials;
 import lance5057.tDefense.core.tools.TDTools;
 import lance5057.tDefense.core.tools.bases.ArmorCore;
 import lance5057.tDefense.renderers.deserializers.AlphaColorTextureDeserializer;
@@ -85,7 +85,7 @@ public class ClientProxy extends CommonProxy {
 	ArmorBuildGuiInfo grievesGUI;
 	ArmorBuildGuiInfo sabatonsGUI;
 
-	//ToolBuildGuiInfo sheatheGUI;
+	// ToolBuildGuiInfo sheatheGUI;
 	// ToolBuildGuiInfo ringGUI;
 	// ToolBuildGuiInfo amuletGUI;
 
@@ -93,7 +93,7 @@ public class ClientProxy extends CommonProxy {
 
 	@Override
 	public void preInit() {
-		ClientCommandHandler.instance.registerCommand(new TD_Commands());
+		ClientCommandHandler.instance.registerCommand(new TCCommands());
 		ModelLoaderRegistry.registerLoader(loader);
 		MaterialRenderInfoLoader.addRenderInfo("alpha_color", AlphaColorTextureDeserializer.class);
 
@@ -163,8 +163,8 @@ public class ClientProxy extends CommonProxy {
 		setToolGuis();
 		registerToolGuis();
 		createToolModels();
-		
-		//ModelRegisterUtil.registerPartModel(TDMaterials.plate); 
+
+		// ModelRegisterUtil.registerPartModel(TDMaterials.plate);
 	}
 
 	@Override
@@ -188,7 +188,7 @@ public class ClientProxy extends CommonProxy {
 
 		// TDMaterials.queensgold.setupClient();
 
-		TinkersDefense.tab.setDisplayIcon(TDTools.heatershield.buildItemForRendering(
+		TinkersCompendium.tab.setDisplayIcon(TDTools.heatershield.buildItemForRendering(
 				ImmutableList.of(TinkerRegistry.getMaterial("iron"), TinkerRegistry.getMaterial("cobalt"),
 						TinkerRegistry.getMaterial("cobalt"), TinkerRegistry.getMaterial("iron"))));
 	}
@@ -254,7 +254,7 @@ public class ClientProxy extends CommonProxy {
 		grievesGUI = new ArmorBuildGuiInfo(TDTools.grieves);
 		sabatonsGUI = new ArmorBuildGuiInfo(TDTools.sabatons);
 
-		//sheatheGUI = new ToolBuildGuiInfo(TDTools.sheathe);
+		// sheatheGUI = new ToolBuildGuiInfo(TDTools.sheathe);
 		// ringGUI = new ToolBuildGuiInfo(TDTools.ring);
 		// amuletGUI = new ToolBuildGuiInfo(TDTools.amulet);
 
@@ -279,7 +279,7 @@ public class ClientProxy extends CommonProxy {
 
 		// TinkerRegistryClient.addToolBuilding(bootsGUI);
 
-		//TinkerRegistryClient.addToolBuilding(sheatheGUI);
+		// TinkerRegistryClient.addToolBuilding(sheatheGUI);
 		// TinkerRegistryClient.addToolBuilding(ringGUI);
 		// TinkerRegistryClient.addToolBuilding(amuletGUI);
 		//
@@ -359,18 +359,18 @@ public class ClientProxy extends CommonProxy {
 		helmGUI.addSlotPosition(19, 51 + 8);
 
 		sabatonsGUI.positions.clear();
-		sabatonsGUI.addSlotPosition(28+18, 16+18);
-		sabatonsGUI.addSlotPosition(28-18, 16+18);
-		sabatonsGUI.addSlotPosition(28+18, 16+18+18);
-		sabatonsGUI.addSlotPosition(28-18, 16+18+18);
-		sabatonsGUI.addSlotPosition(28, 16+18+9);
+		sabatonsGUI.addSlotPosition(28 + 18, 16 + 18);
+		sabatonsGUI.addSlotPosition(28 - 18, 16 + 18);
+		sabatonsGUI.addSlotPosition(28 + 18, 16 + 18 + 18);
+		sabatonsGUI.addSlotPosition(28 - 18, 16 + 18 + 18);
+		sabatonsGUI.addSlotPosition(28, 16 + 18 + 9);
 
 		grievesGUI.positions.clear();
-		grievesGUI.addSlotPosition(28-14, 23+18);
-		grievesGUI.addSlotPosition(28+14, 23+18);
-		grievesGUI.addSlotPosition(28+14, 23+18+18);
+		grievesGUI.addSlotPosition(28 - 14, 23 + 18);
+		grievesGUI.addSlotPosition(28 + 14, 23 + 18);
+		grievesGUI.addSlotPosition(28 + 14, 23 + 18 + 18);
 		grievesGUI.addSlotPosition(28, 23);
-		grievesGUI.addSlotPosition(28-14, 23+18+18);
+		grievesGUI.addSlotPosition(28 - 14, 23 + 18 + 18);
 
 		shearsGUI.positions.clear();
 		shearsGUI.addSlotPosition(34, 15 + 8);
@@ -382,10 +382,10 @@ public class ClientProxy extends CommonProxy {
 		fishingRodGUI.addSlotPosition(43, 33 + 8);
 		fishingRodGUI.addSlotPosition(34, 51 + 8);
 
-		//sheatheGUI.positions.clear();
-		//sheatheGUI.addSlotPosition(34, 15);
-		//sheatheGUI.addSlotPosition(34, 33);
-		//sheatheGUI.addSlotPosition(34, 51);
+		// sheatheGUI.positions.clear();
+		// sheatheGUI.addSlotPosition(34, 15);
+		// sheatheGUI.addSlotPosition(34, 33);
+		// sheatheGUI.addSlotPosition(34, 51);
 		//
 		// ringGUI.positions.clear();
 		// ringGUI.addSlotPosition(34, 15);
@@ -482,7 +482,9 @@ public class ClientProxy extends CommonProxy {
 
 		@Override
 		public int colorMultiplier(IBlockState state, IBlockAccess worldIn, BlockPos pos, int tintIndex) {
-			return color;
+			if (tintIndex == 1)
+				return color;
+			return 0xffffff;
 
 		}
 	}

@@ -14,12 +14,17 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import slimeknights.tconstruct.library.traits.AbstractTrait;
 
 public abstract class AbstractTDTrait extends AbstractTrait {
+	public AbstractTDTrait() 
+	{
+		super("", 0x000000);
+	}
+	
 	public AbstractTDTrait(String identifier, TextFormatting color) {
-		super(identifier, color);
+		super("td_"+identifier, color);
 	}
 
 	public AbstractTDTrait(String identifier, int color) {
-		super(identifier, color);
+		super("td_"+identifier, color);
 	}
 
 	public void onArmorEquip(EntityPlayer e) {

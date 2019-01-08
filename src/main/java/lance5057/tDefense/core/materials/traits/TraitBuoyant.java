@@ -6,7 +6,7 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import slimeknights.tconstruct.library.traits.AbstractTrait;
 
-public class TraitBuoyant extends AbstractTrait
+public class TraitBuoyant extends AbstractTDTrait
 {
 	public TraitBuoyant() {
 		super("buoyant", TextFormatting.AQUA);

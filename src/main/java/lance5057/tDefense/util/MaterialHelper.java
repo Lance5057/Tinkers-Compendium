@@ -5,14 +5,15 @@ import java.util.Locale;
 import org.apache.commons.lang3.StringUtils;
 
 import lance5057.tDefense.Reference;
-import lance5057.tDefense.TinkersDefense;
+import lance5057.tDefense.TCConfig;
+import lance5057.tDefense.TinkersCompendium;
 import lance5057.tDefense.core.blocks.ComponentDoor;
 import lance5057.tDefense.core.blocks.ComponentPane;
 import lance5057.tDefense.core.blocks.ComponentStake;
 import lance5057.tDefense.core.blocks.ComponentTrapDoor;
 import lance5057.tDefense.core.blocks.TDOreBlock;
 import lance5057.tDefense.core.items.ComponentItemDoor;
-import lance5057.tDefense.core.materials.TDMaterials;
+import lance5057.tDefense.core.materials.CompendiumMaterials;
 import lance5057.tDefense.core.materials.stats.ChestMaterialStats;
 import lance5057.tDefense.core.materials.stats.FabricMaterialStats;
 import lance5057.tDefense.core.materials.stats.FeetMaterialStats;
@@ -20,13 +21,13 @@ import lance5057.tDefense.core.materials.stats.HelmMaterialStats;
 import lance5057.tDefense.core.materials.stats.LegsMaterialStats;
 import lance5057.tDefense.core.materials.stats.ShieldMaterialStats;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockOre;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.biome.Biome;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -61,6 +62,24 @@ public class MaterialHelper {
 		this.chest = chest;
 		this.legs = legs;
 		this.feet = feet;
+	}
+
+	public MaterialHelper(String name, int color, HeadMaterialStats head, HandleMaterialStats handle,
+			ExtraMaterialStats extra, ShieldMaterialStats shield, BowMaterialStats bow, HelmMaterialStats helm,
+			ChestMaterialStats chest, LegsMaterialStats legs, FeetMaterialStats feet) {
+		this.name = name;
+		this.color = color;
+		this.head = head;
+		this.handle = handle;
+		this.extra = extra;
+		this.shield = shield;
+		this.bow = bow;
+		this.helm = helm;
+		this.chest = chest;
+		this.legs = legs;
+		this.feet = feet;
+
+		this.cast = false;
 	}
 
 	public MaterialHelper(String name, int color, FabricMaterialStats fabric) {
@@ -123,67 +142,49 @@ public class MaterialHelper {
 	public Item coin;
 	public Item gear;
 	public Item rod;
-	public Item oreClump;
-	public Item oreGravelClump;
-	public Item oreSandClump;
 
-	public BlockOre ore;
-	
-	public boolean genOre = false;
-	public int oreDim;
-	public int oreYMax;
-	public int oreYMin;
-	public int oreSize;
-	public int oreChance;
-	
-	public void setupOre(int dim, int yMax, int yMin, int size, int chance)
-	{
-		this.genOre = true;
-		this.oreDim = dim;
-		this.oreYMax = yMax;
-		this.oreYMin = yMin;
-		this.oreSize = size;
-		this.oreChance = chance;
+	public oreGen stoneOreGen = null;
+	public oreGen gravelOreGen = null;
+	public oreGen sandOreGen = null;
+	public oreGen netherOreGen = null;
+	public oreGen endOreGen = null;
+
+	public MaterialHelper genStoneOre() {
+		stoneOreGen = new oreGen();
+		stoneOreGen.hardmodeMultiplier = 1f;
+
+		TinkersCompendium.biomeCheck.add(stoneOreGen);
+		return this;
 	}
-	
-	public BlockOre gravelOre;
-	
-	public boolean genGravelOre = false;
-	public int gravelOreDim;
-	public int gravelOreYMax;
-	public int gravelOreYMin;
-	public int gravelOreSize;
-	public int gravelOreChance;
-	
-	public void setupGravelOre(int dim, int yMax, int yMin, int size, int chance)
-	{
-		this.genGravelOre = true;
-		this.gravelOreDim = dim;
-		this.gravelOreYMax = yMax;
-		this.gravelOreYMin = yMin;
-		this.gravelOreSize = size;
-		this.gravelOreChance = chance;
+
+	public MaterialHelper genGravelOre() {
+		gravelOreGen = new oreGen();
+		gravelOreGen.hardmodeMultiplier = 1.34f;
+		TinkersCompendium.biomeCheck.add(gravelOreGen);
+		return this;
 	}
-	
-	public BlockOre sandOre;
-	
-	public boolean genSandOre = false;
-	public int sandOreDim;
-	public int sandOreYMax;
-	public int sandOreYMin;
-	public int sandOreSize;
-	public int sandOreChance;
-	
-	public void setupSandOre(int dim, int yMax, int yMin, int size, int chance)
-	{
-		this.genSandOre = true;
-		this.sandOreDim = dim;
-		this.sandOreYMax = yMax;
-		this.sandOreYMin = yMin;
-		this.sandOreSize = size;
-		this.sandOreChance = chance;
+
+	public MaterialHelper genSandOre() {
+		sandOreGen = new oreGen();
+		sandOreGen.hardmodeMultiplier = 1.67f;
+		TinkersCompendium.biomeCheck.add(sandOreGen);
+		return this;
 	}
-	
+
+	public MaterialHelper genNetherOre() {
+		netherOreGen = new oreGen();
+		netherOreGen.hardmodeMultiplier = 1.1f;
+		TinkersCompendium.biomeCheck.add(netherOreGen);
+		return this;
+	}
+
+	public MaterialHelper genEndOre() {
+		endOreGen = new oreGen();
+		endOreGen.hardmodeMultiplier = 1.5f;
+		TinkersCompendium.biomeCheck.add(endOreGen);
+		return this;
+	}
+
 	public Block block;
 	public ComponentDoor door;
 	public ComponentTrapDoor trapdoor;
@@ -227,11 +228,6 @@ public class MaterialHelper {
 
 	public MaterialHelper setGenRod(boolean genRod) {
 		this.genRod = genRod;
-		return this;
-	}
-
-	public MaterialHelper setGenOre(boolean genOre) {
-		this.genOre = genOre;
 		return this;
 	}
 
@@ -285,7 +281,7 @@ public class MaterialHelper {
 	public boolean genCoin = true;
 	public boolean genGear = true;
 	public boolean genRod = true;
-	
+
 	public boolean genBlock = false;
 	public boolean genStake = true;
 	public boolean genBars = true;
@@ -324,113 +320,135 @@ public class MaterialHelper {
 		if (genComponents) {
 			if (ingot == null && genIngot) {
 				ingot = registerItem("ingot_" + name);
-				TDMaterials.itemList.add(ingot);
+				CompendiumMaterials.itemList.add(ingot);
 			}
 
 			if (nugget == null && genNugget) {
 				nugget = registerItem("nugget_" + name);
-				TDMaterials.itemList.add(nugget);
+				CompendiumMaterials.itemList.add(nugget);
 			}
 
 			if (dust == null && genDust) {
 				dust = registerItem("dust_" + name);
-				TDMaterials.itemList.add(dust);
+				CompendiumMaterials.itemList.add(dust);
 			}
 			if (grain == null && genGrain) {
 				grain = registerItem("grain_" + name);
-				TDMaterials.itemList.add(grain);
+				CompendiumMaterials.itemList.add(grain);
 			}
 
 			if (plate == null && genPlate) {
 				plate = registerItem("plate_" + name);
-				TDMaterials.itemList.add(plate);
+				CompendiumMaterials.itemList.add(plate);
 			}
 
 			if (coin == null && genCoin) {
 				coin = registerItem("coin_" + name);
-				TDMaterials.itemList.add(coin);
+				CompendiumMaterials.itemList.add(coin);
 			}
 
 			if (gear == null && genGear) {
 				gear = registerItem("gear_" + name);
-				TDMaterials.itemList.add(gear);
+				CompendiumMaterials.itemList.add(gear);
 			}
 
 			if (rod == null && genRod) {
 				rod = registerItem("rod_" + name);
-				TDMaterials.itemList.add(rod);
+				CompendiumMaterials.itemList.add(rod);
 			}
 
 			if (block == null && genBlock) {
 				block = new Block(net.minecraft.block.material.Material.IRON)
 						.setRegistryName(new ResourceLocation(Reference.MOD_ID, "block_" + name))
 						.setUnlocalizedName("block_" + name);
-				TDMaterials.blockList.add(block);
-				TDMaterials.itemList.add(registerItemBlock("block_" + name, block));
+				CompendiumMaterials.blockList.add(block);
+				CompendiumMaterials.itemList.add(registerItemBlock("block_" + name, block));
 			}
 
-			if (oreClump == null && genOre) {
-				oreClump = registerItem("clump_" + name);
-				oreGravelClump = registerItem("clumpGravel_" + name);
-				oreSandClump = registerItem("clumpSand_" + name);
+			if (stoneOreGen != null) {
+				stoneOreGen.setupItems();
+				stoneOreGen.setupBlocks();
 
-				TDMaterials.itemList.add(oreClump);
-				TDMaterials.itemList.add(oreGravelClump);
-				TDMaterials.itemList.add(oreSandClump);
+			}
+			if (gravelOreGen != null) {
+				gravelOreGen.setupItems();
+				gravelOreGen.setupBlocks();
+
+			}
+			if (sandOreGen != null) {
+				sandOreGen.setupItems();
+				sandOreGen.setupBlocks();
+
+			}
+			if (netherOreGen != null) {
+				netherOreGen.setupItems();
+				netherOreGen.setupBlocks();
+
+			}
+			if (endOreGen != null) {
+				endOreGen.setupItems();
+				endOreGen.setupBlocks();
+
 			}
 
-			if (ore == null && genOre) {
-				if (oreClump != null) {
-					ore = new TDOreBlock(oreClump, oreGravelClump);
-					gravelOre = new TDOreBlock(oreGravelClump, oreSandClump);
-					sandOre = new TDOreBlock(oreSandClump, dust);
-				} else {
-					ore = new TDOreBlock();
-					gravelOre = new TDOreBlock();
-					sandOre = new TDOreBlock();
-				}
-
-				ore.setRegistryName(new ResourceLocation(Reference.MOD_ID, "ore_" + name))
-						.setUnlocalizedName("ore_" + name);
-				TDMaterials.blockList.add(ore);
-				TDMaterials.itemList.add(registerItemBlock("ore_" + name, ore));
-
-				gravelOre.setRegistryName(new ResourceLocation(Reference.MOD_ID, "gravelOre_" + name))
-						.setUnlocalizedName("gravelOre_" + name);
-				TDMaterials.blockList.add(gravelOre);
-				TDMaterials.itemList.add(registerItemBlock("gravelOre_" + name, gravelOre));
-
-				sandOre.setRegistryName(new ResourceLocation(Reference.MOD_ID, "sandOre_" + name))
-						.setUnlocalizedName("sandOre_" + name);
-				TDMaterials.blockList.add(sandOre);
-				TDMaterials.itemList.add(registerItemBlock("sandOre_" + name, sandOre));
-			}
+//			if (genOre) {
+//				if (oreClump != null) {
+//					if (ore == null)
+//						ore = new TDOreBlock(oreClump, oreGravelClump);
+//					if (gravelOre == null)
+//						gravelOre = new TDOreBlock(oreGravelClump, oreSandClump);
+//					if (sandOre == null)
+//						sandOre = new TDOreBlock(oreSandClump, dust);
+//				} else {
+//					if (ore == null)
+//						ore = new TDOreBlock();
+//					if (gravelOre == null)
+//						gravelOre = new TDOreBlock();
+//					if (sandOre == null)
+//						sandOre = new TDOreBlock();
+//				}
+//
+//				ore.setRegistryName(new ResourceLocation(Reference.MOD_ID, "ore_" + name))
+//						.setUnlocalizedName("ore_" + name);
+//				TDMaterials.blockList.add(ore);
+//				TDMaterials.itemList.add(registerItemBlock("ore_" + name, ore));
+//
+//				gravelOre.setRegistryName(new ResourceLocation(Reference.MOD_ID, "gravelOre_" + name))
+//						.setUnlocalizedName("gravelOre_" + name);
+//				TDMaterials.blockList.add(gravelOre);
+//				TDMaterials.itemList.add(registerItemBlock("gravelOre_" + name, gravelOre));
+//
+//				sandOre.setRegistryName(new ResourceLocation(Reference.MOD_ID, "sandOre_" + name))
+//						.setUnlocalizedName("sandOre_" + name);
+//				TDMaterials.blockList.add(sandOre);
+//				TDMaterials.itemList.add(registerItemBlock("sandOre_" + name, sandOre));
+//			}
 
 			if (stake == null && genStake) {
 				stake = new ComponentStake();
 				stake.setRegistryName(new ResourceLocation(Reference.MOD_ID, "stake_" + name))
 						.setUnlocalizedName("stake_" + name);
-				TDMaterials.blockList.add(stake);
-				TDMaterials.itemList.add(registerItemBlock("stake_" + name, stake));
+				CompendiumMaterials.blockList.add(stake);
+				CompendiumMaterials.itemList.add(registerItemBlock("stake_" + name, stake));
 			}
 
 			if (bars == null && genBars) {
 				bars = new ComponentPane(net.minecraft.block.material.Material.IRON, true);
 				bars.setRegistryName(new ResourceLocation(Reference.MOD_ID, "bars_" + name))
 						.setUnlocalizedName("bars_" + name);
-				TDMaterials.blockList.add(bars);
-				TDMaterials.itemList.add(registerItemBlock("bars_" + name, bars));
+				CompendiumMaterials.blockList.add(bars);
+				CompendiumMaterials.itemList.add(registerItemBlock("bars_" + name, bars));
 			}
 
-			if (door == null && genDoor) {
+			if (door == null && genDoor && TCConfig.components.enableDoors) {
 				door = new ComponentDoor(net.minecraft.block.material.Material.IRON);
 				door.setRegistryName(new ResourceLocation(Reference.MOD_ID, "door_" + name))
 						.setUnlocalizedName("door_" + name);
-				TDMaterials.blockList.add(door);
+				CompendiumMaterials.blockList.add(door);
 				ComponentItemDoor b = new ComponentItemDoor(door);
 				b.setRegistryName(new ResourceLocation(Reference.MOD_ID, "door_" + name))
 						.setUnlocalizedName("door_" + name);
-				TDMaterials.itemList.add(b);
+				CompendiumMaterials.itemList.add(b);
 				door.setItem(b);
 			}
 
@@ -438,14 +456,14 @@ public class MaterialHelper {
 				trapdoor = new ComponentTrapDoor(net.minecraft.block.material.Material.IRON);
 				trapdoor.setRegistryName(new ResourceLocation(Reference.MOD_ID, "trapdoor_" + name))
 						.setUnlocalizedName("trapdoor_" + name);
-				TDMaterials.blockList.add(trapdoor);
-				TDMaterials.itemList.add(registerItemBlock("trapdoor_" + name, trapdoor));
+				CompendiumMaterials.blockList.add(trapdoor);
+				CompendiumMaterials.itemList.add(registerItemBlock("trapdoor_" + name, trapdoor));
 			}
 		}
 
 		if (genFluid) {
 			fluid = fluidMetal(name, color, temp);
-			TDMaterials.fluids.put(name, fluid);
+			CompendiumMaterials.fluids.put(name, fluid);
 		}
 
 		if (genMaterial) {
@@ -477,13 +495,10 @@ public class MaterialHelper {
 			if (fabric != null)
 				TinkerRegistry.addMaterialStats(mat, fabric);
 
-			if (repItem != null)
-				mat.setRepresentativeItem(repItem);
-
 			matint = new MaterialIntegration(mat, fluid, StringUtils.capitalize(name));
 			matint.toolforge().preInit();
 
-			TinkersDefense.proxy.registerMatColor(mat, color);
+			TinkersCompendium.proxy.registerMatColor(mat, color);
 
 			TinkerRegistry.integrate(matint);
 		}
@@ -512,8 +527,18 @@ public class MaterialHelper {
 				OreDictionary.registerOre("block" + StringUtils.capitalize(name), new ItemStack(block));
 		}
 
-		if (genMaterial)
+		if (genMaterial) {
+//			if (ingotStack != null)
+//				mat.addItem(ingotStack, 1, 1);
+
+			if (repItem != null) {
+				// mat.addItem(item, amountNeeded, amountMatched);
+				mat.addItem(repItem, 1, Material.VALUE_Ingot);
+				mat.setRepresentativeItem(repItem);
+			}
+
 			matint.integrate();
+		}
 
 	}
 
@@ -543,35 +568,51 @@ public class MaterialHelper {
 				}
 			}
 
-			if (genOre) {
-				if (genIngot) {
-					GameRegistry.addSmelting(ore, new ItemStack(ingot), 3f);
-					GameRegistry.addSmelting(oreClump, new ItemStack(ingot), 3f);
-				}
-
-				TinkerRegistry.registerMelting(ore, fluid, Material.VALUE_Ingot * 2);
-				TinkerRegistry.registerMelting(oreClump, fluid, Material.VALUE_Ingot * 2);
+			if (stoneOreGen != null) {
+				stoneOreGen.registerSmelting();
+				stoneOreGen.registerMelting();
 			}
+			if (gravelOreGen != null) {
+				gravelOreGen.registerSmelting();
+				gravelOreGen.registerMelting();
+			}
+			if (sandOreGen != null) {
+				sandOreGen.registerSmelting();
+				sandOreGen.registerMelting();
+			}
+			if (netherOreGen != null) {
+				netherOreGen.registerSmelting();
+				netherOreGen.registerMelting();
+			}
+			if (endOreGen != null) {
+				endOreGen.registerSmelting();
+				endOreGen.registerMelting();
+			}
+//			if (genOre) {
+//				if (genIngot) {
+//					GameRegistry.addSmelting(ore, new ItemStack(ingot), 3f);
+//					GameRegistry.addSmelting(oreClump, new ItemStack(ingot), 3f);
+//				}
+//
+//				if (fluid != null) {
+//					TinkerRegistry.registerMelting(ore, fluid, Material.VALUE_Ingot * 2);
+//					TinkerRegistry.registerMelting(oreClump, fluid, Material.VALUE_Ingot * 2);
+//				}
+//			}
 
 			if (genDust) {
 				GameRegistry.addSmelting(dust, new ItemStack(ingot, 1), 0f);
 			}
 
-			if (genDoor) {
-				if (genGear && (genIngot || oreIngot != "" || rep != Items.AIR)) {
-					IRecipe recipe = null;
+			if (genDoor && TCConfig.components.enableDoors) {
+				IRecipe recipe = null;
 
-					if (genIngot)
-						recipe = new ShapedOreRecipe(new ResourceLocation(Reference.MOD_ID, "door_recipe"),
-								new ItemStack(door, 3),
-								new Object[] { "ii ", "ii ", "ii ", 'i', new ItemStack(ingot) });
-					else if (oreIngot != "")
-						recipe = new ShapedOreRecipe(new ResourceLocation(Reference.MOD_ID, "door_recipe"),
-								new ItemStack(door, 3), new Object[] { "ii ", "ii ", "ii ", 'i', oreIngot });
-					else if (rep != Items.AIR)
-						recipe = new ShapedOreRecipe(new ResourceLocation(Reference.MOD_ID, "door_recipe"),
-								new ItemStack(door, 3), new Object[] { "ii ", "ii ", "ii ", 'i', new ItemStack(rep) });
-
+				if (genIngot)
+				{
+					recipe = new ShapedOreRecipe(new ResourceLocation(Reference.MOD_ID, "door_recipe"),
+							new ItemStack(door.getItem(), 3),
+							new Object[] { "ii ", "ii ", "ii ", 'i', new ItemStack(ingot) });
+					
 					if (recipe != null) {
 						recipe.setRegistryName(new ResourceLocation(Reference.MOD_ID, name + "DoorRecipe"));
 
@@ -580,8 +621,42 @@ public class MaterialHelper {
 					}
 				}
 
+				if (rep != Items.AIR)
+				{
+					recipe = new ShapedOreRecipe(new ResourceLocation(Reference.MOD_ID, "door_recipe"),
+							new ItemStack(door.getItem(), 3),
+							new Object[] { "ii ", "ii ", "ii ", 'i', new ItemStack(rep) });
+					
+					if (recipe != null) {
+						recipe.setRegistryName(new ResourceLocation(Reference.MOD_ID, name + "DoorRecipe"));
+
+						IForgeRegistry<IRecipe> registry = event.getRegistry();
+						registry.register(recipe);
+					}
+				}
+
+				if (oreIngot != "")
+				{
+					recipe = new ShapedOreRecipe(new ResourceLocation(Reference.MOD_ID, "door_recipe"),
+							new ItemStack(door.getItem(), 3), new Object[] { "ii ", "ii ", "ii ", 'i', oreIngot });
+					
+					if (recipe != null) {
+						recipe.setRegistryName(new ResourceLocation(Reference.MOD_ID, name + "DoorRecipe"));
+
+						IForgeRegistry<IRecipe> registry = event.getRegistry();
+						registry.register(recipe);
+					}
+				}
+
+//				if (recipe != null) {
+//					recipe.setRegistryName(new ResourceLocation(Reference.MOD_ID, name + "DoorRecipe"));
+//
+//					IForgeRegistry<IRecipe> registry = event.getRegistry();
+//					registry.register(recipe);
+//				}
+
 				if (genIngot)
-					GameRegistry.addSmelting(door, new ItemStack(ingot, 2), 0f);
+					GameRegistry.addSmelting(door.getItem(), new ItemStack(ingot, 2), 0f);
 				// TinkerRegistry.registerMelting(door, fluid, Material.VALUE_Ingot * 2);
 			}
 
@@ -652,78 +727,94 @@ public class MaterialHelper {
 	public void setupModels() {
 		if (genComponents) {
 			if (genIngot)
-				TinkersDefense.proxy.registerItemRenderer(ingot, 0, "ingot");
+				TinkersCompendium.proxy.registerItemRenderer(ingot, 0, "ingot");
 			if (genDust)
-				TinkersDefense.proxy.registerItemRenderer(dust, 0, "dust");
+				TinkersCompendium.proxy.registerItemRenderer(dust, 0, "dust");
 			if (genNugget)
-				TinkersDefense.proxy.registerItemRenderer(nugget, 0, "nugget");
+				TinkersCompendium.proxy.registerItemRenderer(nugget, 0, "nugget");
 			if (genGrain)
-				TinkersDefense.proxy.registerItemRenderer(grain, 0, "grain");
+				TinkersCompendium.proxy.registerItemRenderer(grain, 0, "grain");
 			if (genCoin)
-				TinkersDefense.proxy.registerItemRenderer(coin, 0, "coin");
+				TinkersCompendium.proxy.registerItemRenderer(coin, 0, "coin");
 			if (genPlate)
-				TinkersDefense.proxy.registerItemRenderer(plate, 0, "plate");
+				TinkersCompendium.proxy.registerItemRenderer(plate, 0, "plate");
 			if (genRod)
-				TinkersDefense.proxy.registerItemRenderer(rod, 0, "rod");
+				TinkersCompendium.proxy.registerItemRenderer(rod, 0, "rod");
 			if (genGear)
-				TinkersDefense.proxy.registerItemRenderer(gear, 0, "gear");
+				TinkersCompendium.proxy.registerItemRenderer(gear, 0, "gear");
 
 			if (genBlock) {
-				TinkersDefense.proxy.registerBlockRenderer(block, "block");
-				TinkersDefense.proxy.registerItemBlockRenderer(block, 0, "componentblock");
+				TinkersCompendium.proxy.registerBlockRenderer(block, "block");
+				TinkersCompendium.proxy.registerItemBlockRenderer(block, 0, "componentblock");
 			}
 			if (genStake) {
-				TinkersDefense.proxy.registerBlockRenderer(stake, "stake");
-				TinkersDefense.proxy.registerItemBlockRenderer(stake, 0, "stake");
+				TinkersCompendium.proxy.registerBlockRenderer(stake, "stake");
+				TinkersCompendium.proxy.registerItemBlockRenderer(stake, 0, "componentstake");
 			}
-			// if (genBars)
-			// {
-			// TinkersDefense.proxy.registerBlockRenderer(bars, "bars");
-			// TinkersDefense.proxy.registerItemRenderer(Item.getItemFromBlock(bars), 0,
-			// "bars");
-			// }
-			// if (genDoor)
-			// {
-			// TinkersDefense.proxy.registerBlockRenderer(door, "door");
-			// TinkersDefense.proxy.registerItemRenderer(Item.getItemFromBlock(door), 0,
-			// "door");
-			// }
-			// if (genTrapdoor)
-			// {
-			// TinkersDefense.proxy.registerBlockRenderer(trapdoor, "trapdoor");
-			// TinkersDefense.proxy.registerItemRenderer(Item.getItemFromBlock(trapdoor), 0,
-			// "trapdoor");
-			// }
+			if (genBars) {
+				TinkersCompendium.proxy.registerBlockRenderer(bars, "bars");
+				TinkersCompendium.proxy.registerItemRenderer(Item.getItemFromBlock(bars), 0, "componentbars");
+			}
+			if (genDoor) {
+				TinkersCompendium.proxy.registerBlockRenderer(door, "door");
+				TinkersCompendium.proxy.registerItemRenderer(door.getItem(), 0, "componentdoor");
+			}
+			if (genTrapdoor) {
+				TinkersCompendium.proxy.registerBlockRenderer(trapdoor, "trapdoor");
+				TinkersCompendium.proxy.registerItemRenderer(Item.getItemFromBlock(trapdoor), 0, "componenttrapdoor");
+			}
+			if (this.stoneOreGen != null) {
+				stoneOreGen.registerModels();
+			}
 		}
 	}
 
 	public void setupClient() {
 		if (genComponents) {
 			if (genIngot)
-				TinkersDefense.proxy.registerItemColorHandler(color, ingot);
+				TinkersCompendium.proxy.registerItemColorHandler(color, ingot);
 			if (genNugget)
-				TinkersDefense.proxy.registerItemColorHandler(color, nugget);
+				TinkersCompendium.proxy.registerItemColorHandler(color, nugget);
 			if (genDust)
-				TinkersDefense.proxy.registerItemColorHandler(color, dust);
+				TinkersCompendium.proxy.registerItemColorHandler(color, dust);
 			if (genGrain)
-				TinkersDefense.proxy.registerItemColorHandler(color, grain);
+				TinkersCompendium.proxy.registerItemColorHandler(color, grain);
 			if (genCoin)
-				TinkersDefense.proxy.registerItemColorHandler(color, coin);
+				TinkersCompendium.proxy.registerItemColorHandler(color, coin);
 			if (genGear)
-				TinkersDefense.proxy.registerItemColorHandler(color, gear);
+				TinkersCompendium.proxy.registerItemColorHandler(color, gear);
 			if (genPlate)
-				TinkersDefense.proxy.registerItemColorHandler(color, plate);
+				TinkersCompendium.proxy.registerItemColorHandler(color, plate);
 			if (genRod)
-				TinkersDefense.proxy.registerItemColorHandler(color, rod);
+				TinkersCompendium.proxy.registerItemColorHandler(color, rod);
 
 			if (genBlock) {
-				TinkersDefense.proxy.registerBlockColorHandler(color, block);
-				TinkersDefense.proxy.registerItemColorHandler(color, Item.getItemFromBlock(block));
+				TinkersCompendium.proxy.registerBlockColorHandler(color, block);
+				TinkersCompendium.proxy.registerItemColorHandler(color, Item.getItemFromBlock(block));
 			}
 
-			if (genBlock) {
-				TinkersDefense.proxy.registerBlockColorHandler(color, stake);
-				TinkersDefense.proxy.registerItemColorHandler(color, Item.getItemFromBlock(stake));
+			if (genStake) {
+				TinkersCompendium.proxy.registerBlockColorHandler(color, stake);
+				TinkersCompendium.proxy.registerItemColorHandler(color, Item.getItemFromBlock(stake));
+			}
+
+			if (genDoor) {
+				TinkersCompendium.proxy.registerBlockColorHandler(color, door);
+				TinkersCompendium.proxy.registerItemColorHandler(color, door.getItem());
+			}
+
+			if (genTrapdoor) {
+				TinkersCompendium.proxy.registerBlockColorHandler(color, trapdoor);
+				TinkersCompendium.proxy.registerItemColorHandler(color, Item.getItemFromBlock(trapdoor));
+			}
+
+			if (genBars) {
+				TinkersCompendium.proxy.registerBlockColorHandler(color, bars);
+				TinkersCompendium.proxy.registerItemColorHandler(color, Item.getItemFromBlock(bars));
+			}
+
+			if (this.stoneOreGen != null) {
+				stoneOreGen.setupClient();
 			}
 		}
 	}
@@ -753,7 +844,7 @@ public class MaterialHelper {
 	public void initFluidMetal(Fluid fluid) {
 		registerMoltenBlock(fluid);
 		FluidRegistry.addBucketForFluid(fluid);
-		TinkersDefense.proxy.registerFluidModels(fluid);
+		TinkersCompendium.proxy.registerFluidModels(fluid);
 	}
 
 	public <T extends Fluid> T registerFluid(T fluid) {
@@ -774,5 +865,149 @@ public class MaterialHelper {
 		ForgeRegistries.BLOCKS.register(block);
 		ForgeRegistries.ITEMS.register(ib);
 		return block;
+	}
+
+	public class oreGen {
+		public String prefix;
+		public String style;
+
+		// optional
+		public int oreColor;
+
+		public float hardness;
+
+		public int[] oreDimWhite;
+		public int[] oreDimBlack;
+
+		public int oreYMax;
+		public int oreYMin;
+		public int oreSize;
+		public int oreChance;
+
+		public Biome[] oreBiomeWhite;
+		public Biome[] oreBiomeBlack;
+
+		public float biomeElevationMin = -2;
+		public float biomeElevationMax = -2;
+		public float biomeTempMin = -2;
+		public float biomeTempMax = -2;
+		public float biomeHumidityMin = -2;
+		public float biomeHumidityMax = -2;
+
+		public Block oreBlock;
+		public Item oreClump;
+		public float hardmodeMultiplier = 1;
+		public int mininglevel;
+		public float resistance;
+
+		public void setupOre(String pre, String style, int yMax, int yMin, int size, int chance, float hardness,
+				int mininglevel, float resistance) {
+			this.prefix = pre;
+			this.style = style;
+			this.oreYMax = yMax;
+			this.oreYMin = yMin;
+			this.oreSize = size;
+			this.oreChance = chance;
+			this.oreColor = color;
+			this.hardness = hardness;
+			this.resistance = resistance;
+			this.mininglevel = mininglevel;
+		}
+
+		public void setupOre(String pre, String style, int oreColor, int yMax, int yMin, int size, int chance,
+				float hardness, int mininglevel, float resistance) {
+			this.prefix = pre;
+			this.style = style;
+			this.oreYMax = yMax;
+			this.oreYMin = yMin;
+			this.oreSize = size;
+			this.oreChance = chance;
+			this.oreColor = oreColor;
+			this.hardness = hardness;
+			this.resistance = resistance;
+			this.mininglevel = mininglevel;
+		}
+
+		public void setupDimWhitelist(int[] list) {
+			this.oreDimWhite = list;
+
+		}
+
+		public void setupDimBlacklist(int[] list) {
+			this.oreDimBlack = list;
+
+		}
+
+		public void setupBiomeWhitelist(Biome[] biomes) {
+			this.oreBiomeWhite = biomes;
+
+		}
+
+		public void setupBiomeBlacklist(Biome[] biomes) {
+			this.oreBiomeBlack = biomes;
+
+		}
+
+		public void setupBiome(float elevationMin, float elevationMax, float tempMin, float tempMax, float humidityMin,
+				float humidityMax) {
+			this.biomeElevationMin = elevationMin;
+			this.biomeElevationMax = elevationMax;
+			this.biomeTempMin = tempMin;
+			this.biomeTempMax = tempMax;
+			this.biomeHumidityMin = humidityMin;
+			this.biomeHumidityMax = humidityMax;
+
+		}
+
+		public void setupItems() {
+			oreClump = registerItem(prefix + "clump_" + name);
+			CompendiumMaterials.itemList.add(oreClump);
+		}
+
+		public void setupBlocks() {
+			oreBlock = new TDOreBlock(oreClump, hardness, resistance, mininglevel)
+					.setRegistryName(new ResourceLocation(Reference.MOD_ID, prefix + "_ore_" + name))
+					.setUnlocalizedName(prefix + "_ore_" + name);
+			CompendiumMaterials.itemList.add(registerItemBlock("item_" + prefix + "_ore_" + name, this.oreBlock));
+
+			CompendiumMaterials.blockList.add(oreBlock);
+		}
+
+		public void registerMelting() {
+			if (fluid != null) {
+				if (!TCConfig.hardmode) {
+					TinkerRegistry.registerMelting(oreBlock, fluid,
+							(int) (Material.VALUE_Ingot * this.hardmodeMultiplier));
+					TinkerRegistry.registerMelting(oreClump, fluid,
+							(int) (Material.VALUE_Ingot * this.hardmodeMultiplier));
+				} else {
+					TinkerRegistry.registerMelting(oreBlock, fluid, Material.VALUE_Ingot * 2);
+					TinkerRegistry.registerMelting(oreClump, fluid, Material.VALUE_Ingot * 2);
+				}
+			}
+		}
+
+		public void registerSmelting() {
+			if (!TCConfig.hardmode) {
+				GameRegistry.addSmelting(oreBlock, new ItemStack(ingot), 3f);
+				GameRegistry.addSmelting(oreClump, new ItemStack(ingot), 3f);
+			}
+		}
+
+		public void registerModels() {
+			TinkersCompendium.proxy.registerBlockRenderer(stoneOreGen.oreBlock, "ore_" + style);
+			TinkersCompendium.proxy.registerItemRenderer(Item.getItemFromBlock(stoneOreGen.oreBlock), 0,
+					"ore_" + style);
+		}
+
+		public void setupClient() {
+			TinkersCompendium.proxy.registerBlockColorHandler(this.oreColor, stoneOreGen.oreBlock);
+			TinkersCompendium.proxy.registerItemColorHandler(this.oreColor,
+					Item.getItemFromBlock(stoneOreGen.oreBlock));
+		}
+
+		public String getName() {
+			return name;
+		}
 	}
 }

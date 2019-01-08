@@ -53,7 +53,7 @@ public final class ArmorBuilder {
 
   @Nonnull
   public static ItemStack tryBuildTool(NonNullList<ItemStack> stacks, String name) {
-    return tryBuildArmor(stacks, name, TDRegistry.getArmor()); 
+    return tryBuildArmor(stacks, name, TCRegistry.getArmor()); 
   }
 
   /**

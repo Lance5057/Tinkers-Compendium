@@ -18,7 +18,7 @@ import slimeknights.tconstruct.tools.tools.Hatchet;
 import slimeknights.tconstruct.tools.tools.LumberAxe;
 import slimeknights.tconstruct.tools.tools.Mattock;
 
-public class TraitAxeLover extends AbstractTrait {
+public class TraitAxeLover extends AbstractTDTrait {
 
 	public TraitAxeLover() {
 		super("securiphilic", TextFormatting.GREEN);

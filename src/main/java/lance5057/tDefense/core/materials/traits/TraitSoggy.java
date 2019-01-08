@@ -2,7 +2,7 @@ package lance5057.tDefense.core.materials.traits;
 
 import java.util.List;
 
-import lance5057.tDefense.TD_Config;
+import lance5057.tDefense.TCConfig;
 import lance5057.tDefense.util.ArmorTagUtil;
 import net.minecraft.block.BlockFarmland;
 import net.minecraft.block.state.IBlockState;
@@ -53,7 +53,7 @@ public class TraitSoggy extends AbstractTDTrait {
 			if (block == Blocks.FLOWING_LAVA.getDefaultState())
 				changeBlock(tool, world, pos, Blocks.STONE.getDefaultState());
 
-			if (!TD_Config.DontTouchMyBucket) {
+			if (!TCConfig.DontTouchMyBucket) {
 				List<ItemStack> items = player.inventory.mainInventory;
 				for (int i = 0; i < items.size(); i++) {
 					if (items.get(i).getItem() == Items.BUCKET) {

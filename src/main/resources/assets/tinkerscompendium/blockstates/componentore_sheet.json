@@ -1,0 +1,18 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "tinkerscompendium:component_ore_sheet",
+        "transform": "forge:default-block"
+    },
+    "variants": {
+    	"normal": [
+		{},
+		{"y":90},
+		{"y":180},
+		{"z": 180},
+		{"y":90, "z": 180},
+		{"y":180, "z": 180}
+		],
+    	"inventory": [{}]
+    }
+}

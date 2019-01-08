@@ -2,7 +2,7 @@ package lance5057.tDefense.core.materials.traits;
 
 import java.util.List;
 
-import lance5057.tDefense.TD_Config;
+import lance5057.tDefense.TCConfig;
 import lance5057.tDefense.util.ArmorTagUtil;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -13,7 +13,7 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import slimeknights.tconstruct.library.traits.AbstractTrait;
 
-public class TraitToasty extends AbstractTrait {
+public class TraitToasty extends AbstractTDTrait {
 
 	public TraitToasty() {
 		super("toasty", TextFormatting.RED);
@@ -33,7 +33,7 @@ public class TraitToasty extends AbstractTrait {
 					}
 				}
 
-				if (!TD_Config.DontTouchMyBucket) {
+				if (!TCConfig.DontTouchMyBucket) {
 					if (items.get(i).getItem() == Items.WATER_BUCKET) {
 						if (player.inventory.addItemStackToInventory(new ItemStack(Items.BUCKET, 1, 0))) {
 							player.inventory.mainInventory.get(i).splitStack(1);

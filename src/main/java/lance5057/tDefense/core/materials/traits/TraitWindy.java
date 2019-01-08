@@ -11,7 +11,7 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import slimeknights.tconstruct.library.traits.AbstractTrait;
 
-public class TraitWindy extends AbstractTrait {
+public class TraitWindy extends AbstractTDTrait {
 
 	public TraitWindy() {
 		super("windy", TextFormatting.BLUE);

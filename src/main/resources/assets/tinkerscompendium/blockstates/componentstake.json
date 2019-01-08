@@ -1,8 +1,6 @@
 {
-"forge_marker": 1,
     "variants": {
-		"normal": { "model": "tinkerscompendium:componentstake" },
-        "connected=false,facing=up": { "model": "tinkerscompendium:componentstake" },
+		"connected=false,facing=up": { "model": "tinkerscompendium:componentstake" },
         "connected=false,facing=down": { "model": "tinkerscompendium:componentstake", "x": 180 },
         "connected=false,facing=east": { "model": "tinkerscompendium:componentstake", "y": 90, "x": 90 },
         "connected=false,facing=south": { "model": "tinkerscompendium:componentstake", "y": 180, "x": 90 },

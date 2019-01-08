@@ -2,14 +2,14 @@ package lance5057.tDefense.core.worldgen;
 
 import java.util.Random;
 
-import com.google.common.base.Predicate;
-
-import lance5057.tDefense.core.materials.TDMaterials;
+import lance5057.tDefense.core.materials.CompendiumMaterials;
 import lance5057.tDefense.util.MaterialHelper;
-import net.minecraft.block.state.IBlockState;
+import net.minecraft.block.Block;
+import net.minecraft.block.state.pattern.BlockMatcher;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.feature.WorldGenMinable;
@@ -20,71 +20,83 @@ public class OreGenerator implements IWorldGenerator {
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator,
 			IChunkProvider chunkProvider) {
-		for (MaterialHelper mat : TDMaterials.materials) {
-			genOre(mat, world, random, chunkX, chunkZ);
-			genGravelOre(mat, world, random, chunkX, chunkZ);
-			genSandOre(mat, world, random, chunkX, chunkZ);
+		for (MaterialHelper mat : CompendiumMaterials.materials) {
+			genOres(mat, world, random, chunkX, chunkZ);
 		}
 	}
 
-	private void genOre(MaterialHelper mat, World world, Random rand, int chunk_X, int chunk_Z) {
+	private void genOres(MaterialHelper mat, World world, Random rand, int chunk_X, int chunk_Z) {
 		{
-			if (mat.genOre) {
-				if (mat.oreDim == world.provider.getDimension()) {
-					WorldGenMinable generator = new WorldGenMinable(mat.ore.getDefaultState(), mat.oreSize,
-							(Predicate<IBlockState>) Blocks.STONE.getDefaultState());
+			if (mat.stoneOreGen != null)
+				genOre(mat.stoneOreGen, Blocks.STONE, world, rand, chunk_X, chunk_Z);
+			if (mat.gravelOreGen != null)
+				genOre(mat.gravelOreGen, Blocks.GRAVEL, world, rand, chunk_X, chunk_Z);
+			if (mat.sandOreGen != null)
+				genOre(mat.sandOreGen, Blocks.SAND, world, rand, chunk_X, chunk_Z);
+			if (mat.netherOreGen != null)
+				genOre(mat.netherOreGen, Blocks.NETHERRACK, world, rand, chunk_X, chunk_Z);
+			if (mat.endOreGen != null)
+				genOre(mat.endOreGen, Blocks.END_STONE, world, rand, chunk_X, chunk_Z);
+		}
+	}
 
-					int heightdiff = mat.oreYMax - mat.oreYMin + 1;
-					for (int i = 0; i < mat.oreChance; i++) {
-						int x = chunk_X * 16 + rand.nextInt(16);
-						int y = mat.oreYMin + rand.nextInt(heightdiff);
-						int z = chunk_Z * 16 + rand.nextInt(16);
+	private void genOre(MaterialHelper.oreGen ore, Block replace, World world, Random rand, int chunk_X, int chunk_Z) {
+		int dim = world.provider.getDimension();
+		if ((ore.oreDimWhite == null 
+				|| checkInt(dim, ore.oreDimWhite)) 
+				&& (ore.oreDimBlack == null 
+				|| !checkInt(dim, ore.oreDimBlack))) {
 
-						generator.generate(world, rand, new BlockPos(x, y, z));
-					}
+			WorldGenMinable generator = new WorldGenMinable(ore.oreBlock.getDefaultState(), ore.oreSize,
+					BlockMatcher.forBlock(replace));
+
+			int heightdiff = ore.oreYMax - ore.oreYMin + 1;
+			for (int i = 0; i < ore.oreChance; i++) {
+				int x = chunk_X * 16 + rand.nextInt(16);
+				int y = ore.oreYMin + rand.nextInt(heightdiff);
+				int z = chunk_Z * 16 + rand.nextInt(16);
+
+				BlockPos pos = new BlockPos(x, y, z);
+				Biome biome = world.getBiome(pos);
+
+				if ((ore.oreBiomeWhite == null 
+						|| checkBiome(biome, ore.oreBiomeWhite) )
+						&& (ore.oreBiomeBlack == null 
+						|| !checkBiome(biome, ore.oreBiomeBlack))) {
+					float temp = biome.getTemperature(pos);
+					float elevation = biome.getBaseHeight();
+					float humidity = biome.getRainfall();
+
+					if (ore.biomeTempMax == -2 || ore.biomeTempMin == -2 || (temp >= ore.biomeTempMin && temp <= ore.biomeTempMax))
+						if (ore.biomeElevationMax == -2 || ore.biomeElevationMin == -2 || (elevation >= ore.biomeElevationMin && elevation <= ore.biomeElevationMax))
+							if (ore.biomeHumidityMax == -2 || ore.biomeHumidityMin == -2 || (humidity >= ore.biomeHumidityMin && humidity <= ore.biomeHumidityMax))
+								generator.generate(world, rand, new BlockPos(x, y, z));
 				}
-
 			}
 		}
 	}
-	private void genGravelOre(MaterialHelper mat, World world, Random rand, int chunk_X, int chunk_Z) {
-		{
-			if (mat.genGravelOre) {
-				if (mat.gravelOreDim == world.provider.getDimension()) {
-					WorldGenMinable generator = new WorldGenMinable(mat.gravelOre.getDefaultState(), mat.gravelOreSize,
-							(Predicate<IBlockState>) Blocks.GRAVEL.getDefaultState());
 
-					int heightdiff = mat.gravelOreYMax - mat.gravelOreYMin + 1;
-					for (int i = 0; i < mat.gravelOreChance; i++) {
-						int x = chunk_X * 16 + rand.nextInt(16);
-						int y = mat.gravelOreYMin + rand.nextInt(heightdiff);
-						int z = chunk_Z * 16 + rand.nextInt(16);
-
-						generator.generate(world, rand, new BlockPos(x, y, z));
-					}
-				}
-
+	private boolean checkBiome(Biome current, Biome[] biomes) {
+		if (biomes != null) {
+			for (Biome b : biomes) {
+				if (current == b)
+					return true;
 			}
 		}
+		else
+			return true;
+		return false;
 	}
-	private void genSandOre(MaterialHelper mat, World world, Random rand, int chunk_X, int chunk_Z) {
-		{
-			if (mat.genSandOre) {
-				if (mat.sandOreDim == world.provider.getDimension()) {
-					WorldGenMinable generator = new WorldGenMinable(mat.sandOre.getDefaultState(), mat.sandOreSize,
-							(Predicate<IBlockState>) Blocks.STONE.getDefaultState());
 
-					int heightdiff = mat.sandOreYMax - mat.sandOreYMin + 1;
-					for (int i = 0; i < mat.sandOreChance; i++) {
-						int x = chunk_X * 16 + rand.nextInt(16);
-						int y = mat.sandOreYMin + rand.nextInt(heightdiff);
-						int z = chunk_Z * 16 + rand.nextInt(16);
-
-						generator.generate(world, rand, new BlockPos(x, y, z));
-					}
-				}
-
+	private boolean checkInt(int current, int[] biomes) {
+		if (biomes != null) {
+			for (int b : biomes) {
+				if (current == b)
+					return true;
 			}
 		}
+		else
+			return true;
+		return false;
 	}
 }

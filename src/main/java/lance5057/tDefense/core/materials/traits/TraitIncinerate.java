@@ -1,6 +1,6 @@
 package lance5057.tDefense.core.materials.traits;
 
-import lance5057.tDefense.TD_Config;
+import lance5057.tDefense.TCConfig;
 import lance5057.tDefense.core.tools.bases.ArmorCore;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -37,7 +37,7 @@ public class TraitIncinerate extends AbstractTDTrait {
 			NBTTagList tag = TagUtil.getBaseMaterialsTagList(item);
 			boolean isFlammable = false;
 			for (NBTBase s : tag) {
-				if (TD_Config.Traits.isFlammable(((NBTTagString) s).getString()))
+				if (TCConfig.traits.isFlammable(((NBTTagString) s).getString()))
 					isFlammable = true;
 			}
 			if (isFlammable) {

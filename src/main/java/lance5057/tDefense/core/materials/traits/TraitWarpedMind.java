@@ -3,7 +3,7 @@ package lance5057.tDefense.core.materials.traits;
 import java.util.ArrayList;
 import java.util.List;
 
-import lance5057.tDefense.TD_Config;
+import lance5057.tDefense.TCConfig;
 import lance5057.tDefense.core.tools.TDToolEvents;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityXPOrb;
@@ -18,7 +18,7 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import slimeknights.tconstruct.library.traits.AbstractTrait;
 
-public class TraitWarpedMind extends AbstractTrait {
+public class TraitWarpedMind extends AbstractTDTrait {
 
 	List<ResourceLocation> sounds = new ArrayList<ResourceLocation>();
 
@@ -94,7 +94,7 @@ public class TraitWarpedMind extends AbstractTrait {
 				
 				if (chance < 10) {
 					if (rand < 50) {
-						if (!world.isRemote && !TD_Config.KiddyCoastersMakeMeRetch)
+						if (!world.isRemote && !TCConfig.KiddyCoastersMakeMeRetch)
 							player.addPotionEffect(new PotionEffect(MobEffects.NAUSEA, 20, 1 * player.experienceLevel));
 					} 
 					else if (rand >= 50 && rand < 80) 

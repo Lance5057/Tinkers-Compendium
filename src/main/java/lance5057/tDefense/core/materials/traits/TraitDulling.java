@@ -15,7 +15,7 @@ import slimeknights.tconstruct.library.tools.ToolCore;
 import slimeknights.tconstruct.library.traits.AbstractTrait;
 import slimeknights.tconstruct.library.utils.ToolHelper;
 
-public class TraitDulling extends AbstractTrait {
+public class TraitDulling extends AbstractTDTrait {
 
 	public TraitDulling() {
 		super("dulling", TextFormatting.GRAY);

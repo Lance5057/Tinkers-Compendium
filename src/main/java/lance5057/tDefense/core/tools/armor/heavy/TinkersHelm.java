@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import lance5057.tDefense.Reference;
-import lance5057.tDefense.TD_Config;
+import lance5057.tDefense.TCConfig;
 import lance5057.tDefense.core.library.ArmorNBT;
 import lance5057.tDefense.core.library.ArmorTags;
 import lance5057.tDefense.core.library.ArmorTextureBuilder;
@@ -137,7 +137,7 @@ public class TinkersHelm extends ArmorCore {
 				Minecraft.getMinecraft().getTextureManager()
 						.bindTexture(new ResourceLocation(Reference.MOD_ID, "textures/misc/helm_overlay.png"));
 			} else {
-				if (!TD_Config.IAmEasilyStartled)
+				if (!TCConfig.IAmEasilyStartled)
 					Minecraft.getMinecraft().getTextureManager()
 							.bindTexture(new ResourceLocation("textures/misc/pumpkinblur.png"));
 				TDToolEvents.overlayJumpTimer--;

@@ -12,7 +12,7 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import slimeknights.tconstruct.library.traits.AbstractTrait;
 
-public class TraitGreenthumb extends AbstractTrait {
+public class TraitGreenthumb extends AbstractTDTrait {
 
 	public TraitGreenthumb() {
 		super("greenthum", TextFormatting.GREEN);

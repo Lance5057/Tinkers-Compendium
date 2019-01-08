@@ -1,6 +1,6 @@
 package lance5057.tDefense.core.blocks;
 
-import lance5057.tDefense.TinkersDefense;
+import lance5057.tDefense.TinkersCompendium;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -20,7 +20,7 @@ public class TDMetalBlock extends Block {
 	public TDMetalBlock(int max) {
 		super(Material.IRON);
 		maxmeta = max;
-		this.setCreativeTab(TinkersDefense.tab);
+		this.setCreativeTab(TinkersCompendium.tab);
 		this.setHardness(5);
 		this.setResistance(30);
 		METAL = PropertyInteger.create("metal", 0, max);

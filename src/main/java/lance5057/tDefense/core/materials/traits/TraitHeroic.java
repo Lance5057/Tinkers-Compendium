@@ -9,10 +9,10 @@ import slimeknights.tconstruct.library.utils.TinkerUtil;
 
 // chance to use less durability if pretty damaged.
 // chance scales quadratically with how much is missing
-public class TraitHeroic extends AbstractTrait {
+public class TraitHeroic extends AbstractTDTrait {
 
 	public TraitHeroic() {
-		super("dense", 0xffffff);
+		super("heroic", 0xffffff);
 	}
 
 	@Override

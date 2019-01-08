@@ -1,9 +1,10 @@
 package lance5057.tDefense.proxy;
 
 import lance5057.tDefense.Reference;
-import lance5057.tDefense.TinkersDefense;
+import lance5057.tDefense.TinkersCompendium;
 import lance5057.tDefense.core.library.ArmorPart;
 import lance5057.tDefense.core.tools.bases.ArmorCore;
+import lance5057.tDefense.core.workstations.CompendiumWorkstations;
 import lance5057.tDefense.proxy.ClientProxy.BlockColorHandler;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
@@ -60,25 +61,12 @@ public class CommonProxy implements IGuiHandler {
 
 	@Override
 	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
-		// if(ID == TinkersDefense.GUI_CREST_INV)
-		// return new Container_CrestMount(player.inventory,
-		// (TileEntity_CrestMount) world.getTileEntity(new BlockPos(x, y, z)));
-		// if(ID == TinkersDefense.GUI_ANVIL_INV)
-		// return new Container_FinishingAnvil(player.inventory,
-		// (TileEntity_FinishingAnvil) world.getTileEntity(x, y, z));
-
-		return null;
+		return CompendiumWorkstations.getServerGuiElement(ID, player, world, x, y, z);
 	}
 
 	@Override
 	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
-		// if(ID == TinkersDefense.GUI_CREST_INV)
-		// return new Gui_CrestMount(player.inventory,
-		// (TileEntity_CrestMount) world.getTileEntity(new BlockPos(x, y, z)));
-		// if(ID == TinkersDefense.GUI_ANVIL_INV)
-		// return new Gui_FinishingAnvil(player.inventory,
-		// (TileEntity_FinishingAnvil) world.getTileEntity(x, y, z));
-		return null;
+		return CompendiumWorkstations.getClientGuiElement(ID, player, world, x, y, z);
 	}
 
 	public void registerItemRenderer(Item item, int meta, String id) {
@@ -96,19 +84,20 @@ public class CommonProxy implements IGuiHandler {
 	@SubscribeEvent
 	public static void registerItems(RegistryEvent.Register<Item> event) {
 
-		TinkersDefense.parts.registerItems(event);
-		TinkersDefense.mats.registerItems(event);
-		TinkersDefense.tools.registerItems(event);
-		TinkersDefense.modifiers.registerItems(event);
-		TinkersDefense.holiday.registerItems(event);
+		TinkersCompendium.parts.registerItems(event);
+		TinkersCompendium.mats.registerItems(event);
+		TinkersCompendium.tools.registerItems(event);
+		TinkersCompendium.modifiers.registerItems(event);
+		TinkersCompendium.holiday.registerItems(event);
+		TinkersCompendium.workstations.registerItems(event);
 	}
 
 	@SubscribeEvent
 	public static void registerBlocks(RegistryEvent.Register<Block> event) {
 		//TinkersDefense.mats.registerBlocks(event);
-		TinkersDefense.tools.registerBlocks(event);
-		TinkersDefense.modifiers.registerBlocks(event);
-
+		TinkersCompendium.tools.registerBlocks(event);
+		TinkersCompendium.modifiers.registerBlocks(event);
+		TinkersCompendium.workstations.registerBlocks(event);
 	}
 
 	public void registerArmorPartModel(ArmorPart part) {

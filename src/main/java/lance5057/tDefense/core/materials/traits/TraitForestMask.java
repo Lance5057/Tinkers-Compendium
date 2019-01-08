@@ -12,7 +12,7 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import slimeknights.tconstruct.library.traits.AbstractTrait;
 
-public class TraitForestMask extends AbstractTrait {
+public class TraitForestMask extends AbstractTDTrait {
 	public TraitForestMask() {
 		super("forestmask", TextFormatting.GREEN);
 	}

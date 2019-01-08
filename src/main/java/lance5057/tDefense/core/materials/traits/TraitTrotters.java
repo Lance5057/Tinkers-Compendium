@@ -10,7 +10,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.client.event.GuiScreenEvent.PotionShiftEvent;
 import slimeknights.tconstruct.library.traits.AbstractTrait;
 
-public class TraitTrotters extends AbstractTrait {
+public class TraitTrotters extends AbstractTDTrait {
 
 	public TraitTrotters() {
 		super("trotters", TextFormatting.RED);

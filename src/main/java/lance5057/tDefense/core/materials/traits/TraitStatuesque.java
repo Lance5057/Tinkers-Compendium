@@ -8,7 +8,7 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import slimeknights.tconstruct.library.traits.AbstractTrait;
 
-public class TraitStatuesque extends AbstractTrait
+public class TraitStatuesque extends AbstractTDTrait
 {
 	public TraitStatuesque() {
 		super("statuesque", TextFormatting.RED);

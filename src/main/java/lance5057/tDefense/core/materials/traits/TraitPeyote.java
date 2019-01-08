@@ -2,7 +2,7 @@ package lance5057.tDefense.core.materials.traits;
 
 import java.util.Random;
 
-import lance5057.tDefense.TD_Config;
+import lance5057.tDefense.TCConfig;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
@@ -30,7 +30,7 @@ public class TraitPeyote extends AbstractTDTrait {
 			p.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, duration, 0));
 			break;
 		case 2:
-			if (!TD_Config.KiddyCoastersMakeMeRetch)
+			if (!TCConfig.KiddyCoastersMakeMeRetch)
 				p.addPotionEffect(new PotionEffect(MobEffects.NAUSEA, duration, 0));
 			break;
 		case 3:

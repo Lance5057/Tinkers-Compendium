@@ -18,7 +18,7 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import slimeknights.tconstruct.library.traits.AbstractTrait;
 
-public class TraitReduceKnockback extends AbstractTrait {
+public class TraitReduceKnockback extends AbstractTDTrait {
 
 	List<IBlockState> blocks = new ArrayList<IBlockState>();
 	float percentReduced;

@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import lance5057.tDefense.TinkersDefense;
+import lance5057.tDefense.TinkersCompendium;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
@@ -33,12 +33,12 @@ public class ComponentPart extends ToolPart {
 
 	public ComponentPart(int cost) {
 		super(cost);
-		this.setCreativeTab(TinkersDefense.tab);
+		this.setCreativeTab(TinkersCompendium.tab);
 	}
 
 	public ComponentPart(int cost, boolean craft, boolean cast) {
 		super(cost);
-		this.setCreativeTab(TinkersDefense.tab);
+		this.setCreativeTab(TinkersCompendium.tab);
 		this.cast = cast;
 		this.craft = craft;
 	}
