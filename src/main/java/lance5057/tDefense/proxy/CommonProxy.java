@@ -90,6 +90,7 @@ public class CommonProxy implements IGuiHandler {
 		TinkersCompendium.modifiers.registerItems(event);
 		TinkersCompendium.holiday.registerItems(event);
 		TinkersCompendium.workstations.registerItems(event);
+		TinkersCompendium.textiles.registerItems(event);
 	}
 
 	@SubscribeEvent
@@ -98,6 +99,7 @@ public class CommonProxy implements IGuiHandler {
 		TinkersCompendium.tools.registerBlocks(event);
 		TinkersCompendium.modifiers.registerBlocks(event);
 		TinkersCompendium.workstations.registerBlocks(event);
+		TinkersCompendium.textiles.registerBlocks(event);
 	}
 
 	public void registerArmorPartModel(ArmorPart part) {

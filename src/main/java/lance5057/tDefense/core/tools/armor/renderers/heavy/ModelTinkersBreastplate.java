@@ -9,7 +9,7 @@ import net.minecraft.item.ItemStack;
  * ModelPlayer - Either Mojang or a mod author
  * Created using Tabula 7.0.0
  */
-public class ModelTinkersBreastplate extends ArmorRenderer implements IFinishingAnvil {
+public class ModelTinkersBreastplate extends ArmorRenderer {
     public ModelRenderer BackPlate;
     public ModelRenderer BreastPlate;
     public ModelRenderer Plackart; 
@@ -78,6 +78,6 @@ public class ModelTinkersBreastplate extends ArmorRenderer implements IFinishing
         this.setRotateAngle(PauldronL, 0.0F, 0.0F, -0.4363323129985824F);
         this.bipedLeftArm.addChild(PauldronL);
         
-        this.partsList = init(stack, this.boxList);
+        //this.partsList = init(stack, this.boxList);
     }
 }

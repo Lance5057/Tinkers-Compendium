@@ -17,6 +17,7 @@ import lance5057.tDefense.core.workstations.CompendiumWorkstations;
 import lance5057.tDefense.core.worldgen.OreGenerator;
 import lance5057.tDefense.holiday.HolidayBase;
 import lance5057.tDefense.proxy.CommonProxy;
+import lance5057.tDefense.textiles.CompendiumTextiles;
 import lance5057.tDefense.util.MaterialHelper;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -67,6 +68,8 @@ public class TinkersCompendium {
 	public static TDModifiers modifiers;
 	public static TDEvents events;
 	
+	public static CompendiumTextiles textiles;
+	
 	public static boolean bloodmagic = false;
 
 	@SidedProxy(clientSide = "lance5057.tDefense.proxy.ClientProxy", serverSide = "lance5057.tDefense.proxy.CommonProxy")
@@ -87,6 +90,7 @@ public class TinkersCompendium {
 		traits = new CompendiumTraits();
 		modifiers = new TDModifiers();
 		workstations = new CompendiumWorkstations();
+		textiles = new CompendiumTextiles();
 		config = new TCConfig();
 
 		// core.preInit(e);
@@ -98,6 +102,7 @@ public class TinkersCompendium {
 		traits.preInit();
 		modifiers.preInit();
 		workstations.preInit(e);
+		textiles.preInit();
 		events.preInit();
 		proxy.preInit();
 
@@ -115,6 +120,7 @@ public class TinkersCompendium {
 		traits.init();
 		modifiers.init();
 		workstations.init(e);
+		textiles.init();
 		events.init();
 		proxy.init();
 
@@ -132,6 +138,7 @@ public class TinkersCompendium {
 		traits.postInit();
 		modifiers.postInit();
 		workstations.postInit(e);
+		textiles.postInit();
 		events.postInit();
 		proxy.postInit();
 

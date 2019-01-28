@@ -90,9 +90,10 @@ public class TinkersBreastplate extends ArmorCore {
 		ArmorMaterialStats head = materials.get(1).getStatsOrUnknown(ChestMaterialStats.TYPE);
 		HandleMaterialStats handle = materials.get(2).getStatsOrUnknown(MaterialTypes.HANDLE);
 		ExtraMaterialStats extra = materials.get(3).getStatsOrUnknown(MaterialTypes.EXTRA);
+		ExtraMaterialStats extra2 = materials.get(4).getStatsOrUnknown(MaterialTypes.EXTRA);
 		// start with head
 		data.head(head, head2);
-		data.extra(extra);
+		data.extra(extra, extra2);
 		data.handle(handle);
 
 		data.modifiers = 5;
