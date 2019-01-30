@@ -176,11 +176,11 @@ public class CompendiumMaterials {
 			new HelmMaterialStats(224, 2, 0, 9.5f), new ChestMaterialStats(224, 6, 0, 10.5f),
 			new LegsMaterialStats(224, 5, 0, 10.0f), new FeetMaterialStats(224, 2, 0, 9.5f)).setGenBlock(true);
 
-//	public static MaterialHelper nihilite = new MaterialHelper("nihilite", 0x000021, 800,
-//			new HeadMaterialStats(400, 9.7f, 7.1f, HarvestLevels.COBALT), new HandleMaterialStats(0.9f, 70),
-//			new ExtraMaterialStats(74), new ShieldMaterialStats(400 / 4, 95), new BowMaterialStats(0.9f, 1.7f, -1f),
-//			new HelmMaterialStats(400, 2, 0, 19), new ChestMaterialStats(400, 5, 0, 15),
-//			new LegsMaterialStats(400, 4, 0, 15), new FeetMaterialStats(400, 2, 0, 19)).setGenBlock(true);
+	public static MaterialHelper nihilite = new MaterialHelper("nihilite", 0x000021, 800,
+			new HeadMaterialStats(400, 9.7f, 7.1f, HarvestLevels.COBALT), new HandleMaterialStats(0.9f, 70),
+			new ExtraMaterialStats(74), new ShieldMaterialStats(400 / 4, 95), new BowMaterialStats(0.9f, 1.7f, -1f),
+			new HelmMaterialStats(400, 2, 0, 19), new ChestMaterialStats(400, 5, 0, 15),
+			new LegsMaterialStats(400, 4, 0, 15), new FeetMaterialStats(400, 2, 0, 19)).setGenBlock(true);
 
 	public static MaterialHelper orichalcum = new MaterialHelper("orichalcum", 0xffc700, 800,
 			new HeadMaterialStats(180, 5.3f, 6.23f, HarvestLevels.OBSIDIAN), new HandleMaterialStats(1.1f, 25),
@@ -529,8 +529,8 @@ public class CompendiumMaterials {
 
 		materials.add(ice);
 
-//		if (TinkerRegistry.getMaterial(nihilite.name) == Material.UNKNOWN)
-//			materials.add(nihilite);
+		if (TinkerRegistry.getMaterial(nihilite.name) == Material.UNKNOWN)
+			materials.add(nihilite);
 		if (TinkerRegistry.getMaterial(purifiedgold.name) == Material.UNKNOWN)
 			materials.add(purifiedgold);
 		if (TinkerRegistry.getMaterial(purifiedsilver.name) == Material.UNKNOWN)
@@ -965,56 +965,46 @@ public class CompendiumMaterials {
 		TinkerRegistry.registerBasinCasting(new ItemStack(Blocks.ICE, 1, 0), ItemStack.EMPTY, fluidSlush,
 				Material.VALUE_Ingot);
 
-		if (!TCConfig.materials.isBlacklisted("aeonsteel")
-				&& TinkerRegistry.getMaterial("aeonsteel") != Material.UNKNOWN)
+		if (!isAlreadyRegistered("aeonsteel"))
 			registerAlloy(new FluidStack(getMaterialHelper("aeonsteel").fluid, 4), new FluidStack(fluidChorusJuice, 1),
 					new FluidStack(TinkerFluids.cobalt, 3));
 
-		if (!TCConfig.materials.isBlacklisted("queensgold")
-				&& TinkerRegistry.getMaterial("queensgold") != Material.UNKNOWN)
+		if (!isAlreadyRegistered("queensgold"))
 			TinkerRegistry.registerAlloy(new FluidStack(getMaterialHelper("queensgold").fluid, 2),
 					new FluidStack(TinkerFluids.gold, 1), new FluidStack(TinkerFluids.knightslime, 1));
 
-		if (!TCConfig.materials.isBlacklisted("dogbearium")
-				&& TinkerRegistry.getMaterial("dogbearium") != Material.UNKNOWN)
+		if (!isAlreadyRegistered("dogbearium"))
 			TinkerRegistry.registerAlloy(new FluidStack(getMaterialHelper("dogbearium").fluid, 4),
 					new FluidStack(TinkerFluids.ardite, 1), new FluidStack(fluidDragonsBreath, 3));
 
-		if (!TCConfig.materials.isBlacklisted("sinisterium")
-				&& TinkerRegistry.getMaterial("sinisterium") != Material.UNKNOWN)
+		if (!isAlreadyRegistered("sinisterium"))
 			TinkerRegistry.registerAlloy(new FluidStack(getMaterialHelper("sinisterium").fluid, 6),
 					new FluidStack(TinkerFluids.blood, 1), new FluidStack(fluidVile, 2),
 					new FluidStack(TinkerFluids.iron, 4));
 
-//		if (!TCConfig.materials.isBlacklisted("nihilite")
-//				&& TinkerRegistry.getMaterial("nihilite") != Material.UNKNOWN)
-//			TinkerRegistry.registerAlloy(new FluidStack(getMaterialHelper("nihilite").fluid, 3),
-//					new FluidStack(TinkerFluids.cobalt, 1), new FluidStack(fluidVile, 2));
+		if (!isAlreadyRegistered("nihilite"))
+			TinkerRegistry.registerAlloy(new FluidStack(getMaterialHelper("nihilite").fluid, 3),
+					new FluidStack(TinkerFluids.cobalt, 1), new FluidStack(fluidVile, 2));
 
-		if (!TCConfig.materials.isBlacklisted("orichalcum")
-				&& TinkerRegistry.getMaterial("orichalcum") != Material.UNKNOWN)
+		if (!isAlreadyRegistered("orichalcum"))
 			TinkerRegistry.registerAlloy(new FluidStack(getMaterialHelper("orichalcum").fluid, 6),
 					new FluidStack(TinkerFluids.bronze, 4), new FluidStack(fluidVibrant, 2),
 					new FluidStack(TinkerFluids.gold, 1));
 
-		if (!TCConfig.materials.isBlacklisted("pandorium")
-				&& TinkerRegistry.getMaterial("pandorium") != Material.UNKNOWN)
+		if (!isAlreadyRegistered("pandorium"))
 			TinkerRegistry.registerAlloy(new FluidStack(getMaterialHelper("pandorium").fluid, 3),
 					new FluidStack(TinkerFluids.ardite, 1), new FluidStack(fluidVibrant, 2));
 
-		if (!TCConfig.materials.isBlacklisted("rosegold")
-				&& TinkerRegistry.getMaterial("rosegold") != Material.UNKNOWN)
+		if (!isAlreadyRegistered("rosegold"))
 			TinkerRegistry.registerAlloy(new FluidStack(getMaterialHelper("rosegold").fluid, 4),
 					new FluidStack(TinkerFluids.gold, 1), new FluidStack(TinkerFluids.copper, 3));
 
-		if (!TCConfig.materials.isBlacklisted("valyriansteel")
-				&& TinkerRegistry.getMaterial("valyriansteel") != Material.UNKNOWN)
+		if (!isAlreadyRegistered("valyriansteel"))
 			TinkerRegistry.registerAlloy(new FluidStack(getMaterialHelper("valyriansteel").fluid, 4),
 					new FluidStack(TinkerFluids.steel, 2), new FluidStack(TinkerFluids.obsidian, 2),
 					new FluidStack(fluidDragonsBreath, 1));
 
-		if (!TCConfig.materials.isBlacklisted("froststeel")
-				&& TinkerRegistry.getMaterial("froststeel") != Material.UNKNOWN)
+		if (!isAlreadyRegistered("froststeel"))
 			TinkerRegistry.registerAlloy(new FluidStack(getMaterialHelper("froststeel").fluid, 4),
 					new FluidStack(TinkerFluids.steel, 2), new FluidStack(TinkerFluids.cobalt, 2),
 					new FluidStack(fluidSlush, 1));
@@ -1111,6 +1101,15 @@ public class CompendiumMaterials {
 			}
 		}
 
+	}
+	
+	boolean isAlreadyRegistered(String mat)
+	{
+		if (!TCConfig.materials.isBlacklisted(mat)
+				&& getMaterialHelper(mat) != null
+				&& TinkerRegistry.getMaterial(mat) != Material.UNKNOWN)
+			return false;
+		return true;
 	}
 
 	MaterialHelper getMaterialHelper(String s) {

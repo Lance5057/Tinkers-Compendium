@@ -79,7 +79,7 @@ srcCompat = JavaVersion.VERSION_1_8
 targetCompat = JavaVersion.VERSION_1_8
 
 minecraft {
-    version = "1.12.2-14.23.4.2747"
+    version = "1.12.2-14.23.5.2808"
     runDir = "run"
     
     // the mappings can be changed at any time, and must be in the following format.
@@ -118,7 +118,7 @@ dependencies {
 	deobfCompile "mezz.jei:jei_1.12.2:4.9.+:api"
 	deobfCompile "com.github.Azanor:Baubles:master-SNAPSHOT"
 	//deobfCompile "blusunrize:ImmersiveEngineering:0.12:78"
-	deobfCompile "immersive-engineering:ImmersiveEngineering:0.12:78"
+	deobfCompile "immersive-engineering:ImmersiveEngineering:0.12:88"
 	//deobfCompile "baubles:Baubles:1.12:1.5.2"
 	deobfCompile "com.wayoftime.bloodmagic:BloodMagic:1.12.2-2.3.1-99"
 }
