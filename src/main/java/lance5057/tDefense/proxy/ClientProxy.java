@@ -99,61 +99,72 @@ public class ClientProxy extends CommonProxy {
 
 		MinecraftForge.EVENT_BUS.register(CustomArmorTextureCreator.INSTANCE);
 
-		CustomArmorTextureCreator.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/hood/_hood_cloth"));
-		CustomArmorTextureCreator.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/hood/_hood_trim"));
-		CustomArmorTextureCreator.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/hood/_hood_metal"));
+		if (TinkersCompendium.config.armor.enableClothArmor) {
+			CustomArmorTextureCreator.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/hood/_hood_cloth"));
+			CustomArmorTextureCreator.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/hood/_hood_trim"));
+			CustomArmorTextureCreator.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/hood/_hood_metal"));
 
-		CustomArmorTextureCreator.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/shawl/_shawl_cloth"));
-		CustomArmorTextureCreator.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/shawl/_shawl_trim"));
-		CustomArmorTextureCreator.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/shawl/_shawl_metal"));
+			CustomArmorTextureCreator
+					.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/shawl/_shawl_cloth"));
+			CustomArmorTextureCreator
+					.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/shawl/_shawl_trim"));
+			CustomArmorTextureCreator
+					.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/shawl/_shawl_metal"));
 
-		CustomArmorTextureCreator.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/robe/_robe_cloth"));
-		CustomArmorTextureCreator.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/robe/_robe_trim"));
-		CustomArmorTextureCreator.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/robe/_robe_metal"));
+			CustomArmorTextureCreator.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/robe/_robe_cloth"));
+			CustomArmorTextureCreator.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/robe/_robe_trim"));
+			CustomArmorTextureCreator.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/robe/_robe_metal"));
 
-		CustomArmorTextureCreator.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/shoes/_shoes_cloth"));
-		CustomArmorTextureCreator.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/shoes/_shoes_trim"));
-		CustomArmorTextureCreator.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/shoes/_shoes_metal"));
-		CustomArmorTextureCreator.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/shoes/_shoes_string"));
+			CustomArmorTextureCreator
+					.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/shoes/_shoes_cloth"));
+			CustomArmorTextureCreator
+					.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/shoes/_shoes_trim"));
+			CustomArmorTextureCreator
+					.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/shoes/_shoes_metal"));
+			CustomArmorTextureCreator
+					.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/shoes/_shoes_string"));
+		}
 
-		CustomArmorTextureCreator.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/helm/_helm_chain"));
-		CustomArmorTextureCreator.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/helm/_helm_plate"));
-		CustomArmorTextureCreator.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/helm/_helm_top"));
-		CustomArmorTextureCreator.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/helm/_helm_trim"));
-		CustomArmorTextureCreator.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/helm/_helm_cloth"));
+		if (TinkersCompendium.config.armor.enableHeavyArmor) {
+			CustomArmorTextureCreator.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/helm/_helm_chain"));
+			CustomArmorTextureCreator.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/helm/_helm_plate"));
+			CustomArmorTextureCreator.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/helm/_helm_top"));
+			CustomArmorTextureCreator.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/helm/_helm_trim"));
+			CustomArmorTextureCreator.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/helm/_helm_cloth"));
 
-		CustomArmorTextureCreator
-				.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/breastplate/_breastplate_chain"));
-		CustomArmorTextureCreator
-				.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/breastplate/_breastplate_plate"));
-		CustomArmorTextureCreator
-				.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/breastplate/_breastplate_smallplate"));
-		CustomArmorTextureCreator
-				.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/breastplate/_breastplate_trim"));
-		CustomArmorTextureCreator
-				.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/breastplate/_breastplate_cloth"));
+			CustomArmorTextureCreator
+					.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/breastplate/_breastplate_chain"));
+			CustomArmorTextureCreator
+					.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/breastplate/_breastplate_plate"));
+			CustomArmorTextureCreator.registerTexture(
+					new ResourceLocation(Reference.MOD_ID, "armor/breastplate/_breastplate_smallplate"));
+			CustomArmorTextureCreator
+					.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/breastplate/_breastplate_trim"));
+			CustomArmorTextureCreator
+					.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/breastplate/_breastplate_cloth"));
 
-		CustomArmorTextureCreator
-				.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/grieves/_grieves_chain"));
-		CustomArmorTextureCreator
-				.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/grieves/_grieves_plate"));
-		CustomArmorTextureCreator
-				.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/grieves/_grieves_cloth"));
-		CustomArmorTextureCreator
-				.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/grieves/_grieves_trim"));
-		CustomArmorTextureCreator
-				.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/grieves/_grieves_clasp"));
+			CustomArmorTextureCreator
+					.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/grieves/_grieves_chain"));
+			CustomArmorTextureCreator
+					.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/grieves/_grieves_plate"));
+			CustomArmorTextureCreator
+					.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/grieves/_grieves_cloth"));
+			CustomArmorTextureCreator
+					.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/grieves/_grieves_trim"));
+			CustomArmorTextureCreator
+					.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/grieves/_grieves_clasp"));
 
-		CustomArmorTextureCreator
-				.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/sabatons/_sabatons_caps"));
-		CustomArmorTextureCreator
-				.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/sabatons/_sabatons_plates"));
-		CustomArmorTextureCreator
-				.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/sabatons/_sabatons_soles"));
-		CustomArmorTextureCreator
-				.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/sabatons/_sabatons_trim"));
-		CustomArmorTextureCreator
-				.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/sabatons/_sabatons_rivets"));
+			CustomArmorTextureCreator
+					.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/sabatons/_sabatons_caps"));
+			CustomArmorTextureCreator
+					.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/sabatons/_sabatons_plates"));
+			CustomArmorTextureCreator
+					.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/sabatons/_sabatons_soles"));
+			CustomArmorTextureCreator
+					.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/sabatons/_sabatons_trim"));
+			CustomArmorTextureCreator
+					.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/sabatons/_sabatons_rivets"));
+		}
 	}
 
 	@Override
@@ -188,9 +199,11 @@ public class ClientProxy extends CommonProxy {
 
 		// TDMaterials.queensgold.setupClient();
 
-		TinkersCompendium.tab.setDisplayIcon(TDTools.heatershield.buildItemForRendering(
-				ImmutableList.of(TinkerRegistry.getMaterial("iron"), TinkerRegistry.getMaterial("cobalt"),
-						TinkerRegistry.getMaterial("cobalt"), TinkerRegistry.getMaterial("iron"))));
+		if (TinkersCompendium.config.shields.enableShields && TinkersCompendium.config.shields.enableHeaterShield) {
+			TinkersCompendium.tab.setDisplayIcon(TDTools.heatershield.buildItemForRendering(
+					ImmutableList.of(TinkerRegistry.getMaterial("iron"), TinkerRegistry.getMaterial("cobalt"),
+							TinkerRegistry.getMaterial("cobalt"), TinkerRegistry.getMaterial("iron"))));
+		}
 	}
 
 	@Override
@@ -235,24 +248,39 @@ public class ClientProxy extends CommonProxy {
 	}
 
 	public void createToolGuis() {
-		roundshieldGUI = new ToolBuildGuiInfo(TDTools.roundshield);
-		heatershieldGUI = new ToolBuildGuiInfo(TDTools.heatershield);
-		towershieldGUI = new ToolBuildGuiInfo(TDTools.towershield);
-		zweihanderGUI = new ToolBuildGuiInfo(TDTools.zweihander);
-		shearsGUI = new ToolBuildGuiInfo(TDTools.shears);
-		fishingRodGUI = new ToolBuildGuiInfo(TDTools.fishingRod);
+		if (TinkersCompendium.config.shields.enableShields) {
+			if (TinkersCompendium.config.shields.enableBuckler)
+				roundshieldGUI = new ToolBuildGuiInfo(TDTools.roundshield);
+			if (TinkersCompendium.config.shields.enableHeaterShield)
+				heatershieldGUI = new ToolBuildGuiInfo(TDTools.heatershield);
+			if (TinkersCompendium.config.shields.enableTowerShield)
+				towershieldGUI = new ToolBuildGuiInfo(TDTools.towershield);
+		}
 
-		hoodGUI = new ArmorBuildGuiInfo(TDTools.hood);
-		shawlGUI = new ArmorBuildGuiInfo(TDTools.shawl);
-		robeGUI = new ArmorBuildGuiInfo(TDTools.robe);
-		shoesGUI = new ArmorBuildGuiInfo(TDTools.shoes);
+		if (TinkersCompendium.config.tools.enableTools) {
+			if (TinkersCompendium.config.tools.enableZweihander)
+				zweihanderGUI = new ToolBuildGuiInfo(TDTools.zweihander);
+			if (TinkersCompendium.config.tools.enableShears)
+				shearsGUI = new ToolBuildGuiInfo(TDTools.shears);
+			if (TinkersCompendium.config.tools.enableFishingRod)
+				fishingRodGUI = new ToolBuildGuiInfo(TDTools.fishingRod);
+		}
+
+		if (TinkersCompendium.config.armor.enableClothArmor) {
+			hoodGUI = new ArmorBuildGuiInfo(TDTools.hood);
+			shawlGUI = new ArmorBuildGuiInfo(TDTools.shawl);
+			robeGUI = new ArmorBuildGuiInfo(TDTools.robe);
+			shoesGUI = new ArmorBuildGuiInfo(TDTools.shoes);
+		}
 
 		// bootsGUI = new ToolBuildGuiInfo(TDTools.boots);
 
-		helmGUI = new ArmorBuildGuiInfo(TDTools.helm);
-		breastplateGUI = new ArmorBuildGuiInfo(TDTools.breastplate);
-		grievesGUI = new ArmorBuildGuiInfo(TDTools.grieves);
-		sabatonsGUI = new ArmorBuildGuiInfo(TDTools.sabatons);
+		if (TinkersCompendium.config.armor.enableHeavyArmor) {
+			helmGUI = new ArmorBuildGuiInfo(TDTools.helm);
+			breastplateGUI = new ArmorBuildGuiInfo(TDTools.breastplate);
+			grievesGUI = new ArmorBuildGuiInfo(TDTools.grieves);
+			sabatonsGUI = new ArmorBuildGuiInfo(TDTools.sabatons);
+		}
 
 		// sheatheGUI = new ToolBuildGuiInfo(TDTools.sheathe);
 		// ringGUI = new ToolBuildGuiInfo(TDTools.ring);
@@ -265,17 +293,30 @@ public class ClientProxy extends CommonProxy {
 	}
 
 	public void registerToolGuis() {
-		TinkerRegistryClient.addToolBuilding(roundshieldGUI);
-		TinkerRegistryClient.addToolBuilding(heatershieldGUI);
-		TinkerRegistryClient.addToolBuilding(towershieldGUI);
-		TinkerRegistryClient.addToolBuilding(zweihanderGUI);
-		TinkerRegistryClient.addToolBuilding(shearsGUI);
-		TinkerRegistryClient.addToolBuilding(fishingRodGUI);
+		if (TinkersCompendium.config.shields.enableShields) {
+			if (TinkersCompendium.config.shields.enableBuckler)
+				TinkerRegistryClient.addToolBuilding(roundshieldGUI);
+			if (TinkersCompendium.config.shields.enableHeaterShield)
+				TinkerRegistryClient.addToolBuilding(heatershieldGUI);
+			if (TinkersCompendium.config.shields.enableTowerShield)
+				TinkerRegistryClient.addToolBuilding(towershieldGUI);
+		}
 
-		TDClientRegistry.addArmorBuilding(hoodGUI);
-		TDClientRegistry.addArmorBuilding(shawlGUI);
-		TDClientRegistry.addArmorBuilding(robeGUI);
-		TDClientRegistry.addArmorBuilding(shoesGUI);
+		if (TinkersCompendium.config.tools.enableTools) {
+			if (TinkersCompendium.config.tools.enableZweihander)
+				TinkerRegistryClient.addToolBuilding(zweihanderGUI);
+			if (TinkersCompendium.config.tools.enableShears)
+				TinkerRegistryClient.addToolBuilding(shearsGUI);
+			if (TinkersCompendium.config.tools.enableFishingRod)
+				TinkerRegistryClient.addToolBuilding(fishingRodGUI);
+		}
+
+		if (TinkersCompendium.config.armor.enableClothArmor) {
+			TDClientRegistry.addArmorBuilding(hoodGUI);
+			TDClientRegistry.addArmorBuilding(shawlGUI);
+			TDClientRegistry.addArmorBuilding(robeGUI);
+			TDClientRegistry.addArmorBuilding(shoesGUI);
+		}
 
 		// TinkerRegistryClient.addToolBuilding(bootsGUI);
 
@@ -283,10 +324,12 @@ public class ClientProxy extends CommonProxy {
 		// TinkerRegistryClient.addToolBuilding(ringGUI);
 		// TinkerRegistryClient.addToolBuilding(amuletGUI);
 		//
-		TDClientRegistry.addArmorBuilding(helmGUI);
-		TDClientRegistry.addArmorBuilding(breastplateGUI);
-		TDClientRegistry.addArmorBuilding(grievesGUI);
-		TDClientRegistry.addArmorBuilding(sabatonsGUI);
+		if (TinkersCompendium.config.armor.enableHeavyArmor) {
+			TDClientRegistry.addArmorBuilding(helmGUI);
+			TDClientRegistry.addArmorBuilding(breastplateGUI);
+			TDClientRegistry.addArmorBuilding(grievesGUI);
+			TDClientRegistry.addArmorBuilding(sabatonsGUI);
+		}
 	}
 
 	@Override
@@ -295,92 +338,112 @@ public class ClientProxy extends CommonProxy {
 	}
 
 	public void setToolGuis() {
-		roundshieldGUI.positions.clear();
-		roundshieldGUI.addSlotPosition(34, 15);
-		roundshieldGUI.addSlotPosition(34, 33);
-		roundshieldGUI.addSlotPosition(34, 51);
+		if (TinkersCompendium.config.shields.enableShields) {
+			if (TinkersCompendium.config.shields.enableBuckler) {
+				roundshieldGUI.positions.clear();
+				roundshieldGUI.addSlotPosition(34, 15);
+				roundshieldGUI.addSlotPosition(34, 33);
+				roundshieldGUI.addSlotPosition(34, 51);
+			}
 
-		heatershieldGUI.positions.clear();
-		heatershieldGUI.addSlotPosition(34, 15);
-		heatershieldGUI.addSlotPosition(25, 33);
-		heatershieldGUI.addSlotPosition(43, 33);
-		heatershieldGUI.addSlotPosition(34, 51);
+			if (TinkersCompendium.config.shields.enableHeaterShield) {
+				heatershieldGUI.positions.clear();
+				heatershieldGUI.addSlotPosition(34, 15);
+				heatershieldGUI.addSlotPosition(25, 33);
+				heatershieldGUI.addSlotPosition(43, 33);
+				heatershieldGUI.addSlotPosition(34, 51);
+			}
 
-		towershieldGUI.positions.clear();
-		towershieldGUI.addSlotPosition(34, 15);
-		towershieldGUI.addSlotPosition(25, 33);
-		towershieldGUI.addSlotPosition(43, 33);
-		towershieldGUI.addSlotPosition(34, 51);
+			if (TinkersCompendium.config.shields.enableTowerShield) {
+				towershieldGUI.positions.clear();
+				towershieldGUI.addSlotPosition(34, 15);
+				towershieldGUI.addSlotPosition(25, 33);
+				towershieldGUI.addSlotPosition(43, 33);
+				towershieldGUI.addSlotPosition(34, 51);
+			}
+		}
 
-		zweihanderGUI.positions.clear();
-		zweihanderGUI.addSlotPosition(34, 15);
-		zweihanderGUI.addSlotPosition(25, 33);
-		zweihanderGUI.addSlotPosition(43, 33);
-		zweihanderGUI.addSlotPosition(34, 51);
+		if (TinkersCompendium.config.tools.enableTools) {
+			if (TinkersCompendium.config.tools.enableZweihander) {
+				zweihanderGUI.positions.clear();
+				zweihanderGUI.addSlotPosition(34, 15);
+				zweihanderGUI.addSlotPosition(25, 33);
+				zweihanderGUI.addSlotPosition(43, 33);
+				zweihanderGUI.addSlotPosition(34, 51);
+			}
 
-		hoodGUI.positions.clear();
-		hoodGUI.addSlotPosition(25 - 6, 33 + 5);
-		hoodGUI.addSlotPosition(43 - 6, 33 + 5);
-		hoodGUI.addSlotPosition(34 - 6, 51 + 5);
+			if (TinkersCompendium.config.tools.enableShears) {
+				shearsGUI.positions.clear();
+				shearsGUI.addSlotPosition(34, 15 + 8);
+				shearsGUI.addSlotPosition(43, 33 + 8);
+				shearsGUI.addSlotPosition(34, 51 + 8);
+			}
 
-		shawlGUI.positions.clear();
-		shawlGUI.addSlotPosition(25 - 6, 33 + 5);
-		shawlGUI.addSlotPosition(43 - 6, 33 + 5);
-		shawlGUI.addSlotPosition(34 - 6, 51 + 5);
+			if (TinkersCompendium.config.tools.enableFishingRod) {
+				fishingRodGUI.positions.clear();
+				fishingRodGUI.addSlotPosition(34, 15 + 8);
+				fishingRodGUI.addSlotPosition(43, 33 + 8);
+				fishingRodGUI.addSlotPosition(34, 51 + 8);
+			}
+		}
 
-		robeGUI.positions.clear();
-		robeGUI.addSlotPosition(25 - 6, 33 + 5);
-		robeGUI.addSlotPosition(43 - 6, 33 + 5);
-		robeGUI.addSlotPosition(34 - 6, 51 + 5);
+		if (TinkersCompendium.config.armor.enableClothArmor) {
+			hoodGUI.positions.clear();
+			hoodGUI.addSlotPosition(25 - 6, 33 + 5);
+			hoodGUI.addSlotPosition(43 - 6, 33 + 5);
+			hoodGUI.addSlotPosition(34 - 6, 51 + 5);
 
-		shoesGUI.positions.clear();
-		shoesGUI.addSlotPosition(25 - 6, 33 + 5);
-		shoesGUI.addSlotPosition(34 - 6, 51 + 5);
-		shoesGUI.addSlotPosition(43 - 6, 33 + 5);
-		shoesGUI.addSlotPosition(34 - 6, 51 + 5 - 36);
+			shawlGUI.positions.clear();
+			shawlGUI.addSlotPosition(25 - 6, 33 + 5);
+			shawlGUI.addSlotPosition(43 - 6, 33 + 5);
+			shawlGUI.addSlotPosition(34 - 6, 51 + 5);
+
+			robeGUI.positions.clear();
+			robeGUI.addSlotPosition(25 - 6, 33 + 5);
+			robeGUI.addSlotPosition(43 - 6, 33 + 5);
+			robeGUI.addSlotPosition(34 - 6, 51 + 5);
+
+			shoesGUI.positions.clear();
+			shoesGUI.addSlotPosition(25 - 6, 33 + 5);
+			shoesGUI.addSlotPosition(34 - 6, 51 + 5);
+			shoesGUI.addSlotPosition(43 - 6, 33 + 5);
+			shoesGUI.addSlotPosition(34 - 6, 51 + 5 - 36);
+		}
 
 		// bootsGUI.positions.clear();
 		// bootsGUI.addSlotPosition(34, 15 + 8);
 		// bootsGUI.addSlotPosition(43, 33 + 8);
 		// bootsGUI.addSlotPosition(34, 51 + 8);
 
-		breastplateGUI.positions.clear();
-		breastplateGUI.addSlotPosition(28, 33 + 9);
-		breastplateGUI.addSlotPosition(46, 33);
-		breastplateGUI.addSlotPosition(37, 51 + 9);
-		breastplateGUI.addSlotPosition(10, 33);
-		breastplateGUI.addSlotPosition(19, 51 + 9);
+		if (TinkersCompendium.config.armor.enableHeavyArmor) {
+			breastplateGUI.positions.clear();
+			breastplateGUI.addSlotPosition(28, 33 + 9);
+			breastplateGUI.addSlotPosition(46, 33);
+			breastplateGUI.addSlotPosition(37, 51 + 9);
+			breastplateGUI.addSlotPosition(10, 33);
+			breastplateGUI.addSlotPosition(19, 51 + 9);
 
-		helmGUI.positions.clear();
-		helmGUI.addSlotPosition(28, 23);
-		helmGUI.addSlotPosition(46, 33 + 8);
-		helmGUI.addSlotPosition(37, 51 + 8);
-		helmGUI.addSlotPosition(10, 33 + 8);
-		helmGUI.addSlotPosition(19, 51 + 8);
+			helmGUI.positions.clear();
+			helmGUI.addSlotPosition(28, 23);
+			helmGUI.addSlotPosition(46, 33 + 8);
+			helmGUI.addSlotPosition(37, 51 + 8);
+			helmGUI.addSlotPosition(10, 33 + 8);
+			helmGUI.addSlotPosition(19, 51 + 8);
 
-		sabatonsGUI.positions.clear();
-		sabatonsGUI.addSlotPosition(28 + 18, 16 + 18);
-		sabatonsGUI.addSlotPosition(28 - 18, 16 + 18);
-		sabatonsGUI.addSlotPosition(28 + 18, 16 + 18 + 18);
-		sabatonsGUI.addSlotPosition(28 - 18, 16 + 18 + 18);
-		sabatonsGUI.addSlotPosition(28, 16 + 18 + 9);
+			sabatonsGUI.positions.clear();
+			sabatonsGUI.addSlotPosition(28 + 18, 16 + 18);
+			sabatonsGUI.addSlotPosition(28 - 18, 16 + 18);
+			sabatonsGUI.addSlotPosition(28 + 18, 16 + 18 + 18);
+			sabatonsGUI.addSlotPosition(28 - 18, 16 + 18 + 18);
+			sabatonsGUI.addSlotPosition(28, 16 + 18 + 9);
 
-		grievesGUI.positions.clear();
-		grievesGUI.addSlotPosition(28 - 14, 23 + 18);
-		grievesGUI.addSlotPosition(28 + 14, 23 + 18);
-		grievesGUI.addSlotPosition(28 + 14, 23 + 18 + 18);
-		grievesGUI.addSlotPosition(28, 23);
-		grievesGUI.addSlotPosition(28 - 14, 23 + 18 + 18);
-
-		shearsGUI.positions.clear();
-		shearsGUI.addSlotPosition(34, 15 + 8);
-		shearsGUI.addSlotPosition(43, 33 + 8);
-		shearsGUI.addSlotPosition(34, 51 + 8);
-
-		fishingRodGUI.positions.clear();
-		fishingRodGUI.addSlotPosition(34, 15 + 8);
-		fishingRodGUI.addSlotPosition(43, 33 + 8);
-		fishingRodGUI.addSlotPosition(34, 51 + 8);
+			grievesGUI.positions.clear();
+			grievesGUI.addSlotPosition(28 - 14, 23 + 18);
+			grievesGUI.addSlotPosition(28 + 14, 23 + 18);
+			grievesGUI.addSlotPosition(28 + 14, 23 + 18 + 18);
+			grievesGUI.addSlotPosition(28, 23);
+			grievesGUI.addSlotPosition(28 - 14, 23 + 18 + 18);
+		}
 
 		// sheatheGUI.positions.clear();
 		// sheatheGUI.addSlotPosition(34, 15);

@@ -15,7 +15,6 @@ import lance5057.tDefense.core.parts.TDParts;
 import lance5057.tDefense.core.tools.TDTools;
 import lance5057.tDefense.core.workstations.CompendiumWorkstations;
 import lance5057.tDefense.core.worldgen.OreGenerator;
-import lance5057.tDefense.holiday.HolidayBase;
 import lance5057.tDefense.proxy.CommonProxy;
 import lance5057.tDefense.textiles.CompendiumTextiles;
 import lance5057.tDefense.util.MaterialHelper;
@@ -50,10 +49,6 @@ public class TinkersCompendium {
 	PacketHandler phandler = new PacketHandler();
 
 	public static CreativeTab tab = new CreativeTab("tinkerscompendium", new ItemStack(Items.SHIELD));
-
-	public static HolidayBase holiday;
-	// public static ModuleBase core;
-
 	public static TCConfig config;
 
 	public static final SimpleNetworkWrapper INSTANCE = NetworkRegistry.INSTANCE.newSimpleChannel(Reference.MOD_ID);
@@ -67,9 +62,9 @@ public class TinkersCompendium {
 	public static CompendiumWorkstations workstations;
 	public static TDModifiers modifiers;
 	public static TDEvents events;
-	
+
 	public static CompendiumTextiles textiles;
-	
+
 	public static boolean bloodmagic = false;
 
 	@SidedProxy(clientSide = "lance5057.tDefense.proxy.ClientProxy", serverSide = "lance5057.tDefense.proxy.CommonProxy")
@@ -77,11 +72,9 @@ public class TinkersCompendium {
 
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent e) {
-		
-		if(Loader.isModLoaded("bloodmagic"))
-			bloodmagic = true;
 
-		holiday = new HolidayBase();
+		if (Loader.isModLoaded("bloodmagic"))
+			bloodmagic = true;
 
 		parts = new TDParts();
 		mats = new CompendiumMaterials();
@@ -92,9 +85,6 @@ public class TinkersCompendium {
 		workstations = new CompendiumWorkstations();
 		textiles = new CompendiumTextiles();
 		config = new TCConfig();
-
-		// core.preInit(e);
-		holiday.preInit(e);
 
 		parts.preInit(e);
 		mats.preInit(e);
@@ -111,8 +101,6 @@ public class TinkersCompendium {
 	@Mod.EventHandler
 	public void init(FMLInitializationEvent e) {
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, proxy);
-		// core.init(e);
-		holiday.init(e);
 
 		parts.init(e);
 		mats.init(e);

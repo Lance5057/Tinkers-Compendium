@@ -9,6 +9,8 @@ import lance5057.tDefense.core.materials.traits.TraitAcknowledged;
 import lance5057.tDefense.core.materials.traits.TraitApplyPotion;
 import lance5057.tDefense.core.materials.traits.TraitAqualung;
 import lance5057.tDefense.core.materials.traits.TraitArrowCatcher;
+import lance5057.tDefense.core.materials.traits.TraitAxeLover;
+import lance5057.tDefense.core.materials.traits.TraitBarbed;
 import lance5057.tDefense.core.materials.traits.TraitBattleHardened;
 import lance5057.tDefense.core.materials.traits.TraitBoneSpurs;
 import lance5057.tDefense.core.materials.traits.TraitBuoyant;
@@ -19,8 +21,11 @@ import lance5057.tDefense.core.materials.traits.TraitDamageReductionDimension;
 import lance5057.tDefense.core.materials.traits.TraitDamageSourceAlteration;
 import lance5057.tDefense.core.materials.traits.TraitDamnation;
 import lance5057.tDefense.core.materials.traits.TraitDemonic;
+import lance5057.tDefense.core.materials.traits.TraitDogToy;
+import lance5057.tDefense.core.materials.traits.TraitDulling;
 import lance5057.tDefense.core.materials.traits.TraitEarthbound;
 import lance5057.tDefense.core.materials.traits.TraitFins;
+import lance5057.tDefense.core.materials.traits.TraitFirestarter;
 import lance5057.tDefense.core.materials.traits.TraitFirewalker;
 import lance5057.tDefense.core.materials.traits.TraitFlexible;
 import lance5057.tDefense.core.materials.traits.TraitForestMask;
@@ -75,22 +80,30 @@ import slimeknights.tconstruct.tools.TinkerTraits;
 
 public class CompendiumTraits {
 
+	//Wood
 	public TraitPhotosynthetic photosynth = new TraitPhotosynthetic(1);
 	public TraitPhotosynthetic photosynth2 = new TraitPhotosynthetic(2);
 	public TraitReduceKnockback rooted = new TraitReduceKnockback("rooted", 0x875e21, 0.5f,
 			Blocks.DIRT.getDefaultState(), Blocks.GRASS.getDefaultState());
+	public TraitAxeLover axelover = new TraitAxeLover();
 
+	//Stone
 	public TraitDamageSourceAlteration blockhead = new TraitDamageSourceAlteration("blockhead", 0x875e21,
 			new TraitDamageSourceAlteration.DamagePercent(DamageSource.GENERIC, -0.5f),
 			new TraitDamageSourceAlteration.DamagePercent(DamageSource.MAGIC, 0.5f));
 	public TraitStoned stoned = new TraitStoned();
 	public TraitEarthbound earthbound = new TraitEarthbound();
+	public TraitDulling dulling = new TraitDulling();
 
+	//Flint
 	public TraitGlassine glassine = new TraitGlassine();
+	public TraitFirestarter firestarter = new TraitFirestarter();
 
+	//Cactus
 	public TraitPeyote peyote = new TraitPeyote();
 	public TraitSpiny spiny = new TraitSpiny();
 	public TraitPricked pricked = new TraitPricked();
+	public TraitBarbed barbed = new TraitBarbed();
 
 	public TraitPotionRemoval thickheaded = new TraitPotionRemoval("thickheaded", TextFormatting.WHITE,
 			MobEffects.BLINDNESS, MobEffects.NAUSEA);
@@ -98,6 +111,7 @@ public class CompendiumTraits {
 	public TraitDamageNegation collagen = new TraitDamageNegation("collagen", TextFormatting.WHITE, 1000f,
 			DamageSource.FALL);
 	public TraitBoneSpurs bonespurs = new TraitBoneSpurs();
+	public TraitDogToy dogtoy = new TraitDogToy();
 
 	public TraitApplyPotion peleshair = new TraitApplyPotion("peleshair", TextFormatting.DARK_PURPLE, true,
 			new PotionEffect(MobEffects.LUCK, 1, 10), new PotionEffect(MobEffects.UNLUCK, 1, 10));
@@ -202,25 +216,30 @@ public class CompendiumTraits {
 		TinkerMaterials.wood.addTrait(photosynth, ChestMaterialStats.TYPE);
 		TinkerMaterials.wood.addTrait(rooted, LegsMaterialStats.TYPE);
 		TinkerMaterials.wood.addTrait(rooted, FeetMaterialStats.TYPE);
+		TinkerMaterials.wood.addTrait(axelover, ShieldMaterialStats.TYPE);
 
 		TinkerMaterials.stone.addTrait(blockhead, HelmMaterialStats.TYPE);
 		TinkerMaterials.stone.addTrait(stoned, ChestMaterialStats.TYPE);
 		TinkerMaterials.stone.addTrait(earthbound, LegsMaterialStats.TYPE);
 		TinkerMaterials.stone.addTrait(earthbound, FeetMaterialStats.TYPE);
+		TinkerMaterials.stone.addTrait(dulling, ShieldMaterialStats.TYPE);
 
 		TinkerMaterials.flint.addTrait(glassine, HelmMaterialStats.TYPE);
 		TinkerMaterials.flint.addTrait(glassine, ChestMaterialStats.TYPE);
 		TinkerMaterials.flint.addTrait(glassine, LegsMaterialStats.TYPE);
 		TinkerMaterials.flint.addTrait(glassine, FeetMaterialStats.TYPE);
+		TinkerMaterials.flint.addTrait(firestarter, ShieldMaterialStats.TYPE);
 
 		TinkerMaterials.cactus.addTrait(peyote, HelmMaterialStats.TYPE);
 		TinkerMaterials.cactus.addTrait(spiny, ChestMaterialStats.TYPE);
 		TinkerMaterials.cactus.addTrait(pricked, LegsMaterialStats.TYPE);
+		TinkerMaterials.cactus.addTrait(barbed, ShieldMaterialStats.TYPE);
 
 		TinkerMaterials.bone.addTrait(thickheaded, HelmMaterialStats.TYPE);
 		TinkerMaterials.bone.addTrait(calcium, ChestMaterialStats.TYPE);
 		TinkerMaterials.bone.addTrait(collagen, LegsMaterialStats.TYPE);
 		TinkerMaterials.bone.addTrait(bonespurs, FeetMaterialStats.TYPE);
+		TinkerMaterials.bone.addTrait(dogtoy, ShieldMaterialStats.TYPE);
 
 		TinkerMaterials.obsidian.addTrait(peleshair, HelmMaterialStats.TYPE);
 		TinkerMaterials.obsidian.addTrait(glassine, ChestMaterialStats.TYPE);

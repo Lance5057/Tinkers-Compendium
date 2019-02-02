@@ -114,61 +114,72 @@ public class TDTools {
 
 	public void registerItems(final RegistryEvent.Register<Item> event) {
 
-		stationItem = (ItemBlock) new ItemBlock(station).setRegistryName(station.getRegistryName());
-
+		// TODO find a way to not use this
 		regDummy = new RegDummy();
+		regTool(regDummy, "regdummy", event);
 
-		roundshield = new RoundShield();
-		heatershield = new HeaterShield();
-		towershield = new TowerShield();
-		zweihander = new Zweihander();
-		shears = new Shears();
-		fishingRod = new FishingRod();
+		if (TinkersCompendium.config.shields.enableShields) {
+			if (TinkersCompendium.config.shields.enableBuckler) {
+				roundshield = new RoundShield();
+				regTool(roundshield, "roundshield", event);
+			}
+			if (TinkersCompendium.config.shields.enableHeaterShield) {
+				heatershield = new HeaterShield();
+				regTool(heatershield, "heatershield", event);
+			}
+			if (TinkersCompendium.config.shields.enableTowerShield) {
+				towershield = new TowerShield();
+				regTool(towershield, "towershield", event);
+			}
+		}
 
-		hood = new TinkersHood();
-		shawl = new TinkersShawl();
-		robe = new TinkersRobe();
-		shoes = new TinkersShoes();
+		if (TinkersCompendium.config.tools.enableTools) {
+			if (TinkersCompendium.config.tools.enableZweihander) {
+				zweihander = new Zweihander();
+				regTool(zweihander, "zweihander", event);
+			}
+			if (TinkersCompendium.config.tools.enableShears) {
+				shears = new Shears();
+				regTool(shears, "shears", event);
+			}
+			if (TinkersCompendium.config.tools.enableFishingRod) {
+				fishingRod = new FishingRod();
+				regTool(fishingRod, "fishingRod", event);
+			}
+		}
+
+		if (TinkersCompendium.config.armor.enableClothArmor) {
+			hood = new TinkersHood();
+			regArmor(hood, "hood", event);
+			shawl = new TinkersShawl();
+			regArmor(shawl, "shawl", event);
+			robe = new TinkersRobe();
+			regArmor(robe, "robe", event);
+			shoes = new TinkersShoes();
+			regArmor(shoes, "shoes", event);
+		}
 
 		// coif = new TinkersCoif();
 		// hauberk = new TinkersHauberk();
 		// chausses = new TinkersChausses();
 		// boots = new TinkersBoots();
 
-		helm = new TinkersHelm();
-		breastplate = new TinkersBreastplate();
-		grieves = new TinkersGrieves();
-		sabatons = new TinkersSabatons();
+		if (TinkersCompendium.config.armor.enableChainArmor) {
+			helm = new TinkersHelm();
+			regArmor(helm, "helm", event);
+			breastplate = new TinkersBreastplate();
+			regArmor(breastplate, "breastplate", event);
+			grieves = new TinkersGrieves();
+			regArmor(grieves, "grieves", event);
+			sabatons = new TinkersSabatons();
+			regArmor(sabatons, "sabatons", event);
+		}
 
 		sheathe = new Sheathe();
 		// ring = new Ring();
 		// amulet = new Amulet();
 
-		regTool(regDummy, "regdummy", event);
-		regTool(roundshield, "roundshield", event);
-		regTool(heatershield, "heatershield", event);
-		regTool(towershield, "towershield", event);
-		regTool(zweihander, "zweihander", event);
-		regTool(shears, "shears", event);
-		regTool(fishingRod, "fishingRod", event);
-
-		regArmor(hood, "hood", event);
-
-		regArmor(shawl, "shawl", event);
-
-		regArmor(robe, "robe", event);
-
-		regArmor(shoes, "shoes", event);
-
 		// regTool(boots, "boots", event);
-
-		regArmor(helm, "helm", event);
-
-		regArmor(breastplate, "breastplate", event);
-
-		regArmor(grieves, "grieves", event);
-
-		regArmor(sabatons, "sabatons", event);
 
 		// CustomTextureCreator.registerTexture(new
 		// ResourceLocation("tinkersdefense",
@@ -184,6 +195,7 @@ public class TDTools {
 			registry.register(i);
 		}
 
+		stationItem = (ItemBlock) new ItemBlock(station).setRegistryName(station.getRegistryName());
 		registry.register(stationItem);
 
 	}
@@ -192,7 +204,6 @@ public class TDTools {
 		IForgeRegistry<Block> registry = event.getRegistry();
 
 		station = new ArmorStationBlock();
-
 		registry.register(station);
 
 		GameRegistry.registerTileEntity(ArmorStationTile.class, "armorstationtile");
@@ -245,26 +256,41 @@ public class TDTools {
 	}
 
 	private void regToolBuilding() {
-		TinkerRegistry.registerToolCrafting(roundshield);
-		TinkerRegistry.registerToolForgeCrafting(heatershield);
-		TinkerRegistry.registerToolForgeCrafting(towershield);
-		TinkerRegistry.registerToolForgeCrafting(zweihander);
-		TinkerRegistry.registerToolCrafting(shears);
-		TinkerRegistry.registerToolCrafting(fishingRod);
+		if (TinkersCompendium.config.shields.enableShields) {
+			if (TinkersCompendium.config.shields.enableBuckler)
+				TinkerRegistry.registerToolCrafting(roundshield);
+			if (TinkersCompendium.config.shields.enableHeaterShield)
+				TinkerRegistry.registerToolForgeCrafting(heatershield);
+			if (TinkersCompendium.config.shields.enableTowerShield)
+				TinkerRegistry.registerToolForgeCrafting(towershield);
+		}
 
-		TCRegistry.registerArmorCrafting(hood);
-		TCRegistry.registerArmorCrafting(shawl);
-		TCRegistry.registerArmorCrafting(robe);
-		TCRegistry.registerArmorCrafting(shoes);
+		if (TinkersCompendium.config.tools.enableTools) {
+			if (TinkersCompendium.config.tools.enableZweihander)
+				TinkerRegistry.registerToolForgeCrafting(zweihander);
+			if (TinkersCompendium.config.tools.enableShears)
+				TinkerRegistry.registerToolCrafting(shears);
+			if (TinkersCompendium.config.tools.enableFishingRod)
+				TinkerRegistry.registerToolCrafting(fishingRod);
+		}
+
+		if (TinkersCompendium.config.armor.enableClothArmor) {
+			TCRegistry.registerArmorCrafting(hood);
+			TCRegistry.registerArmorCrafting(shawl);
+			TCRegistry.registerArmorCrafting(robe);
+			TCRegistry.registerArmorCrafting(shoes);
+		}
 
 		// TinkerRegistry.registerToolCrafting(boots);
 
-		TCRegistry.registerArmorCrafting(helm);
-		TCRegistry.registerArmorCrafting(breastplate);
-		TCRegistry.registerArmorCrafting(grieves);
-		TCRegistry.registerArmorCrafting(sabatons);
+		if (TinkersCompendium.config.armor.enableHeavyArmor) {
+			TCRegistry.registerArmorCrafting(helm);
+			TCRegistry.registerArmorCrafting(breastplate);
+			TCRegistry.registerArmorCrafting(grieves);
+			TCRegistry.registerArmorCrafting(sabatons);
+		}
 
-		TinkerRegistry.registerToolCrafting(sheathe);
+		// TinkerRegistry.registerToolCrafting(sheathe);
 		// TinkerRegistry.registerToolCrafting(ring);
 		// TinkerRegistry.registerToolCrafting(amulet);
 	}

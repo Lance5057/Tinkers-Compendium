@@ -328,31 +328,31 @@ public class MaterialHelper {
 				CompendiumMaterials.itemList.add(nugget);
 			}
 
-			if (dust == null && genDust) {
+			if (dust == null && genDust  && TinkersCompendium.config.components.enableDust) {
 				dust = registerItem("dust_" + name);
 				CompendiumMaterials.itemList.add(dust);
 			}
-			if (grain == null && genGrain) {
+			if (grain == null && genGrain && TinkersCompendium.config.components.enableGrain) {
 				grain = registerItem("grain_" + name);
 				CompendiumMaterials.itemList.add(grain);
 			}
 
-			if (plate == null && genPlate) {
+			if (plate == null && genPlate && TinkersCompendium.config.components.enablePlate) {
 				plate = registerItem("plate_" + name);
 				CompendiumMaterials.itemList.add(plate);
 			}
 
-			if (coin == null && genCoin) {
+			if (coin == null && genCoin && TinkersCompendium.config.components.enableCoin) {
 				coin = registerItem("coin_" + name);
 				CompendiumMaterials.itemList.add(coin);
 			}
 
-			if (gear == null && genGear) {
+			if (gear == null && genGear && TinkersCompendium.config.components.enableGear) {
 				gear = registerItem("gear_" + name);
 				CompendiumMaterials.itemList.add(gear);
 			}
 
-			if (rod == null && genRod) {
+			if (rod == null && genRod && TinkersCompendium.config.components.enableRod) {
 				rod = registerItem("rod_" + name);
 				CompendiumMaterials.itemList.add(rod);
 			}
@@ -505,22 +505,22 @@ public class MaterialHelper {
 	}
 
 	public void setupPost() {
-		if (genComponents) {
+		if (genComponents && TinkersCompendium.config.components.enableComponents) {
 			if (genIngot)
 				OreDictionary.registerOre("ingot" + StringUtils.capitalize(name), new ItemStack(ingot));
 			if (genNugget)
 				OreDictionary.registerOre("nugget" + StringUtils.capitalize(name), new ItemStack(nugget));
-			if (genDust)
+			if (genDust && TinkersCompendium.config.components.enableDust)
 				OreDictionary.registerOre("dust" + StringUtils.capitalize(name), new ItemStack(dust));
-			if (genGrain)
+			if (genGrain && TinkersCompendium.config.components.enableGrain)
 				OreDictionary.registerOre("grain" + StringUtils.capitalize(name), new ItemStack(grain));
-			if (genCoin)
+			if (genCoin && TinkersCompendium.config.components.enableCoin)
 				OreDictionary.registerOre("coin" + StringUtils.capitalize(name), new ItemStack(coin));
-			if (genPlate)
+			if (genPlate && TinkersCompendium.config.components.enablePlate)
 				OreDictionary.registerOre("plate" + StringUtils.capitalize(name), new ItemStack(plate));
-			if (genGear)
+			if (genGear && TinkersCompendium.config.components.enableGear)
 				OreDictionary.registerOre("gear" + StringUtils.capitalize(name), new ItemStack(gear));
-			if (genRod)
+			if (genRod && TinkersCompendium.config.components.enableRod)
 				OreDictionary.registerOre("rod" + StringUtils.capitalize(name), new ItemStack(rod));
 
 			if (genBlock)
@@ -546,7 +546,7 @@ public class MaterialHelper {
 		Material mat = TinkerRegistry.getMaterial(name);
 		Item rep = TinkerRegistry.getMaterial(name).getRepresentativeItem().getItem();
 
-		if (genComponents) {
+		if (genComponents && TinkersCompendium.config.components.enableComponents) {
 			if (genGear && (genIngot || oreIngot != "" || rep != Items.AIR)) {
 				IRecipe recipeGear = null;
 
@@ -600,7 +600,7 @@ public class MaterialHelper {
 //				}
 //			}
 
-			if (genDust) {
+			if (genDust && TinkersCompendium.config.components.enableDust) {
 				GameRegistry.addSmelting(dust, new ItemStack(ingot, 1), 0f);
 			}
 
@@ -725,41 +725,41 @@ public class MaterialHelper {
 	}
 
 	public void setupModels() {
-		if (genComponents) {
+		if (genComponents && TinkersCompendium.config.components.enableComponents) {
 			if (genIngot)
 				TinkersCompendium.proxy.registerItemRenderer(ingot, 0, "ingot");
-			if (genDust)
+			if (genDust && TinkersCompendium.config.components.enableDust)
 				TinkersCompendium.proxy.registerItemRenderer(dust, 0, "dust");
 			if (genNugget)
 				TinkersCompendium.proxy.registerItemRenderer(nugget, 0, "nugget");
-			if (genGrain)
+			if (genGrain && TinkersCompendium.config.components.enableGrain)
 				TinkersCompendium.proxy.registerItemRenderer(grain, 0, "grain");
-			if (genCoin)
+			if (genCoin && TinkersCompendium.config.components.enableCoin)
 				TinkersCompendium.proxy.registerItemRenderer(coin, 0, "coin");
-			if (genPlate)
+			if (genPlate && TinkersCompendium.config.components.enablePlate)
 				TinkersCompendium.proxy.registerItemRenderer(plate, 0, "plate");
-			if (genRod)
+			if (genRod && TinkersCompendium.config.components.enableRod)
 				TinkersCompendium.proxy.registerItemRenderer(rod, 0, "rod");
-			if (genGear)
+			if (genGear && TinkersCompendium.config.components.enableGear)
 				TinkersCompendium.proxy.registerItemRenderer(gear, 0, "gear");
 
 			if (genBlock) {
 				TinkersCompendium.proxy.registerBlockRenderer(block, "block");
 				TinkersCompendium.proxy.registerItemBlockRenderer(block, 0, "componentblock");
 			}
-			if (genStake) {
+			if (genStake && TinkersCompendium.config.components.enableStake) {
 				TinkersCompendium.proxy.registerBlockRenderer(stake, "stake");
 				TinkersCompendium.proxy.registerItemBlockRenderer(stake, 0, "componentstake");
 			}
-			if (genBars) {
+			if (genBars && TinkersCompendium.config.components.enableBars) {
 				TinkersCompendium.proxy.registerBlockRenderer(bars, "bars");
 				TinkersCompendium.proxy.registerItemRenderer(Item.getItemFromBlock(bars), 0, "componentbars");
 			}
-			if (genDoor) {
+			if (genDoor && TinkersCompendium.config.components.enableDoors) {
 				TinkersCompendium.proxy.registerBlockRenderer(door, "door");
 				TinkersCompendium.proxy.registerItemRenderer(door.getItem(), 0, "componentdoor");
 			}
-			if (genTrapdoor) {
+			if (genTrapdoor && TinkersCompendium.config.components.enableTrapDoors) {
 				TinkersCompendium.proxy.registerBlockRenderer(trapdoor, "trapdoor");
 				TinkersCompendium.proxy.registerItemRenderer(Item.getItemFromBlock(trapdoor), 0, "componenttrapdoor");
 			}
@@ -770,22 +770,22 @@ public class MaterialHelper {
 	}
 
 	public void setupClient() {
-		if (genComponents) {
+		if (genComponents && TinkersCompendium.config.components.enableComponents) {
 			if (genIngot)
 				TinkersCompendium.proxy.registerItemColorHandler(color, ingot);
 			if (genNugget)
 				TinkersCompendium.proxy.registerItemColorHandler(color, nugget);
-			if (genDust)
+			if (genDust && TinkersCompendium.config.components.enableDust)
 				TinkersCompendium.proxy.registerItemColorHandler(color, dust);
-			if (genGrain)
+			if (genGrain && TinkersCompendium.config.components.enableGrain)
 				TinkersCompendium.proxy.registerItemColorHandler(color, grain);
-			if (genCoin)
+			if (genCoin && TinkersCompendium.config.components.enableCoin)
 				TinkersCompendium.proxy.registerItemColorHandler(color, coin);
-			if (genGear)
+			if (genGear && TinkersCompendium.config.components.enableGear)
 				TinkersCompendium.proxy.registerItemColorHandler(color, gear);
-			if (genPlate)
+			if (genPlate && TinkersCompendium.config.components.enablePlate)
 				TinkersCompendium.proxy.registerItemColorHandler(color, plate);
-			if (genRod)
+			if (genRod && TinkersCompendium.config.components.enableRod)
 				TinkersCompendium.proxy.registerItemColorHandler(color, rod);
 
 			if (genBlock) {
@@ -793,22 +793,22 @@ public class MaterialHelper {
 				TinkersCompendium.proxy.registerItemColorHandler(color, Item.getItemFromBlock(block));
 			}
 
-			if (genStake) {
+			if (genStake && TinkersCompendium.config.components.enableStake) {
 				TinkersCompendium.proxy.registerBlockColorHandler(color, stake);
 				TinkersCompendium.proxy.registerItemColorHandler(color, Item.getItemFromBlock(stake));
 			}
 
-			if (genDoor) {
+			if (genDoor && TinkersCompendium.config.components.enableDoors) {
 				TinkersCompendium.proxy.registerBlockColorHandler(color, door);
 				TinkersCompendium.proxy.registerItemColorHandler(color, door.getItem());
 			}
 
-			if (genTrapdoor) {
+			if (genTrapdoor && TinkersCompendium.config.components.enableTrapDoors) {
 				TinkersCompendium.proxy.registerBlockColorHandler(color, trapdoor);
 				TinkersCompendium.proxy.registerItemColorHandler(color, Item.getItemFromBlock(trapdoor));
 			}
 
-			if (genBars) {
+			if (genBars && TinkersCompendium.config.components.enableBars) {
 				TinkersCompendium.proxy.registerBlockColorHandler(color, bars);
 				TinkersCompendium.proxy.registerItemColorHandler(color, Item.getItemFromBlock(bars));
 			}

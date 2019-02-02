@@ -24,10 +24,4 @@ public class TraitBarbed extends AbstractTDTrait {
 			event.getSource().getTrueSource().attackEntityFrom(DamageSource.GENERIC, 1);
 		}
 	}
-
-	@Override
-	public Optional<Match> matches(NonNullList<ItemStack> arg0) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

@@ -40,6 +40,8 @@ public class TCConfig {
 	public static Addons addons = new Addons();
 	@Config.Name("Traits")
 	public static Traits traits = new Traits();
+	@Config.Name("Textiles")
+	public static Textiles textiles = new Textiles();
 
 	public static class Shields {
 		@Config.RequiresMcRestart()
@@ -52,11 +54,17 @@ public class TCConfig {
 		@Config.RequiresMcRestart()
 		public boolean enableBuckler = true;
 
+		@Config.RequiresMcRestart()
+		public boolean enableTowerShield = true;
+
 		@Config.Comment("How much damage should a shield block percentage wise if the material has no shield data built in?")
 		public int defaultShieldBlockPercentage = 33;
 	}
 
 	public static class Tools {
+		@Config.RequiresMcRestart()
+		public boolean enableTools = true;
+
 		@Config.RequiresMcRestart()
 		public boolean enableZweihander = true;
 
@@ -64,7 +72,8 @@ public class TCConfig {
 		public boolean enableShears = true;
 
 		@Config.RequiresMcRestart()
-		public boolean enableFishingRod = true;
+		@Config.Comment("Debugging Currently")
+		public boolean enableFishingRod = false;
 	}
 
 	public static class Materials {
@@ -113,6 +122,15 @@ public class TCConfig {
 	public static class Armor {
 		@Config.Comment("Toggle Helm Overlay")
 		public boolean HelmOverlay = false;
+
+		@Config.RequiresMcRestart()
+		public boolean enableClothArmor = true;
+		
+		@Config.RequiresMcRestart()
+		public boolean enableChainArmor = true;
+		
+		@Config.RequiresMcRestart()
+		public boolean enableHeavyArmor = true;
 	}
 
 	public static class Traits {
@@ -166,6 +184,12 @@ public class TCConfig {
 		public boolean enableStake = true;
 	}
 
+	public static class Textiles {
+		@Config.RequiresMcRestart()
+		public boolean enableTextiles = true;
+		
+		public int grassFiberDropPercent = 75;
+	}
 	// public int SoulBoundID;
 	// public int DazeID;
 	// public int RainbowID;

@@ -30,7 +30,8 @@ public class TraitDogToy extends AbstractTDTrait {
 	@Override
 	public void onBlock(ItemStack tool, EntityPlayer player, LivingHurtEvent event) {
 
-		if (event.getSource().getTrueSource() instanceof EntityLiving || event.getSource().getImmediateSource() instanceof EntityLiving ) {
+		if (event.getSource().getTrueSource() instanceof EntityLiving
+				|| event.getSource().getImmediateSource() instanceof EntityLiving) {
 			BlockPos pos = new BlockPos(player.posX + player.world.rand.nextInt(10) - 5, player.posY,
 					player.posZ + player.world.rand.nextInt(10) - 5);
 			IBlockState iblockstate = player.world.getBlockState(pos);
@@ -39,16 +40,7 @@ public class TraitDogToy extends AbstractTDTrait {
 			pos = pos.offset(facing);
 			double d0 = 0.0D;
 
-			if (facing == EnumFacing.UP && iblockstate.getBlock() instanceof BlockFence) // Forge:
-																							// Fix
-																							// Vanilla
-																							// bug
-																							// comparing
-																							// state
-																							// instead
-																							// of
-																							// block
-			{
+			if (facing == EnumFacing.UP && iblockstate.getBlock() instanceof BlockFence) {
 				d0 = 0.5D;
 			}
 
@@ -59,12 +51,12 @@ public class TraitDogToy extends AbstractTDTrait {
 			entWolf.renderYawOffset = entWolf.rotationYaw;
 			entWolf.onInitialSpawn(player.world.getDifficultyForLocation(new BlockPos(entWolf)),
 					(IEntityLivingData) null);
-			
-			if(event.getSource().getTrueSource() instanceof EntityLiving)
+
+			if (event.getSource().getTrueSource() instanceof EntityLiving)
 				entWolf.setAttackTarget((EntityLivingBase) event.getSource().getTrueSource());
 			else
 				entWolf.setAttackTarget((EntityLivingBase) event.getSource().getImmediateSource());
-			
+
 			entWolf.setAngry(true);
 			entWolf.setCollarColor(EnumDyeColor.BLACK);
 			entWolf.setTamed(true);
@@ -76,11 +68,5 @@ public class TraitDogToy extends AbstractTDTrait {
 
 			// applyItemEntityDataToEntity(player.world, player, null, entity);
 		}
-	}
-
-	@Override
-	public Optional<Match> matches(NonNullList<ItemStack> arg0) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 }

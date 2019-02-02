@@ -88,7 +88,6 @@ public class CommonProxy implements IGuiHandler {
 		TinkersCompendium.mats.registerItems(event);
 		TinkersCompendium.tools.registerItems(event);
 		TinkersCompendium.modifiers.registerItems(event);
-		TinkersCompendium.holiday.registerItems(event);
 		TinkersCompendium.workstations.registerItems(event);
 		TinkersCompendium.textiles.registerItems(event);
 	}

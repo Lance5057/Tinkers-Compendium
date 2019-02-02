@@ -5,6 +5,7 @@ import java.util.List;
 
 import lance5057.tDefense.Reference;
 import lance5057.tDefense.TCConfig;
+import lance5057.tDefense.TinkersCompendium;
 import lance5057.tDefense.core.library.ArmorNBT;
 import lance5057.tDefense.core.library.ArmorTags;
 import lance5057.tDefense.core.library.ArmorTextureBuilder;
@@ -122,40 +123,42 @@ public class TinkersHelm extends ArmorCore {
 	@Override
 	public void renderHelmetOverlay(ItemStack stack, EntityPlayer player,
 			net.minecraft.client.gui.ScaledResolution resolution, float partialTicks) {
+		if (TinkersCompendium.config.armor.HelmOverlay) {
 
-		if (ArmorTagUtil.getVisor(stack)) {
-			GlStateManager.disableDepth();
-			GlStateManager.depthMask(false);
-			GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA,
-					GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE,
-					GlStateManager.DestFactor.ZERO);
-			GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-			GlStateManager.disableAlpha();
+			if (ArmorTagUtil.getVisor(stack)) {
+				GlStateManager.disableDepth();
+				GlStateManager.depthMask(false);
+				GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA,
+						GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE,
+						GlStateManager.DestFactor.ZERO);
+				GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+				GlStateManager.disableAlpha();
 
-			if (TDToolEvents.overlayJumpTimer <= 0) {
+				if (TDToolEvents.overlayJumpTimer <= 0) {
 
-				Minecraft.getMinecraft().getTextureManager()
-						.bindTexture(new ResourceLocation(Reference.MOD_ID, "textures/misc/helm_overlay.png"));
-			} else {
-				if (!TCConfig.IAmEasilyStartled)
 					Minecraft.getMinecraft().getTextureManager()
-							.bindTexture(new ResourceLocation("textures/misc/pumpkinblur.png"));
-				TDToolEvents.overlayJumpTimer--;
-			}
+							.bindTexture(new ResourceLocation(Reference.MOD_ID, "textures/misc/helm_overlay.png"));
+				} else {
+					if (!TCConfig.IAmEasilyStartled)
+						Minecraft.getMinecraft().getTextureManager()
+								.bindTexture(new ResourceLocation("textures/misc/pumpkinblur.png"));
+					TDToolEvents.overlayJumpTimer--;
+				}
 
-			Tessellator tessellator = Tessellator.getInstance();
-			BufferBuilder bufferbuilder = tessellator.getBuffer();
-			bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
-			bufferbuilder.pos(0.0D, (double) resolution.getScaledHeight(), -90.0D).tex(0.0D, 1.0D).endVertex();
-			bufferbuilder.pos((double) resolution.getScaledWidth(), (double) resolution.getScaledHeight(), -90.0D)
-					.tex(1.0D, 1.0D).endVertex();
-			bufferbuilder.pos((double) resolution.getScaledWidth(), 0.0D, -90.0D).tex(1.0D, 0.0D).endVertex();
-			bufferbuilder.pos(0.0D, 0.0D, -90.0D).tex(0.0D, 0.0D).endVertex();
-			tessellator.draw();
-			GlStateManager.depthMask(true);
-			GlStateManager.enableDepth();
-			GlStateManager.enableAlpha();
-			GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+				Tessellator tessellator = Tessellator.getInstance();
+				BufferBuilder bufferbuilder = tessellator.getBuffer();
+				bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
+				bufferbuilder.pos(0.0D, (double) resolution.getScaledHeight(), -90.0D).tex(0.0D, 1.0D).endVertex();
+				bufferbuilder.pos((double) resolution.getScaledWidth(), (double) resolution.getScaledHeight(), -90.0D)
+						.tex(1.0D, 1.0D).endVertex();
+				bufferbuilder.pos((double) resolution.getScaledWidth(), 0.0D, -90.0D).tex(1.0D, 0.0D).endVertex();
+				bufferbuilder.pos(0.0D, 0.0D, -90.0D).tex(0.0D, 0.0D).endVertex();
+				tessellator.draw();
+				GlStateManager.depthMask(true);
+				GlStateManager.enableDepth();
+				GlStateManager.enableAlpha();
+				GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+			}
 		}
 	}
 }

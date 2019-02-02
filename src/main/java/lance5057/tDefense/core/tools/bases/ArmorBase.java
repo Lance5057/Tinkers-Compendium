@@ -17,6 +17,7 @@ import com.google.common.collect.Sets;
 import gnu.trove.set.hash.THashSet;
 import lance5057.tDefense.core.library.ArmorBuilder;
 import lance5057.tDefense.core.library.ArmorEvent;
+import lance5057.tDefense.core.library.ArmorHelper;
 import lance5057.tDefense.core.library.ArmorTags;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
@@ -437,7 +438,8 @@ public abstract class ArmorBase extends ItemArmor implements ITinkerable, IModif
 				break;
 			}
 
-			ToolHelper.repairTool(item, calculateRepair(item, amount));
+			ArmorHelper.repairTool(item, calculateRepair(item, amount));
+		    
 			// save that we repaired it :I
 			NBTTagCompound tag = TagUtil.getExtraTag(item);
 			tag.setInteger(Tags.REPAIR_COUNT, tag.getInteger(Tags.REPAIR_COUNT) + 1);

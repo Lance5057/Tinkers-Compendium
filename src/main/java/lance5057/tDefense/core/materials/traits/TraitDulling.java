@@ -41,10 +41,4 @@ public class TraitDulling extends AbstractTDTrait {
 			}
 		}
 	}
-
-	@Override
-	public Optional<Match> matches(NonNullList<ItemStack> arg0) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

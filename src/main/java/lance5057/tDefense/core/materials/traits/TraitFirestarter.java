@@ -45,10 +45,4 @@ public class TraitFirestarter extends AbstractTDTrait {
 			}
 		}
 	}
-
-	@Override
-	public Optional<Match> matches(NonNullList<ItemStack> arg0) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

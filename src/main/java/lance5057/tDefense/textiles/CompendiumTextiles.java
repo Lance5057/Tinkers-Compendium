@@ -19,24 +19,26 @@ import slimeknights.mantle.client.CreativeTab;
 public class CompendiumTextiles {
 
 	public static CreativeTab tab = new CreativeTab("compendiumtextiles", new ItemStack(Items.STRING));
+	
+	public TextileEvents events = new TextileEvents();
 
-	public Item grassFiber;
-	public Item roughspunCord;
-	public ItemBlock roughspunItemBlock;
-	public Block roughspunBlock;
+	public static Item grassFiber;
+	public static Item roughspunCord;
+	public static ItemBlock roughspunItemBlock;
+	public static Block roughspunBlock;
 
-	public ItemColors cottonYarn;
-	public ItemBlock cottonItemBlock;
-	public BlockColored cottonBlock;
+	public static ItemColors cottonYarn;
+	public static ItemBlock cottonItemBlock;
+	public static BlockColored cottonBlock;
 
-	public ItemColors linenThread;
-	public BlockColored linenBlock;
+	public static ItemColors linenThread;
+	public static BlockColored linenBlock;
 
-	public ItemColors silkThread;
-	public BlockColored silkBlock;
+	public static ItemColors silkThread;
+	public static BlockColored silkBlock;
 
-	public ItemColors ramieCord;
-	public BlockColored ramieBlock;
+	public static ItemColors ramieCord;
+	public static BlockColored ramieBlock;
 
 	public void preInit() {
 		grassFiber = new Item();
