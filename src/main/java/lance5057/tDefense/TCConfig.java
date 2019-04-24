@@ -74,6 +74,15 @@ public class TCConfig {
 		@Config.RequiresMcRestart()
 		@Config.Comment("Debugging Currently")
 		public boolean enableFishingRod = false;
+		
+		@Config.RequiresMcRestart()
+		public boolean enableSaw = true;
+		
+		@Config.RequiresMcRestart()
+		public boolean enableMallet = true;
+
+		@Config.RequiresMcRestart()
+		public boolean enableFireDrill = true;
 	}
 
 	public static class Materials {
@@ -182,6 +191,14 @@ public class TCConfig {
 		public boolean enableBars = true;
 		@Config.RequiresMcRestart()
 		public boolean enableStake = true;
+		@Config.RequiresMcRestart()
+		public boolean enableCoil = true;
+		@Config.RequiresMcRestart()
+		public boolean enableSpring = true;
+		@Config.RequiresMcRestart()
+		public boolean enableWire = true;
+		@Config.RequiresMcRestart()
+		public boolean enableCasing = true;
 	}
 
 	public static class Textiles {

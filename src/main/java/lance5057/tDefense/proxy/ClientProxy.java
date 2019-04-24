@@ -1,7 +1,5 @@
 package lance5057.tDefense.proxy;
 
-import static slimeknights.tconstruct.tools.TinkerTools.shard;
-
 import javax.annotation.Nonnull;
 
 import com.google.common.collect.ImmutableList;
@@ -16,13 +14,14 @@ import lance5057.tDefense.core.library.CustomArmorTextureCreator;
 import lance5057.tDefense.core.library.TDClientRegistry;
 import lance5057.tDefense.core.library.TDModelLoader;
 import lance5057.tDefense.core.library.TDModelRegistar;
-import lance5057.tDefense.core.materials.CompendiumMaterials;
+import lance5057.tDefense.core.library.book.CompendiumBook;
 import lance5057.tDefense.core.tools.TDTools;
 import lance5057.tDefense.core.tools.bases.ArmorCore;
 import lance5057.tDefense.renderers.deserializers.AlphaColorTextureDeserializer;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -46,6 +45,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import slimeknights.tconstruct.common.ModelRegisterUtil;
 import slimeknights.tconstruct.library.TinkerRegistry;
 import slimeknights.tconstruct.library.TinkerRegistryClient;
+import slimeknights.tconstruct.library.client.CustomFontRenderer;
 import slimeknights.tconstruct.library.client.ToolBuildGuiInfo;
 import slimeknights.tconstruct.library.client.material.MaterialRenderInfoLoader;
 import slimeknights.tconstruct.library.materials.Material;
@@ -69,6 +69,9 @@ public class ClientProxy extends CommonProxy {
 	ToolBuildGuiInfo zweihanderGUI;
 	ToolBuildGuiInfo shearsGUI;
 	ToolBuildGuiInfo fishingRodGUI;
+	ToolBuildGuiInfo malletGUI;
+	ToolBuildGuiInfo sawGUI;
+	ToolBuildGuiInfo fireDrillGUI;
 
 	ArmorBuildGuiInfo hoodGUI;
 	ArmorBuildGuiInfo shawlGUI;
@@ -175,6 +178,14 @@ public class ClientProxy extends CommonProxy {
 		registerToolGuis();
 		createToolModels();
 
+		Minecraft mc = Minecraft.getMinecraft();
+
+		// Font Renderer for the tinker books
+		FontRenderer bookRenderer = new CustomFontRenderer(mc.gameSettings,
+				new ResourceLocation("textures/font/ascii.png"), mc.renderEngine);
+		bookRenderer.setUnicodeFlag(true);
+		CompendiumBook.INSTANCE.fontRenderer = bookRenderer;
+
 		// ModelRegisterUtil.registerPartModel(TDMaterials.plate);
 	}
 
@@ -264,6 +275,12 @@ public class ClientProxy extends CommonProxy {
 				shearsGUI = new ToolBuildGuiInfo(TDTools.shears);
 			if (TinkersCompendium.config.tools.enableFishingRod)
 				fishingRodGUI = new ToolBuildGuiInfo(TDTools.fishingRod);
+			if (TinkersCompendium.config.tools.enableMallet)
+				malletGUI = new ToolBuildGuiInfo(TDTools.mallet);
+			if (TinkersCompendium.config.tools.enableSaw)
+				sawGUI = new ToolBuildGuiInfo(TDTools.saw);
+			if (TinkersCompendium.config.tools.enableFireDrill)
+				fireDrillGUI = new ToolBuildGuiInfo(TDTools.fireDrill);
 		}
 
 		if (TinkersCompendium.config.armor.enableClothArmor) {
@@ -309,6 +326,12 @@ public class ClientProxy extends CommonProxy {
 				TinkerRegistryClient.addToolBuilding(shearsGUI);
 			if (TinkersCompendium.config.tools.enableFishingRod)
 				TinkerRegistryClient.addToolBuilding(fishingRodGUI);
+			if (TinkersCompendium.config.tools.enableMallet)
+				TinkerRegistryClient.addToolBuilding(malletGUI);
+			if (TinkersCompendium.config.tools.enableSaw)
+				TinkerRegistryClient.addToolBuilding(sawGUI);
+			if (TinkersCompendium.config.tools.enableFireDrill)
+				TinkerRegistryClient.addToolBuilding(fireDrillGUI);
 		}
 
 		if (TinkersCompendium.config.armor.enableClothArmor) {
@@ -384,6 +407,24 @@ public class ClientProxy extends CommonProxy {
 				fishingRodGUI.addSlotPosition(34, 15 + 8);
 				fishingRodGUI.addSlotPosition(43, 33 + 8);
 				fishingRodGUI.addSlotPosition(34, 51 + 8);
+			}
+			if (TinkersCompendium.config.tools.enableMallet) {
+				malletGUI.positions.clear();
+				malletGUI.addSlotPosition(34, 15 + 8);
+				malletGUI.addSlotPosition(43, 33 + 8);
+				malletGUI.addSlotPosition(34, 51 + 8);
+			}
+			if (TinkersCompendium.config.tools.enableSaw) {
+				sawGUI.positions.clear();
+				sawGUI.addSlotPosition(34, 15 + 8);
+				sawGUI.addSlotPosition(43, 33 + 8);
+				sawGUI.addSlotPosition(34, 51 + 8);
+			}
+			if (TinkersCompendium.config.tools.enableFireDrill) {
+				fireDrillGUI.positions.clear();
+				fireDrillGUI.addSlotPosition(34, 15 + 8);
+				fireDrillGUI.addSlotPosition(43, 33 + 8);
+				fireDrillGUI.addSlotPosition(34, 51 + 8);
 			}
 		}
 
@@ -531,7 +572,9 @@ public class ClientProxy extends CommonProxy {
 
 		@Override
 		public int colorMultiplier(ItemStack stack, int tintIndex) {
-			return color;
+			if (tintIndex != 2)
+				return color;
+			return 0xFFFFFF;
 		}
 	}
 

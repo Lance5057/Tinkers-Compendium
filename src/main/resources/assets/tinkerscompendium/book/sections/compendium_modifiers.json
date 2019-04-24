@@ -1,0 +1,34 @@
+[
+  {
+    "type": "modifier",
+    "data": "modifier/deadmansswitch.json"
+  },
+  {
+    "type": "modifier",
+    "data": "modifier/protection.json"
+  },
+  {
+    "type": "modifier",
+    "data": "modifier/fireprotection.json"
+  },
+  {
+    "type": "modifier",
+    "data": "modifier/projprotection.json"
+  },
+  {
+    "type": "modifier",
+    "data": "modifier/blastprotection.json"
+  },
+  {
+    "type": "modifier",
+    "data": "modifier/antiblindness.json"
+  },
+  {
+    "type": "modifier",
+    "data": "modifier/nightvision.json"
+  },
+  {
+    "type": "modifier",
+    "data": "modifier/respirationI.json"
+  }
+]

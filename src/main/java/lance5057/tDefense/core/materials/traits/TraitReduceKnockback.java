@@ -46,10 +46,10 @@ public class TraitReduceKnockback extends AbstractTDTrait {
 			block = true;
 		}
 		
-		if(!att.hasModifier(TDToolEvents.td_stoned))
+		if(!att.hasModifier(TDToolEvents.td_knockback))
 		{
 			if(block)
-				att.applyModifier(TDToolEvents.td_stoned);
+				att.applyModifier(TDToolEvents.td_knockback);
 		}
 	}
 

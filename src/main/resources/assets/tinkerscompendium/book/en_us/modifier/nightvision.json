@@ -1,0 +1,18 @@
+{
+  "modifier": "nightvision",
+  "text": [
+    {
+      "text": "\n"
+    },
+    {
+      "text": "Wandering around in darkness, not recomended. Night Vision incorperated into headgear make the night shine almost like day."    
+    }
+  ],
+  "effects": [
+    "Perminant night vision?"
+  ],
+  "demoTool": [
+    "tinkerscompendium:helm",
+    "tinkerscompendium:hood"
+  ]
+}

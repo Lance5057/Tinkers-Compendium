@@ -1,0 +1,35 @@
+{
+    "textures": {
+        "layer0": "tinkerscompendium:items/craftinghammer/_craftinghammer_head",
+        "layer1": "tinkerscompendium:items/craftinghammer/_craftinghammer_binding",
+		"layer2": "tinkerscompendium:items/craftinghammer/_craftinghammer_rod",
+		"broken1": "tinkerscompendium:items/craftinghammer/_craftinghammer_head_broken"
+    },
+    "display": {
+        "thirdperson_righthand": {
+            "rotation": [ 0, 270, 45 ],
+            "translation": [ 0, 4, 2 ],
+            "scale": [ 1, 1, 1 ]
+        },
+        "thirdperson_lefthand": {
+            "rotation": [ 270, 90, 45 ],
+            "translation": [ 0, 4, 2 ],
+            "scale": [ 1, 1, 1 ]
+        },
+        "firstperson_righthand": {
+            "rotation": [ 0, 270, 45 ],
+            "translation": [ 0, 4, 2 ],
+            "scale": [ 1, 1, 1 ]
+        },
+        "firstperson_lefthand": {
+            "rotation": [ 0, 270, 45 ],
+            "translation": [ 0, 4, 2 ],
+            "scale": [ 1, 1, 1 ]
+        },
+        "fixed": {
+            "rotation": [ 0, 180, 0 ],
+            "translation": [ 0, 0, 0],
+            "scale":[ 1, 1, 1]
+        }
+	}
+}

@@ -1,0 +1,19 @@
+{
+  "modifier": "antiblindness",
+  "text": [
+    {
+      "text": "\n"
+    },
+    {
+      "text": "Goggles can be incorperated into headwear of course, offering visual clarity in any situation."
+    }
+  ],
+  "effects": [
+    "Drawn on the page is a Lance.",
+    "Can't be blind even with your eyes shut."
+  ],
+  "demoTool": [
+    "tinkerscompendium:helm",
+    "tinkerscompendium:hood"
+  ]
+}

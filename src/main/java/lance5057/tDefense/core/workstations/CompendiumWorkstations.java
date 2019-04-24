@@ -3,12 +3,16 @@ package lance5057.tDefense.core.workstations;
 import lance5057.tDefense.Reference;
 import lance5057.tDefense.TinkersCompendium;
 import lance5057.tDefense.core.workstations.blocks.FinishingAnvilBlock;
+import lance5057.tDefense.core.workstations.blocks.HammeringTableBlock;
 import lance5057.tDefense.core.workstations.gui.armorstation.ArmorStationContainer;
 import lance5057.tDefense.core.workstations.gui.armorstation.ArmorStationGui;
 import lance5057.tDefense.core.workstations.gui.finishinganvil.FinishingAnvilContainer;
 import lance5057.tDefense.core.workstations.gui.finishinganvil.FinishingAnvilGui;
+import lance5057.tDefense.core.workstations.renderers.HammeringTableRenderer;
 import lance5057.tDefense.core.workstations.tileentities.ArmorStationTile;
 import lance5057.tDefense.core.workstations.tileentities.FinishingAnvilTile;
+import lance5057.tDefense.core.workstations.tileentities.GuilessManualWorkstationTileEntity;
+import lance5057.tDefense.core.workstations.tileentities.HammeringTableTileEntity;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -17,6 +21,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -35,6 +40,9 @@ public class CompendiumWorkstations {
 
 	public static FinishingAnvilBlock finishingAnvil;
 	private ItemBlock FinishingAnvilItem;
+	
+	public static HammeringTableBlock hammeringtable;
+	private ItemBlock HammeringTableItem;
 
 	public void preInit(FMLPreInitializationEvent e) {
 		
@@ -52,14 +60,19 @@ public class CompendiumWorkstations {
 		final IForgeRegistry registry = event.getRegistry();
 		
 		FinishingAnvilItem = (ItemBlock) new ItemBlock(finishingAnvil).setRegistryName(finishingAnvil.getRegistryName());
+		HammeringTableItem = (ItemBlock) new ItemBlock(hammeringtable).setRegistryName(hammeringtable.getRegistryName());
 		
 		registry.register(FinishingAnvilItem);
+		registry.register(HammeringTableItem);
 	}
 
 	@SideOnly(Side.CLIENT)
 	@SubscribeEvent
 	public static void registerModels(ModelRegistryEvent event) {
+		ClientRegistry.bindTileEntitySpecialRenderer(HammeringTableTileEntity.class, new HammeringTableRenderer());
+		
 		TinkersCompendium.proxy.registerItemBlockRenderer(finishingAnvil, 0, "finishinganvil");
+		TinkersCompendium.proxy.registerItemBlockRenderer(hammeringtable, 0, "hammeringtable");
 	}
 
 	//@SubscribeEvent
@@ -67,10 +80,13 @@ public class CompendiumWorkstations {
 		IForgeRegistry<Block> registry = event.getRegistry();
 		
 		finishingAnvil = new FinishingAnvilBlock();
+		hammeringtable = new HammeringTableBlock();
 
 		registry.register(finishingAnvil);
+		registry.register(hammeringtable);
 		
 		GameRegistry.registerTileEntity(FinishingAnvilTile.class, "finishinganviltile");
+		GameRegistry.registerTileEntity(HammeringTableTileEntity.class, "hammeringtabletile");
 	}
 
 	public static Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {

@@ -5,6 +5,7 @@ import java.util.List;
 import com.google.common.collect.ImmutableList;
 
 import lance5057.tDefense.core.materials.traits.AbstractTDTrait;
+import lance5057.tDefense.core.tools.bases.ArmorCore;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import slimeknights.mantle.util.RecipeMatch;
@@ -55,6 +56,9 @@ public class ModifierTDTrait extends AbstractTDTrait implements IModifierDisplay
 
 	@Override
 	public boolean canApplyCustom(ItemStack stack) {
+		if (!(stack.getItem() instanceof ArmorCore)) {
+			return false;
+		}
 		// not present yet, ok
 		if (super.canApplyCustom(stack)) {
 			return true;

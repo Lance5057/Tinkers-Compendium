@@ -1,7 +1,7 @@
 {
     "parent": "block/block",
     "textures": {
-        "all": "blocks/iron_block"
+        "layer0": "blocks/iron_block"
     },
   "elements": [
     {

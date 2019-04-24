@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import lance5057.tDefense.Reference;
 import lance5057.tDefense.TinkersCompendium;
 import lance5057.tDefense.core.blocks.UnstableBlock;
+import lance5057.tDefense.core.library.TDClientRegistry;
+import lance5057.tDefense.core.modifiers.models.ModelGoggles;
 import lance5057.tDefense.core.parts.TDParts;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;
@@ -94,6 +96,11 @@ public class TDModifiers {
 	public void postInit()
 	{
 		
+	}
+	
+	public void clientInit()
+	{
+		TDClientRegistry.addModifierModel("goggles", new ModelGoggles());
 	}
 	
 

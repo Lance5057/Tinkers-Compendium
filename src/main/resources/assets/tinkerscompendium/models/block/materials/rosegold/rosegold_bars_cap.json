@@ -1,0 +1,24 @@
+{
+    "ambientocclusion": false,
+    "textures": {
+        "particle": "tinkerscompendium:blocks/materials/rosegold/rosegold_bars",
+        "bars": "tinkerscompendium:blocks/materials/rosegold/rosegold_bars",
+        "edge": "tinkerscompendium:blocks/materials/rosegold/rosegold_bars"
+    },
+    "elements": [
+        {   "from": [ 8, 0, 8 ],
+            "to": [ 8, 16, 9 ],
+            "faces": {
+                "west": { "tintindex": 1, "uv": [ 8, 0, 7, 16 ], "texture": "#bars" },
+                "east": { "tintindex": 1, "uv": [ 7, 0, 8, 16 ], "texture": "#bars" }
+            }
+        },
+        {   "from": [ 7, 0, 9 ],
+            "to": [ 9, 16, 9 ],
+            "faces": {
+                "north": { "tintindex": 1, "uv": [ 9, 0, 7, 16 ], "texture": "#bars" },
+                "south": { "tintindex": 1, "uv": [ 7, 0, 9, 16 ], "texture": "#bars" }
+            }
+        }
+    ]
+}

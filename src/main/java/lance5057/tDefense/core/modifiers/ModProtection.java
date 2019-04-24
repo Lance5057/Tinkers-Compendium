@@ -10,7 +10,7 @@ import slimeknights.tconstruct.library.modifiers.ModifierTrait;
 import slimeknights.tconstruct.library.utils.TinkerUtil;
 import slimeknights.tconstruct.library.utils.ToolBuilder;
 
-public class ModProtection extends ModifierTrait {
+public class ModProtection extends ArmorModifierTrait {
 	protected static final int maxLevel = 1;
 
 	Enchantment enchant;

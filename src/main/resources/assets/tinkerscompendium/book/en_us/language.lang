@@ -1,0 +1,9 @@
+// Sections
+compendium_intro=Introduction
+compendium_tools=Tools
+compendium_armors=Armors
+compendium_modifiers=Modifiers
+
+// Modifiers
+modifier.effect=Modifier Effect(s)
+tool.properties=Tool Properties

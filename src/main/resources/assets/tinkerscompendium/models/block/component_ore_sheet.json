@@ -125,25 +125,5 @@
 				"down": { "tintindex": 1, "uv": [0, 0, 16, 16], "texture": "#1"}
 			}
 		}
-	],
-	"display": {
-		"thirdperson_righthand": {
-			"scale": [0.4, 0.4, 0.4]
-		},
-		"firstperson_righthand": {
-			"scale": [0.4, 0.4, 0.4]
-		},
-		"firstperson_lefthand": {
-			"scale": [0.4, 0.4, 0.4]
-		},
-		"fixed": {
-			"scale": [0.8, 0.8, 0.8]
-		},
-		"gui": {
-			"scale": [0.8, 0.8, 0.8]
-		},
-		"thirdperson_lefthand": {
-			"scale": [0.4, 0.4, 0.4]
-		}
-	}
+	]
 }

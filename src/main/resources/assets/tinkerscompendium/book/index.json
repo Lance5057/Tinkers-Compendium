@@ -1,0 +1,41 @@
+[
+  {
+    "name": "compendium_intro",
+    "data": "sections/compendium_intro.json",
+    "icon": {
+      "item": {
+        "id": "tinkerscompendium:armorstation",
+        "damage": 0
+      }
+    }
+  },
+  {
+    "name": "compendium_armors",
+    "data": "sections/compendium_armors.json",
+    "icon": {
+      "item": {
+        "id": "tinkerscompendium:helm",
+        "damage": 0
+      }
+    }
+  },
+    {
+    "name": "compendium_tools",
+    "data": "sections/compendium_tools.json",
+    "icon": {
+      "item": {
+        "id": "tinkerscompendium:roundshield",
+        "damage": 0
+      }
+    }
+  },
+  {
+    "name": "compendium_modifiers",
+    "data": "sections/compendium_modifiers.json",
+    "icon": {
+      "item": {
+        "id": "minecraft:redstone"
+      }
+    }
+  }
+]

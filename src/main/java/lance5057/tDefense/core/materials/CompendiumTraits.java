@@ -14,6 +14,7 @@ import lance5057.tDefense.core.materials.traits.TraitBarbed;
 import lance5057.tDefense.core.materials.traits.TraitBattleHardened;
 import lance5057.tDefense.core.materials.traits.TraitBoneSpurs;
 import lance5057.tDefense.core.materials.traits.TraitBuoyant;
+import lance5057.tDefense.core.materials.traits.TraitClockstopper;
 import lance5057.tDefense.core.materials.traits.TraitCombatAdvantage;
 import lance5057.tDefense.core.materials.traits.TraitCurrentRider;
 import lance5057.tDefense.core.materials.traits.TraitDamageNegation;
@@ -24,6 +25,7 @@ import lance5057.tDefense.core.materials.traits.TraitDemonic;
 import lance5057.tDefense.core.materials.traits.TraitDogToy;
 import lance5057.tDefense.core.materials.traits.TraitDulling;
 import lance5057.tDefense.core.materials.traits.TraitEarthbound;
+import lance5057.tDefense.core.materials.traits.TraitEthereal;
 import lance5057.tDefense.core.materials.traits.TraitFins;
 import lance5057.tDefense.core.materials.traits.TraitFirestarter;
 import lance5057.tDefense.core.materials.traits.TraitFirewalker;
@@ -41,6 +43,7 @@ import lance5057.tDefense.core.materials.traits.TraitHotHead;
 import lance5057.tDefense.core.materials.traits.TraitHydrophobic;
 import lance5057.tDefense.core.materials.traits.TraitIgnite;
 import lance5057.tDefense.core.materials.traits.TraitIncinerate;
+import lance5057.tDefense.core.materials.traits.TraitIntangible;
 import lance5057.tDefense.core.materials.traits.TraitIronclad;
 import lance5057.tDefense.core.materials.traits.TraitMagnetism;
 import lance5057.tDefense.core.materials.traits.TraitNovel;
@@ -63,8 +66,12 @@ import lance5057.tDefense.core.materials.traits.TraitStoned;
 import lance5057.tDefense.core.materials.traits.TraitStonekin;
 import lance5057.tDefense.core.materials.traits.TraitSuperSonic;
 import lance5057.tDefense.core.materials.traits.TraitTempered;
+import lance5057.tDefense.core.materials.traits.TraitTickTock;
+import lance5057.tDefense.core.materials.traits.TraitTimewarp;
 import lance5057.tDefense.core.materials.traits.TraitToasty;
 import lance5057.tDefense.core.materials.traits.TraitTrotters;
+import lance5057.tDefense.core.materials.traits.TraitTrueSight;
+import lance5057.tDefense.core.materials.traits.TraitUndo;
 import lance5057.tDefense.core.materials.traits.TraitVoidCall;
 import lance5057.tDefense.core.materials.traits.TraitWarp;
 import lance5057.tDefense.core.materials.traits.TraitWarpedMind;
@@ -75,6 +82,10 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.DimensionType;
+import slimeknights.tconstruct.library.TinkerRegistry;
+import slimeknights.tconstruct.library.materials.ExtraMaterialStats;
+import slimeknights.tconstruct.library.materials.HandleMaterialStats;
+import slimeknights.tconstruct.library.materials.HeadMaterialStats;
 import slimeknights.tconstruct.tools.TinkerMaterials;
 import slimeknights.tconstruct.tools.TinkerTraits;
 
@@ -206,6 +217,14 @@ public class CompendiumTraits {
 
 	public TraitDamageSourceAlteration ohm = new TraitDamageSourceAlteration("ohm", TextFormatting.YELLOW,
 			new TraitDamageSourceAlteration.DamagePercent(DamageSource.LIGHTNING_BOLT, -0.5f));
+	
+	public TraitTickTock ticktock = new TraitTickTock();
+	public TraitEthereal ethereal = new TraitEthereal();
+	public TraitClockstopper clockstopper = new TraitClockstopper();
+	public TraitTrueSight truesight = new TraitTrueSight();
+	public TraitIntangible intangible = new TraitIntangible();
+	public TraitUndo undo = new TraitUndo();
+	public TraitTimewarp timewarp = new TraitTimewarp();
 
 	public void preInit() {
 
@@ -358,6 +377,15 @@ public class CompendiumTraits {
 		TinkerMaterials.electrum.addTrait(tempered, ChestMaterialStats.TYPE);
 		TinkerMaterials.electrum.addTrait(tempered, LegsMaterialStats.TYPE);
 		TinkerMaterials.electrum.addTrait(maglock, FeetMaterialStats.TYPE);
+		
+		CompendiumMaterials.aeonsteel.mat.addTrait(ticktock, HandleMaterialStats.TYPE);
+		CompendiumMaterials.aeonsteel.mat.addTrait(ticktock, ExtraMaterialStats.TYPE);
+		CompendiumMaterials.aeonsteel.mat.addTrait(ethereal, HeadMaterialStats.TYPE);
+		CompendiumMaterials.aeonsteel.mat.addTrait(clockstopper, ShieldMaterialStats.TYPE);
+		CompendiumMaterials.aeonsteel.mat.addTrait(truesight, HelmMaterialStats.TYPE);
+		CompendiumMaterials.aeonsteel.mat.addTrait(intangible, ChestMaterialStats.TYPE);
+		CompendiumMaterials.aeonsteel.mat.addTrait(undo, LegsMaterialStats.TYPE);
+		CompendiumMaterials.aeonsteel.mat.addTrait(timewarp, FeetMaterialStats.TYPE);
 	}
 
 	public void postInit() {

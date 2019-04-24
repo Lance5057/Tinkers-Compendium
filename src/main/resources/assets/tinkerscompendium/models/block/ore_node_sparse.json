@@ -1,4 +1,5 @@
 {
+	"parent": "block/block",
 	"credit": "Made with Blockbench",
 	"textures": {
 		"0": "blocks/stone",
@@ -11,12 +12,12 @@
 			"from": [0, 0, 0],
 			"to": [16, 16, 16],
 			"faces": {
-				"north": {"tintindex": 0, "uv": [0, 0, 16, 16], "texture": "#0"},
-				"east": {"tintindex": 0, "uv": [0, 0, 16, 16], "texture": "#0"},
-				"south": {"tintindex": 0, "uv": [0, 0, 16, 16], "texture": "#0"},
-				"west": {"tintindex": 0, "uv": [0, 0, 16, 16], "texture": "#0"},
-				"up": {"tintindex": 0, "uv": [0, 0, 16, 16], "texture": "#0"},
-				"down": {"tintindex": 0, "uv": [0, 0, 16, 16], "texture": "#0"}
+				"north": {"tintindex": 2, "uv": [0, 0, 16, 16], "texture": "#0"},
+				"east": {"tintindex": 2, "uv": [0, 0, 16, 16], "texture": "#0"},
+				"south": {"tintindex": 2, "uv": [0, 0, 16, 16], "texture": "#0"},
+				"west": {"tintindex": 2, "uv": [0, 0, 16, 16], "texture": "#0"},
+				"up": {"tintindex": 2, "uv": [0, 0, 16, 16], "texture": "#0"},
+				"down": {"tintindex": 2, "uv": [0, 0, 16, 16], "texture": "#0"}
 			}
 		},
 		{
@@ -136,25 +137,5 @@
 				"down": {"tintindex": 1, "uv": [0, 0, 16, 3], "texture": "#1"}
 			}
 		}
-	],
-	"display": {
-		"thirdperson_righthand": {
-			"scale": [0.4, 0.4, 0.4]
-		},
-		"firstperson_righthand": {
-			"scale": [0.4, 0.4, 0.4]
-		},
-		"firstperson_lefthand": {
-			"scale": [0.4, 0.4, 0.4]
-		},
-		"fixed": {
-			"scale": [0.8, 0.8, 0.8]
-		},
-		"gui": {
-			"scale": [0.8, 0.8, 0.8]
-		},
-		"thirdperson_lefthand": {
-			"scale": [0.4, 0.4, 0.4]
-		}
-	}
+	]
 }

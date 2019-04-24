@@ -18,6 +18,7 @@ import net.minecraftforge.client.event.EntityViewRenderEvent.FogDensity;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
+import net.minecraftforge.event.entity.living.LivingEvent.LivingJumpEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -39,7 +40,7 @@ public class TDToolEvents {
 	// public static boolean overlayHelm = false;
 
 	public static AttributeModifier td_stoned = new AttributeModifier(UUID.randomUUID(), "td_stoned", -0.01f, 0);
-
+	
 	public static AttributeModifier td_currentrider = new AttributeModifier(UUID.randomUUID(), "td_currentrider", 0.05f,
 			0);
 	public static AttributeModifier td_fins = new AttributeModifier(UUID.randomUUID(), "td_fins", 1.0f, 0);
@@ -188,6 +189,23 @@ public class TDToolEvents {
 						AbstractTDTrait trait = (AbstractTDTrait) TinkerRegistry.getTrait(list.getStringTagAt(i));
 						if (trait != null) {
 							trait.onDeath(e);
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	@SubscribeEvent
+	public void onJump(LivingJumpEvent e) {
+		for (ItemStack tool : e.getEntity().getArmorInventoryList()) {
+			if (tool != null && tool.getItem() instanceof ArmorCore && !ToolHelper.isBroken(tool)) {
+				NBTTagList list = TagUtil.getTraitsTagList(tool);
+				for (int i = 0; i < list.tagCount(); i++) {
+					if (TinkerRegistry.getTrait(list.getStringTagAt(i)) instanceof AbstractTDTrait) {
+						AbstractTDTrait trait = (AbstractTDTrait) TinkerRegistry.getTrait(list.getStringTagAt(i));
+						if (trait != null) {
+							trait.onJump(e);
 						}
 					}
 				}

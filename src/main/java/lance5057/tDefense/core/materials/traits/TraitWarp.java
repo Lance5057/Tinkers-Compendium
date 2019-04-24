@@ -9,7 +9,7 @@ import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
 public class TraitWarp extends AbstractTDTrait {
 	public TraitWarp() {
-		super("warp", TextFormatting.WHITE);
+		super("td_warp", TextFormatting.WHITE);
 		// TODO Auto-generated constructor stub
 	}
 

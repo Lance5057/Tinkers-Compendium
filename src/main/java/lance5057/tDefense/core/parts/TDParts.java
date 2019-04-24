@@ -14,12 +14,17 @@ import lance5057.tDefense.core.library.ModuleBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.registries.IForgeRegistry;
+import slimeknights.tconstruct.common.ModelRegisterUtil;
 import slimeknights.tconstruct.library.TinkerRegistry;
 import slimeknights.tconstruct.library.materials.Material;
 import slimeknights.tconstruct.library.tinkering.PartMaterialType;
@@ -32,7 +37,8 @@ import slimeknights.tconstruct.tools.TinkerTools;
 @Mod.EventBusSubscriber(modid = Reference.MOD_ID)
 public class TDParts extends ModuleBase
 {
-	private static final List<IToolPart> toolParts = new ArrayList<>();
+	private static final List<ToolPart> toolParts = new ArrayList<>();
+	private static final List<ArmorPart> armorParts = new ArrayList<>();
 	static List<Pair<Item, ToolPart>> toolPartPatterns = Lists.newLinkedList();
 	static List<Pair<Item, ArmorPart>> armorPartPatterns = Lists.newLinkedList();
 	// public static PartMaterialType ShieldMat;
@@ -159,7 +165,7 @@ public class TDParts extends ModuleBase
 		    }
 		
 		TinkerRegistry.registerToolPart(part);
-		TinkersCompendium.proxy.registerPartModel(part);
+		
 		TinkerRegistry.registerStencilTableCrafting(Pattern.setTagForPart(new ItemStack(TinkerTools.pattern), (Item) part));
 
 		// TinkerRegistry.registerTableCasting(output, cast, fluid, amount);
@@ -193,11 +199,11 @@ public class TDParts extends ModuleBase
 		    }
 		
 		TinkerRegistry.registerToolPart(part);
-		TinkersCompendium.proxy.registerArmorPartModel(part);
+		//.proxy.registerArmorPartModel(part);
 		TinkerRegistry.registerStencilTableCrafting(Pattern.setTagForPart(new ItemStack(TinkerTools.pattern), (Item) part));
 
 		// TinkerRegistry.registerTableCasting(output, cast, fluid, amount);
-		toolParts.add(part);
+		armorParts.add(part);
 		itemList.add(part);
 
 		return part;
@@ -215,4 +221,19 @@ public class TDParts extends ModuleBase
 	      }
 	    }
 	  }
+	
+	@SideOnly(Side.CLIENT)
+	@SubscribeEvent
+	public static void registerModels(ModelRegistryEvent event)
+	{
+		for(ToolPart p: toolParts)
+		{
+			ModelRegisterUtil.registerPartModel(p);
+		}
+		
+		for(ArmorPart a: armorParts)
+		{
+			ModelRegisterUtil.registerPartModel(a);
+		}
+	}
 }

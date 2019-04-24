@@ -4,23 +4,20 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import lance5057.tDefense.core.events.TDEvents;
+import lance5057.tDefense.core.library.book.CompendiumBook;
 import lance5057.tDefense.core.materials.CompendiumMaterials;
 import lance5057.tDefense.core.materials.CompendiumTraits;
 import lance5057.tDefense.core.modifiers.TDModifiers;
 import lance5057.tDefense.core.parts.TDParts;
 import lance5057.tDefense.core.tools.TDTools;
 import lance5057.tDefense.core.workstations.CompendiumWorkstations;
-import lance5057.tDefense.core.worldgen.OreGenerator;
 import lance5057.tDefense.proxy.CommonProxy;
-import lance5057.tDefense.textiles.CompendiumTextiles;
-import lance5057.tDefense.util.MaterialHelper;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.biome.Biome;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -30,7 +27,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
-import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
 import scala.reflect.internal.Trees.Modifiers;
 import slimeknights.mantle.client.CreativeTab;
 
@@ -63,7 +60,7 @@ public class TinkersCompendium {
 	public static TDModifiers modifiers;
 	public static TDEvents events;
 
-	public static CompendiumTextiles textiles;
+	//public static CompendiumTextiles textiles;
 
 	public static boolean bloodmagic = false;
 
@@ -83,7 +80,7 @@ public class TinkersCompendium {
 		traits = new CompendiumTraits();
 		modifiers = new TDModifiers();
 		workstations = new CompendiumWorkstations();
-		textiles = new CompendiumTextiles();
+		//textiles = new CompendiumTextiles();
 		config = new TCConfig();
 
 		parts.preInit(e);
@@ -92,7 +89,7 @@ public class TinkersCompendium {
 		traits.preInit();
 		modifiers.preInit();
 		workstations.preInit(e);
-		textiles.preInit();
+		//textiles.preInit();
 		events.preInit();
 		proxy.preInit();
 
@@ -108,14 +105,18 @@ public class TinkersCompendium {
 		traits.init();
 		modifiers.init();
 		workstations.init(e);
-		textiles.init();
+		//textiles.init();
 		events.init();
 		proxy.init();
 
 		phandler.init();
 
-		if (TCConfig.materials.generateOres)
-			GameRegistry.registerWorldGenerator(new OreGenerator(), 0);
+		if (FMLCommonHandler.instance().getSide() == Side.CLIENT) {
+			CompendiumBook.init();
+		}
+
+//		if (TCConfig.materials.generateOres)
+//			GameRegistry.registerWorldGenerator(new OreGenerator(), 0);
 	}
 
 	@Mod.EventHandler
@@ -126,7 +127,7 @@ public class TinkersCompendium {
 		traits.postInit();
 		modifiers.postInit();
 		workstations.postInit(e);
-		textiles.postInit();
+		//textiles.postInit();
 		events.postInit();
 		proxy.postInit();
 
@@ -135,7 +136,7 @@ public class TinkersCompendium {
 		}
 	}
 
-	public static List<MaterialHelper.oreGen> biomeCheck = new ArrayList<MaterialHelper.oreGen>();
+	//public static List<MaterialHelper.oreGen> biomeCheck = new ArrayList<MaterialHelper.oreGen>();
 
 	void dumpBiomeInfo() {
 		File f = new File(Loader.instance().getConfigDir(), "BiomeDump.txt");
@@ -156,25 +157,25 @@ public class TinkersCompendium {
 				output.newLine();
 				output.newLine();
 
-				for (MaterialHelper.oreGen ore : biomeCheck) {
-					if ((ore.oreBiomeWhite == null || checkBiome(b, ore.oreBiomeWhite))
-							&& (ore.oreBiomeBlack == null || !checkBiome(b, ore.oreBiomeBlack))) {
-						float temp = b.getDefaultTemperature();
-						float elevation = b.getBaseHeight();
-						float humidity = b.getRainfall();
-
-						// -2 = null
-						if (ore.biomeTempMax == -2 || ore.biomeTempMin == -2
-								|| (temp >= ore.biomeTempMin && temp <= ore.biomeTempMax))
-							if (ore.biomeElevationMax == -2 || ore.biomeElevationMin == -2
-									|| (elevation >= ore.biomeElevationMin && elevation <= ore.biomeElevationMax))
-								if (ore.biomeHumidityMax == -2 || ore.biomeHumidityMin == -2
-										|| (humidity >= ore.biomeHumidityMin && humidity <= ore.biomeHumidityMax)) {
-									output.write(ore.getName());
-									output.newLine();
-								}
-					}
-				}
+//				for (MaterialHelper.oreGen ore : biomeCheck) {
+//					if ((ore.oreBiomeWhite == null || checkBiome(b, ore.oreBiomeWhite))
+//							&& (ore.oreBiomeBlack == null || !checkBiome(b, ore.oreBiomeBlack))) {
+//						float temp = b.getDefaultTemperature();
+//						float elevation = b.getBaseHeight();
+//						float humidity = b.getRainfall();
+//
+//						// -2 = null
+//						if (ore.biomeTempMax == -2 || ore.biomeTempMin == -2
+//								|| (temp >= ore.biomeTempMin && temp <= ore.biomeTempMax))
+//							if (ore.biomeElevationMax == -2 || ore.biomeElevationMin == -2
+//									|| (elevation >= ore.biomeElevationMin && elevation <= ore.biomeElevationMax))
+//								if (ore.biomeHumidityMax == -2 || ore.biomeHumidityMin == -2
+//										|| (humidity >= ore.biomeHumidityMin && humidity <= ore.biomeHumidityMax)) {
+//									output.write(ore.getName());
+//									output.newLine();
+//								}
+//					}
+//				}
 
 				output.write("------------------");
 				output.newLine();

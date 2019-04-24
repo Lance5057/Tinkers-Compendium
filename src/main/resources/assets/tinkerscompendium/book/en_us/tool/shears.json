@@ -1,0 +1,14 @@
+{
+  "tool": "shears",
+  "text": [
+    {
+      "text": "\n"
+    },
+    {
+      "text": "Shears are usefull to any farmer looking to have a steady flow of wool, wool for use in crafting or trade for profit."
+    }
+  ],
+  "properties": [
+    "Tinkerable - not al shears are created equal"
+  ]
+}

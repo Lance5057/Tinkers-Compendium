@@ -1,0 +1,21 @@
+{
+  "tool": "roundshield",
+  "text": [
+    {
+      "text": "\n"
+    },
+    {
+      "text": "A small round shield with little protection, still better than nothing."
+    },
+    {
+      "text": "\n"
+    },
+    {
+      "text": "Some prefer manuverablitly over large cumbersome sheilds."
+    }
+  ],
+  "properties": [
+    "Counter attacks - bashing and dashing",
+    "Small Stature - leaves little room for modifiers."
+  ]
+}

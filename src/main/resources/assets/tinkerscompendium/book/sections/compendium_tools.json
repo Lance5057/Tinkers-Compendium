@@ -1,0 +1,32 @@
+[
+  {
+    "name": "roundsheild",
+    "type": "tool",
+    "data": "tool/roundsheild.json"
+  },
+  {
+    "name": "heatersheild",
+    "type": "tool",
+    "data": "tool/heatersheild.json"
+  },
+  {
+    "name": "towersheild",
+    "type": "tool",
+    "data": "tool/towersheild.json"
+  },
+  {
+    "name": "zweihander",
+    "type": "tool",
+    "data": "tool/zweihander.json"
+  },
+  {
+    "name": "shears",
+    "type": "tool",
+    "data": "tool/shears.json"
+  },
+  {
+    "name": "fishingrod",
+    "type": "tool",
+    "data": "tool/fishingrod.json"
+  }
+]

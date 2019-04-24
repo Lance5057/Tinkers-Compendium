@@ -7,7 +7,6 @@ import com.google.common.eventbus.Subscribe;
 
 import lance5057.tDefense.Reference;
 import lance5057.tDefense.TinkersCompendium;
-import lance5057.tDefense.core.library.CustomArmorTextureCreator;
 import lance5057.tDefense.core.library.TCRegistry;
 import lance5057.tDefense.core.network.ArmorStationSelectionPacket;
 import lance5057.tDefense.core.tools.armor.cloth.TinkersHood;
@@ -19,14 +18,16 @@ import lance5057.tDefense.core.tools.armor.heavy.TinkersGrieves;
 import lance5057.tDefense.core.tools.armor.heavy.TinkersHelm;
 import lance5057.tDefense.core.tools.armor.heavy.TinkersSabatons;
 import lance5057.tDefense.core.tools.bases.ArmorCore;
+import lance5057.tDefense.core.tools.basic.FireDrill;
 import lance5057.tDefense.core.tools.basic.FishingRod;
 import lance5057.tDefense.core.tools.basic.HeaterShield;
+import lance5057.tDefense.core.tools.basic.Mallet;
 import lance5057.tDefense.core.tools.basic.RegDummy;
 import lance5057.tDefense.core.tools.basic.RoundShield;
+import lance5057.tDefense.core.tools.basic.Saw;
 import lance5057.tDefense.core.tools.basic.Shears;
 import lance5057.tDefense.core.tools.basic.TowerShield;
 import lance5057.tDefense.core.tools.basic.Zweihander;
-import lance5057.tDefense.core.tools.baubles.Sheathe;
 import lance5057.tDefense.core.workstations.blocks.ArmorStationBlock;
 import lance5057.tDefense.core.workstations.tileentities.ArmorStationTile;
 import net.minecraft.block.Block;
@@ -68,6 +69,9 @@ public class TDTools {
 	public static ToolCore zweihander;
 	public static ToolCore shears;
 	public static ToolCore fishingRod;
+	public static ToolCore mallet;
+	public static ToolCore saw;
+	public static ToolCore fireDrill;
 
 	public static ArmorCore hood;
 	public static ArmorCore shawl;
@@ -146,6 +150,18 @@ public class TDTools {
 				fishingRod = new FishingRod();
 				regTool(fishingRod, "fishingRod", event);
 			}
+			if (TinkersCompendium.config.tools.enableSaw) {
+				saw = new Saw();
+				regTool(saw, "saw", event);
+			}
+			if (TinkersCompendium.config.tools.enableMallet) {
+				mallet = new Mallet();
+				regTool(mallet, "mallet", event);
+			}
+			if (TinkersCompendium.config.tools.enableFireDrill) {
+				fireDrill = new FireDrill();
+				regTool(fireDrill, "fireDrill", event);
+			}
 		}
 
 		if (TinkersCompendium.config.armor.enableClothArmor) {
@@ -175,7 +191,7 @@ public class TDTools {
 			regArmor(sabatons, "sabatons", event);
 		}
 
-		sheathe = new Sheathe();
+		//sheathe = new Sheathe();
 		// ring = new Ring();
 		// amulet = new Amulet();
 
@@ -186,7 +202,7 @@ public class TDTools {
 		// "items/battleaxe/_halbard_accessory"));
 
 		//
-		regTool(sheathe, "sheathe", event);
+		//regTool(sheathe, "sheathe", event);
 		// regTool(ring, "ring", event);
 		// regTool(amulet, "amulet", event);
 
@@ -272,6 +288,12 @@ public class TDTools {
 				TinkerRegistry.registerToolCrafting(shears);
 			if (TinkersCompendium.config.tools.enableFishingRod)
 				TinkerRegistry.registerToolCrafting(fishingRod);
+			if (TinkersCompendium.config.tools.enableMallet)
+				TinkerRegistry.registerToolCrafting(mallet);
+			if (TinkersCompendium.config.tools.enableSaw)
+				TinkerRegistry.registerToolCrafting(saw);
+			if (TinkersCompendium.config.tools.enableFireDrill)
+				TinkerRegistry.registerToolCrafting(fireDrill);
 		}
 
 		if (TinkersCompendium.config.armor.enableClothArmor) {

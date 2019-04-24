@@ -18,7 +18,7 @@ import slimeknights.tconstruct.library.tools.IToolPart;
 
 public class TCRegistry {
 	private static final Set<ArmorCore> armor = new TLinkedHashSet<>();
-	private static final Set<IToolPart> armorParts = new TLinkedHashSet<>();
+	//private static final Set<IToolPart> armorParts = new TLinkedHashSet<>();
 	private static final Set<ArmorCore> armorStationCrafting = Sets.newLinkedHashSet();
 	private static final Set<ArmorCore> armorForgeCrafting = Sets.newLinkedHashSet();
 	public static List<Pair<Item, ArmorPart>> armorPartPatterns = Lists.newLinkedList();

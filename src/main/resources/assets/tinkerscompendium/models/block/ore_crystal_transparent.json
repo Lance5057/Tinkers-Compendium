@@ -1,0 +1,75 @@
+{
+	"credit": "Made with Blockbench",
+	"textures": {
+		"0": "blocks/stone",
+		"1": "tinkerscompendium:blocks/crystal",
+		"particle": "tinkerscompendium:blocks/crystal"
+	},
+	"elements": [
+		{
+			"name": "crystal",
+			"from": [3, 0, 8],
+			"to": [7, 9, 12],
+			"faces": {
+				"north": {"tintindex": 1,"uv": [8, 0, 12, 9], "texture": "#1"},
+				"east": {"tintindex": 1,"uv": [8, 0, 12, 9], "texture": "#1"},
+				"south": {"tintindex": 1,"uv": [8, 0, 12, 9], "rotation": 180, "texture": "#1"},
+				"west": {"tintindex": 1,"uv": [8, 0, 12, 9], "texture": "#1"},
+				"up": {"tintindex": 1,"uv": [12, 0, 16, 4], "texture": "#1"},
+				"down": {"tintindex": 1,"uv": [12, 0, 16, 4], "texture": "#1"}
+			}
+		},
+		{
+			"name": "crystal",
+			"from": [7, 0, 4],
+			"to": [11, 16, 8],
+			"faces": {
+				"north": {"tintindex": 1,"uv": [4, 0, 0, 16], "texture": "#1"},
+				"east": {"tintindex": 1,"uv": [0, 0, 4, 16], "rotation": 180, "texture": "#1"},
+				"south": {"tintindex": 1,"uv": [0, 0, 4, 16], "texture": "#1"},
+				"west": {"tintindex": 1,"uv": [0, 16, 4, 0], "texture": "#1"},
+				"up": {"tintindex": 1,"uv": [12, 0, 16, 4], "texture": "#1"},
+				"down": {"tintindex": 1,"uv": [12, 0, 16, 4], "texture": "#1"}
+			}
+		},
+		{
+			"name": "crystal",
+			"from": [5, 0, 2],
+			"to": [9, 4, 6],
+			"faces": {
+				"north": {"tintindex": 1,"uv": [12, 4, 16, 0], "texture": "#1"},
+				"east": {"tintindex": 1,"uv": [12, 0, 16, 4], "rotation": 180, "texture": "#1"},
+				"south": {"tintindex": 1,"uv": [12, 0, 16, 4], "texture": "#1"},
+				"west": {"tintindex": 1,"uv": [16, 0, 12, 4], "texture": "#1"},
+				"up": {"tintindex": 1,"uv": [12, 0, 16, 4], "texture": "#1"},
+				"down": {"tintindex": 1,"uv": [12, 0, 16, 4], "texture": "#1"}
+			}
+		},
+		{
+			"name": "crystal",
+			"from": [8, 0, 8],
+			"to": [12, 12, 12],
+			"faces": {
+				"north": {"tintindex": 1,"uv": [4, 0, 8, 12], "texture": "#1"},
+				"east": {"tintindex": 1,"uv": [4, 0, 8, 12], "texture": "#1"},
+				"south": {"tintindex": 1,"uv": [4, 0, 8, 12], "rotation": 180, "texture": "#1"},
+				"west": {"tintindex": 1,"uv": [4, 0, 8, 12], "texture": "#1"},
+				"up": {"tintindex": 1,"uv": [12, 0, 16, 4], "texture": "#1"},
+				"down": {"tintindex": 1,"uv": [12, 0, 16, 4], "texture": "#1"}
+			}
+		},
+		{
+			"name": "crystal",
+			"from": [10, 0, 4],
+			"to": [14, 4, 8],
+			"faces": {
+				"north": {"tintindex": 1,"uv": [12, 0, 16, 4], "texture": "#1"},
+				"east": {"tintindex": 1,"uv": [12, 0, 16, 4], "rotation": 180, "texture": "#1"},
+				"south": {"tintindex": 1,"uv": [12, 0, 16, 4], "texture": "#1"},
+				"west": {"tintindex": 1,"uv": [12, 0, 16, 4], "texture": "#1"},
+				"up": {"tintindex": 1,"uv": [12, 0, 16, 4], "texture": "#1"},
+				"down": {"tintindex": 1,"uv": [12, 0, 16, 4], "texture": "#1"}
+			}
+		}
+	]
+}

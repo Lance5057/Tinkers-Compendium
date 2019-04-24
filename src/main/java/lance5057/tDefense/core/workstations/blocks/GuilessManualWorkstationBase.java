@@ -19,16 +19,16 @@ public abstract class GuilessManualWorkstationBase extends Block implements ITil
 	}
 
 	@Override
-	public TileEntity createNewTileEntity(World worldIn, int meta) {
-		// TODO Auto-generated method stub
-		return null;
+	public abstract boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player,
+			EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ);
+
+	@Override
+	public boolean isFullCube(IBlockState state) {
+		return false;
 	}
 
 	@Override
-	public abstract boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand,
-			EnumFacing side, float hitX, float hitY, float hitZ);
-
-	@SideOnly(Side.CLIENT)
-	public void initModel() {
+	public boolean isOpaqueCube(IBlockState state) {
+		return false;
 	}
 }

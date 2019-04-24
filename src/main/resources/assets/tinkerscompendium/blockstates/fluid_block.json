@@ -119,14 +119,21 @@
 		"froststeel": [
 		  {
 			"custom": {
-			  "fluid": "brass"
+			  "fluid": "froststeel"
 			}
 		  }
 		],
 		"valyriansteel": [
 		  {
 			"custom": {
-			  "fluid": "brass"
+			  "fluid": "valyriansteel"
+			}
+		  }
+		],
+		"slush": [
+		  {
+			"custom": {
+			  "fluid": "slush"
 			}
 		  }
 		],

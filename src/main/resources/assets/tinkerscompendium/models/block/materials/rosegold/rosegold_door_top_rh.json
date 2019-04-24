@@ -1,0 +1,19 @@
+{
+    "ambientocclusion": false,
+    "textures": {
+        "bottom": "tinkerscompendium:blocks/materials/rosegold/rosegold_door_upper",
+        "top": "tinkerscompendium:blocks/materials/rosegold/rosegold_door_upper"
+    },
+    "elements": [
+        {   "from": [ 0, 0, 0 ],
+            "to": [ 3, 16, 16 ],
+            "faces": {
+                "up":    { "tintindex": 1, "uv": [ 13, 0, 16, 16 ], "texture": "#bottom", "cullface": "up" },
+                "north": { "tintindex": 1, "uv": [  3, 0,  0, 16 ], "texture": "#top", "cullface": "north" },
+                "south": { "tintindex": 1, "uv": [  0, 0,  3, 16 ], "texture": "#top", "cullface": "south" },
+                "west":  { "tintindex": 1, "uv": [ 16, 0,  0, 16 ], "texture": "#top", "cullface": "west" },
+                "east":  { "tintindex": 1, "uv": [  0, 0, 16, 16 ], "texture": "#top" }
+            }
+        }
+    ]
+}
