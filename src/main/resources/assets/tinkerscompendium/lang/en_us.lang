@@ -867,6 +867,9 @@ item.tinkersgrieves.desc=A heavy set of interlocking plates to protect the legs 
 item.tinkerssabatons.name=Sabatons
 item.tinkerssabatons.desc=A heavy set of interlocking plates to protect the feet from most damage.
 
+item.firedrill.name=Fire Drill
+item.firedrill.description=A tool that consumes sticks from your inventory to ignite blocks on fire. Chance of success decreases as durability decreases.
+
 //Stats
 stat.shield.name=Shield
 stat.shield.durability.name=Durability
