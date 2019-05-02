@@ -88,18 +88,18 @@ public class TCConfig {
 	public static class Materials {
 		public boolean generateOres = true;
 
-		@Config.RequiresMcRestart()
-		public String[] materialBlacklist = {
-
-		};
-
-		public boolean isBlacklisted(String s) {
-			for (String str : materialBlacklist) {
-				if (str.equals(s))
-					return true;
-			}
-			return false;
-		}
+		public boolean aeonsteel= true;
+		public boolean queensgold= true;
+		public boolean dogbearium= true;
+		public boolean sinisterium= true;
+		public boolean nihilite= true;
+		public boolean orichalcum= true;
+		public boolean pandorium= true;
+		public boolean rosegold= true;
+		public boolean platinum= true;
+		// public boolean gold= true;
+		public boolean valyriansteel= true;
+		public boolean froststeel= true;
 	}
 
 	public static class Addons {

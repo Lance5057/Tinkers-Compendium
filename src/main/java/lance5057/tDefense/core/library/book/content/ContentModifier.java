@@ -37,7 +37,7 @@ import slimeknights.tconstruct.tools.TinkerModifiers;
 @SideOnly(Side.CLIENT)
 public class ContentModifier extends TinkerPage {
 
-  public static final transient String ID = "armormodifier";
+  public static final transient String ID = "td_armormodifier";
 
   public static final transient int TEX_SIZE = 256;
   //public static final transient ImageData IMG_MODIFY = new ImageData(ClientProxy.BOOK_MODIFY), 0, 0, 122, 70, TEX_SIZE, TEX_SIZE);

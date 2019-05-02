@@ -91,14 +91,14 @@ import slimeknights.tconstruct.tools.TinkerTraits;
 
 public class CompendiumTraits {
 
-	//Wood
+	// Wood
 	public TraitPhotosynthetic photosynth = new TraitPhotosynthetic(1);
 	public TraitPhotosynthetic photosynth2 = new TraitPhotosynthetic(2);
 	public TraitReduceKnockback rooted = new TraitReduceKnockback("rooted", 0x875e21, 0.5f,
 			Blocks.DIRT.getDefaultState(), Blocks.GRASS.getDefaultState());
 	public TraitAxeLover axelover = new TraitAxeLover();
 
-	//Stone
+	// Stone
 	public TraitDamageSourceAlteration blockhead = new TraitDamageSourceAlteration("blockhead", 0x875e21,
 			new TraitDamageSourceAlteration.DamagePercent(DamageSource.GENERIC, -0.5f),
 			new TraitDamageSourceAlteration.DamagePercent(DamageSource.MAGIC, 0.5f));
@@ -106,11 +106,11 @@ public class CompendiumTraits {
 	public TraitEarthbound earthbound = new TraitEarthbound();
 	public TraitDulling dulling = new TraitDulling();
 
-	//Flint
+	// Flint
 	public TraitGlassine glassine = new TraitGlassine();
 	public TraitFirestarter firestarter = new TraitFirestarter();
 
-	//Cactus
+	// Cactus
 	public TraitPeyote peyote = new TraitPeyote();
 	public TraitSpiny spiny = new TraitSpiny();
 	public TraitPricked pricked = new TraitPricked();
@@ -217,7 +217,7 @@ public class CompendiumTraits {
 
 	public TraitDamageSourceAlteration ohm = new TraitDamageSourceAlteration("ohm", TextFormatting.YELLOW,
 			new TraitDamageSourceAlteration.DamagePercent(DamageSource.LIGHTNING_BOLT, -0.5f));
-	
+
 	public TraitTickTock ticktock = new TraitTickTock();
 	public TraitEthereal ethereal = new TraitEthereal();
 	public TraitClockstopper clockstopper = new TraitClockstopper();
@@ -377,15 +377,17 @@ public class CompendiumTraits {
 		TinkerMaterials.electrum.addTrait(tempered, ChestMaterialStats.TYPE);
 		TinkerMaterials.electrum.addTrait(tempered, LegsMaterialStats.TYPE);
 		TinkerMaterials.electrum.addTrait(maglock, FeetMaterialStats.TYPE);
-		
-		CompendiumMaterials.aeonsteel.mat.addTrait(ticktock, HandleMaterialStats.TYPE);
-		CompendiumMaterials.aeonsteel.mat.addTrait(ticktock, ExtraMaterialStats.TYPE);
-		CompendiumMaterials.aeonsteel.mat.addTrait(ethereal, HeadMaterialStats.TYPE);
-		CompendiumMaterials.aeonsteel.mat.addTrait(clockstopper, ShieldMaterialStats.TYPE);
-		CompendiumMaterials.aeonsteel.mat.addTrait(truesight, HelmMaterialStats.TYPE);
-		CompendiumMaterials.aeonsteel.mat.addTrait(intangible, ChestMaterialStats.TYPE);
-		CompendiumMaterials.aeonsteel.mat.addTrait(undo, LegsMaterialStats.TYPE);
-		CompendiumMaterials.aeonsteel.mat.addTrait(timewarp, FeetMaterialStats.TYPE);
+
+		if (CompendiumMaterials.aeonsteel != null) {
+			CompendiumMaterials.aeonsteel.mat.addTrait(ticktock, HandleMaterialStats.TYPE);
+			CompendiumMaterials.aeonsteel.mat.addTrait(ticktock, ExtraMaterialStats.TYPE);
+			CompendiumMaterials.aeonsteel.mat.addTrait(ethereal, HeadMaterialStats.TYPE);
+			CompendiumMaterials.aeonsteel.mat.addTrait(clockstopper, ShieldMaterialStats.TYPE);
+			CompendiumMaterials.aeonsteel.mat.addTrait(truesight, HelmMaterialStats.TYPE);
+			CompendiumMaterials.aeonsteel.mat.addTrait(intangible, ChestMaterialStats.TYPE);
+			CompendiumMaterials.aeonsteel.mat.addTrait(undo, LegsMaterialStats.TYPE);
+			CompendiumMaterials.aeonsteel.mat.addTrait(timewarp, FeetMaterialStats.TYPE);
+		}
 	}
 
 	public void postInit() {

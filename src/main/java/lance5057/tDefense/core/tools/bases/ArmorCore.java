@@ -337,16 +337,16 @@ public abstract class ArmorCore extends ArmorBase implements IToolStationDisplay
 		TooltipBuilder info = new TooltipBuilder(stack);
 
 		info.addDurability(!detailed);
-		if (hasCategory(Category.HARVEST)) {
-			info.addHarvestLevel();
-			info.addMiningSpeed();
-		}
-		if (hasCategory(Category.LAUNCHER)) {
-			info.addDrawSpeed();
-			info.addRange();
-			info.addProjectileBonusDamage();
-		}
-		info.addAttack();
+//		if (hasCategory(Category.HARVEST)) {
+//			info.addHarvestLevel();
+//			info.addMiningSpeed();
+//		}
+//		if (hasCategory(Category.LAUNCHER)) {
+//			info.addDrawSpeed();
+//			info.addRange();
+//			info.addProjectileBonusDamage();
+//		}
+//		info.addAttack();
 
 		if (ToolHelper.getFreeModifiers(stack) > 0) {
 			info.addFreeModifiers();

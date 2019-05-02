@@ -1,0 +1,27 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+		" l ",
+        "wgw",
+		"   "
+    ],
+    "key": {
+        "g": {
+            "item": "minecraft:gold_nugget",
+            "data": 0
+        },
+		"w": {
+            "item": "minecraft:glass_pane",
+            "data": 0
+        },
+		"l": {
+            "item": "minecraft:leather",
+            "data": 0
+        }
+    },
+    "result": {
+        "item": "tinkerscompendium:goggles",
+        "data": 0,
+        "count": 1
+    }
+}

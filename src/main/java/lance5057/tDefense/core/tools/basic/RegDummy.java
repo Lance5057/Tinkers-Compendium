@@ -21,7 +21,6 @@ public class RegDummy extends ToolCore {
 	public static final float DURABILITY_MODIFIER = 1.0f;
 
 	public RegDummy() {
-		// Hardcore sword test
 		super(new PartMaterialType(TinkerTools.largePlate, ChestMaterialStats.TYPE),
 				new PartMaterialType(TDParts.armorPlate, ChestMaterialStats.TYPE),
 				PartMaterialType.handle(TDParts.filigree), PartMaterialType.extra(TDParts.chainmail),

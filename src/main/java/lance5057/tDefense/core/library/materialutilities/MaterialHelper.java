@@ -19,7 +19,7 @@ public class MaterialHelper {
 	public List<MaterialBase> addons;
 
 	public MaterialHelper(String name, int color) {
-		this.name = name;
+		this.name = "td_"+name;
 		this.color = color;
 
 		mat = new Material(name, color);
@@ -30,8 +30,6 @@ public class MaterialHelper {
 		for (MaterialBase mb : addons) {
 			mb.setupPre(mat);
 		}
-		
-		
 	}
 	
 	public void init()

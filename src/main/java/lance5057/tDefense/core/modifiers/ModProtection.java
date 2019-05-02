@@ -55,8 +55,8 @@ public class ModProtection extends ArmorModifierTrait {
 
 		ModifierNBT.IntegerNBT data = ModifierNBT.readInteger(modifierTag);
 
-		while (data.current > ToolBuilder.getEnchantmentLevel(rootCompound, Enchantments.PROTECTION)) {
-			ToolBuilder.addEnchantment(rootCompound, Enchantments.PROTECTION);
+		while (data.current > ToolBuilder.getEnchantmentLevel(rootCompound, enchant)) {
+			ToolBuilder.addEnchantment(rootCompound, enchant);
 		}
 	}
 }

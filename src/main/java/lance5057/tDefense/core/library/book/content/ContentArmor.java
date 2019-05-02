@@ -33,7 +33,7 @@ import slimeknights.tconstruct.library.tools.IToolPart;
 @SideOnly(Side.CLIENT)
 public class ContentArmor extends TinkerPage {
 
-  public static final transient String ID = "armor";
+  public static final transient String ID = "td_armor";
 
   public static final transient int TEX_SIZE = 256;
   public static final transient ImageData IMG_SLOTS = new ImageData(ClientProxy.BOOK_MODIFY, 0, 0, 72, 72, TEX_SIZE, TEX_SIZE);
