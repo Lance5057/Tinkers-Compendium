@@ -100,7 +100,9 @@ public class TCConfig {
 		// public boolean gold= true;
 		public boolean valyriansteel= true;
 		public boolean froststeel= true;
-	}
+
+		public boolean mithril = true;
+    }
 
 	public static class Addons {
 		@Config.RequiresMcRestart()

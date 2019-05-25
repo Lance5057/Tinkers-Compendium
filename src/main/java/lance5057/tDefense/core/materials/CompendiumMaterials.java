@@ -103,7 +103,7 @@ public class CompendiumMaterials {
 	public static final Map<String, Integer> colors = new THashMap();
 	public static final Map<String, FluidMolten> fluids = new THashMap();
 
-//	
+//
 //
 //	// aeonsteel = new MaterialHelper();
 //	// queensgold = new MaterialHelper("queensgold",
@@ -139,6 +139,12 @@ public class CompendiumMaterials {
 	// public static MaterialHelper gold;
 	public static MaterialHelper valyriansteel;
 	public static MaterialHelper froststeel;
+
+	//Wanderlust Materials
+	public static MaterialHelper mithril;
+	public static MaterialHelper werewolf;
+
+	//Wool Colors
 
 	public static MaterialHelper black;
 	public static MaterialHelper red;
@@ -535,6 +541,42 @@ public class CompendiumMaterials {
 			froststeel.addons.add(new MaterialComponents(false));
 		}
 
+		/*
+			Mithril Stats:
+				- Head:
+					- Durability: 550
+					- Speed: 8
+					- Damage: 4.1
+					- Mining Level: Diamond (2)
+				- Rod:
+					- Modifier: 1.3
+					- Durability: 90
+				- Extra:
+					- Durability: 90
+				- Shield:
+					- Durability: 750
+					- Percent Blocked: 75
+				- Bow:
+					- Draw Speed: 0.7
+					- Range: 70
+					- Bonus Damage: 7
+				-
+		 */
+		if (TinkerRegistry.getMaterial("mithril") == Material.UNKNOWN && TCConfig.materials.mithril){
+			mithril = new MaterialHelper("mithril", 0x99CCFF);
+			mithril.addons.add(new MeltableMaterial(
+					800,
+					new HeadMaterialStats(800, 12f, 12f, HarvestLevels.COBALT), new HandleMaterialStats(1.3f, 90),
+					new ExtraMaterialStats(100), new ShieldMaterialStats(750, 75),
+					new BowMaterialStats(0.7f, 70, 7)));
+			mithril.addons.add(new ArmorMaterial(
+					new HelmMaterialStats(750, 2, 3, 25.0f),
+					new ChestMaterialStats(750, 7, 3, 25.0f),
+					new LegsMaterialStats(750, 5, 3, 25.0f),
+					new FeetMaterialStats(750, 2, 3, 25.0f)));
+			mithril.addons.add(new MaterialComponents(false));
+		}
+
 		black = new MaterialHelper("blackcloth", 0x191616);
 		black.addons.add(new CraftableFabricMaterial(new ExtraMaterialStats(5), new FabricMaterialStats(100, 0, 0, 25),
 				new BowStringMaterialStats(1), null, new ItemStack(Blocks.WOOL, 1, 15)));
@@ -887,6 +929,8 @@ public class CompendiumMaterials {
 			valyriansteel.pre();
 		if (froststeel != null)
 			froststeel.pre();
+		if (mithril != null)
+		    mithril.pre();
 
 		black.pre();
 		red.pre();
@@ -929,6 +973,8 @@ public class CompendiumMaterials {
 			valyriansteel.integrate();
 		if (froststeel != null)
 			froststeel.integrate();
+		if (mithril != null)
+		    mithril.integrate();
 
 		black.integrate();
 		red.integrate();
@@ -1355,6 +1401,8 @@ public class CompendiumMaterials {
 			valyriansteel.init();
 		if (froststeel != null)
 			froststeel.init();
+		if (mithril != null)
+		    mithril.init();
 
 		black.init();
 		red.init();
@@ -1396,6 +1444,8 @@ public class CompendiumMaterials {
 			valyriansteel.client();
 		if (froststeel != null)
 			froststeel.client();
+		if (mithril != null)
+		    mithril.client();
 
 		black.client();
 		red.client();
@@ -1483,6 +1533,8 @@ public class CompendiumMaterials {
 			valyriansteel.post();
 		if (froststeel != null)
 			froststeel.post();
+		if (mithril != null)
+		    mithril.post();
 
 		black.post();
 		red.post();
@@ -1546,6 +1598,8 @@ public class CompendiumMaterials {
 			valyriansteel.models();
 		if (froststeel != null)
 			froststeel.models();
+		if (mithril != null)
+		    mithril.models();
 
 		black.models();
 		red.models();
