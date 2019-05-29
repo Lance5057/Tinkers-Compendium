@@ -5,15 +5,18 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import lance5057.tDefense.core.addons.bloodmagic.AddonBloodMagic;
+import lance5057.tDefense.core.entities.CompendiumEntities;
 import lance5057.tDefense.core.events.TDEvents;
 import lance5057.tDefense.core.library.book.CompendiumBook;
 import lance5057.tDefense.core.materials.CompendiumMaterials;
 import lance5057.tDefense.core.materials.CompendiumTraits;
-import lance5057.tDefense.core.modifiers.TDModifiers;
+import lance5057.tDefense.core.modifiers.CompendiumModifiers;
 import lance5057.tDefense.core.parts.TDParts;
 import lance5057.tDefense.core.tools.TDTools;
 import lance5057.tDefense.core.workstations.CompendiumWorkstations;
 import lance5057.tDefense.proxy.CommonProxy;
+import lance5057.tDefense.textiles.CompendiumTextiles;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.biome.Biome;
@@ -38,7 +41,7 @@ public class TinkersCompendium {
 	// public static final int GUI_CREST_INV = modGuiIndex++;
 	// public static final int GUI_ANVIL_INV = modGuiIndex++;
 	// public static final int GUI_GUIDEBOOK = modGuiIndex++;
-	public static final int GUI_STRAPS_INV = modGuiIndex++;
+	// public static final int GUI_STRAPS_INV = modGuiIndex++;
 
 	@Mod.Instance(Reference.MOD_ID)
 	public static TinkersCompendium instance = new TinkersCompendium();
@@ -57,31 +60,32 @@ public class TinkersCompendium {
 	public static CompendiumMaterials mats;
 	public static CompendiumTraits traits;
 	public static CompendiumWorkstations workstations;
-	public static TDModifiers modifiers;
+	public static CompendiumModifiers modifiers;
 	public static TDEvents events;
+	public static CompendiumEntities entities;
 
-	//public static CompendiumTextiles textiles;
+	public static CompendiumTextiles textiles;
 
-	public static boolean bloodmagic = false;
+	public static AddonBloodMagic bloodmagic;
 
 	@SidedProxy(clientSide = "lance5057.tDefense.proxy.ClientProxy", serverSide = "lance5057.tDefense.proxy.CommonProxy")
 	public static CommonProxy proxy;
 
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent e) {
-
-		if (Loader.isModLoaded("bloodmagic"))
-			bloodmagic = true;
-
 		parts = new TDParts();
 		mats = new CompendiumMaterials();
 		tools = new TDTools();
 		events = new TDEvents();
 		traits = new CompendiumTraits();
-		modifiers = new TDModifiers();
+		modifiers = new CompendiumModifiers();
 		workstations = new CompendiumWorkstations();
-		//textiles = new CompendiumTextiles();
+		entities = new CompendiumEntities();
+		textiles = new CompendiumTextiles();
 		config = new TCConfig();
+		
+		if (Loader.isModLoaded("bloodmagic") && TCConfig.addons.BloodMagic)
+			bloodmagic = new AddonBloodMagic();
 
 		parts.preInit(e);
 		mats.preInit(e);
@@ -89,8 +93,13 @@ public class TinkersCompendium {
 		traits.preInit();
 		modifiers.preInit();
 		workstations.preInit(e);
-		//textiles.preInit();
+		textiles.preInit();
 		events.preInit();
+		entities.preInit(e);
+		
+		if(bloodmagic != null)
+			bloodmagic.preInit(e);
+		
 		proxy.preInit();
 
 	}
@@ -105,8 +114,14 @@ public class TinkersCompendium {
 		traits.init();
 		modifiers.init();
 		workstations.init(e);
-		//textiles.init();
+		textiles.init();
 		events.init();
+		
+		entities.init(e);
+		
+		if(bloodmagic != null)
+			bloodmagic.init(e);
+		
 		proxy.init();
 
 		phandler.init();
@@ -114,9 +129,6 @@ public class TinkersCompendium {
 		if (FMLCommonHandler.instance().getSide() == Side.CLIENT) {
 			CompendiumBook.init();
 		}
-
-//		if (TCConfig.materials.generateOres)
-//			GameRegistry.registerWorldGenerator(new OreGenerator(), 0);
 	}
 
 	@Mod.EventHandler
@@ -127,8 +139,14 @@ public class TinkersCompendium {
 		traits.postInit();
 		modifiers.postInit();
 		workstations.postInit(e);
-		//textiles.postInit();
+		textiles.postInit();
 		events.postInit();
+		
+		entities.postInit(e);
+		
+		if(bloodmagic != null)
+			bloodmagic.postInit(e);		
+		
 		proxy.postInit();
 
 		if (TCConfig.debug) {

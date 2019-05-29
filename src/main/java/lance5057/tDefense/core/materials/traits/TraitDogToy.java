@@ -1,7 +1,6 @@
 package lance5057.tDefense.core.materials.traits;
 
-import java.util.Optional;
-
+import lance5057.tDefense.core.entities.EntityPhantomWolf;
 import net.minecraft.block.BlockFence;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLiving;
@@ -12,13 +11,10 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import slimeknights.mantle.util.RecipeMatch.Match;
-import slimeknights.tconstruct.library.traits.AbstractTrait;
 
 public class TraitDogToy extends AbstractTDTrait {
 
@@ -44,7 +40,7 @@ public class TraitDogToy extends AbstractTDTrait {
 				d0 = 0.5D;
 			}
 
-			EntityWolf entWolf = new EntityWolf(player.world);
+			EntityPhantomWolf entWolf = new EntityPhantomWolf(player.world);
 			entWolf.setLocationAndAngles(pos.getX() + 0.5D, (double) pos.getY() + d0, (double) pos.getZ() + 0.5D,
 					MathHelper.wrapDegrees(player.world.rand.nextFloat() * 360.0F), 0.0F);
 			entWolf.rotationYawHead = entWolf.rotationYaw;

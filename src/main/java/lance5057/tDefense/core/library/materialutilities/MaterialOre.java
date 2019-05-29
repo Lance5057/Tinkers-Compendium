@@ -87,10 +87,11 @@ public class MaterialOre implements MaterialBase {
 
 	@Override
 	public void setupIntegration(MaterialIntegration mi) {
-		if (mi.fluid != null) {
-			TinkerRegistry.registerMelting(oreBlock, mi.fluid, Material.VALUE_Ingot * 2);
-			TinkerRegistry.registerMelting(oreClump, mi.fluid, Material.VALUE_Ingot * 2);
-		}
+		if (mi != null)
+			if (mi.fluid != null) {
+				TinkerRegistry.registerMelting(oreBlock, mi.fluid, Material.VALUE_Ingot * 2);
+				TinkerRegistry.registerMelting(oreClump, mi.fluid, Material.VALUE_Ingot * 2);
+			}
 	}
 
 	@Override
@@ -104,9 +105,7 @@ public class MaterialOre implements MaterialBase {
 		if (this.oreColor >= 0) {
 			TinkersCompendium.proxy.registerBlockColorHandler(this.oreColor, oreBlock);
 			TinkersCompendium.proxy.registerItemColorHandler(this.oreColor, Item.getItemFromBlock(oreBlock));
-		}
-		else
-		{
+		} else {
 			TinkersCompendium.proxy.registerBlockColorHandler(mat.materialTextColor, oreBlock);
 			TinkersCompendium.proxy.registerItemColorHandler(mat.materialTextColor, Item.getItemFromBlock(oreBlock));
 		}
@@ -137,6 +136,6 @@ public class MaterialOre implements MaterialBase {
 	@Override
 	public void setupInit(Material mat) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }

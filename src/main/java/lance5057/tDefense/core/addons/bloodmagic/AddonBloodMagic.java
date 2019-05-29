@@ -1,36 +1,26 @@
-//package lance5057.tDefense.core.addons.bloodmagic;
-//
-//import lance5057.tDefense.Reference;
-//import lance5057.tDefense.core.addons.bloodmagic.modifiers.ModScabbing;
-//import lance5057.tDefense.core.library.ModuleBase;
-//import lance5057.tDefense.core.materials.CompendiumMaterials;
-//import lance5057.tDefense.core.materials.stats.ChestMaterialStats;
-//import lance5057.tDefense.core.materials.stats.FeetMaterialStats;
-//import lance5057.tDefense.core.materials.stats.HelmMaterialStats;
-//import lance5057.tDefense.core.materials.stats.LegsMaterialStats;
-//import lance5057.tDefense.core.materials.stats.ShieldMaterialStats;
-//import lance5057.tDefense.util.MaterialHelper;
-//import net.minecraft.item.Item;
-//import net.minecraft.item.ItemStack;
-//import net.minecraft.util.ResourceLocation;
-//import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-//import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-//import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-//import slimeknights.mantle.util.RecipeMatch;
-//import slimeknights.tconstruct.library.TinkerRegistry;
-//import slimeknights.tconstruct.library.materials.ExtraMaterialStats;
-//import slimeknights.tconstruct.library.materials.HandleMaterialStats;
-//import slimeknights.tconstruct.library.materials.HeadMaterialStats;
-//import slimeknights.tconstruct.library.utils.HarvestLevels;
-//
-//public class AddonBloodMagic extends ModuleBase {
-//	public AddonBloodMagic() {
-//	}
-//
-//	Item bloodyBandages;
-//	
-//	ModScabbing scabbing = new ModScabbing();
-//
+package lance5057.tDefense.core.addons.bloodmagic;
+
+import lance5057.tDefense.TinkersCompendium;
+import lance5057.tDefense.core.addons.bloodmagic.modifiers.ModScabbing;
+import lance5057.tDefense.core.library.ModuleBase;
+import net.minecraft.block.Block;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.event.RegistryEvent.Register;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.registries.IForgeRegistry;
+import slimeknights.mantle.util.RecipeMatch;
+
+public class AddonBloodMagic extends ModuleBase {
+	public AddonBloodMagic() {
+	}
+
+	Item bloodyBandages;
+
+	ModScabbing scabbing = new ModScabbing();
+
 //	public static MaterialHelper blankslate = new MaterialHelper("blankslate", 0x5f3d3d,
 //			new HeadMaterialStats(120, 4.00f, 3.00f, HarvestLevels.STONE), new HandleMaterialStats(0.50f, -50),
 //			new ExtraMaterialStats(20), new ShieldMaterialStats(120 / 4, 30), CompendiumMaterials.whyWouldYouMakeABowOutOfThis,
@@ -60,32 +50,48 @@
 //			new ExtraMaterialStats(100), new ShieldMaterialStats(600 / 4, 70), CompendiumMaterials.whyWouldYouMakeABowOutOfThis,
 //			new HelmMaterialStats(600, 2, 1, 20), new ChestMaterialStats(600, 5, 2, 20),
 //			new LegsMaterialStats(600, 3, 2, 20), new FeetMaterialStats(600, 2, 1, 20));
-//
-//	@Override
-//	public void preInit(FMLPreInitializationEvent e) {
-//		bloodyBandages = new Item().setRegistryName(new ResourceLocation(Reference.MOD_ID, "bloodybandages"))
-//				.setUnlocalizedName("bloodybandages");
-//
-//		CompendiumMaterials.itemList.add(bloodyBandages);
-//
+
+	@Override
+	public void preInit(FMLPreInitializationEvent e) {
+		bloodyBandages = new Item();
+		
+		this.setupItem(bloodyBandages, "bloodybandages");
+
+		//CompendiumMaterials.itemList.add(bloodyBandages);
+
 //		CompendiumMaterials.materials.add(this.blankslate);
 //		CompendiumMaterials.materials.add(this.reinforcedslate);
 //		CompendiumMaterials.materials.add(this.imbuedslate);
 //		CompendiumMaterials.materials.add(this.demonicslate);
 //		CompendiumMaterials.materials.add(this.etherealslate);
-//		
-//		//TinkerRegistry.registerModifier(scabbing);
-//	}
-//
-//	@Override
-//	public void init(FMLInitializationEvent e) {
-//		scabbing.addRecipeMatch(new RecipeMatch.Item(new ItemStack(this.bloodyBandages), 1));
-//	}
-//
-//	@Override
-//	public void postInit(FMLPostInitializationEvent e) {
-//		// TODO Auto-generated method stub
-//
-//	}
-//
-//}
+
+		// TinkerRegistry.registerModifier(scabbing);
+	}
+
+	@Override
+	public void init(FMLInitializationEvent e) {
+		scabbing.addRecipeMatch(new RecipeMatch.Item(new ItemStack(this.bloodyBandages), 1));
+	}
+
+	@Override
+	public void postInit(FMLPostInitializationEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void registerItems(Register<Item> event) {
+		IForgeRegistry r = event.getRegistry();
+		
+		r.register(bloodyBandages);
+		
+		TinkersCompendium.proxy.registerItemRenderer(bloodyBandages, 0, "bloodyBandages");
+	}
+
+	@Override
+	public void registerBlocks(Register<Block> event) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

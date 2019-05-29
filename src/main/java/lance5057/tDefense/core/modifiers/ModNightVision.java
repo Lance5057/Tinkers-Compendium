@@ -32,7 +32,7 @@ public class ModNightVision extends ArmorModifierTrait {
 		}
 		
 		//Helmet only
-		if(((ArmorCore)stack.getItem()).getEquipmentSlot() != EntityEquipmentSlot.HEAD)
+		if(((ArmorCore)stack.getItem()).armorType != EntityEquipmentSlot.HEAD)
 			return false;
 		
 		// not present yet, ok

@@ -11,11 +11,13 @@ import lance5057.tDefense.Reference;
 import lance5057.tDefense.TinkersCompendium;
 import lance5057.tDefense.core.library.ArmorPart;
 import lance5057.tDefense.core.library.ModuleBase;
+import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.event.RegistryEvent.Register;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -235,5 +237,11 @@ public class TDParts extends ModuleBase
 		{
 			ModelRegisterUtil.registerPartModel(a);
 		}
+	}
+
+	@Override
+	public void registerBlocks(Register<Block> event) {
+		// TODO Auto-generated method stub
+		
 	}
 }

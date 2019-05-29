@@ -6,6 +6,7 @@ import lance5057.tDefense.core.materials.stats.HelmMaterialStats;
 import lance5057.tDefense.core.materials.stats.LegsMaterialStats;
 import lance5057.tDefense.core.materials.stats.ShieldMaterialStats;
 import lance5057.tDefense.core.materials.traits.TraitAcknowledged;
+import lance5057.tDefense.core.materials.traits.TraitAlpha;
 import lance5057.tDefense.core.materials.traits.TraitApplyPotion;
 import lance5057.tDefense.core.materials.traits.TraitAqualung;
 import lance5057.tDefense.core.materials.traits.TraitArrowCatcher;
@@ -14,8 +15,10 @@ import lance5057.tDefense.core.materials.traits.TraitBarbed;
 import lance5057.tDefense.core.materials.traits.TraitBattleHardened;
 import lance5057.tDefense.core.materials.traits.TraitBoneSpurs;
 import lance5057.tDefense.core.materials.traits.TraitBuoyant;
+import lance5057.tDefense.core.materials.traits.TraitBurnAttacker;
 import lance5057.tDefense.core.materials.traits.TraitClockstopper;
 import lance5057.tDefense.core.materials.traits.TraitCombatAdvantage;
+import lance5057.tDefense.core.materials.traits.TraitCornered;
 import lance5057.tDefense.core.materials.traits.TraitCurrentRider;
 import lance5057.tDefense.core.materials.traits.TraitDamageNegation;
 import lance5057.tDefense.core.materials.traits.TraitDamageReductionDimension;
@@ -40,7 +43,9 @@ import lance5057.tDefense.core.materials.traits.TraitHeroic;
 import lance5057.tDefense.core.materials.traits.TraitHog;
 import lance5057.tDefense.core.materials.traits.TraitHotFoot;
 import lance5057.tDefense.core.materials.traits.TraitHotHead;
+import lance5057.tDefense.core.materials.traits.TraitHunt;
 import lance5057.tDefense.core.materials.traits.TraitHydrophobic;
+import lance5057.tDefense.core.materials.traits.TraitIHunger;
 import lance5057.tDefense.core.materials.traits.TraitIgnite;
 import lance5057.tDefense.core.materials.traits.TraitIncinerate;
 import lance5057.tDefense.core.materials.traits.TraitIntangible;
@@ -51,6 +56,7 @@ import lance5057.tDefense.core.materials.traits.TraitPeyote;
 import lance5057.tDefense.core.materials.traits.TraitPhotosynthetic;
 import lance5057.tDefense.core.materials.traits.TraitPiggy;
 import lance5057.tDefense.core.materials.traits.TraitPotionRemoval;
+import lance5057.tDefense.core.materials.traits.TraitPoundofFlesh;
 import lance5057.tDefense.core.materials.traits.TraitPricked;
 import lance5057.tDefense.core.materials.traits.TraitPyrosynthesis;
 import lance5057.tDefense.core.materials.traits.TraitReduceKnockback;
@@ -69,6 +75,7 @@ import lance5057.tDefense.core.materials.traits.TraitTempered;
 import lance5057.tDefense.core.materials.traits.TraitTickTock;
 import lance5057.tDefense.core.materials.traits.TraitTimewarp;
 import lance5057.tDefense.core.materials.traits.TraitToasty;
+import lance5057.tDefense.core.materials.traits.TraitToothy;
 import lance5057.tDefense.core.materials.traits.TraitTrotters;
 import lance5057.tDefense.core.materials.traits.TraitTrueSight;
 import lance5057.tDefense.core.materials.traits.TraitUndo;
@@ -82,7 +89,6 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.DimensionType;
-import slimeknights.tconstruct.library.TinkerRegistry;
 import slimeknights.tconstruct.library.materials.ExtraMaterialStats;
 import slimeknights.tconstruct.library.materials.HandleMaterialStats;
 import slimeknights.tconstruct.library.materials.HeadMaterialStats;
@@ -225,6 +231,14 @@ public class CompendiumTraits {
 	public TraitIntangible intangible = new TraitIntangible();
 	public TraitUndo undo = new TraitUndo();
 	public TraitTimewarp timewarp = new TraitTimewarp();
+
+	public TraitToothy toothy = new TraitToothy();
+	public TraitCornered cornered = new TraitCornered();
+	public TraitPoundofFlesh poundofflesh = new TraitPoundofFlesh();
+	public TraitIHunger ihunger = new TraitIHunger();
+	public TraitBurnAttacker hellbeast = new TraitBurnAttacker("hellbeast", 0x6d3300);
+	public TraitAlpha alpha = new TraitAlpha();
+	public TraitHunt hunt = new TraitHunt();
 
 	public void preInit() {
 
@@ -387,6 +401,17 @@ public class CompendiumTraits {
 			CompendiumMaterials.aeonsteel.mat.addTrait(intangible, ChestMaterialStats.TYPE);
 			CompendiumMaterials.aeonsteel.mat.addTrait(undo, LegsMaterialStats.TYPE);
 			CompendiumMaterials.aeonsteel.mat.addTrait(timewarp, FeetMaterialStats.TYPE);
+		}
+		
+		if (CompendiumMaterials.dogbearium != null) {
+			CompendiumMaterials.dogbearium.mat.addTrait(toothy, HandleMaterialStats.TYPE);
+			CompendiumMaterials.dogbearium.mat.addTrait(toothy, ExtraMaterialStats.TYPE);
+			CompendiumMaterials.dogbearium.mat.addTrait(cornered, HeadMaterialStats.TYPE);
+			CompendiumMaterials.dogbearium.mat.addTrait(poundofflesh, ShieldMaterialStats.TYPE);
+			CompendiumMaterials.dogbearium.mat.addTrait(ihunger, HelmMaterialStats.TYPE);
+			CompendiumMaterials.dogbearium.mat.addTrait(hellbeast, ChestMaterialStats.TYPE);
+			CompendiumMaterials.dogbearium.mat.addTrait(alpha, LegsMaterialStats.TYPE);
+			CompendiumMaterials.dogbearium.mat.addTrait(hunt, FeetMaterialStats.TYPE);
 		}
 	}
 

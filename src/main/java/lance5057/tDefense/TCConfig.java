@@ -100,6 +100,10 @@ public class TCConfig {
 		// public boolean gold= true;
 		public boolean valyriansteel= true;
 		public boolean froststeel= true;
+
+		public boolean gold=true;
+
+		public boolean silver=true;
 	}
 
 	public static class Addons {

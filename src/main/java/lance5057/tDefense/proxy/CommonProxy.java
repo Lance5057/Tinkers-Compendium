@@ -4,7 +4,7 @@ import lance5057.tDefense.Reference;
 import lance5057.tDefense.TinkersCompendium;
 import lance5057.tDefense.core.items.ItemCompendiumBook;
 import lance5057.tDefense.core.library.ArmorPart;
-import lance5057.tDefense.core.modifiers.TDModifiers;
+import lance5057.tDefense.core.modifiers.CompendiumModifiers;
 import lance5057.tDefense.core.tools.bases.ArmorCore;
 import lance5057.tDefense.core.workstations.CompendiumWorkstations;
 import net.minecraft.block.Block;
@@ -100,7 +100,10 @@ public class CommonProxy implements IGuiHandler {
 		TinkersCompendium.tools.registerItems(event);
 		TinkersCompendium.modifiers.registerItems(event);
 		TinkersCompendium.workstations.registerItems(event);
-		//TinkersCompendium.textiles.registerItems(event);
+		TinkersCompendium.textiles.registerItems(event);
+		
+		if(TinkersCompendium.bloodmagic != null)
+			TinkersCompendium.bloodmagic.registerItems(event);
 	}
 
 	private static Item registerItem(Register<Item> event, Item item, String string) {
@@ -111,11 +114,14 @@ public class CommonProxy implements IGuiHandler {
 
 	@SubscribeEvent
 	public static void registerBlocks(RegistryEvent.Register<Block> event) {
-		//TinkersDefense.mats.registerBlocks(event);
+		TinkersCompendium.mats.registerBlocks(event);
 		TinkersCompendium.tools.registerBlocks(event);
 		TinkersCompendium.modifiers.registerBlocks(event);
 		TinkersCompendium.workstations.registerBlocks(event);
-		//TinkersCompendium.textiles.registerBlocks(event);
+		TinkersCompendium.textiles.registerBlocks(event);
+		
+		if(TinkersCompendium.bloodmagic != null)
+			TinkersCompendium.bloodmagic.registerBlocks(event);
 	}
 
 	public void registerArmorPartModel(ArmorPart part) {
