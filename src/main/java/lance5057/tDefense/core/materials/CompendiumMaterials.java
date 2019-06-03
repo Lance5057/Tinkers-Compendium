@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import lance5057.tDefense.core.materials.traits.TraitMythical;
 import org.apache.commons.lang3.StringUtils;
 
 import com.google.common.eventbus.Subscribe;
@@ -575,6 +576,7 @@ public class CompendiumMaterials {
 					new LegsMaterialStats(750, 5, 3, 25.0f),
 					new FeetMaterialStats(750, 2, 3, 25.0f)));
 			mithril.addons.add(new MaterialComponents(false));
+			TinkerRegistry.getMaterial("mithril").addTrait(new TraitMythical(1));
 		}
 
 		black = new MaterialHelper("blackcloth", 0x191616);
