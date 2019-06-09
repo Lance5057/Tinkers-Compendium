@@ -156,6 +156,14 @@ public class CompendiumTraits {
 	public TraitUndo undo = new TraitUndo();
 	public TraitTimewarp timewarp = new TraitTimewarp();
 
+	public TraitToothy toothy = new TraitToothy();
+	public TraitCornered cornered = new TraitCornered();
+	public TraitPoundofFlesh poundofflesh = new TraitPoundofFlesh();
+	public TraitIHunger ihunger = new TraitIHunger();
+	public TraitBurnAttacker hellbeast = new TraitBurnAttacker("hellbeast", 0x6d3300);
+	public TraitAlpha alpha = new TraitAlpha();
+	public TraitHunt hunt = new TraitHunt();
+
 	private AbstractTrait mythical1 = new TraitMythical(1);
 	private AbstractTrait mythical2 = new TraitMythical(2);
 
@@ -320,6 +328,17 @@ public class CompendiumTraits {
 			CompendiumMaterials.aeonsteel.mat.addTrait(intangible, ChestMaterialStats.TYPE);
 			CompendiumMaterials.aeonsteel.mat.addTrait(undo, LegsMaterialStats.TYPE);
 			CompendiumMaterials.aeonsteel.mat.addTrait(timewarp, FeetMaterialStats.TYPE);
+		}
+
+		if (CompendiumMaterials.dogbearium != null) {
+			CompendiumMaterials.dogbearium.mat.addTrait(toothy, HandleMaterialStats.TYPE);
+			CompendiumMaterials.dogbearium.mat.addTrait(toothy, ExtraMaterialStats.TYPE);
+			CompendiumMaterials.dogbearium.mat.addTrait(cornered, HeadMaterialStats.TYPE);
+			CompendiumMaterials.dogbearium.mat.addTrait(poundofflesh, ShieldMaterialStats.TYPE);
+			CompendiumMaterials.dogbearium.mat.addTrait(ihunger, HelmMaterialStats.TYPE);
+			CompendiumMaterials.dogbearium.mat.addTrait(hellbeast, ChestMaterialStats.TYPE);
+			CompendiumMaterials.dogbearium.mat.addTrait(alpha, LegsMaterialStats.TYPE);
+			CompendiumMaterials.dogbearium.mat.addTrait(hunt, FeetMaterialStats.TYPE);
 		}
 
 		if (CompendiumMaterials.mithril != null){

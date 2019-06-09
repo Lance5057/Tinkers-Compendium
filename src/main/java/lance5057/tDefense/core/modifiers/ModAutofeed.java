@@ -23,7 +23,7 @@ public class ModAutofeed extends ModifierTDTrait {
 	public boolean canApplyCustom(ItemStack stack) {
 
 		if (stack.getItem() instanceof ArmorCore)
-			if (((ArmorCore) stack.getItem()).getEquipmentSlot() == EntityEquipmentSlot.HEAD) {
+			if (((ArmorCore) stack.getItem()).armorType == EntityEquipmentSlot.HEAD) {
 				// not present yet, ok
 				if (super.canApplyCustom(stack)) {
 					return true;

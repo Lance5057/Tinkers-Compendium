@@ -97,12 +97,13 @@ public class TCConfig {
 		public boolean pandorium= true;
 		public boolean rosegold= true;
 		public boolean platinum= true;
-		// public boolean gold= true;
 		public boolean valyriansteel= true;
 		public boolean froststeel= true;
+		public boolean gold=true;
+		public boolean silver=true;
 
 		public boolean mithril = true;
-    }
+	}
 
 	public static class Addons {
 		@Config.RequiresMcRestart()

@@ -1,6 +1,6 @@
 package lance5057.tDefense.core.materials.traits;
 
-import lance5057.tDefense.core.modifiers.TDModifiers;
+import lance5057.tDefense.core.modifiers.CompendiumModifiers;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
@@ -28,7 +28,7 @@ public class TraitFirewalker extends AbstractTDTrait {
 				
 				if(world.getBlockState(pos) == Blocks.WATER.getDefaultState())
 				{
-					world.setBlockState(pos, TDModifiers.unstable_obsidian.getDefaultState()); //TODO make into unstable obsidian
+					world.setBlockState(pos, CompendiumModifiers.unstable_obsidian.getDefaultState()); //TODO make into unstable obsidian
 				}
 			}
 		}

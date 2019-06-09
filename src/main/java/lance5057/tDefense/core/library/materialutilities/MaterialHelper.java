@@ -18,12 +18,24 @@ public class MaterialHelper {
 	MaterialIntegration matint;
 	public List<MaterialBase> addons;
 
+	boolean preset = false;
+
 	public MaterialHelper(String name, int color) {
-		this.name = "td_"+name;
+		this.name = "td_" + name;
 		this.color = color;
 
 		mat = new Material(name, color);
 		addons = new ArrayList<MaterialBase>();
+	}
+
+	public MaterialHelper(Material mat) {
+		this.name = mat.identifier;
+		this.color = mat.materialTextColor;
+
+		this.mat = mat;
+		addons = new ArrayList<MaterialBase>();
+
+		preset = true;
 	}
 
 	public void pre() {
@@ -31,25 +43,26 @@ public class MaterialHelper {
 			mb.setupPre(mat);
 		}
 	}
-	
-	public void init()
-	{
+
+	public void init() {
 		for (MaterialBase mb : addons) {
 			mb.setupInit(mat);
 		}
 	}
 
 	public void integrate() {
-		matint = new MaterialIntegration(mat, null, StringUtils.capitalize(mat.identifier));
-		
-		for (MaterialBase mb : addons) {
-			mb.setupIntegration(matint);
+		if (!preset) {
+			matint = new MaterialIntegration(mat, null, StringUtils.capitalize(mat.identifier));
+
+			for (MaterialBase mb : addons) {
+				mb.setupIntegration(matint);
+			}
+			matint.toolforge().preInit();
+
+			TinkersCompendium.proxy.registerMatColor(mat, color);
+
+			TinkerRegistry.integrate(matint);
 		}
-		matint.toolforge().preInit();
-		
-		TinkersCompendium.proxy.registerMatColor(mat, color);
-		
-		TinkerRegistry.integrate(matint);
 	}
 
 	public void post() {
@@ -57,7 +70,8 @@ public class MaterialHelper {
 			mb.setupPost(mat);
 		}
 
-		matint.integrate();
+		if (!preset)
+			matint.integrate();
 	}
 
 	public void client() {

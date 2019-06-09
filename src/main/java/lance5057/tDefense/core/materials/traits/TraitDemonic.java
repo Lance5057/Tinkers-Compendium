@@ -16,13 +16,13 @@ public class TraitDemonic extends AbstractTDTrait {
 
 	@Override
 	public void onArmorTick(ItemStack tool, World world, EntityPlayer player) {
-		for (Entity e : world.getLoadedEntityList()) {
-			if(e instanceof EntityMob)
-			{
-				EntityMob mob = (EntityMob) e;
-				
-				mob.setAttackTarget(null);
+		if (player.dimension == -1)
+			for (Entity e : world.getLoadedEntityList()) {
+				if (e instanceof EntityMob) {
+					EntityMob mob = (EntityMob) e;
+
+					mob.setAttackTarget(null);
+				}
 			}
-		}
 	}
 }

@@ -1,0 +1,28 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " # ",
+        "PDP",
+        "BPB"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:prismarine_crystals"
+        },
+        "P": {
+            "item": "minecraft:prismarine_shard"
+        },
+        "D": {
+            "item": "minecraft:diamond"
+        },
+        "B": {
+            "item": "minecraft:packed_ice"
+        }
+    },
+    "result": 
+	{
+		"item": "tinkerscompendium:icesole",
+        "data": 0,
+        "count": 1
+	}
+}

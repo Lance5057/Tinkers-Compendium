@@ -39,6 +39,8 @@ material.orichalcum.name=Orichalcum
 material.pandorium.name=Pandorium
 material.platinum.name=Platinum
 
+material.mithril.name=Mithril
+
 material.whitecloth.name=White Wool
 material.orangecloth.name=Orange Wool
 material.magentacloth.name=Magenta Wool
@@ -987,6 +989,15 @@ modifier.td_blastprotection.name=Blast Protection
 modifier.td_blastprotection.desc=Blast Protection Description
 modifier.td_respirationI.name=Respiration I
 modifier.td_respirationI.desc=Armor with Gills
+modifier.td_cornered.name=Cornered
+modifier.td_toothy.name=Toothy
+modifier.td_ethereal.name=Ethereal
+modifier.td_ticktock.name=Tick-Tock
+
+modifier.mythical.name=Mythical
+modifier.mythical.desc=Gains modifiers after being broken, then repaired, and finally damaged.
+
+
 
 //Head Modifiers
 modifier.td_forestmask.name=Forest Mask

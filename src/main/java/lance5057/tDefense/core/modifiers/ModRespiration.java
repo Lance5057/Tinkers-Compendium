@@ -27,10 +27,10 @@ public class ModRespiration extends ArmorModifierTrait {
 		if (player.getAir() <= 5) {
 			for (int i = 0; i < player.inventory.getSizeInventory(); i++) {
 				if (player.inventory.getStackInSlot(i) != null
-						&& player.inventory.getStackInSlot(i).getItem() == TDModifiers.item_canister) {
+						&& player.inventory.getStackInSlot(i).getItem() == CompendiumModifiers.item_canister) {
 					if (level == 1) {
 						player.inventory.decrStackSize(i, 1);
-						player.inventory.addItemStackToInventory(new ItemStack(TDModifiers.item_emptycanister, 1));
+						player.inventory.addItemStackToInventory(new ItemStack(CompendiumModifiers.item_emptycanister, 1));
 					}
 
 					player.setAir(player.getAir() + 150);
@@ -55,7 +55,7 @@ public class ModRespiration extends ArmorModifierTrait {
 		}
 		
 		//Helmet only
-		if(((ArmorCore)stack.getItem()).getEquipmentSlot() != EntityEquipmentSlot.HEAD)
+		if(((ArmorCore)stack.getItem()).armorType != EntityEquipmentSlot.HEAD)
 			return false;
 		
 		// not present yet, ok
