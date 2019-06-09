@@ -6,6 +6,8 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextFormatting;
 import slimeknights.tconstruct.library.modifiers.ModifierNBT;
 import slimeknights.tconstruct.library.traits.AbstractTraitLeveled;
 import slimeknights.tconstruct.library.utils.TagUtil;
@@ -44,14 +46,9 @@ public class TraitMythical extends AbstractTraitLeveled {
     @Override
     public int onToolDamage(ItemStack tool, int damage, int newDamage, EntityLivingBase entity) {
         NBTTagCompound itemTag = TagUtil.getTagSafe(tool);
-        if (/*newDamage >= tool.getMaxDamage() - tool.getItemDamage() && */ itemTag.getInteger(BONUS_MODIFIERS) < itemTag.getInteger(MAX_MODIFIERS) && !itemTag.getBoolean(READY_FOR_MODIFIER)) {
+        if (newDamage >= tool.getMaxDamage() - tool.getItemDamage() && itemTag.getInteger(BONUS_MODIFIERS) < itemTag.getInteger(MAX_MODIFIERS) && !itemTag.getBoolean(READY_FOR_MODIFIER)) {
             itemTag.setBoolean(READY_FOR_MODIFIER, true);
-            /**
-             * TODO Send player message about how to add modifiers
-             * Ideas: "repair me, wielding vast worldly knowledge, and repair me fully, I shall then bestow a gift"
-             * "fix me up with them smarts o' yers and you just might find a new spot to fiddl' with"
-             */
-
+            entity.sendMessage(new TextComponentString("A voice rings in your head\n§9Repair me fully. Then, when wielding vast worldly knowledge, I shall bestow a gift when you use me again."));
         }
 
         //When tool takes damage, increase the modifier count and deduct XP
@@ -75,10 +72,7 @@ public class TraitMythical extends AbstractTraitLeveled {
             itemTag.setBoolean(READY_FOR_MODIFIER, false);
             itemTag.setBoolean(BREAK_FOR_MODIFIER, false);
 
-            /**
-             * TODO Add text for modifier being added
-             * Suggestions: "New opportunities reveal themselves to you"
-             */
+            entity.sendMessage(new TextComponentString("§9Upon using the tool, new opportunities reveal themselves to you."));
             return super.onToolDamage(tool, damage, 0, entity);
         }
         return super.onToolDamage(tool, damage, newDamage, entity);
