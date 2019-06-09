@@ -1,43 +1,20 @@
 package lance5057.tDefense.core.materials;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-
-import lance5057.tDefense.core.materials.traits.TraitMythical;
-import org.apache.commons.lang3.StringUtils;
-
 import com.google.common.eventbus.Subscribe;
-
 import gnu.trove.map.hash.THashMap;
 import lance5057.tDefense.Reference;
 import lance5057.tDefense.TCConfig;
 import lance5057.tDefense.TinkersCompendium;
-import lance5057.tDefense.core.library.materialutilities.ArmorMaterial;
-import lance5057.tDefense.core.library.materialutilities.CraftableFabricMaterial;
-import lance5057.tDefense.core.library.materialutilities.MaterialComponents;
-import lance5057.tDefense.core.library.materialutilities.MaterialHelper;
-import lance5057.tDefense.core.library.materialutilities.MeltableMaterial;
-import lance5057.tDefense.core.materials.stats.ArmorMaterialStats;
-import lance5057.tDefense.core.materials.stats.BaubleMaterialStats;
-import lance5057.tDefense.core.materials.stats.ChestMaterialStats;
-import lance5057.tDefense.core.materials.stats.FabricMaterialStats;
-import lance5057.tDefense.core.materials.stats.FeetMaterialStats;
-import lance5057.tDefense.core.materials.stats.HelmMaterialStats;
-import lance5057.tDefense.core.materials.stats.LegsMaterialStats;
-import lance5057.tDefense.core.materials.stats.ShieldMaterialStats;
+import lance5057.tDefense.core.library.materialutilities.*;
+import lance5057.tDefense.core.materials.stats.*;
 import lance5057.tDefense.core.parts.ComponentPart;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.NonNullList;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fluids.BlockFluidBase;
@@ -49,24 +26,18 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryEntry;
+import org.apache.commons.lang3.StringUtils;
 import slimeknights.tconstruct.TConstruct;
 import slimeknights.tconstruct.library.TinkerRegistry;
 import slimeknights.tconstruct.library.Util;
 import slimeknights.tconstruct.library.fluid.FluidColored;
 import slimeknights.tconstruct.library.fluid.FluidMolten;
-import slimeknights.tconstruct.library.materials.BowMaterialStats;
-import slimeknights.tconstruct.library.materials.BowStringMaterialStats;
-import slimeknights.tconstruct.library.materials.ExtraMaterialStats;
-import slimeknights.tconstruct.library.materials.HandleMaterialStats;
-import slimeknights.tconstruct.library.materials.HeadMaterialStats;
-import slimeknights.tconstruct.library.materials.Material;
-import slimeknights.tconstruct.library.materials.MaterialTypes;
+import slimeknights.tconstruct.library.materials.*;
 import slimeknights.tconstruct.library.smeltery.AlloyRecipe;
 import slimeknights.tconstruct.library.utils.HarvestLevels;
 import slimeknights.tconstruct.shared.TinkerCommons;
@@ -75,7 +46,8 @@ import slimeknights.tconstruct.smeltery.TinkerSmeltery;
 import slimeknights.tconstruct.smeltery.block.BlockMolten;
 import slimeknights.tconstruct.smeltery.block.BlockTinkerFluid;
 import slimeknights.tconstruct.tools.TinkerMaterials;
-import slimeknights.tconstruct.tools.TinkerModifiers;
+
+import java.util.*;
 
 @Mod.EventBusSubscriber(modid = Reference.MOD_ID)
 public class CompendiumMaterials {
@@ -576,7 +548,6 @@ public class CompendiumMaterials {
 					new LegsMaterialStats(750, 5, 3, 25.0f),
 					new FeetMaterialStats(750, 2, 3, 25.0f)));
 			mithril.addons.add(new MaterialComponents(false));
-			TinkerRegistry.getMaterial("mithril").addTrait(new TraitMythical(1));
 		}
 
 		black = new MaterialHelper("blackcloth", 0x191616);

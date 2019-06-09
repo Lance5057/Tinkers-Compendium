@@ -166,6 +166,10 @@ public class TCConfig {
 			}
 			return false;
 		}
+
+		@Config.Comment("Max number of additional modifer slots per level.\nDefault: 2")
+
+		public int extraModifiers = 2;
 	}
 
 	public static class Components {
