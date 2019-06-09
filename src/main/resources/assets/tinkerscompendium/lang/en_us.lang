@@ -998,6 +998,9 @@ modifier.td_ticktock.name=Tick-Tock
 
 modifier.mythical.name=Mythical
 modifier.mythical.desc=§oStronger when Reforged!§r\nConverts XP into a modifier when used after it has been broken and repaired fully.
+modifier.mythical.voiceRing=A voice rings in your head...
+modifier.mythical.instructions="Repair me fully. Then, when wielding vast worldly knowledge, I shall bestow a gift when you use me again."
+modifier.mythical.modifier_up=Upon using the tool, new opportunities reveal themselves to you.
 
 
 

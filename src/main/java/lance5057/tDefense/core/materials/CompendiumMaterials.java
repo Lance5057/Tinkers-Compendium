@@ -517,7 +517,7 @@ public class CompendiumMaterials {
 			mithril = new MaterialHelper("mithril", 0x99CCFF);
 			mithril.addons.add(new MeltableMaterial(
 					800,
-					new HeadMaterialStats(5, 8f, 12f, HarvestLevels.COBALT),
+					new HeadMaterialStats(550, 8f, 12f, HarvestLevels.COBALT),
 					new HandleMaterialStats(1.3f, 90),
 					new ExtraMaterialStats(90), new ShieldMaterialStats(750, 75),
 					new BowMaterialStats(0.7f, 70, 7)));

@@ -2,6 +2,7 @@ package lance5057.tDefense.core.materials.traits;
 
 
 import lance5057.tDefense.TCConfig;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -49,7 +50,7 @@ public class TraitMythical extends AbstractTraitLeveled {
         if (newDamage >= tool.getMaxDamage() - tool.getItemDamage() && itemTag.getInteger(BONUS_MODIFIERS) < itemTag.getInteger(MAX_MODIFIERS) && !itemTag.getBoolean(READY_FOR_MODIFIER)) {
             itemTag.setBoolean(READY_FOR_MODIFIER, true);
             if (entity.world.isRemote) {
-                entity.sendMessage(new TextComponentString(TextFormatting.ITALIC + "A voice rings in your head:\n" + TextFormatting.BLUE + TextFormatting.ITALIC + "\"Repair me fully. Then, when wielding vast worldly knowledge, I shall bestow a gift when you use me again.\""));
+                entity.sendMessage(new TextComponentString(TextFormatting.ITALIC + I18n.format("modifier.mythical.voiceRing") + "\n" + TextFormatting.BLUE + TextFormatting.ITALIC + I18n.format("modifier.mythical.instructions")));
             }
         }
 
@@ -75,7 +76,7 @@ public class TraitMythical extends AbstractTraitLeveled {
             itemTag.setBoolean(BREAK_FOR_MODIFIER, false);
 
             if (entity.world.isRemote) {
-                entity.sendMessage(new TextComponentString(TextFormatting.ITALIC + "Upon using the tool, new opportunities reveal themselves to you."));
+                entity.sendMessage(new TextComponentString(TextFormatting.ITALIC + I18n.format("modifier.mythical.modifier_up")));
             }
             return super.onToolDamage(tool, damage, 0, entity);
         }
@@ -87,11 +88,8 @@ public class TraitMythical extends AbstractTraitLeveled {
      */
     @Override
     public int onToolHeal(ItemStack tool, int amount, int newAmount, EntityLivingBase entity) {
-        System.out.println(tool.getItemDamage());
-        System.out.println(newAmount);
         if (tool.getItemDamage() <= newAmount * -1 && TagUtil.getTagSafe(tool).getBoolean(READY_FOR_MODIFIER)) {
             TagUtil.getTagSafe(tool).setBoolean(BREAK_FOR_MODIFIER, true);
-            System.out.println("Break for a new modifier");
             TagUtil.setEnchantEffect(tool, true);
         }
         return super.onToolHeal(tool, amount, newAmount, entity);
