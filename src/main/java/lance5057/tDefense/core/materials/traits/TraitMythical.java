@@ -48,7 +48,9 @@ public class TraitMythical extends AbstractTraitLeveled {
         NBTTagCompound itemTag = TagUtil.getTagSafe(tool);
         if (newDamage >= tool.getMaxDamage() - tool.getItemDamage() && itemTag.getInteger(BONUS_MODIFIERS) < itemTag.getInteger(MAX_MODIFIERS) && !itemTag.getBoolean(READY_FOR_MODIFIER)) {
             itemTag.setBoolean(READY_FOR_MODIFIER, true);
-            entity.sendMessage(new TextComponentString("A voice rings in your head\n§9Repair me fully. Then, when wielding vast worldly knowledge, I shall bestow a gift when you use me again."));
+            if (entity.world.isRemote) {
+                entity.sendMessage(new TextComponentString(TextFormatting.ITALIC + "A voice rings in your head:\n" + TextFormatting.BLUE + TextFormatting.ITALIC + "\"Repair me fully. Then, when wielding vast worldly knowledge, I shall bestow a gift when you use me again.\""));
+            }
         }
 
         //When tool takes damage, increase the modifier count and deduct XP
@@ -72,7 +74,9 @@ public class TraitMythical extends AbstractTraitLeveled {
             itemTag.setBoolean(READY_FOR_MODIFIER, false);
             itemTag.setBoolean(BREAK_FOR_MODIFIER, false);
 
-            entity.sendMessage(new TextComponentString("§9Upon using the tool, new opportunities reveal themselves to you."));
+            if (entity.world.isRemote) {
+                entity.sendMessage(new TextComponentString(TextFormatting.ITALIC + "Upon using the tool, new opportunities reveal themselves to you."));
+            }
             return super.onToolDamage(tool, damage, 0, entity);
         }
         return super.onToolDamage(tool, damage, newDamage, entity);
