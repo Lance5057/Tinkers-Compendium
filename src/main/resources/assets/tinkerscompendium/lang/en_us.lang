@@ -995,6 +995,7 @@ modifier.td_cornered.name=Cornered
 modifier.td_toothy.name=Toothy
 modifier.td_ethereal.name=Ethereal
 modifier.td_ticktock.name=Tick-Tock
+modifier.td_ticktock.desc=§oThe Clock is Ticking!§r\nTool stats increase over time.
 
 modifier.mythical.name=Mythical
 modifier.mythical.desc=§oStronger when Reforged!§r\nConverts XP into a modifier when used after it has been broken and repaired fully.
