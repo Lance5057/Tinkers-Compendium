@@ -998,7 +998,7 @@ modifier.td_ticktock.name=Tick-Tock
 modifier.td_ticktock.desc=§oThe Clock is Ticking!§r\nTool stats increase over time.
 
 modifier.mythical.name=Mythical
-modifier.mythical.desc=§oStronger when Reforged!§r\nConverts XP into a modifier when used after it has been broken and repaired fully.
+modifier.mythical.desc=§oStronger when Reforged!§r\nConverts XP into a modifier when used after it has been broken and repaired fully. The tool needs to have a good amount of max durability to gain more modifiers.
 modifier.mythical.voiceRing=A voice rings in your head...
 modifier.mythical.instructions="Repair me fully. Then, when wielding vast worldly knowledge, I shall bestow a gift when you use me again."
 modifier.mythical.modifier_up=Upon using the tool, new opportunities reveal themselves to you.

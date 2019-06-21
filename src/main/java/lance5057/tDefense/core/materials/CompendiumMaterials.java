@@ -495,7 +495,7 @@ public class CompendiumMaterials {
 		/*
 			Mithril Stats:
 				- Head:
-					- Durability: 550
+					- Durability: 800
 					- Speed: 8
 					- Damage: 12
 					- Mining Level: Cobalt (4)
@@ -517,7 +517,7 @@ public class CompendiumMaterials {
 			mithril = new MaterialHelper("mithril", 0x99CCFF);
 			mithril.addons.add(new MeltableMaterial(
 					800,
-					new HeadMaterialStats(550, 8f, 12f, HarvestLevels.COBALT),
+					new HeadMaterialStats(800, 8f, 12f, HarvestLevels.COBALT),
 					new HandleMaterialStats(1.3f, 90),
 					new ExtraMaterialStats(90), new ShieldMaterialStats(750, 75),
 					new BowMaterialStats(0.7f, 70, 7)));
