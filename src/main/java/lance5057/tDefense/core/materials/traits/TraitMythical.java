@@ -42,12 +42,12 @@ public class TraitMythical extends AbstractTraitLeveled {
     /**
      * When tool breaks and the number of bonus modifiers is below the max number of bonus modifiers, apply a ready for
      * modifier tag. When tool takes damage after it's been repaired, consume 30 levels and add a modifier and increment
-     * the bonus modifier tag.
+     * the bonus modifier tag. Tool needs to have at least 800 maximum durability before it is eligible to receive extra modifiers on breaking.
      */
     @Override
     public int onToolDamage(ItemStack tool, int damage, int newDamage, EntityLivingBase entity) {
         NBTTagCompound itemTag = TagUtil.getTagSafe(tool);
-        if (newDamage >= tool.getMaxDamage() - tool.getItemDamage() && itemTag.getInteger(BONUS_MODIFIERS) < itemTag.getInteger(MAX_MODIFIERS) && !itemTag.getBoolean(READY_FOR_MODIFIER)) {
+        if (newDamage >= tool.getMaxDamage() - tool.getItemDamage() && itemTag.getInteger(BONUS_MODIFIERS) < itemTag.getInteger(MAX_MODIFIERS) && !itemTag.getBoolean(READY_FOR_MODIFIER) && tool.getMaxDamage() >= 800) {
             itemTag.setBoolean(READY_FOR_MODIFIER, true);
             if (entity.world.isRemote) {
                 entity.sendMessage(new TextComponentString(TextFormatting.ITALIC + I18n.format("modifier.mythical.voiceRing") + "\n" + TextFormatting.BLUE + TextFormatting.ITALIC + I18n.format("modifier.mythical.instructions")));

@@ -498,7 +498,7 @@ public class CompendiumMaterials {
 					- Durability: 550
 					- Speed: 8
 					- Damage: 12
-					- Mining Level: Diamond (2)
+					- Mining Level: Cobalt (4)
 				- Rod:
 					- Modifier: 1.3
 					- Durability: 90
