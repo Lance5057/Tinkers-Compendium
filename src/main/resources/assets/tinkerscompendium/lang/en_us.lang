@@ -837,7 +837,7 @@ item.heatershield.name=Heater Shield
 item.heatershield.desc=A standard shield designed to protect more incoming attacks while still being fairly mobile.\n \n
 
 item.towershield.name=Tower Shield
-item.towershield.desc=An oversized shield that protects from most attacks, however this is a cost for such protection.\n \nAbility: \nEncumbered - Its a heavy shield, next to imposible to weild and defend yourself without two hands.
+item.towershield.desc=An oversized shield that protects from most attacks, however this is a cost for such protection.\n \nAbility: \nEncumbered - Its a heavy shield, next to imposible to wield and defend yourself without two hands.
 
 item.zweihander.name=Zweihander
 item.zweihander.desc=A great two handed sword designed to take down horse and rider or keep enemies back with its long reach.\n \nAbilies: VS Mounted - Does x2 Damage against mounted enemies \nGreat Swing - \n Hit all enemies close to you with a great arching slash. Leaves you slowed and weakened temporarily.
