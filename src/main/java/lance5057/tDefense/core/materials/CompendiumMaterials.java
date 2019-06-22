@@ -1,34 +1,12 @@
 package lance5057.tDefense.core.materials;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-
-import org.apache.commons.lang3.StringUtils;
-
 import com.google.common.eventbus.Subscribe;
-
 import gnu.trove.map.hash.THashMap;
 import lance5057.tDefense.Reference;
 import lance5057.tDefense.TCConfig;
 import lance5057.tDefense.TinkersCompendium;
-import lance5057.tDefense.core.library.materialutilities.ArmorMaterial;
-import lance5057.tDefense.core.library.materialutilities.CraftableFabricMaterial;
-import lance5057.tDefense.core.library.materialutilities.MaterialComponents;
-import lance5057.tDefense.core.library.materialutilities.MaterialHelper;
-import lance5057.tDefense.core.library.materialutilities.MaterialOre;
-import lance5057.tDefense.core.library.materialutilities.MeltableMaterial;
-import lance5057.tDefense.core.library.materialutilities.PresetMaterial;
-import lance5057.tDefense.core.materials.stats.ArmorMaterialStats;
-import lance5057.tDefense.core.materials.stats.BaubleMaterialStats;
-import lance5057.tDefense.core.materials.stats.ChestMaterialStats;
-import lance5057.tDefense.core.materials.stats.FabricMaterialStats;
-import lance5057.tDefense.core.materials.stats.FeetMaterialStats;
-import lance5057.tDefense.core.materials.stats.HelmMaterialStats;
-import lance5057.tDefense.core.materials.stats.LegsMaterialStats;
-import lance5057.tDefense.core.materials.stats.ShieldMaterialStats;
+import lance5057.tDefense.core.library.materialutilities.*;
+import lance5057.tDefense.core.materials.stats.*;
 import lance5057.tDefense.core.parts.ComponentPart;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
@@ -53,18 +31,13 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryEntry;
+import org.apache.commons.lang3.StringUtils;
 import slimeknights.tconstruct.TConstruct;
 import slimeknights.tconstruct.library.TinkerRegistry;
 import slimeknights.tconstruct.library.Util;
 import slimeknights.tconstruct.library.fluid.FluidColored;
 import slimeknights.tconstruct.library.fluid.FluidMolten;
-import slimeknights.tconstruct.library.materials.BowMaterialStats;
-import slimeknights.tconstruct.library.materials.BowStringMaterialStats;
-import slimeknights.tconstruct.library.materials.ExtraMaterialStats;
-import slimeknights.tconstruct.library.materials.HandleMaterialStats;
-import slimeknights.tconstruct.library.materials.HeadMaterialStats;
-import slimeknights.tconstruct.library.materials.Material;
-import slimeknights.tconstruct.library.materials.MaterialTypes;
+import slimeknights.tconstruct.library.materials.*;
 import slimeknights.tconstruct.library.smeltery.AlloyRecipe;
 import slimeknights.tconstruct.library.utils.HarvestLevels;
 import slimeknights.tconstruct.shared.TinkerCommons;
@@ -73,6 +46,8 @@ import slimeknights.tconstruct.smeltery.TinkerSmeltery;
 import slimeknights.tconstruct.smeltery.block.BlockMolten;
 import slimeknights.tconstruct.smeltery.block.BlockTinkerFluid;
 import slimeknights.tconstruct.tools.TinkerMaterials;
+
+import java.util.*;
 
 @Mod.EventBusSubscriber(modid = Reference.MOD_ID)
 public class CompendiumMaterials {
@@ -115,6 +90,12 @@ public class CompendiumMaterials {
 	public static MaterialHelper gold;
 	public static MaterialHelper valyriansteel;
 	public static MaterialHelper froststeel;
+
+	//Wanderlust Materials
+	public static MaterialHelper mithril;
+	public static MaterialHelper werewolf;
+
+	//Wool Colors
 
 	public static MaterialHelper black;
 	public static MaterialHelper red;
@@ -511,6 +492,43 @@ public class CompendiumMaterials {
 			froststeel.addons.add(new MaterialComponents(false));
 		}
 
+		/*
+			Mithril Stats:
+				- Head:
+					- Durability: 800
+					- Speed: 8
+					- Damage: 12
+					- Mining Level: Cobalt (4)
+				- Rod:
+					- Modifier: 1.3
+					- Durability: 90
+				- Extra:
+					- Durability: 90
+				- Shield:
+					- Durability: 750
+					- Percent Blocked: 75
+				- Bow:
+					- Draw Speed: 0.7
+					- Range: 70
+					- Bonus Damage: 7
+				-
+		 */
+		if (TinkerRegistry.getMaterial("mithril") == Material.UNKNOWN && TCConfig.materials.mithril){
+			mithril = new MaterialHelper("mithril", 0x99CCFF);
+			mithril.addons.add(new MeltableMaterial(
+					800,
+					new HeadMaterialStats(800, 8f, 12f, HarvestLevels.COBALT),
+					new HandleMaterialStats(1.3f, 90),
+					new ExtraMaterialStats(90), new ShieldMaterialStats(750, 75),
+					new BowMaterialStats(0.7f, 70, 7)));
+			mithril.addons.add(new ArmorMaterial(
+					new HelmMaterialStats(750, 2, 3, 25.0f),
+					new ChestMaterialStats(750, 7, 3, 25.0f),
+					new LegsMaterialStats(750, 5, 3, 25.0f),
+					new FeetMaterialStats(750, 2, 3, 25.0f)));
+			mithril.addons.add(new MaterialComponents(false));
+		}
+
 		black = new MaterialHelper("blackcloth", 0x191616);
 		black.addons.add(new CraftableFabricMaterial(new ExtraMaterialStats(5), new FabricMaterialStats(100, 0, 0, 25),
 				new BowStringMaterialStats(1), null, new ItemStack(Blocks.WOOL, 1, 15)));
@@ -866,6 +884,8 @@ public class CompendiumMaterials {
 			valyriansteel.pre();
 		if (froststeel != null)
 			froststeel.pre();
+		if (mithril != null)
+		    mithril.pre();
 
 		black.pre();
 		red.pre();
@@ -911,6 +931,8 @@ public class CompendiumMaterials {
 			valyriansteel.integrate();
 		if (froststeel != null)
 			froststeel.integrate();
+		if (mithril != null)
+		    mithril.integrate();
 
 		black.integrate();
 		red.integrate();
@@ -1340,6 +1362,8 @@ public class CompendiumMaterials {
 			valyriansteel.init();
 		if (froststeel != null)
 			froststeel.init();
+		if (mithril != null)
+		    mithril.init();
 
 		black.init();
 		red.init();
@@ -1384,6 +1408,8 @@ public class CompendiumMaterials {
 			valyriansteel.client();
 		if (froststeel != null)
 			froststeel.client();
+		if (mithril != null)
+		    mithril.client();
 
 		black.client();
 		red.client();
@@ -1474,6 +1500,8 @@ public class CompendiumMaterials {
 			valyriansteel.post();
 		if (froststeel != null)
 			froststeel.post();
+		if (mithril != null)
+		    mithril.post();
 
 		black.post();
 		red.post();
@@ -1540,6 +1568,8 @@ public class CompendiumMaterials {
 			valyriansteel.models();
 		if (froststeel != null)
 			froststeel.models();
+		if (mithril != null)
+		    mithril.models();
 
 		black.models();
 		red.models();
