@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.UUID;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -16,6 +17,7 @@ import com.google.common.collect.Sets;
 
 import lance5057.tDefense.core.library.ArmorNBT;
 import lance5057.tDefense.core.library.ArmorTags;
+import lance5057.tDefense.core.library.ArmorToolTipBuilder;
 import lance5057.tDefense.core.library.TCRegistry;
 import lance5057.tDefense.core.materials.CompendiumMaterials;
 import lance5057.tDefense.core.materials.stats.FabricMaterialStats;
@@ -79,6 +81,13 @@ public abstract class ArmorCore extends ArmorBase implements IToolStationDisplay
 
 	public final static int DEFAULT_MODIFIERS = 3;
 	public static final String TAG_SWITCHED_HAND_HAX = "SwitchedHand";
+
+	// why is this private!?
+	protected static final UUID[] ARMOR_MODIFIERS = new UUID[] {
+			UUID.fromString("845DB27C-C624-495F-8C9F-6020A9A58B6B"),
+			UUID.fromString("D8499B04-0E66-4726-AB29-64469D734E0D"),
+			UUID.fromString("9F3D476D-C118-4544-8365-64846904B48E"),
+			UUID.fromString("2AD3F246-FEE1-4E67-B886-69FD380BB150") };
 
 	public ArmorCore(EntityEquipmentSlot slot, PartMaterialType... requiredComponents) {
 		super(slot, requiredComponents);
@@ -230,12 +239,9 @@ public abstract class ArmorCore extends ArmorBase implements IToolStationDisplay
 	/**
 	 * Called to break the base block, return false to perform no breaking
 	 * 
-	 * @param itemstack
-	 *            Tool ItemStack
-	 * @param pos
-	 *            Current position
-	 * @param player
-	 *            Player instance
+	 * @param itemstack Tool ItemStack
+	 * @param pos       Current position
+	 * @param player    Player instance
 	 * @return true if the normal block break code should be skipped
 	 */
 	protected boolean breakBlock(ItemStack itemstack, BlockPos pos, EntityPlayer player) {
@@ -246,16 +252,11 @@ public abstract class ArmorCore extends ArmorBase implements IToolStationDisplay
 	 * Called when an AOE block is broken by the tool. Use to oveerride the block
 	 * breaking logic
 	 * 
-	 * @param tool
-	 *            Tool ItemStack
-	 * @param world
-	 *            World instance
-	 * @param player
-	 *            Player instance
-	 * @param pos
-	 *            Current position
-	 * @param refPos
-	 *            Base position
+	 * @param tool   Tool ItemStack
+	 * @param world  World instance
+	 * @param player Player instance
+	 * @param pos    Current position
+	 * @param refPos Base position
 	 */
 	protected void breakExtraBlock(ItemStack tool, World world, EntityPlayer player, BlockPos pos, BlockPos refPos) {
 		ToolHelper.breakExtraBlock(tool, world, player, pos, refPos);
@@ -287,17 +288,40 @@ public abstract class ArmorCore extends ArmorBase implements IToolStationDisplay
 		return super.hitEntity(stack, target, attacker);
 	}
 
+	@Override
+	public Multimap<String, AttributeModifier> getItemAttributeModifiers(EntityEquipmentSlot equipmentSlot) {
+		Multimap<String, AttributeModifier> multimap = super.getItemAttributeModifiers(equipmentSlot);
+//        ArmorNBT nbt = ArmorTagUtil.getToolStats(stack);
+//        
+//        if (equipmentSlot == this.armorType)
+//        {
+//        	multimap.remove(SharedMonsterAttributes.ARMOR.getName(), new AttributeModifier(ARMOR_MODIFIERS[equipmentSlot.getIndex()], "Armor modifier", (double)this.damageReduceAmount, 0));
+//            multimap.remove(SharedMonsterAttributes.ARMOR_TOUGHNESS.getName(), new AttributeModifier(ARMOR_MODIFIERS[equipmentSlot.getIndex()], "Armor toughness", (double)this.toughness, 0));
+//            
+//            multimap.put(SharedMonsterAttributes.ARMOR.getName(), new AttributeModifier(ARMOR_MODIFIERS[equipmentSlot.getIndex()], "Armor modifier", (double)nbt.armorRating, 0));
+//            multimap.put(SharedMonsterAttributes.ARMOR_TOUGHNESS.getName(), new AttributeModifier(ARMOR_MODIFIERS[equipmentSlot.getIndex()], "Armor toughness", (double)nbt.armorToughness, 0));
+//        }
+
+		return multimap;
+	}
+
 	@Nonnull
 	@Override
 	public Multimap<String, AttributeModifier> getAttributeModifiers(@Nonnull EntityEquipmentSlot slot,
 			ItemStack stack) {
 		Multimap<String, AttributeModifier> multimap = super.getAttributeModifiers(slot, stack);
+		ArmorNBT nbt = ArmorTagUtil.getToolStats(stack);
 
-		if (slot == EntityEquipmentSlot.MAINHAND && !ToolHelper.isBroken(stack)) {
-			multimap.put(SharedMonsterAttributes.ATTACK_DAMAGE.getName(), new AttributeModifier(ATTACK_DAMAGE_MODIFIER,
-					"Weapon modifier", ToolHelper.getActualAttack(stack), 0));
-			multimap.put(SharedMonsterAttributes.ATTACK_SPEED.getName(), new AttributeModifier(ATTACK_SPEED_MODIFIER,
-					"Weapon modifier", ToolHelper.getActualAttackSpeed(stack) - 4d, 0));
+		if (slot == this.armorType) {
+			multimap.remove(SharedMonsterAttributes.ARMOR.getName(), new AttributeModifier(
+					ARMOR_MODIFIERS[slot.getIndex()], "Armor modifier", (double) this.damageReduceAmount, 0));
+			multimap.remove(SharedMonsterAttributes.ARMOR_TOUGHNESS.getName(), new AttributeModifier(
+					ARMOR_MODIFIERS[slot.getIndex()], "Armor toughness", (double) this.toughness, 0));
+
+			multimap.put(SharedMonsterAttributes.ARMOR.getName(), new AttributeModifier(
+					ARMOR_MODIFIERS[slot.getIndex()], "Armor modifier", (double) nbt.armorRating, 0));
+			multimap.put(SharedMonsterAttributes.ARMOR_TOUGHNESS.getName(), new AttributeModifier(
+					ARMOR_MODIFIERS[slot.getIndex()], "Armor toughness", (double) nbt.armorToughness, 0));
 		}
 
 		NBTTagList traitsTagList = TagUtil.getTraitsTagList(stack);
@@ -334,7 +358,7 @@ public abstract class ArmorCore extends ArmorBase implements IToolStationDisplay
 	}
 
 	public List<String> getInformation(ItemStack stack, boolean detailed) {
-		TooltipBuilder info = new TooltipBuilder(stack);
+		ArmorToolTipBuilder info = new ArmorToolTipBuilder(stack);
 
 		info.addDurability(!detailed);
 //		if (hasCategory(Category.HARVEST)) {
@@ -347,6 +371,10 @@ public abstract class ArmorCore extends ArmorBase implements IToolStationDisplay
 //			info.addProjectileBonusDamage();
 //		}
 //		info.addAttack();
+
+		info.addArmorRating();
+		info.addArmorToughness();
+		info.addArmorPotency();
 
 		if (ToolHelper.getFreeModifiers(stack) > 0) {
 			info.addFreeModifiers();
