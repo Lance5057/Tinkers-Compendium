@@ -31,7 +31,7 @@ public class TraitTickTock extends TraitProgressiveStats {
   protected static float ATTACK_STEP = 0.005f;
 
   public TraitTickTock() {
-    super("td_ticktock", TextFormatting.YELLOW);
+    super("ticktock", TextFormatting.YELLOW);
   }
 
   @Override

@@ -104,8 +104,8 @@ public class TDParts extends ModuleBase
 		rivets = regToolPart(Material.VALUE_Ingot * 1, "rivets", event);
 		clasp = regToolPart(Material.VALUE_Ingot * 1, "clasp", event);
 //
-//		ringShank = regToolPart(Material.VALUE_Ingot * 2, "ringShank", event);
-//		setting = regToolPart(Material.VALUE_Ingot * 1, "setting", event);
+		ringShank = regToolPart(Material.VALUE_Ingot * 2, "ringShank", event);
+		setting = regToolPart(Material.VALUE_Ingot * 1, "setting", event);
 //		wire = regToolPart(Material.VALUE_Ingot * 1, "wire", event);
 		filigree = regToolPart(Material.VALUE_Ingot * 1, "filigree", event);
 

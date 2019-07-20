@@ -9,6 +9,7 @@ import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
+import slimeknights.tconstruct.library.modifiers.ModifierAspect;
 
 public class ModAntiKnockback extends ModifierTDTrait {
 
@@ -23,5 +24,10 @@ public class ModAntiKnockback extends ModifierTDTrait {
 		if (!att.hasModifier(TDToolEvents.td_knockback)) {
 			att.applyModifier(TDToolEvents.td_knockback);
 		}
+	}
+
+	@Override
+	protected ModifierAspect[] getAspects() {
+		return new ModifierAspect[] {ModifierAspect.freeModifier};
 	}
 }

@@ -36,8 +36,7 @@ public class TinkersGrieves extends ArmorCore {
 	public TinkersGrieves() {
 		super(EntityEquipmentSlot.LEGS, new PartMaterialType(TDParts.armorPlate, LegsMaterialStats.TYPE),
 				new PartMaterialType(TDParts.chainmail, LegsMaterialStats.TYPE),
-				PartMaterialType.handle(TDParts.filigree),
-				PartMaterialType.extra(TDParts.clasp),
+				PartMaterialType.handle(TDParts.filigree), PartMaterialType.extra(TDParts.clasp),
 				new PartMaterialType(TDParts.fabric, FabricMaterialStats.TYPE));
 		setUnlocalizedName("tinkersgrieves");
 	}
@@ -48,7 +47,7 @@ public class TinkersGrieves extends ArmorCore {
 		NBTTagCompound base = new NBTTagCompound();
 
 		ResourceLocation rc = ArmorTextureBuilder.createArmorTexture("grieves",
-				new String[] { "plate", "chain", "trim", "clasp", "cloth" }, materials);
+				new String[] { "plate", "chain", "trim", "clasp", "cloth" }, materials, 96, 96);
 
 		if (rc != null) {
 			base.setString(ArmorTags.TexLoc, rc.toString());
@@ -103,5 +102,10 @@ public class TinkersGrieves extends ArmorCore {
 		data.modifiers = 5;
 
 		return data;
+	}
+
+	@Override
+	public String getArmorType() {
+		return "grieves";
 	}
 }

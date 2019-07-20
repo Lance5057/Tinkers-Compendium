@@ -27,4 +27,7 @@ public final class ArmorTags {
 
 	// Discharge Trait
 	public static final String Charge = "Charge";
+	
+	//Ranked Trait
+	public static final String Kills = "kills";
 }

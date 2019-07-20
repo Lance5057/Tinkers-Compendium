@@ -2,13 +2,10 @@ package lance5057.tDefense.util;
 
 import lance5057.tDefense.core.library.ArmorNBT;
 import lance5057.tDefense.core.library.ArmorTags;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 import net.minecraft.nbt.NBTTagString;
-import net.minecraft.util.math.BlockPos;
-import slimeknights.tconstruct.library.tinkering.Category;
-import slimeknights.tconstruct.library.tools.ToolNBT;
 import slimeknights.tconstruct.library.utils.TagUtil;
 import slimeknights.tconstruct.library.utils.Tags;
 
@@ -92,5 +89,17 @@ public final class ArmorTagUtil {
 		NBTTagCompound tag = stack.getTagCompound();
 		NBTTagCompound atag = tag.getCompoundTag(Tags.BASE_DATA).getCompoundTag(ArmorTags.ArmorBaseTag);
 		return atag.getInteger(ArmorTags.Charge);
+	}
+	
+	public static void setKills(ItemStack stack, int rank) {
+		NBTTagCompound tag = stack.getTagCompound();
+		NBTTagCompound atag = tag.getCompoundTag(Tags.BASE_DATA).getCompoundTag(ArmorTags.ArmorBaseTag);
+		atag.setInteger(ArmorTags.Kills, rank);
+	}
+	
+	public static int getKills(ItemStack stack) {
+		NBTTagCompound tag = stack.getTagCompound();
+		NBTTagCompound atag = tag.getCompoundTag(Tags.BASE_DATA).getCompoundTag(ArmorTags.ArmorBaseTag);
+		return atag.getInteger(ArmorTags.Kills);
 	}
 }

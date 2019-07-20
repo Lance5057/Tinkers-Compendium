@@ -1,12 +1,37 @@
 package lance5057.tDefense.core.materials;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+
+import org.apache.commons.lang3.StringUtils;
+
 import com.google.common.eventbus.Subscribe;
+
 import gnu.trove.map.hash.THashMap;
 import lance5057.tDefense.Reference;
 import lance5057.tDefense.TCConfig;
 import lance5057.tDefense.TinkersCompendium;
-import lance5057.tDefense.core.library.materialutilities.*;
-import lance5057.tDefense.core.materials.stats.*;
+import lance5057.tDefense.core.blocks.fluid.ChorusJuice;
+import lance5057.tDefense.core.blocks.fluid.VibrantFluid;
+import lance5057.tDefense.core.blocks.fluid.VileFluid;
+import lance5057.tDefense.core.library.materialutilities.ArmorMaterial;
+import lance5057.tDefense.core.library.materialutilities.CraftableFabricMaterial;
+import lance5057.tDefense.core.library.materialutilities.MaterialComponents;
+import lance5057.tDefense.core.library.materialutilities.MaterialHelper;
+import lance5057.tDefense.core.library.materialutilities.MaterialOre;
+import lance5057.tDefense.core.library.materialutilities.MeltableMaterial;
+import lance5057.tDefense.core.library.materialutilities.PresetMaterial;
+import lance5057.tDefense.core.materials.stats.ArmorMaterialStats;
+import lance5057.tDefense.core.materials.stats.BaubleMaterialStats;
+import lance5057.tDefense.core.materials.stats.ChestMaterialStats;
+import lance5057.tDefense.core.materials.stats.FabricMaterialStats;
+import lance5057.tDefense.core.materials.stats.FeetMaterialStats;
+import lance5057.tDefense.core.materials.stats.HelmMaterialStats;
+import lance5057.tDefense.core.materials.stats.LegsMaterialStats;
+import lance5057.tDefense.core.materials.stats.ShieldMaterialStats;
 import lance5057.tDefense.core.parts.ComponentPart;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
@@ -31,13 +56,18 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryEntry;
-import org.apache.commons.lang3.StringUtils;
 import slimeknights.tconstruct.TConstruct;
 import slimeknights.tconstruct.library.TinkerRegistry;
 import slimeknights.tconstruct.library.Util;
 import slimeknights.tconstruct.library.fluid.FluidColored;
 import slimeknights.tconstruct.library.fluid.FluidMolten;
-import slimeknights.tconstruct.library.materials.*;
+import slimeknights.tconstruct.library.materials.BowMaterialStats;
+import slimeknights.tconstruct.library.materials.BowStringMaterialStats;
+import slimeknights.tconstruct.library.materials.ExtraMaterialStats;
+import slimeknights.tconstruct.library.materials.HandleMaterialStats;
+import slimeknights.tconstruct.library.materials.HeadMaterialStats;
+import slimeknights.tconstruct.library.materials.Material;
+import slimeknights.tconstruct.library.materials.MaterialTypes;
 import slimeknights.tconstruct.library.smeltery.AlloyRecipe;
 import slimeknights.tconstruct.library.utils.HarvestLevels;
 import slimeknights.tconstruct.shared.TinkerCommons;
@@ -46,8 +76,6 @@ import slimeknights.tconstruct.smeltery.TinkerSmeltery;
 import slimeknights.tconstruct.smeltery.block.BlockMolten;
 import slimeknights.tconstruct.smeltery.block.BlockTinkerFluid;
 import slimeknights.tconstruct.tools.TinkerMaterials;
-
-import java.util.*;
 
 @Mod.EventBusSubscriber(modid = Reference.MOD_ID)
 public class CompendiumMaterials {
@@ -1609,9 +1637,24 @@ public class CompendiumMaterials {
 		}
 
 		fluidChorusJuice = regFluid("chorusjuice", 0xd982ff, event);
+		registerBlock(event.getRegistry(), new ChorusJuice(fluidChorusJuice),
+				fluidChorusJuice.getName());
+		TinkersCompendium.proxy.registerFluidModels(fluidChorusJuice);
+		
 		fluidVile = regFluid("vile", 0x111111, event);
+		registerBlock(event.getRegistry(), new VileFluid(fluidVile),
+				fluidVile.getName());
+		TinkersCompendium.proxy.registerFluidModels(fluidVile);
+		
 		fluidVibrant = regFluid("vibrant", 0x76ff00, event);
+		registerBlock(event.getRegistry(), new VibrantFluid(fluidVibrant),
+				fluidVibrant.getName());
+		TinkersCompendium.proxy.registerFluidModels(fluidVibrant);
+		
 		fluidSlush = regFluid("slush", 0xbfefff, event);
+		registerClassicBlock(event.getRegistry(), fluidSlush);
+		TinkersCompendium.proxy.registerFluidModels(fluidSlush);
+		
 		fluidQuartz = regMoltenFluid("quartz", 0xdddddd, event);
 		fluidDragonsBreath = regMoltenFluid("dragonsbreath", 0x7f00b7, event);
 	}
@@ -1623,19 +1666,32 @@ public class CompendiumMaterials {
 //				m.setupRecipes(event);
 //		}
 	}
-
+	
 	static FluidColored regFluid(String name, int color, RegistryEvent.Register<Block> event) {
 		FluidColored f = new FluidColored(name, color);
 		f.setUnlocalizedName(Reference.MOD_ID + "." + name);
 		FluidRegistry.registerFluid(f);
 		FluidRegistry.addBucketForFluid(f);
 
-		registerClassicBlock(event.getRegistry(), f);
-
-		TinkersCompendium.proxy.registerFluidModels(f);
+//		registerClassicBlock(event.getRegistry(), f);
+//
+//		TinkersCompendium.proxy.registerFluidModels(f);
 
 		return f;
 	}
+
+//	static FluidColored regFluidWithBlock(String name, int color, RegistryEvent.Register<Block> event) {
+//		FluidColored f = new FluidColored(name, color);
+//		f.setUnlocalizedName(Reference.MOD_ID + "." + name);
+//		FluidRegistry.registerFluid(f);
+//		FluidRegistry.addBucketForFluid(f);
+//
+//		registerClassicBlock(event.getRegistry(), f);
+//
+//		TinkersCompendium.proxy.registerFluidModels(f);
+//
+//		return f;
+//	}
 
 	static FluidMolten regMoltenFluid(String name, int color, RegistryEvent.Register<Block> event) {
 		FluidMolten f = new FluidMolten(name, color);

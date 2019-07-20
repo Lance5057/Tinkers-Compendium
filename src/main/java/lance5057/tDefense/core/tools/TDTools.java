@@ -18,6 +18,7 @@ import lance5057.tDefense.core.tools.armor.heavy.TinkersGrieves;
 import lance5057.tDefense.core.tools.armor.heavy.TinkersHelm;
 import lance5057.tDefense.core.tools.armor.heavy.TinkersSabatons;
 import lance5057.tDefense.core.tools.bases.ArmorCore;
+import lance5057.tDefense.core.tools.bases.BaubleTool;
 import lance5057.tDefense.core.tools.basic.FireDrill;
 import lance5057.tDefense.core.tools.basic.FishingRod;
 import lance5057.tDefense.core.tools.basic.HeaterShield;
@@ -28,6 +29,8 @@ import lance5057.tDefense.core.tools.basic.Saw;
 import lance5057.tDefense.core.tools.basic.Shears;
 import lance5057.tDefense.core.tools.basic.TowerShield;
 import lance5057.tDefense.core.tools.basic.Zweihander;
+import lance5057.tDefense.core.tools.baubles.TinkerRing;
+import lance5057.tDefense.core.tools.baubles.TinkersTabard;
 import lance5057.tDefense.core.workstations.blocks.ArmorStationBlock;
 import lance5057.tDefense.core.workstations.tileentities.ArmorStationTile;
 import net.minecraft.block.Block;
@@ -90,8 +93,9 @@ public class TDTools {
 
 	// baubles
 	public static ToolCore sheathe;
-	// public static ToolCore ring;
+	public static ToolCore ring;
 	// public static ToolCore amulet;
+	public static BaubleTool tabard;
 
 	static ArrayList<Item> itemList = new ArrayList<Item>();
 
@@ -191,8 +195,19 @@ public class TDTools {
 			regArmor(sabatons, "sabatons", event);
 		}
 
-		//sheathe = new Sheathe();
-		// ring = new Ring();
+		if (TinkersCompendium.config.baubles.enableBaubles) {
+			if (TinkersCompendium.config.baubles.enableTabard) {
+				tabard = new TinkersTabard();
+				regTool(tabard, "tabard", event);
+			}
+			if (TinkersCompendium.config.baubles.enableRing) { 
+				ring = new TinkerRing();
+				regTool(ring, "ring", event);
+			}
+		}
+
+		// sheathe = new Sheathe();
+		
 		// amulet = new Amulet();
 
 		// regTool(boots, "boots", event);
@@ -202,8 +217,8 @@ public class TDTools {
 		// "items/battleaxe/_halbard_accessory"));
 
 		//
-		//regTool(sheathe, "sheathe", event);
-		// regTool(ring, "ring", event);
+		// regTool(sheathe, "sheathe", event);
+		
 		// regTool(amulet, "amulet", event);
 
 		final IForgeRegistry registry = event.getRegistry();
@@ -310,6 +325,15 @@ public class TDTools {
 			TCRegistry.registerArmorCrafting(breastplate);
 			TCRegistry.registerArmorCrafting(grieves);
 			TCRegistry.registerArmorCrafting(sabatons);
+		}
+		
+		if (TinkersCompendium.config.baubles.enableBaubles) {
+			if (TinkersCompendium.config.baubles.enableTabard) {
+				TinkerRegistry.registerToolCrafting(tabard);
+			}
+			if (TinkersCompendium.config.baubles.enableRing) { 
+				TinkerRegistry.registerToolCrafting(ring);
+			}
 		}
 
 		// TinkerRegistry.registerToolCrafting(sheathe);

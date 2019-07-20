@@ -12,6 +12,9 @@ import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.entity.passive.EntitySkeletonHorse;
 import net.minecraft.entity.passive.EntityZombieHorse;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.MobEffects;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.BlockFluidClassic;
@@ -55,6 +58,10 @@ public class VileFluid extends BlockFluidClassic {
 			pig.setPosition(entity.posX, entity.posY, entity.posZ);
 			world.spawnEntity(pig);
 			entity.setDead();
+		}
+		if (entity instanceof EntityPlayer) {
+			EntityPlayer p = (EntityPlayer) entity;
+			p.addPotionEffect(new PotionEffect(MobEffects.WITHER, 1));
 		}
 	}
 }

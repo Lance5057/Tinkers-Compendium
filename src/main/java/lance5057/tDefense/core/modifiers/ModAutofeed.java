@@ -10,6 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
+import slimeknights.tconstruct.library.modifiers.ModifierAspect;
 import slimeknights.tconstruct.library.modifiers.ModifierNBT;
 import slimeknights.tconstruct.library.utils.TinkerUtil;
 
@@ -56,5 +57,10 @@ public class ModAutofeed extends ModifierTDTrait {
 				}
 			}
 		}
+	}
+
+	@Override
+	protected ModifierAspect[] getAspects() {
+		return new ModifierAspect[] {ModifierAspect.freeModifier};
 	}
 }

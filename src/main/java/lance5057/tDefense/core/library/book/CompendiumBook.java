@@ -22,7 +22,7 @@ import slimeknights.tconstruct.library.book.sectiontransformer.ToolSectionTransf
 @SideOnly(Side.CLIENT)
 public class CompendiumBook extends BookData {
 
-	public final static BookData INSTANCE = BookLoader.registerBook(Reference.MOD_ID, false, false);
+	public final static BookData INSTANCE = BookLoader.registerBook(Reference.MOD_ID + ":" + Reference.MOD_ID, false, false);
 
 	public static void init() {
 		//BookLoader.registerPageType(ContentMaterial.ID, ContentMaterial.class);

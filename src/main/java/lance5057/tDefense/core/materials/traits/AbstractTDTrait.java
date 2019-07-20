@@ -4,6 +4,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.client.event.EntityViewRenderEvent.FogDensity;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
@@ -62,6 +63,12 @@ public abstract class AbstractTDTrait extends AbstractTrait {
 	
 	@SideOnly(Side.CLIENT)
 	public void alterFogDensity(FogDensity event)
+	{
+		
+	}
+
+	@SideOnly(Side.CLIENT)
+	public void renderHUD(RenderGameOverlayEvent.Post e)
 	{
 		
 	}

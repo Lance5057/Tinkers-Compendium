@@ -70,6 +70,9 @@ public class CompendiumModifiers {
 	
 	public static Modifier frostwalker;
 	public static Modifier firewalker;
+	
+	public static Modifier clock = new ModClock(); 
+	public static Modifier compass = new ModCompass(); 
 
 	static ArrayList<Item> itemList = new ArrayList<Item>();
 	static ArrayList<Block> blockList = new ArrayList<Block>();
@@ -159,7 +162,8 @@ public class CompendiumModifiers {
 		frostwalker.addRecipeMatch(new RecipeMatch.Item(new ItemStack(item_icesole), 1));
 		firewalker.addRecipeMatch(new RecipeMatch.Item(new ItemStack(item_firesole), 1));
 		
-		
+		clock.addRecipeMatch(new RecipeMatch.Item(new ItemStack(Items.CLOCK), 1));
+		compass.addRecipeMatch(new RecipeMatch.Item(new ItemStack(Items.COMPASS), 1));
 	}
 
 	public void postInit() {

@@ -10,6 +10,7 @@ import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import slimeknights.tconstruct.library.modifiers.ModifierAspect;
 import slimeknights.tconstruct.library.modifiers.ModifierNBT;
 import slimeknights.tconstruct.library.tools.ToolCore;
 import slimeknights.tconstruct.library.utils.TinkerUtil;
@@ -59,5 +60,10 @@ public class ModExtraHealth extends ModifierTDTrait {
 		NBTTagCompound tag = TinkerUtil.getModifierTag(stack, identifier);
 
 		return ModifierNBT.readTag(tag).level <= maxLevel;
+	}
+
+	@Override
+	protected ModifierAspect[] getAspects() {
+		return new ModifierAspect[] {ModifierAspect.freeModifier};
 	}
 }

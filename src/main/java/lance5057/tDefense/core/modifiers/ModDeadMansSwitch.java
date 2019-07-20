@@ -7,6 +7,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import slimeknights.tconstruct.library.modifiers.ModifierAspect;
 import slimeknights.tconstruct.library.modifiers.ModifierNBT;
 import slimeknights.tconstruct.library.utils.TinkerUtil;
 
@@ -44,5 +45,10 @@ public class ModDeadMansSwitch extends ModifierTDTrait {
 			return ModifierNBT.readTag(tag).level <= maxLevel;
 		}
 		return false;
+	}
+
+	@Override
+	protected ModifierAspect[] getAspects() {
+		return new ModifierAspect[] {ModifierAspect.freeModifier};
 	}
 }

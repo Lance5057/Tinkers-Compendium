@@ -102,6 +102,9 @@ public class TinkersCompendium {
 		
 		proxy.preInit();
 
+		if (FMLCommonHandler.instance().getSide() == Side.CLIENT) {
+			CompendiumBook.init();
+		}
 	}
 
 	@Mod.EventHandler
@@ -126,9 +129,7 @@ public class TinkersCompendium {
 
 		phandler.init();
 
-		if (FMLCommonHandler.instance().getSide() == Side.CLIENT) {
-			CompendiumBook.init();
-		}
+		
 	}
 
 	@Mod.EventHandler

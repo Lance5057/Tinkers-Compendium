@@ -1,6 +1,5 @@
 package lance5057.tDefense.core.tools.armor.heavy;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import lance5057.tDefense.Reference;
@@ -10,31 +9,24 @@ import lance5057.tDefense.core.library.ArmorNBT;
 import lance5057.tDefense.core.library.ArmorTags;
 import lance5057.tDefense.core.library.ArmorTextureBuilder;
 import lance5057.tDefense.core.materials.stats.ArmorMaterialStats;
-import lance5057.tDefense.core.materials.stats.ChestMaterialStats;
 import lance5057.tDefense.core.materials.stats.FabricMaterialStats;
 import lance5057.tDefense.core.materials.stats.HelmMaterialStats;
 import lance5057.tDefense.core.parts.TDParts;
 import lance5057.tDefense.core.tools.TDToolEvents;
-import lance5057.tDefense.core.tools.armor.renderers.ArmorRenderer;
-import lance5057.tDefense.core.tools.armor.renderers.heavy.ModelTinkersHelm;
 import lance5057.tDefense.core.tools.bases.ArmorCore;
+import lance5057.tDefense.core.tools.baubles.renderers.ModelTinkerTabard;
 import lance5057.tDefense.util.ArmorTagUtil;
-import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -43,8 +35,6 @@ import slimeknights.tconstruct.library.materials.HandleMaterialStats;
 import slimeknights.tconstruct.library.materials.Material;
 import slimeknights.tconstruct.library.materials.MaterialTypes;
 import slimeknights.tconstruct.library.tinkering.PartMaterialType;
-import slimeknights.tconstruct.library.utils.TagUtil;
-import slimeknights.tconstruct.library.utils.TinkerUtil;
 import slimeknights.tconstruct.tools.TinkerTools;
 
 public class TinkersHelm extends ArmorCore {
@@ -62,7 +52,7 @@ public class TinkersHelm extends ArmorCore {
 		NBTTagCompound base = new NBTTagCompound();
 
 		ResourceLocation rc = ArmorTextureBuilder.createArmorTexture("helm",
-				new String[] { "top", "chain", "trim", "plate", "cloth" }, materials);
+				new String[] { "top", "chain", "trim", "plate", "cloth" }, materials, 64, 64);
 
 		if (rc != null) {
 			base.setString(ArmorTags.TexLoc, rc.toString());
@@ -75,7 +65,8 @@ public class TinkersHelm extends ArmorCore {
 	@Override
 	public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, EntityEquipmentSlot armorSlot,
 			ModelBiped _default) {
-		return new ModelTinkersHelm(itemStack);
+		return new ModelTinkerTabard(itemStack);
+		//return new ModelTinkersHelm(itemStack);
 	}
 
 	@Override
@@ -160,5 +151,10 @@ public class TinkersHelm extends ArmorCore {
 				GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 			}
 		}
+	}
+
+	@Override
+	public String getArmorType() {
+		return "helm";
 	}
 }

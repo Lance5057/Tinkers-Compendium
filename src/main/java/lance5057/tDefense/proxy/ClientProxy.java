@@ -89,8 +89,9 @@ public class ClientProxy extends CommonProxy {
 	ArmorBuildGuiInfo sabatonsGUI;
 
 	// ToolBuildGuiInfo sheatheGUI;
-	// ToolBuildGuiInfo ringGUI;
+	ToolBuildGuiInfo ringGUI;
 	// ToolBuildGuiInfo amuletGUI;
+	ToolBuildGuiInfo tabardGUI;
 
 	// public static SheatheModel sheathe;
 
@@ -299,8 +300,16 @@ public class ClientProxy extends CommonProxy {
 			sabatonsGUI = new ArmorBuildGuiInfo(TDTools.sabatons);
 		}
 
+		if (TinkersCompendium.config.baubles.enableBaubles) {
+			if (TinkersCompendium.config.baubles.enableTabard) {
+				tabardGUI = new ToolBuildGuiInfo(TDTools.tabard);
+			}
+			if (TinkersCompendium.config.baubles.enableRing) {
+				ringGUI = new ToolBuildGuiInfo(TDTools.ring);
+			}
+		}
+
 		// sheatheGUI = new ToolBuildGuiInfo(TDTools.sheathe);
-		// ringGUI = new ToolBuildGuiInfo(TDTools.ring);
 		// amuletGUI = new ToolBuildGuiInfo(TDTools.amulet);
 
 	}
@@ -352,6 +361,15 @@ public class ClientProxy extends CommonProxy {
 			TDClientRegistry.addArmorBuilding(breastplateGUI);
 			TDClientRegistry.addArmorBuilding(grievesGUI);
 			TDClientRegistry.addArmorBuilding(sabatonsGUI);
+		}
+
+		if (TinkersCompendium.config.baubles.enableBaubles) {
+			if (TinkersCompendium.config.baubles.enableTabard) {
+				TinkerRegistryClient.addToolBuilding(tabardGUI);
+			}
+			if (TinkersCompendium.config.baubles.enableRing) {
+				TinkerRegistryClient.addToolBuilding(ringGUI);
+			}
 		}
 	}
 
@@ -491,10 +509,21 @@ public class ClientProxy extends CommonProxy {
 		// sheatheGUI.addSlotPosition(34, 33);
 		// sheatheGUI.addSlotPosition(34, 51);
 		//
-		// ringGUI.positions.clear();
-		// ringGUI.addSlotPosition(34, 15);
-		// ringGUI.addSlotPosition(34, 33);
-		// ringGUI.addSlotPosition(34, 51);
+
+		if (TinkersCompendium.config.baubles.enableBaubles) {
+			if (TinkersCompendium.config.baubles.enableTabard) {
+				tabardGUI.positions.clear();
+				tabardGUI.addSlotPosition(34, 15);
+				tabardGUI.addSlotPosition(34, 33);
+			}
+			if (TinkersCompendium.config.baubles.enableRing) {
+				ringGUI.positions.clear();
+				ringGUI.addSlotPosition(34, 15);
+				ringGUI.addSlotPosition(34, 33);
+				ringGUI.addSlotPosition(34, 51);
+			}
+		}
+
 		//
 		// amuletGUI.positions.clear();
 		// amuletGUI.addSlotPosition(34, 15);

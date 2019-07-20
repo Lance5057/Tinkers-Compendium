@@ -34,35 +34,32 @@ import slimeknights.tconstruct.library.utils.TagUtil;
 
 public class TinkersSabatons extends ArmorCore {
 	public TinkersSabatons() {
-		super(EntityEquipmentSlot.FEET,new PartMaterialType(TDParts.armorPlate, FeetMaterialStats.TYPE),
+		super(EntityEquipmentSlot.FEET, new PartMaterialType(TDParts.armorPlate, FeetMaterialStats.TYPE),
 				new PartMaterialType(TDParts.armorPlate, FeetMaterialStats.TYPE),
-				PartMaterialType.handle(TDParts.filigree),
-				PartMaterialType.extra(TDParts.rivets),
+				PartMaterialType.handle(TDParts.filigree), PartMaterialType.extra(TDParts.rivets),
 				new PartMaterialType(TDParts.fabric, FabricMaterialStats.TYPE));
 		setUnlocalizedName("tinkerssabatons");
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public NBTTagCompound setupTexture(List<Material> materials)
-	{
+	public NBTTagCompound setupTexture(List<Material> materials) {
 		NBTTagCompound base = new NBTTagCompound();
 
-		ResourceLocation rc = ArmorTextureBuilder.createArmorTexture("sabatons", new String[] { "plates", "caps", "trim", "rivets", "soles" }, materials);
+		ResourceLocation rc = ArmorTextureBuilder.createArmorTexture("sabatons",
+				new String[] { "plates", "caps", "trim", "rivets", "soles" }, materials, 96, 96);
 
-		if (rc != null)
-		{
+		if (rc != null) {
 			base.setString(ArmorTags.TexLoc, rc.toString());
 			return base;
 		}
 		return null;
 	}
-	
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, EntityEquipmentSlot armorSlot, ModelBiped _default)
-	{
+	public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, EntityEquipmentSlot armorSlot,
+			ModelBiped _default) {
 		return new ModelTinkersSabatons(itemStack);
 	}
 
@@ -78,19 +75,17 @@ public class TinkersSabatons extends ArmorCore {
 	}
 
 	@Override
-	public float damagePotential()
-	{
+	public float damagePotential() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public double attackSpeed()
-	{
+	public double attackSpeed() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-	
+
 	@Override
 	protected ArmorNBT buildDefaultTag(List<Material> materials) {
 		ArmorNBT data = new ArmorNBT();
@@ -107,5 +102,10 @@ public class TinkersSabatons extends ArmorCore {
 		data.modifiers = 5;
 
 		return data;
+	}
+
+	@Override
+	public String getArmorType() {
+		return "sabatons";
 	}
 }

@@ -130,6 +130,13 @@
 			}
 		  }
 		],
+		"mithril": [
+		  {
+			"custom": {
+			  "fluid": "mithril"
+			}
+		  }
+		],
 		"slush": [
 		  {
 			"custom": {
