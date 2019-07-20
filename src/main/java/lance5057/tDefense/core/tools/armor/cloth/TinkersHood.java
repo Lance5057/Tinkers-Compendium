@@ -102,7 +102,7 @@ public class TinkersHood extends ArmorCore
 	{
 		NBTTagCompound base = new NBTTagCompound();
 
-		ResourceLocation rc = ArmorTextureBuilder.createArmorTexture("hood", new String[] { "cloth", "trim", "metal" }, materials);
+		ResourceLocation rc = ArmorTextureBuilder.createArmorTexture("hood", new String[] { "cloth", "trim", "metal" }, materials, 96, 96);
 
 		if (rc != null)
 		{
@@ -124,5 +124,10 @@ public class TinkersHood extends ArmorCore
 	{
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public String getArmorType() {
+		return "hood";
 	}
 }

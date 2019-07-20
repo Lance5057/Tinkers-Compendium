@@ -1,6 +1,7 @@
-//package lance5057.tDefense.armor.renderers;
+//package lance5057.tDefense.core.tools.armor.renderers;
 //
 //import net.minecraft.client.model.ModelRenderer;
+//import net.minecraft.item.ItemStack;
 //
 ///**
 // * ModelTinkersGauntlet - Either Mojang or a mod author
@@ -33,9 +34,9 @@
 //	public ModelRenderer	SettingL;
 //	public ModelRenderer	ArmSpikesBackL;
 //
-//	public ModelTinkersGauntlets()
+//	public ModelTinkersGauntlets(ItemStack stack)
 //	{
-//		super(1.0f, 0, 64, 64);
+//		super(1.0f, 0, 64, 64, stack);
 //
 //		textureWidth = 64;
 //		textureHeight = 64;
@@ -225,17 +226,5 @@
 //		KnuckleSpikesR.isHidden = true;
 //		SettingL.isHidden = true;
 //		SettingR.isHidden = true;
-//
-//		init();
-//	}
-//
-//	/**
-//	 * This is a helper function from Tabula to set the rotation of model parts
-//	 */
-//	public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z)
-//	{
-//		modelRenderer.rotateAngleX = x;
-//		modelRenderer.rotateAngleY = y;
-//		modelRenderer.rotateAngleZ = z;
 //	}
 //}

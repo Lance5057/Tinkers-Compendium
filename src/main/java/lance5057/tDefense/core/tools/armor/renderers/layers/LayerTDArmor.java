@@ -68,7 +68,7 @@ public abstract class LayerTDArmor<T extends ModelBase> implements LayerRenderer
 					t.setModelAttributes(this.renderer.getMainModel());
 					t.setLivingAnimations(entityLivingBaseIn, limbSwing, limbSwingAmount, partialTicks);
 					this.setModelSlotVisible(t, slotIn);
-					Map<String, TextureAtlasSprite> sprites = CustomTextureCreator.sprites.get("tinkersdefense:armor/helm/_helm_visor");
+					//Map<String, TextureAtlasSprite> sprites = CustomTextureCreator.sprites.get("tinkersdefense:armor/helm/_helm_visor");
 					List<String> textures = getArmorResource(entityLivingBaseIn, itemstack, slotIn, null);
 					for (String s : textures) {
 						CustomTextureCreator.sprites.get(s);

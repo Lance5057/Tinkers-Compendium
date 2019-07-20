@@ -30,8 +30,7 @@ public class TinkersBreastplate extends ArmorCore {
 	public TinkersBreastplate() {
 		super(EntityEquipmentSlot.CHEST, new PartMaterialType(TinkerTools.largePlate, ChestMaterialStats.TYPE),
 				new PartMaterialType(TDParts.armorPlate, ChestMaterialStats.TYPE),
-				PartMaterialType.handle(TDParts.filigree),
-				PartMaterialType.extra(TDParts.chainmail),
+				PartMaterialType.handle(TDParts.filigree), PartMaterialType.extra(TDParts.chainmail),
 				new PartMaterialType(TDParts.fabric, FabricMaterialStats.TYPE));
 		setUnlocalizedName("tinkersbreastplate");
 	}
@@ -42,7 +41,7 @@ public class TinkersBreastplate extends ArmorCore {
 		NBTTagCompound base = new NBTTagCompound();
 
 		ResourceLocation rc = ArmorTextureBuilder.createArmorTexture("breastplate",
-				new String[] { "plate", "smallplate", "trim", "chain", "cloth" }, materials);
+				new String[] { "plate", "smallplate", "trim", "chain", "cloth" }, materials, 128, 128);
 
 		if (rc != null) {
 			base.setString(ArmorTags.TexLoc, rc.toString());
@@ -56,7 +55,7 @@ public class TinkersBreastplate extends ArmorCore {
 	public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, EntityEquipmentSlot armorSlot,
 			ModelBiped _default) {
 		return new ModelTinkersBreastplate(itemStack);
-		//return new ModelArmorTerrasteel(itemStack, armorSlot);
+		// return new ModelArmorTerrasteel(itemStack, armorSlot);
 	}
 
 	@Override
@@ -99,5 +98,10 @@ public class TinkersBreastplate extends ArmorCore {
 		data.modifiers = 5;
 
 		return data;
+	}
+
+	@Override
+	public String getArmorType() {
+		return "breastplate";
 	}
 }

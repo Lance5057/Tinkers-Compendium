@@ -10,7 +10,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import slimeknights.mantle.util.RecipeMatch;
 import slimeknights.tconstruct.library.TinkerRegistry;
-import slimeknights.tconstruct.library.Util;
 import slimeknights.tconstruct.library.modifiers.IModifierDisplay;
 import slimeknights.tconstruct.library.modifiers.ModifierAspect;
 import slimeknights.tconstruct.library.modifiers.ModifierNBT;
@@ -20,7 +19,7 @@ import slimeknights.tconstruct.library.utils.TinkerUtil;
  * Represents a modifier that has trait-logic Modifier can have multiple levels.
  * Since this is intended for modifiers it uses a modifier
  */
-public class ModifierTDTrait extends AbstractTDTrait implements IModifierDisplay {
+public abstract class ModifierTDTrait extends AbstractTDTrait implements IModifierDisplay {
 
 	protected final int maxLevel;
 
@@ -32,8 +31,11 @@ public class ModifierTDTrait extends AbstractTDTrait implements IModifierDisplay
 		this.maxLevel = 0;
 		this.aspects.clear();
 
-		addAspects(new ModifierAspect.DataAspect(this, color), ModifierAspect.freeModifier);
+		addAspects(new ModifierAspect.DataAspect(this, color));
+		addAspects(getAspects());
 	}
+	
+	protected abstract ModifierAspect[] getAspects();
 
 	public ModifierTDTrait(String identifier, int color, int maxLevel, int countPerLevel) {
 		super(identifier, color);
@@ -44,14 +46,8 @@ public class ModifierTDTrait extends AbstractTDTrait implements IModifierDisplay
 		this.maxLevel = maxLevel;
 		this.aspects.clear();
 
-		if (maxLevel > 0 && countPerLevel > 0) {
-			addAspects(new ModifierAspect.MultiAspect(this, color, maxLevel, countPerLevel, 1));
-		} else {
-			if (maxLevel > 0) {
-				addAspects(new ModifierAspect.LevelAspect(this, maxLevel));
-			}
-			addAspects(new ModifierAspect.DataAspect(this, color), ModifierAspect.freeModifier);
-		}
+		addAspects(new ModifierAspect.DataAspect(this, color));
+		addAspects(getAspects());
 	}
 
 	@Override

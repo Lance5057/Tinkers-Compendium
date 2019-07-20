@@ -166,6 +166,8 @@ public class CompendiumTraits {
 
 	private AbstractTrait mythical1 = new TraitMythical(1);
 	private AbstractTrait mythical2 = new TraitMythical(2);
+	
+	public TraitRegal regal = new TraitRegal();
 
 	public void preInit() {
 
@@ -344,6 +346,10 @@ public class CompendiumTraits {
 		if (CompendiumMaterials.mithril != null){
 			CompendiumMaterials.mithril.mat.addTrait(mythical1);
 			CompendiumMaterials.mithril.mat.addTrait(mythical2, HeadMaterialStats.TYPE);
+		}
+		
+		if(CompendiumMaterials.queensgold != null) {
+			CompendiumMaterials.queensgold.mat.addTrait(regal, HeadMaterialStats.TYPE);
 		}
 	}
 

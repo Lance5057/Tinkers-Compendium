@@ -15,6 +15,7 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.Sets;
 
+import lance5057.tDefense.Reference;
 import lance5057.tDefense.core.library.ArmorNBT;
 import lance5057.tDefense.core.library.ArmorTags;
 import lance5057.tDefense.core.library.ArmorToolTipBuilder;
@@ -787,6 +788,18 @@ public abstract class ArmorCore extends ArmorBase implements IToolStationDisplay
 		}
 		return s;
 	}
+	
+	private String buildRC(ItemStack stack)
+	{
+		String texName = Reference.MOD_ID + "_" + getArmorType();
+		for (Material m : TinkerUtil.getMaterialsFromTagList(TagUtil.getBaseMaterialsTagList(stack))) {
+			texName += "_" + m.identifier;
+		}
+		
+		return texName;
+	}
+	
+	public abstract String getArmorType();
 
 	private boolean checkForTexture(String s) {
 		if (Minecraft.getMinecraft().getTextureManager().getTexture(new ResourceLocation(s)) != null)

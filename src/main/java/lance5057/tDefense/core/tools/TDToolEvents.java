@@ -6,6 +6,7 @@ import lance5057.tDefense.Reference;
 import lance5057.tDefense.core.materials.traits.AbstractTDTrait;
 import lance5057.tDefense.core.tools.bases.ArmorCore;
 import lance5057.tDefense.core.tools.bases.Shield;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.IAttributeInstance;
@@ -15,6 +16,7 @@ import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraftforge.client.event.EntityViewRenderEvent.FogDensity;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
@@ -224,6 +226,24 @@ public class TDToolEvents {
 						AbstractTDTrait trait = (AbstractTDTrait) TinkerRegistry.getTrait(list.getStringTagAt(i));
 						if (trait != null) {
 							trait.alterFogDensity(e);
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	@SideOnly(Side.CLIENT)
+	@SubscribeEvent
+	public void RenderHUDEvent(RenderGameOverlayEvent.Post e) {
+		for (ItemStack tool : Minecraft.getMinecraft().player.getArmorInventoryList()) {
+			if (tool != null && tool.getItem() instanceof ArmorCore && !ToolHelper.isBroken(tool)) {
+				NBTTagList list = TagUtil.getTraitsTagList(tool);
+				for (int i = 0; i < list.tagCount(); i++) {
+					if (TinkerRegistry.getTrait(list.getStringTagAt(i)) instanceof AbstractTDTrait) {
+						AbstractTDTrait trait = (AbstractTDTrait) TinkerRegistry.getTrait(list.getStringTagAt(i));
+						if (trait != null) {
+							trait.renderHUD(e); 
 						}
 					}
 				}

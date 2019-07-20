@@ -32,6 +32,8 @@ public class TCConfig {
 	public static Armor armor = new Armor();
 	@Config.Name("Tools")
 	public static Tools tools = new Tools();
+	@Config.Name("Baubles")
+	public static Bauble baubles = new Bauble();
 	@Config.Name("Materials")
 	public static Materials materials = new Materials();
 	@Config.Name("Components")
@@ -143,6 +145,15 @@ public class TCConfig {
 		
 		@Config.RequiresMcRestart()
 		public boolean enableHeavyArmor = true;
+	}
+	
+	public static class Bauble {
+
+		public boolean enableBaubles = true;
+		
+		public boolean enableTabard = true;
+
+		public boolean enableRing = true;
 	}
 
 	public static class Traits {
