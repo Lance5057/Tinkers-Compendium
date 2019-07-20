@@ -13,8 +13,8 @@ import lance5057.tDefense.core.materials.stats.FabricMaterialStats;
 import lance5057.tDefense.core.materials.stats.HelmMaterialStats;
 import lance5057.tDefense.core.parts.TDParts;
 import lance5057.tDefense.core.tools.TDToolEvents;
+import lance5057.tDefense.core.tools.armor.renderers.heavy.ModelTinkersHelm;
 import lance5057.tDefense.core.tools.bases.ArmorCore;
-import lance5057.tDefense.core.tools.baubles.renderers.ModelTinkerTabard;
 import lance5057.tDefense.util.ArmorTagUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBiped;
@@ -65,8 +65,8 @@ public class TinkersHelm extends ArmorCore {
 	@Override
 	public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, EntityEquipmentSlot armorSlot,
 			ModelBiped _default) {
-		return new ModelTinkerTabard(itemStack);
-		//return new ModelTinkersHelm(itemStack);
+		//return new ModelTinkerTabard(itemStack);
+		return new ModelTinkersHelm(itemStack);
 	}
 
 	@Override

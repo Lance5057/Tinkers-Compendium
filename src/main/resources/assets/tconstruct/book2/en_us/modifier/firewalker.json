@@ -1,0 +1,21 @@
+{
+  "modifier": "respiration2",
+  "text": [
+    {
+      "text": "\n"
+    },
+    {
+      "text": "Lets just say it gives you gills. Or does it make a magic bubble?"
+    }
+  ],
+  "effects": [
+    "Unsure If Gills",
+    "Or",
+    "Something Else",
+    "Multiple levels?",
+  ],
+  "demoTool": [
+    "tinkerscompendium:helm",
+    "tinkerscompendium:hood"
+  ]
+}

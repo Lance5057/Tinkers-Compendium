@@ -1,5 +1,5 @@
 {
-  "modifier": "deadmansswitch",
+  "modifier": "td_deadmansswitch",
   "text": [
     {
       "text": "\n"
@@ -19,13 +19,7 @@
     "or two"
   ],
   "demoTool": [
-    "tinkerscompendium:helm",
     "tinkerscompendium:breastplate",
-    "tinkerscompendium:grieves",
-    "tinkerscompendium:sabatons",
-    "tinkerscompendium:hood",
-    "tinkerscompendium:shawl",
-    "tinkerscompendium:robe",
-    "tinkerscompendium:shoes"
+    "tinkerscompendium:shawl"
   ]
 }

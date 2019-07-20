@@ -29,6 +29,32 @@
   },
   {
     "type": "modifier",
-    "data": "modifier/respirationI.json"
+    "data": "modifier/respiration1.json"
+  },
+  {
+    "type": "modifier",
+    "data": "modifier/respiration2.json"
+  },
+  {
+    "type": "modifier",
+    "data": "modifier/autofeed.json"
+  }
+  ,
+  {
+    "type": "modifier",
+    "data": "modifier/clock.json"
+  }
+  ,
+  {
+    "type": "modifier",
+    "data": "modifier/compass.json"
+  },
+  {
+    "type": "modifier",
+    "data": "modifier/frostwalker.json"
+  },
+  {
+    "type": "modifier",
+    "data": "modifier/firewalker.json"
   }
 ]
