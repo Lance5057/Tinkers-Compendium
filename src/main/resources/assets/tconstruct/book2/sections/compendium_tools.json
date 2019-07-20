@@ -20,13 +20,23 @@
     "data": "tool/zweihander.json"
   },
   {
+    "name": "handdrill",
+    "type": "tool",
+    "data": "tool/handdrill.json"
+  },
+  {
+    "name": "mallet",
+    "type": "tool",
+    "data": "tool/mallet.json"
+  },
+  {
+    "name": "saw",
+    "type": "tool",
+    "data": "tool/saw.json"
+  },
+  {
     "name": "shears",
     "type": "tool",
     "data": "tool/shears.json"
-  },
-  {
-    "name": "fishingrod",
-    "type": "tool",
-    "data": "tool/fishingrod.json"
   }
 ]

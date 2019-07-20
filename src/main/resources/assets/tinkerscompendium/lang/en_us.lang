@@ -80,11 +80,13 @@ material.garnet.name=Garnet
 material.opal.name=Opal
 material.tanzinite.name=Tanzinite
 material.amber.name=Amber
+material.mithril.name=Mithril
 
 //New Items
 item.canister.name=Filled Canister
 item.empty_canister.name=Empty Canister
 item.rebreather.name=Rebreather
+item.eldergills.name=Elder Gills
 item.goggles.name=Goggles
 item.nightvisiongoggles.name=Night Vision Goggles
 item.glowsole.name=Glowing Crystal
@@ -548,6 +550,8 @@ tile.stone_ore_amethyst.name=Amethyst Crystal Ore
 tile.stone_ore_sapphire.name=Sapphire Crystal Ore
 tile.stone_ore_ruby.name=Ruby Crystal Ore
 
+tile.crackedobsidian.nameCracked Obsidian
+
 tile.roughspunblock.name=Roughspun Block
 
 tile.cotton.black.name=Black Cotton Block
@@ -832,8 +836,13 @@ item.fishingrod.desc=Fish big game or little, this modular fishing rod can do ne
 
 item.shears.desc=Shears are usefull to any farmer looking to have a steady flow of wool, wool for use in crafting or trade for profit.
 
-item.firedrill.name=Fire Drill
+item.saw.name=Saw
+item.saw.desc=Not sure what to do with a your saw? \nGood neither am I . . .
 
+item.mallet.name=Mallet
+item.mallet.desc=When used in cunjunction with the hammering table you can process ores for more efficient smelting or alloying.
+
+item.firedrill.name=Fire Drill
 item.firedrill.desc=The Fire Drill is a useful tool for starting fires without Flint and Steel or other similar items by consuming Sticks in your inventory. The higher the durability, the higher the chance it has to successfully light a block on fire.
 
 item.roundshield.name=Buckler Shield
@@ -882,6 +891,11 @@ stat.armor.durability.name=Durability
 stat.armor.rating.name=Armor Level
 stat.armor.toughness.name=Armor Toughness
 stat.armor.potency.name=Armor Potency
+
+stat.helm.name=Helm
+stat.chest.name=Chest
+stat.legs.name=Legs
+stat.feet.name=Feet
 
 stat.fabric.name=Fabric
 
@@ -1060,6 +1074,11 @@ modifier.projprotection.desc=Offers protection to the knee.
 modifier.blastprotection.name=Blast Protection
 modifier.blastprotection.desc=Can explosions get through this?
 
+modifier.antiblindness.name=Protective Goggles
+modifier.antiblindness.desc=Protection for blinding sunlight.
+modifier.nightvision.name=Night Vision Goggles
+modifier.nightvision.desc=See in the DARK!
+
 //Armor Materials
 item.armor_plate.name=Armor Plate
 item.chainmail.name=Chainmail
@@ -1067,3 +1086,5 @@ item.rivets.name=Rivets
 item.clasp.name=Clasp
 item.filigree.name=Filigree
 item.fabric.name=Fabric
+item.ringShank.name=Ring Shank
+item.setting.name=Ring Setting
