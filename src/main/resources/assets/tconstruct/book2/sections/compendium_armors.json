@@ -1,62 +1,62 @@
 [
   {
     "name": "helm",
-    "type": "tool",
+    "type": "td_armor",
     "data": "armor/heavy/helm.json"
   },
   {
     "name": "breastplate",
-    "type": "tool",
+    "type": "td_armor",
     "data": "armor/heavy/breastplate.json"
   },
   {
     "name": "grieves",
-    "type": "tool",
+    "type": "td_armor",
     "data": "armor/heavy/grieves.json"
   },
   {
     "name": "sabatons",
-    "type": "tool",
+    "type": "td_armor",
     "data": "armor/heavy/sabatons.json"
   },
   {
     "name": "hauberk",
-    "type": "tool",
+    "type": "td_armor",
     "data": "armor/light/hauberk.json"
   },
   {
     "name": "coif",
-    "type": "tool",
+    "type": "td_armor",
     "data": "armor/light/coif.json"
   },
   {
     "name": "chausses",
-    "type": "tool",
+    "type": "td_armor",
     "data": "armor/light/chausses.json"
   },
   {
     "name": "boots",
-    "type": "tool",
+    "type": "td_armor",
     "data": "armor/light/boots.json"
   },
   {
     "name": "hood",
-    "type": "tool",
+    "type": "td_armor",
     "data": "armor/cloth/hood.json"
   },
   {
     "name": "shawl",
-    "type": "tool",
+    "type": "td_armor",
     "data": "armor/cloth/shawl.json"
   },
   {
-    "name": "robes",
-    "type": "tool",
+    "name": "robe",
+    "type": "td_armor",
     "data": "armor/cloth/robes.json"
   },
   {
     "name": "shoes",
-    "type": "tool",
+    "type": "td_armor",
     "data": "armor/cloth/shoes.json"
   }
 ]
