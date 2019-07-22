@@ -6,6 +6,7 @@ import java.util.List;
 import lance5057.tDefense.core.library.ArmorNBT;
 import lance5057.tDefense.core.library.ArmorTags;
 import lance5057.tDefense.core.library.ArmorTextureBuilder;
+import lance5057.tDefense.core.materials.CompendiumMaterials;
 import lance5057.tDefense.core.materials.stats.ArmorMaterialStats;
 import lance5057.tDefense.core.materials.stats.ChestMaterialStats;
 import lance5057.tDefense.core.materials.stats.FabricMaterialStats;
@@ -14,6 +15,7 @@ import lance5057.tDefense.core.tools.armor.renderers.ArmorRenderer;
 import lance5057.tDefense.core.tools.armor.renderers.cloth.ModelTinkersShawl;
 import lance5057.tDefense.core.tools.bases.ArmorCore;
 import net.minecraft.client.model.ModelBiped;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -22,6 +24,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ISpecialArmor.ArmorProperties;
@@ -42,6 +45,13 @@ public class TinkersShawl extends ArmorCore {
 				PartMaterialType.extra(TDParts.armorPlate));
 		setUnlocalizedName("tinkershawl");
 	}
+	
+	@Override
+	  public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> subItems) {
+	    if(this.isInCreativeTab(tab)) {
+	      addDefaultSubItems(subItems, CompendiumMaterials.white.mat, CompendiumMaterials.white.mat, null);
+	    }
+	  }
 
 	@Override
 	public void onUpdate(ItemStack stack, World world, Entity entity, int par4, boolean par5) {

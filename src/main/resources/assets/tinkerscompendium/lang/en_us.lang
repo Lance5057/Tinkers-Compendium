@@ -4,7 +4,7 @@ tile.armorstation.name=Armor Station
 tile.finishinganvil.name=Finishing Anvil
 tile.hammeringtable.name=Hammering Table
 item.null.name=[null]
-item.regdummy.name=[regdummy]
+item.regdummy.name=Ignore Me
 
 //Fluids
 fluid.tinkerscompendium.aeonsteel.name=Molten Aeonsteel
@@ -889,8 +889,8 @@ stat.shield.percentblocked.name=Percent Blocked
 
 stat.armor.durability.name=Durability
 stat.armor.rating.name=Armor Level
-stat.armor.toughness.name=Armor Toughness
-stat.armor.potency.name=Armor Potency
+stat.armor.toughness.name=Toughness
+stat.armor.potency.name=Magic Potency
 
 stat.helm.name=Helm
 stat.chest.name=Chest

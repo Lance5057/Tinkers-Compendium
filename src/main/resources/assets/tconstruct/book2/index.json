@@ -30,6 +30,15 @@
     }
   },
   {
+    "name": "armormaterials",
+    "module": "TinkerTools",
+    "icon": {
+      "item": {
+        "id": "minecraft:iron_ingot"
+      }
+    }
+  },
+  {
     "name": "compendium_modifiers",
     "data": "sections/compendium_modifiers.json",
     "icon": {

@@ -467,39 +467,35 @@ public abstract class ArmorCore extends ArmorBase implements IToolStationDisplay
 	// Creative tab items
 	@Override
 	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> subItems) {
-//		if (this.isInCreativeTab(tab)) {
-//			addDefaultSubItems(subItems);
-//		}
+		if (this.isInCreativeTab(tab)) {
+			addDefaultSubItems(subItems);
+		}
 	}
 
-//	protected void addDefaultSubItems(List<ItemStack> subItems, Material... fixedMaterials) {
-//		for (Material head : TinkerRegistry.getAllMaterials()) {
-//			List<Material> mats = new ArrayList<>(requiredComponents.length);
-//
-//			for (int i = 0; i < requiredComponents.length; i++) {
-//				if (requiredComponents[i].usesStat(FabricMaterialStats.TYPE)) {
-//					mats.add(CompendiumMaterials.white.mat);
-//				} else {
-//					if (fixedMaterials.length > i && fixedMaterials[i] != null
-//							&& requiredComponents[i].isValidMaterial(fixedMaterials[i])) {
-//						mats.add(fixedMaterials[i]);
-//					} else {
-//						// todo: check for applicability with stats
-//						mats.add(head);
-//					}
-//				}
-//			}
-//
-//			ItemStack tool = buildItem(mats);
-//			// only valid ones
-//			if (hasValidMaterials(tool)) {
-//				subItems.add(tool);
-//				if (!Config.listAllMaterials) {
-//					break;
-//				}
-//			}
-//		}
-//	}
+	protected void addDefaultSubItems(List<ItemStack> subItems, Material... fixedMaterials) {
+		for(Material head : TinkerRegistry.getAllMaterials()) {
+		      List<Material> mats = new ArrayList<>(requiredComponents.length);
+
+		      for(int i = 0; i < requiredComponents.length; i++) {
+		        if(fixedMaterials.length > i && fixedMaterials[i] != null && requiredComponents[i].isValidMaterial(fixedMaterials[i])) {
+		          mats.add(fixedMaterials[i]);
+		        }
+		        else {
+		          // todo: check for applicability with stats
+		          mats.add(head);
+		        }
+		      }
+
+		      ItemStack tool = buildItem(mats);
+		      // only valid ones
+		      if(hasValidMaterials(tool)) {
+		        subItems.add(tool);
+		        if(!Config.listAllMaterials) {
+		          break;
+		        }
+		      }
+		    }
+	}
 
 	protected void addInfiTool(List<ItemStack> subItems, String name) {
 		ItemStack tool = getInfiTool(name);
