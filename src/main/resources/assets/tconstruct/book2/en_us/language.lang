@@ -1,9 +1,14 @@
-// Sections
+// Localization Fixes For The Compendium
 compendium_intro=Introduction
-compendium_tools=Tools
-compendium_armors=Armors
-compendium_modifiers=Modifiers
+compendium_armor=Armors
+armormaterials=Armor Materials
+compendium_armormodifier=Armor Modifiers
+compendium_tool=Tools
+materials=Tool Materials
+compendium_toolmodifier=Tool Modifiers
 
-// Modifiers
+material.craft_partbuilder=Must be Hand Crafted
+material.craft_casting=Smeltable & Castable
+
 modifier.effect=Modifier Effect(s)
 tool.properties=Tool Properties

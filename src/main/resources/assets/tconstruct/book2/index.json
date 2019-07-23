@@ -10,21 +10,11 @@
     }
   },
   {
-    "name": "compendium_armors",
-    "data": "sections/compendium_armors.json",
+    "name": "compendium_armor",
+    "data": "sections/compendium_armor.json",
     "icon": {
       "item": {
         "id": "tinkerscompendium:helm",
-        "damage": 0
-      }
-    }
-  },
-    {
-    "name": "compendium_tools",
-    "data": "sections/compendium_tools.json",
-    "icon": {
-      "item": {
-        "id": "tinkerscompendium:roundshield",
         "damage": 0
       }
     }
@@ -39,8 +29,36 @@
     }
   },
   {
-    "name": "compendium_modifiers",
-    "data": "sections/compendium_modifiers.json",
+    "name": "compendium_armormodifier",
+    "data": "sections/compendium_armormodifier.json",
+    "icon": {
+      "item": {
+        "id": "minecraft:redstone"
+      }
+    }
+  },
+    {
+    "name": "compendium_tool",
+    "data": "sections/compendium_tool.json",
+    "icon": {
+      "item": {
+        "id": "tinkerscompendium:roundshield",
+        "damage": 0
+      }
+    }
+  },
+  {
+    "name": "materials",
+    "module": "TinkerTools",
+    "icon": {
+      "item": {
+        "id": "minecraft:iron_ingot"
+      }
+    }
+  },
+  {
+    "name": "compendium_toolmodifier",
+    "data": "sections/compendium_toolmodifier.json",
     "icon": {
       "item": {
         "id": "minecraft:redstone"

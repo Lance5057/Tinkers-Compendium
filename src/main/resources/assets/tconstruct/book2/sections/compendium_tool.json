@@ -20,9 +20,9 @@
     "data": "tool/zweihander.json"
   },
   {
-    "name": "handdrill",
+    "name": "firedrill",
     "type": "tool",
-    "data": "tool/handdrill.json"
+    "data": "tool/firedrill.json"
   },
   {
     "name": "mallet",
