@@ -969,8 +969,8 @@ modifier.td_currentrider.desc=[desc]
 modifier.td_finned.name=Finned
 modifier.td_finned.desc=[desc]
 //Endstone
-modifier.td_warped.name=Enderwarped
-modifier.td_warped.desc=Reality tends to get twisted.
+modifier.td_warpedmind.name=Enderwarped
+modifier.td_warpedmind.desc=Reality tends to get twisted.
 modifier.td_td_warp.name=Enderperception
 modifier.td_td_warp.desc=Can this be reality?
 modifier.td_hydrophobic.name=Hydrophobic
@@ -1067,12 +1067,12 @@ modifier.td_retribution1.desc=Justice will prevail.
 //Aeonsteel
 modifier.td_truesight.name=Truesight
 modifier.td_truesight.desc=[Desc]
-modifier.td_td_intangable.name=Intangable
-modifier.td_td_intangable.desc=[Desc]
+modifier.td_td_intangible.name=Intangable
+modifier.td_td_intangible.desc=[Desc]
 modifier.td_undo_nyi.name=Undo [NYI]
 modifier.td_undo_nyi.desc=[Desc]
-modifier.td_timewarp.name=Timewarp
-modifier.td_timewarp.desc=[Desc]
+modifier.td_td_timewarp.name=Timewarp
+modifier.td_td_timewarp.desc=[Desc]
 //Queens Gold
 
 //Dogbearium
