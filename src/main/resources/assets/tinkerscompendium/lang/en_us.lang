@@ -885,7 +885,12 @@ item.tinkerssabatons.desc=A heavy set of interlocking plates to protect the feet
 //Tooltips & Stats
 tooltip.armor.rating=Armor Rating
 tooltip.armor.toughness=Armor Toughness
-tooltip.armor.potency=Armor Rating
+tooltip.armor.potency=Magic Potency
+
+stat.armor.durability.name=Durability
+stat.armor.rating.name=Armor Level
+stat.armor.toughness.name=Toughness
+stat.armor.potency.name=Magic Potency
 
 stat.shield.name=Shield
 stat.shield.durability.name=Durability
@@ -903,119 +908,189 @@ modifier.td_workhardened.name=Work-Hardened
 modifier.td_workhardened.desc=Hardened via me mallet stikes.
 modifier.td_heroic.name=Heroic
 modifier.td_heroic.desc=Only bronze is worn by hero
-modifier.td_shifting.name=Shifting
-modifier.td_shifting.desc=It apears to move on its own.
-modifier.td_aqualung.name=Aqua Lung
-modifier.td_aqualung.desc=Wish you had gills?
-modifier.td_pyrosynthetic_2.name=Pyrosynthetic II
-modifier.td_pyrosynthetic_2.desc=Delicious Fire.
-modifier.td_hellbound.name=Hellbound
-modifier.td_hellbound.desc=On the highway to HELL.
-modifier.td_retribution1.name=Retribution I
-modifier.td_retribution1.desc=Justice will prevail.
-modifier.td_pyrosynthetic_1.name=Pyrosynthetic I
-modifier.td_pyrosynthetic_1.desc=Delicious Fire.
-modifier.td_demonic.name=Demonic
-modifier.td_demonic.desc=Sacrifices the first-born.
 modifier.td_acknowledged.name=Welucated
 modifier.td_acknowledged.desc=Acknoledgement in its finest.
 modifier.td_tempered.name=Tempered
 modifier.td_tempered.desc=Better than Work-Hardening.
 modifier.td_rigid.name=Rigid
 modifier.td_rigid.desc=Naturally Tough!
-modifier.td_retribution1.name=Retribution I
-modifier.td_retribution1.desc=Justice will prevail.
-modifier.td_blockhead.name=Blockhead
-modifier.td_blockhead.desc=Someone put a block where your brains should be.
-modifier.td_glassine.name=Glassine
-modifier.td_glassine.desc=High magical potential with a tendency to shatter.
-modifier.td_peyote.name=Peyote
-modifier.td_peyote.desc=Cactus Juice, it's the quenchiest!
-modifier.td_thickheaded.name=Thickheaded
-modifier.td_thickheaded.desc=Skull so thick you can't even get a headache.
-modifier.td_peleshair.name=Pele's hair
-modifier.td_peleshair.desc=A bad luck charm for some, a good luck charm for others.
-modifier.td_gills.name=Gills
-modifier.td_gills.desc=Breathing underwater just got easier.
-modifier.td_warp.name=Enderperception
-modifier.td_warp.desc=Reality tends to get twisted.
-modifier.td_arrowcatcher.name=Arrowcatcher
-modifier.td_arrowcatcher.desc=This is my arrow now. 
-modifier.td_novel.name=Novel
-modifier.td_novel.desc=Weapons and armor all tell a story, some more literally than others.
-modifier.td_soggy.name=Soggy
-modifier.td_soggy.desc=Retaining water has its benefits.
-modifier.td_hothead.name=Hothead
-modifier.td_hothead.desc=Getting hit makes me angry!
-modifier.td_stoned.name=Stoned
-modifier.td_stoned.desc=Bearing a heavy weight.
-modifier.td_spiny.name=Spiny
-modifier.td_spiny.desc=Don't touch me!
-modifier.td_buoyant.name=Buoyant
-modifier.td_bouyant.desc=Sink or Swim? How about neither.
-modifier.td_calcium.name=Calcium
-modifier.td_calcium.desc=Sticks and stones won't break my bones.
-modifier.td_toasty.name=Toasty
-modifier.td_toasty.desc=It feels like an oven in here...
-modifier.td_magnetism.name=Magnetism
-modifier.td_magnetism.desc=Tends to grab onto metal things and holdfast.
-modifier.td_pricked.name=Prickly
-modifier.td_pricked.desc=Accupuncture for dummies.
-modifier.td_callagen.name=Collagen
-modifier.td_callagen.desc=Keeps bones from breaking, especially when you hit the floor.
-modifier.td_pillarsofttitans.name=Pillaars of Titans
-modifier.td_pillarsofttitans.desc=I will not be moved.
-modifier.td_earthbound.name=Earthbound
-modifier.td_earthbound.desc=I am one with the rock and stone. It's strength is mine.
-modifier.td_rooted.name=Rooted
-modifier.td_rooted.desc=Like the mighty oak I stand strong.
-modifier.td_maglock.name=Maglock
-modifier.td_maglock.name=My feet have a magnetic personality.
-modifier.td_hotfoot.name=Hotfoot
-modifier.td_hotfoot.desc=Too hot, gotta run!
-modifier.td_incinerate.name=Incinerate
-modifier.td_incenerate.desc=I'll burn your petty tools to ash.
-modifier.td_piggy.name=Piggy
-modifier.td_piggy.desc=Open up your face and feed it!
-modifier.td_hog.name=Hog
-modifier.td_hog.desc=My armor ate my homework...
 modifier.td_cornered.name=Cornered
 modifier.td_toothy.name=Toothy
 modifier.td_ethereal.name=Ethereal
 modifier.td_ticktock.name=Tick-Tock
 modifier.td_ticktock.desc=§oThe Clock is Ticking!§r\nTool stats increase over time.
 
-//Ring Traits
+//Armor Traits
+//Wood
+modifier.photosynthetic.name=Photosynthetic
+modifier.photosynthetic.desc=Tasty tasty sunshine.
+modifier.td_rooted.name=Rooted
+modifier.td_rooted.desc=Like the mighty oak I stand strong.
+//Stone
+modifier.td_blockhead.name=Blockhead
+modifier.td_blockhead.desc=Someone put a block where your brains should be.
+modifier.td_stoned.name=Stoned
+modifier.td_stoned.desc=Bearing a heavy weight.
+modifier.td_earthbound.name=Earthbound
+modifier.td_earthbound.desc=I am one with the rock and stone. It's strength is mine.
+//Flint
+modifier.td_glassine.name=Glassine
+modifier.td_glassine.desc=High magical potential with a tendency to shatter.
+//Cactus
+modifier.td_peyote.name=Peyote
+modifier.td_peyote.desc=Cactus Juice, it's the quenchiest!
+modifier.td_pricked.name=Prickly
+modifier.td_pricked.desc=Accupuncture for dummies.
+modifier.td_spiny.name=Spiny
+modifier.td_spiny.desc=Don't touch me!
+//Bone
+modifier.td_thickheaded.name=Thickheaded
+modifier.td_thickheaded.desc=Skull so thick you can't even get a headache.
+modifier.td_calcium.name=Calcium
+modifier.td_calcium.desc=Sticks and stones won't break my bones.
+modifier.td_collagen.name=Collagen
+modifier.td_collagen.desc=Keeps bones from breaking, especially when you hit the floor.
+modifier.td_bonespurs.name=Bonespurs
+modifier.td_bonespurs.desc=[desc]
+//Obsidian
+modifier.td_peleshair.name=Pele's hair
+modifier.td_peleshair.desc=A bad luck charm for some, a good luck charm for others.
+modifier.td_pillarsoftitans.name=Pillars of Titans
+modifier.td_pillarsoftitans.desc=I will not be moved.
+modifier.td_emberwalker.name=Emberwalker
+modifier.td_emberwalker.desc=[Desc]
+//Prismarine
+modifier.td_gills.name=Gills
+modifier.td_gills.desc=Breathing underwater just got easier.
+modifier.td_buoyant.name=Buoyant
+modifier.td_bouyant.desc=Sink or Swim? How about neither.
+modifier.td_currentrider.name=Currentrider
+modifier.td_currentrider.desc=[desc]
+modifier.td_finned.name=Finned
+modifier.td_finned.desc=[desc]
+//Endstone
+modifier.td_warped.name=Enderwarped
+modifier.td_warped.desc=Reality tends to get twisted.
+modifier.td_td_warp.name=Enderperception
+modifier.td_td_warp.desc=Can this be reality?
+modifier.td_hydrophobic.name=Hydrophobic
+modifier.td_hydrophobic.desc=Allergic to water.
+modifier.td_voidcaller.name=Voidcaller
+modifier.td_voidcaller.desc=End to Aid!\
+//Paper
+modifier.td_arrowcatcher.name=Arrowcatcher
+modifier.td_arrowcatcher.desc=This is my arrow now. 
+modifier.td_novel.name=Novel
+modifier.td_novel.desc=Weapons and armor all tell a story, some more literally than others.
+//Sponge
+modifier.td_soggy.name=Soggy
+modifier.td_soggy.desc=Retaining water has its benefits.
+/Firewood
+modifier.td_hothead.name=Hothead
+modifier.td_hothead.desc=Getting hit makes me angry!
+modifier.td_toasty.name=Toasty
+modifier.td_toasty.desc=It feels like an oven in here...
+modifier.td_incinerate.name=Incinerate
+modifier.td_incenerate.desc=I'll burn your petty tools to ash.
+modifier.td_hotfoot.name=Hotfoot
+modifier.td_hotfoot.desc=Too hot, gotta run!
+//Iron
+modifier.td_hardhat.name=Hardhat
+modifier.td_hardhat.desc=OSHA approved PPE.
+modifier.td_magnetism.name=Magnetism
+modifier.td_magnetism.desc=Tends to grab onto metal things and holdfast.
+modifier.td_ironclad.name=Ironclad
+modifier.td_ironclad.desc=[Desc]
+modifier.td_maglock.name=Maglock
+modifier.td_maglock.desc=My feet have a magnetic personality.
+//Pig Iron
+modifier.td_piggy.name=Piggy
+modifier.td_piggy.desc=Open up your face and feed it!
+modifier.td_hog.name=Hog
+modifier.td_hog.desc=My armor ate my homework...
+modifier.td_sounder.name=Hog
+modifier.td_sounder.desc=[Desc]
+modifier.td_trotters.name=Trotters
+modifier.td_trotters.desc=[Desc]
+/Knightslime
+modifier.td_shifting.name=Shifting
+modifier.td_shifting.desc=It apears to move on its own.
+modifier.td_gumshoe2.name=Gumshoe II
+modifier.td_gumshoe2.desc=[Desc]
+//Slime
+modifier.td_forestmask.name=Forest Mask
+modifier.td_forestmask.desc=[Desc]
+modifier.td_slick.name=Slick
+modifier.td_slick.desc=[Desc]
+modifier.td_greenthum.name=Green Thumb
+modifier.td_greenthum.desc=[Desc]
+//Blueslime
+modifier.td_goggles.name=Goggles
+modifier.td_goggles.desc=Natural yet slimey eye protection.
+modifier.td_aqualung.name=Aqua Lung
+modifier.td_aqualung.desc=Wish you had gills?
+//Magmaslime
+modifier.td_pyrosynthetic_1.name=Pyrosynthetic I
+modifier.td_pyrosynthetic_1.desc=Delicious Fire.
+modifier.td_pyrosynthetic_2.name=Pyrosynthetic II
+modifier.td_pyrosynthetic_2.desc=Delicious Fire.
+modifier.td_firewalker.name=Firewalker
+modifier.td_firewalker.desc=[Desc]
+modifier.td_hellbound.name=Hellbound
+modifier.td_hellbound.desc=On the highway to HELL.
+//Netherrack
+modifier.td_demonic.name=Demonic
+modifier.td_demonic.desc=Sacrifices the first-born.
+modifier.td_damnation.name=Damnation
+modifier.td_damnation.desc=[Desc]
+modifier.td_ignite.name=Ignite
+modifier.td_ignite.desc=[Desc]
+//Cobalt
+modifier.td_windy.name=Windy
+modifier.td_windy.desc=[Desc]
+modifier.td_aerodynamic.name=Aerodynamic
+modifier.td_aerodynamic.desc=[Desc]
+modifier.td_flexible.name=Flexible
+modifier.td_flexible.desc=[Desc]
+modifier.td_supersonic.name=Supersonic
+modifier.td_supersonic.desc=[Desc]
+//Ardite
+modifier.td_statuesque.name=Statuesque
+modifier.td_statuesque.desc=Balanced, as it should be.
+modifier.td_heavyweight.name=Heavy Weight
+modifier.td_heavyweight.desc=Needs Description.
+modifier.td_stonekin.name=Stonekin
+modifier.td_stonekin.desc=Needs Description.
+//Silver
+modifier.td_retribution1.name=Retribution I
+modifier.td_retribution1.desc=Justice will prevail.
+//Aeonsteel
+modifier.td_truesight.name=Truesight
+modifier.td_truesight.desc=[Desc]
+modifier.td_td_intangable.name=Intangable
+modifier.td_td_intangable.desc=[Desc]
+modifier.td_undo_nyi.name=Undo [NYI]
+modifier.td_undo_nyi.desc=[Desc]
+modifier.td_timewarp.name=Timewarp
+modifier.td_timewarp.desc=[Desc]
+//Queens Gold
+
+//Dogbearium
+modifier.td_ihunger.name=I Hunger
+modifier.td_ihunger.desc=[Desc]
+modifier.td_hellbeast.name=Hellbeast
+modifier.td_hellbeast.desc=[Desc]
+modifier.td_alpha.name=Alpha
+modifier.td_alpha.desc=[Desc]
+modifier.td_hunt.name=Hunter
+modifier.td_hunt.desc=[Desc]
+
+//Mithril Traits
 modifier.mythical.name=Mythical
 modifier.mythical.desc=§oStronger when Reforged!§r\nConverts XP into a modifier when used after it has been broken and repaired fully. The tool needs to have a good amount of max durability to gain more modifiers.
 modifier.mythical.voiceRing=A voice rings in your head...
 modifier.mythical.instructions="Repair me fully. Then, when wielding vast worldly knowledge, I shall bestow a gift when you use me again."
 modifier.mythical.modifier_up=Upon using the tool, new opportunities reveal themselves to you.
-
-//Armor Traits
-modifier.photosynthetic.name=Photosynthetic
-modifier.photosynthetic.desc=Tasty tasty sunshine.
-
-modifier.td_forestmask.name=Forest Mask
-modifier.td_forestmask.desc=Needs Description.
-modifier.td_windy.name=Windy
-modifier.td_windy.desc=Needs Description.
-modifier.td_goggles.name=Goggles
-modifier.td_goggles.desc=Natural yet slimey eye protection.
-modifier.td_hardhat.name=Hardhat
-modifier.td_hardhat.desc=OSHA approved PPE.
-modifier.td_aerodynamic.name=Aerodynamic
-modifier.td_aerodynamic.desc=Needs Description.
-modifier.td_statuesque.name=Statuesque
-modifier.td_statuesque.desc=Balanced, as it should be.
-modifier.td_sheavyweight.name=Heavy Weight
-modifier.td_sheavyweight.desc=Needs Description.
-modifier.td_supersonic.name=Supersonic
-modifier.td_supersonic.desc=Needs Description.
-modifier.td_stonekin.name=Stonekin
-modifier.td_stonekin.desc=Needs Description.
-modifier.td_flexible.name=Flexible
-modifier.td_flexible.desc=Needs Description.
 
 //Sheild Traits
 modifier.td_securiphilic.name=Securiphilic
@@ -1048,10 +1123,15 @@ modifier.antiblindness.desc=Protection for blinding sunlight.
 modifier.nightvision.name=Night Vision Goggles
 modifier.nightvision.desc=See in the DARK!
 
-modifier.respiration1.name=Rebreather
+modifier.respiration1.name=Respiration I
 modifier.respiration1.desc=Pseudo Gills
-modifier.respiration2.name=Elder Gills I
-modifier.respiration3=2.desc=Removable Gills
+modifier.respiration2.name=Respiration I
+modifier.respiration2.name=Elder Gills
+
+modifier.frostwalker.name=Frostwalker
+modifier.frostwalker.desc=Water Walking!
+modifier.firewalker.name=Firewalker
+modifier.firewalker.desc=Lava Walking!
 
 //Armor Materials
 item.armor_plate.name=Armor Plate
