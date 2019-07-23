@@ -1,0 +1,60 @@
+[
+  {
+    "type": "modifier",
+    "data": "armormodifier/deadmansswitch.json"
+  },
+  {
+    "type": "modifier",
+    "data": "armormodifier/protection.json"
+  },
+  {
+    "type": "modifier",
+    "data": "armormodifier/fireprotection.json"
+  },
+  {
+    "type": "modifier",
+    "data": "armormodifier/projprotection.json"
+  },
+  {
+    "type": "modifier",
+    "data": "armormodifier/blastprotection.json"
+  },
+  {
+    "type": "modifier",
+    "data": "armormodifier/antiblindness.json"
+  },
+  {
+    "type": "modifier",
+    "data": "armormodifier/nightvision.json"
+  },
+  {
+    "type": "modifier",
+    "data": "armormodifier/respiration1.json"
+  },
+  {
+    "type": "modifier",
+    "data": "armormodifier/respiration2.json"
+  },
+  {
+    "type": "modifier",
+    "data": "armormodifier/autofeed.json"
+  }
+  ,
+  {
+    "type": "modifier",
+    "data": "armormodifier/clock.json"
+  }
+  ,
+  {
+    "type": "modifier",
+    "data": "armormodifier/compass.json"
+  },
+  {
+    "type": "modifier",
+    "data": "armormodifier/frostwalker.json"
+  },
+  {
+    "type": "modifier",
+    "data": "armormodifier/firewalker.json"
+  }
+]
