@@ -2,18 +2,12 @@
   "tool": "grieves",
   "text": [
     {
-      "text": "A heavy set of interlocking plates to protect the legs from most damage."
+      "text": "A heavy set of interlocking plates was \n found to protect the legs from most damage. \nThe Greives are difficult to manuvuer in."
     },
-    {
-      "text": "\n"
-    },
-    {
-      "text": "The helm may come with moving parts, but this does not come with such a feature"
-    }
   ],
   "properties": [
-    "Loud voises can be heard as you move.",
-    "Can protec the loins real well.",
-    "Not a place to let it rip."
+    "Full Coverage.",
+    "Compitent Protection.",
+    "Magically Inept."
   ]
 }

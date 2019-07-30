@@ -2,12 +2,11 @@
   "tool": "shawl",
   "text": [
     {
-      "text": "A heavy set of interlocking plates to protect the chest from most damage."
+      "text": "Delicately stitched clothing for the chest that offers little protection but is more accepting of magical modifiers."
     }
   ],
   "properties": [
-    "Full coverage to protect.",
-    "Can take a beating",
-    "Praise Lance-kun"
+    "Magically Suited.",
+    "Nearly Unprotected"
   ]
 }
