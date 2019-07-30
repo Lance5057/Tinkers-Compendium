@@ -888,12 +888,18 @@ tooltip.armor.toughness=Armor Toughness
 tooltip.armor.potency=Magic Potency
 
 stat.armor.durability.name=Durability
+stat.armor.durability.desc=Material's base durability.
 stat.armor.rating.name=Armor Level
+stat.armor.rating.desc=Determines quality of crafted armor.
 stat.armor.toughness.name=Toughness
+stat.armor.toughness.desc=Material's Toughness is taken into acount when determining overal durability.
 stat.armor.potency.name=Magic Potency
+stat.cloth.potency.desc=Magical Potency determines how acepting of magic the completed armor is.
 
 stat.shield.name=Shield
 stat.shield.durability.name=Durability
+stat.shield.durability.desc=Material's base durability
+stat.shield.percentblocked.desc=Percentage of all incoming blocked
 stat.shield.percentblocked.name=Percent Blocked
 
 stat.helm.name=Helm
