@@ -119,11 +119,11 @@ public class CompendiumMaterials {
 	public static MaterialHelper valyriansteel;
 	public static MaterialHelper froststeel;
 
-	//Wanderlust Materials
+	// Wanderlust Materials
 	public static MaterialHelper mithril;
 	public static MaterialHelper werewolf;
 
-	//Wool Colors
+	// Wool Colors
 
 	public static MaterialHelper black;
 	public static MaterialHelper red;
@@ -436,8 +436,7 @@ public class CompendiumMaterials {
 
 		if (TinkerRegistry.getMaterial("orichalcum") == Material.UNKNOWN && TCConfig.materials.orichalcum) {
 			orichalcum = new MaterialHelper("orichalcum", 0xffc700);
-			orichalcum.addons
-					.add(new MeltableMaterial(800, new HeadMaterialStats(180, 5.3f, 6.23f, HarvestLevels.OBSIDIAN),
+			orichalcum.addons.add(new MeltableMaterial(800, new HeadMaterialStats(180, 5.3f, 6.23f, HarvestLevels.OBSIDIAN),
 							new HandleMaterialStats(1.1f, 25), new ExtraMaterialStats(35),
 							new ShieldMaterialStats(180 / 4, 70), new BowMaterialStats(1.9f, 1.9f, 2.3f)));
 			orichalcum.addons.add(
@@ -521,39 +520,19 @@ public class CompendiumMaterials {
 		}
 
 		/*
-			Mithril Stats:
-				- Head:
-					- Durability: 800
-					- Speed: 8
-					- Damage: 6
-					- Mining Level: Cobalt (4)
-				- Rod:
-					- Modifier: 1.3
-					- Durability: 90
-				- Extra:
-					- Durability: 90
-				- Shield:
-					- Durability: 750
-					- Percent Blocked: 75
-				- Bow:
-					- Draw Speed: 0.7
-					- Range: 70
-					- Bonus Damage: 7
-				-
+		 * Mithril Stats: - Head: - Durability: 800 - Speed: 8 - Damage: 6 - Mining
+		 * Level: Cobalt (4) - Rod: - Modifier: 1.3 - Durability: 90 - Extra: -
+		 * Durability: 90 - Shield: - Durability: 750 - Percent Blocked: 75 - Bow: -
+		 * Draw Speed: 0.7 - Range: 70 - Bonus Damage: 7 -
 		 */
-		if (TinkerRegistry.getMaterial("mithril") == Material.UNKNOWN && TCConfig.materials.mithril){
+		if (TinkerRegistry.getMaterial("mithril") == Material.UNKNOWN && TCConfig.materials.mithril) {
 			mithril = new MaterialHelper("mithril", 0x99CCFF);
-			mithril.addons.add(new MeltableMaterial(
-					800,
-					new HeadMaterialStats(800, 8f, 6f, HarvestLevels.COBALT),
-					new HandleMaterialStats(1.3f, 90),
-					new ExtraMaterialStats(90), new ShieldMaterialStats(750, 75),
+			mithril.addons.add(new MeltableMaterial(800, new HeadMaterialStats(800, 8f, 6f, HarvestLevels.COBALT),
+					new HandleMaterialStats(1.3f, 90), new ExtraMaterialStats(90), new ShieldMaterialStats(750, 75),
 					new BowMaterialStats(0.7f, 70, 7)));
-			mithril.addons.add(new ArmorMaterial(
-					new HelmMaterialStats(750, 2, 3, 25.0f),
-					new ChestMaterialStats(750, 7, 3, 25.0f),
-					new LegsMaterialStats(750, 5, 3, 25.0f),
-					new FeetMaterialStats(750, 2, 3, 25.0f)));
+			mithril.addons.add(
+					new ArmorMaterial(new HelmMaterialStats(750, 2, 3, 25.0f), new ChestMaterialStats(750, 7, 3, 25.0f),
+							new LegsMaterialStats(750, 5, 3, 25.0f), new FeetMaterialStats(750, 2, 3, 25.0f)));
 			mithril.addons.add(new MaterialComponents(false));
 		}
 
@@ -913,7 +892,7 @@ public class CompendiumMaterials {
 		if (froststeel != null)
 			froststeel.pre();
 		if (mithril != null)
-		    mithril.pre();
+			mithril.pre();
 
 		black.pre();
 		red.pre();
@@ -960,7 +939,7 @@ public class CompendiumMaterials {
 		if (froststeel != null)
 			froststeel.integrate();
 		if (mithril != null)
-		    mithril.integrate();
+			mithril.integrate();
 
 		black.integrate();
 		red.integrate();
@@ -1391,7 +1370,7 @@ public class CompendiumMaterials {
 		if (froststeel != null)
 			froststeel.init();
 		if (mithril != null)
-		    mithril.init();
+			mithril.init();
 
 		black.init();
 		red.init();
@@ -1437,7 +1416,7 @@ public class CompendiumMaterials {
 		if (froststeel != null)
 			froststeel.client();
 		if (mithril != null)
-		    mithril.client();
+			mithril.client();
 
 		black.client();
 		red.client();
@@ -1529,7 +1508,7 @@ public class CompendiumMaterials {
 		if (froststeel != null)
 			froststeel.post();
 		if (mithril != null)
-		    mithril.post();
+			mithril.post();
 
 		black.post();
 		red.post();
@@ -1597,7 +1576,7 @@ public class CompendiumMaterials {
 		if (froststeel != null)
 			froststeel.models();
 		if (mithril != null)
-		    mithril.models();
+			mithril.models();
 
 		black.models();
 		red.models();
@@ -1630,31 +1609,28 @@ public class CompendiumMaterials {
 		// ModelRegisterUtil.registerPartModel(foil);
 	}
 
-	//@SubscribeEvent
+	// @SubscribeEvent
 	public static void registerBlocks(final RegistryEvent.Register<Block> event) {
 		for (Block i : blockList) {
 			event.getRegistry().register(i);
 		}
 
 		fluidChorusJuice = regFluid("chorusjuice", 0xd982ff, event);
-		registerBlock(event.getRegistry(), new ChorusJuice(fluidChorusJuice),
-				fluidChorusJuice.getName());
+		registerBlock(event.getRegistry(), new ChorusJuice(fluidChorusJuice), fluidChorusJuice.getName());
 		TinkersCompendium.proxy.registerFluidModels(fluidChorusJuice);
-		
+
 		fluidVile = regFluid("vile", 0x111111, event);
-		registerBlock(event.getRegistry(), new VileFluid(fluidVile),
-				fluidVile.getName());
+		registerBlock(event.getRegistry(), new VileFluid(fluidVile), fluidVile.getName());
 		TinkersCompendium.proxy.registerFluidModels(fluidVile);
-		
+
 		fluidVibrant = regFluid("vibrant", 0x76ff00, event);
-		registerBlock(event.getRegistry(), new VibrantFluid(fluidVibrant),
-				fluidVibrant.getName());
+		registerBlock(event.getRegistry(), new VibrantFluid(fluidVibrant), fluidVibrant.getName());
 		TinkersCompendium.proxy.registerFluidModels(fluidVibrant);
-		
+
 		fluidSlush = regFluid("slush", 0xbfefff, event);
 		registerClassicBlock(event.getRegistry(), fluidSlush);
 		TinkersCompendium.proxy.registerFluidModels(fluidSlush);
-		
+
 		fluidQuartz = regMoltenFluid("quartz", 0xdddddd, event);
 		fluidDragonsBreath = regMoltenFluid("dragonsbreath", 0x7f00b7, event);
 	}
@@ -1666,7 +1642,7 @@ public class CompendiumMaterials {
 //				m.setupRecipes(event);
 //		}
 	}
-	
+
 	static FluidColored regFluid(String name, int color, RegistryEvent.Register<Block> event) {
 		FluidColored f = new FluidColored(name, color);
 		f.setUnlocalizedName(Reference.MOD_ID + "." + name);

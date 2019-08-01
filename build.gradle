@@ -109,15 +109,23 @@ dependencies {
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
 
-	deobfCompile "slimeknights.mantle:Mantle:1.12-1.3.3.+"
-	deobfCompile "slimeknights:TConstruct:1.12.2-2.12.0.+"
-	deobfCompile "mezz.jei:jei_1.12.2:4.9.+:api"
-	//deobfCompile "com.github.Azanor:Baubles:master-SNAPSHOT"
-	//deobfCompile "blusunrize:ImmersiveEngineering:0.12:78"
-	deobfCompile "immersive-engineering:ImmersiveEngineering:0.12:88"
-	//deobfCompile "baubles:Baubles:1.12:1.5.2"
-	deobfCompile "com.wayoftime.bloodmagic:BloodMagic:1.12.2-2.3.1-99"
+	deobfCompile "mezz.jei:jei_${minecraftVersion}:${jeiVersion}"
+	
+    deobfCompile ("slimeknights:TConstruct:${tinkersVersion}")  {
+        exclude module: "jei_${minecraftVersion}"
+    }
+	
+    deobfCompile "slimeknights.mantle:Mantle:${mantleVersion}"
+	
+	deobfCompile "immersive-engineering:ImmersiveEngineering:${immersiveengineeringVersion}"
+	
+	deobfCompile "com.wayoftime.bloodmagic:BloodMagic:${bloodmagicVersion}"
+	
 	deobfCompile "com.github.Azanor:Baubles:-SNAPSHOT"
+	
+	deobfCompile ("CraftTweaker2:CraftTweaker2-MC1120-Main:${crafttweakerVersion}")  {
+        exclude module: "jei_${minecraftVersion}"
+    }
 }
 
 sourceSets {
