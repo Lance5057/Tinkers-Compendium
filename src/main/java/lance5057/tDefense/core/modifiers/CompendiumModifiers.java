@@ -183,6 +183,7 @@ public class CompendiumModifiers {
 		TinkersCompendium.proxy.registerItemRenderer(item_goggles, 0, "goggles");
 		TinkersCompendium.proxy.registerItemRenderer(item_icesole, 0, "icesole");
 		TinkersCompendium.proxy.registerItemRenderer(item_firesole, 0, "firesole");
+		TinkersCompendium.proxy.registerItemRenderer(item_flippers, 0, "flippers");
 		TinkersCompendium.proxy.registerItemRenderer(item_nightvisiongoggles, 0, "nightvisiongoggles");
 		TinkersCompendium.proxy.registerItemRenderer(item_rebreather, 0, "rebreather");
 	}
