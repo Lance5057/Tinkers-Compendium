@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "   ",
+        "fff",
+        "   "
+    ],
+    "key": {
+        "f": {
+            "item": "tinkerscompendium:cotton"
+        }
+    },
+    "result": 
+	{
+		"item": "tinkerscompendium:cottonyarn",
+        "data": 15,
+        "count": 2
+	}
+}

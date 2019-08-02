@@ -110,7 +110,7 @@ public class CompendiumTextiles {
 
 		for (int i = 0; i < 16; i++) {
 			TinkersCompendium.proxy.registerItemRenderer(cottonYarn, i, "cottonyarn_" + EnumDyeColor.byDyeDamage(i));
-			TinkersCompendium.proxy.registerItemRenderer(cottonItemBlock, i, "cottonblock_" + EnumDyeColor.byDyeDamage(i));
+			TinkersCompendium.proxy.registerItemRenderer(cottonItemBlock, i, "cottonblock_" + EnumDyeColor.byMetadata(i));
 		}
 	}
 

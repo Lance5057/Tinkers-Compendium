@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+		{
+			"item": "tinkerscompendium:cottonyarn",
+			"data": 32767,
+			"count": 1
+		},
+		{
+			"item": "minecraft:dye",
+			"data": 14
+		}
+	],
+    "result": 
+	{
+		"item": "tinkerscompendium:cottonyarn",
+        "data": 14,
+        "count": 1
+	}
+}
