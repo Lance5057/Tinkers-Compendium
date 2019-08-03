@@ -69,8 +69,8 @@ public class ModWalker extends ArmorModifierTrait {
 	
 	public void freezeNearby(EntityLivingBase living, World worldIn, BlockPos pos, int level)
     {
-        if (living.onGround)
-        {
+//        if (living.onGround)
+//        {
             float f = (float)Math.min(16, 2 + level);
             BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos(0, 0, 0);
 
@@ -93,6 +93,6 @@ public class ModWalker extends ArmorModifierTrait {
                     }
                 }
             }
-        }
+        //}
     }
 }

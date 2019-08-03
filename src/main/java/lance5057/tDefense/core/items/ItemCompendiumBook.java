@@ -5,6 +5,7 @@ import java.util.List;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import lance5057.tDefense.TinkersCompendium;
 import lance5057.tDefense.core.library.book.CompendiumBook;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
@@ -17,12 +18,11 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 import slimeknights.mantle.util.LocUtils;
-import slimeknights.tconstruct.library.TinkerRegistry;
 
 public class ItemCompendiumBook extends Item {
 
   public ItemCompendiumBook() {
-    this.setCreativeTab(TinkerRegistry.tabGeneral);
+    this.setCreativeTab(TinkersCompendium.tab);
     this.setMaxStackSize(1);
   }
 

@@ -1,0 +1,10 @@
+{
+    "ctm":{
+        "ctm_version": 1,
+		"layer": "SOLID",
+        "type":"ctm",
+        "textures":[
+            "tinkerscompendium:blocks/cottonblock_red_ctm"
+        ]
+    }
+}

@@ -1,0 +1,7 @@
+{
+	"parent": "item/generated",
+    "textures": {
+        "layer0": "tinkerscompendium:items/cottonyarn_magenta",
+		"layer1": "tinkerscompendium:items/yarn_overlay"
+    }
+}

@@ -200,8 +200,7 @@ public class ArmorStationContainer extends ContainerTinkerStation<ArmorStationTi
     try {
       resultTaken = !repairTool(true).isEmpty() ||
                     !replaceToolParts(true).isEmpty() ||
-                    !modifyTool(true).isEmpty() ||
-                    !renameTool().isEmpty();
+                    !modifyTool(true).isEmpty();
     } catch(TinkerGuiException e) {
       // no error updating needed
       e.printStackTrace();
@@ -280,26 +279,24 @@ public class ArmorStationContainer extends ContainerTinkerStation<ArmorStationTi
     return result;
   }
 
-  private ItemStack renameTool() throws TinkerGuiException {
-    ItemStack tool = getToolStack();
+	private ItemStack renameTool() throws TinkerGuiException {
+		ItemStack tool = getToolStack();
 
-    // modifying possible?
-    if(tool.isEmpty() ||
-       !(tool.getItem() instanceof ArmorBase) ||
-       StringUtils.isNullOrEmpty(toolName) ||
-       tool.getDisplayName().equals(toolName)) {
-      return ItemStack.EMPTY;
-    }
+		// modifying possible?
+		if (tool.isEmpty() || !(tool.getItem() instanceof ArmorBase) || StringUtils.isNullOrEmpty(toolName)
+				|| tool.getDisplayName().equals(toolName)) {
+			return ItemStack.EMPTY;
+		}
 
-    ItemStack result = tool.copy();
-    if(TagUtil.getNoRenameFlag(result)) {
-      throw new TinkerGuiException(Util.translate("gui.error.no_rename"));
-    }
+		ItemStack result = tool.copy();
+		if (TagUtil.getNoRenameFlag(result)) {
+			throw new TinkerGuiException(Util.translate("gui.error.no_rename"));
+		}
 
-    result.setStackDisplayName(toolName);
+		result.setStackDisplayName(toolName);
 
-    return result;
-  }
+		return result;
+	}
 
   private ItemStack buildTool() throws TinkerGuiException {
     NonNullList<ItemStack> input = ItemStackList.withSize(tile.getSizeInventory());
