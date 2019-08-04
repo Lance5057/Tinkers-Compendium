@@ -2,21 +2,11 @@
   "modifier": "td_deadmansswitch",
   "text": [
     {
-      "text": "\n"
-    },
-    {
-      "text": "What goes around comes around? Or is it what goes around comes around?     "
-    },
-    {
-      "text": "\n"
-    },
-    {
-      "text": "... If you'd rather payback this is for you."
+      "text": "What goes around comes around? \nOr is it what goes around comes around? \n... If you'd rather payback this is for you."
     }
   ],
   "effects": [
-    "TBA - Needs a short yet sweet desc",
-    "or two"
+    "NYI"
   ],
   "demoTool": [
     "tinkerscompendium:breastplate",
