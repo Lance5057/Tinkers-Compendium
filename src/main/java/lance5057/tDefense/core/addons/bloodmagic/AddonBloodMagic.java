@@ -1,7 +1,9 @@
 package lance5057.tDefense.core.addons.bloodmagic;
 
+import WayofTime.bloodmagic.core.RegistrarBloodMagicItems;
 import lance5057.tDefense.TinkersCompendium;
 import lance5057.tDefense.core.addons.bloodmagic.modifiers.ModScabbing;
+import lance5057.tDefense.core.addons.bloodmagic.modifiers.ModWill;
 import lance5057.tDefense.core.library.ModuleBase;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -20,6 +22,7 @@ public class AddonBloodMagic extends ModuleBase {
 	Item bloodyBandages;
 
 	ModScabbing scabbing = new ModScabbing();
+	ModWill will = new ModWill();
 
 //	public static MaterialHelper blankslate = new MaterialHelper("blankslate", 0x5f3d3d,
 //			new HeadMaterialStats(120, 4.00f, 3.00f, HarvestLevels.STONE), new HandleMaterialStats(0.50f, -50),
@@ -71,6 +74,7 @@ public class AddonBloodMagic extends ModuleBase {
 	@Override
 	public void init(FMLInitializationEvent e) {
 		scabbing.addRecipeMatch(new RecipeMatch.Item(new ItemStack(this.bloodyBandages), 1));
+		will.addRecipeMatch(new RecipeMatch.Item(new ItemStack(RegistrarBloodMagicItems.SENTIENT_SWORD), 1));
 	}
 
 	@Override

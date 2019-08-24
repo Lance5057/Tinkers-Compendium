@@ -1,5 +1,6 @@
 package lance5057.tDefense.core.materials.traits;
 
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
@@ -7,6 +8,7 @@ import net.minecraftforge.client.event.EntityViewRenderEvent.FogDensity;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingJumpEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
@@ -71,5 +73,9 @@ public abstract class AbstractTDTrait extends AbstractTrait {
 	public void renderHUD(RenderGameOverlayEvent.Post e)
 	{
 		
+	}
+
+	public void onEnemyDrops(LivingDropsEvent e, ItemStack tool, EntityLivingBase attacker) {
+
 	}
 }
