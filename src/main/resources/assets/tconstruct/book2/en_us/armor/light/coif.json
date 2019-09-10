@@ -2,18 +2,12 @@
   "tool": "coif",
   "text": [
     {
-      "text": "A heavy set of interlocking plates to protect the head from most damage."
-    },
-    {
-      "text": "\n"
-    },
-    {
-      "text": "The helm also is kinda hard to see out of but thankfully the visor has a hinge."
+      "text": "Thickly woven loops linked with small plates and cloth to protect the chest."
     }
   ],
   "properties": [
-    "Full coverage, with the Visor shut",
-    "Can take a beating",
-    "Praise Lance-kun"
+    "Moderate coverage.",
+    "Moderatly Protected.",
+    "Jack of All Traits."
   ]
 }

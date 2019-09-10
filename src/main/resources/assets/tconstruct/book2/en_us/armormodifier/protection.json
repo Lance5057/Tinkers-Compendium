@@ -2,16 +2,13 @@
   "modifier": "protection",
   "text": [
     {
-      "text": "\n"
-    },
-    {
-      "text": "Finding Armor doesnt protect enough? Iron armor plates can be used to add some extra protection."
+      "text": "The best offence is a good defence. \nThose that align with this belief can apply \niron armor plates for some extra protection."
     }
   ],
   "effects": [
-    "Protection & value",
+    "Protection & Values.",
     "Not projectile proof.",
-    "Multiple Levels.",
+    "Multiple Levels."
   ],
   "demoTool": [
     "tinkerscompendium:helm",

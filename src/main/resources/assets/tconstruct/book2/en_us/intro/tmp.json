@@ -1,19 +1,16 @@
 {
-  "title":"",
-  "text": [
+  "title":"The Order of the Silver Lance",
+  "text": [ 
     {
-      "text": "\n"
+      "text": "By the Order of the Silver Lance and under \nthe supervision of I Urist Ironhammer, \nuse this text to bestow knowledge of the order \nand its long history.",
+      "paragraph": false
     },
     {
-      "text": "By the Order of the Silver Lance and under the supervision of I Urist Ironhammer, use this text to bestow knowledge of the order and its long history.",
+      "text": "Since the order founded in 1710, followers of \nSilver Lance have marveled over his superior \ncraftsmanship. Of which many have tried to \nmimic which included I Urist Ironhammer \nThe Ledendary Dwarven Craftsman.",
       "paragraph": true
     },
     {
-      "text": "Since the order founded in 1710, followers of Silver Lance have marveled over his superior crafstmanship. Of which many have tried to mimic which included I the most skilled Dwarven craftsman.",
-      "paragraph": true
-    },
-    {
-      "text": "Within the following pages are secrets long \nkept by the order, caution and discretion are adviced to avoid revalation or personal harm.",
+      "text": "Within the following pages are secrets long \nkept by the order, caution and discretion are \nadvised to avoid revalation or personal harm.",
       "paragraph": true
     }
   ]

@@ -2,18 +2,12 @@
   "tool": "chausses",
   "text": [
     {
-      "text": "A heavy set of interlocking plates to protect the legs from most damage."
-    },
-    {
-      "text": "\n"
-    },
-    {
-      "text": "The helm may come with moving parts, but this does not come with such a feature"
+      "text": "Thickly woven loops linked with small plates and cloth to protect the legs."
     }
   ],
   "properties": [
-    "Loud voises can be heard as you move.",
-    "Can protec the loins real well.",
-    "Not a place to let it rip."
+    "Moderate coverage.",
+    "Moderatly Protected.",
+    "Jack of All Traits."
   ]
 }
