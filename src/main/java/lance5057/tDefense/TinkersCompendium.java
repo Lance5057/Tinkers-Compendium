@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import lance5057.tDefense.core.addons.bloodmagic.AddonBloodMagic;
+import lance5057.tDefense.core.addons.botania.AddonBotania;
 import lance5057.tDefense.core.entities.CompendiumEntities;
 import lance5057.tDefense.core.events.TDEvents;
 import lance5057.tDefense.core.library.book.CompendiumBook;
@@ -67,6 +68,7 @@ public class TinkersCompendium {
 	public static CompendiumTextiles textiles;
 
 	public static AddonBloodMagic bloodmagic;
+	public static AddonBotania botania;
 
 	@SidedProxy(clientSide = "lance5057.tDefense.proxy.ClientProxy", serverSide = "lance5057.tDefense.proxy.CommonProxy")
 	public static CommonProxy proxy;
@@ -86,6 +88,8 @@ public class TinkersCompendium {
 		
 		if (Loader.isModLoaded("bloodmagic") && TCConfig.addons.BloodMagic)
 			bloodmagic = new AddonBloodMagic();
+		if (Loader.isModLoaded("botania") && TCConfig.addons.Botania)
+			botania = new AddonBotania();
 
 		parts.preInit(e);
 		mats.preInit(e);
@@ -99,6 +103,8 @@ public class TinkersCompendium {
 		
 		if(bloodmagic != null)
 			bloodmagic.preInit(e);
+		if(botania != null)
+			botania.preInit(e);
 		
 		proxy.preInit();
 
@@ -124,6 +130,8 @@ public class TinkersCompendium {
 		
 		if(bloodmagic != null)
 			bloodmagic.init(e);
+		if(botania != null)
+			botania.init(e);
 		
 		proxy.init();
 
@@ -147,6 +155,8 @@ public class TinkersCompendium {
 		
 		if(bloodmagic != null)
 			bloodmagic.postInit(e);		
+		if(botania != null)
+			botania.postInit(e);	
 		
 		proxy.postInit();
 

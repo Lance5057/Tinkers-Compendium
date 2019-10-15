@@ -1,6 +1,7 @@
 package lance5057.tDefense.core.addons.bloodmagic;
 
 import WayofTime.bloodmagic.core.RegistrarBloodMagicItems;
+import lance5057.tDefense.Reference;
 import lance5057.tDefense.TinkersCompendium;
 import lance5057.tDefense.core.addons.bloodmagic.modifiers.ModScabbing;
 import lance5057.tDefense.core.addons.bloodmagic.modifiers.ModWill;
@@ -8,21 +9,28 @@ import lance5057.tDefense.core.library.ModuleBase;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent.Register;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.registries.IForgeRegistry;
 import slimeknights.mantle.util.RecipeMatch;
+import slimeknights.tconstruct.common.ModelRegisterUtil;
 
 public class AddonBloodMagic extends ModuleBase {
 	public AddonBloodMagic() {
 	}
 
-	Item bloodyBandages;
+	public static Item bloodyBandages;
 
-	ModScabbing scabbing = new ModScabbing();
-	ModWill will = new ModWill();
+	public static ModScabbing scabbing = new ModScabbing();
+	public static ModWill will = new ModWill();
 
 //	public static MaterialHelper blankslate = new MaterialHelper("blankslate", 0x5f3d3d,
 //			new HeadMaterialStats(120, 4.00f, 3.00f, HarvestLevels.STONE), new HandleMaterialStats(0.50f, -50),
@@ -57,10 +65,10 @@ public class AddonBloodMagic extends ModuleBase {
 	@Override
 	public void preInit(FMLPreInitializationEvent e) {
 		bloodyBandages = new Item();
-		
+
 		this.setupItem(bloodyBandages, "bloodybandages");
 
-		//CompendiumMaterials.itemList.add(bloodyBandages);
+		// CompendiumMaterials.itemList.add(bloodyBandages);
 
 //		CompendiumMaterials.materials.add(this.blankslate);
 //		CompendiumMaterials.materials.add(this.reinforcedslate);
@@ -69,6 +77,11 @@ public class AddonBloodMagic extends ModuleBase {
 //		CompendiumMaterials.materials.add(this.etherealslate);
 
 		// TinkerRegistry.registerModifier(scabbing);
+
+		TinkersCompendium.proxy.registerItemRenderer(bloodyBandages, 0, "bloodyBandages");
+
+		TinkersCompendium.proxy.registerModifierModel(scabbing);
+		TinkersCompendium.proxy.registerModifierModel(will);
 	}
 
 	@Override
@@ -86,15 +99,20 @@ public class AddonBloodMagic extends ModuleBase {
 	@Override
 	public void registerItems(Register<Item> event) {
 		IForgeRegistry r = event.getRegistry();
-		
+
 		r.register(bloodyBandages);
-		
-		TinkersCompendium.proxy.registerItemRenderer(bloodyBandages, 0, "bloodyBandages");
+
 	}
 
 	@Override
 	public void registerBlocks(Register<Block> event) {
 		// TODO Auto-generated method stub
+
+	}
+
+	@SideOnly(Side.CLIENT)
+	@SubscribeEvent
+	public static void registerModels(ModelRegistryEvent event) {
 
 	}
 

@@ -44,10 +44,10 @@ import slimeknights.tconstruct.tools.common.block.BlockToolTable;
 @SideOnly(Side.CLIENT)
 public class ContentArmorMaterial extends TinkerPage {
 
-  public static final String ID = "armormaterial";
+  public static final String ID = "td_armormaterial";
 
   private transient Material material;
-  @SerializedName("armormaterial")
+  @SerializedName("td_armormaterial")
   public String materialName;
 
   public ContentArmorMaterial(Material material) {

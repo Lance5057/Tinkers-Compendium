@@ -51,6 +51,10 @@ repositories {
         name 'Jared\'s Maven' // Immersive Engineering
         url 'http://blamejared.com/maven'
 	}
+	
+	maven { // Albedo Lights
+        url 'https://repo.elytradev.com/'
+    }
 }
 
 apply plugin: 'net.minecraftforge.gradle.forge'
@@ -110,6 +114,12 @@ dependencies {
 	deobfCompile ("CraftTweaker2:CraftTweaker2-MC1120-Main:${crafttweakerVersion}")  {
         exclude module: "jei_${minecraftVersion}"
     }
+	
+	deobfCompile ("vazkii.botania:Botania:r1.10-362.88")  {
+        exclude module: "jei_${minecraftVersion}"
+    }
+	
+	deobfCompile "albedo:albedo:0.1.3"
 }
 
 sourceSets {

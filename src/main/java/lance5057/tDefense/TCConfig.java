@@ -76,10 +76,10 @@ public class TCConfig {
 		@Config.RequiresMcRestart()
 		@Config.Comment("Debugging Currently")
 		public boolean enableFishingRod = false;
-		
+
 		@Config.RequiresMcRestart()
 		public boolean enableSaw = true;
-		
+
 		@Config.RequiresMcRestart()
 		public boolean enableMallet = true;
 
@@ -88,23 +88,68 @@ public class TCConfig {
 	}
 
 	public static class Materials {
+
 		public boolean generateOres = true;
 
-		public boolean aeonsteel= true;
-		public boolean queensgold= true;
-		public boolean dogbearium= true;
-		public boolean sinisterium= true;
-		public boolean nihilite= true;
-		public boolean orichalcum= true;
-		public boolean pandorium= true;
-		public boolean rosegold= true;
-		public boolean platinum= true;
-		public boolean valyriansteel= true;
-		public boolean froststeel= true;
-		public boolean gold=true;
-		public boolean silver=true;
+		public boolean aeonsteel = true;
+		public boolean queensgold = true;
+		public boolean dogbearium = true;
+		public boolean sinisterium = true;
+		public boolean nihilite = true;
+		public boolean orichalcum = true;
+		public boolean pandorium = true;
+		public boolean rosegold = true;
+		public boolean platinum = true;
+		public boolean valyriansteel = true;
+		public boolean froststeel = true;
+		public boolean gold = true;
+		public boolean silver = true;
 
 		public boolean mithril = true;
+
+		@Config.Comment("Enable/Disable all wool cloth materials?")
+		public boolean cloth = true;
+		public boolean black = true;
+		public boolean red = true;
+		public boolean green = true;
+		public boolean brown = true;
+		public boolean blue = true;
+		public boolean purple = true;
+		public boolean cyan = true;
+		public boolean lightgray = true;
+		public boolean gray = true;
+		public boolean pink = true;
+		public boolean lime = true;
+		public boolean yellow = true;
+		public boolean lightblue = true;
+		public boolean magenta = true;
+		public boolean orange = true;
+		public boolean white = true;
+
+		public boolean silky = true;
+
+		@Config.Comment("Enable/Disable all gem materials?")
+		public boolean gems;
+		
+		public boolean sapphire;
+		public boolean ruby;
+		public boolean emerald;
+		public boolean diamond;
+		public boolean starsapphire;
+		public boolean starruby;
+		public boolean citrine;
+		public boolean quartz;
+		public boolean amethyst;
+		public boolean lapis;
+		public boolean topaz;
+		public boolean garnet;
+		public boolean opal;
+		public boolean tanzinite;
+		public boolean amber;
+
+		public boolean ice;
+
+		
 	}
 
 	public static class Addons {
@@ -139,18 +184,18 @@ public class TCConfig {
 
 		@Config.RequiresMcRestart()
 		public boolean enableClothArmor = true;
-		
+
 		@Config.RequiresMcRestart()
 		public boolean enableChainArmor = true;
-		
+
 		@Config.RequiresMcRestart()
 		public boolean enableHeavyArmor = true;
 	}
-	
+
 	public static class Bauble {
 
 		public boolean enableBaubles = true;
-		
+
 		public boolean enableTabard = true;
 
 		public boolean enableRing = true;
@@ -222,7 +267,7 @@ public class TCConfig {
 	public static class Textiles {
 		@Config.RequiresMcRestart()
 		public boolean enableTextiles = true;
-		
+
 		public int grassFiberDropPercent = 75;
 	}
 	// public int SoulBoundID;

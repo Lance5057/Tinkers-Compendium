@@ -1,0 +1,31 @@
+{
+    "textures": {
+        "arrow": "tinkerscompendium:items/arrow/mod_scabbing",
+        "battleaxe": "tinkerscompendium:items/battleaxe/mod_scabbing",
+        "battlesign": "tinkerscompendium:items/battlesign/mod_scabbing",
+        "bolt": "tinkerscompendium:items/bolt/mod_scabbing",
+        "broadsword": "tinkerscompendium:items/broadsword/mod_scabbing",
+        "cleaver": "tinkerscompendium:items/cleaver/mod_scabbing",
+        "crossbow": "tinkerscompendium:items/crossbow/mod_scabbing",
+        "excavator": "tinkerscompendium:items/excavator/mod_scabbing",
+        "frypan": "tinkerscompendium:items/frypan/mod_scabbing",
+        "hammer": "tinkerscompendium:items/hammer/mod_scabbing",
+        "hatchet": "tinkerscompendium:items/hatchet/mod_scabbing",
+        "longbow": "tinkerscompendium:items/longbow/mod_scabbing",
+        "longbow1": "tinkerscompendium:items/longbow/mod_scabbing",
+        "longbow2": "tinkerscompendium:items/longbow/mod_scabbing",
+        "longbow3": "tinkerscompendium:items/longbow/mod_scabbing",
+        "longsword": "tinkerscompendium:items/longsword/mod_scabbing",
+        "lumberaxe": "tinkerscompendium:items/lumberaxe/mod_scabbing",
+        "mattock": "tinkerscompendium:items/mattock/mod_scabbing",
+        "pickaxe": "tinkerscompendium:items/pickaxe/mod_scabbing",
+        "rapier": "tinkerscompendium:items/rapier/mod_scabbing",
+        "scythe": "tinkerscompendium:items/scythe/mod_scabbing",
+        "shortbow": "tinkerscompendium:items/shortbow/mod_scabbing",
+        "shortbow1": "tinkerscompendium:items/shortbow/mod_scabbing",
+        "shortbow2": "tinkerscompendium:items/shortbow/mod_scabbing",
+        "shortbow3": "tinkerscompendium:items/shortbow/mod_scabbing",
+        "shovel": "tinkerscompendium:items/shovel/mod_scabbing",
+        "shuriken": "tinkerscompendium:items/shuriken/mod_scabbing"
+    }
+}

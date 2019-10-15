@@ -4,14 +4,13 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import lance5057.tDefense.core.entities.EntityTinkersFishHook;
 import lance5057.tDefense.core.parts.TDParts;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.projectile.EntityFishHook;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.IItemPropertyGetter;
-import net.minecraft.item.ItemFishingRod;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.stats.StatList;
@@ -103,7 +102,7 @@ public class FishingRod extends ToolCore {
 
             if (!worldIn.isRemote)
             {
-                EntityFishHook entityfishhook = new EntityFishHook(worldIn, playerIn);
+                EntityTinkersFishHook entityfishhook = new EntityTinkersFishHook(worldIn, playerIn);
                 int j = EnchantmentHelper.getFishingSpeedBonus(itemstack);
 
                 if (j > 0)

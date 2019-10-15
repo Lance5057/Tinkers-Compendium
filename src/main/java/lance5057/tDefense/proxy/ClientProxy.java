@@ -49,6 +49,7 @@ import slimeknights.tconstruct.library.client.CustomFontRenderer;
 import slimeknights.tconstruct.library.client.ToolBuildGuiInfo;
 import slimeknights.tconstruct.library.client.material.MaterialRenderInfoLoader;
 import slimeknights.tconstruct.library.materials.Material;
+import slimeknights.tconstruct.library.modifiers.Modifier;
 import slimeknights.tconstruct.library.tools.ToolCore;
 import slimeknights.tconstruct.library.tools.ToolPart;
 
@@ -217,6 +218,12 @@ public class ClientProxy extends CommonProxy {
 							TinkerRegistry.getMaterial("cobalt"), TinkerRegistry.getMaterial("iron"))));
 		}
 	}
+	
+//	@SideOnly(Side.CLIENT)
+//	@SubscribeEvent
+//	public static void registerModels(ModelRegistryEvent event) {
+//		if()
+//	}
 
 	@Override
 	public void registerFluidModels(Fluid fluid) {
@@ -242,6 +249,12 @@ public class ClientProxy extends CommonProxy {
 	@Override
 	public void registerArmorModel(ArmorCore tool) {
 		TDModelRegistar.registerToolModel(tool);
+	}
+	
+	@Override
+	public void registerModifierModel(Modifier mod) { 
+		ModelRegisterUtil.registerModifierModel(mod,
+				new ResourceLocation(Reference.MOD_ID, "models/item/modifiers/" + mod.getIdentifier()));
 	}
 
 	@Override

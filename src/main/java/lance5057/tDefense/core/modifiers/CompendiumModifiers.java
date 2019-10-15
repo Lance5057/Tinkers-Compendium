@@ -32,6 +32,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.registries.IForgeRegistry;
 import slimeknights.mantle.util.RecipeMatch;
+import slimeknights.tconstruct.common.ModelRegisterUtil;
 import slimeknights.tconstruct.library.modifiers.Modifier;
 import slimeknights.tconstruct.tools.TinkerMaterials;
 
@@ -67,12 +68,12 @@ public class CompendiumModifiers {
 	public static Modifier respirationI = new ModRespiration(1);
 	public static Modifier respirationII = new ModRespiration(2);
 	public static Modifier antiblindness = new ModAntiBlindness();
-	
+
 	public static Modifier frostwalker;
 	public static Modifier firewalker;
-	
-	public static Modifier clock = new ModClock(); 
-	public static Modifier compass = new ModCompass(); 
+
+	public static Modifier clock = new ModClock();
+	public static Modifier compass = new ModCompass();
 
 	static ArrayList<Item> itemList = new ArrayList<Item>();
 	static ArrayList<Block> blockList = new ArrayList<Block>();
@@ -81,10 +82,11 @@ public class CompendiumModifiers {
 		blockList.add(unstable_obsidian = new CrackedObsidian()
 				.setRegistryName(new ResourceLocation(Reference.MOD_ID, "crackedobsidian"))
 				.setUnlocalizedName("crackedobsidian").setCreativeTab(TinkersCompendium.tab));
-		
-		itemList.add(item_unstable_obsidian = (ItemBlock) new ItemBlock(unstable_obsidian).setRegistryName(new ResourceLocation(Reference.MOD_ID, "crackedobsidianitemblock"))
+
+		itemList.add(item_unstable_obsidian = (ItemBlock) new ItemBlock(unstable_obsidian)
+				.setRegistryName(new ResourceLocation(Reference.MOD_ID, "crackedobsidianitemblock"))
 				.setUnlocalizedName("crackedobsidianitemblock").setCreativeTab(TinkersCompendium.tab));
-		
+
 		itemList.add(item_canister = new Item().setRegistryName(new ResourceLocation(Reference.MOD_ID, "canister"))
 				.setUnlocalizedName("canister").setCreativeTab(TinkersCompendium.tab));
 		itemList.add(item_emptycanister = new Item()
@@ -112,14 +114,13 @@ public class CompendiumModifiers {
 		itemList.add(item_flippers = new Item().setRegistryName(new ResourceLocation(Reference.MOD_ID, "flippers"))
 				.setUnlocalizedName("flippers").setCreativeTab(TinkersCompendium.tab));
 
-		frostwalker = new ModWalker("frostwalker",0x93d7ff, Blocks.WATER, Blocks.FLOWING_WATER, Blocks.FROSTED_ICE);
-		firewalker = new ModWalker("firewalker",0xff4300, Blocks.LAVA, Blocks.FLOWING_LAVA, unstable_obsidian);
-		
-		
+		frostwalker = new ModWalker("frostwalker", 0x93d7ff, Blocks.WATER, Blocks.FLOWING_WATER, Blocks.FROSTED_ICE);
+		firewalker = new ModWalker("firewalker", 0xff4300, Blocks.LAVA, Blocks.FLOWING_LAVA, unstable_obsidian);
+
 	}
 
 	public void init() {
-		
+
 		deadmansswitch.addRecipeMatch(new RecipeMatch.ItemCombination(1, new ItemStack(Blocks.TNT),
 				new ItemStack(Items.REPEATER), new ItemStack(Blocks.TNT)));
 
@@ -158,10 +159,10 @@ public class CompendiumModifiers {
 
 		respirationI.addRecipeMatch(new RecipeMatch.Item(new ItemStack(item_rebreather), 1));
 		respirationII.addRecipeMatch(new RecipeMatch.Item(new ItemStack(item_eldergills), 1));
-		
+
 		frostwalker.addRecipeMatch(new RecipeMatch.Item(new ItemStack(item_icesole), 1));
 		firewalker.addRecipeMatch(new RecipeMatch.Item(new ItemStack(item_firesole), 1));
-		
+
 		clock.addRecipeMatch(new RecipeMatch.Item(new ItemStack(Items.CLOCK), 1));
 		compass.addRecipeMatch(new RecipeMatch.Item(new ItemStack(Items.COMPASS), 1));
 	}
@@ -174,7 +175,7 @@ public class CompendiumModifiers {
 	@SubscribeEvent
 	public static void registerModels(ModelRegistryEvent event) {
 		// TDClientRegistry.addModifierModel("goggles", new ModelGoggles());
-		
+
 		TinkersCompendium.proxy.registerItemRenderer(item_canister, 0, "canister");
 		TinkersCompendium.proxy.registerItemRenderer(item_eldergills, 0, "eldergills");
 		TinkersCompendium.proxy.registerItemRenderer(item_emptycanister, 0, "empty_canister");
@@ -186,11 +187,42 @@ public class CompendiumModifiers {
 		TinkersCompendium.proxy.registerItemRenderer(item_flippers, 0, "flippers");
 		TinkersCompendium.proxy.registerItemRenderer(item_nightvisiongoggles, 0, "nightvisiongoggles");
 		TinkersCompendium.proxy.registerItemRenderer(item_rebreather, 0, "rebreather");
+
+		ModelRegisterUtil.registerModifierModel(deadmansswitch,
+				new ResourceLocation(Reference.MOD_ID, "models/item/modifiers/" + deadmansswitch.getIdentifier()));
+		ModelRegisterUtil.registerModifierModel(protection,
+				new ResourceLocation(Reference.MOD_ID, "models/item/modifiers/" + protection.getIdentifier()));
+		ModelRegisterUtil.registerModifierModel(projprotection,
+				new ResourceLocation(Reference.MOD_ID, "models/item/modifiers/" + projprotection.getIdentifier()));
+		ModelRegisterUtil.registerModifierModel(blastprotection,
+				new ResourceLocation(Reference.MOD_ID, "models/item/modifiers/" + blastprotection.getIdentifier()));
+		ModelRegisterUtil.registerModifierModel(fireprotection,
+				new ResourceLocation(Reference.MOD_ID, "models/item/modifiers/" + fireprotection.getIdentifier()));
+		ModelRegisterUtil.registerModifierModel(autofeed,
+				new ResourceLocation(Reference.MOD_ID, "models/item/modifiers/" + autofeed.getIdentifier()));
+
+		ModelRegisterUtil.registerModifierModel(nightvision,
+				new ResourceLocation(Reference.MOD_ID, "models/item/modifiers/" + nightvision.getIdentifier()));
+		ModelRegisterUtil.registerModifierModel(respirationI,
+				new ResourceLocation(Reference.MOD_ID, "models/item/modifiers/" + respirationI.getIdentifier()));
+		ModelRegisterUtil.registerModifierModel(respirationII,
+				new ResourceLocation(Reference.MOD_ID, "models/item/modifiers/" + respirationII.getIdentifier()));
+		ModelRegisterUtil.registerModifierModel(antiblindness,
+				new ResourceLocation(Reference.MOD_ID, "models/item/modifiers/" + antiblindness.getIdentifier()));
+
+		ModelRegisterUtil.registerModifierModel(frostwalker,
+				new ResourceLocation(Reference.MOD_ID, "models/item/modifiers/" + frostwalker.getIdentifier()));
+		ModelRegisterUtil.registerModifierModel(firewalker,
+				new ResourceLocation(Reference.MOD_ID, "models/item/modifiers/" + firewalker.getIdentifier()));
+
+		ModelRegisterUtil.registerModifierModel(clock,
+				new ResourceLocation(Reference.MOD_ID, "models/item/modifiers/" + clock.getIdentifier()));
+		ModelRegisterUtil.registerModifierModel(compass,
+				new ResourceLocation(Reference.MOD_ID, "models/item/modifiers/" + compass.getIdentifier()));
 	}
 
 	public void registerItems(final RegistryEvent.Register<Item> event) {
-		
-		
+
 		final IForgeRegistry registry = event.getRegistry();
 
 		for (Item i : itemList) {
@@ -205,13 +237,12 @@ public class CompendiumModifiers {
 			registry.register(i);
 		}
 	}
-	
+
 	@SubscribeEvent
 	public static void loottableedit(LootTableLoadEvent e) {
-		if (e.getName().toString().equals("minecraft:entities/elder_guardian"))
-		{
-			LootEntry entry = new LootEntryItem(CompendiumModifiers.item_eldergills, 15, 60, new LootFunction[0], new LootCondition[0],
-					Reference.MOD_ID + ":elderdrops");
+		if (e.getName().toString().equals("minecraft:entities/elder_guardian")) {
+			LootEntry entry = new LootEntryItem(CompendiumModifiers.item_eldergills, 15, 60, new LootFunction[0],
+					new LootCondition[0], Reference.MOD_ID + ":elderdrops");
 			LootPool pool1 = new LootPool(new LootEntry[] { entry }, new LootCondition[0], new RandomValueRange(1),
 					new RandomValueRange(0, 1), Reference.MOD_ID + ":elderpool");
 			e.getTable().addPool(pool1);

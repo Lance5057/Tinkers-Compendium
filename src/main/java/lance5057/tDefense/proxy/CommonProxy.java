@@ -4,20 +4,12 @@ import lance5057.tDefense.Reference;
 import lance5057.tDefense.TinkersCompendium;
 import lance5057.tDefense.core.items.ItemCompendiumBook;
 import lance5057.tDefense.core.library.ArmorPart;
-import lance5057.tDefense.core.modifiers.CompendiumModifiers;
 import lance5057.tDefense.core.tools.bases.ArmorCore;
 import lance5057.tDefense.core.workstations.CompendiumWorkstations;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.world.World;
-import net.minecraft.world.storage.loot.LootEntry;
-import net.minecraft.world.storage.loot.LootEntryItem;
-import net.minecraft.world.storage.loot.LootPool;
-import net.minecraft.world.storage.loot.RandomValueRange;
-import net.minecraft.world.storage.loot.conditions.LootCondition;
-import net.minecraft.world.storage.loot.functions.LootFunction;
-import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.RegistryEvent.Register;
 import net.minecraftforge.fluids.Fluid;
@@ -25,6 +17,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.IGuiHandler;
 import slimeknights.tconstruct.library.materials.Material;
+import slimeknights.tconstruct.library.modifiers.Modifier;
 import slimeknights.tconstruct.library.tools.ToolCore;
 import slimeknights.tconstruct.library.tools.ToolPart;
 
@@ -58,6 +51,10 @@ public class CommonProxy implements IGuiHandler {
 	}
 
 	public void registerArmorModel(ArmorCore tool) {
+
+	}
+	
+	public void registerModifierModel(Modifier mod) {
 
 	}
 
@@ -104,6 +101,8 @@ public class CommonProxy implements IGuiHandler {
 		
 		if(TinkersCompendium.bloodmagic != null)
 			TinkersCompendium.bloodmagic.registerItems(event);
+		if(TinkersCompendium.botania != null)
+			TinkersCompendium.botania.registerItems(event);
 	}
 
 	private static Item registerItem(Register<Item> event, Item item, String string) {
@@ -122,6 +121,8 @@ public class CommonProxy implements IGuiHandler {
 		
 		if(TinkersCompendium.bloodmagic != null)
 			TinkersCompendium.bloodmagic.registerBlocks(event);
+		if(TinkersCompendium.botania != null)
+			TinkersCompendium.botania.registerBlocks(event);
 	}
 
 	public void registerArmorPartModel(ArmorPart part) {
