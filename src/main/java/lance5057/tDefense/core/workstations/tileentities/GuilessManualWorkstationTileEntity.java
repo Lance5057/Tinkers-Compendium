@@ -2,8 +2,12 @@ package lance5057.tDefense.core.workstations.tileentities;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
@@ -16,7 +20,7 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.oredict.OreDictionary;
 import slimeknights.tconstruct.library.tools.ToolCore;
 
-public class GuilessManualWorkstationTileEntity extends TileEntity {
+public abstract class GuilessManualWorkstationTileEntity extends TileEntity {
 
 	private String tag = "";
 
@@ -109,25 +113,15 @@ public class GuilessManualWorkstationTileEntity extends TileEntity {
 				
 			} else {
 				if (!world.isRemote) {
-					if (isOreIn(items[0])) {
-						ItemStack o = getOreOut(items[0]).copy();
-						if (output != null && output != ItemStack.EMPTY) {
-							if (output.getItem() == o.getItem()) {
-								output.grow(1);
-								items[0].shrink(1);
-							}
-						} else {
-							output = o;
-							items[0].shrink(1);
-						}
-						uses = 0;
-					}
+					this.createItem();
 				}
 			}
 		}
 		else
 			uses = 0;
 	}
+	
+	public abstract void createItem();
 
 	private boolean isOreIn(ItemStack stack) {
 		if (stack != null && stack != ItemStack.EMPTY) {

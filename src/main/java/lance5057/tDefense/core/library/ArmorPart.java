@@ -58,7 +58,7 @@ public class ArmorPart extends MaterialItem implements IToolPart {
         // check if the material makes sense for this item (is it usable to build stuff?)
         if(canUseMaterial(mat)) {
           subItems.add(getItemstackWithMaterial(mat));
-          if(!Config.listAllMaterials) {
+          if(!Config.listAllPartMaterials) {
             break;
           }
         }

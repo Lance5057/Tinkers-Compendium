@@ -127,6 +127,7 @@ public class TCConfig {
 		public boolean white = true;
 
 		public boolean silky = true;
+		public boolean roughspun = true;
 
 		@Config.Comment("Enable/Disable all gem materials?")
 		public boolean gems;

@@ -490,7 +490,7 @@ public abstract class ArmorCore extends ArmorBase implements IToolStationDisplay
 		      // only valid ones
 		      if(hasValidMaterials(tool)) {
 		        subItems.add(tool);
-		        if(!Config.listAllMaterials) {
+		        if(!Config.listAllToolMaterials) {
 		          break;
 		        }
 		      }

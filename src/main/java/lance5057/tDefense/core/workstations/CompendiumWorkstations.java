@@ -8,6 +8,7 @@ import lance5057.tDefense.core.workstations.gui.armorstation.ArmorStationContain
 import lance5057.tDefense.core.workstations.gui.armorstation.ArmorStationGui;
 import lance5057.tDefense.core.workstations.gui.finishinganvil.FinishingAnvilContainer;
 import lance5057.tDefense.core.workstations.gui.finishinganvil.FinishingAnvilGui;
+import lance5057.tDefense.core.workstations.registries.hammeringtable.HammeringTableRecipeRegistry;
 import lance5057.tDefense.core.workstations.renderers.HammeringTableRenderer;
 import lance5057.tDefense.core.workstations.tileentities.ArmorStationTile;
 import lance5057.tDefense.core.workstations.tileentities.FinishingAnvilTile;
@@ -15,8 +16,10 @@ import lance5057.tDefense.core.workstations.tileentities.GuilessManualWorkstatio
 import lance5057.tDefense.core.workstations.tileentities.HammeringTableTileEntity;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.ModelRegistryEvent;
@@ -45,9 +48,10 @@ public class CompendiumWorkstations {
 	private ItemBlock HammeringTableItem;
 
 	public void preInit(FMLPreInitializationEvent e) {
-		
+		registerRecipes();
 	}
 
+	
 	public void init(FMLInitializationEvent e) {
 
 	}
@@ -114,4 +118,14 @@ public class CompendiumWorkstations {
 		}
 		return null;
 	}
+
+	private void registerRecipes() {
+		registerHammeringTableRecipes();
+	}
+
+
+	private void registerHammeringTableRecipes() {
+		HammeringTableRecipeRegistry.instance().addHammeringRecipe(new ItemStack(Blocks.STONE), new ItemStack(Blocks.GRAVEL));
+	}
+
 }

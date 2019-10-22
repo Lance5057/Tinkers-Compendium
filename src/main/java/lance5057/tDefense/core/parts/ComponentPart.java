@@ -60,7 +60,7 @@ public class ComponentPart extends ToolPart {
 			for (Material mat : TinkerRegistry.getAllMaterials()) {
 				if (mat.hasStats(MaterialTypes.HEAD) && (mat.isCraftable() || mat.isCastable())) {
 					subItems.add(getItemstackWithMaterial(mat));
-					if (!Config.listAllMaterials) {
+					if (!Config.listAllPartMaterials) {
 						break;
 					}
 				}

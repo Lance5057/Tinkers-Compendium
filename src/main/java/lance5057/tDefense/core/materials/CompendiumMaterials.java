@@ -36,6 +36,7 @@ import lance5057.tDefense.core.materials.stats.HelmMaterialStats;
 import lance5057.tDefense.core.materials.stats.LegsMaterialStats;
 import lance5057.tDefense.core.materials.stats.ShieldMaterialStats;
 import lance5057.tDefense.core.parts.ComponentPart;
+import lance5057.tDefense.textiles.CompendiumTextiles;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -153,6 +154,7 @@ public class CompendiumMaterials {
 	public static MaterialHelper white;
 
 	public static MaterialHelper silky;
+	public static MaterialHelper roughspun;
 
 //
 //	ice = new MaterialHelper("ice", 0x99A5F2F3);
@@ -613,6 +615,14 @@ public class CompendiumMaterials {
 					.add(new CraftableFabricMaterial(new ExtraMaterialStats(5), new FabricMaterialStats(100, 0, 0, 25),
 							new BowStringMaterialStats(1), TinkerCommons.matSilkyCloth, null));
 			materials.add(silky);
+		}
+		
+		if (TinkerRegistry.getMaterial("roughspun") == Material.UNKNOWN && TCConfig.materials.roughspun) {
+			roughspun = new MaterialHelper("roughspun", 0x407b17);
+			roughspun.addons
+					.add(new CraftableFabricMaterial(new ExtraMaterialStats(5), new FabricMaterialStats(100, 0, 0, 25),
+							new BowStringMaterialStats(1), new ItemStack(CompendiumTextiles.roughspunCord), new ItemStack(CompendiumTextiles.roughspunBlock)));
+			materials.add(roughspun);
 		}
 
 		if (TCConfig.materials.gems) {
