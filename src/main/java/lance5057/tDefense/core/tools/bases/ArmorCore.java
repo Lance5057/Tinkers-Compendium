@@ -16,6 +16,7 @@ import com.google.common.collect.Multimap;
 import com.google.common.collect.Sets;
 
 import lance5057.tDefense.Reference;
+import lance5057.tDefense.core.addons.toolleveling.AddonToolLeveling;
 import lance5057.tDefense.core.library.ArmorNBT;
 import lance5057.tDefense.core.library.ArmorTags;
 import lance5057.tDefense.core.library.ArmorToolTipBuilder;
@@ -473,28 +474,28 @@ public abstract class ArmorCore extends ArmorBase implements IToolStationDisplay
 	}
 
 	protected void addDefaultSubItems(List<ItemStack> subItems, Material... fixedMaterials) {
-		for(Material head : TinkerRegistry.getAllMaterials()) {
-		      List<Material> mats = new ArrayList<>(requiredComponents.length);
+		for (Material head : TinkerRegistry.getAllMaterials()) {
+			List<Material> mats = new ArrayList<>(requiredComponents.length);
 
-		      for(int i = 0; i < requiredComponents.length; i++) {
-		        if(fixedMaterials.length > i && fixedMaterials[i] != null && requiredComponents[i].isValidMaterial(fixedMaterials[i])) {
-		          mats.add(fixedMaterials[i]);
-		        }
-		        else {
-		          // todo: check for applicability with stats
-		          mats.add(head);
-		        }
-		      }
+			for (int i = 0; i < requiredComponents.length; i++) {
+				if (fixedMaterials.length > i && fixedMaterials[i] != null
+						&& requiredComponents[i].isValidMaterial(fixedMaterials[i])) {
+					mats.add(fixedMaterials[i]);
+				} else {
+					// todo: check for applicability with stats
+					mats.add(head);
+				}
+			}
 
-		      ItemStack tool = buildItem(mats);
-		      // only valid ones
-		      if(hasValidMaterials(tool)) {
-		        subItems.add(tool);
-		        if(!Config.listAllToolMaterials) {
-		          break;
-		        }
-		      }
-		    }
+			ItemStack tool = buildItem(mats);
+			// only valid ones
+			if (hasValidMaterials(tool)) {
+				subItems.add(tool);
+				if (!Config.listAllToolMaterials) {
+					break;
+				}
+			}
+		}
 	}
 
 	protected void addInfiTool(List<ItemStack> subItems, String name) {
@@ -784,17 +785,16 @@ public abstract class ArmorCore extends ArmorBase implements IToolStationDisplay
 		}
 		return s;
 	}
-	
-	private String buildRC(ItemStack stack)
-	{
+
+	private String buildRC(ItemStack stack) {
 		String texName = Reference.MOD_ID + "_" + getArmorType();
 		for (Material m : TinkerUtil.getMaterialsFromTagList(TagUtil.getBaseMaterialsTagList(stack))) {
 			texName += "_" + m.identifier;
 		}
-		
+
 		return texName;
 	}
-	
+
 	public abstract String getArmorType();
 
 	private boolean checkForTexture(String s) {
@@ -821,6 +821,9 @@ public abstract class ArmorCore extends ArmorBase implements IToolStationDisplay
 
 		if (count > 1)
 			a.Toughness += count - 1;
+
+		if (player instanceof EntityPlayer)
+			AddonToolLeveling.xpAdder.addXp(armor, (int) damage, (EntityPlayer) player);
 
 		return a;
 	}

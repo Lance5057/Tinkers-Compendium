@@ -2,6 +2,7 @@ package lance5057.tDefense.core.tools.basic;
 
 import java.util.List;
 
+import lance5057.tDefense.core.addons.toolleveling.AddonToolLeveling;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -20,8 +21,6 @@ import slimeknights.tconstruct.library.materials.Material;
 import slimeknights.tconstruct.library.tinkering.PartMaterialType;
 import slimeknights.tconstruct.library.tools.ToolCore;
 import slimeknights.tconstruct.library.tools.ToolNBT;
-import slimeknights.tconstruct.library.utils.TagUtil;
-import slimeknights.tconstruct.library.utils.TinkerUtil;
 import slimeknights.tconstruct.library.utils.ToolHelper;
 import slimeknights.tconstruct.tools.TinkerTools;
 
@@ -35,7 +34,7 @@ public class FireDrill extends ToolCore {
 
 		setUnlocalizedName("firedrill");
 	}
-	
+
 	@Override
 	public float damagePotential() {
 		return 0.5f;
@@ -77,9 +76,11 @@ public class FireDrill extends ToolCore {
 						CriteriaTriggers.PLACED_BLOCK.trigger((EntityPlayerMP) player, pos, itemstack);
 					}
 
-					removeStick(player);
-					ToolHelper.damageTool(itemstack, 1, null);
-					return EnumActionResult.SUCCESS;
+					if (removeStick(player)) {
+						ToolHelper.damageTool(itemstack, 1, null);
+						AddonToolLeveling.xpAdder.addXp(itemstack, 10, player);
+						return EnumActionResult.SUCCESS;
+					}
 				}
 			}
 		}
@@ -94,10 +95,13 @@ public class FireDrill extends ToolCore {
 		return false;
 	}
 
-	private void removeStick(EntityPlayer player) {
+	private boolean removeStick(EntityPlayer player) {
 		for (ItemStack s : player.inventory.mainInventory) {
-			if (s.getItem().equals(Items.STICK))
+			if (s.getItem().equals(Items.STICK)) {
 				s.setCount(s.getCount() - 1);
+				return true;
+			}
 		}
+		return false;
 	}
 }

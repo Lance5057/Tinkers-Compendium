@@ -550,7 +550,7 @@ tile.stone_ore_amethyst.name=Amethyst Crystal Ore
 tile.stone_ore_sapphire.name=Sapphire Crystal Ore
 tile.stone_ore_ruby.name=Ruby Crystal Ore
 
-tile.crackedobsidian.nameCracked Obsidian
+tile.crackedobsidian.name=Cracked Obsidian
 
 tile.roughspunblock.name=Roughspun Block
 
@@ -1140,11 +1140,11 @@ modifier.firewalker.name=Firewalker
 modifier.firewalker.desc=Lava Walking!
 
 //Armor Materials
-item.armor_plate.name=Armor Plate
-item.chainmail.name=Chainmail
-item.rivets.name=Rivets
-item.clasp.name=Clasp
-item.filigree.name=Filigree
-item.fabric.name=Fabric
-item.ringShank.name=Ring Shank
-item.setting.name=Ring Setting
+item.td_armor_plate.name=Armor Plate
+item.td_chainmail.name=Chainmail
+item.td_rivets.name=Rivets
+item.td_clasp.name=Clasp
+item.td_filigree.name=Filigree
+item.td_fabric.name=Fabric
+item.td_ringShank.name=Ring Shank
+item.td_setting.name=Ring Setting

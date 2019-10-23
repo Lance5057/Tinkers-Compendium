@@ -177,6 +177,9 @@ public class TCConfig {
 
 		@Config.RequiresMcRestart()
 		public boolean EnderIO = true;
+
+		@Config.RequiresMcRestart()
+		public boolean ToolLeveling = true;
 	}
 
 	public static class Armor {

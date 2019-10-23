@@ -120,6 +120,8 @@ dependencies {
     }
 	
 	deobfCompile "albedo:albedo:0.1.3"
+	
+	deobfCompile "tinkers-tool-leveling:TinkerToolLeveling:${minecraft_base_version}:${tool_leveling}"
 }
 
 sourceSets {

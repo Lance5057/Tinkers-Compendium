@@ -7,6 +7,7 @@ import java.io.IOException;
 
 import lance5057.tDefense.core.addons.bloodmagic.AddonBloodMagic;
 import lance5057.tDefense.core.addons.botania.AddonBotania;
+import lance5057.tDefense.core.addons.toolleveling.AddonToolLeveling;
 import lance5057.tDefense.core.entities.CompendiumEntities;
 import lance5057.tDefense.core.events.TDEvents;
 import lance5057.tDefense.core.library.book.CompendiumBook;
@@ -69,6 +70,7 @@ public class TinkersCompendium {
 
 	public static AddonBloodMagic bloodmagic;
 	public static AddonBotania botania;
+	public static AddonToolLeveling leveling;
 
 	@SidedProxy(clientSide = "lance5057.tDefense.proxy.ClientProxy", serverSide = "lance5057.tDefense.proxy.CommonProxy")
 	public static CommonProxy proxy;
@@ -90,6 +92,8 @@ public class TinkersCompendium {
 			bloodmagic = new AddonBloodMagic();
 		if (Loader.isModLoaded("botania") && TCConfig.addons.Botania)
 			botania = new AddonBotania();
+		if(Loader.isModLoaded("tinkertoolleveling") && TCConfig.addons.ToolLeveling)
+			leveling = new AddonToolLeveling();
 
 		parts.preInit(e);
 		mats.preInit(e);
@@ -132,6 +136,8 @@ public class TinkersCompendium {
 			bloodmagic.init(e);
 		if(botania != null)
 			botania.init(e);
+		if(leveling != null)
+			leveling.init(e);
 		
 		proxy.init();
 
@@ -157,6 +163,8 @@ public class TinkersCompendium {
 			bloodmagic.postInit(e);		
 		if(botania != null)
 			botania.postInit(e);	
+		if(leveling != null)
+			leveling.postInit(e);
 		
 		proxy.postInit();
 

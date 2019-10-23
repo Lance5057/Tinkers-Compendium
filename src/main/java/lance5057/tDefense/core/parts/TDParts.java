@@ -89,25 +89,18 @@ public class TDParts extends ModuleBase
 	{
 		final IForgeRegistry registry = event.getRegistry();
 
-		armorPlate = regToolPart(Material.VALUE_Ingot * 4, "armor_plate", event);
-		// armorPlate = new ToolPart(Material.VALUE_Ingot * 4);
-		// armorPlate.setUnlocalizedName("armor_plate").setRegistryName("tinkersdefense:armor_plate");
-		// GameRegistry.register(armorPlate);
-		//
-		// TinkerRegistry.registerStencilTableCrafting(Pattern.setTagForPart(new
-		// ItemStack(TinkerTools.pattern), armorPlate));
-		//
-		chainmail = regArmorPart(Material.VALUE_Ingot * 3, "chainmail", event);
+		armorPlate = regToolPart(Material.VALUE_Ingot * 4, "td_armor_plate", event);
+		chainmail = regArmorPart(Material.VALUE_Ingot * 3, "td_chainmail", event);
 
-		fabric = regArmorPart(Material.VALUE_Ingot * 3, "fabric", event);
+		fabric = regArmorPart(Material.VALUE_Ingot * 3, "td_fabric", event);
 
-		rivets = regToolPart(Material.VALUE_Ingot * 1, "rivets", event);
-		clasp = regToolPart(Material.VALUE_Ingot * 1, "clasp", event);
+		rivets = regToolPart(Material.VALUE_Ingot * 1, "td_rivets", event);
+		clasp = regToolPart(Material.VALUE_Ingot * 1, "td_clasp", event);
 //
-		ringShank = regToolPart(Material.VALUE_Ingot * 2, "ringShank", event);
-		setting = regToolPart(Material.VALUE_Ingot * 1, "setting", event);
+		ringShank = regToolPart(Material.VALUE_Ingot * 2, "td_ringShank", event);
+		setting = regToolPart(Material.VALUE_Ingot * 1, "td_setting", event);
 //		wire = regToolPart(Material.VALUE_Ingot * 1, "wire", event);
-		filigree = regToolPart(Material.VALUE_Ingot * 1, "filigree", event);
+		filigree = regToolPart(Material.VALUE_Ingot * 1, "td_filigree", event);
 
 		// ShieldMat = new PartMaterialType(TDParts.armorPlate,
 		// ShieldMaterialStats.TYPE);
