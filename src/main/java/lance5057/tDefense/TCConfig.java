@@ -74,8 +74,7 @@ public class TCConfig {
 		public boolean enableShears = true;
 
 		@Config.RequiresMcRestart()
-		@Config.Comment("Debugging Currently")
-		public boolean enableFishingRod = false;
+		public boolean enableFishingRod = true;
 
 		@Config.RequiresMcRestart()
 		public boolean enableSaw = true;
@@ -150,7 +149,11 @@ public class TCConfig {
 
 		public boolean ice;
 
+		@Config.Comment("Materials that will spawn in easy difficulty on the overworld")
+		public String[] easyoverworld = {"wood", "stone", "flint", "cactus", "bone", "paper"};
 		
+		@Config.Comment("Materials that will spawn in normal difficulty on the overworld")
+		public String[] normaloverworld = {};
 	}
 
 	public static class Addons {

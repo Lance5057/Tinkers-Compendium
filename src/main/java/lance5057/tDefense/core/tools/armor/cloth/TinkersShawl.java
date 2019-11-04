@@ -45,13 +45,13 @@ public class TinkersShawl extends ArmorCore {
 				PartMaterialType.extra(TDParts.armorPlate));
 		setUnlocalizedName("tinkershawl");
 	}
-	
+
 	@Override
-	  public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> subItems) {
-	    if(this.isInCreativeTab(tab)) {
-	      addDefaultSubItems(subItems, CompendiumMaterials.white.mat, CompendiumMaterials.white.mat, null);
-	    }
-	  }
+	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> subItems) {
+		if (this.isInCreativeTab(tab)) {
+			addDefaultSubItems(subItems, CompendiumMaterials.white.mat, CompendiumMaterials.white.mat, null);
+		}
+	}
 
 	@Override
 	public void onUpdate(ItemStack stack, World world, Entity entity, int par4, boolean par5) {
@@ -93,15 +93,15 @@ public class TinkersShawl extends ArmorCore {
 	}
 
 	@Override
-	public float damagePotential() {
+	public float armorMultiplier() {
 		// TODO Auto-generated method stub
-		return 0;
+		return 0.1f;
 	}
 
 	@Override
-	public double attackSpeed() {
+	public float potencyMultiplier() {
 		// TODO Auto-generated method stub
-		return 0;
+		return 1f;
 	}
 
 	@Override
@@ -112,7 +112,7 @@ public class TinkersShawl extends ArmorCore {
 			ArmorMaterialStats handle = materials.get(0).getStatsOrUnknown(FabricMaterialStats.TYPE);
 			ArmorMaterialStats head = materials.get(1).getStatsOrUnknown(FabricMaterialStats.TYPE);
 			// start with head
-			data.head(head, handle);
+			data.head(this, head, handle);
 
 			// add in accessoires if present
 			if (materials.size() >= 3) {

@@ -1,6 +1,7 @@
 package lance5057.tDefense.core.library;
 
 import lance5057.tDefense.core.materials.stats.ArmorMaterialStats;
+import lance5057.tDefense.core.tools.bases.ArmorCore;
 import net.minecraft.nbt.NBTTagCompound;
 import slimeknights.tconstruct.library.materials.ExtraMaterialStats;
 import slimeknights.tconstruct.library.materials.HandleMaterialStats;
@@ -31,7 +32,7 @@ public class ArmorNBT {
 	}
 
 	/** Initialize the stats with the heads. CALL THIS FIRST */
-	public ArmorNBT head(ArmorMaterialStats... heads) {
+	public ArmorNBT head(ArmorCore armor, ArmorMaterialStats... heads) {
 		durability = 0;
 		armorRating = 0;
 		armorToughness = 0;
@@ -41,9 +42,9 @@ public class ArmorNBT {
 		for (ArmorMaterialStats head : heads) {
 			if (head != null) {
 				durability += head.durability;
-				armorRating += head.rating;
-				armorToughness += head.toughness;
-				armorPotency += head.potency;
+				armorRating += head.rating * armor.armorMultiplier();
+				armorToughness += head.toughness * armor.armorMultiplier();
+				armorPotency += head.potency * armor.potencyMultiplier();
 			}
 		}
 

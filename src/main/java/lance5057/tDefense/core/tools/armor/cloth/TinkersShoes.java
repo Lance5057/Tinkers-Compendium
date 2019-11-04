@@ -94,15 +94,15 @@ public class TinkersShoes extends ArmorCore {
 	}
 
 	@Override
-	public float damagePotential() {
+	public float armorMultiplier() {
 		// TODO Auto-generated method stub
-		return 0;
+		return 0.1f;
 	}
 
 	@Override
-	public double attackSpeed() {
+	public float potencyMultiplier() {
 		// TODO Auto-generated method stub
-		return 0;
+		return 1f;
 	}
 
 	@Override
@@ -113,7 +113,7 @@ public class TinkersShoes extends ArmorCore {
 			ArmorMaterialStats handle = materials.get(0).getStatsOrUnknown(FabricMaterialStats.TYPE);
 			ArmorMaterialStats head = materials.get(1).getStatsOrUnknown(FabricMaterialStats.TYPE);
 			// start with head
-			data.head(head, handle);
+			data.head(this, head, handle);
 
 			// add in accessoires if present
 			if (materials.size() >= 3) {
@@ -126,7 +126,7 @@ public class TinkersShoes extends ArmorCore {
 		}
 
 		// 3 free modifiers
-		data.modifiers = DEFAULT_MODIFIERS;
+		data.modifiers = 5;
 
 		return data;
 	}

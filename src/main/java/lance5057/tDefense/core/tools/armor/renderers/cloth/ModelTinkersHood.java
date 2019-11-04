@@ -41,6 +41,8 @@ public class ModelTinkersHood extends ArmorRenderer {
         this.ScarfNeck.setRotationPoint(0.0F, 0.0F, 0.0F);
         this.ScarfNeck.addBox(-4.5F, -2.0F, -4.5F, 9, 3, 9, 0.3F);
         this.bipedHead.addChild(ScarfNeck);
+        
+        this.bipedHeadwear.isHidden = true;
     }
 
     /**

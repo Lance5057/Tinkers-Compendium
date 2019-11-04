@@ -16,6 +16,8 @@ public class MaterialOre implements MaterialBase {
 
 	private Block oreBlock;
 	private Item oreClump;
+	private Item oreGravel;
+	private Item oreSand;
 
 	public String prefix;
 	public String style;
@@ -75,6 +77,13 @@ public class MaterialOre implements MaterialBase {
 	@Override
 	public void setupPre(Material mat) {
 
+		oreClump = registerItem("clump_" + mat.identifier, TinkersCompendium.tab);
+		CompendiumMaterials.itemList.add(oreClump);
+		oreGravel = registerItem("gravelclump_" + mat.identifier, TinkersCompendium.tab);
+		CompendiumMaterials.itemList.add(oreGravel);
+		oreSand = registerItem("sandclump_" + mat.identifier, TinkersCompendium.tab);
+		CompendiumMaterials.itemList.add(oreSand);
+		
 		// TODO add ore clumps
 		oreBlock = new TDOreBlock(oreClump, hardness, resistance, mininglevel)
 				.setRegistryName(new ResourceLocation(Reference.MOD_ID, prefix + "_ore_" + mat.identifier))

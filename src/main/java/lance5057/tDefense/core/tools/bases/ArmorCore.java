@@ -137,7 +137,10 @@ public abstract class ArmorCore extends ArmorBase implements IToolStationDisplay
 	}
 
 	/** Multiplier for damage from materials. Should be fixed per tool. */
-	public abstract float damagePotential();
+	public float damagePotential()
+	{
+		return 0;
+	}
 
 	/**
 	 * A fixed damage value where the calculations start to apply dimishing returns.
@@ -155,7 +158,10 @@ public abstract class ArmorCore extends ArmorBase implements IToolStationDisplay
 	 * to the vanilla attack speed. 4 is equal to any standard item. Value has to be
 	 * greater than zero.
 	 */
-	public abstract double attackSpeed();
+	public double attackSpeed()
+	{
+		return 0;
+	}
 
 	/**
 	 * Knockback modifier. Basically this takes the vanilla knockback on hit and
@@ -164,6 +170,9 @@ public abstract class ArmorCore extends ArmorBase implements IToolStationDisplay
 	public float knockback() {
 		return 1.0f;
 	}
+	
+	public abstract float armorMultiplier();
+	public abstract float potencyMultiplier();
 
 	/**
 	 * Actually deal damage to the entity we hit. Can be overridden for special
@@ -823,7 +832,7 @@ public abstract class ArmorCore extends ArmorBase implements IToolStationDisplay
 			a.Toughness += count - 1;
 
 		if (player instanceof EntityPlayer)
-			AddonToolLeveling.xpAdder.addXp(armor, (int) damage, (EntityPlayer) player);
+			AddonToolLeveling.xpAdder.addXp(armor, (int) (damage/4), (EntityPlayer) player);
 
 		return a;
 	}

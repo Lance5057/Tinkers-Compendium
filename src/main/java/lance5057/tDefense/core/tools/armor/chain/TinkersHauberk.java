@@ -1,4 +1,4 @@
-package lance5057.tDefense.core.tools.armor.heavy;
+package lance5057.tDefense.core.tools.armor.chain;
 
 import java.util.List;
 
@@ -9,8 +9,9 @@ import lance5057.tDefense.core.materials.CompendiumMaterials;
 import lance5057.tDefense.core.materials.stats.ArmorMaterialStats;
 import lance5057.tDefense.core.materials.stats.ChestMaterialStats;
 import lance5057.tDefense.core.materials.stats.FabricMaterialStats;
+import lance5057.tDefense.core.materials.stats.HelmMaterialStats;
 import lance5057.tDefense.core.parts.TDParts;
-import lance5057.tDefense.core.tools.armor.renderers.heavy.ModelTinkersBreastplate;
+import lance5057.tDefense.core.tools.armor.renderers.chain.ModelTinkersHauberk;
 import lance5057.tDefense.core.tools.bases.ArmorCore;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.creativetab.CreativeTabs;
@@ -27,33 +28,31 @@ import slimeknights.tconstruct.library.materials.HandleMaterialStats;
 import slimeknights.tconstruct.library.materials.Material;
 import slimeknights.tconstruct.library.materials.MaterialTypes;
 import slimeknights.tconstruct.library.tinkering.PartMaterialType;
-import slimeknights.tconstruct.tools.TinkerMaterials;
-import slimeknights.tconstruct.tools.TinkerTools;
 
-public class TinkersBreastplate extends ArmorCore {
-	public TinkersBreastplate() {
-		super(EntityEquipmentSlot.CHEST, new PartMaterialType(TinkerTools.largePlate, ChestMaterialStats.TYPE),
-				new PartMaterialType(TDParts.armorPlate, ChestMaterialStats.TYPE),
-				PartMaterialType.handle(TDParts.filigree), PartMaterialType.extra(TDParts.chainmail),
-				new PartMaterialType(TDParts.fabric, FabricMaterialStats.TYPE));
-		setUnlocalizedName("tinkersbreastplate");
+public class TinkersHauberk extends ArmorCore {
+	public TinkersHauberk() {
+		super(EntityEquipmentSlot.CHEST, new PartMaterialType(TDParts.chainmail, ChestMaterialStats.TYPE),
+				 new PartMaterialType(TDParts.armorPlate, ChestMaterialStats.TYPE),
+				PartMaterialType.handle(TDParts.clasp),
+				new PartMaterialType(TDParts.fabric, FabricMaterialStats.TYPE),
+				PartMaterialType.extra(TDParts.rivets));
+		setUnlocalizedName("tinkershauberk");
 	}
 
 	@Override
 	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> subItems) {
 		if (this.isInCreativeTab(tab)) {
-			addDefaultSubItems(subItems, null, null, null, null,
-					CompendiumMaterials.white.mat);
+			addDefaultSubItems(subItems, null, null, null, CompendiumMaterials.white.mat, null);
 		}
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public NBTTagCompound setupTexture(List<Material> materials) {
 		NBTTagCompound base = new NBTTagCompound();
 
-		ResourceLocation rc = ArmorTextureBuilder.createArmorTexture("breastplate",
-				new String[] { "plate", "smallplate", "trim", "chain", "cloth" }, materials, 128, 128);
+		ResourceLocation rc = ArmorTextureBuilder.createArmorTexture("hauberk",
+				new String[] { "chain", "plate", "clasp","cloth", "rivet" }, materials, 48, 48);
 
 		if (rc != null) {
 			base.setString(ArmorTags.TexLoc, rc.toString());
@@ -66,8 +65,7 @@ public class TinkersBreastplate extends ArmorCore {
 	@Override
 	public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, EntityEquipmentSlot armorSlot,
 			ModelBiped _default) {
-		return new ModelTinkersBreastplate(itemStack);
-		// return new ModelArmorTerrasteel(itemStack, armorSlot);
+		return new ModelTinkersHauberk(itemStack);
 	}
 
 	@Override
@@ -82,26 +80,14 @@ public class TinkersBreastplate extends ArmorCore {
 	}
 
 	@Override
-	public float armorMultiplier() {
-		// TODO Auto-generated method stub
-		return 1f;
-	}
-
-	@Override
-	public float potencyMultiplier() {
-		// TODO Auto-generated method stub
-		return 0f;
-	}
-
-	@Override
 	protected ArmorNBT buildDefaultTag(List<Material> materials) {
 		ArmorNBT data = new ArmorNBT();
 
-		ArmorMaterialStats head2 = materials.get(0).getStatsOrUnknown(ChestMaterialStats.TYPE);
-		ArmorMaterialStats head = materials.get(1).getStatsOrUnknown(ChestMaterialStats.TYPE);
+		ArmorMaterialStats head = materials.get(0).getStatsOrUnknown(HelmMaterialStats.TYPE);
+		ArmorMaterialStats head2 = materials.get(1).getStatsOrUnknown(HelmMaterialStats.TYPE);
 		HandleMaterialStats handle = materials.get(2).getStatsOrUnknown(MaterialTypes.HANDLE);
-		ExtraMaterialStats extra = materials.get(3).getStatsOrUnknown(MaterialTypes.EXTRA);
-		ExtraMaterialStats extra2 = materials.get(4).getStatsOrUnknown(MaterialTypes.EXTRA);
+		ExtraMaterialStats extra = materials.get(3).getStatsOrUnknown(ExtraMaterialStats.TYPE);
+		ExtraMaterialStats extra2 = materials.get(4).getStatsOrUnknown(ExtraMaterialStats.TYPE);
 		// start with head
 		data.head(this, head, head2);
 		data.extra(extra, extra2);
@@ -114,6 +100,16 @@ public class TinkersBreastplate extends ArmorCore {
 
 	@Override
 	public String getArmorType() {
-		return "breastplate";
+		return "hauberk";
+	}
+
+	@Override
+	public float armorMultiplier() {
+		return 0.75f;
+	}
+
+	@Override
+	public float potencyMultiplier() {
+		return 0.25f;
 	}
 }

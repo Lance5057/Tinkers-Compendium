@@ -9,6 +9,10 @@ import lance5057.tDefense.Reference;
 import lance5057.tDefense.TinkersCompendium;
 import lance5057.tDefense.core.library.TCRegistry;
 import lance5057.tDefense.core.network.ArmorStationSelectionPacket;
+import lance5057.tDefense.core.tools.armor.chain.TinkersBoots;
+import lance5057.tDefense.core.tools.armor.chain.TinkersChausses;
+import lance5057.tDefense.core.tools.armor.chain.TinkersCoif;
+import lance5057.tDefense.core.tools.armor.chain.TinkersHauberk;
 import lance5057.tDefense.core.tools.armor.cloth.TinkersHood;
 import lance5057.tDefense.core.tools.armor.cloth.TinkersRobe;
 import lance5057.tDefense.core.tools.armor.cloth.TinkersShawl;
@@ -34,6 +38,7 @@ import lance5057.tDefense.core.tools.baubles.TinkersTabard;
 import lance5057.tDefense.core.workstations.blocks.ArmorStationBlock;
 import lance5057.tDefense.core.workstations.tileentities.ArmorStationTile;
 import net.minecraft.block.Block;
+import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.ResourceLocation;
@@ -58,6 +63,8 @@ public class TDTools {
 	public static final List<ToolCore> tools = new ArrayList<>();
 	public static final List<ArmorCore> armors = new ArrayList<>();
 	TDToolEvents events = new TDToolEvents();
+
+	public static TextureMap armorMap;
 
 	public static ArmorStationBlock station;
 
@@ -84,7 +91,7 @@ public class TDTools {
 	public static ArmorCore coif;
 	public static ArmorCore hauberk;
 	public static ArmorCore chausses;
-	// public static ToolCore boots;
+	public static ArmorCore boots;
 
 	public static ArmorCore helm;
 	public static ArmorCore breastplate;
@@ -114,6 +121,7 @@ public class TDTools {
 	// PRE-INITIALIZATION
 	@Subscribe
 	public void preInit(FMLPreInitializationEvent event) {
+		armorMap = new TextureMap("armortextures");
 	}
 
 	private void regTools() {
@@ -179,10 +187,16 @@ public class TDTools {
 			regArmor(shoes, "shoes", event);
 		}
 
-		// coif = new TinkersCoif();
-		// hauberk = new TinkersHauberk();
-		// chausses = new TinkersChausses();
-		// boots = new TinkersBoots();
+		if (TinkersCompendium.config.armor.enableChainArmor) {
+			coif = new TinkersCoif();
+			regArmor(coif, "coif", event);
+			hauberk = new TinkersHauberk();
+			regArmor(hauberk, "hauberk", event);
+			chausses = new TinkersChausses();
+			regArmor(chausses, "chausses", event);
+			boots = new TinkersBoots();
+			regArmor(boots, "boots", event);
+		}
 
 		if (TinkersCompendium.config.armor.enableChainArmor) {
 			helm = new TinkersHelm();
@@ -200,14 +214,14 @@ public class TDTools {
 				tabard = new TinkersTabard();
 				regTool(tabard, "tabard", event);
 			}
-			if (TinkersCompendium.config.baubles.enableRing) { 
+			if (TinkersCompendium.config.baubles.enableRing) {
 				ring = new TinkerRing();
 				regTool(ring, "ring", event);
 			}
 		}
 
 		// sheathe = new Sheathe();
-		
+
 		// amulet = new Amulet();
 
 		// regTool(boots, "boots", event);
@@ -218,7 +232,7 @@ public class TDTools {
 
 		//
 		// regTool(sheathe, "sheathe", event);
-		
+
 		// regTool(amulet, "amulet", event);
 
 		final IForgeRegistry registry = event.getRegistry();
@@ -318,7 +332,12 @@ public class TDTools {
 			TCRegistry.registerArmorCrafting(shoes);
 		}
 
-		// TinkerRegistry.registerToolCrafting(boots);
+		if (TinkersCompendium.config.armor.enableChainArmor) {
+			TCRegistry.registerArmorCrafting(coif);
+			TCRegistry.registerArmorCrafting(hauberk);
+			TCRegistry.registerArmorCrafting(chausses);
+			TCRegistry.registerArmorCrafting(boots);
+		}
 
 		if (TinkersCompendium.config.armor.enableHeavyArmor) {
 			TCRegistry.registerArmorCrafting(helm);
@@ -326,12 +345,12 @@ public class TDTools {
 			TCRegistry.registerArmorCrafting(grieves);
 			TCRegistry.registerArmorCrafting(sabatons);
 		}
-		
+
 		if (TinkersCompendium.config.baubles.enableBaubles) {
 			if (TinkersCompendium.config.baubles.enableTabard) {
 				TinkerRegistry.registerToolCrafting(tabard);
 			}
-			if (TinkersCompendium.config.baubles.enableRing) { 
+			if (TinkersCompendium.config.baubles.enableRing) {
 				TinkerRegistry.registerToolCrafting(ring);
 			}
 		}

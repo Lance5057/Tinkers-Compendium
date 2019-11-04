@@ -125,7 +125,19 @@ public class CompendiumWorkstations {
 
 
 	private void registerHammeringTableRecipes() {
-		HammeringTableRecipeRegistry.instance().addHammeringRecipe(new ItemStack(Blocks.STONE), new ItemStack(Blocks.GRAVEL));
+		HammeringTableRecipeRegistry.instance().addHammeringRecipe(new ItemStack(Blocks.STONE), new ItemStack(Blocks.COBBLESTONE));
+		HammeringTableRecipeRegistry.instance().addHammeringRecipe(new ItemStack(Blocks.COBBLESTONE), new ItemStack(Blocks.GRAVEL));
+		HammeringTableRecipeRegistry.instance().addHammeringRecipe(new ItemStack(Blocks.GRAVEL), new ItemStack(Blocks.SAND));
+		
+		HammeringTableRecipeRegistry.instance().addHammeringRecipe(new ItemStack(Blocks.STONEBRICK), new ItemStack(Blocks.STONEBRICK,1,1));
+		HammeringTableRecipeRegistry.instance().addHammeringRecipe(new ItemStack(Blocks.STONEBRICK,1,1), new ItemStack(Blocks.COBBLESTONE));
+		
+		HammeringTableRecipeRegistry.instance().addHammeringRecipe(new ItemStack(Blocks.SANDSTONE), new ItemStack(Blocks.SAND,4));
+		HammeringTableRecipeRegistry.instance().addHammeringRecipe(new ItemStack(Blocks.SANDSTONE,1,1), new ItemStack(Blocks.SAND,4));
+		HammeringTableRecipeRegistry.instance().addHammeringRecipe(new ItemStack(Blocks.SANDSTONE,1,2), new ItemStack(Blocks.SAND,4));
+		HammeringTableRecipeRegistry.instance().addHammeringRecipe(new ItemStack(Blocks.SANDSTONE,1,3), new ItemStack(Blocks.SAND,4));
+		
+		HammeringTableRecipeRegistry.instance().addHammeringRecipe(new ItemStack(Blocks.COBBLESTONE_WALL), new ItemStack(Blocks.COBBLESTONE,6));
 	}
 
 }

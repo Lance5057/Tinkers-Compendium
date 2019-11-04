@@ -82,7 +82,7 @@ public class ClientProxy extends CommonProxy {
 	ArmorBuildGuiInfo coifGUI;
 	ArmorBuildGuiInfo hauberkGUI;
 	ArmorBuildGuiInfo chaussesGUI;
-	// ToolBuildGuiInfo bootsGUI;
+	ArmorBuildGuiInfo bootsGUI;
 
 	ArmorBuildGuiInfo helmGUI;
 	ArmorBuildGuiInfo breastplateGUI;
@@ -128,6 +128,42 @@ public class ClientProxy extends CommonProxy {
 					.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/shoes/_shoes_metal"));
 			CustomArmorTextureCreator
 					.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/shoes/_shoes_string"));
+		}
+
+		if (TinkersCompendium.config.armor.enableChainArmor) {
+			CustomArmorTextureCreator.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/coif/_coif_chain"));
+			CustomArmorTextureCreator
+					.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/coif/_coif_circlet"));
+			CustomArmorTextureCreator.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/coif/_coif_cloth"));
+
+			CustomArmorTextureCreator
+					.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/chausses/_chausses_chain"));
+			CustomArmorTextureCreator
+					.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/chausses/_chausses_clasp"));
+			CustomArmorTextureCreator
+					.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/chausses/_chausses_cloth"));
+			CustomArmorTextureCreator
+					.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/chausses/_chausses_plate"));
+
+			CustomArmorTextureCreator
+					.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/hauberk/_hauberk_chain"));
+			CustomArmorTextureCreator
+					.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/hauberk/_hauberk_plate"));
+			CustomArmorTextureCreator
+					.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/hauberk/_hauberk_clasp"));
+			CustomArmorTextureCreator
+					.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/hauberk/_hauberk_cloth"));
+			CustomArmorTextureCreator
+					.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/hauberk/_hauberk_rivet"));
+
+			CustomArmorTextureCreator
+					.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/boots/_boots_chain"));
+			CustomArmorTextureCreator
+					.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/boots/_boots_plate"));
+			CustomArmorTextureCreator
+					.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/boots/_boots_cloth"));
+			CustomArmorTextureCreator
+					.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/boots/_boots_string"));
 		}
 
 		if (TinkersCompendium.config.armor.enableHeavyArmor) {
@@ -218,7 +254,7 @@ public class ClientProxy extends CommonProxy {
 							TinkerRegistry.getMaterial("cobalt"), TinkerRegistry.getMaterial("iron"))));
 		}
 	}
-	
+
 //	@SideOnly(Side.CLIENT)
 //	@SubscribeEvent
 //	public static void registerModels(ModelRegistryEvent event) {
@@ -250,9 +286,9 @@ public class ClientProxy extends CommonProxy {
 	public void registerArmorModel(ArmorCore tool) {
 		TDModelRegistar.registerToolModel(tool);
 	}
-	
+
 	@Override
-	public void registerModifierModel(Modifier mod) { 
+	public void registerModifierModel(Modifier mod) {
 		ModelRegisterUtil.registerModifierModel(mod,
 				new ResourceLocation(Reference.MOD_ID, "models/item/modifiers/" + mod.getIdentifier()));
 	}
@@ -304,7 +340,12 @@ public class ClientProxy extends CommonProxy {
 			shoesGUI = new ArmorBuildGuiInfo(TDTools.shoes);
 		}
 
-		// bootsGUI = new ToolBuildGuiInfo(TDTools.boots);
+		if (TinkersCompendium.config.armor.enableClothArmor) {
+			coifGUI = new ArmorBuildGuiInfo(TDTools.coif);
+			hauberkGUI = new ArmorBuildGuiInfo(TDTools.hauberk);
+			chaussesGUI = new ArmorBuildGuiInfo(TDTools.chausses);
+			bootsGUI = new ArmorBuildGuiInfo(TDTools.boots);
+		}
 
 		if (TinkersCompendium.config.armor.enableHeavyArmor) {
 			helmGUI = new ArmorBuildGuiInfo(TDTools.helm);
@@ -363,6 +404,12 @@ public class ClientProxy extends CommonProxy {
 			TDClientRegistry.addArmorBuilding(shoesGUI);
 		}
 
+		if (TinkersCompendium.config.armor.enableChainArmor) {
+			TDClientRegistry.addArmorBuilding(coifGUI);
+			TDClientRegistry.addArmorBuilding(hauberkGUI);
+			TDClientRegistry.addArmorBuilding(chaussesGUI);
+			TDClientRegistry.addArmorBuilding(bootsGUI);
+		}
 		// TinkerRegistryClient.addToolBuilding(bootsGUI);
 
 		// TinkerRegistryClient.addToolBuilding(sheatheGUI);
@@ -482,10 +529,31 @@ public class ClientProxy extends CommonProxy {
 			shoesGUI.addSlotPosition(34 - 6, 51 + 5 - 36);
 		}
 
-		// bootsGUI.positions.clear();
-		// bootsGUI.addSlotPosition(34, 15 + 8);
-		// bootsGUI.addSlotPosition(43, 33 + 8);
-		// bootsGUI.addSlotPosition(34, 51 + 8);
+		if (TinkersCompendium.config.armor.enableChainArmor) {
+			coifGUI.positions.clear();
+			coifGUI.addSlotPosition(25 - 6, 33 + 5);
+			coifGUI.addSlotPosition(43 - 6, 33 + 5);
+			coifGUI.addSlotPosition(34 - 6, 51 + 5);
+
+			hauberkGUI.positions.clear();
+			hauberkGUI.addSlotPosition(28, 33 + 9);
+			hauberkGUI.addSlotPosition(46, 33);
+			hauberkGUI.addSlotPosition(37, 51 + 9);
+			hauberkGUI.addSlotPosition(10, 33);
+			hauberkGUI.addSlotPosition(19, 51 + 9);
+
+			chaussesGUI.positions.clear();
+			chaussesGUI.addSlotPosition(25 - 6, 33 + 5);
+			chaussesGUI.addSlotPosition(43 - 6, 33 + 5);
+			chaussesGUI.addSlotPosition(34 - 6, 51 + 5);
+			chaussesGUI.addSlotPosition(34 - 6, 51 + 5 - 36);
+
+			bootsGUI.positions.clear();
+			bootsGUI.addSlotPosition(25 - 6, 33 + 5);
+			bootsGUI.addSlotPosition(34 - 6, 51 + 5);
+			bootsGUI.addSlotPosition(43 - 6, 33 + 5);
+			bootsGUI.addSlotPosition(34 - 6, 51 + 5 - 36);
+		}
 
 		if (TinkersCompendium.config.armor.enableHeavyArmor) {
 			breastplateGUI.positions.clear();

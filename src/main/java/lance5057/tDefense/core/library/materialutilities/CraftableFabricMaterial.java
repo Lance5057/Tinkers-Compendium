@@ -22,23 +22,23 @@ import slimeknights.tconstruct.library.materials.HeadMaterialStats;
 import slimeknights.tconstruct.library.materials.Material;
 
 public class CraftableFabricMaterial implements MaterialBase {
-	public ExtraMaterialStats extra;
+	//public ExtraMaterialStats extra;
 	public FabricMaterialStats fabric;
 	public BowStringMaterialStats bowstring;
 
 	public ItemStack cord;
 	public ItemStack block;
 
-	public CraftableFabricMaterial(ExtraMaterialStats extra, FabricMaterialStats fabric,
+	public CraftableFabricMaterial( FabricMaterialStats fabric,
 			BowStringMaterialStats bowstring) {
-		this.extra = extra;
+		//this.extra = extra;
 		this.fabric = fabric;
 		this.bowstring = bowstring;
 	}
 
-	public CraftableFabricMaterial(ExtraMaterialStats extra, FabricMaterialStats fabric,
+	public CraftableFabricMaterial(FabricMaterialStats fabric,
 			BowStringMaterialStats bowstring, ItemStack string, ItemStack block) {
-		this(extra, fabric, bowstring);
+		this(fabric, bowstring);
 		this.cord = string;
 		this.block = block;
 	}
@@ -48,8 +48,6 @@ public class CraftableFabricMaterial implements MaterialBase {
 
 		mat.setCraftable(true).setCastable(false);
 
-		if (extra != null)
-			TinkerRegistry.addMaterialStats(mat, extra);
 		if (fabric != null)
 			TinkerRegistry.addMaterialStats(mat, fabric);
 		if (bowstring != null)

@@ -483,7 +483,7 @@ public class CompendiumMaterials {
 			if (TinkerRegistry.getMaterial("blackcloth") == Material.UNKNOWN && TCConfig.materials.black) {
 				black = new MaterialHelper("blackcloth", 0x191616);
 				black.addons.add(
-						new CraftableFabricMaterial(new ExtraMaterialStats(5), new FabricMaterialStats(100, 0, 0, 25),
+						new CraftableFabricMaterial(new FabricMaterialStats(100, 0, 0, 25),
 								new BowStringMaterialStats(1), null, new ItemStack(Blocks.WOOL, 1, 15)));
 				materials.add(black);
 			}
@@ -491,7 +491,7 @@ public class CompendiumMaterials {
 			if (TinkerRegistry.getMaterial("redcloth") == Material.UNKNOWN && TCConfig.materials.red) {
 				red = new MaterialHelper("redcloth", 0x963430);
 				red.addons.add(
-						new CraftableFabricMaterial(new ExtraMaterialStats(5), new FabricMaterialStats(100, 0, 0, 25),
+						new CraftableFabricMaterial(new FabricMaterialStats(100, 0, 0, 25),
 								new BowStringMaterialStats(1), null, new ItemStack(Blocks.WOOL, 1, 14)));
 				materials.add(red);
 			}
@@ -499,7 +499,7 @@ public class CompendiumMaterials {
 			if (TinkerRegistry.getMaterial("greencloth") == Material.UNKNOWN && TCConfig.materials.green) {
 				green = new MaterialHelper("greencloth", 0x35461B);
 				green.addons.add(
-						new CraftableFabricMaterial(new ExtraMaterialStats(5), new FabricMaterialStats(100, 0, 0, 25),
+						new CraftableFabricMaterial(new FabricMaterialStats(100, 0, 0, 25),
 								new BowStringMaterialStats(1), null, new ItemStack(Blocks.WOOL, 1, 13)));
 				materials.add(green);
 			}
@@ -507,7 +507,7 @@ public class CompendiumMaterials {
 			if (TinkerRegistry.getMaterial("browncloth") == Material.UNKNOWN && TCConfig.materials.brown) {
 				brown = new MaterialHelper("browncloth", 0x4F321F);
 				brown.addons.add(
-						new CraftableFabricMaterial(new ExtraMaterialStats(5), new FabricMaterialStats(100, 0, 0, 25),
+						new CraftableFabricMaterial(new FabricMaterialStats(100, 0, 0, 25),
 								new BowStringMaterialStats(1), null, new ItemStack(Blocks.WOOL, 1, 12)));
 				materials.add(brown);
 			}
@@ -515,7 +515,7 @@ public class CompendiumMaterials {
 			if (TinkerRegistry.getMaterial("bluecloth") == Material.UNKNOWN && TCConfig.materials.blue) {
 				blue = new MaterialHelper("bluecloth", 0x2E388D);
 				blue.addons.add(
-						new CraftableFabricMaterial(new ExtraMaterialStats(5), new FabricMaterialStats(100, 0, 0, 25),
+						new CraftableFabricMaterial(new FabricMaterialStats(100, 0, 0, 25),
 								new BowStringMaterialStats(1), null, new ItemStack(Blocks.WOOL, 1, 11)));
 				materials.add(blue);
 			}
@@ -523,7 +523,7 @@ public class CompendiumMaterials {
 			if (TinkerRegistry.getMaterial("purplecloth") == Material.UNKNOWN && TCConfig.materials.purple) {
 				purple = new MaterialHelper("purplecloth", 0x7E3DB5);
 				purple.addons.add(
-						new CraftableFabricMaterial(new ExtraMaterialStats(5), new FabricMaterialStats(100, 0, 0, 25),
+						new CraftableFabricMaterial(new FabricMaterialStats(100, 0, 0, 25),
 								new BowStringMaterialStats(1), null, new ItemStack(Blocks.WOOL, 1, 10)));
 				materials.add(purple);
 			}
@@ -531,7 +531,7 @@ public class CompendiumMaterials {
 			if (TinkerRegistry.getMaterial("cyancloth") == Material.UNKNOWN && TCConfig.materials.cyan) {
 				cyan = new MaterialHelper("cyancloth", 0x2E6E89);
 				cyan.addons.add(
-						new CraftableFabricMaterial(new ExtraMaterialStats(5), new FabricMaterialStats(100, 0, 0, 25),
+						new CraftableFabricMaterial(new FabricMaterialStats(100, 0, 0, 25),
 								new BowStringMaterialStats(1), null, new ItemStack(Blocks.WOOL, 1, 9)));
 				materials.add(cyan);
 			}
@@ -539,7 +539,7 @@ public class CompendiumMaterials {
 			if (TinkerRegistry.getMaterial("lightgraycloth") == Material.UNKNOWN && TCConfig.materials.lightgray) {
 				lightgray = new MaterialHelper("lightgraycloth", 0x9AA1A1);
 				lightgray.addons.add(
-						new CraftableFabricMaterial(new ExtraMaterialStats(5), new FabricMaterialStats(100, 0, 0, 25),
+						new CraftableFabricMaterial(new FabricMaterialStats(100, 0, 0, 25),
 								new BowStringMaterialStats(1), null, new ItemStack(Blocks.WOOL, 1, 8)));
 				materials.add(lightgray);
 			}
@@ -547,7 +547,7 @@ public class CompendiumMaterials {
 			if (TinkerRegistry.getMaterial("graycloth") == Material.UNKNOWN && TCConfig.materials.gray) {
 				gray = new MaterialHelper("graycloth", 0x404040);
 				gray.addons.add(
-						new CraftableFabricMaterial(new ExtraMaterialStats(5), new FabricMaterialStats(100, 0, 0, 25),
+						new CraftableFabricMaterial(new FabricMaterialStats(100, 0, 0, 25),
 								new BowStringMaterialStats(1), null, new ItemStack(Blocks.WOOL, 1, 7)));
 				materials.add(gray);
 			}
@@ -555,7 +555,7 @@ public class CompendiumMaterials {
 			if (TinkerRegistry.getMaterial("pinkcloth") == Material.UNKNOWN && TCConfig.materials.pink) {
 				pink = new MaterialHelper("pinkcloth", 0xD08499);
 				pink.addons.add(
-						new CraftableFabricMaterial(new ExtraMaterialStats(5), new FabricMaterialStats(100, 0, 0, 25),
+						new CraftableFabricMaterial(new FabricMaterialStats(100, 0, 0, 25),
 								new BowStringMaterialStats(1), null, new ItemStack(Blocks.WOOL, 1, 6)));
 				materials.add(pink);
 			}
@@ -563,7 +563,7 @@ public class CompendiumMaterials {
 			if (TinkerRegistry.getMaterial("limecloth") == Material.UNKNOWN && TCConfig.materials.lime) {
 				lime = new MaterialHelper("limecloth", 0x41AE38);
 				lime.addons.add(
-						new CraftableFabricMaterial(new ExtraMaterialStats(5), new FabricMaterialStats(100, 0, 0, 25),
+						new CraftableFabricMaterial(new FabricMaterialStats(100, 0, 0, 25),
 								new BowStringMaterialStats(1), null, new ItemStack(Blocks.WOOL, 1, 5)));
 				materials.add(lime);
 			}
@@ -571,7 +571,7 @@ public class CompendiumMaterials {
 			if (TinkerRegistry.getMaterial("yellowcloth") == Material.UNKNOWN && TCConfig.materials.yellow) {
 				yellow = new MaterialHelper("yellowcloth", 0xB1A627);
 				yellow.addons.add(
-						new CraftableFabricMaterial(new ExtraMaterialStats(5), new FabricMaterialStats(100, 0, 0, 25),
+						new CraftableFabricMaterial(new FabricMaterialStats(100, 0, 0, 25),
 								new BowStringMaterialStats(1), null, new ItemStack(Blocks.WOOL, 1, 4)));
 				materials.add(yellow);
 			}
@@ -579,7 +579,7 @@ public class CompendiumMaterials {
 			if (TinkerRegistry.getMaterial("lightbluecloth") == Material.UNKNOWN && TCConfig.materials.lightblue) {
 				lightblue = new MaterialHelper("lightbluecloth", 0x6B8AC9);
 				lightblue.addons.add(
-						new CraftableFabricMaterial(new ExtraMaterialStats(5), new FabricMaterialStats(100, 0, 0, 25),
+						new CraftableFabricMaterial(new FabricMaterialStats(100, 0, 0, 25),
 								new BowStringMaterialStats(1), null, new ItemStack(Blocks.WOOL, 1, 3)));
 				materials.add(lightblue);
 			}
@@ -587,7 +587,7 @@ public class CompendiumMaterials {
 			if (TinkerRegistry.getMaterial("magentacloth") == Material.UNKNOWN && TCConfig.materials.magenta) {
 				magenta = new MaterialHelper("magentacloth", 0xB350BC);
 				magenta.addons.add(
-						new CraftableFabricMaterial(new ExtraMaterialStats(5), new FabricMaterialStats(100, 0, 0, 25),
+						new CraftableFabricMaterial(new FabricMaterialStats(100, 0, 0, 25),
 								new BowStringMaterialStats(1), null, new ItemStack(Blocks.WOOL, 1, 2)));
 				materials.add(magenta);
 			}
@@ -595,7 +595,7 @@ public class CompendiumMaterials {
 			if (TinkerRegistry.getMaterial("orangecloth") == Material.UNKNOWN && TCConfig.materials.orange) {
 				orange = new MaterialHelper("orangecloth", 0xDB7D3E);
 				orange.addons.add(
-						new CraftableFabricMaterial(new ExtraMaterialStats(5), new FabricMaterialStats(100, 0, 0, 25),
+						new CraftableFabricMaterial(new FabricMaterialStats(100, 0, 0, 25),
 								new BowStringMaterialStats(1), null, new ItemStack(Blocks.WOOL, 1, 1)));
 				materials.add(orange);
 			}
@@ -603,7 +603,7 @@ public class CompendiumMaterials {
 			if (TinkerRegistry.getMaterial("whitecloth") == Material.UNKNOWN && TCConfig.materials.white) {
 				white = new MaterialHelper("whitecloth", 0xDDDDDD);
 				white.addons.add(
-						new CraftableFabricMaterial(new ExtraMaterialStats(5), new FabricMaterialStats(100, 0, 0, 25),
+						new CraftableFabricMaterial(new FabricMaterialStats(100, 0, 0, 25),
 								new BowStringMaterialStats(1), null, new ItemStack(Blocks.WOOL, 1, 0)));
 				materials.add(white);
 			}
@@ -612,7 +612,7 @@ public class CompendiumMaterials {
 		if (TinkerRegistry.getMaterial("silky") == Material.UNKNOWN && TCConfig.materials.silky) {
 			silky = new MaterialHelper("silky", 0xffdd7a);
 			silky.addons
-					.add(new CraftableFabricMaterial(new ExtraMaterialStats(5), new FabricMaterialStats(100, 0, 0, 25),
+					.add(new CraftableFabricMaterial(new FabricMaterialStats(100, 0, 0, 25),
 							new BowStringMaterialStats(1), TinkerCommons.matSilkyCloth, null));
 			materials.add(silky);
 		}
@@ -620,7 +620,7 @@ public class CompendiumMaterials {
 		if (TinkerRegistry.getMaterial("roughspun") == Material.UNKNOWN && TCConfig.materials.roughspun) {
 			roughspun = new MaterialHelper("roughspun", 0x407b17);
 			roughspun.addons
-					.add(new CraftableFabricMaterial(new ExtraMaterialStats(5), new FabricMaterialStats(100, 0, 0, 25),
+					.add(new CraftableFabricMaterial(new FabricMaterialStats(100, 0, 0, 25),
 							new BowStringMaterialStats(1), new ItemStack(CompendiumTextiles.roughspunCord), new ItemStack(CompendiumTextiles.roughspunBlock)));
 			materials.add(roughspun);
 		}

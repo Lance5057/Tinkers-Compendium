@@ -86,15 +86,15 @@ public class TinkersGrieves extends ArmorCore {
 	}
 
 	@Override
-	public float damagePotential() {
+	public float armorMultiplier() {
 		// TODO Auto-generated method stub
-		return 0;
+		return 1f;
 	}
 
 	@Override
-	public double attackSpeed() {
+	public float potencyMultiplier() {
 		// TODO Auto-generated method stub
-		return 0;
+		return 0f;
 	}
 
 	@Override
@@ -106,7 +106,7 @@ public class TinkersGrieves extends ArmorCore {
 		HandleMaterialStats handle = materials.get(2).getStatsOrUnknown(MaterialTypes.HANDLE);
 		ExtraMaterialStats extra = materials.get(3).getStatsOrUnknown(MaterialTypes.EXTRA);
 		// start with head
-		data.head(head, head2);
+		data.head(this, head, head2);
 		data.extra(extra);
 		data.handle(handle);
 

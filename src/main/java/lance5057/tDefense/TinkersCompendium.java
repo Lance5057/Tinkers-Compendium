@@ -17,11 +17,13 @@ import lance5057.tDefense.core.modifiers.CompendiumModifiers;
 import lance5057.tDefense.core.parts.TDParts;
 import lance5057.tDefense.core.tools.TDTools;
 import lance5057.tDefense.core.workstations.CompendiumWorkstations;
+import lance5057.tDefense.core.worldgen.SpawnArmorOnMobs;
 import lance5057.tDefense.proxy.CommonProxy;
 import lance5057.tDefense.textiles.CompendiumTextiles;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.biome.Biome;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
@@ -65,6 +67,8 @@ public class TinkersCompendium {
 	public static CompendiumModifiers modifiers;
 	public static TDEvents events;
 	public static CompendiumEntities entities;
+	
+	SpawnArmorOnMobs mobs = new SpawnArmorOnMobs();
 
 	public static CompendiumTextiles textiles;
 
@@ -87,6 +91,8 @@ public class TinkersCompendium {
 		entities = new CompendiumEntities();
 		textiles = new CompendiumTextiles();
 		config = new TCConfig();
+		
+		MinecraftForge.EVENT_BUS.register(mobs);
 		
 		if (Loader.isModLoaded("bloodmagic") && TCConfig.addons.BloodMagic)
 			bloodmagic = new AddonBloodMagic();
