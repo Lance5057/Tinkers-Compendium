@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import org.apache.logging.log4j.Logger;
+
 import lance5057.tDefense.core.addons.bloodmagic.AddonBloodMagic;
 import lance5057.tDefense.core.addons.botania.AddonBotania;
 import lance5057.tDefense.core.addons.toolleveling.AddonToolLeveling;
@@ -49,6 +51,8 @@ public class TinkersCompendium {
 
 	@Mod.Instance(Reference.MOD_ID)
 	public static TinkersCompendium instance = new TinkersCompendium();
+	
+	public static Logger logger;
 
 	PacketHandler phandler = new PacketHandler();
 
@@ -81,6 +85,8 @@ public class TinkersCompendium {
 
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent e) {
+		logger = e.getModLog();
+		
 		parts = new TDParts();
 		mats = new CompendiumMaterials();
 		tools = new TDTools();

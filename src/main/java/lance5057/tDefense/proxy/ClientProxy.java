@@ -48,6 +48,7 @@ import slimeknights.tconstruct.library.TinkerRegistryClient;
 import slimeknights.tconstruct.library.client.CustomFontRenderer;
 import slimeknights.tconstruct.library.client.ToolBuildGuiInfo;
 import slimeknights.tconstruct.library.client.material.MaterialRenderInfoLoader;
+import slimeknights.tconstruct.library.client.model.ToolModelLoader;
 import slimeknights.tconstruct.library.materials.Material;
 import slimeknights.tconstruct.library.modifiers.Modifier;
 import slimeknights.tconstruct.library.tools.ToolCore;
@@ -281,6 +282,20 @@ public class ClientProxy extends CommonProxy {
 	public void registerToolModel(ToolCore tool) {
 		ModelRegisterUtil.registerToolModel(tool);
 	}
+	
+	@Override
+	public ResourceLocation registerAnvilToolModel(ToolCore tool) {
+	    if(tool == null || tool.getRegistryName() == null) {
+	      return null; 
+	    }
+	    ResourceLocation itemLocation = tool.getRegistryName();
+	    String path = "tools/" + itemLocation.getResourcePath() + ToolModelLoader.EXTENSION;
+
+	    ResourceLocation location = new ResourceLocation(Reference.MOD_ID, path);
+	    ToolModelLoader.addPartMapping(location, tool);
+
+	    return ModelRegisterUtil.registerToolModel(tool, location);
+	  }
 
 	@Override
 	public void registerArmorModel(ArmorCore tool) {

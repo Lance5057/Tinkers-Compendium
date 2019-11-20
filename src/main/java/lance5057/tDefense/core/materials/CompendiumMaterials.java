@@ -628,7 +628,7 @@ public class CompendiumMaterials {
 		if (TCConfig.materials.gems) {
 			if (TinkerRegistry.getMaterial("sapphire") == Material.UNKNOWN && TCConfig.materials.sapphire) {
 				sapphire = new MaterialHelper("sapphire", 0x6e00ff);
-				sapphire.addons.add(new CraftableMaterial(new HeadMaterialStats(320, 4f, 4f, HarvestLevels.OBSIDIAN),
+				sapphire.addons.add(new CraftableMaterial("gem", new HeadMaterialStats(320, 4f, 4f, HarvestLevels.OBSIDIAN),
 						new HandleMaterialStats(1.3f, 10), new ExtraMaterialStats(5),
 						new ShieldMaterialStats(320 / 4, 45), whyWouldYouMakeABowOutOfThis));
 				sapphire.addons.add(
@@ -640,7 +640,7 @@ public class CompendiumMaterials {
 
 			if (TinkerRegistry.getMaterial("ruby") == Material.UNKNOWN && TCConfig.materials.ruby) {
 				ruby = new MaterialHelper("ruby", 0xff0061);
-				ruby.addons.add(new CraftableMaterial(new HeadMaterialStats(320, 4f, 10f, HarvestLevels.OBSIDIAN),
+				ruby.addons.add(new CraftableMaterial("gem", new HeadMaterialStats(320, 4f, 10f, HarvestLevels.OBSIDIAN),
 						new HandleMaterialStats(0.1f, 10), new ExtraMaterialStats(5),
 						new ShieldMaterialStats(320 / 4, 45), whyWouldYouMakeABowOutOfThis));
 				ruby.addons.add(
@@ -652,31 +652,31 @@ public class CompendiumMaterials {
 
 			if (TinkerRegistry.getMaterial("emerald") == Material.UNKNOWN && TCConfig.materials.emerald) {
 				emerald = new MaterialHelper("emerald", 0x16cc4f);
-				emerald.addons.add(new CraftableMaterial(new HeadMaterialStats(320, 10f, 4f, HarvestLevels.OBSIDIAN),
+				emerald.addons.add(new CraftableMaterial("gem", new HeadMaterialStats(320, 10f, 4f, HarvestLevels.OBSIDIAN),
 						new HandleMaterialStats(0.1f, 10), new ExtraMaterialStats(5),
-						new ShieldMaterialStats(320 / 4, 45), whyWouldYouMakeABowOutOfThis));
+						new ShieldMaterialStats(320 / 4, 45), whyWouldYouMakeABowOutOfThis).disableBlock().disableIngot());
 				emerald.addons.add(
 						new ArmorMaterial(new HelmMaterialStats(320, 3, 0, 10), new ChestMaterialStats(320, 6, 3, 15),
 								new LegsMaterialStats(320, 6, 0, 12.5f), new FeetMaterialStats(320, 3, 0, 10)));
-				emerald.addons.add(new MaterialOre("gem", "gem", 0, 1, HarvestLevels.DIAMOND, 1));
+				//emerald.addons.add(new MaterialOre("gem", "gem", 0, 1, HarvestLevels.DIAMOND, 1));
 				materials.add(emerald);
 			}
 
 			if (TinkerRegistry.getMaterial("diamond") == Material.UNKNOWN && TCConfig.materials.diamond) {
 				diamond = new MaterialHelper("diamond", 0x96ecf2);
-				diamond.addons.add(new CraftableMaterial(new HeadMaterialStats(1006, 4f, 4f, HarvestLevels.OBSIDIAN),
+				diamond.addons.add(new CraftableMaterial("gem", new HeadMaterialStats(1006, 4f, 4f, HarvestLevels.OBSIDIAN),
 						new HandleMaterialStats(0.1f, 100), new ExtraMaterialStats(50),
-						new ShieldMaterialStats(1006 / 4, 45), whyWouldYouMakeABowOutOfThis));
+						new ShieldMaterialStats(1006 / 4, 45), whyWouldYouMakeABowOutOfThis).disableBlock().disableIngot());
 				diamond.addons.add(
 						new ArmorMaterial(new HelmMaterialStats(1006, 3, 0, 10), new ChestMaterialStats(1006, 6, 3, 15),
 								new LegsMaterialStats(1006, 6, 0, 12.5f), new FeetMaterialStats(1006, 3, 0, 10)));
-				diamond.addons.add(new MaterialOre("gem", "gem", 0, 1, HarvestLevels.DIAMOND, 1));
+				//diamond.addons.add(new MaterialOre("gem", "gem", 0, 1, HarvestLevels.DIAMOND, 1));
 				materials.add(diamond);
 			}
 
 			if (TinkerRegistry.getMaterial("starsapphire") == Material.UNKNOWN && TCConfig.materials.starsapphire) {
 				starsapphire = new MaterialHelper("starsapphire", 0x6e00ff);
-				starsapphire.addons.add(new CraftableMaterial(new HeadMaterialStats(115, 1f, 1f, HarvestLevels.COBALT),
+				starsapphire.addons.add(new CraftableMaterial("gem", new HeadMaterialStats(115, 1f, 1f, HarvestLevels.COBALT),
 						new HandleMaterialStats(1.5f, 5), new ExtraMaterialStats(1),
 						new ShieldMaterialStats(115 / 4, 55), whyWouldYouMakeABowOutOfThis));
 				starsapphire.addons.add(
@@ -687,7 +687,7 @@ public class CompendiumMaterials {
 
 			if (TinkerRegistry.getMaterial("starruby") == Material.UNKNOWN && TCConfig.materials.starruby) {
 				starruby = new MaterialHelper("starruby", 0xff0061);
-				starruby.addons.add(new CraftableMaterial(new HeadMaterialStats(115, 1f, 12f, HarvestLevels.COBALT),
+				starruby.addons.add(new CraftableMaterial("gem", new HeadMaterialStats(115, 1f, 12f, HarvestLevels.COBALT),
 						new HandleMaterialStats(0.05f, 5), new ExtraMaterialStats(1),
 						new ShieldMaterialStats(115 / 4, 55), whyWouldYouMakeABowOutOfThis));
 				starruby.addons.add(
@@ -698,7 +698,7 @@ public class CompendiumMaterials {
 
 			if (TinkerRegistry.getMaterial("citrine") == Material.UNKNOWN && TCConfig.materials.citrine) {
 				citrine = new MaterialHelper("citrine", 0xffe877);
-				citrine.addons.add(new CraftableMaterial(new HeadMaterialStats(430, 5.5f, 6.2f, HarvestLevels.IRON),
+				citrine.addons.add(new CraftableMaterial("gem", new HeadMaterialStats(430, 5.5f, 6.2f, HarvestLevels.IRON),
 						new HandleMaterialStats(0.6f, -150), new ExtraMaterialStats(100),
 						new ShieldMaterialStats(430 / 4, 35), whyWouldYouMakeABowOutOfThis));
 				citrine.addons.add(new ArmorMaterial(new HelmMaterialStats(430, 2, 0, 2.5f),
@@ -710,9 +710,9 @@ public class CompendiumMaterials {
 
 			if (TinkerRegistry.getMaterial("quartz") == Material.UNKNOWN && TCConfig.materials.quartz) {
 				quartz = new MaterialHelper("quartz", 0xede8e8);
-				quartz.addons.add(new CraftableMaterial(new HeadMaterialStats(430, 5.5f, 7f, HarvestLevels.IRON),
+				quartz.addons.add(new CraftableMaterial("gem", new HeadMaterialStats(430, 5.5f, 7f, HarvestLevels.IRON),
 						new HandleMaterialStats(0.6f, -150), new ExtraMaterialStats(100),
-						new ShieldMaterialStats(430 / 4, 35), whyWouldYouMakeABowOutOfThis));
+						new ShieldMaterialStats(430 / 4, 35), whyWouldYouMakeABowOutOfThis).disableBlock().disableIngot());
 				quartz.addons.add(new ArmorMaterial(new HelmMaterialStats(430, 2, 0, 2.5f),
 						new ChestMaterialStats(430, 5, 3, 3.5f), new LegsMaterialStats(430, 5, 0, 3f),
 						new FeetMaterialStats(430, 2, 0, 2.5f)));
@@ -721,7 +721,7 @@ public class CompendiumMaterials {
 
 			if (TinkerRegistry.getMaterial("amethyst") == Material.UNKNOWN && TCConfig.materials.amethyst) {
 				amethyst = new MaterialHelper("amethyst", 0xb436e2);
-				amethyst.addons.add(new CraftableMaterial(new HeadMaterialStats(530, 5.5f, 6.2f, HarvestLevels.IRON),
+				amethyst.addons.add(new CraftableMaterial("gem", new HeadMaterialStats(530, 5.5f, 6.2f, HarvestLevels.IRON),
 						new HandleMaterialStats(0.6f, -150), new ExtraMaterialStats(100),
 						new ShieldMaterialStats(430 / 4, 35), whyWouldYouMakeABowOutOfThis));
 				amethyst.addons.add(new ArmorMaterial(new HelmMaterialStats(530, 2, 0, 2.5f),
@@ -732,9 +732,9 @@ public class CompendiumMaterials {
 
 			if (TinkerRegistry.getMaterial("lapis") == Material.UNKNOWN && TCConfig.materials.lapis) {
 				lapis = new MaterialHelper("lapis", 0x4349bc);
-				lapis.addons.add(new CraftableMaterial(new HeadMaterialStats(120, 2f, 2f, HarvestLevels.STONE),
+				lapis.addons.add(new CraftableMaterial("gem", new HeadMaterialStats(120, 2f, 2f, HarvestLevels.STONE),
 						new HandleMaterialStats(1.1f, -150), new ExtraMaterialStats(50),
-						new ShieldMaterialStats(120 / 4, 35), whyWouldYouMakeABowOutOfThis));
+						new ShieldMaterialStats(120 / 4, 35), whyWouldYouMakeABowOutOfThis).disableBlock().disableIngot());
 				lapis.addons.add(new ArmorMaterial(new HelmMaterialStats(120, 2, 0, 2.5f),
 						new ChestMaterialStats(120, 4, 3, 3.5f), new LegsMaterialStats(120, 4, 0, 3f),
 						new FeetMaterialStats(120, 2, 0, 2.5f)));
@@ -743,7 +743,7 @@ public class CompendiumMaterials {
 
 			if (TinkerRegistry.getMaterial("topaz") == Material.UNKNOWN && TCConfig.materials.topaz) {
 				topaz = new MaterialHelper("topaz", 0xffc551);
-				topaz.addons.add(new CraftableMaterial(new HeadMaterialStats(430, 5.5f, 6.2f, HarvestLevels.IRON),
+				topaz.addons.add(new CraftableMaterial("gem", new HeadMaterialStats(430, 5.5f, 6.2f, HarvestLevels.IRON),
 						new HandleMaterialStats(0.7f, -150), new ExtraMaterialStats(100),
 						new ShieldMaterialStats(430 / 4, 35), whyWouldYouMakeABowOutOfThis));
 				topaz.addons.add(new ArmorMaterial(new HelmMaterialStats(530, 2, 0, 2.5f),
@@ -754,7 +754,7 @@ public class CompendiumMaterials {
 
 			if (TinkerRegistry.getMaterial("garnet") == Material.UNKNOWN && TCConfig.materials.garnet) {
 				garnet = new MaterialHelper("garnet", 0x9e1c1c);
-				garnet.addons.add(new CraftableMaterial(new HeadMaterialStats(430, 6.5f, 6.2f, HarvestLevels.IRON),
+				garnet.addons.add(new CraftableMaterial("gem", new HeadMaterialStats(430, 6.5f, 6.2f, HarvestLevels.IRON),
 						new HandleMaterialStats(0.6f, -150), new ExtraMaterialStats(100),
 						new ShieldMaterialStats(430 / 4, 35), whyWouldYouMakeABowOutOfThis));
 				garnet.addons.add(new ArmorMaterial(new HelmMaterialStats(530, 2, 0, 2.5f),
@@ -765,7 +765,7 @@ public class CompendiumMaterials {
 
 			if (TinkerRegistry.getMaterial("opal") == Material.UNKNOWN && TCConfig.materials.opal) {
 				opal = new MaterialHelper("opal", 0xe2e2e2);
-				opal.addons.add(new CraftableMaterial(new HeadMaterialStats(630, 5.5f, 6.2f, HarvestLevels.IRON),
+				opal.addons.add(new CraftableMaterial("gem", new HeadMaterialStats(630, 5.5f, 6.2f, HarvestLevels.IRON),
 						new HandleMaterialStats(0.6f, -150), new ExtraMaterialStats(100),
 						new ShieldMaterialStats(430 / 4, 35), whyWouldYouMakeABowOutOfThis));
 				opal.addons.add(new ArmorMaterial(new HelmMaterialStats(530, 2, 0, 2.5f),
@@ -776,7 +776,7 @@ public class CompendiumMaterials {
 
 			if (TinkerRegistry.getMaterial("tanzinite") == Material.UNKNOWN && TCConfig.materials.tanzinite) {
 				tanzinite = new MaterialHelper("tanzinite", 0x8860e5);
-				tanzinite.addons.add(new CraftableMaterial(new HeadMaterialStats(630, 5.5f, 6.2f, HarvestLevels.IRON),
+				tanzinite.addons.add(new CraftableMaterial("gem", new HeadMaterialStats(630, 5.5f, 6.2f, HarvestLevels.IRON),
 						new HandleMaterialStats(0.6f, -150), new ExtraMaterialStats(100),
 						new ShieldMaterialStats(430 / 4, 35), whyWouldYouMakeABowOutOfThis));
 				tanzinite.addons.add(new ArmorMaterial(new HelmMaterialStats(630, 2, 0, 2.5f),
@@ -787,7 +787,7 @@ public class CompendiumMaterials {
 
 			if (TinkerRegistry.getMaterial("amber") == Material.UNKNOWN && TCConfig.materials.amber) {
 				amber = new MaterialHelper("amber", 0xdba827);
-				amber.addons.add(new CraftableMaterial(new HeadMaterialStats(120, 2f, 3f, HarvestLevels.STONE),
+				amber.addons.add(new CraftableMaterial("gem", new HeadMaterialStats(120, 2f, 3f, HarvestLevels.STONE),
 						new HandleMaterialStats(1.1f, -150), new ExtraMaterialStats(50),
 						new ShieldMaterialStats(120 / 4, 35), whyWouldYouMakeABowOutOfThis));
 				amber.addons.add(new ArmorMaterial(new HelmMaterialStats(120, 2, 0, 2.5f),

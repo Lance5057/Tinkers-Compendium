@@ -6,6 +6,7 @@ import java.util.List;
 import lance5057.tDefense.Reference;
 import lance5057.tDefense.TCConfig;
 import lance5057.tDefense.core.materials.stats.FabricMaterialStats;
+import lance5057.tDefense.core.tools.TDTools;
 import lance5057.tDefense.core.tools.armor.cloth.TinkersHood;
 import lance5057.tDefense.core.tools.armor.cloth.TinkersRobe;
 import lance5057.tDefense.core.tools.armor.cloth.TinkersShawl;
@@ -59,50 +60,42 @@ public class SpawnArmorOnMobs {
 						int feetRoll = world.rand.nextInt(100);
 
 						if (headRoll > 50) {
-							TinkersHood hood = new TinkersHood();
-
 							List<Material> tobuild = new ArrayList<Material>();
 							tobuild.add(fabrics[world.rand.nextInt(fabrics.length)]);
 							tobuild.add(fabrics[world.rand.nextInt(fabrics.length)]);
 							tobuild.add(TinkerRegistry.getMaterial(mats[world.rand.nextInt(mats.length)]));
-							ItemStack hoodStack = hood.buildItem(tobuild);
+							ItemStack hoodStack = TDTools.hood.buildItem(tobuild);
 
 							mob.setItemStackToSlot(EntityEquipmentSlot.HEAD, hoodStack);
 						}
 						
 						if (chestRoll > 50) {
-							TinkersShawl hood = new TinkersShawl();
-
 							List<Material> tobuild = new ArrayList<Material>();
 							tobuild.add(fabrics[world.rand.nextInt(fabrics.length)]);
 							tobuild.add(fabrics[world.rand.nextInt(fabrics.length)]);
 							tobuild.add(TinkerRegistry.getMaterial(mats[world.rand.nextInt(mats.length)]));
-							ItemStack hoodStack = hood.buildItem(tobuild);
+							ItemStack hoodStack = TDTools.shawl.buildItem(tobuild);
 
 							mob.setItemStackToSlot(EntityEquipmentSlot.CHEST, hoodStack);
 						}
 						
 						if (legsRoll > 50) {
-							TinkersRobe hood = new TinkersRobe();
-
 							List<Material> tobuild = new ArrayList<Material>();
 							tobuild.add(fabrics[world.rand.nextInt(fabrics.length)]);
 							tobuild.add(fabrics[world.rand.nextInt(fabrics.length)]);
 							tobuild.add(TinkerRegistry.getMaterial(mats[world.rand.nextInt(mats.length)]));
-							ItemStack hoodStack = hood.buildItem(tobuild);
+							ItemStack hoodStack = TDTools.robe.buildItem(tobuild);
 
 							mob.setItemStackToSlot(EntityEquipmentSlot.LEGS, hoodStack);
 						}
 						
 						if (feetRoll > 50) {
-							TinkersShoes hood = new TinkersShoes();
-
 							List<Material> tobuild = new ArrayList<Material>();
 							tobuild.add(fabrics[world.rand.nextInt(fabrics.length)]);
 							tobuild.add(fabrics[world.rand.nextInt(fabrics.length)]);
 							tobuild.add(TinkerRegistry.getMaterial(mats[world.rand.nextInt(mats.length)]));
 							tobuild.add(bowstrings[world.rand.nextInt(bowstrings.length)]);
-							ItemStack hoodStack = hood.buildItem(tobuild);
+							ItemStack hoodStack = TDTools.shoes.buildItem(tobuild);
 
 							mob.setItemStackToSlot(EntityEquipmentSlot.FEET, hoodStack);
 						}

@@ -9,6 +9,7 @@ import lance5057.tDefense.core.workstations.CompendiumWorkstations;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.RegistryEvent.Register;
@@ -142,5 +143,10 @@ public class CommonProxy implements IGuiHandler {
 	public void registerBlockRenderer(Block block, String file) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public ResourceLocation registerAnvilToolModel(ToolCore tool) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

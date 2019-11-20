@@ -44,7 +44,9 @@ public class TCConfig {
 	public static Traits traits = new Traits();
 	@Config.Name("Textiles")
 	public static Textiles textiles = new Textiles();
-
+	@Config.Name("Finishing Anvil")
+	public static FinishingAnvil anvil = new FinishingAnvil();
+	
 	public static class Shields {
 		@Config.RequiresMcRestart()
 		@Config.Comment("Enable Shields")
@@ -276,6 +278,11 @@ public class TCConfig {
 		public boolean enableTextiles = true;
 
 		public int grassFiberDropPercent = 75;
+	}
+	
+	public static class FinishingAnvil
+	{
+		public boolean enableFinishingAnvilTools = true;
 	}
 	// public int SoulBoundID;
 	// public int DazeID;

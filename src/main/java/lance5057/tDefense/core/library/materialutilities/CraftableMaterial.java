@@ -26,6 +26,12 @@ public class CraftableMaterial implements MaterialBase {
 	public ExtraMaterialStats extra;
 	public BowMaterialStats bow;
 
+	public String type;
+
+	boolean doNugget = true;
+	boolean doIngot = true;
+	boolean doBlock = true;
+
 	public Item ingot;
 	public Item nugget;
 
@@ -34,6 +40,12 @@ public class CraftableMaterial implements MaterialBase {
 
 	public CraftableMaterial(HeadMaterialStats head, HandleMaterialStats handle, ExtraMaterialStats extra,
 			ShieldMaterialStats shield, BowMaterialStats bow) {
+		this("ingot", head, handle, extra, shield, bow);
+	}
+
+	public CraftableMaterial(String type, HeadMaterialStats head, HandleMaterialStats handle, ExtraMaterialStats extra,
+			ShieldMaterialStats shield, BowMaterialStats bow) {
+		this.type = type;
 		this.head = head;
 		this.handle = handle;
 		this.shield = shield;
@@ -43,17 +55,17 @@ public class CraftableMaterial implements MaterialBase {
 
 	@Override
 	public void setupPre(Material mat) {
-		if (ingot == null) {
-			ingot = registerItem("ingot_" + mat.identifier, TinkersCompendium.tab);
+		if (doIngot && ingot == null) {
+			ingot = registerItem(type + "_" + mat.identifier, TinkersCompendium.tab);
 			CompendiumMaterials.itemList.add(ingot);
 		}
 
-		if (nugget == null) {
+		if (doNugget && nugget == null) {
 			nugget = registerItem("nugget_" + mat.identifier, TinkersCompendium.tab);
 			CompendiumMaterials.itemList.add(nugget);
 		}
 
-		if (block == null) {
+		if (doBlock && block == null) {
 			block = new Block(net.minecraft.block.material.Material.IRON)
 					.setRegistryName(new ResourceLocation(Reference.MOD_ID, "block_" + mat.identifier))
 					.setUnlocalizedName("block_" + mat.identifier).setCreativeTab(TinkersCompendium.tab);
@@ -78,19 +90,28 @@ public class CraftableMaterial implements MaterialBase {
 
 	@Override
 	public void setupPost(Material mat) {
-		OreDictionary.registerOre("ingot" + StringUtils.capitalize(mat.identifier), new ItemStack(ingot));
-		OreDictionary.registerOre("nugget" + StringUtils.capitalize(mat.identifier), new ItemStack(nugget));
-		OreDictionary.registerOre("block" + StringUtils.capitalize(mat.identifier), new ItemStack(block));
+		if (doIngot)
+			OreDictionary.registerOre(type + StringUtils.capitalize(mat.identifier), new ItemStack(ingot));
+		if (doNugget)
+			OreDictionary.registerOre("nugget" + StringUtils.capitalize(mat.identifier), new ItemStack(nugget));
+		if (doBlock)
+			OreDictionary.registerOre("block" + StringUtils.capitalize(mat.identifier), new ItemStack(block));
+
 		
-		mat.setRepresentativeItem(ingot);
+		
+		
 	}
 
 	@Override
 	public void setupClient(Material mat) {
-		TinkersCompendium.proxy.registerItemColorHandler(mat.materialTextColor, ingot);
-		TinkersCompendium.proxy.registerItemColorHandler(mat.materialTextColor, nugget);
-		TinkersCompendium.proxy.registerBlockColorHandler(mat.materialTextColor, block);
-		TinkersCompendium.proxy.registerItemColorHandler(mat.materialTextColor, Item.getItemFromBlock(block));
+		if (doIngot)
+			TinkersCompendium.proxy.registerItemColorHandler(mat.materialTextColor, ingot);
+		if (doNugget)
+			TinkersCompendium.proxy.registerItemColorHandler(mat.materialTextColor, nugget);
+		if (doBlock) {
+			TinkersCompendium.proxy.registerBlockColorHandler(mat.materialTextColor, block);
+			TinkersCompendium.proxy.registerItemColorHandler(mat.materialTextColor, Item.getItemFromBlock(block));
+		}
 	}
 
 	@Override
@@ -101,18 +122,51 @@ public class CraftableMaterial implements MaterialBase {
 
 	@Override
 	public void setupModels(Material mat) {
-		TinkersCompendium.proxy.registerItemRenderer(ingot, 0, "ingot");
-		TinkersCompendium.proxy.registerItemRenderer(nugget, 0, "nugget");
+		if (doIngot)
+			TinkersCompendium.proxy.registerItemRenderer(ingot, 0, type);
+		if (doNugget)
+			TinkersCompendium.proxy.registerItemRenderer(nugget, 0, "nugget");
 
-		TinkersCompendium.proxy.registerBlockRenderer(block, "block");
-		TinkersCompendium.proxy.registerItemBlockRenderer(block, 0, "componentblock");
+		if (doBlock) {
+			TinkersCompendium.proxy.registerBlockRenderer(block, "block");
+			TinkersCompendium.proxy.registerItemBlockRenderer(block, 0, "componentblock");
+		}
 	}
 
 	@Override
 	public void setupInit(Material mat) {
-		mat.addItem(ingot, Material.VALUE_Ingot, 1);
-		mat.addItem(nugget,Material.VALUE_Nugget, 1);
-		mat.addItem(block, Material.VALUE_Block);
+		if (ingot != null)
+		{
+			mat.addItem(ingot, Material.VALUE_Ingot, 1);
+			mat.setRepresentativeItem(ingot);
+		}
+		if (nugget != null)
+			mat.addItem(nugget, Material.VALUE_Nugget, 1);
+		if (block != null)
+			mat.addItem(block, Material.VALUE_Block);
+		
+		mat.addItem(type + StringUtils.capitalize(mat.identifier), mat.VALUE_Ingot, 1);
+		mat.addItem("nugget" + StringUtils.capitalize(mat.identifier), mat.VALUE_Nugget, 1);
+		mat.addItem("block" + StringUtils.capitalize(mat.identifier), mat.VALUE_Block, 1);
+			
+	}
+	
+	public CraftableMaterial disableIngot()
+	{
+		this.doIngot = false;
+		return this;
+	}
+	
+	public CraftableMaterial disableNugget()
+	{
+		this.doNugget = false;
+		return this;
+	}
+	
+	public CraftableMaterial disableBlock()
+	{
+		this.doBlock = false;
+		return this;
 	}
 
 }

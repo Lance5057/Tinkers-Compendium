@@ -3,10 +3,16 @@ package lance5057.tDefense.core.tools;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.Nullable;
+
+import org.apache.logging.log4j.Level;
+
 import com.google.common.eventbus.Subscribe;
 
 import lance5057.tDefense.Reference;
+import lance5057.tDefense.TCConfig;
 import lance5057.tDefense.TinkersCompendium;
+import lance5057.tDefense.core.library.ArmorTags;
 import lance5057.tDefense.core.library.TCRegistry;
 import lance5057.tDefense.core.network.ArmorStationSelectionPacket;
 import lance5057.tDefense.core.tools.armor.chain.TinkersBoots;
@@ -38,10 +44,16 @@ import lance5057.tDefense.core.tools.baubles.TinkersTabard;
 import lance5057.tDefense.core.workstations.blocks.ArmorStationBlock;
 import lance5057.tDefense.core.workstations.tileentities.ArmorStationTile;
 import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.TextureMap;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.item.IItemPropertyGetter;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.World;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
@@ -57,6 +69,7 @@ import net.minecraftforge.registries.IForgeRegistry;
 import slimeknights.tconstruct.common.TinkerNetwork;
 import slimeknights.tconstruct.library.TinkerRegistry;
 import slimeknights.tconstruct.library.tools.ToolCore;
+import slimeknights.tconstruct.library.utils.TagUtil;
 
 @Mod.EventBusSubscriber(modid = Reference.MOD_ID)
 public class TDTools {
@@ -118,10 +131,39 @@ public class TDTools {
 	// static List<IModifier> modifiers = Lists.newLinkedList(); // ^ all
 	// modifiers
 
+	protected static final ResourceLocation PROPERTY_FINISHING_ANVIL = new ResourceLocation("finishinganvil");
+
+	protected final IItemPropertyGetter finishingAnvilPropertyGetter = new IItemPropertyGetter() {
+		@Override
+		@SideOnly(Side.CLIENT)
+		public float apply(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn) {
+			if (stack.getItem() instanceof ToolCore) {
+				return getAnvilID(stack, entityIn);
+			}
+			return 0;
+		}
+	};
+
+	public float getAnvilID(ItemStack stack, EntityLivingBase e) {
+
+		NBTTagCompound tag = TagUtil.getToolTag(stack);
+		if (!tag.hasKey(ArmorTags.AnvilBase)) {
+			tag.setTag(ArmorTags.AnvilBase, new NBTTagCompound());
+		}
+		NBTTagCompound anvil = tag.getCompoundTag(ArmorTags.AnvilBase);
+		if (!anvil.hasKey(ArmorTags.ModelType)) {
+			anvil.setInteger(ArmorTags.ModelType, Minecraft.getMinecraft().world.rand.nextInt(8));
+		}
+
+		// agUtil.setBaseTag(stack, tag);
+		return anvil.getInteger(ArmorTags.ModelType);
+	}
+
 	// PRE-INITIALIZATION
 	@Subscribe
 	public void preInit(FMLPreInitializationEvent event) {
 		armorMap = new TextureMap("armortextures");
+
 	}
 
 	private void regTools() {
@@ -243,6 +285,11 @@ public class TDTools {
 		stationItem = (ItemBlock) new ItemBlock(station).setRegistryName(station.getRegistryName());
 		registry.register(stationItem);
 
+		for (ToolCore i : TinkerRegistry.getTools()) {
+			i.addPropertyOverride(PROPERTY_FINISHING_ANVIL, finishingAnvilPropertyGetter);
+			// TinkersCompendium.proxy.registerAnvilToolModel(i);
+		}
+
 	}
 
 	public void registerBlocks(final RegistryEvent.Register<Block> event) {
@@ -280,6 +327,13 @@ public class TDTools {
 	@SubscribeEvent
 	public static void registerModels(ModelRegistryEvent event) {
 		TinkersCompendium.proxy.registerItemBlockRenderer(station, 0, "armorstation");
+
+		if (TinkersCompendium.config.anvil.enableFinishingAnvilTools)
+			for (ToolCore i : TinkerRegistry.getTools()) {
+				// i.addPropertyOverride(PROPERTY_FINISHING_ANVIL,
+				// finishingAnvilPropertyGetter);
+				TinkersCompendium.proxy.registerAnvilToolModel(i);
+			}
 	}
 
 	// INITIALIZATION
@@ -298,6 +352,7 @@ public class TDTools {
 		// proxy.init();
 
 		TinkerNetwork.instance.registerPacket(ArmorStationSelectionPacket.class);
+
 	}
 
 	private void regToolBuilding() {

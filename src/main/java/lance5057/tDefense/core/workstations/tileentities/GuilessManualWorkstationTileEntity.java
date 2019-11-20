@@ -95,33 +95,33 @@ public abstract class GuilessManualWorkstationTileEntity extends TileEntity {
 		return compound;
 	}
 
-	public void interact(EntityPlayer player, EnumHand hand) {
+	public void interact(EntityPlayer player, EnumHand hand, ItemStack tool) {
 		if (!isEmpty()) {
 			if (uses < this.usesMax) {
 				if (world.isRemote) {
-					
-					
-					this.world.spawnParticle(EnumParticleTypes.BLOCK_CRACK, (double) this.pos.getX() + 0.5f,
-							(double) this.pos.getY() + 1, (double) this.pos.getZ() + 0.5f, 0f, 0f, 0f,
-							Block.getIdFromBlock(blockType));
+
+					for (int i = 0; i < 8; i++)
+						this.world.spawnParticle(EnumParticleTypes.BLOCK_CRACK, (double) this.pos.getX() + 0.5f,
+								(double) this.pos.getY() + 1, (double) this.pos.getZ() + 0.5f, 0f, 0f, 0f,
+								Block.getIdFromBlock(blockType));
 
 				} else {
 					this.world.playSound(null, pos, SoundEvents.BLOCK_STONE_HIT, SoundCategory.BLOCKS, 1, 1);
 					player.swingArm(hand);
 					uses++;
 				}
-				
+
 			} else {
 				if (!world.isRemote) {
-					this.createItem();
+					this.createItem(tool);
+					uses = 0;
 				}
 			}
-		}
-		else
+		} else
 			uses = 0;
 	}
-	
-	public abstract void createItem();
+
+	public abstract void createItem(ItemStack tool);
 
 	private boolean isOreIn(ItemStack stack) {
 		if (stack != null && stack != ItemStack.EMPTY) {
@@ -152,7 +152,7 @@ public abstract class GuilessManualWorkstationTileEntity extends TileEntity {
 		ItemStack held = player.getHeldItem(hand);
 		// Add Item to block
 		for (int i = 0; i < items.length; i++) {
-			if (items[i] == null || items[i] == ItemStack.EMPTY) {
+			if (items[i] == null || items[i] == ItemStack.EMPTY || items[i].getItem() == Items.AIR) {
 				items[i] = held;
 				player.setHeldItem(hand, ItemStack.EMPTY);
 				uses = 0;
@@ -180,7 +180,7 @@ public abstract class GuilessManualWorkstationTileEntity extends TileEntity {
 
 	public boolean isEmpty() {
 		for (ItemStack i : items) {
-			if (i != null || i != ItemStack.EMPTY)
+			if (i != null && i != ItemStack.EMPTY && i.getItem() != Items.AIR)
 				return false;
 		}
 		return true;

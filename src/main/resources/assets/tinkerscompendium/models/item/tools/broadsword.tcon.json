@@ -1,0 +1,18 @@
+{
+    "textures": {
+        "layer0": "tconstruct:items/broadsword/handle",
+        "layer1": "tconstruct:items/broadsword/blade",
+		"layer2": "tconstruct:items/broadsword/guard",
+		"broken1": "tconstruct:items/broadsword/broken_blade"
+    },
+    "overrides": [
+        {"predicate": {"finishinganvil": 1}, "textures": { "layer1": "tinkerscompendium:items/broadsword/_big_head" }},
+		{"predicate": {"finishinganvil": 2}, "textures": { "layer1": "tinkerscompendium:items/broadsword/_bigbase_head" }},
+		{"predicate": {"finishinganvil": 3}, "textures": { "layer1": "tinkerscompendium:items/broadsword/_dull_head" }},
+		{"predicate": {"finishinganvil": 4}, "textures": { "layer1": "tinkerscompendium:items/broadsword/_elusive_head" }},
+		{"predicate": {"finishinganvil": 5}, "textures": { "layer1": "tinkerscompendium:items/broadsword/_falchion_head" }},
+		{"predicate": {"finishinganvil": 6}, "textures": { "layer1": "tinkerscompendium:items/broadsword/_flat_head" }},
+		{"predicate": {"finishinganvil": 7}, "textures": { "layer1": "tinkerscompendium:items/broadsword/_glass_head" }},
+		{"predicate": {"finishinganvil": 8}, "textures": { "layer1": "tinkerscompendium:items/broadsword/_hourglass_head" }}
+	]
+}

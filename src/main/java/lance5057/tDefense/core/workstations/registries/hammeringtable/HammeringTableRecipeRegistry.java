@@ -8,10 +8,11 @@ import com.google.common.collect.Maps;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.FurnaceRecipes;
+import net.minecraft.util.ResourceLocation;
 
 public class HammeringTableRecipeRegistry {
 	private final Map<ItemStack, ItemStack> hammeringList = Maps.<ItemStack, ItemStack>newHashMap();
+	private final Map<ItemStack, ResourceLocation> hammeringLootTableList = Maps.<ItemStack, ResourceLocation>newHashMap();
 	private static final HammeringTableRecipeRegistry BASE = new HammeringTableRecipeRegistry();
 
 	public static HammeringTableRecipeRegistry instance()
@@ -19,23 +20,14 @@ public class HammeringTableRecipeRegistry {
         return BASE;
     }
 	
-	/**
-	 * Adds a smelting recipe, where the input item is an instance of Block.
-	 */
 	public void addHammeringRecipeForBlock(Block input, ItemStack stack) {
 		this.addHammering(Item.getItemFromBlock(input), stack);
 	}
 
-	/**
-	 * Adds a smelting recipe using an Item as the input item.
-	 */
 	public void addHammering(Item input, ItemStack stack) {
 		this.addHammeringRecipe(new ItemStack(input, 1, 32767), stack);
 	}
 
-	/**
-	 * Adds a smelting recipe using an ItemStack as the input for the recipe.
-	 */
 	public void addHammeringRecipe(ItemStack input, ItemStack stack) {
 		if (getHammeringResult(input) != ItemStack.EMPTY) {
 			net.minecraftforge.fml.common.FMLLog.log.info("Ignored hammering recipe with conflicting input: {} = {}",
@@ -45,17 +37,43 @@ public class HammeringTableRecipeRegistry {
 		this.hammeringList.put(input, stack);
 	}
 
-	/**
-	 * Returns the smelting result of an item.
-	 */
 	public ItemStack getHammeringResult(ItemStack stack) {
 		for (Entry<ItemStack, ItemStack> entry : this.hammeringList.entrySet()) {
+			if (this.compareItemStacks(stack, entry.getKey())) {
+				return entry.getValue().copy();
+			}
+		}
+
+		return ItemStack.EMPTY;
+	}
+	
+	//--Loot Tables--//
+	
+	public void addHammeringLootTableForBlock(Block input, ResourceLocation table) {
+		this.addHammering(Item.getItemFromBlock(input), table);
+	}
+
+	public void addHammering(Item input, ResourceLocation table) {
+		this.addHammeringRecipe(new ItemStack(input, 1, 32767), table);
+	}
+
+	public void addHammeringRecipe(ItemStack input, ResourceLocation table) {
+		if (getHammeringResult(input) != ItemStack.EMPTY) {
+			net.minecraftforge.fml.common.FMLLog.log.info("Ignored hammering recipe with conflicting input: {} = {}",
+					input, table);
+			return;
+		}
+		this.hammeringLootTableList.put(input, table);
+	}
+
+	public ResourceLocation getHammeringLootTableResult(ItemStack stack) {
+		for (Entry<ItemStack, ResourceLocation> entry : this.hammeringLootTableList.entrySet()) {
 			if (this.compareItemStacks(stack, entry.getKey())) {
 				return entry.getValue();
 			}
 		}
 
-		return ItemStack.EMPTY;
+		return null;
 	}
 
 	/**

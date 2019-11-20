@@ -1,7 +1,7 @@
 package lance5057.tDefense.core.workstations.blocks;
 
 import lance5057.tDefense.TinkersCompendium;
-import lance5057.tDefense.core.workstations.tileentities.GuilessManualWorkstationTileEntity;
+import lance5057.tDefense.core.tools.basic.Mallet;
 import lance5057.tDefense.core.workstations.tileentities.HammeringTableTileEntity;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
@@ -39,8 +39,8 @@ public class HammeringTableBlock extends GuilessManualWorkstationBase {
 			if (item.equals(ItemStack.EMPTY) && player.isSneaking()) {
 				tile.removeItemFromBlock(player, hand);
 			} else {
-				if (item.getItem() instanceof Hammer)
-					tile.interact(player, hand);
+				if (item.getItem() instanceof Hammer || item.getItem() instanceof Mallet)
+					tile.interact(player, hand, item);
 				else
 					tile.addItemToBlock(player, hand);
 			}
