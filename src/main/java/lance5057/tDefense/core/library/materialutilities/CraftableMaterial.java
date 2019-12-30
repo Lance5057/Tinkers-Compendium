@@ -137,17 +137,17 @@ public class CraftableMaterial implements MaterialBase {
 	public void setupInit(Material mat) {
 		if (ingot != null)
 		{
-			mat.addItem(ingot, Material.VALUE_Ingot, 1);
+			mat.addItem(ingot, 1, Material.VALUE_Ingot);
 			mat.setRepresentativeItem(ingot);
 		}
 		if (nugget != null)
-			mat.addItem(nugget, Material.VALUE_Nugget, 1);
+			mat.addItem(nugget, 1, Material.VALUE_Nugget);
 		if (block != null)
 			mat.addItem(block, Material.VALUE_Block);
 		
-		mat.addItem(type + StringUtils.capitalize(mat.identifier), mat.VALUE_Ingot, 1);
-		mat.addItem("nugget" + StringUtils.capitalize(mat.identifier), mat.VALUE_Nugget, 1);
-		mat.addItem("block" + StringUtils.capitalize(mat.identifier), mat.VALUE_Block, 1);
+		mat.addItem(type + StringUtils.capitalize(mat.identifier), 1, mat.VALUE_Ingot);
+		mat.addItem("nugget" + StringUtils.capitalize(mat.identifier), 1, mat.VALUE_Nugget);
+		mat.addItem("block" + StringUtils.capitalize(mat.identifier), 1, mat.VALUE_Block);
 			
 	}
 	

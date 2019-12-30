@@ -19,6 +19,9 @@ public class TextileEvents {
 
 			if (e.getWorld().rand.nextInt(100) <= TinkersCompendium.config.textiles.grassFiberDropPercent)
 				e.getDrops().add(new ItemStack(CompendiumTextiles.grassFiber));
+			
+			if (e.getWorld().rand.nextInt(100) <= TinkersCompendium.config.textiles.cottonSeedDropPercent)
+				e.getDrops().add(new ItemStack(CompendiumTextiles.cottonSeed));
 		}
 	}
 

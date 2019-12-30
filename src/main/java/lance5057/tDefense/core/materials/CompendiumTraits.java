@@ -131,6 +131,7 @@ public class CompendiumTraits {
 	public TraitBattleHardened battlehardened = new TraitBattleHardened("battlehardened", TextFormatting.DARK_PURPLE,
 			1);
 	public TraitReflex reflex = new TraitReflex();
+	public TraitStableStance stablestance = new TraitStableStance();
 
 	public TraitAcknowledged acknowledged = new TraitAcknowledged();
 	public TraitBattleHardened workhardened = new TraitBattleHardened("workhardened", TextFormatting.RED, 5);
@@ -168,6 +169,9 @@ public class CompendiumTraits {
 	private AbstractTrait mythical2 = new TraitMythical(2);
 	
 	public TraitRegal regal = new TraitRegal();
+	
+	//Froststeel
+	
 
 	public void preInit() {
 
@@ -287,6 +291,11 @@ public class CompendiumTraits {
 		TinkerMaterials.ardite.addTrait(statuesque, ChestMaterialStats.TYPE);
 		TinkerMaterials.ardite.addTrait(stonekin, LegsMaterialStats.TYPE);
 		TinkerMaterials.ardite.addTrait(heavyweight, FeetMaterialStats.TYPE);
+		
+		TinkerMaterials.manyullyn.addTrait(this.combatadvantage, HelmMaterialStats.TYPE);
+		TinkerMaterials.manyullyn.addTrait(this.battlehardened, ChestMaterialStats.TYPE);
+		TinkerMaterials.manyullyn.addTrait(this.reflex, LegsMaterialStats.TYPE);
+		TinkerMaterials.manyullyn.addTrait(this.stablestance, FeetMaterialStats.TYPE);
 
 		TinkerMaterials.copper.addTrait(acknowledged, HelmMaterialStats.TYPE);
 		TinkerMaterials.copper.addTrait(workhardened, ChestMaterialStats.TYPE);

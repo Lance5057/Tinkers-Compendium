@@ -45,6 +45,7 @@ public class CompendiumTextiles {
 
 	public static ItemColors silkThread;
 	public static BlockColored silkBlock;
+	public static ItemBlock silkItemBlock;
 
 	public static ItemColors ramieCord;
 	public static BlockColored ramieBlock;
@@ -79,6 +80,15 @@ public class CompendiumTextiles {
 
 		cottonItemBlock = new ItemCloth(cottonBlock);
 		setupItem(cottonItemBlock, "cottonitemblock");
+		
+		silkThread = new ItemColors();
+		setupItem(silkThread, "silkyarn");
+
+		silkBlock = new BlockColored(Material.CLOTH);
+		setupBlock(silkBlock, "silkblock");
+
+		silkItemBlock = new ItemCloth(silkBlock);
+		setupItem(silkItemBlock, "silkitemblock");
 	}
 
 	public void init() {
@@ -100,6 +110,9 @@ public class CompendiumTextiles {
 		register.register(cottonSeed);
 		register.register(cottonYarn);
 		register.register(this.cottonItemBlock);
+		
+		register.register(silkThread);
+		register.register(silkItemBlock);
 
 		TinkersCompendium.proxy.registerItemRenderer(grassFiber, 0, "grassfiber");
 		TinkersCompendium.proxy.registerItemRenderer(roughspunCord, 0, "roughspuncord");
@@ -111,6 +124,9 @@ public class CompendiumTextiles {
 		for (int i = 0; i < 16; i++) {
 			TinkersCompendium.proxy.registerItemRenderer(cottonYarn, i, "cottonyarn_" + EnumDyeColor.byDyeDamage(i));
 			TinkersCompendium.proxy.registerItemRenderer(cottonItemBlock, i, "cottonblock_" + EnumDyeColor.byMetadata(i));
+			
+			TinkersCompendium.proxy.registerItemRenderer(silkThread, i, "silkthread_" + EnumDyeColor.byDyeDamage(i));
+			TinkersCompendium.proxy.registerItemRenderer(silkItemBlock, i, "silkblock_" + EnumDyeColor.byMetadata(i));
 		}
 	}
 
@@ -120,6 +136,7 @@ public class CompendiumTextiles {
 		register.register(roughspunBlock);
 		register.register(this.cottonBlock);
 		register.register(this.cottonCrop);
+		register.register(silkBlock);
 
 		// TinkersCompendium.proxy.registerBlockRenderer(roughspunBlock,
 		// "roughspunblock");
@@ -132,5 +149,7 @@ public class CompendiumTextiles {
 
 	void setupBlock(Block b, String name) {
 		b.setUnlocalizedName(name).setRegistryName(new ResourceLocation(Reference.MOD_ID, name)).setCreativeTab(tab);
+		b.setHardness(0.8f);
+		b.setResistance(4);
 	}
 }

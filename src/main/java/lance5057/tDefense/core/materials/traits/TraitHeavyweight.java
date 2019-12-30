@@ -1,5 +1,6 @@
 package lance5057.tDefense.core.materials.traits;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -30,7 +31,9 @@ public class TraitHeavyweight extends AbstractTDTrait {
 					BlockPos underPlayer = new BlockPos(ent.posX + x, ent.posY - 1, ent.posZ + y);
 
 					IBlockState block = ent.world.getBlockState(underPlayer);
-					if (block == Blocks.STONE) {
+					Block b = block.getBlock();
+					
+					if (b == Blocks.STONE) {
 						ent.world.setBlockState(underPlayer, Blocks.COBBLESTONE.getDefaultState());
 					}
 					
@@ -50,7 +53,7 @@ public class TraitHeavyweight extends AbstractTDTrait {
 
 	@Override
 	public void onArmorTick(ItemStack tool, World world, EntityPlayer player) {
-		if (player.motionY > 0) {
+		if (player.motionY < 0) {
 			player.motionY *= 1.1f;
 		}
 	}

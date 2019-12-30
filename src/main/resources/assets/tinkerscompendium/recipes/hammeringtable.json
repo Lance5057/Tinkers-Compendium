@@ -1,0 +1,27 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " s ",
+        "lwl",
+		"   "
+    ],
+    "key": {
+        "s": {
+            "item": "minecraft:stone_slab",
+            "data": 0
+        },
+		"w": {
+            "item": "minecraft:log",
+            "data": 32767
+        },
+		"l": {
+            "item": "minecraft:stick",
+            "data": 0
+        }
+    },
+    "result": {
+        "item": "tinkerscompendium:hammeringtable",
+        "data": 0,
+        "count": 1
+    }
+}

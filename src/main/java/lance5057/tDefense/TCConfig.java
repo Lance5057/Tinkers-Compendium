@@ -277,7 +277,8 @@ public class TCConfig {
 		@Config.RequiresMcRestart()
 		public boolean enableTextiles = true;
 
-		public int grassFiberDropPercent = 75;
+		public int grassFiberDropPercent = 50;
+		public int cottonSeedDropPercent = 10;
 	}
 	
 	public static class FinishingAnvil

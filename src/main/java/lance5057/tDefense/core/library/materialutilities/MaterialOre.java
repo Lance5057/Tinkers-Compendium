@@ -111,7 +111,7 @@ public class MaterialOre implements MaterialBase {
 
 	@Override
 	public void setupClient(Material mat) {
-		if (this.oreColor >= 0) {
+		if (this.oreColor > 0) {
 			TinkersCompendium.proxy.registerBlockColorHandler(this.oreColor, oreBlock);
 			TinkersCompendium.proxy.registerItemColorHandler(this.oreColor, Item.getItemFromBlock(oreBlock));
 		} else {

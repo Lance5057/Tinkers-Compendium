@@ -1,0 +1,20 @@
+{
+	"variants": {
+		"color=white": { "model": "tinkerscompendium:silkblock" },
+		"color=orange": { "model": "tinkerscompendium:silkblock_orange" },
+		"color=magenta": { "model": "tinkerscompendium:silkblock_magenta" },
+		"color=light_blue": { "model": "tinkerscompendium:silkblock_light_blue" },
+		"color=yellow": { "model": "tinkerscompendium:silkblock_yellow" },
+		"color=lime": { "model": "tinkerscompendium:silkblock_lime" },
+		"color=pink": { "model": "tinkerscompendium:silkblock_pink" },
+		"color=gray": { "model": "tinkerscompendium:silkblock_gray" },
+		"color=silver": { "model": "tinkerscompendium:silkblock_light_gray" },
+		"color=cyan": { "model": "tinkerscompendium:silkblock_cyan" },
+		"color=purple": { "model": "tinkerscompendium:silkblock_purple" },
+		"color=blue": { "model": "tinkerscompendium:silkblock_blue" },
+		"color=brown": { "model": "tinkerscompendium:silkblock_brown" },
+		"color=green": { "model": "tinkerscompendium:silkblock_green" },
+		"color=red": { "model": "tinkerscompendium:silkblock_red" },
+		"color=black": { "model": "tinkerscompendium:silkblock_black" }
+	}
+}
