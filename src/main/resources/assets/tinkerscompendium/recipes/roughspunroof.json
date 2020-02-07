@@ -1,0 +1,24 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "  f",
+        " fs",
+        "fsc"
+    ],
+    "key": {
+        "f": {
+            "item": "tinkerscompendium:roughspunitemblock"
+        },
+		"s": {
+            "item": "minecraft:stick"
+        },
+		"c": {
+            "item": "tinkerscompendium:roughspuncord"
+        }
+    },
+    "result": 
+	{
+		"item": "tinkerscompendium:roughspunitemroof",
+        "count": 4
+	}
+}

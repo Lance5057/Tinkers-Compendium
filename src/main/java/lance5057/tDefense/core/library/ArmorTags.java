@@ -1,5 +1,9 @@
 package lance5057.tDefense.core.library;
 
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import slimeknights.tconstruct.library.utils.TagUtil;
+
 public final class ArmorTags {
 	/** The stored dynamic texture location for this piece of armor */
 	public static final String DynTex = "DynTex";
@@ -30,4 +34,13 @@ public final class ArmorTags {
 	
 	//Ranked Trait
 	public static final String Kills = "kills";
+	
+	public static NBTTagCompound getFinishingAnvilIDs(ItemStack stack)
+	{
+		NBTTagCompound tag = TagUtil.getToolTag(stack);
+		if (!tag.hasKey(ArmorTags.AnvilBase)) {
+			tag.setTag(ArmorTags.AnvilBase, new NBTTagCompound());
+		}
+		return tag.getCompoundTag(ArmorTags.AnvilBase);
+	}
 }

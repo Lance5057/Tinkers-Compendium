@@ -6,13 +6,15 @@
 		"broken1": "tconstruct:items/broadsword/broken_blade"
     },
     "overrides": [
-        {"predicate": {"finishinganvil": 1}, "textures": { "layer1": "tinkerscompendium:items/broadsword/_big_head" }},
-		{"predicate": {"finishinganvil": 2}, "textures": { "layer1": "tinkerscompendium:items/broadsword/_bigbase_head" }},
-		{"predicate": {"finishinganvil": 3}, "textures": { "layer1": "tinkerscompendium:items/broadsword/_dull_head" }},
-		{"predicate": {"finishinganvil": 4}, "textures": { "layer1": "tinkerscompendium:items/broadsword/_elusive_head" }},
-		{"predicate": {"finishinganvil": 5}, "textures": { "layer1": "tinkerscompendium:items/broadsword/_falchion_head" }},
-		{"predicate": {"finishinganvil": 6}, "textures": { "layer1": "tinkerscompendium:items/broadsword/_flat_head" }},
-		{"predicate": {"finishinganvil": 7}, "textures": { "layer1": "tinkerscompendium:items/broadsword/_glass_head" }},
-		{"predicate": {"finishinganvil": 8}, "textures": { "layer1": "tinkerscompendium:items/broadsword/_hourglass_head" }}
+        {"predicate": {"finishinganvil0": 1}, "textures": { "layer1": "tinkerscompendium:items/broadsword/_big_head" }},
+		{"predicate": {"finishinganvil0": 2}, "textures": { "layer1": "tinkerscompendium:items/broadsword/_bigbase_head" }},
+		{"predicate": {"finishinganvil0": 3}, "textures": { "layer1": "tinkerscompendium:items/broadsword/_dull_head" }},
+		{"predicate": {"finishinganvil0": 4}, "textures": { "layer1": "tinkerscompendium:items/broadsword/_elusive_head" }},
+		{"predicate": {"finishinganvil0": 5}, "textures": { "layer1": "tinkerscompendium:items/broadsword/_falchion_head" }},
+		{"predicate": {"finishinganvil0": 6}, "textures": { "layer1": "tinkerscompendium:items/broadsword/_flat_head" }},
+		{"predicate": {"finishinganvil0": 7}, "textures": { "layer1": "tinkerscompendium:items/broadsword/_glass_head" }},
+		{"predicate": {"finishinganvil0": 8}, "textures": { "layer1": "tinkerscompendium:items/broadsword/_hourglass_head" }},
+		
+		{"predicate": {"finishinganvil1": 1}, "textures": { "layer2": "tinkerscompendium:items/broadsword/_basket_accessory" }}
 	]
 }

@@ -7,6 +7,7 @@ import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.texture.DynamicTexture;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityArmorStand;
+import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -17,13 +18,11 @@ public class ArmorRenderer extends ModelBiped {
 	public ItemStack stack;
 	public String defaultFolder;
 	DynamicTexture texture;
-	
+
 	protected boolean visor = false;
 	protected float visorTime = 0f;
-	
-	public EntityEquipmentSlot slot;
 
-	// public List<ModelRenderer> boxes = new ArrayList<ModelRenderer>();
+	public EntityEquipmentSlot slot;
 
 	public NBTTagCompound defaultTags = new NBTTagCompound();
 
@@ -32,19 +31,19 @@ public class ArmorRenderer extends ModelBiped {
 
 		this.stack = stack;
 	}
-	
+
 	public ArmorRenderer(float a, float b, int c, int d, ItemStack stack, EntityEquipmentSlot s) {
 		super(a, b, c, d);
 
 		this.stack = stack;
 		slot = s;
 	}
-	
+
 	public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {
-        modelRenderer.rotateAngleX = x;
-        modelRenderer.rotateAngleY = y;
-        modelRenderer.rotateAngleZ = z;
-    }
+		modelRenderer.rotateAngleX = x;
+		modelRenderer.rotateAngleY = y;
+		modelRenderer.rotateAngleZ = z;
+	}
 
 	// Mojang plz
 	@Override
@@ -74,32 +73,31 @@ public class ArmorRenderer extends ModelBiped {
 			this.bipedRightLeg.rotateAngleZ = 0.017453292F * entityarmorstand.getRightLegRotation().getZ();
 			this.bipedRightLeg.setRotationPoint(-1.9F, 11.0F, 0.0F);
 			copyModelAngles(this.bipedHead, this.bipedHeadwear);
-		} else {
+		}else {
 			super.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, entityIn);
 		}
+
 	}
-	
-	protected ModelRenderer lerpModel(ModelRenderer from, ModelRenderer to, float time)
-	{
-		if(from.offsetX != to.offsetX)
+
+	protected ModelRenderer lerpModel(ModelRenderer from, ModelRenderer to, float time) {
+		if (from.offsetX != to.offsetX)
 			from.offsetX = lerp(from.offsetX, to.offsetX, time);
-		if(from.offsetY != to.offsetY)
+		if (from.offsetY != to.offsetY)
 			from.offsetY = lerp(from.offsetY, to.offsetY, time);
-		if(from.offsetZ != to.offsetZ)
+		if (from.offsetZ != to.offsetZ)
 			from.offsetZ = lerp(from.offsetZ, to.offsetZ, time);
-		
-		if(from.rotateAngleX != to.rotateAngleX)
+
+		if (from.rotateAngleX != to.rotateAngleX)
 			from.rotateAngleX = lerp(from.rotateAngleX, to.rotateAngleX, time);
-		if(from.rotateAngleY != to.rotateAngleY)
+		if (from.rotateAngleY != to.rotateAngleY)
 			from.rotateAngleY = lerp(from.rotateAngleY, to.rotateAngleY, time);
-		if(from.rotateAngleZ != to.rotateAngleZ)
+		if (from.rotateAngleZ != to.rotateAngleZ)
 			from.rotateAngleZ = lerp(from.rotateAngleZ, to.rotateAngleZ, time);
-		
+
 		return from;
 	}
-	
-	private float lerp(float from, float to, float time)
-	{
+
+	private float lerp(float from, float to, float time) {
 		return (1 - time) * from + time * to;
 	}
 }

@@ -101,7 +101,7 @@ public class TinkersHood extends ArmorCore {
 	public NBTTagCompound setupTexture(List<Material> materials) {
 		NBTTagCompound base = new NBTTagCompound();
 
-		ResourceLocation rc = ArmorTextureBuilder.createArmorTexture("hood", new String[] { "cloth", "trim", "metal" },
+		ResourceLocation rc = ArmorTextureBuilder.createArmorTexture("hood", new String[] {"cloth", "trim",  "metal" },
 				materials, 96, 96);
 
 		if (rc != null) {

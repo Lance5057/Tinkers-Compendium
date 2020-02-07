@@ -68,7 +68,7 @@ public class FinishingAnvilBlock extends BlockTable implements ITinkerStationBlo
 	}
 
 	private static ImmutableList<AxisAlignedBB> BOUNDS_Table = ImmutableList
-			.of(new AxisAlignedBB(0.5, 0.5, 0.5, 1, 1, 1));
+			.of(new AxisAlignedBB(0.0, 0.0, 0.0, 1, 1, 1));
 
 	@Override
 	public RayTraceResult collisionRayTrace(IBlockState blockState, @Nonnull World worldIn, @Nonnull BlockPos pos,

@@ -401,6 +401,7 @@ public class CompendiumMaterials {
 					new ArmorMaterial(new HelmMaterialStats(99, 1, 1, 19.0f), new ChestMaterialStats(99, 4, 1, 19.0f),
 							new LegsMaterialStats(99, 3, 1, 19.0f), new FeetMaterialStats(99, 1, 1, 19.0f)));
 			platinum.addons.add(new MaterialComponents(false));
+			platinum.addons.add(new MaterialOre("sheet", "sheet", 0xd1ecf6, 1, HarvestLevels.IRON, 1));
 			materials.add(platinum);
 		}
 

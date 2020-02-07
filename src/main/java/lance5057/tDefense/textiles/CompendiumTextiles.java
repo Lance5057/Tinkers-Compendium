@@ -1,8 +1,8 @@
 package lance5057.tDefense.textiles;
 
-import WayofTime.bloodmagic.util.Utils;
 import lance5057.tDefense.Reference;
 import lance5057.tDefense.TinkersCompendium;
+import lance5057.tDefense.core.blocks.BlockStairLike;
 import lance5057.tDefense.textiles.blocks.BlockCottonCrop;
 import lance5057.tDefense.textiles.items.ItemColors;
 import lance5057.tDefense.textiles.items.ItemCotton;
@@ -20,6 +20,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.registries.IForgeRegistry;
+import slimeknights.mantle.block.BlockStairsBase;
 import slimeknights.mantle.client.CreativeTab;
 
 public class CompendiumTextiles {
@@ -31,7 +32,9 @@ public class CompendiumTextiles {
 	public static Item grassFiber;
 	public static Item roughspunCord;
 	public static ItemBlock roughspunItemBlock;
+	public static ItemBlock roughspunItemRoof;
 	public static Block roughspunBlock;
+	public static BlockStairLike roughspunRoof;
 
 	public static ItemCotton cotton;
 	public static ItemSeeds cottonSeed;
@@ -59,9 +62,15 @@ public class CompendiumTextiles {
 
 		roughspunBlock = new Block(Material.CLOTH);
 		setupBlock(this.roughspunBlock, "roughspunblock");
+		
+		roughspunRoof = new BlockStairLike(Material.CLOTH);
+		setupBlock(this.roughspunRoof, "roughspunblockroof");
 
 		roughspunItemBlock = new ItemBlock(roughspunBlock);
 		setupItem(roughspunItemBlock, "roughspunitemblock");
+		
+		roughspunItemRoof = new ItemBlock(roughspunRoof);
+		setupItem(roughspunItemRoof, "roughspunblockitemroof");
 
 		cotton = new ItemCotton();
 		setupItem(cotton, "cotton");
@@ -105,6 +114,7 @@ public class CompendiumTextiles {
 		register.register(grassFiber);
 		register.register(this.roughspunCord);
 		register.register(roughspunItemBlock);
+		register.register(roughspunItemRoof);
 		
 		register.register(cotton);
 		register.register(cottonSeed);
@@ -134,6 +144,7 @@ public class CompendiumTextiles {
 		IForgeRegistry<Block> register = event.getRegistry();
 
 		register.register(roughspunBlock);
+		register.register(roughspunRoof);
 		register.register(this.cottonBlock);
 		register.register(this.cottonCrop);
 		register.register(silkBlock);

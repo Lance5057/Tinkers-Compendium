@@ -23,6 +23,7 @@ import lance5057.tDefense.core.worldgen.SpawnArmorOnMobs;
 import lance5057.tDefense.proxy.CommonProxy;
 import lance5057.tDefense.textiles.CompendiumTextiles;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.MinecraftForge;
@@ -82,6 +83,8 @@ public class TinkersCompendium {
 
 	@SidedProxy(clientSide = "lance5057.tDefense.proxy.ClientProxy", serverSide = "lance5057.tDefense.proxy.CommonProxy")
 	public static CommonProxy proxy;
+	
+	public static Item book;
 
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent e) {
@@ -185,6 +188,7 @@ public class TinkersCompendium {
 		}
 	}
 
+	
 	//public static List<MaterialHelper.oreGen> biomeCheck = new ArrayList<MaterialHelper.oreGen>();
 
 	void dumpBiomeInfo() {

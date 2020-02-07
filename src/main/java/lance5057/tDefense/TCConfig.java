@@ -154,7 +154,7 @@ public class TCConfig {
 		@Config.Comment("Materials that will spawn in easy difficulty on the overworld")
 		public String[] easyoverworld = {"wood", "stone", "flint", "cactus", "bone", "paper"};
 		
-		@Config.Comment("Materials that will spawn in normal difficulty on the overworld")
+		@Config.Comment("Materials that will spawn in normal difficulty on the overworld, includes lower difficulties")
 		public String[] normaloverworld = {};
 	}
 
@@ -199,6 +199,9 @@ public class TCConfig {
 
 		@Config.RequiresMcRestart()
 		public boolean enableHeavyArmor = true;
+		
+		@Config.RequiresMcRestart()
+		public boolean mobsSpawnWithGear = true;
 	}
 
 	public static class Bauble {
@@ -284,6 +287,11 @@ public class TCConfig {
 	public static class FinishingAnvil
 	{
 		public boolean enableFinishingAnvilTools = true;
+		
+		public String[] overrides = 
+			{
+					"tconstruct:broadsword 8"
+			};
 	}
 	// public int SoulBoundID;
 	// public int DazeID;

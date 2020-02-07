@@ -25,7 +25,7 @@ import slimeknights.tconstruct.tools.common.client.GuiButtonRepair;
 public class FinishingAnvilTile extends TileInventory implements IInventoryGui {
 
   public FinishingAnvilTile() {
-    super("gui.toolstation.name", 1);
+    super("gui.finishinganvil.name", 1);
     this.itemHandler = new ConfigurableInvWrapperCapability(this, false, false); 
   }
 

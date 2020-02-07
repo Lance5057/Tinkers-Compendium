@@ -2,6 +2,7 @@ package lance5057.tDefense.core.workstations.gui.finishinganvil;
 
 import javax.annotation.Nonnull;
 
+import lance5057.tDefense.core.library.alwaysShowResult;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.InventoryCraftResult;
 import net.minecraft.inventory.Slot;
@@ -13,9 +14,9 @@ public class FinishingAnvilSlotOut extends Slot {
   public FinishingAnvilContainer parent;
 
   public FinishingAnvilSlotOut(int index, int xPosition, int yPosition, FinishingAnvilContainer container) {
-    super(new InventoryCraftResult(), index, xPosition, yPosition);
+    super(new alwaysShowResult(), index, xPosition, yPosition);
 
-    this.parent = container;
+    this.parent = container; 
   }
 
   @Override

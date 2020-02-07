@@ -6,8 +6,10 @@ import com.google.common.collect.ImmutableList;
 
 import lance5057.tDefense.Reference;
 import lance5057.tDefense.TCCommands;
+import lance5057.tDefense.TCConfig;
 import lance5057.tDefense.TinkersCompendium;
 import lance5057.tDefense.core.blocks.ColoredBlockMapper;
+import lance5057.tDefense.core.items.ItemCompendiumBook;
 import lance5057.tDefense.core.library.ArmorBuildGuiInfo;
 import lance5057.tDefense.core.library.ArmorPart;
 import lance5057.tDefense.core.library.CustomArmorTextureCreator;
@@ -30,16 +32,19 @@ import net.minecraft.client.renderer.color.BlockColors;
 import net.minecraft.client.renderer.color.IBlockColor;
 import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.client.renderer.color.ItemColors;
+import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.client.ClientCommandHandler;
+import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import slimeknights.tconstruct.common.ModelRegisterUtil;
@@ -96,9 +101,14 @@ public class ClientProxy extends CommonProxy {
 	ToolBuildGuiInfo tabardGUI;
 
 	// public static SheatheModel sheathe;
+	
+	public static TextureMap armorMap;
 
 	@Override
 	public void preInit() {
+		
+		armorMap = new TextureMap("armortextures");
+		
 		ClientCommandHandler.instance.registerCommand(new TCCommands());
 		ModelLoaderRegistry.registerLoader(loader);
 		MaterialRenderInfoLoader.addRenderInfo("alpha_color", AlphaColorTextureDeserializer.class);
@@ -224,6 +234,18 @@ public class ClientProxy extends CommonProxy {
 				new ResourceLocation("textures/font/ascii.png"), mc.renderEngine);
 		bookRenderer.setUnicodeFlag(true);
 		CompendiumBook.INSTANCE.fontRenderer = bookRenderer;
+		
+		for(ToolCore tc : TinkerRegistry.getTools())
+		{
+			for(String s : TCConfig.anvil.overrides)
+			{
+				String[] info = s.split(" ");
+				if(info[0].equals(tc.getRegistryName().toString()))
+				{
+					TDClientRegistry.addVarient(tc, Integer.valueOf(info[1]));
+				}
+			}
+		}
 
 		// ModelRegisterUtil.registerPartModel(TDMaterials.plate);
 	}

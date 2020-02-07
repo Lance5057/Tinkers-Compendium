@@ -26,6 +26,7 @@ public final class TDClientRegistry {
   | GUI & CRAFTING                                                            |
   ---------------------------------------------------------------------------*/
   private static final Map<Item, ArmorBuildGuiInfo> armorBuildInfo = Maps.newLinkedHashMap();
+  private static final Map<Item, Integer> toolVariants = Maps.newLinkedHashMap();
   
 
   public static void addArmorBuilding(ArmorBuildGuiInfo info) {
@@ -38,6 +39,19 @@ public final class TDClientRegistry {
 
   public static void clear() {
 	  armorBuildInfo.clear();
+  }
+  
+  public static void addVarient(Item item, int i)
+  {
+	  toolVariants.put(item, i);
+  }
+  
+  public static int getVarient(Item item)
+  {
+	  Integer i = toolVariants.get(item);
+	  if(i==null)
+		  return 0;
+	  return i;
   }
 
   /*---------------------------------------------------------------------------

@@ -5,16 +5,14 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import org.apache.logging.log4j.Level;
-
 import com.google.common.eventbus.Subscribe;
 
 import lance5057.tDefense.Reference;
-import lance5057.tDefense.TCConfig;
 import lance5057.tDefense.TinkersCompendium;
 import lance5057.tDefense.core.library.ArmorTags;
 import lance5057.tDefense.core.library.TCRegistry;
 import lance5057.tDefense.core.network.ArmorStationSelectionPacket;
+import lance5057.tDefense.core.network.FinishingAnvilSelectionPacket;
 import lance5057.tDefense.core.tools.armor.chain.TinkersBoots;
 import lance5057.tDefense.core.tools.armor.chain.TinkersChausses;
 import lance5057.tDefense.core.tools.armor.chain.TinkersCoif;
@@ -44,8 +42,6 @@ import lance5057.tDefense.core.tools.baubles.TinkersTabard;
 import lance5057.tDefense.core.workstations.blocks.ArmorStationBlock;
 import lance5057.tDefense.core.workstations.tileentities.ArmorStationTile;
 import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.IItemPropertyGetter;
 import net.minecraft.item.Item;
@@ -77,7 +73,7 @@ public class TDTools {
 	public static final List<ArmorCore> armors = new ArrayList<>();
 	TDToolEvents events = new TDToolEvents();
 
-	public static TextureMap armorMap;
+	
 
 	public static ArmorStationBlock station;
 
@@ -131,38 +127,86 @@ public class TDTools {
 	// static List<IModifier> modifiers = Lists.newLinkedList(); // ^ all
 	// modifiers
 
-	protected static final ResourceLocation PROPERTY_FINISHING_ANVIL = new ResourceLocation("finishinganvil");
+	protected static final ResourceLocation PROPERTY_FINISHING_ANVIL0 = new ResourceLocation("finishinganvil0");
+	protected static final ResourceLocation PROPERTY_FINISHING_ANVIL1 = new ResourceLocation("finishinganvil1");
+	protected static final ResourceLocation PROPERTY_FINISHING_ANVIL2 = new ResourceLocation("finishinganvil2");
+	protected static final ResourceLocation PROPERTY_FINISHING_ANVIL3 = new ResourceLocation("finishinganvil3");
+	protected static final ResourceLocation PROPERTY_FINISHING_ANVIL4 = new ResourceLocation("finishinganvil4");
 
 	protected final IItemPropertyGetter finishingAnvilPropertyGetter = new IItemPropertyGetter() {
 		@Override
 		@SideOnly(Side.CLIENT)
 		public float apply(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn) {
 			if (stack.getItem() instanceof ToolCore) {
-				return getAnvilID(stack, entityIn);
+				return getAnvilID(stack, entityIn, 0);
+			}
+			return 0;
+		}
+	};
+	
+	protected final IItemPropertyGetter finishingAnvilPropertyGetter1 = new IItemPropertyGetter() {
+		@Override
+		@SideOnly(Side.CLIENT)
+		public float apply(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn) {
+			if (stack.getItem() instanceof ToolCore) {
+				return getAnvilID(stack, entityIn, 1);
+			}
+			return 0;
+		}
+	};
+	
+	protected final IItemPropertyGetter finishingAnvilPropertyGetter2 = new IItemPropertyGetter() {
+		@Override
+		@SideOnly(Side.CLIENT)
+		public float apply(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn) {
+			if (stack.getItem() instanceof ToolCore) {
+				return getAnvilID(stack, entityIn, 2);
+			}
+			return 0;
+		}
+	};
+	
+	protected final IItemPropertyGetter finishingAnvilPropertyGetter3 = new IItemPropertyGetter() {
+		@Override
+		@SideOnly(Side.CLIENT)
+		public float apply(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn) {
+			if (stack.getItem() instanceof ToolCore) {
+				return getAnvilID(stack, entityIn, 3);
+			}
+			return 0;
+		}
+	};
+	
+	protected final IItemPropertyGetter finishingAnvilPropertyGetter4 = new IItemPropertyGetter() {
+		@Override
+		@SideOnly(Side.CLIENT)
+		public float apply(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn) {
+			if (stack.getItem() instanceof ToolCore) {
+				return getAnvilID(stack, entityIn, 4);
 			}
 			return 0;
 		}
 	};
 
-	public float getAnvilID(ItemStack stack, EntityLivingBase e) {
+	public float getAnvilID(ItemStack stack, EntityLivingBase e, int layer) {
 
-		NBTTagCompound tag = TagUtil.getToolTag(stack);
+		NBTTagCompound tag = TagUtil.getTagSafe(stack);
 		if (!tag.hasKey(ArmorTags.AnvilBase)) {
 			tag.setTag(ArmorTags.AnvilBase, new NBTTagCompound());
 		}
 		NBTTagCompound anvil = tag.getCompoundTag(ArmorTags.AnvilBase);
-		if (!anvil.hasKey(ArmorTags.ModelType)) {
-			anvil.setInteger(ArmorTags.ModelType, Minecraft.getMinecraft().world.rand.nextInt(8));
+		if (!anvil.hasKey(ArmorTags.ModelType + layer)) {
+			anvil.setInteger(ArmorTags.ModelType + layer, 0);
 		}
 
 		// agUtil.setBaseTag(stack, tag);
-		return anvil.getInteger(ArmorTags.ModelType);
+		return anvil.getInteger(ArmorTags.ModelType + layer);
 	}
 
 	// PRE-INITIALIZATION
 	@Subscribe
 	public void preInit(FMLPreInitializationEvent event) {
-		armorMap = new TextureMap("armortextures");
+		
 
 	}
 
@@ -286,7 +330,11 @@ public class TDTools {
 		registry.register(stationItem);
 
 		for (ToolCore i : TinkerRegistry.getTools()) {
-			i.addPropertyOverride(PROPERTY_FINISHING_ANVIL, finishingAnvilPropertyGetter);
+			i.addPropertyOverride(PROPERTY_FINISHING_ANVIL0, finishingAnvilPropertyGetter);
+			i.addPropertyOverride(PROPERTY_FINISHING_ANVIL1, finishingAnvilPropertyGetter1);
+			i.addPropertyOverride(PROPERTY_FINISHING_ANVIL2, finishingAnvilPropertyGetter2);
+			i.addPropertyOverride(PROPERTY_FINISHING_ANVIL3, finishingAnvilPropertyGetter3);
+			i.addPropertyOverride(PROPERTY_FINISHING_ANVIL4, finishingAnvilPropertyGetter4);
 			// TinkersCompendium.proxy.registerAnvilToolModel(i);
 		}
 
@@ -352,7 +400,7 @@ public class TDTools {
 		// proxy.init();
 
 		TinkerNetwork.instance.registerPacket(ArmorStationSelectionPacket.class);
-
+		TinkerNetwork.instance.registerPacket(FinishingAnvilSelectionPacket.class);
 	}
 
 	private void regToolBuilding() {
