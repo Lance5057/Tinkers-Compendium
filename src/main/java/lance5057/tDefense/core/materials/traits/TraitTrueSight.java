@@ -16,6 +16,6 @@ public class TraitTrueSight extends AbstractTrait {
 	@Override
 	public void onArmorTick(ItemStack tool, World world, EntityPlayer player) {
 			player.removePotionEffect(MobEffects.BLINDNESS);
-			player.addPotionEffect(new PotionEffect(MobEffects.NIGHT_VISION, 10, 1));
+			player.addPotionEffect(new PotionEffect(MobEffects.NIGHT_VISION, 220, 1));
 	}
 }
