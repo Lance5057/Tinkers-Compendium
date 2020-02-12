@@ -1067,6 +1067,10 @@ modifier.td_heavyweight.name=Heavy Weight
 modifier.td_heavyweight.desc=Needs Description.
 modifier.td_stonekin.name=Stonekin
 modifier.td_stonekin.desc=Needs Description.
+//Manyullyn
+modifier.td_combatadvantage.name=Combat Advantage
+modifier.td_battlehardened.name=Battle Hardened
+modifier.td_reflex.name=Reflex
 //Silver
 modifier.td_retribution1.name=Retribution I
 modifier.td_retribution1.desc=Justice will prevail.
@@ -1079,6 +1083,7 @@ modifier.td_undo_nyi.name=Undo [NYI]
 modifier.td_undo_nyi.desc=[Desc]
 modifier.td_td_timewarp.name=Timewarp
 modifier.td_td_timewarp.desc=[Desc]
+modifier.ticktock.name=Tick-Tock
 //Queens Gold
 
 //Dogbearium
@@ -1098,7 +1103,7 @@ modifier.mythical.voiceRing=A voice rings in your head...
 modifier.mythical.instructions="Repair me fully. Then, when wielding vast worldly knowledge, I shall bestow a gift when you use me again."
 modifier.mythical.modifier_up=Upon using the tool, new opportunities reveal themselves to you.
 
-//Sheild Traits
+//Shield Traits
 modifier.td_securiphilic.name=Securiphilic
 modifier.td_securiphilic.desc=Needs Description.
 
