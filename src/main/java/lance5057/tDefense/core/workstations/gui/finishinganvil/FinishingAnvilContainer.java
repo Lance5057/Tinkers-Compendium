@@ -215,11 +215,9 @@ public class FinishingAnvilContainer extends ContainerMultiModule<FinishingAnvil
 					tag.setTag(ArmorTags.AnvilBase, new NBTTagCompound());
 				}
 				NBTTagCompound anvil = tag.getCompoundTag(ArmorTags.AnvilBase);
-				anvil.setInteger(ArmorTags.ModelType + "0", this.anvil0);
-				anvil.setInteger(ArmorTags.ModelType + "1", this.anvil1);
-				anvil.setInteger(ArmorTags.ModelType + "2", this.anvil2);
-				anvil.setInteger(ArmorTags.ModelType + "3", this.anvil3);
-				anvil.setInteger(ArmorTags.ModelType + "4", this.anvil4);
+				
+				int bit = (anvil4 << 24) | (anvil3 << 16) | (anvil2 << 8) | (anvil1 << 4) | anvil0;
+				anvil.setInteger(ArmorTags.ModelType, bit);
 				tag.setTag(ArmorTags.AnvilBase, anvil);
 			}
 			if (!result.isEmpty()) {

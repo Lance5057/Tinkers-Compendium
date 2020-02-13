@@ -73,8 +73,6 @@ public class TDTools {
 	public static final List<ArmorCore> armors = new ArrayList<>();
 	TDToolEvents events = new TDToolEvents();
 
-	
-
 	public static ArmorStationBlock station;
 
 	public static ItemBlock stationItem;
@@ -143,7 +141,7 @@ public class TDTools {
 			return 0;
 		}
 	};
-	
+
 	protected final IItemPropertyGetter finishingAnvilPropertyGetter1 = new IItemPropertyGetter() {
 		@Override
 		@SideOnly(Side.CLIENT)
@@ -154,7 +152,7 @@ public class TDTools {
 			return 0;
 		}
 	};
-	
+
 	protected final IItemPropertyGetter finishingAnvilPropertyGetter2 = new IItemPropertyGetter() {
 		@Override
 		@SideOnly(Side.CLIENT)
@@ -165,7 +163,7 @@ public class TDTools {
 			return 0;
 		}
 	};
-	
+
 	protected final IItemPropertyGetter finishingAnvilPropertyGetter3 = new IItemPropertyGetter() {
 		@Override
 		@SideOnly(Side.CLIENT)
@@ -176,7 +174,7 @@ public class TDTools {
 			return 0;
 		}
 	};
-	
+
 	protected final IItemPropertyGetter finishingAnvilPropertyGetter4 = new IItemPropertyGetter() {
 		@Override
 		@SideOnly(Side.CLIENT)
@@ -195,18 +193,17 @@ public class TDTools {
 			tag.setTag(ArmorTags.AnvilBase, new NBTTagCompound());
 		}
 		NBTTagCompound anvil = tag.getCompoundTag(ArmorTags.AnvilBase);
-		if (!anvil.hasKey(ArmorTags.ModelType + layer)) {
-			anvil.setInteger(ArmorTags.ModelType + layer, 0);
+		if (!anvil.hasKey(ArmorTags.ModelType)) {
+			anvil.setInteger(ArmorTags.ModelType, 0);
 		}
 
-		// agUtil.setBaseTag(stack, tag);
-		return anvil.getInteger(ArmorTags.ModelType + layer);
+		int bit = anvil.getInteger(ArmorTags.ModelType) >> (layer * 8);
+		return bit;
 	}
 
 	// PRE-INITIALIZATION
 	@Subscribe
 	public void preInit(FMLPreInitializationEvent event) {
-		
 
 	}
 

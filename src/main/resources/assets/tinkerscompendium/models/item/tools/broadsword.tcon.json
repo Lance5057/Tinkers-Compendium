@@ -5,7 +5,7 @@
 		"layer2": "tconstruct:items/broadsword/guard",
 		"broken1": "tconstruct:items/broadsword/broken_blade"
     },
-    "overrides": [
+    "overrides": 
         {"predicate": {"finishinganvil0": 1}, "textures": { "layer1": "tinkerscompendium:items/broadsword/_big_head" }},
 		{"predicate": {"finishinganvil0": 2}, "textures": { "layer1": "tinkerscompendium:items/broadsword/_bigbase_head" }},
 		{"predicate": {"finishinganvil0": 3}, "textures": { "layer1": "tinkerscompendium:items/broadsword/_dull_head" }},

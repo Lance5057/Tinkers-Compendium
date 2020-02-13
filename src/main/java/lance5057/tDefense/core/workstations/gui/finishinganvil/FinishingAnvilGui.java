@@ -89,18 +89,32 @@ public class FinishingAnvilGui extends GuiMultiModule {
 
 	// protected GuiInfoPanel toolInfo;
 	protected GuiInfoPanel traitInfo;
-	
+
 	public FinishingAnvilGui(InventoryPlayer playerInv, World world, BlockPos pos, FinishingAnvilTile tile) {
 		super((FinishingAnvilContainer) tile.createContainer(playerInv, world, pos));
 		// TODO Auto-generated constructor stub
 
 		buttons = new FinishingAnvilGuiButtons(this, inventorySlots, 0);
 		this.addModule(buttons);
-		buttons.xOffset = -(buttons.spacing * 4 + 18 * 4);
+		//buttons.xOffset = -(buttons.spacing);
 		buttons.width = 18 * 2;
+
+		buttons1 = new FinishingAnvilGuiButtons(this, inventorySlots, 1);
+		buttons1.xOffset = -(buttons.spacing * 2 + 18 * 2);
+		this.addModule(buttons1);
+
 		buttons2 = new FinishingAnvilGuiButtons(this, inventorySlots, 1);
-		buttons2.xOffset = -(buttons.spacing * 2 + 18 * 2);
+		buttons2.xOffset = -(buttons.spacing * 4 + 18 * 4);
 		this.addModule(buttons2);
+
+		buttons3 = new FinishingAnvilGuiButtons(this, inventorySlots, 1);
+		buttons3.xOffset = -(buttons.spacing * 6 + 18 * 6);
+		this.addModule(buttons3);
+
+		buttons4 = new FinishingAnvilGuiButtons(this, inventorySlots, 1);
+		buttons4.xOffset = -(buttons.spacing * 8 + 18 * 8);
+		this.addModule(buttons4);
+
 		toolInfo = new GuiInfoPanel(this, inventorySlots);
 		this.addModule(toolInfo);
 
@@ -126,7 +140,10 @@ public class FinishingAnvilGui extends GuiMultiModule {
 		panelDecorationR = PanelSpaceR.shift(18, 0);
 
 		buttons.wood();
+		buttons1.wood();
 		buttons2.wood();
+		buttons3.wood();
+		buttons4.wood();
 
 		beamL = BeamLeft;
 		beamR = BeamRight;
@@ -156,7 +173,10 @@ public class FinishingAnvilGui extends GuiMultiModule {
 		this.mc.getTextureManager().bindTexture(BACKGROUND);
 
 		updateSubmodule(buttons);
+		updateSubmodule(buttons1);
 		updateSubmodule(buttons2);
+		updateSubmodule(buttons3);
+		updateSubmodule(buttons4);
 		super.drawGuiContainerBackgroundLayer(partialTicks, mouseX, mouseY);
 
 	}
@@ -181,21 +201,21 @@ public class FinishingAnvilGui extends GuiMultiModule {
 			tag.setTag(ArmorTags.AnvilBase, new NBTTagCompound());
 		}
 		NBTTagCompound anvil = tag.getCompoundTag(ArmorTags.AnvilBase);
-		anvil.setInteger(ArmorTags.ModelType + "0", buttons.selected);
-		anvil.setInteger(ArmorTags.ModelType + "0", buttons1.selected);
-		anvil.setInteger(ArmorTags.ModelType + "0", buttons2.selected);
-		anvil.setInteger(ArmorTags.ModelType + "0", buttons3.selected);
-		anvil.setInteger(ArmorTags.ModelType + "0", buttons4.selected);
+		//anvil.setInteger(ArmorTags.ModelType + "0", buttons.selected);
+		
+		int bit = (buttons4.selected << 32) | (buttons3.selected << 24) | (buttons2.selected << 16) | (buttons1.selected << 8) | buttons.selected;
+		anvil.setInteger(ArmorTags.ModelType, bit);
+		
 		tag.setTag(ArmorTags.AnvilBase, anvil);
 
 		((FinishingAnvilContainer) inventorySlots).anvil0 = buttons.selected;
-		((FinishingAnvilContainer) inventorySlots).anvil0 = buttons1.selected;
-		((FinishingAnvilContainer) inventorySlots).anvil0 = buttons2.selected;
-		((FinishingAnvilContainer) inventorySlots).anvil0 = buttons3.selected;
-		((FinishingAnvilContainer) inventorySlots).anvil0 = buttons4.selected;
+		((FinishingAnvilContainer) inventorySlots).anvil1 = buttons1.selected;
+		((FinishingAnvilContainer) inventorySlots).anvil2 = buttons2.selected;
+		((FinishingAnvilContainer) inventorySlots).anvil3 = buttons3.selected;
+		((FinishingAnvilContainer) inventorySlots).anvil4 = buttons4.selected;
 
-		TinkerNetwork
-				.sendToServer(new FinishingAnvilSelectionPacket(buttons.selected, buttons1.selected, buttons2.selected, buttons3.selected, buttons4.selected));
+		TinkerNetwork.sendToServer(new FinishingAnvilSelectionPacket(buttons.selected, buttons1.selected,
+				buttons2.selected, buttons3.selected, buttons4.selected));
 
 		updateGUI();
 	}
