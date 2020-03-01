@@ -2,20 +2,17 @@ package lance5057.tDefense.core.network;
 
 import io.netty.buffer.ByteBuf;
 import lance5057.tDefense.core.workstations.gui.finishinganvil.FinishingAnvilContainer;
+import lance5057.tDefense.core.workstations.gui.finishinganvil.FinishingAnvilGui;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.network.NetHandlerPlayClient;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.inventory.Container;
-import net.minecraft.item.Item;
 import net.minecraft.network.NetHandlerPlayServer;
 import net.minecraft.world.WorldServer;
 import slimeknights.mantle.inventory.BaseContainer;
 import slimeknights.mantle.network.AbstractPacketThreadsafe;
 import slimeknights.tconstruct.common.TinkerNetwork;
-import slimeknights.tconstruct.library.tools.ToolCore;
-import slimeknights.tconstruct.tools.common.client.GuiToolStation;
-import slimeknights.tconstruct.tools.common.inventory.ContainerToolStation;
 
 public class FinishingAnvilSelectionPacket extends AbstractPacketThreadsafe {
 
@@ -34,7 +31,7 @@ public class FinishingAnvilSelectionPacket extends AbstractPacketThreadsafe {
 		if (container instanceof FinishingAnvilContainer) {
 			((FinishingAnvilContainer) container).anvil0 = anvil0;
 //			if (Minecraft.getMinecraft().currentScreen instanceof GuiToolStation) {
-//				((GuiToolStation) Minecraft.getMinecraft().currentScreen).onToolSelectionPacket(this);
+				((FinishingAnvilGui) Minecraft.getMinecraft().currentScreen).onToolSelectionPacket(this);
 //			}
 		}
 	}

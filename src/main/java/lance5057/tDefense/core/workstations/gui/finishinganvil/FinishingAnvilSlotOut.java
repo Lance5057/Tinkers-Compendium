@@ -33,4 +33,10 @@ public class FinishingAnvilSlotOut extends Slot {
 
     return super.onTake(playerIn, stack);
   }
+  
+  @Override
+  public void onSlotChanged() {
+    // notify container to update craft result
+    //parent.onCraftMatrixChanged(inventory);
+  }
 }

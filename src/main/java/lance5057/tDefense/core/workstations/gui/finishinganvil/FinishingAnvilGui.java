@@ -1,6 +1,9 @@
 package lance5057.tDefense.core.workstations.gui.finishinganvil;
 
+import java.io.IOException;
 import java.util.Set;
+
+import org.lwjgl.input.Keyboard;
 
 import lance5057.tDefense.Reference;
 import lance5057.tDefense.core.library.ArmorTags;
@@ -22,6 +25,7 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -29,13 +33,21 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import slimeknights.mantle.client.gui.GuiElement;
 import slimeknights.mantle.client.gui.GuiElementScalable;
+import slimeknights.mantle.client.gui.GuiModule;
 import slimeknights.mantle.client.gui.GuiMultiModule;
+import slimeknights.mantle.util.ItemStackList;
 import slimeknights.tconstruct.common.TinkerNetwork;
+import slimeknights.tconstruct.library.TinkerRegistryClient;
 import slimeknights.tconstruct.library.client.Icons;
+import slimeknights.tconstruct.library.client.ToolBuildGuiInfo;
 import slimeknights.tconstruct.library.tools.ToolCore;
 import slimeknights.tconstruct.library.utils.TagUtil;
+import slimeknights.tconstruct.tools.common.client.GuiButtonRepair;
 import slimeknights.tconstruct.tools.common.client.module.GuiInfoPanel;
+import slimeknights.tconstruct.tools.common.inventory.ContainerToolStation;
 import slimeknights.tconstruct.tools.common.inventory.SlotToolStationIn;
+import slimeknights.tconstruct.tools.common.network.ToolStationSelectionPacket;
+import slimeknights.tconstruct.tools.common.network.ToolStationTextPacket;
 
 @SideOnly(Side.CLIENT)
 public class FinishingAnvilGui extends GuiMultiModule {
@@ -81,7 +93,7 @@ public class FinishingAnvilGui extends GuiMultiModule {
 	// protected ArmorStationGuiButtons buttons;
 	protected int activeSlots; // how many of the available slots are active
 
-	public GuiTextField textField;
+	//public GuiTextField textField;
 
 	// protected GuiInfoPanel toolInfo;
 	protected GuiInfoPanel traitInfo;
@@ -92,7 +104,7 @@ public class FinishingAnvilGui extends GuiMultiModule {
 
 		buttons = new FinishingAnvilGuiButtons(this, inventorySlots, 0);
 		this.addModule(buttons);
-		//buttons.xOffset = -(buttons.spacing);
+		// buttons.xOffset = -(buttons.spacing);
 		buttons.width = 18 * 2;
 
 //		buttons1 = new FinishingAnvilGuiButtons(this, inventorySlots, 1);
@@ -147,22 +159,64 @@ public class FinishingAnvilGui extends GuiMultiModule {
 	}
 
 	@Override
+	public void initGui() {
+		super.initGui();
+		Keyboard.enableRepeatEvents(true);
+
+		// workaround to line up the tabs on switching even though the GUI is a tad
+		// higher
+//	    this.guiTop += 4;
+//	    this.cornerY += 4;
+//
+//	    textField = new GuiTextField(0, fontRenderer, cornerX + 70, cornerY + 7, 92, 12);
+//	    //textField.setFocused(true);
+//	    //textField.setCanLoseFocus(false);
+//	    textField.setEnableBackgroundDrawing(false);
+//	    textField.setMaxStringLength(40);
+//
+//	    buttons.xOffset = -2;
+//	    buttons.yOffset = beamC.h + buttonDecorationTop.h;
+//	    toolInfo.xOffset = 2;
+//	    toolInfo.yOffset = beamC.h + panelDecorationL.h;
+//	    traitInfo.xOffset = toolInfo.xOffset;
+//	    traitInfo.yOffset = toolInfo.yOffset + toolInfo.getYSize() + 4;
+
+//	    for(GuiModule module : modules) {
+//	      module.guiTop += 4;
+//	    }
+
+		updateGUI();
+	}
+	
+	public void onToolSelectionPacket(FinishingAnvilSelectionPacket finishingAnvilSelectionPacket) {
+	    //ToolBuildGuiInfo info = TinkerRegistryClient.getToolBuildInfoForTool(finishingAnvilSelectionPacket.tool);
+//	    if(info == null) {
+//	      info = GuiButtonRepair.info;
+//	    }
+	    //activeSlots = finishingAnvilSelectionPacket.activeSlots;
+	    //currentInfo = info;
+
+	    //buttons.setSelectedButtonByTool(currentInfo.tool);
+
+	    updateGUI();
+	  }
+
+	@Override
+	public void onGuiClosed() {
+		super.onGuiClosed();
+		Keyboard.enableRepeatEvents(false);
+	}
+
+	@Override
 	protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
+
+		onToolSelection();
 		drawBackground(BACKGROUND);
 
-		ItemStack s = this.inventorySlots.inventorySlots.get(1).getStack();
-		if (s.getItem() instanceof ToolCore) {
-			ToolDisplay.draw(this.guiLeft + 54, this.guiTop + 16);
-			this.drawItemStack(s, this.guiLeft + 65,
-					this.guiTop + 25, 3);
-		} else if (s.getItem() instanceof ArmorCore) {
-			PlayerDisplay.draw(this.guiLeft + 54, this.guiTop + 4);
-			// this.drawEntityOnScreen(this.guiLeft+88, this.guiTop+80, 35, this.guiLeft+88
-			// - mouseX, this.guiTop+80 - mouseY, Minecraft.getMinecraft().player);
-			this.renderArmor(this.guiLeft + 88, this.guiTop + 80, 30, this.guiLeft + 88 - mouseX,
-					this.guiTop + 80 - mouseY, Minecraft.getMinecraft().player,
-					s);
-		}
+//		NonNullList<ItemStack> input = ItemStackList.withSize(tile.getSizeInventory());
+//		for (int i = 0; i < input.size(); i++) {
+//			input.set(i, tile.getStackInSlot(i));
+//		}
 
 		this.mc.getTextureManager().bindTexture(new ResourceLocation(Reference.MOD_ID, "textures/gui/test.png"));
 		test.draw(0, 0);
@@ -198,11 +252,12 @@ public class FinishingAnvilGui extends GuiMultiModule {
 			tag.setTag(ArmorTags.AnvilBase, new NBTTagCompound());
 		}
 		NBTTagCompound anvil = tag.getCompoundTag(ArmorTags.AnvilBase);
-		//anvil.setInteger(ArmorTags.ModelType + "0", buttons.selected);
-		
-		//int bit = (buttons4.selected << 32) | (buttons3.selected << 24) | (buttons2.selected << 16) | (buttons1.selected << 8) | buttons.selected;
+		// anvil.setInteger(ArmorTags.ModelType + "0", buttons.selected);
+
+		// int bit = (buttons4.selected << 32) | (buttons3.selected << 24) |
+		// (buttons2.selected << 16) | (buttons1.selected << 8) | buttons.selected;
 		anvil.setInteger(ArmorTags.ModelType, buttons.selected);
-		
+
 		tag.setTag(ArmorTags.AnvilBase, anvil);
 
 		((FinishingAnvilContainer) inventorySlots).anvil0 = buttons.selected;
@@ -245,13 +300,56 @@ public class FinishingAnvilGui extends GuiMultiModule {
 		updateDisplay();
 	}
 
+	@Override
+	protected void mouseClicked(int mouseX, int mouseY, int mouseButton) throws IOException {
+		super.mouseClicked(mouseX, mouseY, mouseButton);
+		//textField.mouseClicked(mouseX, mouseY, mouseButton);
+	}
+
+	@Override
+	protected void keyTyped(char typedChar, int keyCode) throws IOException {
+
+		if (keyCode == 1) {
+			this.mc.player.closeScreen();
+		}
+
+	}
+
+	@Override
+	public void updateScreen() {
+		super.updateScreen();
+		//textField.updateCursorCounter();
+	}
+
+	@Override
+	public void drawSlot(Slot slotIn) {
+		// don't draw dormant slots with no item
+		if (slotIn instanceof SlotToolStationIn && ((SlotToolStationIn) slotIn).isDormant() && !slotIn.getHasStack()) {
+			return;
+		}
+
+		super.drawSlot(slotIn);
+	}
+
 	public void updateDisplay() {
 		// tool info of existing or tool to build
 		FinishingAnvilContainer container = (FinishingAnvilContainer) inventorySlots;
-		// ItemStack toolStack = container.getResult();
-//		if (toolStack.isEmpty()) {
-//			toolStack = inventorySlots.getSlot(0).getStack();
-//		}
+		ItemStack toolStack = container.getResult();
+		if (toolStack.isEmpty()) {
+			toolStack = inventorySlots.getSlot(0).getStack();
+		}
+
+		ItemStack s = this.inventorySlots.inventorySlots.get(1).getStack();
+		if (s.getItem() instanceof ToolCore) {
+			ToolDisplay.draw(this.guiLeft + 54, this.guiTop + 16);
+			this.drawItemStack(s, this.guiLeft + 65, this.guiTop + 25, 3);
+		} else if (s.getItem() instanceof ArmorCore) {
+			PlayerDisplay.draw(this.guiLeft + 54, this.guiTop + 4);
+			// this.drawEntityOnScreen(this.guiLeft+88, this.guiTop+80, 35, this.guiLeft+88
+			// - mouseX, this.guiTop+80 - mouseY, Minecraft.getMinecraft().player);
+//			this.renderArmor(this.guiLeft + 88, this.guiTop + 80, 30, this.guiLeft + 88 - mouseX,
+//					this.guiTop + 80 - mouseY, Minecraft.getMinecraft().player, s);
+		}
 //
 //		// current tool to build or repair/modify
 //		if (toolStack.getItem() instanceof IModifyable) {

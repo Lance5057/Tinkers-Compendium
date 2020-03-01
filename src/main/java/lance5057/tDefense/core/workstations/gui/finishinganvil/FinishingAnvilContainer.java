@@ -3,11 +3,11 @@ package lance5057.tDefense.core.workstations.gui.finishinganvil;
 import javax.annotation.Nullable;
 
 import lance5057.tDefense.core.library.ArmorTags;
-import lance5057.tDefense.core.network.ArmorStationSelectionPacket;
 import lance5057.tDefense.core.network.FinishingAnvilSelectionPacket;
 import lance5057.tDefense.core.tools.bases.ArmorCore;
-import lance5057.tDefense.core.workstations.gui.armorstation.ArmorStationContainer;
 import lance5057.tDefense.core.workstations.tileentities.FinishingAnvilTile;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -33,8 +33,9 @@ import slimeknights.tconstruct.library.events.TinkerCraftingEvent;
 import slimeknights.tconstruct.library.modifiers.TinkerGuiException;
 import slimeknights.tconstruct.library.tools.ToolCore;
 import slimeknights.tconstruct.library.utils.TagUtil;
+import slimeknights.tconstruct.tools.common.client.GuiTinkerStation;
+import slimeknights.tconstruct.tools.common.inventory.ContainerTinkerStation;
 import slimeknights.tconstruct.tools.common.inventory.SlotToolStationIn;
-import slimeknights.tconstruct.tools.common.network.ToolStationTextPacket;
 
 public class FinishingAnvilContainer extends ContainerMultiModule<FinishingAnvilTile> {
 
@@ -42,16 +43,12 @@ public class FinishingAnvilContainer extends ContainerMultiModule<FinishingAnvil
 	protected FinishingAnvilSlotOut out;
 
 	public int anvil0 = 0;
-	public int anvil1 = 0;
-	public int anvil2 = 0;
-	public int anvil3 = 0;
-	public int anvil4 = 0;
 
 	private static final EntityEquipmentSlot[] VALID_EQUIPMENT_SLOTS = new EntityEquipmentSlot[] {
 			EntityEquipmentSlot.HEAD, EntityEquipmentSlot.CHEST, EntityEquipmentSlot.LEGS, EntityEquipmentSlot.FEET };
 
-	private static final GuiElement ToolDisplay = new GuiElement(188, 70, 68, 68);
-	private static final GuiElement PlayerDisplay = new GuiElement(188, 138, 68, 86);
+//	private static final GuiElement ToolDisplay = new GuiElement(188, 70, 68, 68);
+//	private static final GuiElement PlayerDisplay = new GuiElement(188, 138, 68, 86);
 
 	public FinishingAnvilContainer(InventoryPlayer inventoryPlayer, FinishingAnvilTile tile) {
 		super(tile);
@@ -99,9 +96,10 @@ public class FinishingAnvilContainer extends ContainerMultiModule<FinishingAnvil
 		}
 
 		this.addPlayerInventory(inventoryPlayer, 8, 84 + 8);
-
+		onCraftMatrixChanged(inventoryPlayer);
 	}
 
+	
 	// update crafting - called whenever the content of an input slot changes
 	@Override
 	public void onCraftMatrixChanged(IInventory inventoryIn) {
@@ -130,14 +128,14 @@ public class FinishingAnvilContainer extends ContainerMultiModule<FinishingAnvil
 				}
 			}
 		}
+		
+		super.onCraftMatrixChanged(inventoryIn);
 	}
 
 	@Override
 	protected void syncNewContainer(EntityPlayerMP player) {
 		// this.activeSlots = tile.getSizeInventory();
-		TinkerNetwork.sendTo(
-				new FinishingAnvilSelectionPacket(this.anvil0),
-				player);
+		TinkerNetwork.sendTo(new FinishingAnvilSelectionPacket(this.anvil0), player);
 	}
 
 	@Override
@@ -187,15 +185,79 @@ public class FinishingAnvilContainer extends ContainerMultiModule<FinishingAnvil
 		this.playCraftSound(playerIn);
 	}
 
+	public ItemStack getResult() {
+		return out.getStack();
+	}
+	
+	/** Tells the client to take the current state and update its info displays */
+	  public void updateGUI() {
+	    if(tile.getWorld().isRemote) {
+	      Minecraft.getMinecraft().addScheduledTask(new Runnable() {
+	        @Override
+	        public void run() {
+	        	FinishingAnvilContainer.clientGuiUpdate();
+	        }
+	      });
+	    }
+	  }
+
+	  /** Tells the client to display the LOCALIZED error message */
+	  public void error(final String message) {
+	    if(tile.getWorld().isRemote) {
+	      Minecraft.getMinecraft().addScheduledTask(new Runnable() {
+	        @Override
+	        public void run() {
+	        	FinishingAnvilContainer.clientError(message);
+	        }
+	      });
+	    }
+	  }
+
+	  /** Tells the client to display the LOCALIZED warning message */
+	  public void warning(final String message) {
+	    if(tile.getWorld().isRemote) {
+	      Minecraft.getMinecraft().addScheduledTask(new Runnable() {
+	        @Override
+	        public void run() {
+	        	FinishingAnvilContainer.clientWarning(message);
+	        }
+	      });
+	    }
+	  }
+
+	  @SideOnly(Side.CLIENT)
+	  private static void clientGuiUpdate() {
+	    GuiScreen screen = Minecraft.getMinecraft().currentScreen;
+	    if(screen instanceof GuiTinkerStation) {
+	      ((GuiTinkerStation) screen).updateDisplay();
+	    }
+	  }
+
+	  @SideOnly(Side.CLIENT)
+	  private static void clientError(String message) {
+	    GuiScreen screen = Minecraft.getMinecraft().currentScreen;
+	    if(screen instanceof GuiTinkerStation) {
+	      ((GuiTinkerStation) screen).error(message);
+	    }
+	  }
+
+	  @SideOnly(Side.CLIENT)
+	  private static void clientWarning(String message) {
+	    GuiScreen screen = Minecraft.getMinecraft().currentScreen;
+	    if(screen instanceof GuiTinkerStation) {
+	      ((GuiTinkerStation) screen).warning(message);
+	    }
+	  }
+
 	private void updateSlotsAfterToolAction() {
 		// perfect, items already got removed but we still have to clean up 0-stacks and
 		// remove the tool
-//		tile.setInventorySlotContents(0, ItemStack.EMPTY); // slot where the tool was
-//		for (int i = 1; i < tile.getSizeInventory(); i++) {
-//			if (!tile.getStackInSlot(i).isEmpty() && tile.getStackInSlot(i).getCount() == 0) {
-//				tile.setInventorySlotContents(i, ItemStack.EMPTY);
-//			}
-//		}
+		tile.setInventorySlotContents(0, ItemStack.EMPTY); // slot where the tool was
+		for (int i = 1; i < tile.getSizeInventory(); i++) {
+			if (!tile.getStackInSlot(i).isEmpty() && tile.getStackInSlot(i).getCount() == 0) {
+				tile.setInventorySlotContents(i, ItemStack.EMPTY);
+			}
+		}
 	}
 
 	private ItemStack buildTool() throws TinkerGuiException {
@@ -214,10 +276,13 @@ public class FinishingAnvilContainer extends ContainerMultiModule<FinishingAnvil
 					tag.setTag(ArmorTags.AnvilBase, new NBTTagCompound());
 				}
 				NBTTagCompound anvil = tag.getCompoundTag(ArmorTags.AnvilBase);
-				
-				//int bit = (anvil4 << 24) | (anvil3 << 16) | (anvil2 << 8) | (anvil1 << 4) | anvil0;
+
+				// int bit = (anvil4 << 24) | (anvil3 << 16) | (anvil2 << 8) | (anvil1 << 4) |
+				// anvil0;
 				anvil.setInteger(ArmorTags.ModelType, anvil0);
 				tag.setTag(ArmorTags.AnvilBase, anvil);
+
+				// this.inventorySlots.get(1).inventory.setInventorySlotContents(0, result);
 			}
 			if (!result.isEmpty()) {
 				TinkerCraftingEvent.ToolCraftingEvent.fireEvent(result, player, input);

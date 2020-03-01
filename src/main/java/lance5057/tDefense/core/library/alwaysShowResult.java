@@ -7,6 +7,6 @@ public class alwaysShowResult extends InventoryCraftResult
 	  @Override
 	  public boolean isEmpty()
 	  {
-		  return true;
+		  return false;
 	  }
 }

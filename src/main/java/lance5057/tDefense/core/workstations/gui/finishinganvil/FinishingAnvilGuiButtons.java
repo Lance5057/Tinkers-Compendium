@@ -48,9 +48,9 @@ public class FinishingAnvilGuiButtons extends GuiSideButtons {
 //      addSideButton(button);
 //    }
 
-		if (parent.inventorySlots.inventorySlots.get(0).getStack().getItem() instanceof TinkersItem) {
-			TinkersItem item = (TinkersItem) parent.inventorySlots.inventorySlots.get(0).getStack().getItem();
-			ItemStack stack = parent.inventorySlots.inventorySlots.get(0).getStack().copy();
+		if (parent.inventorySlots.inventorySlots.get(1).getStack().getItem() instanceof TinkersItem) {
+			TinkersItem item = (TinkersItem) parent.inventorySlots.inventorySlots.get(1).getStack().getItem();
+			ItemStack stack = parent.inventorySlots.inventorySlots.get(1).getStack().copy();
 			int info = TDClientRegistry.getVarient(item);
 			if (info != 0) {
 				for (int i = 0; i < info+1; i++) {
@@ -84,7 +84,7 @@ public class FinishingAnvilGuiButtons extends GuiSideButtons {
 		super.updatePosition(parentX, parentY, parentSizeX, parentSizeY);
 
 		// activate currently selected/default
-		// parent.updateGUI();
+		parent.updateGUI();
 	}
 
 //	public void setSelectedButtonByTool(ItemStack stack) {
