@@ -20,20 +20,12 @@ import slimeknights.tconstruct.tools.common.inventory.ContainerToolStation;
 public class FinishingAnvilSelectionPacket extends AbstractPacketThreadsafe {
 
 	int anvil0 = 0;
-	int anvil1 = 0;
-	int anvil2 = 0;
-	int anvil3 = 0;
-	int anvil4 = 0;
 
 	public FinishingAnvilSelectionPacket() {
 	}
 
-	public FinishingAnvilSelectionPacket(int anvil0,int anvil1,int anvil2,int anvil3,int anvil4) {
+	public FinishingAnvilSelectionPacket(int anvil0) {
 		this.anvil0 = anvil0;
-		this.anvil1 = anvil1;
-		this.anvil2 = anvil2;
-		this.anvil3 = anvil3;
-		this.anvil4 = anvil4;
 	}
 
 	@Override
@@ -52,10 +44,6 @@ public class FinishingAnvilSelectionPacket extends AbstractPacketThreadsafe {
 		Container container = netHandler.player.openContainer;
 		if (container instanceof FinishingAnvilContainer) {
 			((FinishingAnvilContainer) container).anvil0 = anvil0;
-			((FinishingAnvilContainer) container).anvil1 = anvil1;
-			((FinishingAnvilContainer) container).anvil2 = anvil2;
-			((FinishingAnvilContainer) container).anvil3 = anvil3;
-			((FinishingAnvilContainer) container).anvil4 = anvil4;
 
 			// find all people who also have the same gui open and update them too
 			WorldServer server = netHandler.player.getServerWorld();
@@ -78,18 +66,10 @@ public class FinishingAnvilSelectionPacket extends AbstractPacketThreadsafe {
 	@Override
 	public void fromBytes(ByteBuf buf) {
 		anvil0 = buf.readInt();
-		anvil1 = buf.readInt();
-		anvil2 = buf.readInt();
-		anvil3 = buf.readInt();
-		anvil4 = buf.readInt();
 	}
 
 	@Override
 	public void toBytes(ByteBuf buf) {
 		buf.writeInt(anvil0);
-		buf.writeInt(anvil1);
-		buf.writeInt(anvil2);
-		buf.writeInt(anvil3);
-		buf.writeInt(anvil4);
 	}
 }

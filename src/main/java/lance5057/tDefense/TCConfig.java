@@ -86,6 +86,9 @@ public class TCConfig {
 
 		@Config.RequiresMcRestart()
 		public boolean enableFireDrill = true;
+		
+		@Config.RequiresMcRestart()
+		public boolean enableBackpack = true;
 	}
 
 	public static class Materials {

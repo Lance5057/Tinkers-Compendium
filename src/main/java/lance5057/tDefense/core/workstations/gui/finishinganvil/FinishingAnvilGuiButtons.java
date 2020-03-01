@@ -60,9 +60,9 @@ public class FinishingAnvilGuiButtons extends GuiSideButtons {
 						tag.setTag(ArmorTags.AnvilBase, new NBTTagCompound());
 					}
 					NBTTagCompound anvil = tag.getCompoundTag(ArmorTags.AnvilBase);
-					int b = (i << (layer * 8));
-					int bit = anvil.getInteger(ArmorTags.ModelType) | b;
-					anvil.setInteger(ArmorTags.ModelType, b);
+					//int b = (i << (layer * 8));
+					//int bit = anvil.getInteger(ArmorTags.ModelType) | b;
+					anvil.setInteger(ArmorTags.ModelType, i);
 					tag.setTag(ArmorTags.AnvilBase, anvil);
 
 					ItemStack outStack = new ItemStack(item);

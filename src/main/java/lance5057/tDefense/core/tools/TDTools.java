@@ -27,6 +27,7 @@ import lance5057.tDefense.core.tools.armor.heavy.TinkersHelm;
 import lance5057.tDefense.core.tools.armor.heavy.TinkersSabatons;
 import lance5057.tDefense.core.tools.bases.ArmorCore;
 import lance5057.tDefense.core.tools.bases.BaubleTool;
+import lance5057.tDefense.core.tools.basic.Backpack;
 import lance5057.tDefense.core.tools.basic.FireDrill;
 import lance5057.tDefense.core.tools.basic.FishingRod;
 import lance5057.tDefense.core.tools.basic.HeaterShield;
@@ -110,6 +111,8 @@ public class TDTools {
 	public static ToolCore ring;
 	// public static ToolCore amulet;
 	public static BaubleTool tabard;
+	
+	public static ToolCore backpack;
 
 	static ArrayList<Item> itemList = new ArrayList<Item>();
 
@@ -141,50 +144,50 @@ public class TDTools {
 			return 0;
 		}
 	};
-
-	protected final IItemPropertyGetter finishingAnvilPropertyGetter1 = new IItemPropertyGetter() {
-		@Override
-		@SideOnly(Side.CLIENT)
-		public float apply(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn) {
-			if (stack.getItem() instanceof ToolCore) {
-				return getAnvilID(stack, entityIn, 1);
-			}
-			return 0;
-		}
-	};
-
-	protected final IItemPropertyGetter finishingAnvilPropertyGetter2 = new IItemPropertyGetter() {
-		@Override
-		@SideOnly(Side.CLIENT)
-		public float apply(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn) {
-			if (stack.getItem() instanceof ToolCore) {
-				return getAnvilID(stack, entityIn, 2);
-			}
-			return 0;
-		}
-	};
-
-	protected final IItemPropertyGetter finishingAnvilPropertyGetter3 = new IItemPropertyGetter() {
-		@Override
-		@SideOnly(Side.CLIENT)
-		public float apply(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn) {
-			if (stack.getItem() instanceof ToolCore) {
-				return getAnvilID(stack, entityIn, 3);
-			}
-			return 0;
-		}
-	};
-
-	protected final IItemPropertyGetter finishingAnvilPropertyGetter4 = new IItemPropertyGetter() {
-		@Override
-		@SideOnly(Side.CLIENT)
-		public float apply(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn) {
-			if (stack.getItem() instanceof ToolCore) {
-				return getAnvilID(stack, entityIn, 4);
-			}
-			return 0;
-		}
-	};
+//
+//	protected final IItemPropertyGetter finishingAnvilPropertyGetter1 = new IItemPropertyGetter() {
+//		@Override
+//		@SideOnly(Side.CLIENT)
+//		public float apply(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn) {
+//			if (stack.getItem() instanceof ToolCore) {
+//				return getAnvilID(stack, entityIn, 1);
+//			}
+//			return 0;
+//		}
+//	};
+//
+//	protected final IItemPropertyGetter finishingAnvilPropertyGetter2 = new IItemPropertyGetter() {
+//		@Override
+//		@SideOnly(Side.CLIENT)
+//		public float apply(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn) {
+//			if (stack.getItem() instanceof ToolCore) {
+//				return getAnvilID(stack, entityIn, 2);
+//			}
+//			return 0;
+//		}
+//	};
+//
+//	protected final IItemPropertyGetter finishingAnvilPropertyGetter3 = new IItemPropertyGetter() {
+//		@Override
+//		@SideOnly(Side.CLIENT)
+//		public float apply(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn) {
+//			if (stack.getItem() instanceof ToolCore) {
+//				return getAnvilID(stack, entityIn, 3);
+//			}
+//			return 0;
+//		}
+//	};
+//
+//	protected final IItemPropertyGetter finishingAnvilPropertyGetter4 = new IItemPropertyGetter() {
+//		@Override
+//		@SideOnly(Side.CLIENT)
+//		public float apply(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn) {
+//			if (stack.getItem() instanceof ToolCore) {
+//				return getAnvilID(stack, entityIn, 4);
+//			}
+//			return 0;
+//		}
+//	};
 
 	public float getAnvilID(ItemStack stack, EntityLivingBase e, int layer) {
 
@@ -257,6 +260,11 @@ public class TDTools {
 				fireDrill = new FireDrill();
 				regTool(fireDrill, "fireDrill", event);
 			}
+			
+			if (TinkersCompendium.config.tools.enableBackpack) {
+				backpack = new Backpack();
+				regTool(backpack, "backpack", event);
+			}
 		}
 
 		if (TinkersCompendium.config.armor.enableClothArmor) {
@@ -328,10 +336,10 @@ public class TDTools {
 
 		for (ToolCore i : TinkerRegistry.getTools()) {
 			i.addPropertyOverride(PROPERTY_FINISHING_ANVIL0, finishingAnvilPropertyGetter);
-			i.addPropertyOverride(PROPERTY_FINISHING_ANVIL1, finishingAnvilPropertyGetter1);
-			i.addPropertyOverride(PROPERTY_FINISHING_ANVIL2, finishingAnvilPropertyGetter2);
-			i.addPropertyOverride(PROPERTY_FINISHING_ANVIL3, finishingAnvilPropertyGetter3);
-			i.addPropertyOverride(PROPERTY_FINISHING_ANVIL4, finishingAnvilPropertyGetter4);
+//			i.addPropertyOverride(PROPERTY_FINISHING_ANVIL1, finishingAnvilPropertyGetter1);
+//			i.addPropertyOverride(PROPERTY_FINISHING_ANVIL2, finishingAnvilPropertyGetter2);
+//			i.addPropertyOverride(PROPERTY_FINISHING_ANVIL3, finishingAnvilPropertyGetter3);
+//			i.addPropertyOverride(PROPERTY_FINISHING_ANVIL4, finishingAnvilPropertyGetter4);
 			// TinkersCompendium.proxy.registerAnvilToolModel(i);
 		}
 

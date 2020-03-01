@@ -44,13 +44,9 @@ public class FinishingAnvilGui extends GuiMultiModule {
 			"textures/gui/finishinganvil.png");
 
 	protected FinishingAnvilGuiButtons buttons;
-	protected FinishingAnvilGuiButtons buttons1;
-	protected FinishingAnvilGuiButtons buttons2;
-	protected FinishingAnvilGuiButtons buttons3;
-	protected FinishingAnvilGuiButtons buttons4;
 	protected GuiInfoPanel toolInfo;
 
-	public static final int Column_Count = 2;
+	public static final int Column_Count = 6;
 
 	private static final GuiElement ArmorSlots = new GuiElement(152, 224, 104, 32);
 	private static final GuiElement ToolDisplay = new GuiElement(188, 70, 68, 68);
@@ -99,21 +95,21 @@ public class FinishingAnvilGui extends GuiMultiModule {
 		//buttons.xOffset = -(buttons.spacing);
 		buttons.width = 18 * 2;
 
-		buttons1 = new FinishingAnvilGuiButtons(this, inventorySlots, 1);
-		buttons1.xOffset = -(buttons.spacing * 2 + 18 * 2);
-		this.addModule(buttons1);
-
-		buttons2 = new FinishingAnvilGuiButtons(this, inventorySlots, 1);
-		buttons2.xOffset = -(buttons.spacing * 4 + 18 * 4);
-		this.addModule(buttons2);
-
-		buttons3 = new FinishingAnvilGuiButtons(this, inventorySlots, 1);
-		buttons3.xOffset = -(buttons.spacing * 6 + 18 * 6);
-		this.addModule(buttons3);
-
-		buttons4 = new FinishingAnvilGuiButtons(this, inventorySlots, 1);
-		buttons4.xOffset = -(buttons.spacing * 8 + 18 * 8);
-		this.addModule(buttons4);
+//		buttons1 = new FinishingAnvilGuiButtons(this, inventorySlots, 1);
+//		buttons1.xOffset = -(buttons.spacing * 2 + 18 * 2);
+//		this.addModule(buttons1);
+//
+//		buttons2 = new FinishingAnvilGuiButtons(this, inventorySlots, 1);
+//		buttons2.xOffset = -(buttons.spacing * 4 + 18 * 4);
+//		this.addModule(buttons2);
+//
+//		buttons3 = new FinishingAnvilGuiButtons(this, inventorySlots, 1);
+//		buttons3.xOffset = -(buttons.spacing * 6 + 18 * 6);
+//		this.addModule(buttons3);
+//
+//		buttons4 = new FinishingAnvilGuiButtons(this, inventorySlots, 1);
+//		buttons4.xOffset = -(buttons.spacing * 8 + 18 * 8);
+//		this.addModule(buttons4);
 
 		toolInfo = new GuiInfoPanel(this, inventorySlots);
 		this.addModule(toolInfo);
@@ -140,10 +136,10 @@ public class FinishingAnvilGui extends GuiMultiModule {
 		panelDecorationR = PanelSpaceR.shift(18, 0);
 
 		buttons.wood();
-		buttons1.wood();
-		buttons2.wood();
-		buttons3.wood();
-		buttons4.wood();
+//		buttons1.wood();
+//		buttons2.wood();
+//		buttons3.wood();
+//		buttons4.wood();
 
 		beamL = BeamLeft;
 		beamR = BeamRight;
@@ -154,17 +150,18 @@ public class FinishingAnvilGui extends GuiMultiModule {
 	protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
 		drawBackground(BACKGROUND);
 
-		if (this.inventorySlots.inventorySlots.get(1).getStack().getItem() instanceof ToolCore) {
+		ItemStack s = this.inventorySlots.inventorySlots.get(1).getStack();
+		if (s.getItem() instanceof ToolCore) {
 			ToolDisplay.draw(this.guiLeft + 54, this.guiTop + 16);
-			this.drawItemStack(this.inventorySlots.inventorySlots.get(1).getStack(), this.guiLeft + 65,
+			this.drawItemStack(s, this.guiLeft + 65,
 					this.guiTop + 25, 3);
-		} else if (this.inventorySlots.inventorySlots.get(1).getStack().getItem() instanceof ArmorCore) {
+		} else if (s.getItem() instanceof ArmorCore) {
 			PlayerDisplay.draw(this.guiLeft + 54, this.guiTop + 4);
 			// this.drawEntityOnScreen(this.guiLeft+88, this.guiTop+80, 35, this.guiLeft+88
 			// - mouseX, this.guiTop+80 - mouseY, Minecraft.getMinecraft().player);
 			this.renderArmor(this.guiLeft + 88, this.guiTop + 80, 30, this.guiLeft + 88 - mouseX,
 					this.guiTop + 80 - mouseY, Minecraft.getMinecraft().player,
-					this.inventorySlots.inventorySlots.get(1).getStack());
+					s);
 		}
 
 		this.mc.getTextureManager().bindTexture(new ResourceLocation(Reference.MOD_ID, "textures/gui/test.png"));
@@ -173,10 +170,10 @@ public class FinishingAnvilGui extends GuiMultiModule {
 		this.mc.getTextureManager().bindTexture(BACKGROUND);
 
 		updateSubmodule(buttons);
-		updateSubmodule(buttons1);
-		updateSubmodule(buttons2);
-		updateSubmodule(buttons3);
-		updateSubmodule(buttons4);
+//		updateSubmodule(buttons1);
+//		updateSubmodule(buttons2);
+//		updateSubmodule(buttons3);
+//		updateSubmodule(buttons4);
 		super.drawGuiContainerBackgroundLayer(partialTicks, mouseX, mouseY);
 
 	}
@@ -203,19 +200,18 @@ public class FinishingAnvilGui extends GuiMultiModule {
 		NBTTagCompound anvil = tag.getCompoundTag(ArmorTags.AnvilBase);
 		//anvil.setInteger(ArmorTags.ModelType + "0", buttons.selected);
 		
-		int bit = (buttons4.selected << 32) | (buttons3.selected << 24) | (buttons2.selected << 16) | (buttons1.selected << 8) | buttons.selected;
-		anvil.setInteger(ArmorTags.ModelType, bit);
+		//int bit = (buttons4.selected << 32) | (buttons3.selected << 24) | (buttons2.selected << 16) | (buttons1.selected << 8) | buttons.selected;
+		anvil.setInteger(ArmorTags.ModelType, buttons.selected);
 		
 		tag.setTag(ArmorTags.AnvilBase, anvil);
 
 		((FinishingAnvilContainer) inventorySlots).anvil0 = buttons.selected;
-		((FinishingAnvilContainer) inventorySlots).anvil1 = buttons1.selected;
-		((FinishingAnvilContainer) inventorySlots).anvil2 = buttons2.selected;
-		((FinishingAnvilContainer) inventorySlots).anvil3 = buttons3.selected;
-		((FinishingAnvilContainer) inventorySlots).anvil4 = buttons4.selected;
+//		((FinishingAnvilContainer) inventorySlots).anvil1 = buttons1.selected;
+//		((FinishingAnvilContainer) inventorySlots).anvil2 = buttons2.selected;
+//		((FinishingAnvilContainer) inventorySlots).anvil3 = buttons3.selected;
+//		((FinishingAnvilContainer) inventorySlots).anvil4 = buttons4.selected;
 
-		TinkerNetwork.sendToServer(new FinishingAnvilSelectionPacket(buttons.selected, buttons1.selected,
-				buttons2.selected, buttons3.selected, buttons4.selected));
+		TinkerNetwork.sendToServer(new FinishingAnvilSelectionPacket(buttons.selected));
 
 		updateGUI();
 	}

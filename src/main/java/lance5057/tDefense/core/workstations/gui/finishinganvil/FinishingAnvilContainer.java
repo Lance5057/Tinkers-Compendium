@@ -136,7 +136,7 @@ public class FinishingAnvilContainer extends ContainerMultiModule<FinishingAnvil
 	protected void syncNewContainer(EntityPlayerMP player) {
 		// this.activeSlots = tile.getSizeInventory();
 		TinkerNetwork.sendTo(
-				new FinishingAnvilSelectionPacket(this.anvil0, this.anvil1, this.anvil2, this.anvil3, this.anvil4),
+				new FinishingAnvilSelectionPacket(this.anvil0),
 				player);
 	}
 
@@ -152,8 +152,7 @@ public class FinishingAnvilContainer extends ContainerMultiModule<FinishingAnvil
 		// otherContainer.activeSlots);
 		// this.setToolName(otherContainer.toolName);
 		// also send the data to the player
-		TinkerNetwork.sendTo(new FinishingAnvilSelectionPacket(otherContainer.anvil0, otherContainer.anvil1,
-				otherContainer.anvil2, otherContainer.anvil3, otherContainer.anvil4), player);
+		TinkerNetwork.sendTo(new FinishingAnvilSelectionPacket(otherContainer.anvil0), player);
 
 	}
 
@@ -216,8 +215,8 @@ public class FinishingAnvilContainer extends ContainerMultiModule<FinishingAnvil
 				}
 				NBTTagCompound anvil = tag.getCompoundTag(ArmorTags.AnvilBase);
 				
-				int bit = (anvil4 << 24) | (anvil3 << 16) | (anvil2 << 8) | (anvil1 << 4) | anvil0;
-				anvil.setInteger(ArmorTags.ModelType, bit);
+				//int bit = (anvil4 << 24) | (anvil3 << 16) | (anvil2 << 8) | (anvil1 << 4) | anvil0;
+				anvil.setInteger(ArmorTags.ModelType, anvil0);
 				tag.setTag(ArmorTags.AnvilBase, anvil);
 			}
 			if (!result.isEmpty()) {
