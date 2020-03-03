@@ -431,6 +431,8 @@ public class TDTools {
 				TinkerRegistry.registerToolCrafting(saw);
 			if (TinkersCompendium.config.tools.enableFireDrill)
 				TinkerRegistry.registerToolCrafting(fireDrill);
+			if (TinkersCompendium.config.tools.enableBackpack)
+				TinkerRegistry.registerToolCrafting(backpack);
 		}
 
 		if (TinkersCompendium.config.armor.enableClothArmor) {

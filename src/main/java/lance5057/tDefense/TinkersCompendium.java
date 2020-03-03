@@ -44,7 +44,7 @@ import slimeknights.mantle.client.CreativeTab;
 @Mod(modid = Reference.MOD_ID, version = Reference.VERSION, name = Reference.MOD_NAME, dependencies = "required-after:tconstruct@[1.12-2.7.2.15,);")
 public class TinkersCompendium {
 
-	private static int modGuiIndex = 0;
+	//public static int modGuiIndex = 0;
 	// public static final int GUI_CREST_INV = modGuiIndex++;
 	// public static final int GUI_ANVIL_INV = modGuiIndex++;
 	// public static final int GUI_GUIDEBOOK = modGuiIndex++;
@@ -60,7 +60,7 @@ public class TinkersCompendium {
 	public static CreativeTab tab = new CreativeTab("tinkerscompendium", new ItemStack(Items.SHIELD));
 	public static TCConfig config;
 
-	public static final SimpleNetworkWrapper INSTANCE = NetworkRegistry.INSTANCE.newSimpleChannel(Reference.MOD_ID);
+	public static final SimpleNetworkWrapper networkInstance = NetworkRegistry.INSTANCE.newSimpleChannel(Reference.MOD_ID);
 
 	public static Modifiers mods;
 

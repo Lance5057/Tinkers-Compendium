@@ -45,7 +45,7 @@ public class CompendiumWorkstations {
 	public static FinishingAnvilBlock finishingAnvil;
 	private ItemBlock FinishingAnvilItem;
 
-	public static HammeringTableBlock hammeringtable;
+	public static HammeringTableBlock hammeringtable; 
 	private ItemBlock HammeringTableItem;
 
 	public static Item geodeStone;

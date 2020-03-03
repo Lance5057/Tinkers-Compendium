@@ -28,6 +28,7 @@ import lance5057.tDefense.core.library.materialutilities.MaterialOre;
 import lance5057.tDefense.core.library.materialutilities.MeltableMaterial;
 import lance5057.tDefense.core.library.materialutilities.PresetMaterial;
 import lance5057.tDefense.core.materials.stats.ArmorMaterialStats;
+import lance5057.tDefense.core.materials.stats.BackpackMaterialStats;
 import lance5057.tDefense.core.materials.stats.BaubleMaterialStats;
 import lance5057.tDefense.core.materials.stats.ChestMaterialStats;
 import lance5057.tDefense.core.materials.stats.FabricMaterialStats;
@@ -485,7 +486,7 @@ public class CompendiumMaterials {
 				black = new MaterialHelper("blackcloth", 0x191616);
 				black.addons.add(
 						new CraftableFabricMaterial(new FabricMaterialStats(100, 0, 0, 25),
-								new BowStringMaterialStats(1), null, new ItemStack(Blocks.WOOL, 1, 15)));
+								new BowStringMaterialStats(1), new BackpackMaterialStats(100, 9, 3), null, new ItemStack(Blocks.WOOL, 1, 15)));
 				materials.add(black);
 			}
 
@@ -493,7 +494,7 @@ public class CompendiumMaterials {
 				red = new MaterialHelper("redcloth", 0x963430);
 				red.addons.add(
 						new CraftableFabricMaterial(new FabricMaterialStats(100, 0, 0, 25),
-								new BowStringMaterialStats(1), null, new ItemStack(Blocks.WOOL, 1, 14)));
+								new BowStringMaterialStats(1), new BackpackMaterialStats(100, 9, 3), null, new ItemStack(Blocks.WOOL, 1, 14)));
 				materials.add(red);
 			}
 
@@ -501,7 +502,7 @@ public class CompendiumMaterials {
 				green = new MaterialHelper("greencloth", 0x35461B);
 				green.addons.add(
 						new CraftableFabricMaterial(new FabricMaterialStats(100, 0, 0, 25),
-								new BowStringMaterialStats(1), null, new ItemStack(Blocks.WOOL, 1, 13)));
+								new BowStringMaterialStats(1), new BackpackMaterialStats(100, 9, 3), null, new ItemStack(Blocks.WOOL, 1, 13)));
 				materials.add(green);
 			}
 
@@ -509,7 +510,7 @@ public class CompendiumMaterials {
 				brown = new MaterialHelper("browncloth", 0x4F321F);
 				brown.addons.add(
 						new CraftableFabricMaterial(new FabricMaterialStats(100, 0, 0, 25),
-								new BowStringMaterialStats(1), null, new ItemStack(Blocks.WOOL, 1, 12)));
+								new BowStringMaterialStats(1), new BackpackMaterialStats(100, 9, 3), null, new ItemStack(Blocks.WOOL, 1, 12)));
 				materials.add(brown);
 			}
 
@@ -517,7 +518,7 @@ public class CompendiumMaterials {
 				blue = new MaterialHelper("bluecloth", 0x2E388D);
 				blue.addons.add(
 						new CraftableFabricMaterial(new FabricMaterialStats(100, 0, 0, 25),
-								new BowStringMaterialStats(1), null, new ItemStack(Blocks.WOOL, 1, 11)));
+								new BowStringMaterialStats(1), new BackpackMaterialStats(100, 9, 3), null, new ItemStack(Blocks.WOOL, 1, 11)));
 				materials.add(blue);
 			}
 
@@ -525,7 +526,7 @@ public class CompendiumMaterials {
 				purple = new MaterialHelper("purplecloth", 0x7E3DB5);
 				purple.addons.add(
 						new CraftableFabricMaterial(new FabricMaterialStats(100, 0, 0, 25),
-								new BowStringMaterialStats(1), null, new ItemStack(Blocks.WOOL, 1, 10)));
+								new BowStringMaterialStats(1), new BackpackMaterialStats(100, 9, 3), null, new ItemStack(Blocks.WOOL, 1, 10)));
 				materials.add(purple);
 			}
 
@@ -533,7 +534,7 @@ public class CompendiumMaterials {
 				cyan = new MaterialHelper("cyancloth", 0x2E6E89);
 				cyan.addons.add(
 						new CraftableFabricMaterial(new FabricMaterialStats(100, 0, 0, 25),
-								new BowStringMaterialStats(1), null, new ItemStack(Blocks.WOOL, 1, 9)));
+								new BowStringMaterialStats(1), new BackpackMaterialStats(100, 9, 3), null, new ItemStack(Blocks.WOOL, 1, 9)));
 				materials.add(cyan);
 			}
 
@@ -541,7 +542,7 @@ public class CompendiumMaterials {
 				lightgray = new MaterialHelper("lightgraycloth", 0x9AA1A1);
 				lightgray.addons.add(
 						new CraftableFabricMaterial(new FabricMaterialStats(100, 0, 0, 25),
-								new BowStringMaterialStats(1), null, new ItemStack(Blocks.WOOL, 1, 8)));
+								new BowStringMaterialStats(1), new BackpackMaterialStats(100, 9, 3), null, new ItemStack(Blocks.WOOL, 1, 8)));
 				materials.add(lightgray);
 			}
 
@@ -549,7 +550,7 @@ public class CompendiumMaterials {
 				gray = new MaterialHelper("graycloth", 0x404040);
 				gray.addons.add(
 						new CraftableFabricMaterial(new FabricMaterialStats(100, 0, 0, 25),
-								new BowStringMaterialStats(1), null, new ItemStack(Blocks.WOOL, 1, 7)));
+								new BowStringMaterialStats(1), new BackpackMaterialStats(100, 9, 3), null, new ItemStack(Blocks.WOOL, 1, 7)));
 				materials.add(gray);
 			}
 
@@ -557,7 +558,7 @@ public class CompendiumMaterials {
 				pink = new MaterialHelper("pinkcloth", 0xD08499);
 				pink.addons.add(
 						new CraftableFabricMaterial(new FabricMaterialStats(100, 0, 0, 25),
-								new BowStringMaterialStats(1), null, new ItemStack(Blocks.WOOL, 1, 6)));
+								new BowStringMaterialStats(1), new BackpackMaterialStats(100, 9, 3), null, new ItemStack(Blocks.WOOL, 1, 6)));
 				materials.add(pink);
 			}
 
@@ -565,7 +566,7 @@ public class CompendiumMaterials {
 				lime = new MaterialHelper("limecloth", 0x41AE38);
 				lime.addons.add(
 						new CraftableFabricMaterial(new FabricMaterialStats(100, 0, 0, 25),
-								new BowStringMaterialStats(1), null, new ItemStack(Blocks.WOOL, 1, 5)));
+								new BowStringMaterialStats(1), new BackpackMaterialStats(100, 9, 3), null, new ItemStack(Blocks.WOOL, 1, 5)));
 				materials.add(lime);
 			}
 
@@ -573,7 +574,7 @@ public class CompendiumMaterials {
 				yellow = new MaterialHelper("yellowcloth", 0xB1A627);
 				yellow.addons.add(
 						new CraftableFabricMaterial(new FabricMaterialStats(100, 0, 0, 25),
-								new BowStringMaterialStats(1), null, new ItemStack(Blocks.WOOL, 1, 4)));
+								new BowStringMaterialStats(1), new BackpackMaterialStats(100, 9, 3), null, new ItemStack(Blocks.WOOL, 1, 4)));
 				materials.add(yellow);
 			}
 
@@ -581,7 +582,7 @@ public class CompendiumMaterials {
 				lightblue = new MaterialHelper("lightbluecloth", 0x6B8AC9);
 				lightblue.addons.add(
 						new CraftableFabricMaterial(new FabricMaterialStats(100, 0, 0, 25),
-								new BowStringMaterialStats(1), null, new ItemStack(Blocks.WOOL, 1, 3)));
+								new BowStringMaterialStats(1), new BackpackMaterialStats(100, 9, 3), null, new ItemStack(Blocks.WOOL, 1, 3)));
 				materials.add(lightblue);
 			}
 
@@ -589,7 +590,7 @@ public class CompendiumMaterials {
 				magenta = new MaterialHelper("magentacloth", 0xB350BC);
 				magenta.addons.add(
 						new CraftableFabricMaterial(new FabricMaterialStats(100, 0, 0, 25),
-								new BowStringMaterialStats(1), null, new ItemStack(Blocks.WOOL, 1, 2)));
+								new BowStringMaterialStats(1), new BackpackMaterialStats(100, 9, 3), null, new ItemStack(Blocks.WOOL, 1, 2)));
 				materials.add(magenta);
 			}
 
@@ -597,7 +598,7 @@ public class CompendiumMaterials {
 				orange = new MaterialHelper("orangecloth", 0xDB7D3E);
 				orange.addons.add(
 						new CraftableFabricMaterial(new FabricMaterialStats(100, 0, 0, 25),
-								new BowStringMaterialStats(1), null, new ItemStack(Blocks.WOOL, 1, 1)));
+								new BowStringMaterialStats(1), new BackpackMaterialStats(100, 9, 3), null, new ItemStack(Blocks.WOOL, 1, 1)));
 				materials.add(orange);
 			}
 
@@ -605,7 +606,7 @@ public class CompendiumMaterials {
 				white = new MaterialHelper("whitecloth", 0xDDDDDD);
 				white.addons.add(
 						new CraftableFabricMaterial(new FabricMaterialStats(100, 0, 0, 25),
-								new BowStringMaterialStats(1), null, new ItemStack(Blocks.WOOL, 1, 0)));
+								new BowStringMaterialStats(1), new BackpackMaterialStats(100, 9, 3), null, new ItemStack(Blocks.WOOL, 1, 0)));
 				materials.add(white);
 			}
 		}
@@ -614,7 +615,7 @@ public class CompendiumMaterials {
 			silky = new MaterialHelper("silky", 0xffdd7a);
 			silky.addons
 					.add(new CraftableFabricMaterial(new FabricMaterialStats(100, 0, 0, 25),
-							new BowStringMaterialStats(1), TinkerCommons.matSilkyCloth, null));
+							new BowStringMaterialStats(1), new BackpackMaterialStats(100, 9, 3), TinkerCommons.matSilkyCloth, null));
 			materials.add(silky);
 		}
 		
@@ -622,7 +623,7 @@ public class CompendiumMaterials {
 			roughspun = new MaterialHelper("roughspun", 0x407b17);
 			roughspun.addons
 					.add(new CraftableFabricMaterial(new FabricMaterialStats(100, 0, 0, 25),
-							new BowStringMaterialStats(1), new ItemStack(CompendiumTextiles.roughspunCord), new ItemStack(CompendiumTextiles.roughspunBlock)));
+							new BowStringMaterialStats(1), new BackpackMaterialStats(100, 9, 3), new ItemStack(CompendiumTextiles.roughspunCord), new ItemStack(CompendiumTextiles.roughspunBlock)));
 			materials.add(roughspun);
 		}
 
@@ -871,6 +872,7 @@ public class CompendiumMaterials {
 		Material.UNKNOWN.addStats(new FeetMaterialStats(35, 1, 0, 0));
 		Material.UNKNOWN.addStats(new FabricMaterialStats(35, 0, 0, 0));
 		Material.UNKNOWN.addStats(new BaubleMaterialStats(35));
+		Material.UNKNOWN.addStats(new BackpackMaterialStats(35, 1, 1));
 
 		for (MaterialHelper m : materials)
 			m.pre();

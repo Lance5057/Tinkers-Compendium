@@ -5,11 +5,8 @@ import java.util.ArrayList;
 import lance5057.tDefense.Reference;
 import lance5057.tDefense.TinkersCompendium;
 import lance5057.tDefense.core.blocks.CrackedObsidian;
-import lance5057.tDefense.core.blocks.UnstableBlock;
 import lance5057.tDefense.core.parts.TDParts;
 import net.minecraft.block.Block;
-import net.minecraft.block.material.MapColor;
-import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Enchantments;
 import net.minecraft.init.Items;
@@ -35,6 +32,7 @@ import slimeknights.mantle.util.RecipeMatch;
 import slimeknights.tconstruct.common.ModelRegisterUtil;
 import slimeknights.tconstruct.library.modifiers.Modifier;
 import slimeknights.tconstruct.tools.TinkerMaterials;
+import slimeknights.tconstruct.tools.modifiers.ModHarvestSize;
 
 @Mod.EventBusSubscriber(modid = Reference.MOD_ID)
 public class CompendiumModifiers {
@@ -74,6 +72,8 @@ public class CompendiumModifiers {
 
 	public static Modifier clock = new ModClock();
 	public static Modifier compass = new ModCompass();
+	
+	//public static Modifier width2 = new ModHarvestSize("width2");
 
 	static ArrayList<Item> itemList = new ArrayList<Item>();
 	static ArrayList<Block> blockList = new ArrayList<Block>();
@@ -165,6 +165,8 @@ public class CompendiumModifiers {
 
 		clock.addRecipeMatch(new RecipeMatch.Item(new ItemStack(Items.CLOCK), 1));
 		compass.addRecipeMatch(new RecipeMatch.Item(new ItemStack(Items.COMPASS), 1));
+		
+		//width2.addRecipeMatch(new RecipeMatch.Item(new ItemStack(Items.SIGN), 1));
 	}
 
 	public void postInit() {

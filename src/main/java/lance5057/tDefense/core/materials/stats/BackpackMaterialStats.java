@@ -10,6 +10,8 @@ import slimeknights.tconstruct.library.client.CustomFontColor;
 import slimeknights.tconstruct.library.materials.AbstractMaterialStats;
 
 public class BackpackMaterialStats extends AbstractMaterialStats {
+	public final static String TYPE = "backpack";
+	
 	public final static String LOC_Durability = "stat.backpack.durability.name";
 	public final static String LOC_Width = "stat.backpack.width.name";
 	public final static String LOC_Height = "stat.backpack.height.name";
@@ -26,7 +28,7 @@ public class BackpackMaterialStats extends AbstractMaterialStats {
 	public final int width; // 9
 	public final int height; // 3 - Default Chest
 
-	public BackpackMaterialStats(int durability, int width, int height, String TYPE) {
+	public BackpackMaterialStats(int durability, int width, int height) {
 		super(TYPE);
 		this.durability = durability;
 		this.width = width;

@@ -99,6 +99,8 @@ public class ClientProxy extends CommonProxy {
 	ToolBuildGuiInfo ringGUI;
 	// ToolBuildGuiInfo amuletGUI;
 	ToolBuildGuiInfo tabardGUI;
+	
+	ToolBuildGuiInfo backpackGUI;
 
 	// public static SheatheModel sheathe;
 	
@@ -368,6 +370,8 @@ public class ClientProxy extends CommonProxy {
 				sawGUI = new ToolBuildGuiInfo(TDTools.saw);
 			if (TinkersCompendium.config.tools.enableFireDrill)
 				fireDrillGUI = new ToolBuildGuiInfo(TDTools.fireDrill);
+			if (TinkersCompendium.config.tools.enableBackpack)
+				backpackGUI = new ToolBuildGuiInfo(TDTools.backpack);
 		}
 
 		if (TinkersCompendium.config.armor.enableClothArmor) {
@@ -432,6 +436,8 @@ public class ClientProxy extends CommonProxy {
 				TinkerRegistryClient.addToolBuilding(sawGUI);
 			if (TinkersCompendium.config.tools.enableFireDrill)
 				TinkerRegistryClient.addToolBuilding(fireDrillGUI);
+			if (TinkersCompendium.config.tools.enableBackpack)
+				TinkerRegistryClient.addToolBuilding(backpackGUI);
 		}
 
 		if (TinkersCompendium.config.armor.enableClothArmor) {
@@ -540,6 +546,14 @@ public class ClientProxy extends CommonProxy {
 				fireDrillGUI.addSlotPosition(34, 15 + 8);
 				fireDrillGUI.addSlotPosition(43, 33 + 8);
 				fireDrillGUI.addSlotPosition(34, 51 + 8);
+			}
+			if (TinkersCompendium.config.tools.enableBackpack)
+			{
+				backpackGUI.positions.clear();
+				backpackGUI.addSlotPosition(34, 15);
+				backpackGUI.addSlotPosition(25, 33);
+				backpackGUI.addSlotPosition(43, 33);
+				backpackGUI.addSlotPosition(34, 51);
 			}
 		}
 
