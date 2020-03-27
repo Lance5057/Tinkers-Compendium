@@ -2,15 +2,13 @@ package lance5057.tDefense.core.tools.basic.gui;
 
 import javax.annotation.Nonnull;
 
-import baubles.api.IBauble;
+import lance5057.tDefense.core.library.SlotLocked;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.items.SlotItemHandler;
-import vazkii.botania.api.mana.IManaItem;
-import vazkii.botania.client.gui.SlotLocked;
 
 public class BackpackContainer extends Container {
 

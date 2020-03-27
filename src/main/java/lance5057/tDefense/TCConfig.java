@@ -188,6 +188,9 @@ public class TCConfig {
 
 		@Config.RequiresMcRestart()
 		public boolean ToolLeveling = true;
+
+		@Config.RequiresMcRestart()
+		public boolean EBWizardry = true;
 	}
 
 	public static class Armor {

@@ -8,9 +8,11 @@ import javax.annotation.Nullable;
 import com.google.common.eventbus.Subscribe;
 
 import lance5057.tDefense.Reference;
+import lance5057.tDefense.TCConfig;
 import lance5057.tDefense.TinkersCompendium;
 import lance5057.tDefense.core.library.ArmorTags;
 import lance5057.tDefense.core.library.TCRegistry;
+import lance5057.tDefense.core.library.TDClientRegistry;
 import lance5057.tDefense.core.network.ArmorStationSelectionPacket;
 import lance5057.tDefense.core.network.FinishingAnvilSelectionPacket;
 import lance5057.tDefense.core.tools.armor.chain.TinkersBoots;
@@ -111,7 +113,7 @@ public class TDTools {
 	public static ToolCore ring;
 	// public static ToolCore amulet;
 	public static BaubleTool tabard;
-	
+
 	public static ToolCore backpack;
 
 	static ArrayList<Item> itemList = new ArrayList<Item>();
@@ -260,7 +262,7 @@ public class TDTools {
 				fireDrill = new FireDrill();
 				regTool(fireDrill, "fireDrill", event);
 			}
-			
+
 			if (TinkersCompendium.config.tools.enableBackpack) {
 				backpack = new Backpack();
 				regTool(backpack, "backpack", event);
@@ -383,9 +385,13 @@ public class TDTools {
 
 		if (TinkersCompendium.config.anvil.enableFinishingAnvilTools)
 			for (ToolCore i : TinkerRegistry.getTools()) {
-				// i.addPropertyOverride(PROPERTY_FINISHING_ANVIL,
-				// finishingAnvilPropertyGetter);
-				TinkersCompendium.proxy.registerAnvilToolModel(i);
+				for (String s : TCConfig.anvil.overrides) {
+					String[] info = s.split(" ");
+					if (info[0].equals(i.getRegistryName().toString())) {
+						TinkersCompendium.proxy.registerAnvilToolModel(i);
+					}
+
+				}
 			}
 	}
 

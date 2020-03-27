@@ -1,6 +1,7 @@
 package lance5057.tDefense.core.tools.bases;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
@@ -15,14 +16,18 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.Sets;
 
+import electroblob.wizardry.constants.Constants;
+import electroblob.wizardry.constants.Element;
+import electroblob.wizardry.event.SpellCastEvent;
+import electroblob.wizardry.item.ItemWizardArmour;
+import electroblob.wizardry.util.SpellModifiers;
+import electroblob.wizardry.util.WizardryUtilities;
 import lance5057.tDefense.Reference;
 import lance5057.tDefense.core.addons.toolleveling.AddonToolLeveling;
 import lance5057.tDefense.core.library.ArmorNBT;
 import lance5057.tDefense.core.library.ArmorTags;
 import lance5057.tDefense.core.library.ArmorToolTipBuilder;
 import lance5057.tDefense.core.library.TCRegistry;
-import lance5057.tDefense.core.materials.CompendiumMaterials;
-import lance5057.tDefense.core.materials.stats.FabricMaterialStats;
 import lance5057.tDefense.core.tools.armor.renderers.ArmorRenderer;
 import lance5057.tDefense.util.ArmorTagUtil;
 import net.minecraft.block.state.IBlockState;
@@ -46,6 +51,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.eventhandler.EventPriority;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import slimeknights.mantle.util.RecipeMatch;
@@ -847,5 +854,23 @@ public abstract class ArmorCore extends ArmorBase implements IToolStationDisplay
 	public void damageArmor(EntityLivingBase entity, ItemStack stack, DamageSource source, int damage, int slot) {
 		// TODO Auto-generated method stub
 
+	}
+	
+	@SubscribeEvent(priority = EventPriority.LOW)
+	public static void onSpellCastPreEvent(SpellCastEvent.Pre event){
+		// Armour cost reduction
+		if(event.getCaster() == null) return;
+		int armourPieces = getMatchingArmourCount(event.getCaster(), event.getSpell().getElement());
+		float multiplier = 1f - armourPieces * Constants.COST_REDUCTION_PER_ARMOUR;
+		if(armourPieces == WizardryUtilities.ARMOUR_SLOTS.length) multiplier -= Constants.FULL_ARMOUR_SET_BONUS;
+		event.getModifiers().set(SpellModifiers.COST, event.getModifiers().get(SpellModifiers.COST) * multiplier, false);
+	}
+	
+	/** Counts the number of armour pieces the given entity is wearing that match the given element. */
+	public static int getMatchingArmourCount(EntityLivingBase entity, Element element){
+		return (int)Arrays.stream(WizardryUtilities.ARMOUR_SLOTS)
+				.map(s -> entity.getItemStackFromSlot(s).getItem())
+				.filter(i -> i instanceof ItemWizardArmour && ((ItemWizardArmour)i).element == element)
+				.count();
 	}
 }
