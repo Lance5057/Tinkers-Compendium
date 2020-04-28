@@ -1,0 +1,9 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "tinkerscompendium:items/gravelclump",
+		"layer1": "tinkerscompendium:items/gravelclump",
+		"layer2": "tinkerscompendium:items/gravelclump_base",
+		"layer3": "tinkerscompendium:items/gravelclump"
+    }
+}

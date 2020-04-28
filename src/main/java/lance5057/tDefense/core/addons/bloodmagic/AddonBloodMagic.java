@@ -2,6 +2,7 @@ package lance5057.tDefense.core.addons.bloodmagic;
 
 import WayofTime.bloodmagic.core.RegistrarBloodMagicItems;
 import lance5057.tDefense.Reference;
+import lance5057.tDefense.TCItems;
 import lance5057.tDefense.TinkersCompendium;
 import lance5057.tDefense.core.addons.bloodmagic.modifiers.ModScabbing;
 import lance5057.tDefense.core.addons.bloodmagic.modifiers.ModWill;
@@ -64,9 +65,9 @@ public class AddonBloodMagic extends ModuleBase {
 
 	@Override
 	public void preInit(FMLPreInitializationEvent e) {
-		bloodyBandages = new Item();
+		bloodyBandages = TCItems.registerItem("bloodybandages", TinkersCompendium.tab);
 
-		this.setupItem(bloodyBandages, "bloodybandages");
+		//this.setupItem(bloodyBandages, "bloodybandages");
 
 		// CompendiumMaterials.itemList.add(bloodyBandages);
 
@@ -92,20 +93,6 @@ public class AddonBloodMagic extends ModuleBase {
 
 	@Override
 	public void postInit(FMLPostInitializationEvent e) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void registerItems(Register<Item> event) {
-		IForgeRegistry r = event.getRegistry();
-
-		r.register(bloodyBandages);
-
-	}
-
-	@Override
-	public void registerBlocks(Register<Block> event) {
 		// TODO Auto-generated method stub
 
 	}

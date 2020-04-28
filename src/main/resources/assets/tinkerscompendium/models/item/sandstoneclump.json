@@ -1,0 +1,9 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "tinkerscompendium:items/oreclump",
+		"layer1": "tinkerscompendium:items/oreclump",
+		"layer2": "tinkerscompendium:items/geode_sandstone",
+		"layer3": "tinkerscompendium:items/oreclump"
+    }
+}

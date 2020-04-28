@@ -1,5 +1,7 @@
 package lance5057.tDefense.core.library.materialutilities;
 
+import java.io.PrintWriter;
+
 import lance5057.tDefense.core.materials.stats.ChestMaterialStats;
 import lance5057.tDefense.core.materials.stats.FeetMaterialStats;
 import lance5057.tDefense.core.materials.stats.HelmMaterialStats;
@@ -25,26 +27,26 @@ public class ArmorMaterial implements MaterialBase {
 	}
 
 	@Override
-	public void setupPre(Material mat) {
+	public void setupPre(MaterialHelper mat) {
 
 		if (helm != null)
-			TinkerRegistry.addMaterialStats(mat, helm);
+			TinkerRegistry.addMaterialStats(mat.mat, helm);
 		if (chest != null)
-			TinkerRegistry.addMaterialStats(mat, chest);
+			TinkerRegistry.addMaterialStats(mat.mat, chest);
 		if (legs != null)
-			TinkerRegistry.addMaterialStats(mat, legs);
+			TinkerRegistry.addMaterialStats(mat.mat, legs);
 		if (feet != null)
-			TinkerRegistry.addMaterialStats(mat, feet);
+			TinkerRegistry.addMaterialStats(mat.mat, feet);
 	}
 
 	@Override
-	public void setupPost(Material mat) {
+	public void setupPost(MaterialHelper mat) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void setupClient(Material mat) {
+	public void setupClient(MaterialHelper mat) {
 		// TODO Auto-generated method stub
 
 	}
@@ -56,13 +58,19 @@ public class ArmorMaterial implements MaterialBase {
 	}
 
 	@Override
-	public void setupModels(Material mat) {
+	public void setupModels(MaterialHelper mat) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void setupInit(Material mat) {
+	public void setupInit(MaterialHelper mat) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setupWiki(MaterialHelper mat,PrintWriter out) {
 		// TODO Auto-generated method stub
 		
 	}

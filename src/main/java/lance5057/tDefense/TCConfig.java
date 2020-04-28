@@ -8,6 +8,9 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 @Config(modid = Reference.MOD_ID)
 public class TCConfig {
+	@Config.Comment("Don't turn these on, you'll get a lot of weird files all over your pc")
+	public static boolean developerFeatures = false;
+	
 	@Config.Comment("Enable Debug Features")
 	public static boolean debug = false;
 
@@ -191,6 +194,9 @@ public class TCConfig {
 
 		@Config.RequiresMcRestart()
 		public boolean EBWizardry = true;
+		
+		@Config.RequiresMcRestart()
+		public boolean ActuallyAdditions = true;
 	}
 
 	public static class Armor {

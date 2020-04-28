@@ -1,5 +1,5 @@
 {
-	"parent": "tinkerscompendium:block/ore_spike",
+	"parent": "tinkerscompendium:block/sand_ore",
 	"display": {
 		"thirdperson": {
 			"rotation": [ 10, -45, 170 ],
@@ -9,7 +9,7 @@
 		"inventory": {
 			"rotation": [ 10, -45, 170 ],
 			"translation": [ 0, 1.5, -2.75 ],
-			"scale": [ 1.375, 0.375, 0.375 ]
+			"scale": [ 0.375, 0.375, 0.375 ]
 		}
 	}
 }

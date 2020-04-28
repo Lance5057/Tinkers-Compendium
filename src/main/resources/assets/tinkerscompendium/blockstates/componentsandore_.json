@@ -1,0 +1,15 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "tinkerscompendium:sand_ore",
+        "transform": "forge:default-block"
+    },
+    "variants": {
+    	"normal": [
+		{}
+		],
+    	"inventory": [
+		{}
+		]
+    }
+}

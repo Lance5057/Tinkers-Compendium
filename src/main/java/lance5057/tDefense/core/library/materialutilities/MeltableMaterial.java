@@ -1,11 +1,16 @@
 package lance5057.tDefense.core.library.materialutilities;
 
+import java.io.PrintWriter;
 import java.util.Locale;
 
 import org.apache.commons.lang3.StringUtils;
 
 import lance5057.tDefense.Reference;
+import lance5057.tDefense.TCBlocks;
+import lance5057.tDefense.TCFluids;
+import lance5057.tDefense.TCItems;
 import lance5057.tDefense.TinkersCompendium;
+import lance5057.tDefense.core.library.OutputWikiPages;
 import lance5057.tDefense.core.materials.CompendiumMaterials;
 import lance5057.tDefense.core.materials.stats.ShieldMaterialStats;
 import net.minecraft.block.Block;
@@ -63,91 +68,60 @@ public class MeltableMaterial implements MaterialBase {
 	}
 
 	@Override
-	public void setupPre(Material mat) {
+	public void setupPre(MaterialHelper mat) {
 
 		if (ingot == null) {
-			ingot = registerItem("ingot_" + mat.identifier, TinkersCompendium.tab);
-			CompendiumMaterials.itemList.add(ingot);
+			ingot = TCItems.registerItem("ingot_" + mat.mat.identifier, TinkersCompendium.tab);
 		}
 
 		if (nugget == null) {
-			nugget = registerItem("nugget_" + mat.identifier, TinkersCompendium.tab);
-			CompendiumMaterials.itemList.add(nugget);
+			nugget = TCItems.registerItem("nugget_" + mat.mat.identifier, TinkersCompendium.tab);
 		}
 
 		if (block == null) {
-			block = new Block(net.minecraft.block.material.Material.IRON)
-					.setRegistryName(new ResourceLocation(Reference.MOD_ID, "block_" + mat.identifier))
-					.setUnlocalizedName("block_" + mat.identifier).setCreativeTab(TinkersCompendium.tab);
-			CompendiumMaterials.blockList.add(block);
-			CompendiumMaterials.itemList
-					.add(registerItemBlock("block_" + mat.identifier, block, TinkersCompendium.tab));
+			block = TCBlocks.registerBlock("block_" + mat.mat.identifier, net.minecraft.block.material.Material.IRON);
+			TCItems.registerItemBlock("block_" + mat.mat.identifier, block, TinkersCompendium.tab);
 		}
 
-		fluid = fluidMetal(mat.getIdentifier(), mat.materialTextColor, temp);
-		CompendiumMaterials.fluids.put(mat.getIdentifier(), fluid);
+		fluid = TCFluids.fluidMetal(mat.mat.getIdentifier(), mat.color, temp);
 
-		mat.setCraftable(false).setCastable(true);
-		mat.setFluid(fluid);
+		mat.mat.setCraftable(false).setCastable(true);
+		mat.mat.setFluid(fluid);
 
 		if (head != null)
-			TinkerRegistry.addMaterialStats(mat, head);
+			TinkerRegistry.addMaterialStats(mat.mat, head);
 		if (handle != null)
-			TinkerRegistry.addMaterialStats(mat, handle);
+			TinkerRegistry.addMaterialStats(mat.mat, handle);
 		if (extra != null)
-			TinkerRegistry.addMaterialStats(mat, extra);
+			TinkerRegistry.addMaterialStats(mat.mat, extra);
 		if (shield != null)
-			TinkerRegistry.addMaterialStats(mat, shield);
+			TinkerRegistry.addMaterialStats(mat.mat, shield);
 		if (bow != null)
-			TinkerRegistry.addMaterialStats(mat, bow);
+			TinkerRegistry.addMaterialStats(mat.mat, bow);
 	}
 
 	@Override
-	public void setupPost(Material mat) {
-		OreDictionary.registerOre("ingot" + StringUtils.capitalize(mat.identifier), new ItemStack(ingot));
-		OreDictionary.registerOre("nugget" + StringUtils.capitalize(mat.identifier), new ItemStack(nugget));
-		OreDictionary.registerOre("block" + StringUtils.capitalize(mat.identifier), new ItemStack(block));
+	public void setupPost(MaterialHelper mat) {
+		OreDictionary.registerOre("ingot" + StringUtils.capitalize(mat.mat.identifier), new ItemStack(ingot));
+		OreDictionary.registerOre("nugget" + StringUtils.capitalize(mat.mat.identifier), new ItemStack(nugget));
+		OreDictionary.registerOre("block" + StringUtils.capitalize(mat.mat.identifier), new ItemStack(block));
 
-		mat.addItem(nugget, 1, Material.VALUE_Nugget);
-		mat.addItem(ingot, 1, Material.VALUE_Ingot);
-		mat.addItem(block, Material.VALUE_Block);
+		mat.mat.addItem(nugget, 1, Material.VALUE_Nugget);
+		mat.mat.addItem(ingot, 1, Material.VALUE_Ingot);
+		mat.mat.addItem(block, Material.VALUE_Block); 
 	}
 
 	@Override
-	public void setupClient(Material mat) {
-		TinkersCompendium.proxy.registerItemColorHandler(mat.materialTextColor, ingot);
-		TinkersCompendium.proxy.registerItemColorHandler(mat.materialTextColor, nugget);
+	public void setupClient(MaterialHelper mat) {
+		TinkersCompendium.proxy.registerItemColorHandler(mat.color, ingot);
+		TinkersCompendium.proxy.registerItemColorHandler(mat.color, nugget);
 		if (!hasBlockTexture) {
-			TinkersCompendium.proxy.registerBlockColorHandler(mat.materialTextColor, block);
-			TinkersCompendium.proxy.registerItemColorHandler(mat.materialTextColor, Item.getItemFromBlock(block));
+			TinkersCompendium.proxy.registerBlockColorHandler(mat.color, block);
+			TinkersCompendium.proxy.registerItemColorHandler(mat.color, Item.getItemFromBlock(block));
 		}
 	}
 
-	public FluidMolten fluidMetal(String name, int color, int temp) {
-
-		FluidMolten f = registerFluid(new FluidMolten(name, color));
-		f.setTemperature(800);
-		initFluidMetal(f);
-
-		return f;
-	}
-
-	public void initFluidMetal(Fluid fluid) {
-		registerMoltenBlock(fluid);
-		FluidRegistry.addBucketForFluid(fluid);
-		TinkersCompendium.proxy.registerFluidModels(fluid);
-	}
-
-	public <T extends Fluid> T registerFluid(T fluid) {
-		fluid.setUnlocalizedName(Reference.MOD_ID + "." + fluid.getName().toLowerCase(Locale.US));
-		FluidRegistry.registerFluid(fluid);
-		return fluid;
-	}
-
-	public BlockMolten registerMoltenBlock(Fluid fluid) {
-		BlockMolten block = new BlockMolten(fluid);
-		return registerBlock(block, "molten_" + fluid.getName());
-	}
+	
 
 	public <T extends Block> T registerBlock(T block, String name) {
 		block.setUnlocalizedName(Reference.MOD_ID + "." + name);
@@ -165,7 +139,7 @@ public class MeltableMaterial implements MaterialBase {
 	}
 
 	@Override
-	public void setupModels(Material mat) {
+	public void setupModels(MaterialHelper mat) {
 		TinkersCompendium.proxy.registerItemRenderer(ingot, 0, "ingot");
 		TinkersCompendium.proxy.registerItemRenderer(nugget, 0, "nugget");
 		if (!hasBlockTexture) {
@@ -175,8 +149,16 @@ public class MeltableMaterial implements MaterialBase {
 	}
 
 	@Override
-	public void setupInit(Material mat) {
+	public void setupInit(MaterialHelper mat) {
 		// TODO Auto-generated method stub
-		
+
+	}
+
+	@Override
+	public void setupWiki(MaterialHelper mat, PrintWriter out) {
+		out.write("### Material Info \n\n");
+		out.write("Melting Temp: " + temp + "\n\n");
+
+		OutputWikiPages.createMaterialOutput(head, handle, shield, extra, bow, out);
 	}
 }

@@ -1,6 +1,10 @@
 package lance5057.tDefense.core.library.materialutilities;
 
+import java.io.PrintWriter;
+
 import lance5057.tDefense.Reference;
+import lance5057.tDefense.TCBlocks;
+import lance5057.tDefense.TCItems;
 import lance5057.tDefense.TinkersCompendium;
 import lance5057.tDefense.core.blocks.TDOreBlock;
 import lance5057.tDefense.core.materials.CompendiumMaterials;
@@ -14,10 +18,23 @@ import slimeknights.tconstruct.library.materials.Material;
 
 public class MaterialOre implements MaterialBase {
 
-	private Block oreBlock;
-	private Item oreClump;
-	private Item oreGravel;
-	private Item oreSand;
+	public Block oreBlock;
+//	public Block gravelBlock;
+//	public Block sandBlock;
+//	public Block sandstoneBlock;
+//	public Block netherBlock;
+
+	public Item oreItemBlock;
+//	public Item gravelItemBlock;
+//	public Item sandItemBlock;
+//	public Item sandstoneItemBlock;
+//	public Item netherItemBlock;
+
+	public Item oreClump;
+//	public Item oreGravel;
+//	public Item oreSand;
+	
+	String tool;
 
 	public String prefix;
 	public String style;
@@ -44,23 +61,29 @@ public class MaterialOre implements MaterialBase {
 	public float biomeHumidityMin = -2;
 	public float biomeHumidityMax = -2;
 
-	public MaterialOre(String prefix, String style, int color, float hardness, int level, float resistance) {
-		this(prefix, style, color, hardness, level, resistance, 64, 0, 8, 10);
+	public MaterialOre(String prefix, String style, float hardness, int level, String tool, float resistance) {
+		this(prefix, style, 0, hardness, level, tool, resistance, 64, 0, 8, 10);
 	}
 
-	public MaterialOre(String prefix, String style, int color, float hardness, int level, float resistance, int ymax,
-			int ymin, int veinSize, int veinChance) {
-		this(prefix, style, color, hardness, level, resistance, 64, 0, 8, 10, -2, -2, -2, -2, -2, -2);
+	public MaterialOre(String prefix, String style, int color, float hardness, int level, String tool,
+			float resistance) {
+		this(prefix, style, color, hardness, level, tool, resistance, 64, 0, 8, 10);
 	}
 
-	public MaterialOre(String prefix, String style, int color, float hardness, int level, float resistance, int ymax,
-			int ymin, int veinSize, int veinChance, float elevationMin, float elevationMax, float tempMin,
+	public MaterialOre(String prefix, String style, int color, float hardness, int level, String tool, float resistance,
+			int ymax, int ymin, int veinSize, int veinChance) {
+		this(prefix, style, color, hardness, level, tool, resistance, 64, 0, 8, 10, -2, -2, -2, -2, -2, -2);
+	}
+
+	public MaterialOre(String prefix, String style, int color, float hardness, int level, String tool, float resistance,
+			int ymax, int ymin, int veinSize, int veinChance, float elevationMin, float elevationMax, float tempMin,
 			float tempMax, float humidityMin, float humidityMax) {
 		this.prefix = prefix;
 		this.style = style;
 		this.oreColor = color;
 		this.hardness = hardness;
 		this.mininglevel = level;
+		this.tool = tool;
 		this.resistance = resistance;
 		this.oreYMax = ymax;
 		this.oreYMin = ymin;
@@ -75,23 +98,36 @@ public class MaterialOre implements MaterialBase {
 	}
 
 	@Override
-	public void setupPre(Material mat) {
+	public void setupPre(MaterialHelper mat) {
 
-		oreClump = registerItem("clump_" + mat.identifier, TinkersCompendium.tab);
-		CompendiumMaterials.itemList.add(oreClump);
-		oreGravel = registerItem("gravelclump_" + mat.identifier, TinkersCompendium.tab);
-		CompendiumMaterials.itemList.add(oreGravel);
-		oreSand = registerItem("sandclump_" + mat.identifier, TinkersCompendium.tab);
-		CompendiumMaterials.itemList.add(oreSand);
-		
+		oreClump = TCItems.registerItem(prefix + "clump_" + mat.mat.identifier, TinkersCompendium.tab);
+//		oreGravel = TCItems.registerItem("gravelclump_" + mat.mat.identifier, TinkersCompendium.tab);
+//		oreSand = TCItems.registerItem("sandclump_" + mat.mat.identifier, TinkersCompendium.tab);
+
 		// TODO add ore clumps
-		oreBlock = new TDOreBlock(oreClump, hardness, resistance, mininglevel)
-				.setRegistryName(new ResourceLocation(Reference.MOD_ID, prefix + "_ore_" + mat.identifier))
-				.setUnlocalizedName(prefix + "_ore_" + mat.identifier);
-		CompendiumMaterials.itemList.add(
-				registerItemBlock("item_" + prefix + "_ore_" + mat.identifier, this.oreBlock, TinkersCompendium.tab));
+		oreBlock = new TDOreBlock(oreClump, hardness, resistance, mininglevel, tool);
+		TCBlocks.registerBlock(oreBlock, prefix + style + "_ore_" + mat.mat.identifier);
 
-		CompendiumMaterials.blockList.add(oreBlock);
+		oreItemBlock = TCItems.registerItemBlock("item_" + prefix + style + "_ore_" + mat.mat.identifier, this.oreBlock,
+				TinkersCompendium.tab);
+
+//		gravelBlock = new TDOreBlock(oreGravel, hardness, resistance, mininglevel, "shovel");
+//		TCBlocks.registerBlock(gravelBlock, "gravel_" + mat.mat.identifier);
+//		gravelItemBlock = TCItems.registerItemBlock("item_" + "gravel_" + mat.mat.identifier, this.gravelBlock,
+//				TinkersCompendium.tab);
+//
+//		sandBlock = new TDOreBlock(oreSand, hardness, resistance, mininglevel, "shovel");
+//		TCBlocks.registerBlock(sandBlock, "sand_" + mat.mat.identifier);
+//
+//		sandItemBlock = TCItems.registerItemBlock("item_" + "sand_" + mat.mat.identifier, this.sandBlock,
+//				TinkersCompendium.tab);
+//		
+//		sandstoneBlock = new TDOreBlock(oreSand, hardness, resistance, mininglevel, "pickaxe");
+//		TCBlocks.registerBlock(sandBlock, "sandstone_" + mat.mat.identifier);
+//
+//		sandstoneItemBlock = TCItems.registerItemBlock("item_" + "sandstone_" + mat.mat.identifier, this.sandstoneBlock,
+//				TinkersCompendium.tab);
+
 	}
 
 	@Override
@@ -104,26 +140,56 @@ public class MaterialOre implements MaterialBase {
 	}
 
 	@Override
-	public void setupPost(Material mat) {
+	public void setupPost(MaterialHelper mat) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void setupClient(Material mat) {
+	public void setupClient(MaterialHelper mat) {
 		if (this.oreColor > 0) {
+			TinkersCompendium.proxy.registerItemColorHandler(this.oreColor, oreClump);
+//			TinkersCompendium.proxy.registerItemColorHandler(this.oreColor, oreGravel);
+//			TinkersCompendium.proxy.registerItemColorHandler(this.oreColor, oreSand);
+
 			TinkersCompendium.proxy.registerBlockColorHandler(this.oreColor, oreBlock);
 			TinkersCompendium.proxy.registerItemColorHandler(this.oreColor, Item.getItemFromBlock(oreBlock));
+
+//			TinkersCompendium.proxy.registerBlockColorHandler(this.oreColor, gravelBlock);
+//			TinkersCompendium.proxy.registerItemColorHandler(this.oreColor, Item.getItemFromBlock(gravelBlock));
+//
+//			TinkersCompendium.proxy.registerBlockColorHandler(this.oreColor, sandBlock);
+//			TinkersCompendium.proxy.registerItemColorHandler(this.oreColor, Item.getItemFromBlock(sandBlock));
 		} else {
-			TinkersCompendium.proxy.registerBlockColorHandler(mat.materialTextColor, oreBlock);
-			TinkersCompendium.proxy.registerItemColorHandler(mat.materialTextColor, Item.getItemFromBlock(oreBlock));
+			TinkersCompendium.proxy.registerItemColorHandler(mat.color, oreClump);
+//			TinkersCompendium.proxy.registerItemColorHandler(mat.color, oreGravel);
+//			TinkersCompendium.proxy.registerItemColorHandler(mat.color, oreSand);
+
+			TinkersCompendium.proxy.registerBlockColorHandler(mat.color, oreBlock);
+			TinkersCompendium.proxy.registerItemColorHandler(mat.color, Item.getItemFromBlock(oreBlock));
+
+//			TinkersCompendium.proxy.registerBlockColorHandler(mat.color, gravelBlock);
+//			TinkersCompendium.proxy.registerItemColorHandler(mat.color, Item.getItemFromBlock(gravelBlock));
+//
+//			TinkersCompendium.proxy.registerBlockColorHandler(mat.color, sandBlock);
+//			TinkersCompendium.proxy.registerItemColorHandler(mat.color, Item.getItemFromBlock(sandBlock));
 		}
 	}
 
 	@Override
-	public void setupModels(Material mat) {
-		TinkersCompendium.proxy.registerBlockRenderer(oreBlock, "ore_" + style);
-		TinkersCompendium.proxy.registerItemRenderer(Item.getItemFromBlock(oreBlock), 0, "ore_" + style);
+	public void setupModels(MaterialHelper mat) {
+		TinkersCompendium.proxy.registerItemRenderer(oreClump, 0, prefix + "clump");
+//		TinkersCompendium.proxy.registerItemRenderer(oreGravel, 0, "gravelclump");
+//		TinkersCompendium.proxy.registerItemRenderer(oreSand, 0, "sandclump");
+
+		TinkersCompendium.proxy.registerBlockRenderer(oreBlock, prefix + "ore_" + style);
+		TinkersCompendium.proxy.registerItemRenderer(Item.getItemFromBlock(oreBlock), 0, prefix + "ore_" + style);
+
+//		TinkersCompendium.proxy.registerBlockRenderer(gravelBlock, "gravel");
+//		TinkersCompendium.proxy.registerItemRenderer(Item.getItemFromBlock(gravelBlock), 0, "gravel_ore");
+//
+//		TinkersCompendium.proxy.registerBlockRenderer(sandBlock, "sand");
+//		TinkersCompendium.proxy.registerItemRenderer(Item.getItemFromBlock(sandBlock), 0, "sand_ore");
 	}
 
 	public void setDimensionBlackList(int... list) {
@@ -143,7 +209,13 @@ public class MaterialOre implements MaterialBase {
 	}
 
 	@Override
-	public void setupInit(Material mat) {
+	public void setupInit(MaterialHelper mat) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void setupWiki(MaterialHelper mat, PrintWriter out) {
 		// TODO Auto-generated method stub
 
 	}

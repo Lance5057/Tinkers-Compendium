@@ -30,7 +30,6 @@ import slimeknights.tconstruct.library.tools.ToolPart;
 @Mod.EventBusSubscriber(modid = Reference.MOD_ID)
 public class CommonProxy implements IGuiHandler {
 	// public static ModifierSoulHandler SoulHandler = null;
-	public static Item book;
 
 	public void preInit() {
 	}
@@ -116,39 +115,39 @@ public class CommonProxy implements IGuiHandler {
 
 	@SubscribeEvent
 	public static void registerItems(RegistryEvent.Register<Item> event) {
-		book = registerItem(event, new ItemCompendiumBook(), "book");
 
 		TinkersCompendium.parts.registerItems(event);
-		TinkersCompendium.mats.registerItems(event);
 		TinkersCompendium.tools.registerItems(event);
-		TinkersCompendium.modifiers.registerItems(event);
 		TinkersCompendium.workstations.registerItems(event);
 		TinkersCompendium.textiles.registerItems(event);
 
-		if (TinkersCompendium.bloodmagic != null)
-			TinkersCompendium.bloodmagic.registerItems(event);
-		if (TinkersCompendium.botania != null)
-			TinkersCompendium.botania.registerItems(event);
+//		if (TinkersCompendium.bloodmagic != null)
+//			TinkersCompendium.bloodmagic.registerItems(event);
+//		if (TinkersCompendium.botania != null)
+//			TinkersCompendium.botania.registerItems(event);
+
+		TinkersCompendium.items.registerItems(event);
 	}
 
-	private static Item registerItem(Register<Item> event, Item item, String string) {
-		item.setUnlocalizedName(string).setRegistryName(Reference.MOD_ID, string);
-		event.getRegistry().register(item);
-		return item;
-	}
+//	private static Item registerItem(Register<Item> event, Item item, String string) {
+//		item.setUnlocalizedName(string).setRegistryName(Reference.MOD_ID, string);
+//		event.getRegistry().register(item);
+//		return item;
+//	}
 
 	@SubscribeEvent
 	public static void registerBlocks(RegistryEvent.Register<Block> event) {
 		TinkersCompendium.mats.registerBlocks(event);
 		TinkersCompendium.tools.registerBlocks(event);
-		TinkersCompendium.modifiers.registerBlocks(event);
 		TinkersCompendium.workstations.registerBlocks(event);
 		TinkersCompendium.textiles.registerBlocks(event);
 
-		if (TinkersCompendium.bloodmagic != null)
-			TinkersCompendium.bloodmagic.registerBlocks(event);
-		if (TinkersCompendium.botania != null)
-			TinkersCompendium.botania.registerBlocks(event);
+//		if (TinkersCompendium.bloodmagic != null)
+//			TinkersCompendium.bloodmagic.registerBlocks(event);
+//		if (TinkersCompendium.botania != null)
+//			TinkersCompendium.botania.registerBlocks(event);
+
+		TinkersCompendium.blocks.registerBlocks(event);
 	}
 
 	public void registerArmorPartModel(ArmorPart part) {

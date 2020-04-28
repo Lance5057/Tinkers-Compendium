@@ -1,6 +1,8 @@
 package lance5057.tDefense.textiles;
 
 import lance5057.tDefense.Reference;
+import lance5057.tDefense.TCBlocks;
+import lance5057.tDefense.TCItems;
 import lance5057.tDefense.TinkersCompendium;
 import lance5057.tDefense.core.blocks.BlockStairLike;
 import lance5057.tDefense.textiles.blocks.BlockCottonCrop;
@@ -26,13 +28,13 @@ import slimeknights.mantle.client.CreativeTab;
 public class CompendiumTextiles {
 
 	public static CreativeTab tab = new CreativeTab("compendiumtextiles", new ItemStack(Items.STRING));
-	
+
 	public TextileEvents events = new TextileEvents();
 
 	public static Item grassFiber;
 	public static Item roughspunCord;
-	public static ItemBlock roughspunItemBlock;
-	public static ItemBlock roughspunItemRoof;
+	public static Item roughspunItemBlock;
+	public static Item roughspunItemRoof;
 	public static Block roughspunBlock;
 	public static BlockStairLike roughspunRoof;
 
@@ -54,50 +56,46 @@ public class CompendiumTextiles {
 	public static BlockColored ramieBlock;
 
 	public void preInit() {
-		grassFiber = new Item();
-		setupItem(grassFiber, "grassfiber");
+		grassFiber = TCItems.registerItem("grassfiber", TinkersCompendium.tab);
 
-		roughspunCord = new Item();
-		setupItem(roughspunCord, "roughspuncord");
+		roughspunCord = TCItems.registerItem("roughspuncord", TinkersCompendium.tab);
 
-		roughspunBlock = new Block(Material.CLOTH);
-		setupBlock(this.roughspunBlock, "roughspunblock");
-		
+		roughspunBlock = TCBlocks.registerBlock("roughspunblock", Material.CLOTH);
+
+		roughspunItemBlock = TCItems.registerItemBlock("roughspunitemblock", roughspunBlock, TinkersCompendium.tab);
+
 		roughspunRoof = new BlockStairLike(Material.CLOTH);
-		setupBlock(this.roughspunRoof, "roughspunblockroof");
+		TCBlocks.registerBlock(this.roughspunRoof, "roughspunblockroof");
 
-		roughspunItemBlock = new ItemBlock(roughspunBlock);
-		setupItem(roughspunItemBlock, "roughspunitemblock");
-		
-		roughspunItemRoof = new ItemBlock(roughspunRoof);
-		setupItem(roughspunItemRoof, "roughspunblockitemroof");
+		this.roughspunItemRoof = TCItems.registerItemBlock("roughspunitemblockroof", roughspunRoof,
+				TinkersCompendium.tab);
 
 		cotton = new ItemCotton();
-		setupItem(cotton, "cotton");
-		
+		TCItems.registerItem("cotton", cotton, TinkersCompendium.tab);
+
 		cottonCrop = new BlockCottonCrop();
-		setupBlock(cottonCrop, "cottonCrop");
-		
+		TCBlocks.registerBlock(cottonCrop, "cottonCrop");
+
 		cottonSeed = new ItemSeeds(cottonCrop, Blocks.FARMLAND);
-		setupItem(cottonSeed, "cottonseed");
-		
+		TCItems.registerItem("cottonseed", cottonSeed, TinkersCompendium.tab);
+
 		cottonYarn = new ItemColors();
-		setupItem(cottonYarn, "cottonyarn");
+		TCItems.registerItem("cottonyarn", cottonYarn, TinkersCompendium.tab);
 
 		cottonBlock = new BlockColored(Material.CLOTH);
-		setupBlock(cottonBlock, "cottonblock");
+		TCBlocks.registerBlock(cottonBlock, "cottonblock");
 
 		cottonItemBlock = new ItemCloth(cottonBlock);
-		setupItem(cottonItemBlock, "cottonitemblock");
-		
+		TCItems.registerItem("cottonitemblock", cottonItemBlock, TinkersCompendium.tab);
+
 		silkThread = new ItemColors();
-		setupItem(silkThread, "silkyarn");
+		TCItems.registerItem("silkyarn", silkThread, TinkersCompendium.tab);
 
 		silkBlock = new BlockColored(Material.CLOTH);
-		setupBlock(silkBlock, "silkblock");
+		TCBlocks.registerBlock(silkBlock, "silkblock");
 
 		silkItemBlock = new ItemCloth(silkBlock);
-		setupItem(silkItemBlock, "silkitemblock");
+		TCItems.registerItem("silkitemblock", silkItemBlock, TinkersCompendium.tab);
 	}
 
 	public void init() {
@@ -115,26 +113,27 @@ public class CompendiumTextiles {
 		register.register(this.roughspunCord);
 		register.register(roughspunItemBlock);
 		register.register(roughspunItemRoof);
-		
+
 		register.register(cotton);
 		register.register(cottonSeed);
 		register.register(cottonYarn);
 		register.register(this.cottonItemBlock);
-		
+
 		register.register(silkThread);
 		register.register(silkItemBlock);
 
 		TinkersCompendium.proxy.registerItemRenderer(grassFiber, 0, "grassfiber");
 		TinkersCompendium.proxy.registerItemRenderer(roughspunCord, 0, "roughspuncord");
 		TinkersCompendium.proxy.registerItemRenderer(roughspunItemBlock, 0, "roughspunblock");
-		
+
 		TinkersCompendium.proxy.registerItemRenderer(cottonSeed, 0, "cottonseed");
 		TinkersCompendium.proxy.registerItemRenderer(cotton, 0, "cotton");
 
 		for (int i = 0; i < 16; i++) {
 			TinkersCompendium.proxy.registerItemRenderer(cottonYarn, i, "cottonyarn_" + EnumDyeColor.byDyeDamage(i));
-			TinkersCompendium.proxy.registerItemRenderer(cottonItemBlock, i, "cottonblock_" + EnumDyeColor.byMetadata(i));
-			
+			TinkersCompendium.proxy.registerItemRenderer(cottonItemBlock, i,
+					"cottonblock_" + EnumDyeColor.byMetadata(i));
+
 			TinkersCompendium.proxy.registerItemRenderer(silkThread, i, "silkthread_" + EnumDyeColor.byDyeDamage(i));
 			TinkersCompendium.proxy.registerItemRenderer(silkItemBlock, i, "silkblock_" + EnumDyeColor.byMetadata(i));
 		}
@@ -152,15 +151,5 @@ public class CompendiumTextiles {
 		// TinkersCompendium.proxy.registerBlockRenderer(roughspunBlock,
 		// "roughspunblock");
 		// TinkersCompendium.proxy.registerBlockRenderer(cottonBlock, "cottonblock");
-	}
-
-	void setupItem(Item i, String name) {
-		i.setUnlocalizedName(name).setRegistryName(new ResourceLocation(Reference.MOD_ID, name)).setCreativeTab(tab);
-	}
-
-	void setupBlock(Block b, String name) {
-		b.setUnlocalizedName(name).setRegistryName(new ResourceLocation(Reference.MOD_ID, name)).setCreativeTab(tab);
-		b.setHardness(0.8f);
-		b.setResistance(4);
 	}
 }

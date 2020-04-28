@@ -4,15 +4,20 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.logging.log4j.Logger;
 
+import lance5057.tDefense.core.addons.actuallyadditions.AddonActuallyAdditions;
 import lance5057.tDefense.core.addons.bloodmagic.AddonBloodMagic;
 import lance5057.tDefense.core.addons.botania.AddonBotania;
 import lance5057.tDefense.core.addons.ebwizardry.AddonEBWizardry;
 import lance5057.tDefense.core.addons.toolleveling.AddonToolLeveling;
 import lance5057.tDefense.core.entities.CompendiumEntities;
 import lance5057.tDefense.core.events.TDEvents;
+import lance5057.tDefense.core.library.ModuleBase;
+import lance5057.tDefense.core.library.OutputWikiPages;
 import lance5057.tDefense.core.library.book.CompendiumBook;
 import lance5057.tDefense.core.materials.CompendiumMaterials;
 import lance5057.tDefense.core.materials.CompendiumTraits;
@@ -45,7 +50,7 @@ import slimeknights.mantle.client.CreativeTab;
 @Mod(modid = Reference.MOD_ID, version = Reference.VERSION, name = Reference.MOD_NAME, dependencies = "required-after:tconstruct@[1.12-2.7.2.15,);")
 public class TinkersCompendium {
 
-	//public static int modGuiIndex = 0;
+	// public static int modGuiIndex = 0;
 	// public static final int GUI_CREST_INV = modGuiIndex++;
 	// public static final int GUI_ANVIL_INV = modGuiIndex++;
 	// public static final int GUI_GUIDEBOOK = modGuiIndex++;
@@ -53,7 +58,7 @@ public class TinkersCompendium {
 
 	@Mod.Instance(Reference.MOD_ID)
 	public static TinkersCompendium instance = new TinkersCompendium();
-	
+
 	public static Logger logger;
 
 	PacketHandler phandler = new PacketHandler();
@@ -61,10 +66,13 @@ public class TinkersCompendium {
 	public static CreativeTab tab = new CreativeTab("tinkerscompendium", new ItemStack(Items.SHIELD));
 	public static TCConfig config;
 
-	public static final SimpleNetworkWrapper networkInstance = NetworkRegistry.INSTANCE.newSimpleChannel(Reference.MOD_ID);
+	public static final SimpleNetworkWrapper networkInstance = NetworkRegistry.INSTANCE
+			.newSimpleChannel(Reference.MOD_ID);
 
 	public static Modifiers mods;
 
+	public static TCItems items;
+	public static TCBlocks blocks;
 	public static TDParts parts;
 	public static TDTools tools;
 	public static CompendiumMaterials mats;
@@ -73,25 +81,30 @@ public class TinkersCompendium {
 	public static CompendiumModifiers modifiers;
 	public static TDEvents events;
 	public static CompendiumEntities entities;
-	
+
 	SpawnArmorOnMobs mobs = new SpawnArmorOnMobs();
 
 	public static CompendiumTextiles textiles;
+
+	public static List<ModuleBase> addons = new ArrayList<ModuleBase>();
 
 	public static AddonBloodMagic bloodmagic;
 	public static AddonBotania botania;
 	public static AddonToolLeveling leveling;
 	public static AddonEBWizardry wizardry;
+	public static AddonActuallyAdditions actadd;
 
 	@SidedProxy(clientSide = "lance5057.tDefense.proxy.ClientProxy", serverSide = "lance5057.tDefense.proxy.CommonProxy")
 	public static CommonProxy proxy;
-	
+
 	public static Item book;
 
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent e) {
 		logger = e.getModLog();
-		
+
+		blocks = new TCBlocks();
+		items = new TCItems();
 		parts = new TDParts();
 		mats = new CompendiumMaterials();
 		tools = new TDTools();
@@ -102,17 +115,23 @@ public class TinkersCompendium {
 		entities = new CompendiumEntities();
 		textiles = new CompendiumTextiles();
 		config = new TCConfig();
-		
+
 		MinecraftForge.EVENT_BUS.register(mobs);
-		
+
 		if (Loader.isModLoaded("bloodmagic") && TCConfig.addons.BloodMagic)
-			bloodmagic = new AddonBloodMagic();
+			addons.add(bloodmagic = new AddonBloodMagic());
 		if (Loader.isModLoaded("botania") && TCConfig.addons.Botania)
-			botania = new AddonBotania();
-		if(Loader.isModLoaded("tinkertoolleveling") && TCConfig.addons.ToolLeveling)
-			leveling = new AddonToolLeveling();
-		if(Loader.isModLoaded("ebwizardry") && TCConfig.addons.EBWizardry)
-			wizardry = new AddonEBWizardry();
+			addons.add(botania = new AddonBotania());
+		if (Loader.isModLoaded("tinkertoolleveling") && TCConfig.addons.ToolLeveling)
+			addons.add(leveling = new AddonToolLeveling());
+		if (Loader.isModLoaded("ebwizardry") && TCConfig.addons.EBWizardry)
+			addons.add(wizardry = new AddonEBWizardry());
+		// if (TCConfig.addons.ActuallyAdditions)
+		addons.add(actadd = new AddonActuallyAdditions());
+
+		for (ModuleBase m : addons) {
+			m.preInit(e);
+		}
 
 		parts.preInit(e);
 		mats.preInit(e);
@@ -123,14 +142,17 @@ public class TinkersCompendium {
 		textiles.preInit();
 		events.preInit();
 		entities.preInit(e);
-		
-		if(bloodmagic != null)
-			bloodmagic.preInit(e);
-		if(botania != null)
-			botania.preInit(e);
-		if(wizardry != null)
-			wizardry.preInit(e);
-		
+
+//		if(bloodmagic != null)
+//			bloodmagic.preInit(e);
+//		if(botania != null)
+//			botania.preInit(e);
+//		if(wizardry != null)
+//			wizardry.preInit(e);
+
+		items.preInit(e);
+		blocks.preInit(e);
+
 		proxy.preInit();
 
 		if (FMLCommonHandler.instance().getSide() == Side.CLIENT) {
@@ -150,23 +172,29 @@ public class TinkersCompendium {
 		workstations.init(e);
 		textiles.init();
 		events.init();
-		
+
 		entities.init(e);
-		
-		if(bloodmagic != null)
-			bloodmagic.init(e);
-		if(botania != null)
-			botania.init(e);
-		if(leveling != null)
-			leveling.init(e);
-		if(wizardry != null)
-			wizardry.init(e);
-		
+
+//		if(bloodmagic != null)
+//			bloodmagic.init(e);
+//		if(botania != null)
+//			botania.init(e);
+//		if(leveling != null)
+//			leveling.init(e);
+//		if(wizardry != null)
+//			wizardry.init(e);
+
+		for (ModuleBase m : addons) {
+			m.init(e);
+		}
+
+		items.init(e);
+		blocks.init(e);
+
 		proxy.init();
 
 		phandler.init();
 
-		
 	}
 
 	@Mod.EventHandler
@@ -179,27 +207,38 @@ public class TinkersCompendium {
 		workstations.postInit(e);
 		textiles.postInit();
 		events.postInit();
-		
+
 		entities.postInit(e);
-		
-		if(bloodmagic != null)
-			bloodmagic.postInit(e);		
-		if(botania != null)
-			botania.postInit(e);	
-		if(leveling != null)
-			leveling.postInit(e);
-		if(wizardry != null)
-			wizardry.postInit(e);
-		
+
+//		if(bloodmagic != null)
+//			bloodmagic.postInit(e);		
+//		if(botania != null)
+//			botania.postInit(e);	
+//		if(leveling != null)
+//			leveling.postInit(e);
+//		if(wizardry != null)
+//			wizardry.postInit(e);
+
+		for (ModuleBase m : addons) {
+			m.postInit(e);
+		}
+
+		items.postInit(e);
+		blocks.postInit(e);
+
 		proxy.postInit();
 
 		if (TCConfig.debug) {
 			dumpBiomeInfo();
 		}
+
+		if (TinkersCompendium.config.developerFeatures) {
+			OutputWikiPages.outputWikiSidebar(mats.materials);
+		}
 	}
 
-	
-	//public static List<MaterialHelper.oreGen> biomeCheck = new ArrayList<MaterialHelper.oreGen>();
+	// public static List<MaterialHelper.oreGen> biomeCheck = new
+	// ArrayList<MaterialHelper.oreGen>();
 
 	void dumpBiomeInfo() {
 		File f = new File(Loader.instance().getConfigDir(), "BiomeDump.txt");
@@ -262,6 +301,5 @@ public class TinkersCompendium {
 			return true;
 		return false;
 	}
-	
-	
+
 }

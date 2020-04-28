@@ -231,10 +231,4 @@ public class TDParts extends ModuleBase
 			ModelRegisterUtil.registerPartModel(a);
 		}
 	}
-
-	@Override
-	public void registerBlocks(Register<Block> event) {
-		// TODO Auto-generated method stub
-		
-	}
 }

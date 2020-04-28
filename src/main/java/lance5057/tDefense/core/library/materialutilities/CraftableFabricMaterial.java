@@ -1,5 +1,7 @@
 package lance5057.tDefense.core.library.materialutilities;
 
+import java.io.PrintWriter;
+
 import lance5057.tDefense.core.materials.stats.BackpackMaterialStats;
 import lance5057.tDefense.core.materials.stats.FabricMaterialStats;
 import net.minecraft.item.ItemStack;
@@ -33,31 +35,31 @@ public class CraftableFabricMaterial implements MaterialBase {
 	}
 
 	@Override
-	public void setupPre(Material mat) {
+	public void setupPre(MaterialHelper mat) {
 
-		mat.setCraftable(true).setCastable(false);
+		mat.mat.setCraftable(true).setCastable(false);
 
 		if (fabric != null)
-			TinkerRegistry.addMaterialStats(mat, fabric);
+			TinkerRegistry.addMaterialStats(mat.mat, fabric);
 		if (bowstring != null)
-			TinkerRegistry.addMaterialStats(mat, bowstring);
+			TinkerRegistry.addMaterialStats(mat.mat, bowstring);
 		if (backpack != null)
-			TinkerRegistry.addMaterialStats(mat, backpack);
+			TinkerRegistry.addMaterialStats(mat.mat, backpack);
 
 		if (cord != null)
-			mat.addItem(cord, 1, Material.VALUE_Ingot / 4);
+			mat.mat.addItem(cord, 1, Material.VALUE_Ingot / 4);
 		if (block != null) {
-			mat.addItem(block, 1, Material.VALUE_Ingot);
+			mat.mat.addItem(block, 1, Material.VALUE_Ingot);
 		}
 	}
 
 	@Override
-	public void setupPost(Material mat) {
+	public void setupPost(MaterialHelper mat) {
 
 	}
 
 	@Override
-	public void setupClient(Material mat) {
+	public void setupClient(MaterialHelper mat) {
 	}
 
 	@Override
@@ -67,12 +69,18 @@ public class CraftableFabricMaterial implements MaterialBase {
 	}
 
 	@Override
-	public void setupModels(Material mat) {
+	public void setupModels(MaterialHelper mat) {
 	}
 
 	@Override
-	public void setupInit(Material mat) {
-		mat.setRepresentativeItem(block);
+	public void setupInit(MaterialHelper mat) {
+		mat.mat.setRepresentativeItem(block);
+	}
+
+	@Override
+	public void setupWiki(MaterialHelper mat,PrintWriter out) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

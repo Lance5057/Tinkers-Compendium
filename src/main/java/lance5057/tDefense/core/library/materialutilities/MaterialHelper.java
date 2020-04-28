@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 
 import lance5057.tDefense.TinkersCompendium;
+import lance5057.tDefense.core.library.OutputWikiPages;
 import slimeknights.tconstruct.library.MaterialIntegration;
 import slimeknights.tconstruct.library.TinkerRegistry;
 import slimeknights.tconstruct.library.materials.Material;
@@ -40,13 +41,13 @@ public class MaterialHelper {
 
 	public void pre() {
 		for (MaterialBase mb : addons) {
-			mb.setupPre(mat);
+			mb.setupPre(this);
 		}
 	}
 
 	public void init() {
 		for (MaterialBase mb : addons) {
-			mb.setupInit(mat);
+			mb.setupInit(this);
 		}
 	}
 
@@ -67,22 +68,27 @@ public class MaterialHelper {
 
 	public void post() {
 		for (MaterialBase mb : addons) {
-			mb.setupPost(mat);
+			mb.setupPost(this);
 		}
 
 		if (!preset)
 			matint.integrate();
+		
+		if(TinkersCompendium.config.developerFeatures)
+		{
+			OutputWikiPages.outputWikiMaterial(this);
+		}
 	}
 
 	public void client() {
 		for (MaterialBase mb : addons) {
-			mb.setupClient(mat);
+			mb.setupClient(this);
 		}
 	}
 
 	public void models() {
 		for (MaterialBase mb : addons) {
-			mb.setupModels(mat);
+			mb.setupModels(this);
 		}
 	}
 }

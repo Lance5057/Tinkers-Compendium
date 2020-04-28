@@ -8,6 +8,7 @@ import net.minecraft.block.Block;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent.Register;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -44,6 +45,7 @@ public class AddonEBWizardry extends ModuleBase {
 		sorceryFocus.addRecipeMatch(new RecipeMatch.ItemCombination(1, new ItemStack(WizardryItems.magic_crystal,1,6), new ItemStack(WizardryItems.magic_silk), new ItemStack(Items.GOLD_INGOT)));
 		lightningFocus.addRecipeMatch(new RecipeMatch.ItemCombination(1, new ItemStack(WizardryItems.magic_crystal,1,3), new ItemStack(WizardryItems.magic_silk), new ItemStack(Items.GOLD_INGOT)));
 
+		MinecraftForge.EVENT_BUS.register(new EBWizardryEvents());
 	}
 
 	@Override
@@ -52,16 +54,16 @@ public class AddonEBWizardry extends ModuleBase {
 		
 	}
 
-	@Override
-	public void registerItems(Register<Item> event) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void registerBlocks(Register<Block> event) {
-		// TODO Auto-generated method stub
-		
-	}
+//	@Override
+//	public void registerItems(Register<Item> event) {
+//		// TODO Auto-generated method stub
+//		
+//	}
+//
+//	@Override
+//	public void registerBlocks(Register<Block> event) {
+//		// TODO Auto-generated method stub
+//		
+//	}
 
 }

@@ -1,0 +1,33 @@
+{
+"parent": "block/cube_all",
+	"textures": {
+		"sides": "minecraft:blocks/sandstone_normal",
+		"top": "minecraft:blocks/sandstone_top",
+		"bottom": "minecraft:blocks/sandstone_bottom",
+		"overlay": "tinkerscompendium:blocks/sandstone_ore"
+	},
+  "elements": [
+    {
+      "from": [ 0, 0, 0 ],
+      "to": [ 16, 16, 16 ],
+      "faces": {
+        "down":  { "tintindex": 0, "texture": "#bottom", "cullface": "down" },
+        "up":    { "tintindex": 0, "texture": "#top", "cullface": "up" },
+        "north": { "tintindex": 0, "texture": "#sides", "cullface": "north" },
+        "south": { "tintindex": 0, "texture": "#sides", "cullface": "south" },
+        "west":  { "tintindex": 0, "texture": "#sides", "cullface": "west" },
+        "east":  { "tintindex": 0, "texture": "#sides", "cullface": "east" }
+      }
+    },
+	{
+      "from": [ 0, 0, 0 ],
+      "to": [ 16, 16, 16 ],
+      "faces": {
+        "north": { "tintindex": 1, "texture": "#overlay", "cullface": "north" },
+        "south": { "tintindex": 1, "texture": "#overlay", "cullface": "south" },
+        "west":  { "tintindex": 1, "texture": "#overlay", "cullface": "west" },
+        "east":  { "tintindex": 1, "texture": "#overlay", "cullface": "east" }
+      }
+    }
+	]
+}

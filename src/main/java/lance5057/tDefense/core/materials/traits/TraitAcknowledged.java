@@ -15,7 +15,7 @@ public class TraitAcknowledged extends AbstractTDTrait {
 	public TraitAcknowledged() {
 		super("acknowledged", 0xffffff);
 
-		MinecraftForge.EVENT_BUS.register(this);
+		//MinecraftForge.EVENT_BUS.register(this);
 	}
 
 	@SubscribeEvent

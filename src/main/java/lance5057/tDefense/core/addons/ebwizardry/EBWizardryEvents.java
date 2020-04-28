@@ -18,11 +18,10 @@ import slimeknights.tconstruct.library.traits.ITrait;
 import slimeknights.tconstruct.library.utils.TagUtil;
 import slimeknights.tconstruct.library.utils.ToolHelper;
 
-@Mod.EventBusSubscriber(modid = Reference.MOD_ID)
 public class EBWizardryEvents {
 
 	@SubscribeEvent(priority = EventPriority.LOW)
-	public static void onSpellCastPreEvent(SpellCastEvent.Pre event){
+	public void onSpellCastPreEvent(SpellCastEvent.Pre event){
 		if (event.getCaster() == null)
 			return;
 		

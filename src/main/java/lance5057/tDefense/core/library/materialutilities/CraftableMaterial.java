@@ -1,9 +1,14 @@
 package lance5057.tDefense.core.library.materialutilities;
 
+import java.io.PrintWriter;
+
 import org.apache.commons.lang3.StringUtils;
 
 import lance5057.tDefense.Reference;
+import lance5057.tDefense.TCBlocks;
+import lance5057.tDefense.TCItems;
 import lance5057.tDefense.TinkersCompendium;
+import lance5057.tDefense.core.library.OutputWikiPages;
 import lance5057.tDefense.core.materials.CompendiumMaterials;
 import lance5057.tDefense.core.materials.stats.ShieldMaterialStats;
 import net.minecraft.block.Block;
@@ -54,63 +59,54 @@ public class CraftableMaterial implements MaterialBase {
 	}
 
 	@Override
-	public void setupPre(Material mat) {
+	public void setupPre(MaterialHelper mat) {
 		if (doIngot && ingot == null) {
-			ingot = registerItem(type + "_" + mat.identifier, TinkersCompendium.tab);
-			CompendiumMaterials.itemList.add(ingot);
+			ingot = TCItems.registerItem(type + "_" + mat.mat.identifier, TinkersCompendium.tab);
 		}
 
 		if (doNugget && nugget == null) {
-			nugget = registerItem("nugget_" + mat.identifier, TinkersCompendium.tab);
-			CompendiumMaterials.itemList.add(nugget);
+			nugget = TCItems.registerItem("nugget_" + mat.mat.identifier, TinkersCompendium.tab);
 		}
 
 		if (doBlock && block == null) {
-			block = new Block(net.minecraft.block.material.Material.IRON)
-					.setRegistryName(new ResourceLocation(Reference.MOD_ID, "block_" + mat.identifier))
-					.setUnlocalizedName("block_" + mat.identifier).setCreativeTab(TinkersCompendium.tab);
-			CompendiumMaterials.blockList.add(block);
-			CompendiumMaterials.itemList
-					.add(registerItemBlock("block_" + mat.identifier, block, TinkersCompendium.tab));
+			block = TCBlocks.registerBlock("block_" + mat.mat.identifier, net.minecraft.block.material.Material.ROCK);
+			TCItems.registerItemBlock("block_" + mat.mat.identifier, block, TinkersCompendium.tab);
 		}
 
-		mat.setCraftable(true).setCastable(false);
+		mat.mat.setCraftable(true).setCastable(false);
 
 		if (head != null)
-			TinkerRegistry.addMaterialStats(mat, head);
+			TinkerRegistry.addMaterialStats(mat.mat, head);
 		if (handle != null)
-			TinkerRegistry.addMaterialStats(mat, handle);
+			TinkerRegistry.addMaterialStats(mat.mat, handle);
 		if (extra != null)
-			TinkerRegistry.addMaterialStats(mat, extra);
+			TinkerRegistry.addMaterialStats(mat.mat, extra);
 		if (shield != null)
-			TinkerRegistry.addMaterialStats(mat, shield);
+			TinkerRegistry.addMaterialStats(mat.mat, shield);
 		if (bow != null)
-			TinkerRegistry.addMaterialStats(mat, bow);
+			TinkerRegistry.addMaterialStats(mat.mat, bow);
 	}
 
 	@Override
-	public void setupPost(Material mat) {
+	public void setupPost(MaterialHelper mat) {
 		if (doIngot)
-			OreDictionary.registerOre(type + StringUtils.capitalize(mat.identifier), new ItemStack(ingot));
+			OreDictionary.registerOre(type + StringUtils.capitalize(mat.mat.identifier), new ItemStack(ingot));
 		if (doNugget)
-			OreDictionary.registerOre("nugget" + StringUtils.capitalize(mat.identifier), new ItemStack(nugget));
+			OreDictionary.registerOre("nugget" + StringUtils.capitalize(mat.mat.identifier), new ItemStack(nugget));
 		if (doBlock)
-			OreDictionary.registerOre("block" + StringUtils.capitalize(mat.identifier), new ItemStack(block));
+			OreDictionary.registerOre("block" + StringUtils.capitalize(mat.mat.identifier), new ItemStack(block));
 
-		
-		
-		
 	}
 
 	@Override
-	public void setupClient(Material mat) {
+	public void setupClient(MaterialHelper mat) {
 		if (doIngot)
-			TinkersCompendium.proxy.registerItemColorHandler(mat.materialTextColor, ingot);
+			TinkersCompendium.proxy.registerItemColorHandler(mat.color, ingot);
 		if (doNugget)
-			TinkersCompendium.proxy.registerItemColorHandler(mat.materialTextColor, nugget);
+			TinkersCompendium.proxy.registerItemColorHandler(mat.color, nugget);
 		if (doBlock) {
-			TinkersCompendium.proxy.registerBlockColorHandler(mat.materialTextColor, block);
-			TinkersCompendium.proxy.registerItemColorHandler(mat.materialTextColor, Item.getItemFromBlock(block));
+			TinkersCompendium.proxy.registerBlockColorHandler(mat.color, block);
+			TinkersCompendium.proxy.registerItemColorHandler(mat.color, Item.getItemFromBlock(block));
 		}
 	}
 
@@ -121,7 +117,7 @@ public class CraftableMaterial implements MaterialBase {
 	}
 
 	@Override
-	public void setupModels(Material mat) {
+	public void setupModels(MaterialHelper mat) {
 		if (doIngot)
 			TinkersCompendium.proxy.registerItemRenderer(ingot, 0, type);
 		if (doNugget)
@@ -134,39 +130,40 @@ public class CraftableMaterial implements MaterialBase {
 	}
 
 	@Override
-	public void setupInit(Material mat) {
-		if (ingot != null)
-		{
-			mat.addItem(ingot, 1, Material.VALUE_Ingot);
-			mat.setRepresentativeItem(ingot);
+	public void setupInit(MaterialHelper mat) {
+		if (ingot != null) {
+			mat.mat.addItem(ingot, 1, Material.VALUE_Ingot);
+			mat.mat.setRepresentativeItem(ingot);
 		}
 		if (nugget != null)
-			mat.addItem(nugget, 1, Material.VALUE_Nugget);
+			mat.mat.addItem(nugget, 1, Material.VALUE_Nugget);
 		if (block != null)
-			mat.addItem(block, Material.VALUE_Block);
-		
-		mat.addItem(type + StringUtils.capitalize(mat.identifier), 1, mat.VALUE_Ingot);
-		mat.addItem("nugget" + StringUtils.capitalize(mat.identifier), 1, mat.VALUE_Nugget);
-		mat.addItem("block" + StringUtils.capitalize(mat.identifier), 1, mat.VALUE_Block);
-			
+			mat.mat.addItem(block, Material.VALUE_Block);
+
+		mat.mat.addItem(type + StringUtils.capitalize(mat.mat.identifier), 1, mat.mat.VALUE_Ingot);
+		mat.mat.addItem("nugget" + StringUtils.capitalize(mat.mat.identifier), 1, mat.mat.VALUE_Nugget);
+		mat.mat.addItem("block" + StringUtils.capitalize(mat.mat.identifier), 1, mat.mat.VALUE_Block);
+
 	}
-	
-	public CraftableMaterial disableIngot()
-	{
+
+	public CraftableMaterial disableIngot() {
 		this.doIngot = false;
 		return this;
 	}
-	
-	public CraftableMaterial disableNugget()
-	{
+
+	public CraftableMaterial disableNugget() {
 		this.doNugget = false;
 		return this;
 	}
-	
-	public CraftableMaterial disableBlock()
-	{
+
+	public CraftableMaterial disableBlock() {
 		this.doBlock = false;
 		return this;
+	}
+
+	@Override
+	public void setupWiki(MaterialHelper mat, PrintWriter out) {
+		OutputWikiPages.createMaterialOutput(head, handle, shield, extra, bow, out);
 	}
 
 }

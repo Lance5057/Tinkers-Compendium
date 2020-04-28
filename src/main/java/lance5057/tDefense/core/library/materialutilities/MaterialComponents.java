@@ -1,9 +1,13 @@
 package lance5057.tDefense.core.library.materialutilities;
 
+import java.io.PrintWriter;
+
 import org.apache.commons.lang3.StringUtils;
 
 import lance5057.tDefense.Reference;
+import lance5057.tDefense.TCBlocks;
 import lance5057.tDefense.TCConfig;
+import lance5057.tDefense.TCItems;
 import lance5057.tDefense.TinkersCompendium;
 import lance5057.tDefense.core.blocks.ComponentDoor;
 import lance5057.tDefense.core.blocks.ComponentPane;
@@ -11,7 +15,6 @@ import lance5057.tDefense.core.blocks.ComponentStake;
 import lance5057.tDefense.core.blocks.ComponentTrapDoor;
 import lance5057.tDefense.core.items.ComponentItemDoor;
 import lance5057.tDefense.core.materials.CompendiumMaterials;
-import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -49,164 +52,141 @@ public class MaterialComponents implements MaterialBase {
 	}
 
 	@Override
-	public void setupPre(Material mat) {
+	public void setupPre(MaterialHelper mat) {
 
 		if (dust == null && TinkersCompendium.config.components.enableDust) {
-			dust = registerItem("dust_" + mat.identifier, TinkersCompendium.tab);
-			CompendiumMaterials.itemList.add(dust);
+			dust = TCItems.registerItem("dust_" + mat.mat.identifier, TinkersCompendium.tab);
 		}
+		
 		if (grain == null && TinkersCompendium.config.components.enableGrain) {
-			grain = registerItem("grain_" + mat.identifier, TinkersCompendium.tab);
-			CompendiumMaterials.itemList.add(grain);
+			grain = TCItems.registerItem("grain_" + mat.mat.identifier, TinkersCompendium.tab);
 		}
 
 		if (plate == null && TinkersCompendium.config.components.enablePlate) {
-			plate = registerItem("plate_" + mat.identifier, TinkersCompendium.tab);
-			CompendiumMaterials.itemList.add(plate);
+			plate = TCItems.registerItem("plate_" + mat.mat.identifier, TinkersCompendium.tab);
 		}
 
 		if (coin == null && TinkersCompendium.config.components.enableCoin) {
-			coin = registerItem("coin_" + mat.identifier, TinkersCompendium.tab);
-			CompendiumMaterials.itemList.add(coin);
+			coin = TCItems.registerItem("coin_" + mat.mat.identifier, TinkersCompendium.tab);
 		}
 
 		if (gear == null && TinkersCompendium.config.components.enableGear) {
-			gear = registerItem("gear_" + mat.identifier, TinkersCompendium.tab);
-			CompendiumMaterials.itemList.add(gear);
+			gear = TCItems.registerItem("gear_" + mat.mat.identifier, TinkersCompendium.tab);
 		}
 
 		if (rod == null && TinkersCompendium.config.components.enableRod) {
-			rod = registerItem("rod_" + mat.identifier, TinkersCompendium.tab);
-			CompendiumMaterials.itemList.add(rod);
+			rod = TCItems.registerItem("rod_" + mat.mat.identifier, TinkersCompendium.tab);
 		}
 
 		if (coil == null && TinkersCompendium.config.components.enableCoil) {
-			coil = registerItem("coil_" + mat.identifier, TinkersCompendium.tab);
-			CompendiumMaterials.itemList.add(coil);
+			coil = TCItems.registerItem("coil_" + mat.mat.identifier, TinkersCompendium.tab);
 		}
 
 		if (spring == null && TinkersCompendium.config.components.enableSpring) {
-			spring = registerItem("spring_" + mat.identifier, TinkersCompendium.tab);
-			CompendiumMaterials.itemList.add(spring);
+			spring = TCItems.registerItem("spring_" + mat.mat.identifier, TinkersCompendium.tab);
 		}
 
 		if (casing == null && TinkersCompendium.config.components.enableCasing) {
-			casing = registerItem("casing_" + mat.identifier, TinkersCompendium.tab);
-			CompendiumMaterials.itemList.add(casing);
+			casing = TCItems.registerItem("casing_" + mat.mat.identifier, TinkersCompendium.tab);
 		}
 
 		if (wire == null && TinkersCompendium.config.components.enableWire) {
-			wire = registerItem("wire_" + mat.identifier, TinkersCompendium.tab);
-			CompendiumMaterials.itemList.add(wire);
+			wire = TCItems.registerItem("wire_" + mat.mat.identifier, TinkersCompendium.tab);
 		}
 
 		if (stake == null) {
 			stake = new ComponentStake();
-			stake.setRegistryName(new ResourceLocation(Reference.MOD_ID, "stake_" + mat.identifier))
-					.setUnlocalizedName("stake_" + mat.identifier).setCreativeTab(TinkersCompendium.tab);
-			;
-			CompendiumMaterials.blockList.add(stake);
-			CompendiumMaterials.itemList
-					.add(registerItemBlock("stake_" + mat.identifier, stake, TinkersCompendium.tab));
+			TCBlocks.registerBlock(stake, "stake_" + mat.mat.identifier);
+			TCItems.registerItemBlock("stake_" + mat.mat.identifier, stake, TinkersCompendium.tab);
 		}
 
 		if (bars == null) {
 			bars = new ComponentPane(net.minecraft.block.material.Material.IRON, true);
-			bars.setRegistryName(new ResourceLocation(Reference.MOD_ID, "bars_" + mat.identifier))
-					.setUnlocalizedName("bars_" + mat.identifier).setCreativeTab(TinkersCompendium.tab);
-			;
-			CompendiumMaterials.blockList.add(bars);
-			CompendiumMaterials.itemList.add(registerItemBlock("bars_" + mat.identifier, bars, TinkersCompendium.tab));
+			TCBlocks.registerBlock(bars, "bars_" + mat.mat.identifier);
+			TCItems.registerItemBlock("bars_" + mat.mat.identifier, bars, TinkersCompendium.tab);
 		}
 
 		if (door == null && TCConfig.components.enableDoors) {
 			door = new ComponentDoor(net.minecraft.block.material.Material.IRON);
-			door.setRegistryName(new ResourceLocation(Reference.MOD_ID, "door_" + mat.identifier))
-					.setUnlocalizedName("door_" + mat.identifier).setCreativeTab(TinkersCompendium.tab);
-			;
-			CompendiumMaterials.blockList.add(door);
+			TCBlocks.registerBlock(door,"door_" + mat.mat.identifier);
+			
 			ComponentItemDoor b = new ComponentItemDoor(door);
-			b.setRegistryName(new ResourceLocation(Reference.MOD_ID, "door_" + mat.identifier))
-					.setUnlocalizedName("door_" + mat.identifier);
-			CompendiumMaterials.itemList.add(b);
+			TCItems.registerItem( "door_" + mat.mat.identifier, b,  TinkersCompendium.tab);
 			door.setItem(b);
 		}
 
 		if (trapdoor == null) {
 			trapdoor = new ComponentTrapDoor(net.minecraft.block.material.Material.IRON);
-			trapdoor.setRegistryName(new ResourceLocation(Reference.MOD_ID, "trapdoor_" + mat.identifier))
-					.setUnlocalizedName("trapdoor_" + mat.identifier).setCreativeTab(TinkersCompendium.tab);
-			;
-			CompendiumMaterials.blockList.add(trapdoor);
-			CompendiumMaterials.itemList
-					.add(registerItemBlock("trapdoor_" + mat.identifier, trapdoor, TinkersCompendium.tab));
+			TCBlocks.registerBlock(trapdoor, "trapdoor_" + mat.mat.identifier);
+			
+			TCItems.registerItemBlock("trapdoor_" + mat.mat.identifier, trapdoor, TinkersCompendium.tab);
 		}
 	}
 
 	@Override
-	public void setupPost(Material mat) {
+	public void setupPost(MaterialHelper mat) {
 
 		if (TinkersCompendium.config.components.enableDust)
-			OreDictionary.registerOre("dust" + StringUtils.capitalize(mat.identifier), new ItemStack(dust));
+			OreDictionary.registerOre("dust" + StringUtils.capitalize(mat.mat.identifier), new ItemStack(dust));
 		if (TinkersCompendium.config.components.enableGrain)
-			OreDictionary.registerOre("grain" + StringUtils.capitalize(mat.identifier), new ItemStack(grain));
+			OreDictionary.registerOre("grain" + StringUtils.capitalize(mat.mat.identifier), new ItemStack(grain));
 		if (TinkersCompendium.config.components.enableCoin)
-			OreDictionary.registerOre("coin" + StringUtils.capitalize(mat.identifier), new ItemStack(coin));
+			OreDictionary.registerOre("coin" + StringUtils.capitalize(mat.mat.identifier), new ItemStack(coin));
 		if (TinkersCompendium.config.components.enablePlate)
-			OreDictionary.registerOre("plate" + StringUtils.capitalize(mat.identifier), new ItemStack(plate));
+			OreDictionary.registerOre("plate" + StringUtils.capitalize(mat.mat.identifier), new ItemStack(plate));
 		if (TinkersCompendium.config.components.enableGear)
-			OreDictionary.registerOre("gear" + StringUtils.capitalize(mat.identifier), new ItemStack(gear));
+			OreDictionary.registerOre("gear" + StringUtils.capitalize(mat.mat.identifier), new ItemStack(gear));
 		if (TinkersCompendium.config.components.enableRod)
-			OreDictionary.registerOre("rod" + StringUtils.capitalize(mat.identifier), new ItemStack(rod));
+			OreDictionary.registerOre("rod" + StringUtils.capitalize(mat.mat.identifier), new ItemStack(rod));
 
 	}
 
 	@Override
-	public void setupClient(Material mat) {
+	public void setupClient(MaterialHelper mat) {
 
 		if (TinkersCompendium.config.components.enableDust)
-			TinkersCompendium.proxy.registerItemColorHandler(mat.materialTextColor, dust);
+			TinkersCompendium.proxy.registerItemColorHandler(mat.color, dust);
 		if (TinkersCompendium.config.components.enableGrain)
-			TinkersCompendium.proxy.registerItemColorHandler(mat.materialTextColor, grain);
+			TinkersCompendium.proxy.registerItemColorHandler(mat.color, grain);
 		if (TinkersCompendium.config.components.enableCoin)
-			TinkersCompendium.proxy.registerItemColorHandler(mat.materialTextColor, coin);
+			TinkersCompendium.proxy.registerItemColorHandler(mat.color, coin);
 		if (TinkersCompendium.config.components.enableGear)
-			TinkersCompendium.proxy.registerItemColorHandler(mat.materialTextColor, gear);
+			TinkersCompendium.proxy.registerItemColorHandler(mat.color, gear);
 		if (TinkersCompendium.config.components.enablePlate)
-			TinkersCompendium.proxy.registerItemColorHandler(mat.materialTextColor, plate);
+			TinkersCompendium.proxy.registerItemColorHandler(mat.color, plate);
 		if (TinkersCompendium.config.components.enableRod)
-			TinkersCompendium.proxy.registerItemColorHandler(mat.materialTextColor, rod);
+			TinkersCompendium.proxy.registerItemColorHandler(mat.color, rod);
 		if (TinkersCompendium.config.components.enableSpring)
-			TinkersCompendium.proxy.registerItemColorHandler(mat.materialTextColor, spring);
+			TinkersCompendium.proxy.registerItemColorHandler(mat.color, spring);
 		if (TinkersCompendium.config.components.enableCoil)
-			TinkersCompendium.proxy.registerItemColorHandler(mat.materialTextColor, coil);
+			TinkersCompendium.proxy.registerItemColorHandler(mat.color, coil);
 		if (TinkersCompendium.config.components.enableWire)
-			TinkersCompendium.proxy.registerItemColorHandler(mat.materialTextColor, wire);
+			TinkersCompendium.proxy.registerItemColorHandler(mat.color, wire);
 		if (TinkersCompendium.config.components.enableCasing)
-			TinkersCompendium.proxy.registerItemColorHandler(mat.materialTextColor, casing);
+			TinkersCompendium.proxy.registerItemColorHandler(mat.color, casing);
 
 		if (TinkersCompendium.config.components.enableStake) {
 			if (!hasBlockTexture)
-				TinkersCompendium.proxy.registerBlockColorHandler(mat.materialTextColor, stake);
-			TinkersCompendium.proxy.registerItemColorHandler(mat.materialTextColor, Item.getItemFromBlock(stake));
+				TinkersCompendium.proxy.registerBlockColorHandler(mat.color, stake);
+			TinkersCompendium.proxy.registerItemColorHandler(mat.color, Item.getItemFromBlock(stake));
 		}
 
 		if (TinkersCompendium.config.components.enableDoors) {
 			if (!hasBlockTexture)
-				TinkersCompendium.proxy.registerBlockColorHandler(mat.materialTextColor, door);
-			TinkersCompendium.proxy.registerItemColorHandler(mat.materialTextColor, door.getItem());
+				TinkersCompendium.proxy.registerBlockColorHandler(mat.color, door);
+			TinkersCompendium.proxy.registerItemColorHandler(mat.color, door.getItem());
 		}
 
 		if (TinkersCompendium.config.components.enableTrapDoors) {
 			if (!hasBlockTexture)
-				TinkersCompendium.proxy.registerBlockColorHandler(mat.materialTextColor, trapdoor);
-			TinkersCompendium.proxy.registerItemColorHandler(mat.materialTextColor, Item.getItemFromBlock(trapdoor));
+				TinkersCompendium.proxy.registerBlockColorHandler(mat.color, trapdoor);
+			TinkersCompendium.proxy.registerItemColorHandler(mat.color, Item.getItemFromBlock(trapdoor));
 		}
 
 		if (TinkersCompendium.config.components.enableBars) {
 			if (!hasBlockTexture)
-				TinkersCompendium.proxy.registerBlockColorHandler(mat.materialTextColor, bars);
-			TinkersCompendium.proxy.registerItemColorHandler(mat.materialTextColor, Item.getItemFromBlock(bars));
+				TinkersCompendium.proxy.registerBlockColorHandler(mat.color, bars);
+			TinkersCompendium.proxy.registerItemColorHandler(mat.color, Item.getItemFromBlock(bars));
 		}
 	}
 
@@ -217,7 +197,7 @@ public class MaterialComponents implements MaterialBase {
 	}
 
 	@Override
-	public void setupModels(Material mat) {
+	public void setupModels(MaterialHelper mat) {
 
 		if (TinkersCompendium.config.components.enableDust)
 			TinkersCompendium.proxy.registerItemRenderer(dust, 0, "dust");
@@ -268,7 +248,13 @@ public class MaterialComponents implements MaterialBase {
 	}
 
 	@Override
-	public void setupInit(Material mat) {
+	public void setupInit(MaterialHelper mat) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setupWiki(MaterialHelper mat,PrintWriter out) {
 		// TODO Auto-generated method stub
 		
 	}

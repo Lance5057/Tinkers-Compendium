@@ -31,7 +31,7 @@ public class TDOreBlock extends BlockOre {
 		this.setCreativeTab(TinkersCompendium.tab);
 	}
 
-	public TDOreBlock(Item clump, float hardness, float resistance, int mininglevel) {
+	public TDOreBlock(Item clump, float hardness, float resistance, int mininglevel, String tool) {
 		super();
 		this.setCreativeTab(TinkersCompendium.tab);
 
@@ -39,7 +39,7 @@ public class TDOreBlock extends BlockOre {
 		this.clump = clump;
 		this.blockHardness = hardness;
 		this.blockResistance = resistance;
-		this.setHarvestLevel("pickaxe", mininglevel);
+		this.setHarvestLevel(tool, mininglevel);
 	}
 
 	@Override

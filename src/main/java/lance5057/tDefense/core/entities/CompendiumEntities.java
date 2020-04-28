@@ -31,16 +31,4 @@ public class CompendiumEntities  extends ModuleBase {
 		
 	}
 
-	@Override
-	public void registerItems(Register<Item> event) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void registerBlocks(Register<Block> event) {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

@@ -223,23 +223,6 @@ public class CompendiumModifiers {
 				new ResourceLocation(Reference.MOD_ID, "models/item/modifiers/" + compass.getIdentifier()));
 	}
 
-	public void registerItems(final RegistryEvent.Register<Item> event) {
-
-		final IForgeRegistry registry = event.getRegistry();
-
-		for (Item i : itemList) {
-			registry.register(i);
-		}
-	}
-
-	public void registerBlocks(final RegistryEvent.Register<Block> event) {
-		final IForgeRegistry registry = event.getRegistry();
-
-		for (Block i : blockList) {
-			registry.register(i);
-		}
-	}
-
 	@SubscribeEvent
 	public static void loottableedit(LootTableLoadEvent e) {
 		if (e.getName().toString().equals("minecraft:entities/elder_guardian")) {

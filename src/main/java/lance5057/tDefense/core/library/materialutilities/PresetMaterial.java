@@ -1,5 +1,6 @@
 package lance5057.tDefense.core.library.materialutilities;
 
+import java.io.PrintWriter;
 import java.util.Locale;
 
 import org.apache.commons.lang3.StringUtils;
@@ -25,6 +26,7 @@ import slimeknights.tconstruct.library.materials.ExtraMaterialStats;
 import slimeknights.tconstruct.library.materials.HandleMaterialStats;
 import slimeknights.tconstruct.library.materials.HeadMaterialStats;
 import slimeknights.tconstruct.library.materials.Material;
+import slimeknights.tconstruct.library.utils.HarvestLevels;
 import slimeknights.tconstruct.smeltery.block.BlockMolten;
 
 public class PresetMaterial implements MaterialBase {
@@ -44,6 +46,11 @@ public class PresetMaterial implements MaterialBase {
 	public Block block;
 	public Item itemBlock;
 	boolean hasBlockTexture;
+	
+	public PresetMaterial(HeadMaterialStats head, HandleMaterialStats handle, ExtraMaterialStats extra,
+			ShieldMaterialStats shield, BowMaterialStats bow) {
+		this(0, head, handle, extra, shield, bow, null, false);
+	}
 
 	public PresetMaterial(int temp, HeadMaterialStats head, HandleMaterialStats handle, ExtraMaterialStats extra,
 			ShieldMaterialStats shield, BowMaterialStats bow) {
@@ -72,37 +79,37 @@ public class PresetMaterial implements MaterialBase {
 	}
 
 	@Override
-	public void setupPre(Material mat) {
+	public void setupPre(MaterialHelper mat) {
 		if (fluid != null) {
-			mat.setCraftable(false).setCastable(true);
-			mat.setFluid(fluid);
+			mat.mat.setCraftable(false).setCastable(true);
+			mat.mat.setFluid(fluid);
 		}
 		else
 		{
-			mat.setCraftable(true).setCastable(false);
+			mat.mat.setCraftable(true).setCastable(false);
 		}
 
 		if (head != null)
-			TinkerRegistry.addMaterialStats(mat, head);
+			TinkerRegistry.addMaterialStats(mat.mat, head);
 		if (handle != null)
-			TinkerRegistry.addMaterialStats(mat, handle);
+			TinkerRegistry.addMaterialStats(mat.mat, handle);
 		if (extra != null)
-			TinkerRegistry.addMaterialStats(mat, extra);
+			TinkerRegistry.addMaterialStats(mat.mat, extra);
 		if (shield != null)
-			TinkerRegistry.addMaterialStats(mat, shield);
+			TinkerRegistry.addMaterialStats(mat.mat, shield);
 		if (bow != null)
-			TinkerRegistry.addMaterialStats(mat, bow);
+			TinkerRegistry.addMaterialStats(mat.mat, bow);
 	}
 
 	@Override
-	public void setupPost(Material mat) {
-		mat.addItem(nugget, 1, Material.VALUE_Nugget);
-		mat.addItem(ingot, 1, Material.VALUE_Ingot);
-		mat.addItem(block, Material.VALUE_Block);
+	public void setupPost(MaterialHelper mat) {
+		mat.mat.addItem(nugget, 1, Material.VALUE_Nugget);
+		mat.mat.addItem(ingot, 1, Material.VALUE_Ingot);
+		mat.mat.addItem(block, Material.VALUE_Block);
 	}
 
 	@Override
-	public void setupClient(Material mat) {
+	public void setupClient(MaterialHelper mat) {
 
 	}
 
@@ -113,13 +120,30 @@ public class PresetMaterial implements MaterialBase {
 	}
 
 	@Override
-	public void setupModels(Material mat) {
+	public void setupModels(MaterialHelper mat) {
 
 	}
 
 	@Override
-	public void setupInit(Material mat) {
+	public void setupInit(MaterialHelper mat) {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public void setupWiki(MaterialHelper mat,PrintWriter out) {
+		
+		
+		
+		out.write("### Tools and Weapons \n\n");
+		out.write("|||||\n");
+		out.write("|-|-|-|-|\n");
+		
+		out.write("|Durability|Mining Speed|Harvest Level|Attack|\n");
+		
+		out.write("|" + head.durability);
+		out.write("|" + head.miningspeed);
+		out.write("|" + HarvestLevels.getHarvestLevelName(head.harvestLevel).substring(3));
+		out.write("|" + head.attack + "|\n");
 	}
 }

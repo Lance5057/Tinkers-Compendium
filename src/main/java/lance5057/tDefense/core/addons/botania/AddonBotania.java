@@ -73,10 +73,10 @@ public class AddonBotania extends ModuleBase {
 		terrasteelCore = new Item();
 		corpseIvy = new Item();
 		
-		this.setupItem(manasteelCore, "manasteelcore");
-		this.setupItem(elementiumCore, "elementiumcore");
-		this.setupItem(terrasteelCore, "terrasteelcore");
-		this.setupItem(corpseIvy, "corpseivy");
+//		this.setupItem(manasteelCore, "manasteelcore");
+//		this.setupItem(elementiumCore, "elementiumcore");
+//		this.setupItem(terrasteelCore, "terrasteelcore");
+//		this.setupItem(corpseIvy, "corpseivy");
 //
 //		this.setupItem(bloodyBandages, "bloodybandages");
 
@@ -113,20 +113,20 @@ public class AddonBotania extends ModuleBase {
 
 	}
 
-	@Override
-	public void registerItems(Register<Item> event) {
-		IForgeRegistry r = event.getRegistry();
-		r.register(this.manasteelCore);
-		r.register(this.elementiumCore);
-		r.register(this.terrasteelCore);
-		r.register(this.corpseIvy);
-	}
-
-	@Override
-	public void registerBlocks(Register<Block> event) {
-		// TODO Auto-generated method stub
-
-	}
+//	@Override
+//	public void registerItems(Register<Item> event) {
+//		IForgeRegistry r = event.getRegistry();
+//		r.register(this.manasteelCore);
+//		r.register(this.elementiumCore);
+//		r.register(this.terrasteelCore);
+//		r.register(this.corpseIvy);
+//	}
+//
+//	@Override
+//	public void registerBlocks(Register<Block> event) {
+//		// TODO Auto-generated method stub
+//
+//	}
 
 	@SideOnly(Side.CLIENT)
 	@SubscribeEvent
