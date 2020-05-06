@@ -39,10 +39,10 @@ public class AddonActuallyAdditions extends ModuleBase {
 
 	@Override
 	public void preInit(FMLPreInitializationEvent e) {
-		if (TinkerRegistry.getMaterial("blackquartz") == Material.UNKNOWN) {
+		if (TinkerRegistry.getMaterial("quartzblack") == Material.UNKNOWN) {
 			blackquartz = new MaterialHelper("quartzblack", TextFormatting.BLACK.getColorIndex());
 			blackquartz.addons
-					.add(new CraftableMaterial("gem", new HeadMaterialStats(380, 6, 4.5f, HarvestLevels.DIAMOND),
+					.add(new CraftableMaterial("gem", "gemQuartzBlack", new HeadMaterialStats(380, 6, 4.5f, HarvestLevels.DIAMOND),
 							new HandleMaterialStats(0.8f, 0), new ExtraMaterialStats(50),
 							new ShieldMaterialStats(380 / 4, 45), CompendiumMaterials.whyWouldYouMakeABowOutOfThis).disableBlock().disableIngot().disableNugget());
 			blackquartz.addons

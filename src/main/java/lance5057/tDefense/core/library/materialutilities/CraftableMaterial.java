@@ -32,6 +32,7 @@ public class CraftableMaterial implements MaterialBase {
 	public BowMaterialStats bow;
 
 	public String type;
+	public String oreDict;
 
 	boolean doNugget = true;
 	boolean doIngot = true;
@@ -56,6 +57,18 @@ public class CraftableMaterial implements MaterialBase {
 		this.shield = shield;
 		this.extra = extra;
 		this.bow = bow;
+	}
+
+	public CraftableMaterial(String type, String ore, HeadMaterialStats head, HandleMaterialStats handle,
+			ExtraMaterialStats extra, ShieldMaterialStats shield, BowMaterialStats bow) {
+		this.type = type;
+		this.head = head;
+		this.handle = handle;
+		this.shield = shield;
+		this.extra = extra;
+		this.bow = bow;
+
+		this.oreDict = ore;
 	}
 
 	@Override
@@ -95,7 +108,6 @@ public class CraftableMaterial implements MaterialBase {
 			OreDictionary.registerOre("nugget" + StringUtils.capitalize(mat.mat.identifier), new ItemStack(nugget));
 		if (doBlock)
 			OreDictionary.registerOre("block" + StringUtils.capitalize(mat.mat.identifier), new ItemStack(block));
-
 	}
 
 	@Override
@@ -140,10 +152,15 @@ public class CraftableMaterial implements MaterialBase {
 		if (block != null)
 			mat.mat.addItem(block, Material.VALUE_Block);
 
-		mat.mat.addItem(type + StringUtils.capitalize(mat.mat.identifier), 1, mat.mat.VALUE_Ingot);
-		mat.mat.addItem("nugget" + StringUtils.capitalize(mat.mat.identifier), 1, mat.mat.VALUE_Nugget);
-		mat.mat.addItem("block" + StringUtils.capitalize(mat.mat.identifier), 1, mat.mat.VALUE_Block);
+		if (ingot != null)
+			mat.mat.addItem(type + StringUtils.capitalize(mat.mat.identifier), 1, mat.mat.VALUE_Ingot);
+		if (nugget != null)
+			mat.mat.addItem("nugget" + StringUtils.capitalize(mat.mat.identifier), 1, mat.mat.VALUE_Nugget);
+		if (block != null)
+			mat.mat.addItem("block" + StringUtils.capitalize(mat.mat.identifier), 1, mat.mat.VALUE_Block);
 
+		if (oreDict != null)
+			mat.mat.addItem(oreDict, 1, mat.mat.VALUE_Ingot);
 	}
 
 	public CraftableMaterial disableIngot() {

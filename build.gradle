@@ -59,6 +59,18 @@ repositories {
 	maven { // Albedo Lights
         url 'https://repo.elytradev.com/'
     }
+	
+	maven {
+		url "http://maven.mcmoddev.com"
+	}
+	
+	maven {
+		url "https://maven.chaosfield.at"
+	}
+	
+	maven {
+		url "http://maven.covers1624.net"
+	}
 }
 
 apply plugin: 'net.minecraftforge.gradle.forge'
@@ -131,6 +143,12 @@ dependencies {
 	deobfCompile "curse.maven:toolleveling:2558689"
 	
 	deobfCompile "curse.maven:ebwizardry:2886605"
+	
+	deobfCompile "cofh:RedstoneFlux:1.12-2.0.0.1:universal"
+	
+	deobfCompile "de.ellpeck.actuallyadditions:ActuallyAdditions:1.12.2-r143"
+	deobfCompile "net.darkhax.tesla:Tesla-1.12.2:1.0.63"
+	deobfCompile "mcp.mobius.waila:Hwyla:1.8.23-B38_1.12"
 }
 
 sourceSets {
