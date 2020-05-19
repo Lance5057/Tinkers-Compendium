@@ -8,7 +8,7 @@ import vazkii.botania.client.lib.LibResources;
 
 public class BackpackGUI extends GuiContainer {
 
-	private static final ResourceLocation texture = new ResourceLocation(Reference.MOD_ID, "textures/gui/test.png");
+	private static final ResourceLocation texture = new ResourceLocation(Reference.MOD_ID, "textures/gui/bag.png");
 	
 	public BackpackGUI(EntityPlayer player, BackpackInventory bag) {
 		super(new BackpackContainer(player, bag));
@@ -17,7 +17,9 @@ public class BackpackGUI extends GuiContainer {
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
 		mc.getTextureManager().bindTexture(texture);
-		drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
+		
+		//Draw player inventory
+		drawTexturedModalRect(guiLeft, guiTop+76, 0, 84, 176, 90);
 	}
 
 }

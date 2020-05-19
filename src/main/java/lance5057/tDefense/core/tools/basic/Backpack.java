@@ -7,15 +7,18 @@ import javax.annotation.Nullable;
 
 import lance5057.tDefense.TinkersCompendium;
 import lance5057.tDefense.core.library.capabilities.handlers.BackpackHandler;
+import lance5057.tDefense.core.materials.CompendiumMaterials;
 import lance5057.tDefense.core.materials.stats.BackpackMaterialStats;
 import lance5057.tDefense.core.parts.TDParts;
 import lance5057.tDefense.proxy.CommonProxy;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import slimeknights.tconstruct.library.materials.Material;
@@ -35,6 +38,14 @@ public class Backpack extends ToolCore {
 				new PartMaterialType(TDParts.fabric, BackpackMaterialStats.TYPE));
 
 		setUnlocalizedName("backpack");
+	}
+
+	@Override
+	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> subItems) {
+		if (this.isInCreativeTab(tab)) {
+			addDefaultSubItems(subItems, CompendiumMaterials.white.mat, CompendiumMaterials.white.mat, null,
+					CompendiumMaterials.white.mat);
+		}
 	}
 
 	@Override
@@ -62,7 +73,8 @@ public class Backpack extends ToolCore {
 	@Nonnull
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, @Nonnull EnumHand hand) {
-		player.openGui(TinkersCompendium.instance, CommonProxy.BackpackID, world, hand == EnumHand.OFF_HAND ? 1 : 0, 0, 0);
+		player.openGui(TinkersCompendium.instance, CommonProxy.BackpackID, world, hand == EnumHand.OFF_HAND ? 1 : 0, 0,
+				0);
 		return ActionResult.newResult(EnumActionResult.SUCCESS, player.getHeldItem(hand));
 	}
 

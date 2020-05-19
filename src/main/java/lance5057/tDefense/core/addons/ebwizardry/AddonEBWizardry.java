@@ -18,13 +18,13 @@ import slimeknights.tconstruct.library.Util;
 
 public class AddonEBWizardry extends ModuleBase {
 	
-	ModElementalFocus earthFocus = new ModElementalFocus(Element.EARTH.getDisplayName(),  Util.enumChatFormattingToColor(Element.EARTH.getColour().getColor()), Element.EARTH);
-	ModElementalFocus fireFocus = new ModElementalFocus(Element.FIRE.getDisplayName(),  Util.enumChatFormattingToColor(Element.FIRE.getColour().getColor()), Element.FIRE);
-	ModElementalFocus iceFocus = new ModElementalFocus(Element.ICE.getDisplayName(),  Util.enumChatFormattingToColor(Element.ICE.getColour().getColor()), Element.ICE);
-	ModElementalFocus healingFocus = new ModElementalFocus(Element.HEALING.getDisplayName(),  Util.enumChatFormattingToColor(Element.HEALING.getColour().getColor()), Element.HEALING);
-	ModElementalFocus necroFocus = new ModElementalFocus(Element.NECROMANCY.getDisplayName(),  Util.enumChatFormattingToColor(Element.NECROMANCY.getColour().getColor()), Element.NECROMANCY);
-	ModElementalFocus sorceryFocus = new ModElementalFocus(Element.SORCERY.getDisplayName(),  Util.enumChatFormattingToColor(Element.SORCERY.getColour().getColor()), Element.SORCERY);
-	ModElementalFocus lightningFocus = new ModElementalFocus(Element.LIGHTNING.getDisplayName(),  Util.enumChatFormattingToColor(Element.LIGHTNING.getColour().getColor()), Element.LIGHTNING);
+	ModElementalFocus earthFocus = new ModElementalFocus(Element.EARTH.getName(),  Util.enumChatFormattingToColor(Element.EARTH.getColour().getColor()), Element.EARTH);
+	ModElementalFocus fireFocus = new ModElementalFocus(Element.FIRE.getName(),  Util.enumChatFormattingToColor(Element.FIRE.getColour().getColor()), Element.FIRE);
+	ModElementalFocus iceFocus = new ModElementalFocus(Element.ICE.getName(),  Util.enumChatFormattingToColor(Element.ICE.getColour().getColor()), Element.ICE);
+	ModElementalFocus healingFocus = new ModElementalFocus(Element.HEALING.getName(),  Util.enumChatFormattingToColor(Element.HEALING.getColour().getColor()), Element.HEALING);
+	ModElementalFocus necroFocus = new ModElementalFocus(Element.NECROMANCY.getName(),  Util.enumChatFormattingToColor(Element.NECROMANCY.getColour().getColor()), Element.NECROMANCY);
+	ModElementalFocus sorceryFocus = new ModElementalFocus(Element.SORCERY.getName(),  Util.enumChatFormattingToColor(Element.SORCERY.getColour().getColor()), Element.SORCERY);
+	ModElementalFocus lightningFocus = new ModElementalFocus(Element.LIGHTNING.getName(),  Util.enumChatFormattingToColor(Element.LIGHTNING.getColour().getColor()), Element.LIGHTNING);
 	
 	public AddonEBWizardry() {
 	}

@@ -24,6 +24,7 @@ public class TCItems {
 
 	public void preInit(FMLPreInitializationEvent e) {
 		book = registerItem("book", new ItemCompendiumBook(), TinkersCompendium.tab );
+		TinkersCompendium.proxy.registerItemRenderer(book, 0, "book");
 	}
 
 	public void init(FMLInitializationEvent e) {
