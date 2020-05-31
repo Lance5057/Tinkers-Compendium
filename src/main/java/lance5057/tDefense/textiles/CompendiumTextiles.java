@@ -99,7 +99,8 @@ public class CompendiumTextiles {
 	}
 
 	public void init() {
-
+		TinkersCompendium.proxy.registerItem16ColorHandler(cottonYarn);
+		TinkersCompendium.proxy.registerItem16ColorHandler(silkThread);
 	}
 
 	public void postInit() {
@@ -125,16 +126,18 @@ public class CompendiumTextiles {
 		TinkersCompendium.proxy.registerItemRenderer(grassFiber, 0, "grassfiber");
 		TinkersCompendium.proxy.registerItemRenderer(roughspunCord, 0, "roughspuncord");
 		TinkersCompendium.proxy.registerItemRenderer(roughspunItemBlock, 0, "roughspunblock");
+		TinkersCompendium.proxy.registerItemRenderer(roughspunItemRoof, 0, "roughspunitemblockroof");
 
 		TinkersCompendium.proxy.registerItemRenderer(cottonSeed, 0, "cottonseed");
 		TinkersCompendium.proxy.registerItemRenderer(cotton, 0, "cotton");
 
 		for (int i = 0; i < 16; i++) {
-			TinkersCompendium.proxy.registerItemRenderer(cottonYarn, i, "cottonyarn_" + EnumDyeColor.byDyeDamage(i));
+			TinkersCompendium.proxy.registerItemRenderer(cottonYarn, i, "cottonyarn");
 			TinkersCompendium.proxy.registerItemRenderer(cottonItemBlock, i,
 					"cottonblock_" + EnumDyeColor.byMetadata(i));
 
-			TinkersCompendium.proxy.registerItemRenderer(silkThread, i, "silkthread_" + EnumDyeColor.byDyeDamage(i));
+			TinkersCompendium.proxy.registerItemRenderer(silkThread, i, "silkthread");
+			
 			TinkersCompendium.proxy.registerItemRenderer(silkItemBlock, i, "silkblock_" + EnumDyeColor.byMetadata(i));
 		}
 	}

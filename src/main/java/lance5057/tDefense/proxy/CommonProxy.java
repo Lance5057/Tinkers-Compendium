@@ -173,4 +173,9 @@ public class CommonProxy implements IGuiHandler {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	public void registerItem16ColorHandler(Item i) {
+		// TODO Auto-generated method stub
+		
+	}
 }

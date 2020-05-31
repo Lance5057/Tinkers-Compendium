@@ -9,6 +9,7 @@ import lance5057.tDefense.core.materials.CompendiumMaterials;
 import lance5057.tDefense.core.materials.stats.ArmorMaterialStats;
 import lance5057.tDefense.core.materials.stats.FabricMaterialStats;
 import lance5057.tDefense.core.materials.stats.HelmMaterialStats;
+import lance5057.tDefense.core.materials.stats.LegsMaterialStats;
 import lance5057.tDefense.core.parts.TDParts;
 import lance5057.tDefense.core.tools.armor.renderers.chain.ModelTinkersChausses;
 import lance5057.tDefense.core.tools.bases.ArmorCore;

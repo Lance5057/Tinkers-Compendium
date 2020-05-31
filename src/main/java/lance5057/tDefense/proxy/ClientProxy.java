@@ -9,7 +9,6 @@ import lance5057.tDefense.TCCommands;
 import lance5057.tDefense.TCConfig;
 import lance5057.tDefense.TinkersCompendium;
 import lance5057.tDefense.core.blocks.ColoredBlockMapper;
-import lance5057.tDefense.core.items.ItemCompendiumBook;
 import lance5057.tDefense.core.library.ArmorBuildGuiInfo;
 import lance5057.tDefense.core.library.ArmorPart;
 import lance5057.tDefense.core.library.CustomArmorTextureCreator;
@@ -21,6 +20,7 @@ import lance5057.tDefense.core.tools.TDTools;
 import lance5057.tDefense.core.tools.bases.ArmorCore;
 import lance5057.tDefense.renderers.deserializers.AlphaColorTextureDeserializer;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockColored;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
@@ -39,12 +39,10 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.client.ClientCommandHandler;
-import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import slimeknights.tconstruct.common.ModelRegisterUtil;
@@ -99,18 +97,18 @@ public class ClientProxy extends CommonProxy {
 	ToolBuildGuiInfo ringGUI;
 	// ToolBuildGuiInfo amuletGUI;
 	ToolBuildGuiInfo tabardGUI;
-	
+
 	ToolBuildGuiInfo backpackGUI;
 
 	// public static SheatheModel sheathe;
-	
+
 	public static TextureMap armorMap;
 
 	@Override
 	public void preInit() {
-		
+
 		armorMap = new TextureMap("armortextures");
-		
+
 		ClientCommandHandler.instance.registerCommand(new TCCommands());
 		ModelLoaderRegistry.registerLoader(loader);
 		MaterialRenderInfoLoader.addRenderInfo("alpha_color", AlphaColorTextureDeserializer.class);
@@ -236,14 +234,11 @@ public class ClientProxy extends CommonProxy {
 				new ResourceLocation("textures/font/ascii.png"), mc.renderEngine);
 		bookRenderer.setUnicodeFlag(true);
 		CompendiumBook.INSTANCE.fontRenderer = bookRenderer;
-		
-		for(ToolCore tc : TinkerRegistry.getTools())
-		{
-			for(String s : TCConfig.anvil.overrides)
-			{
+
+		for (ToolCore tc : TinkerRegistry.getTools()) {
+			for (String s : TCConfig.anvil.overrides) {
 				String[] info = s.split(" ");
-				if(info[0].equals(tc.getRegistryName().toString()))
-				{
+				if (info[0].equals(tc.getRegistryName().toString())) {
 					TDClientRegistry.addVarient(tc, Integer.valueOf(info[1]));
 				}
 			}
@@ -306,20 +301,20 @@ public class ClientProxy extends CommonProxy {
 	public void registerToolModel(ToolCore tool) {
 		ModelRegisterUtil.registerToolModel(tool);
 	}
-	
+
 	@Override
 	public ResourceLocation registerAnvilToolModel(ToolCore tool) {
-	    if(tool == null || tool.getRegistryName() == null) {
-	      return null; 
-	    }
-	    ResourceLocation itemLocation = tool.getRegistryName();
-	    String path = "tools/" + itemLocation.getResourcePath() + ToolModelLoader.EXTENSION;
+		if (tool == null || tool.getRegistryName() == null) {
+			return null;
+		}
+		ResourceLocation itemLocation = tool.getRegistryName();
+		String path = "tools/" + itemLocation.getResourcePath() + ToolModelLoader.EXTENSION;
 
-	    ResourceLocation location = new ResourceLocation(Reference.MOD_ID, path);
-	    ToolModelLoader.addPartMapping(location, tool);
+		ResourceLocation location = new ResourceLocation(Reference.MOD_ID, path);
+		ToolModelLoader.addPartMapping(location, tool);
 
-	    return ModelRegisterUtil.registerToolModel(tool, location);
-	  }
+		return ModelRegisterUtil.registerToolModel(tool, location);
+	}
 
 	@Override
 	public void registerArmorModel(ArmorCore tool) {
@@ -547,8 +542,7 @@ public class ClientProxy extends CommonProxy {
 				fireDrillGUI.addSlotPosition(43, 33 + 8);
 				fireDrillGUI.addSlotPosition(34, 51 + 8);
 			}
-			if (TinkersCompendium.config.tools.enableBackpack)
-			{
+			if (TinkersCompendium.config.tools.enableBackpack) {
 				backpackGUI.positions.clear();
 				backpackGUI.addSlotPosition(34, 15);
 				backpackGUI.addSlotPosition(25, 33);
@@ -692,6 +686,12 @@ public class ClientProxy extends CommonProxy {
 	}
 
 	@Override
+	public void registerItem16ColorHandler(Item i) {
+		ItemColors itemcolors = Minecraft.getMinecraft().getItemColors();
+		itemcolors.registerItemColorHandler(new Item16ColorHandler(), i);
+	}
+
+	@Override
 	public void registerBlockColorHandler(int c, Block i) {
 		BlockColors blockcolors = Minecraft.getMinecraft().getBlockColors();
 		blockcolors.registerBlockColorHandler(new BlockColorHandler(c), i);
@@ -740,6 +740,22 @@ public class ClientProxy extends CommonProxy {
 	}
 
 	@SideOnly(Side.CLIENT)
+	public static class Item16ColorHandler implements IItemColor {
+		public Item16ColorHandler() {
+		}
+
+		public static final int[] DYE_COLORS = new int[] { 1973019, 11743532, 3887386, 5320730, 2437522, 8073150,
+				2651799, 11250603, 4408131, 14188952, 4312372, 14602026, 6719955, 12801229, 15435844, 15790320 };
+
+		@Override
+		public int colorMultiplier(ItemStack stack, int tintIndex) {
+			if (tintIndex != 2)
+				return DYE_COLORS[stack.getMetadata()];
+			return 0xFFFFFF;
+		}
+	}
+
+	@SideOnly(Side.CLIENT)
 	public static class BlockColorHandler implements IBlockColor {
 		public BlockColorHandler(int color) {
 			this.color = color;
@@ -755,4 +771,22 @@ public class ClientProxy extends CommonProxy {
 
 		}
 	}
+
+//	@SideOnly(Side.CLIENT)
+//	public static class Block16ColorHandler implements IBlockColor {
+//		public Block16ColorHandler() {
+//		}
+//
+//		public static final int[] DYE_COLORS = new int[] { 15790320, 15435844, 12801229, 6719955, 14602026, 4312372,
+//				14188952, 4408131, 11250603, 2651799, 8073150, 2437522, 5320730, 3887386, 11743532, 1973019 };
+//
+//		@Override
+//		public int colorMultiplier(IBlockState state, IBlockAccess worldIn, BlockPos pos, int tintIndex) {
+//			if (tintIndex == 1)
+//				if (state.getBlock() instanceof BlockColored)
+//					return DYE_COLORS[((BlockColored) state.getBlock()).getMetaFromState(state)];
+//			return 0xffffff;
+//
+//		}
+//	}
 }

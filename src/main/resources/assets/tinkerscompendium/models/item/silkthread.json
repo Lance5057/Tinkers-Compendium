@@ -1,0 +1,8 @@
+{
+	"parent": "item/generated",
+    "textures": {
+        "layer0": "tinkerscompendium:items/silk",
+		"layer1": "tinkerscompendium:items/silk",
+		"layer2": "tinkerscompendium:items/silkspool"
+    }
+}

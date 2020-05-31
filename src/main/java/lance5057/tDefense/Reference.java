@@ -4,7 +4,7 @@ public class Reference
 {
 
 	public static final String	MOD_ID		= "tinkerscompendium";
-	public static final String	VERSION		= "1.4.2.36";
+	public static final String	VERSION		= "1.4.2.37";
 	public static final String	MOD_NAME	= "Tinkers' Compendium";
 
 }

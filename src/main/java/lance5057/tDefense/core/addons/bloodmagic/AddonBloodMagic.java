@@ -65,7 +65,7 @@ public class AddonBloodMagic extends ModuleBase {
 
 	@Override
 	public void preInit(FMLPreInitializationEvent e) {
-		bloodyBandages = TCItems.registerItem("bloodybandages", TinkersCompendium.tab);
+		//bloodyBandages = TCItems.registerItem("bloodybandages", TinkersCompendium.tab);
 
 		//this.setupItem(bloodyBandages, "bloodybandages");
 
@@ -79,7 +79,7 @@ public class AddonBloodMagic extends ModuleBase {
 
 		// TinkerRegistry.registerModifier(scabbing);
 
-		TinkersCompendium.proxy.registerItemRenderer(bloodyBandages, 0, "bloodyBandages");
+		//TinkersCompendium.proxy.registerItemRenderer(bloodyBandages, 0, "bloodmagic/bloodybandages");
 
 		TinkersCompendium.proxy.registerModifierModel(scabbing);
 		TinkersCompendium.proxy.registerModifierModel(will);
@@ -94,12 +94,6 @@ public class AddonBloodMagic extends ModuleBase {
 	@Override
 	public void postInit(FMLPostInitializationEvent e) {
 		// TODO Auto-generated method stub
-
-	}
-
-	@SideOnly(Side.CLIENT)
-	@SubscribeEvent
-	public static void registerModels(ModelRegistryEvent event) {
 
 	}
 
