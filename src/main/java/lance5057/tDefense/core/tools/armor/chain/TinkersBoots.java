@@ -31,10 +31,11 @@ import slimeknights.tconstruct.tools.TinkerTools;
 
 public class TinkersBoots extends ArmorCore {
 	public TinkersBoots() {
-		super(EntityEquipmentSlot.FEET, new PartMaterialType(TDParts.chainmail, HelmMaterialStats.TYPE),
+		super(EntityEquipmentSlot.FEET,
+				new PartMaterialType(TDParts.chainmail, HelmMaterialStats.TYPE),
 				PartMaterialType.handle(TDParts.armorPlate),
-				new PartMaterialType(TDParts.fabric, FabricMaterialStats.TYPE),
-				PartMaterialType.bowstring(TinkerTools.bowString));
+				PartMaterialType.extra(TinkerTools.bowString),
+				new PartMaterialType(TDParts.fabric, FabricMaterialStats.TYPE));
 		setUnlocalizedName("tinkersboots");
 	}
 
