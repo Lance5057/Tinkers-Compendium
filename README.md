@@ -6,12 +6,12 @@ What this fork changes from the original:
 
 - ALL materials, blocks, extra gubbins added by the mod have been removed.
 - Everything except:
-    -Heavy Armour
-    -Chain Armour
-    -Buckler Shields
-    -Heater Shields
-    -Shears
-    -Rings
+    * Heavy Armour
+    * Chain Armour
+    * Buckler Shields
+    * Heater Shields
+    * Shears
+    * Rings
   Have been removed.
   
 - Updated Heavy Armour model and texture:
