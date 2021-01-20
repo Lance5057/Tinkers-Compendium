@@ -15,29 +15,29 @@ What this fork changes from the original:
   Have been removed.
   
 - Updated Heavy Armour model and texture:
-    -Helmet now has a leather mask under the visor.
-    -Visor now has more mouth slits.
-    -Breastplate pauldrons adjusted, added gauntlets.
-    -Leggings belts removed (they looked out of place to me)
-    -Boots plating adjusted to avoid z-fighting with leggings.
-    -Cloth lengths adjusted to make chain parts stand out more.
-    -Cloth made darker.
-    -Recoloured some cloth parts to look like leather no matter the colour of cloth applied.
+    * Helmet now has a leather mask under the visor.
+    * Visor now has more mouth slits.
+    * Breastplate pauldrons adjusted, added gauntlets.
+    * Leggings belts removed (they looked out of place to me)
+    * Boots plating adjusted to avoid z-fighting with leggings.
+    * Cloth lengths adjusted to make chain parts stand out more.
+    * Cloth made darker.
+    * Recoloured some cloth parts to look like leather no matter the colour of cloth applied.
     
 - Updated Chain Armour model and texture.
-    -Hauberk now has vambraces. adjusted pauldrons due to misalignment issues.
-    -Hauberk straps adjusted, recoloured to look like leather.
-    -Boots slightly adjusted to look better.
-    -Cloth lengths adjusted to make chain parts stand out more.
-    -Cloth made darker.
-    -Recoloured some cloth parts to look like leather no matter the colour of cloth applied.
+    * Hauberk now has vambraces. adjusted pauldrons due to misalignment issues.
+    * Hauberk straps adjusted, recoloured to look like leather.
+    * Boots slightly adjusted to look better.
+    * Cloth lengths adjusted to make chain parts stand out more.
+    * Cloth made darker.
+    * Recoloured some cloth parts to look like leather no matter the colour of cloth applied.
 
 - Heater Shields renamed to Kiteshields
 
 - Pseudo-integrated compendium armours with constructs armoury by doing the following:
-    -Compendium Armour now requires conarm parts to create them (consequently, all unecessary compendium parts are removed)
-    -Removed the Compendium book and merged the entries with conarms book.
-    -NOTE: Changes to conarm were necessary for this to happen so requires my fork of conarm to function.
+    * Compendium Armour now requires conarm parts to create them (consequently, all unecessary compendium parts are removed)
+    * Removed the Compendium book and merged the entries with conarms book.
+    * NOTE: Changes to conarm were necessary for this to happen so requires my fork of conarm to function.
     
 - Updated model for Armor station
 - Updated and fixed Armor Station GUI by changing the incorrect title, reduced the search box size, changed the texture of the GUI.
