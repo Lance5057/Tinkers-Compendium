@@ -2,6 +2,7 @@ package lance5057.tDefense.core.tools.armor.chain;
 
 import java.util.List;
 
+import c4.conarm.common.ConstructsRegistry;
 import lance5057.tDefense.core.library.ArmorNBT;
 import lance5057.tDefense.core.library.ArmorTags;
 import lance5057.tDefense.core.library.ArmorTextureBuilder;
@@ -32,9 +33,11 @@ import slimeknights.tconstruct.tools.TinkerTools;
 
 public class TinkersChausses extends ArmorCore {
 	public TinkersChausses() {
-		super(EntityEquipmentSlot.LEGS, new PartMaterialType(TDParts.chainmail, LegsMaterialStats.TYPE),
-				new PartMaterialType(TDParts.armorPlate, LegsMaterialStats.TYPE),
-				PartMaterialType.handle(TDParts.clasp), new PartMaterialType(TDParts.fabric, FabricMaterialStats.TYPE));
+		super(EntityEquipmentSlot.LEGS,
+				new PartMaterialType(TDParts.chainmail, LegsMaterialStats.TYPE),
+				new PartMaterialType(ConstructsRegistry.armorPlate, LegsMaterialStats.TYPE),
+				PartMaterialType.handle(ConstructsRegistry.armorTrim),
+				new PartMaterialType(TDParts.fabric, FabricMaterialStats.TYPE));
 		setUnlocalizedName("tinkerschausses");
 	}
 
@@ -104,11 +107,11 @@ public class TinkersChausses extends ArmorCore {
 
 	@Override
 	public float armorMultiplier() {
-		return 0.75f;
+		return 0.8f;
 	}
 
 	@Override
 	public float potencyMultiplier() {
-		return 0.25f;
+		return 1.8f;
 	}
 }

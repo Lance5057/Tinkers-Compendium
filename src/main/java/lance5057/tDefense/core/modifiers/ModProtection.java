@@ -1,12 +1,10 @@
 package lance5057.tDefense.core.modifiers;
 
-import lance5057.tDefense.util.ArmorUtils;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.init.Enchantments;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import slimeknights.tconstruct.library.modifiers.ModifierNBT;
-import slimeknights.tconstruct.library.modifiers.ModifierTrait;
 import slimeknights.tconstruct.library.utils.TinkerUtil;
 import slimeknights.tconstruct.library.utils.ToolBuilder;
 
@@ -31,9 +29,6 @@ public class ModProtection extends ArmorModifierTrait {
 	@SuppressWarnings("unused")
 	@Override
 	public boolean canApplyCustom(ItemStack stack) {
-		if (ArmorUtils.isCloth(stack)) {
-			return false;
-		}
 		// not present yet, ok
 		if (super.canApplyCustom(stack)) {
 			return true;

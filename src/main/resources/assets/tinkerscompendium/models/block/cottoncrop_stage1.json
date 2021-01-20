@@ -1,6 +1,0 @@
-{
-    "parent": "block/crop",
-    "textures": {
-        "crop": "tinkerscompendium:blocks/cotton_stage_1"
-    }
-}

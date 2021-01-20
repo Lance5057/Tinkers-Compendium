@@ -1,38 +1,18 @@
 [
   {
-    "name": "roundsheild",
+    "name": "roundshield",
     "type": "tool",
-    "data": "tool/roundsheild.json"
+    "data": "tool/roundshield.json"
   },
   {
-    "name": "heatersheild",
+    "name": "kiteshield",
     "type": "tool",
-    "data": "tool/heatersheild.json"
+    "data": "tool/kiteshield.json"
   },
   {
-    "name": "towersheild",
+    "name": "ring",
     "type": "tool",
-    "data": "tool/towersheild.json"
-  },
-  {
-    "name": "zweihander",
-    "type": "tool",
-    "data": "tool/zweihander.json"
-  },
-  {
-    "name": "firedrill",
-    "type": "tool",
-    "data": "tool/firedrill.json"
-  },
-  {
-    "name": "mallet",
-    "type": "tool",
-    "data": "tool/mallet.json"
-  },
-  {
-    "name": "saw",
-    "type": "tool",
-    "data": "tool/saw.json"
+    "data": "tool/ring.json"
   },
   {
     "name": "shears",

@@ -1,5 +1,6 @@
 package lance5057.tDefense.core.addons.botania.modifiers;
 
+import lance5057.tDefense.core.library.ArmorHelper;
 import lance5057.tDefense.core.library.modifiers.ModifierTDTrait;
 import lance5057.tDefense.core.tools.bases.ArmorCore;
 import net.minecraft.entity.Entity;
@@ -27,7 +28,7 @@ public class ModMana extends ModifierTDTrait {
 			int dur = ToolHelper.getMaxDurability(tool) - ToolHelper.getCurrentDurability(tool);
 			if (dur > 0) {
 				if(ManaItemHandler.requestManaExactForTool(tool, player, 10, true))
-					ToolHelper.repairTool(tool, 1);
+					ArmorHelper.repairTool(tool, 1);
 			}
 		}
 	}

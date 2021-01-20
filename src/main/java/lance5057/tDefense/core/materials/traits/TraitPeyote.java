@@ -21,7 +21,7 @@ public class TraitPeyote extends AbstractTDTrait {
 	@Override
 	public void onFoodEaten(LivingEntityUseItemEvent.Finish e) {
 		EntityLivingBase p = e.getEntityLiving();
-		int duration = p.world.rand.nextInt(8) + 2;
+		int duration = p.world.rand.nextInt(100) + 20;
 		switch (p.world.rand.nextInt(6)) {
 		default:
 			p.addPotionEffect(new PotionEffect(MobEffects.POISON, duration, 0));

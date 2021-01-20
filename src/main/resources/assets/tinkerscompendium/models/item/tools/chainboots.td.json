@@ -1,0 +1,8 @@
+{
+    "textures": {
+        "layer0": "tinkerscompendium:items/armor/chainboots/_chainboots_chain",
+        "layer1": "tinkerscompendium:items/armor/chainboots/_chainboots_cloth",
+		"layer2": "tinkerscompendium:items/armor/chainboots/_chainboots_rivet",
+		"broken1": "tinkerscompendium:items/armor/chainboots/_chainboots_chain"
+    }
+}

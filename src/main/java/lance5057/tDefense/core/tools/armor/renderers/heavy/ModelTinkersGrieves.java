@@ -20,7 +20,6 @@ public class ModelTinkersGrieves extends ArmorRenderer {
     public ModelRenderer ThighL;
     public ModelRenderer ThighRB;
     public ModelRenderer ThighLB;
-    public ModelRenderer SecBeltL;
 
     public ModelTinkersGrieves(ItemStack stack) {
     	super(0.25f, 0, 96, 96, stack);
@@ -46,13 +45,13 @@ public class ModelTinkersGrieves extends ArmorRenderer {
         
         this.ThighLB = new ModelRenderer(this, 80, 8);
         this.ThighLB.setRotationPoint(0.0F, 0.0F, 0.0F);
-        this.ThighLB.addBox(-2.0F, 0.0F, -1.5F, 4, 6, 4, 0.3F);
+        this.ThighLB.addBox(-2.5F, 0.0F, -1.5F, 4, 6, 4, 0.1F);
         this.setRotateAngle(ThighLB, -0.08726646259971647F, 0.0F, 0.0F);
         this.bipedLeftLeg.addChild(ThighLB);
         
         this.ThighRB = new ModelRenderer(this, 80, 8);
         this.ThighRB.setRotationPoint(0.0F, 0.0F, 0.0F);
-        this.ThighRB.addBox(-2.0F, 0.0F, -1.5F, 4, 6, 4, 0.3F);
+        this.ThighRB.addBox(-1.5F, 0.0F, -1.5F, 4, 6, 4, 0.1F);
         this.setRotateAngle(ThighRB, -0.08726646259971647F, 0.0F, 0.0F);
         this.bipedRightLeg.addChild(ThighRB);
         
@@ -68,13 +67,13 @@ public class ModelTinkersGrieves extends ArmorRenderer {
 
         this.ThighR = new ModelRenderer(this, 64, 8);
         this.ThighR.setRotationPoint(0.0F, 0.0F, 0.0F);
-        this.ThighR.addBox(-2.0F, 1.0F, -2.8F, 4, 5, 4, 0.31F);
+        this.ThighR.addBox(-2.5F, 1.0F, -2.8F, 4, 5, 4, 0.1F);
         this.setRotateAngle(ThighR, 0.08726646259971647F, 0.0F, 0.0F);
         this.bipedRightLeg.addChild(ThighR);
 
         this.ThighL = new ModelRenderer(this, 64, 8);
         this.ThighL.setRotationPoint(0.0F, 0.0F, 0.0F);
-        this.ThighL.addBox(-2.0F, 1.0F, -2.8F, 4, 5, 4, 0.31F);
+        this.ThighL.addBox(-1.5F, 1.0F, -2.8F, 4, 5, 4, 0.1F);
         this.setRotateAngle(ThighL, 0.08726646259971647F, 0.0F, 0.0F);
         this.bipedLeftLeg.addChild(ThighL);
 
@@ -89,12 +88,6 @@ public class ModelTinkersGrieves extends ArmorRenderer {
         this.LegPlateBackL.addBox(-2.0F, 0.9F, 2.2F, 4, 5, 1, 0.0F);
         this.setRotateAngle(LegPlateBackL, 0.2617993877991494F, 0.0F, 0.0F);
         this.bipedLeftLeg.addChild(LegPlateBackL);
-
-        this.SecBeltL = new ModelRenderer(this, 64, 0);
-        this.SecBeltL.setRotationPoint(0.0F, 0.0F, 0.0F);
-        this.SecBeltL.addBox(-1.0F, 11.5F, -2.8F, 9, 2, 6, 0.26F);
-        this.setRotateAngle(SecBeltL, 0.0F, 0.0F, 0.2617993877991494F);
-        this.bipedBody.addChild(SecBeltL);
     }
 
     /**

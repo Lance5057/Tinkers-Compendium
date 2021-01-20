@@ -1,594 +1,1197 @@
-1.7.10 - Ignore
-// itemGroup.tabName=Tinkers' Defense
-// item.aeonsteelingot.name=Aeonsteel Ingot
-// tile.aeonsteelblock.name=Aeonsteel Block
-// tile.Moltenaeonsteel.name=Molten Aeonsteel
-// material.aeonsteel=Aeonsteel
-
-// item.queensgoldingot.name=Queen's Gold Ingot
-// tile.queensgoldblock.name=Queen's Gold Block
-// tile.Moltenqueensgold.name=Molten Queen's Gold
-// material.queensgold=Queen's Gold
-
-// item.dogbeariumingot.name=Dogbearium Ingot
-// tile.dogbeariumblock.name=Dogbearium Block
-// tile.Moltendogbearium.name=Molten Dogbearium
-// material.dogbearium=Dogbearium
-// material.dogbearium.ability=Serrated
-
-// material.redmint=Red Mint
-// material.redmint.ability=Pepperminty
-
-// material.greenmint=Green Mint
-// material.greenmint.ability=Spearminty
-
-// tile.crestmount.name=Crest Mount
-// tile.armoranvil.name=Finishing Anvil
-// tile.jewelersbench.name=Jeweler's Bench (WIP)
-
-// tool.roundshield=Buckler
-// tool.heatershield=Heater Shield
-
-// fluid.moltenaeonsteel.name=Molten Aeon Steel
-// fluid.moltenqueensgold.name=Molten Queen's Gold
-// fluid.moltendogbearium.name=Molten Dogbearium
-
-// gui.toolstation.roundshield.name=Buckler
-// gui.toolstation.roundshield.desc=A small shield with low protection but with the ability to counter attacks, slowing down your opponent. Due to its small size it can't hold as many modifiers.
-
-// gui.toolstation.heatershield.name=Heater Shield
-// gui.toolstation.heatershield.desc=A standard shield designed to protect from all incoming attacks while still being mobile.
-
-// gui.toolstation.helm.name=Helm
-// gui.toolstation.helm.desc=A heavy set of interlocking plates to protect the head from most damage.
-
-// gui.toolstation.breastplate.name=Breastplate
-// gui.toolstation.breastplate.desc=A heavy set of interlocking plates to protect the chest from most damage.
-
-// gui.toolstation.grieves.name=Grieves
-// gui.toolstation.grieves.desc=A heavy set of interlocking plates to protect the legs from most damage.
-
-// gui.toolstation.sabatons.name=Sabatons
-// gui.toolstation.sabatons.desc=A heavy set of interlocking plates to protect the feet from most damage.
-
-// gui.toolstation.gauntlets.name=Gauntlets
-// gui.toolstation.gauntlets.desc=Armored gloves to protect the hands. (Cosmetic)
-
-// gui.toolstation.coif.name=Coif
-// gui.toolstation.coif.desc=Thickly woven loops linked with small plates and cloth to protect the head.
-
-// gui.toolstation.hauberk.name=Hauberk
-// gui.toolstation.hauberk.desc=Thickly woven loops linked with small plates and cloth to protect the chest.
-
-// gui.toolstation.chausses.name=Chausses
-// gui.toolstation.chausses.desc=Thickly woven loops linked with small plates and cloth to protect the legs.
-
-// gui.toolstation.boots.name=Boots
-// gui.toolstation.boots.desc=Thickly woven loops linked with small plates and cloth to protect the feet.
-
-// gui.toolstation.hood.name=Hood
-// gui.toolstation.hood.desc=Delicately stitched clothing for the head that offers little protection but is more accepting of magical modifiers.
-
-// gui.toolstation.shawl.name=Shawl
-// gui.toolstation.shawl.desc=Delicately stitched clothing for the chest that offers little protection but is more accepting of magical modifiers.
-
-// gui.toolstation.robe.name=Robe
-// gui.toolstation.robe.desc=Delicately stitched clothing for the legs that offers little protection but is more accepting of magical modifiers.
-
-// gui.toolstation.shoes.name=Shoes
-// gui.toolstation.shoes.desc=Delicately stitched clothing for the head that offers little protection but is more accepting of magical modifiers.
-
-// gui.toolstation.shears.name=Shears
-// gui.toolstation.shears.desc=A set of sharpened blades bound together to allow shearing of sheep and tree leaves.
-
-// gui.toolstation.wrench.name=Wrench
-// gui.toolstation.wrench.desc=A tool designed to turn, remove, or configure technical blocks.
-
-// gui.toolstation.zweihander.name=Zweihander
-// gui.toolstation.zweihander.desc=A great two handed sword designed to take down horse and rider or keep enemies back with its long reach.\n \n x2 Damage against mounted enemies \n Ability: Great Swing - \n Hit all enemies close to you with a great arching slash. Leaves you slowed and weakened temporarily.
-
-// toolpart.Chainmaille=%%material Chainmail
-// toolpart.Rivets=%%material Rivets
-// toolpart.Clasp=%%material Clasp
-// toolpart.Armor Plate=%%material Armor Plate
-
-// item.TD.Cloth.white.name=White Cloth
-// item.TD.Cloth.orange.name=Orange Cloth
-// item.TD.Cloth.magenta.name=Magenta Cloth
-// item.TD.Cloth.lightblue.name=Light Blue Cloth
-// item.TD.Cloth.yellow.name=Yellow Cloth
-// item.TD.Cloth.lime.name=Lime Cloth
-// item.TD.Cloth.pink.name=Pink Cloth
-// item.TD.Cloth.gray.name=Grey Cloth
-// item.TD.Cloth.lightgray.name=Grey Cloth
-// item.TD.Cloth.cyan.name=Cyan Cloth
-// item.TD.Cloth.purple.name=Purple Cloth
-// item.TD.Cloth.blue.name=Blue Cloth
-// item.TD.Cloth.brown.name=Brown Cloth
-// item.TD.Cloth.green.name=Green Cloth
-// item.TD.Cloth.red.name=Red Cloth
-// item.TD.Cloth.black.name=Black Cloth
-
-// tool.tinkersrobe=Robe
-// tool.tinkersshawl=Shawl
-// tool.tinkershood=Hood
-// tool.tinkersshoes=Shoes
-
-// tool.tinkerscoif=Coif
-// tool.tinkershauberk=Hauberk
-// tool.tinkerschausses=Chausses
-// tool.tinkersboots=Boots
-
-// tool.tinkershelm=Helm
-// tool.tinkersbreastplate=Breastplate
-// tool.tinkersgrieves=Grieves
-// tool.tinkerssabatons=Sabatons
-// tool.tinkersgauntlets=Gauntlets
-
-// item.tconstruct.Pattern.rivets.name=Rivet Pattern
-// item.tconstruct.Pattern.clasp.name=Clasp Pattern
-// item.tconstruct.Pattern.armorplate.name=Armor Plate Pattern
-// item.tconstruct.Pattern.chainmaille.name=Chainmail Pattern
-
-// item.tconstruct.MetalPattern.rivets.name=Rivet Cast
-// item.tconstruct.MetalPattern.clasp.name=Clasp Cast
-// item.tconstruct.MetalPattern.armorplate.name=Armor Plate Cast
-// item.tconstruct.MetalPattern.chainmaille.name=Chainmail Cast
-
-// tool.tinkerwrench=Wrench
-// tool.shears=Shears
-// tool.tinkerzweihander=Zweihander
-
-// item.greenmintIngot.name=Green Mint Ingot
-// item.redmintIngot.name=Red Mint Ingot
-// item.greenmintcane.name=Green Mint Cane
-// item.redmintcane.name=Red Mint Cane
-
-// tile.redmintblock.name=Red Mint Block
-// tile.greenmintblock.name=Green Mint Block
-// tile.Moltenredmint.name=Molten Red Mint
-// tile.Moltengreenmint.name=Molten Green Mint
-
-// item.guidebook.name=Order's Manual
-// item.modItemsCore_AncientRelic.name=Ancient Relic
-// item.modItemsCore_RainbowGem.name=Rainbow Gem
-// item.modItemsCore_Textbook.name=Textbook
-// item.modItemsCore_SoulStone.name=SoulStone (Steve)
-// item.modItemsCore_CrestFeathers.name=Crest of Feathers Template
-// item.modItemsCore_CrestMirrors.name=Crest of Mirrors Template
-// item.modItemsCore_CrestLegends.name=Crest of Legends Template
-// item.modItemsCore_CrestGluttony.name=Crest of Gluttony Template
-// item.modItemsCore_CrestThorns.name=Crest of Thorns Template
-// item.modItemsCore_CrestSanguisuga.name=Crest of the Sanguisuga Template
-// item.modItemsCore_CrestWinds.name=Crest of Winds Template
-// item.modItemsCore_CrestLight.name=Crest of Light Template
-// item.modItemsCore_CrestPaper.name=Crest Paper
-// item.modItemsArmor_Canister.name=Filled Canister
-// item.modItemsArmor_EmptyCanister.name=Empty Canister
-// item.modItemsArmor_Rebreather.name=Rebreather
-// item.modItemsArmor_NightvisionGoggles.name=Nightvision Goggles
-// item.modItemsArmor_Glowstep.name=Glowing Crystal
-// item.modItemsArmor_Firewalker.name=Fiery Crystal
-// item.modItemsArmor_Frostwalker.name=Frosty Crystal
-// item.modItemsArmor_FeatherFall.name=Hermes' Feathers
-// item.modItemsArmor_Flippers.name=Flippers
-// item.modItemsBloodMagic_bindingwrap.name=Oathbinding Chains
-// item.modItemsBloodMagic_bloodybandages.name=Bloody Bandages
-// item.modItemsBotania_corpseIvyGraft.name=CorpseIvy Graft
-// item.modItemsBotania_corpseIvy.name=CorpseIvy
-// item.modItemsBotania_terraCore.name=TerraCore
-// item.modItemsBotania_manaCore.name=ManaCore
-// item.modItemsBotania_elementiumcore.name=ElementiumCore
-
-// tile.unstable_ice.name=Unstable Ice
-// tile.unstable_obsidian.name=Unstable Obsidian
-// tile.glowstonecrumbs.name=Glowstone Crumbs
-
-// book.chapter0.page0.titleL=Intro
-// book.chapter0.page0.titleR= 
-// book.chapter0.page0.ContentL=By command of the Order of the Silver Lance and under supervision of me, Urist Ironhammer, this text has been created for use as reference and learning tool for fellow members.
-// book.chapter0.page0.ContentR=Within these pages are secrets long kept by the Order, caution and discretion are adviced to avoid revelation or personal harm.
-
-// book.chapter1.page0.titleL=Shields
-// book.chapter1.page0.titleR= 
-// book.chapter1.page0.ContentL=The first, and sometimes only, defense in a Tinkerer's arsenal is the shield. The Order specializes in two types, the Bucker and the Heater shield.
-// book.chapter1.page0.ContentR=Diagrams, blueprints, and ways to modify are shown on the following pages.
-
-//Note to translators - anything in %% is changed in code and ~player~ is the player's name.
-// soul.Steve.offense.0=Heh. What is super armor to me. ~damage~ damage!!
-// soul.Steve.offense.1=~damage~ damage! Pow!
-// soul.Steve.offense.2=Swish!
-// soul.Steve.offense.3=HIYA!
-// soul.Steve.offense.4=~damage~ damage? Swing me harder!
-// soul.Steve.offense.5=Woo! ~damage~ damage! I'm awesome!
-// soul.Steve.offense.6=~damage~ damage!
-// soul.Steve.offense.7=~damage~ damage?
-// soul.Steve.offense.8=~damage~ damage...
-
-// soul.Steve.defense.0=Hee hee hee... you are bad. Only ~damage~ damage!
-// soul.Steve.defense.1=You need to do more than that. Only ~damage~ damage.
-// soul.Steve.defense.2=Only ~damage~? Pathetic!
-// soul.Steve.defense.3=Ah my face!
-// soul.Steve.defense.4=Don't hit! Thats rude!
-// soul.Steve.defense.5=I can do more than ~damage~ damage and I don't have hands!
-// soul.Steve.defense.6=~damage~ damage!
-// soul.Steve.defense.7=~damage~ damage?
-// soul.Steve.defense.8=~damage~ damage...
-
-// soul.Steve.armor.0=It's like I'm hugging you!
-// soul.Steve.armor.1=Did you put on deoderant today? Doesn't smell like it...
-// soul.Steve.armor.2=Smelling kinda musty here...
-// soul.Steve.armor.3=You're warm... It's nice...
-// soul.Steve.armor.4=Don't worry ~player~! I'll protect you!
-// soul.Steve.armor.5=I'm like a koala.
-
-// soul.Steve.weapon.0=Let me at 'em!
-// soul.Steve.weapon.1=I'm so sharp it hurts!
-// soul.Steve.weapon.2=You should have made me into a chainsaw. Chainsaws are cool!
-// soul.Steve.weapon.3=Why didn't you make me into a flamethrower?
-// soul.Steve.weapon.4=Find me something to whack on!
-
-// soul.Steve.onfire.0=It's hot! You're gonna be burnt!
-// soul.Steve.onfire.1=Fire! Fire! It's too hot in here!
-
-// soul.Steve.lowhp.0=~Player~, say something.
-// soul.Steve.lowhp.1=H, Hey, get away, jack!
-// soul.Steve.lowhp.2=One more blow from that guy could finish us.
-// soul.Steve.lowhp.3=No need to worry...
-// soul.Steve.lowhp.4=Yo, you awake up there, ~player~?
-
-// soul.Steve.death.0=Damn... if only there hadn't been the accident... we would have been able to live happily ever after...
-// soul.Steve.death.1=That's not good...
-// soul.Steve.death.2=I guess human dreams are fragile...
-// soul.Steve.death.3=I remember... my dad's motto was... A man should never cry like a newborn.
-// soul.Steve.death.4=Sorry! It was my fault...
-// soul.Steve.death.5=I wonder if there is a life after death...
-// soul.Steve.death.6=Aww man, that sucks!
-// soul.Steve.death.7=Darn, I couldn't get to telling you his weak point!
-
-// soul.Steve.lowhunger.0=Eat something nutritious.
-// soul.Steve.lowhunger.1=You look famished!
-// soul.Steve.lowhunger.2=Are you hungry? You should eat.
-// soul.Steve.lowhunger.3=You should eat.
-// soul.Steve.lowhunger.4=Are you hungry?
-// soul.Steve.lowhunger.5=Your tummy sounds angry.
-// soul.Steve.lowhunger.6=Was that a monster?! Oh it was just your stomache...
-
-// soul.Steve.lowdurability.0=I'm starvin'!
-// soul.Steve.lowdurability.1=I'm starving. I wanna eat a piece of ~material~.
-// soul.Steve.lowdurability.2=I feel thirsty.
-// soul.Steve.lowdurability.3=Wow. I'm beat.
-// soul.Steve.lowdurability.4=Thump, thump, thump. My heart is throbbing...
-// soul.Steve.lowdurability.5=I'm getting sleepy... zzz.
-// soul.Steve.lowdurability.6=I'm still young!
-// soul.Steve.lowdurability.7=I am very sensitive. Handle with care, please.
-// soul.Steve.lowdurability.8=My fortune today is the worst!! My stars are all wrong.
-// soul.Steve.lowdurability.9=Something's bothering me...
-// soul.Steve.lowdurability.10=I feel my body starting to creak...
-// soul.Steve.lowdurability.11=My back hurts lately...
-// soul.Steve.lowdurability.12=Hasn't Steve been good to you? I don't know what I've done for you to treat me so disrespectfully.
-// soul.Steve.lowdurability.13=~player~ you need to repair me every once in a while. Life without Steve isn't worth living.
-// soul.Steve.lowdurability.14=Am I losing it?
-// soul.Steve.lowdurability.15=Agghh! My head is gonna explode...
-// soul.Steve.lowdurability.16=Recently, I've been feeling beat.
-// soul.Steve.lowdurability.17=I'm really having a crappy day.
-// soul.Steve.lowdurability.18=Why... am I so... miserable... ?
-// soul.Steve.lowdurability.19=Don't you think my existence is pretty important. I mean, how many talking ~tool~s do you know?
-// soul.Steve.lowdurability.20=Count on me! Oops. Wait, wait!
-// soul.Steve.lowdurability.21=Hey... ~player~, you been cold to me recently...
-// soul.Steve.lowdurability.22=I'm burning out...
-
-// soul.Steve.broken.0=I'm gonna take a nap.
-// soul.Steve.broken.1=Not now ~player~, I've got a headache.
-// soul.Steve.broken.2=I wonder if there is any medicine that heals the heart...
-// soul.Steve.broken.3=I, I lost...
-// soul.Steve.broken.4=I hope I can have pleasant dreams tonight...
-// soul.Steve.broken.5=(Sob)... I have no time left...
-// soul.Steve.broken.6=Oh... Dad. You are there.
-// soul.Steve.broken.7=Nothingness... there is nothing there but darkness... darkness spreading everywhere.
-// soul.Steve.broken.8=Agghh!
-// soul.Steve.broken.9=I can't take it anymore.
-// soul.Steve.broken.10=Uggghhh!
-// soul.Steve.broken.11=I don't want to be defeated by him!
-// soul.Steve.broken.12=Argh... I think I'm really... a loser...
-
-// soul.Steve.repaired.0=Yeah, my priorities have all changed! Ahh, it's exciting to be alive.
-// soul.Steve.repaired.1=I tingle with excitement at my new life course. Steve, the millionaire ~tool~!!
-// soul.Steve.repaired.2=The power sealed within me now... about to be revived!
-// soul.Steve.repaired.3=As long as I am alive, good things will happen.
-// soul.Steve.repaired.4=Andy, brother! Stop! Stop it! Phew... it was... a dream...
-// soul.Steve.repaired.5=It feels like love...
-
-// soul.Steve.modified.0=I'm gonna be the ~tool~ to beat all ~tool~!
-// soul.Steve.modified.1=~player~, you're too friendly. It makes me jealous.
-// soul.Steve.modified.2=It feels like love...
-// soul.Steve.modified.3=I... I feel strong... I feel charged with power... an immense power...
-// soul.Steve.modified.4=I'm pretty much a genius, huh.
-// soul.Steve.modified.5=Uggh! This, this is it! The coolness I was looking for.
-// soul.Steve.modified.6=I see. I get it. Now I understand. I am enlightened!
-
-// soul.Steve.horsenear.0=Neigh!
-// soul.Steve.horsenear.1=Is that a horse? Well, it doesn't matter. It's cool anyway!
-// soul.Steve.horsenear.2=I wonder what the name of that horse is?
-// soul.Steve.horsenear.3=Hey look, Swedish meatballs!
-// soul.Steve.horsenear.4=How do you turn that into glue...?
-
-// soul.Steve.pignear.0=Oink Oink!
-// soul.Steve.pignear.1=I wonder if boar's meat is tasty.
-// soul.Steve.pignear.2=Mmm, porkchops.
-// soul.Steve.pignear.3=Aww he has a wittle snout!
-// soul.Steve.pignear.4=I smell bacon!
-
-// soul.Steve.chickennear.0=Cluck cluck!
-// soul.Steve.chickennear.1=Didn't you say you like chicken better ~player~?
-// soul.Steve.chickennear.2=That's a chicken? It looks like a duck...
-// soul.Steve.chickennear.3=~player~ where's the fry pot?!
-// soul.Steve.chickennear.4=You should decorate me with those feathers!
-
-// soul.Steve.cownear.0=Mooo!
-// soul.Steve.cownear.1=Mmm, steak.
-// soul.Steve.cownear.2=Horns and udders...?
-// soul.Steve.cownear.3=I could go for a glass of milk.
-// soul.Steve.cownear.4=I wonder if cows also come in chocolate.
-
-// soul.Steve.sheepnear.0=Baaaaah!
-// soul.Steve.sheepnear.1=It looks so fluffy!
-// soul.Steve.sheepnear.2=Mmm, mutton.
-// soul.Steve.sheepnear.3=~player~ could you just lay me on that sheep? It looks soft.
-// soul.Steve.sheepnear.4=Where'd those shears go, Steve needs a new blanket.
-
-// soul.Steve.wolfnear.0=Woof!
-// soul.Steve.wolfnear.1=Hey back up, I'm not a chew toy!
-// soul.Steve.wolfnear.2=Here boy! *whistles*
-// soul.Steve.wolfnear.3=Aww I wanna pet him!
-// soul.Steve.wolfnear.4=~player~ what should we name him? I like the name Steve!
-
-// soul.Steve.catnear.0=Meow!
-// soul.Steve.catnear.1=Claws and teeth? Scary pet you have...
-// soul.Steve.catnear.2=No, I'm not for scratching!
-// soul.Steve.catnear.3=So cute!
-// soul.Steve.catnear.4=~player~ I wanna pet it! Can I?!
-
-// soul.Steve.skeletonnear.0=They say that monster is one of the undead.
-// soul.Steve.skeletonnear.1=What's that weird clunky noise?
-// soul.Steve.skeletonnear.2=I hear a bow being drawn...
-// soul.Steve.skeletonnear.3=Doot doot!
-// soul.Steve.skeletonnear.4=It looks like an xylophone!
-
-// soul.Steve.zombienear.0=Smell something?
-// soul.Steve.zombienear.1=They say that monster is one of the undead.
-// soul.Steve.zombienear.2=I smell something gross.
-// soul.Steve.zombienear.3=Eww it's rotting!
-// soul.Steve.zombienear.4=Don't let that touch you, it looks diseased!
-
-// soul.Steve.creepernear.0=I smell gunpowder.
-// soul.Steve.creepernear.1=Ssssssssssss...
-// soul.Steve.creepernear.2=Explosive, handle with care...
-// soul.Steve.creepernear.3=That almost looks like a pig, just way creepier...
-// soul.Steve.creepernear.4=He has an explosive personality!
-
-// soul.Steve.spidernear.0=*shudder*
-// soul.Steve.spidernear.1=Giant bugs? This is hell.
-// soul.Steve.spidernear.2=You should try riding that!
-// soul.Steve.spidernear.3=Too many legs... Yuck!
-// soul.Steve.spidernear.4=Kill it with fire!
-
-// soul.Steve.endermannear.0=He has long legs. You needed me to tell you that huh.
-// soul.Steve.endermannear.1=It has such thin arms, someone needs to lift more.
-// soul.Steve.endermannear.2=Careful, he can dodge pretty well... Well, sometimes anyway.
-// soul.Steve.endermannear.3=Woah, where'd he come from?
-// soul.Steve.endermannear.4=Wow, he's huge.
-
-// soul.Steve.silverfishnear.0=What's up with its color?
-// soul.Steve.silverfishnear.1=I hear scratching...
-// soul.Steve.silverfishnear.2=Ew what is that?!
-// soul.Steve.silverfishnear.3=Kill it with fire!
-// soul.Steve.silverfishnear.4=Ew ew ew please go away ew!
-
-// soul.Steve.blazenear.0=Blaze blaze bla bla blaze. Woah, Mr. Blaze.
-// soul.Steve.blazenear.1=Is that a demon?
-// soul.Steve.blazenear.2=I think that's a demon.
-// soul.Steve.blazenear.3=I hope you're fireproof.
-// soul.Steve.blazenear.4=Come on ~player~, lets fight fire with... STEVE!
-
-// soul.Steve.enemynear.0=What's he doing here?
-// soul.Steve.enemynear.1=Hey look, it's a ~other~!
-// soul.Steve.enemynear.2=Look out!
-// soul.Steve.enemynear.3=Hey, shoo, stupid ~other~.
-// soul.Steve.enemynear.4=I wonder what ~other~ tastes like...
-
-// soul.Steve.creaturenear.0=I think that ~other~ is following us.
-// soul.Steve.creaturenear.1=Hey look, it's a ~other~!
-// soul.Steve.creaturenear.2=Kneel before Steve puny ~other~!
-// soul.Steve.creaturenear.3=~player~ quick, catch that ~other~!
-// soul.Steve.creaturenear.4=I wonder what ~other~ tastes like...
-
-// soul.Steve.insultzombie.0=Being undead bites.
-// soul.Steve.insultzombie.1=He makes me puke.
-// soul.Steve.insultzombie.2=Bet he'd taste nasty if we ate him.
-// soul.Steve.insultzombie.3=Looks like a sickly little boy.
-// soul.Steve.insultzombie.4=Looks a little sickly.
-// soul.Steve.insultzombie.5=He looks like he'll die pretty soon with our without our help.
-// soul.Steve.insultzombie.6=He must be rotten.
-// soul.Steve.insultzombie.7=You reek man.
-// soul.Steve.insultzombie.8=Yeeek...
-// soul.Steve.insultzombie.9=There are alot of guys running around that look like him.
-
-// soul.Steve.insultskeleton.0=Calcium rich bones have such a nice pop when they break.
-// soul.Steve.insultskeleton.1=He looks pale. I wonder if something bad happened to him.
-// soul.Steve.insultskeleton.2=Wow that guy's pale. Get out on the beach or something dude.
-// soul.Steve.insultskeleton.3=He looks pale. I wonder if he has a glandular problem.
-// soul.Steve.insultskeleton.4=Ah, he doesn't look like much. Whups! Incoming!
-// soul.Steve.insultskeleton.5=Whoa, careful! You'll put somebody's eye out with that thing.
-// soul.Steve.insultskeleton.6=He's just a skeleton, but he has a bow.
-
-// soul.Steve.insultcreeper.0=Woah! This guys gonna blow!
-// soul.Steve.insultcreeper.1=Get away from him before he pops...
-// soul.Steve.insultcreeper.2=What a creep!
-// soul.Steve.insultcreeper.3=He looks a bit unstable...
-// soul.Steve.insultcreeper.4=Hehehe, what is that?
-
-// soul.Steve.insultspider.0=Don't make me get the bug spray!
-// soul.Steve.insultspider.1=Bugs are gross! Go away!
-// soul.Steve.insultspider.2=~player~, kill it with fire!
-// soul.Steve.insultspider.3=You know in a past life I was a bug swatter!
-// soul.Steve.insultspider.4=Lets take its eyes! ...That was a little morbid wasn't it...
-
-// soul.Steve.insultenderman.0=Behind his benign face, lies evil intent of the most fearful kind... Aren't I dramatic?
-// soul.Steve.insultenderman.1=I get an evil vibe off him.
-// soul.Steve.insultenderman.2=I hate the way his mouth moves...
-// soul.Steve.insultenderman.3=Better run!
-// soul.Steve.insultenderman.4=Back from whence you came!
-
-// soul.Steve.insultsilverfish.0=Bet he'd taste nasty if we ate him.
-// soul.Steve.insultsilverfish.1=Ew, what is that?
-// soul.Steve.insultsilverfish.2=Squish it!
-// soul.Steve.insultsilverfish.3=Think its actually made of silver? We could make big money!
-// soul.Steve.insultsilverfish.4=Burrowing away is cheating!
-
-// soul.Steve.insultwitch.0=I don't want to get an apple from her.
-// soul.Steve.insultwitch.1=Just smash the potion throwing old bag!
-// soul.Steve.insultwitch.2=This chick's gross.
-// soul.Steve.insultwitch.3=Old lady power is endless...
-// soul.Steve.insultwitch.4=You have something for if you get poisoned right?
-
-// soul.Steve.insultblaze.0=Away hellspawn!
-// soul.Steve.insultblaze.1=The power of Steve compels you!
-// soul.Steve.insultblaze.2=Got any holy water? Or any water really...
-// soul.Steve.insultblaze.3=Time to be extinguished!
-// soul.Steve.insultblaze.4=Too bad we don't have marshmellows.
-
-// soul.Steve.insultghast.0=Crybaby!
-// soul.Steve.insultghast.1=Hit that fireball back at him!
-// soul.Steve.insultghast.2=Did you bring a ranged weapon? That would help right now.
-// soul.Steve.insultghast.3=Ew, it's got weird tentacles...
-// soul.Steve.insultghast.4=Let me give you something to cry about!
-
-// soul.Steve.insultdragon.0=Ooo a Dragon... Rrrarrggh!
-// soul.Steve.insultdragon.1=Steve's tip of the day. Lesson 1. Ender Dragon hides make awesome boots.
-// soul.Steve.insultdragon.2=I used to imagine dragons were slender creatures.
-// soul.Steve.insultdragon.3=Flying is basically cheating... AND CHEATERS NEVER WIN!
-// soul.Steve.insultdragon.4=What kind of dragon can't breathe fire?
-
-// soul.Steve.insultplayer.0=~other~... I heard that name somewhere before.
-// soul.Steve.insultplayer.1=~other~, ~other~... Talk to me bud. Why do you challenge the supremacy of Steve?
-// soul.Steve.insultplayer.2=I wonder if ~other~ has no friends? Probably.
-// soul.Steve.insultplayer.3=This guy's boring.
-// soul.Steve.insultplayer.4=Bet he's got no friends.
-// soul.Steve.insultplayer.5=Yup, he was adopted.
-// soul.Steve.insultplayer.6=Don't waste your time with this guy ~player~.
-// soul.Steve.insultplayer.7=My weak point? Hmph. No such thing.
-// soul.Steve.insultplayer.8=He should just chill himself, don't you think?
-// soul.Steve.insultplayer.9=Let's settle it with speed! You can't beat the speed of a talking ~tool~!
-// soul.Steve.insultplayer.10=He thinks he's so cool with his sword. Loser.
-// soul.Steve.insultplayer.11=He's strong. But he's not all that strong when you attack from a distance.
-// soul.Steve.insultplayer.12=Whoa, careful! You'll put somebody's eye out with that thing.
-// soul.Steve.insultplayer.13=His weapon is great, but he is meager.
-// soul.Steve.insultplayer.14=There are alot of guys running around that look like him.
-// soul.Steve.insultplayer.15=So he's still kickin' huh?
-
-// soul.Steve.insultother.0=Me shatter you like glass.
-// soul.Steve.insultother.1=Wish I knew how to slowly lumber into oncoming fire.
-// soul.Steve.insultother.2=He's lame.
-// soul.Steve.insultother.3=He burnt me in my dream. Burn him back. For me!
-// soul.Steve.insultother.4=Pretty much looks like a dork huh.
-// soul.Steve.insultother.5=Airhead.
-// soul.Steve.insultother.6=Leave it be, ~player~. It obviously has no friends.
-// soul.Steve.insultother.7=This guy's a putz... Did I just use that word?
-// soul.Steve.insultother.8=Just off him already.
-// soul.Steve.insultother.9=My name is STEVE! I own you.
-// soul.Steve.insultother.10=Won't give up will he.
-// soul.Steve.insultother.11=Get lost. Loser.
-// soul.Steve.insultother.12=I hate this loser.
-// soul.Steve.insultother.13=Annoying.
-// soul.Steve.insultother.14=How do we handle this one?
-// soul.Steve.insultother.15=Looks stupid.
-// soul.Steve.insultother.16=The weak point of this monster? Basically everywhere...
-// soul.Steve.insultother.17=What me... lose to him!? Ha, good one!
-// soul.Steve.insultother.18=Just because I'm a ~tool~, doesn't mean I'm stupid.
-// soul.Steve.insultother.19=Don't you think he's annoying?
-// soul.Steve.insultother.20=Weak point? Uh, duh! Don't make me say it, please.
-// soul.Steve.insultother.21=Hello my name is Steve. I own you, ~other~.
-// soul.Steve.insultother.22=Today's prediction. Pain!
-// soul.Steve.insultother.23=I wonder how much I could sell that ~other~ for...
-// soul.Steve.insultother.24=This guy doesn't hold back.
-// soul.Steve.insultother.25=This guy's a clown.
-// soul.Steve.insultother.26=He should try to learn from my exquisite sense of style.
-// soul.Steve.insultother.27=My kung fu is stronger!
-// soul.Steve.insultother.28=What? The weak point? You know it, right? It's not that I don't know it...
-// soul.Steve.insultother.29=He'll get what's coming... Just wait.
-// soul.Steve.insultother.30=Humph, this guy's a piece of cake.
-// soul.Steve.insultother.31=This guy might fetch a high price!
-// soul.Steve.insultother.32=Let's just take 'em out, pack 'em up and get outta here.
-// soul.Steve.insultother.33=He's got a weird face.
-// soul.Steve.insultother.34=Behave yourself ~other~.
-// soul.Steve.insultother.35=Finish him, ~player~!!
-// soul.Steve.insultother.36=Fight fire with fire, ~player~. Not literally but you get what I mean.
-// soul.Steve.insultother.37=He's pretty tough. Be careful.
-// soul.Steve.insultother.38=Whoa! Are you fighting him?
-// soul.Steve.insultother.39=Maybe he doesn't know he's made of paper. We have to tell him.
-// soul.Steve.insultother.40=His weak point? Come on, you've gotta know it?
-
-// soul.Steve.creation.0=My name is Steve! A pleasure.
-// soul.Steve.creation.1=My name is Steve! By the way, my sister's name is Stephanie.
-// soul.Steve.creation.2=And on the 6th day Steve was created...
-// soul.Steve.creation.3=Zzz... Huh! Was I sleeping?
-// soul.Steve.creation.4=Today's fortune, you will meet someone new. It was great to meet you, ~player~.
-// soul.Steve.creation.5=Hello my name is Steve. I own you.
-// soul.Steve.creation.6=In the village, everybody called me Steve, the busy bee.
-
-// soul.Steve.other.0=I wonder sometimes, why do I have to be a ~tool~? Why not some absurd fully automatic firearm?
-// soul.Steve.other.1=My baby brother was such a brat...
-// soul.Steve.other.2=By the way. How are ya doing?
-// soul.Steve.other.3=Reminds me of last night. I had a dream of my dad... he was a catapult...
-// soul.Steve.other.4=My hair is awesome!!! It takes forever in the morning but tell me it isn't worth it.
-// soul.Steve.other.5=Waffle, waffle, waffle.
-// soul.Steve.other.6=Why on earth can I talk? I'm a ~tool~...
-// soul.Steve.other.7=Do you understand, ~player~, what it feels like to be a ~tool~?
-// soul.Steve.other.8=...Achoo!
-// soul.Steve.other.9=I like flan.
-// soul.Steve.other.10=How'd I get my name...? I don't remember.
-// soul.Steve.other.11=Don't you think my name is cool?
-// soul.Steve.other.12=Yo. What is it like being human, ~player~? Don't think it would work for me. A human ~tool~... messy.
-// soul.Steve.other.13=Sometimes, I remember my old days. I went through many hardships...
-// soul.Steve.other.14=My jokes are getting stale...
-// soul.Steve.other.15=Let me tell you my state of mind... I wanna be a human as quickly as possible.
-// soul.Steve.other.16=Love is an immaculate beam of warm fuzzy energy.
-// soul.Steve.other.17=Did you know that I am an excellent singer? A pro!
-// soul.Steve.other.18=My dad would say, "A man should stand up in the headwind no matter what."
-// soul.Steve.other.19=If I didn't have a torso, that would kinda bug me.
-// soul.Steve.other.20=Last night, my late dad talked to me in a dream... I was so happy
-// soul.Steve.other.21=Yesterday, I dreamt I was rich.
-// soul.Steve.other.22=My ego is like a gas giant. Like Jupiter or, heh Uranus.
-// soul.Steve.other.23=I know, I know... You're wondering how you might serve Steve better.
-// soul.Steve.other.24=Fortune of the day. Beware of being boring. Oops, I gotta be careful.
-// soul.Steve.other.25=Fortune of the day. It'll be a very happy day. Maybe.
-// soul.Steve.other.26=I can sing and dance! I should be a performer.
-// soul.Steve.other.27=I am a great dancer. I want to show you.
-// soul.Steve.other.28=I wonder ~player~, how old are you?
-// soul.Steve.other.29=By the way, do you think I am handsome?
-// soul.Steve.other.30=Don't you think it will look good on me if I dye my hair red?
-// soul.Steve.other.31=Fortune of the day. The lucky item is a white handkerchief.
-
-// soul.Steve.story.0.0=I has a twin sister who I have been separated from for a long time... I wonder how she's doing.
-// soul.Steve.story.0.1=My sister was totally cute. She was the belle of the village.
-// soul.Steve.story.0.2=When I take a close look at you, ~player~ you look like my sister.
-
-// soul.Steve.story.1.0=My pitiful attempts to be cool. Blasted playground!
-// soul.Steve.story.1.1=Why didn't the cool kids play with me?
-
-// soul.Steve.story.2.0=Once upon a time there was Steve.
-// soul.Steve.story.2.1=He owned you.
-// soul.Steve.story.2.2=The End.
-// soul.Steve.story.2.3=Wasn't that a great story?
-
-// soul.Steve.story.3.0=I'm wondering...
-// soul.Steve.story.3.1=Is there a decaffeinated brand out there for me...? That I can truly enjoy.
-// soul.Steve.story.3.2=It's a big concern for me...
-// soul.Steve.story.3.3=What do you think?"
-
-item.shield.name=Buckler
-item.shield.desc=A small shield with low protection but with the ability to counter attacks, slowing down your opponent. Due to its small size it can't hold as many modifiers.
-
-item.heatershield.name=Heater Shield
-item.heatershield.desc=A standard shield designed to protect from all incoming attacks while still being mobile.
+itemGroup.tinkerscompendium=Tinkers' Compendium
+itemGroup.compendiumtextiles=Tinkers' Compendium Textiles
+gui.armorstation.name=Armor Refinery
+tile.armorstation.name=Armor Refinery
+tile.finishinganvil.name=Finishing Anvil
+tile.hammeringtable.name=Hammering Table
+item.null.name=[null]
+item.regdummy.name=Ignore Me
+
+#Fluids
+fluid.tinkerscompendium.aeonsteel.name=Molten Aeonsteel
+fluid.tinkerscompendium.queensgold.name=Molten Queensgold
+fluid.tinkerscompendium.dogbearium.name=Molten Dogbearium
+fluid.tinkerscompendium.froststeel.name=Molten Froststeel
+fluid.tinkerscompendium.nihilite.name=Molten Nihilite
+fluid.tinkerscompendium.rosegold.name=Molten Rosegold
+fluid.tinkerscompendium.sinisterium.name=Molten Sinisterium
+fluid.tinkerscompendium.valyriansteel.name=Molten Valyriansteel
+fluid.tinkerscompendium.orichalcum.name=Molten Orichalcum
+fluid.tinkerscompendium.pandorium.name=Molten Pandorium
+fluid.tinkerscompendium.platinum.name=Molten Platinum
+
+fluid.tinkerscompendium.chorusjuice.name=Chorus Juice
+fluid.tinkerscompendium.vile.name=Vile Liquid
+fluid.tinkerscompendium.vibrant.name=Vibrant Liquid
+fluid.tinkerscompendium.slush.name=Liquid Slush
+fluid.tinkerscompendium.quartz.name=Molten Nether Quartz
+fluid.tinkerscompendium.dragonsbreath.name=liquid Dragons Breath
+
+#Materials
+material.aeonsteel.name=Aeonsteel
+material.queensgold.name=Queensgold
+material.dogbearium.name=Dogbearium
+material.froststeel.name=Froststeel
+material.nihilite.name=Nihilite
+material.rosegold.name=Rosegold
+material.sinisterium.name=Sinisterium
+material.valyriansteel.name=Valyriansteel
+material.orichalcum.name=Orichalcum
+material.pandorium.name=Pandorium
+material.platinum.name=Platinum
+
+material.mithril.name=Mithril
+
+material.whitecloth.name=White Wool
+material.orangecloth.name=Orange Wool
+material.magentacloth.name=Magenta Wool
+material.lightbluecloth.name=Lightblue Wool
+material.yellowcloth.name=Yellow Wool
+material.limecloth.name=Lime Wool
+material.pinkcloth.name=Pink Wool
+material.graycloth.name=Gray Wool
+material.lightgraycloth.name=Lightgray Wool
+material.cyancloth.name=Cyan Wool
+material.purplecloth.name=Purple Wool
+material.bluecloth.name=Blue Wool
+material.browncloth.name=Brown Wool
+material.greencloth.name=Green Wool
+material.redcloth.name=Red Wool
+material.blackcloth.name=Black Wool
+
+material.silky.name=Silky Enchanted
+
+material.brass.name=Brass
+material.gold.name=Gold
+
+material.redcandy.name=Red Candy
+material.greencandy.name=Green Candy
+
+material.sapphire.name=Saphire
+material.emerald.name=Emerald
+material.diamond.name=Diamond
+material.ruby.name=Ruby
+material.starsapphire.name=Star Saphire
+material.citrine.name=Citrine
+material.quartz.name=Nether Quartz
+material.starruby.name=Star Ruby
+material.amethyst.name=Amethyst
+material.lapis.name=Lapis
+material.garnet.name=Garnet
+material.opal.name=Opal
+material.tanzinite.name=Tanzinite
+material.amber.name=Amber
+material.mithril.name=Mithril
+
+#New Items
+item.canister.name=Filled Canister
+item.empty_canister.name=Empty Canister
+item.rebreather.name=Rebreather
+item.eldergills.name=Elder Gills
+item.goggles.name=Goggles
+item.nightvisiongoggles.name=Night Vision Goggles
+item.glowsole.name=Glowing Crystal
+item.firesole.name=Fiery Crystal
+item.icesole.name=Frosty Crystal
+item.feathersole.name=Hermes' Feathers
+item.flippers.name=Flippers
+
+item.stoneclump_silver.name=Silver Ore Clump
+item.stoneclump_copper.name=Copper Ore Clump
+item.stoneclump_platinum.name=Platinum Ore Clump
+item.stoneclum_lead.name=Lead Ore Clump
+
+item.roughspuncord.name=Roughspun Cord
+item.grassfiber.name=Grass Fiber
+
+item.cottonyarn.black.name=Black Cotton Yarn
+item.cottonyarn.red.name=Red Cotton Yarn
+item.cottonyarn.green.name=Green Cotton Yarn
+item.cottonyarn.blue.name=Blue Cotton Yarn
+item.cottonyarn.brown.name=Brown Cotton Yarn
+item.cottonyarn.purple.name=Purple Cotton Yarn
+item.cottonyarn.silver.name=Light Gray Cotton Yarn
+item.cottonyarn.cyan.name=Cyan Cotton Yarn
+item.cottonyarn.gray.name=Gray Cotton Yarn
+item.cottonyarn.pink.name=Pink Cotton Yarn
+item.cottonyarn.lime.name=Lime Cotton Yarn
+item.cottonyarn.yellow.name=Yellow Cotton Yarn
+item.cottonyarn.lightBlue.name=Light Blue Cotton Yarn
+item.cottonyarn.magenta.name=Magenta Cotton Yarn
+item.cottonyarn.orange.name=Orange Cotton Yarn
+item.cottonyarn.white.name=White Cotton Yarn
+
+item.ingot_aeonsteel.name=Aeonsteel Ingot
+item.ingot_queensgold.name=Queensgold Ingot
+item.ingot_dogbearium.name=Dogbearium Ingot
+item.ingot_froststeel.name=Froststeel Ingot
+item.ingot_nihilite.name=Nihilite Ingot
+item.ingot_rosegold.name=Rosegold Ingot
+item.ingot_sinisterium.name=Sinisterium Ingot
+item.ingot_valyriansteel.name=Valyriansteel Ingot
+item.ingot_orichalcum.name=Orichalcum Ingot
+item.ingot_pandorium.name=Pandorium Ingot
+item.ingot_platinum.name=Platinum Ingot
+
+item.ingot_ice.name=Ice Ingot
+item.ingot_purifiedgold.name=Pure Gold Ingot
+item.ingot_purifiedsilver.name=Pure Silver Ingot
+item.ingot_stone.name=Stone Ingot
+item.ingot_obsidian.name=Obsidian Ingot
+item.ingot_endstone.name=Endstone Ingot
+item.ingot_copper.name=Copper Ingot
+item.ingot_bronze.name=Bronze Ingot
+item.ingot_lead.name=Lead Ingot
+item.ingot_electrum.name=Electrum Ingot
+item.ingot_steel.name=Steel Ingot
+
+item.nugget_aeonsteel.name=Aeonsteel Nugget
+item.nugget_queensgold.name=Queensgold Nugget
+item.nugget_dogbearium.name=Dogbearium Nugget
+item.nugget_froststeel.name=Froststeel Nugget
+item.nugget_nihilite.name=Nihilite Nugget
+item.nugget_rosegold.name=Rosegold Nugget
+item.nugget_sinisterium.name=Sinisterium Nugget
+item.nugget_valyriansteel.name=Valyriansteel Nugget
+item.nugget_orichalcum.name=Orichalcum Nugget
+item.nugget_pandorium.name=Pandorium Nugget
+item.nugget_platinum.name=Platinum Nugget
+item.nugget_silver.name=Silver Nugget
+item.nugget_purifiedgold.name=Pure Gold Nugget
+item.nugget_purifiedsilver.name=Pure Silver Nugget
+item.nugget_obsidian.name=Obsidian Nugget
+item.nugget_endstone.name=Endstone Nugget
+item.nugget_copper.name=Copper Nugget
+item.nugget_bronze.name=Bronze Nugget
+item.nugget_lead.name=Lead Nugget
+item.nugget_electrum.name=Electrum Nugget
+item.nugget_steel.name=Steel Nugget
+
+item.nugget_ice.name=Ice Fragment
+item.nugget_stone.name=Stone Fragment
+item.nugget_sapphire.name=Sapphire Fragment
+item.nugget_emerald.name=Emerald Fragment
+item.nugget_ruby.name=Ruby Fragment
+item.nugget_starsapphire.name=Starsapphire Fragment
+item.nugget_citrine.name=Citrine Fragment
+item.nugget_quartz.name=Nether Quartz Fragment
+item.nugget_starruby.name=Starruby Fragment
+item.nugget_amethyst.name=Ametyst Fragment
+item.nugget_lapis.name=Lapis Fragment
+item.nugget_garnet.name=Garnet Fragment
+item.nugget_opal.name=Opal Fragment
+item.nugget_tanzinite.name=Tanzinite Fragment
+item.nugget_amber.name=Amber Fragment
+item.nugget_diamond.name=Diamond Fragment
+
+item.dust_aeonsteel.name=Aeonsteel Dust
+item.dust_queensgold.name=Queensgold Dust
+item.dust_dogbearium.name=Dogbearium Dust
+item.dust_froststeel.name=Froststeel Dust
+item.dust_nihilite.name=Nihilite Dust
+item.dust_rosegold.name=Rosegold Dust
+item.dust_sinisterium.name=Sinisterium Dust
+item.dust_valyriansteel.name=Valyriansteel Dust
+item.dust_orichalcum.name=Orichalcum Dust
+item.dust_pandorium.name=Pandorium Dust
+item.dust_platinum.name=Platinum Dust
+item.dust_silver.name=Silver Dust
+item.dust_purifiedgold.name=Pure Gold Dust
+item.dust_purifiedsilver.name=Pure Silver Dust
+item.dust_obsidian.name=Obsidian Dust
+item.dust_endstone.name=Endstone Dust
+item.dust_copper.name=Copper Dust
+item.dust_bronze.name=Bronze Dust
+item.dust_lead.name=Lead Dust
+item.dust_electrum.name=Electrum Dust
+item.dust_steel.name=Steel Dust
+item.dust_ice.name=Ice Dust
+item.dust_stone.name=Stone Dust
+item.dust_sapphire.name=Sapphire Dust
+item.dust_emerald.name=Emerald Dust
+item.dust_ruby.name=Ruby Dust
+item.dust_starsapphire.name=Starsapphire Dust
+item.dust_citrine.name=Citrine Dust
+item.dust_quartz.name=Nether Quartz Dust
+item.dust_starruby.name=Starruby Dust
+item.dust_amethyst.name=Ametyst Dust
+item.dust_lapis.name=Lapis Dust
+item.dust_garnet.name=Garnet Dust
+item.dust_opal.name=Opal Dust
+item.dust_tanzinite.name=Tanzinite Dust
+item.dust_amber.name=Amber Dust
+
+item.dust_prismarine.name=Prismarine Dust
+item.dust_wood.name=Wood Dust
+item.dust_firewood.name=Firewood Dust
+item.dust_paper.name=Paper Dust
+item.dust_sponge.name=Sponge Dust
+item.dust_flint.name=Flint Dust
+item.dust_cactus.name=Cactus Dust
+item.dust_bone.name=Bone Dust
+item.dust_knightslime.name=Knightslime Dust
+item.dust_slime.name=Green Slime Dust
+item.dust_blueslime.name=Blue Slime Dust
+item.dust_magmaslime.name=Magma Slime Dust
+item.dust_iron.name=Iron Dust
+item.dust_pigiron.name=Pigiron Dust
+item.dust_netherrack.name=Netherrack Dust
+item.dust_cobalt.name=Cobalt Dust
+item.dust_ardite.name=Ardite Dust
+item.dust_manyullyn.name=Manyullyn Dust
+
+item.grain_aeonsteel.name=Aeonsteel Grains
+item.grain_queensgold.name=Queensgold Grains
+item.grain_dogbearium.name=Dogbearium Grains
+item.grain_froststeel.name=Froststeel Grains
+item.grain_nihilite.name=Nihilite Grains
+item.grain_rosegold.name=Rosegold Grains
+item.grain_sinisterium.name=Sinisterium Grains
+item.grain_valyriansteel.name=Valyriansteel Grains
+item.grain_orichalcum.name=Orichalcum Grains
+item.grain_pandorium.name=Pandorium Grains
+item.grain_platinum.name=Platinum Grains
+item.grain_silver.name=Silver Grains
+item.grain_purifiedgold.name=Pure Gold Grains
+item.grain_purifiedsilver.name=Pure Silver Grains
+item.grain_obsidian.name=Obsidian Grains
+item.grain_endstone.name=Endstone Grains
+item.grain_copper.name=Copper Grains
+item.grain_bronze.name=Bronze Grains
+item.grain_lead.name=Lead Grains
+item.grain_electrum.name=Electrum Grains
+item.grain_steel.name=Steel Grains
+item.grain_ice.name=Ice Grains
+item.grain_stone.name=Stone Grains
+item.grain_sapphire.name=Sapphire Grains
+item.grain_emerald.name=Emerald Grains
+item.grain_ruby.name=Ruby Grains
+item.grain_starsapphire.name=Starsapphire Grains
+item.grain_citrine.name=Citrine Grains
+item.grain_quartz.name=Nether Quartz Grains
+item.grain_starruby.name=Starruby Grains
+item.grain_amethyst.name=Ametyst Grains
+item.grain_lapis.name=Lapis Grains
+item.grain_garnet.name=Garnet Grains
+item.grain_opal.name=Opal Grains
+item.grain_tanzinite.name=Tanzinite Grains
+item.grain_amber.name=Amber Grains
+
+item.grain_prismarine.name=Prismarine Grains
+item.grain_wood.name=Wood Grains
+item.grain_firewood.name=Firewood Grains
+item.grain_paper.name=Paper Grains
+item.grain_sponge.name=Sponge Grains
+item.grain_flint.name=Flint Grains
+item.grain_cactus.name=Cactus Grains
+item.grain_bone.name=Bone Grains
+item.grain_knightslime.name=Knightslime Grains
+item.grain_slime.name=Green Slime Grains
+item.grain_blueslime.name=Blue Slime Grains
+item.grain_magmaslime.name=Magma Slime Grains
+item.grain_iron.name=Iron Grains
+item.grain_pigiron.name=Pigiron Grains
+item.grain_netherrack.name=Netherrack Grains
+item.grain_cobalt.name=Cobalt Grains
+item.grain_ardite.name=Ardite Grains
+item.grain_manyullyn.name=Manyullyn Grains
+
+item.plate_aeonsteel.name=Aeonsteel Plate
+item.plate_queensgold.name=Queensgold Plate
+item.plate_dogbearium.name=Dogbearium Plate
+item.plate_froststeel.name=Froststeel Plate
+item.plate_nihilite.name=Nihilite Plate
+item.plate_rosegold.name=Rosegold Plate
+item.plate_sinisterium.name=Sinisterium Plate
+item.plate_valyriansteel.name=Valyriansteel Plate
+item.plate_orichalcum.name=Orichalcum Plate
+item.plate_pandorium.name=Pandorium Plate
+item.plate_platinum.name=Platinum Plate
+item.plate_silver.name=Silver Plate
+item.plate_purifiedgold.name=Pure Gold Plate
+item.plate_purifiedsilver.name=Pure Silver Plate
+item.plate_obsidian.name=Obsidian Plate
+item.plate_endstone.name=Endstone Plate
+item.plate_copper.name=Copper Plate
+item.plate_bronze.name=Bronze Plate
+item.plate_lead.name=Lead Plate
+item.plate_electrum.name=Electrum Plate
+item.plate_steel.name=Steel Plate
+item.plate_ice.name=Ice Plate
+item.plate_stone.name=Stone Plate
+item.plate_sapphire.name=Sapphire Plate
+item.plate_emerald.name=Emerald Plate
+item.plate_ruby.name=Ruby Plate
+item.plate_starsapphire.name=Starsapphire Plate
+item.plate_citrine.name=Citrine Plate
+item.plate_quartz.name=Nether Quartz Plate
+item.plate_starruby.name=Starruby Plate
+item.plate_amethyst.name=Ametyst Plate
+item.plate_lapis.name=Lapis Plate
+item.plate_garnet.name=Garnet Plate
+item.plate_opal.name=Opal Plate
+item.plate_tanzinite.name=Tanzinite Plate
+item.plate_amber.name=Amber Plate
+
+item.plate_gold.name=Gold Plate
+item.plate_diamond.name=Diamond Plate
+item.plate_wood.name=Wood Plate
+item.plate_flint.name=Flint Plate
+item.plate_cactus.name=Cactus Plate
+item.plate_bone.name=Bone Plate
+item.plate_prismarine.name=Prismarine Plate
+item.plate_paper.name=Paper Plate
+item.plate_sponge.name=Sponge Plate
+item.plate_firewood.name=Firewood Plate
+item.plate_knightslime.name=Knightslime Plate
+item.plate_slime.name=Slime Plate
+item.plate_blueslime.name=Blue Slime Plate
+item.plate_magmaslime.name=Magma Slime Plate
+item.plate_iron.name=Iron Plate
+item.plate_pigiron.name=Pigiron Plate
+item.plate_Netherrack.name=Netherrack Plate
+item.plate_ardite.name=Ardite Plate
+item.plate_cobalt.name=Cobalt Plate
+item.plate_Manyullyn.name=Manyullyn Plate
+
+item.coin_aeonsteel.name=Aeonsteel Coin
+item.coin_queensgold.name=Queensgold Coin
+item.coin_dogbearium.name=Dogbearium Coin
+item.coin_froststeel.name=Froststeel Coin
+item.coin_nihilite.name=Nihilite Coin
+item.coin_rosegold.name=Rosegold Coin
+item.coin_sinisterium.name=Sinisterium Coin
+item.coin_valyriansteel.name=Valyriansteel Coin
+item.coin_orichalcum.name=Orichalcum Coin
+item.coin_pandorium.name=Pandorium Coin
+item.coin_platinum.name=Platinum Coin
+item.coin_silver.name=Silver Coin
+item.coin_purifiedgold.name=Pure Gold Coin
+item.coin_purifiedsilver.name=Pure Silver Coin
+item.coin_obsidian.name=Obsidian Coin
+item.coin_endstone.name=Endstone Coin
+item.coin_copper.name=Copper Coin
+item.coin_bronze.name=Bronze Coin
+item.coin_lead.name=Lead Coin
+item.coin_electrum.name=Electrum Coin
+item.coin_steel.name=Steel Coin
+item.coin_ice.name=Ice Coin
+item.coin_stone.name=Stone Coin
+item.coin_sapphire.name=Sapphire Coin
+item.coin_emerald.name=Emerald Coin
+item.coin_ruby.name=Ruby Coin
+item.coin_starsapphire.name=Starsapphire Coin
+item.coin_citrine.name=Citrine Coin
+item.coin_quartz.name=Nether Quartz Coin
+item.coin_starruby.name=Starruby Coin
+item.coin_amethyst.name=Ametyst Coin
+item.coin_lapis.name=Lapis Coin
+item.coin_garnet.name=Garnet Coin
+item.coin_opal.name=Opal Coin
+item.coin_tanzinite.name=Tanzinite Coin
+item.coin_amber.name=Amber Coin
+
+item.coin_gold.name=Gold Coin
+item.coin_diamond.name=Diamond Coin
+item.coin_wood.name=Wood Coin
+item.coin_flint.name=Flint Coin
+item.coin_cactus.name=Cactus Coin
+item.coin_bone.name=Bone Coin
+item.coin_prismarine.name=Prismarine Coin
+item.coin_paper.name=Paper Coin
+item.coin_sponge.name=Sponge Coin
+item.coin_firewood.name=Firewood Coin
+item.coin_knightslime.name=Knightslime Coin
+item.coin_slime.name=Slime Coin
+item.coin_blueslime.name=Blue Slime Coin
+item.coin_magmaslime.name=Magma Slime Coin
+item.coin_iron.name=Iron Coin
+item.coin_pigiron.name=Pigiron Coin
+item.coin_Netherrack.name=Netherrack Coin
+item.coin_ardite.name=Ardite Coin
+item.coin_cobalt.name=Cobalt Coin
+item.coin_Manyullyn.name=Manyullyn Coin
+
+item.gear_mithril.name.name=Mithril Gear
+item.gear_aeonsteel.name=Aeonsteel Gear
+item.gear_queensgold.name=Queensgold Gear
+item.gear_dogbearium.name=Dogbearium Gear
+item.gear_froststeel.name=Froststeel Gear
+item.gear_nihilite.name=Nihilite Gear
+item.gear_rosegold.name=Rosegold Gear
+item.gear_sinisterium.name=Sinisterium Gear
+item.gear_valyriansteel.name=Valyriansteel Gear
+item.gear_orichalcum.name=Orichalcum Gear
+item.gear_pandorium.name=Pandorium Gear
+item.gear_platinum.name=Platinum Gear
+item.gear_silver.name=Silver Gear
+item.gear_purifiedgold.name=Pure Gold Gear
+item.gear_purifiedsilver.name=Pure Silver Gear
+item.gear_obsidian.name=Obsidian Gear
+item.gear_endstone.name=Endstone Gear
+item.gear_copper.name=Copper Gear
+item.gear_bronze.name=Bronze Gear
+item.gear_lead.name=Lead Gear
+item.gear_electrum.name=Electrum Gear
+item.gear_steel.name=Steel Gear
+item.gear_ice.name=Ice Gear
+item.gear_stone.name=Stone Gear
+item.gear_sapphire.name=Sapphire Gear
+item.gear_emerald.name=Emerald Gear
+item.gear_ruby.name=Ruby Gear
+item.gear_starsapphire.name=Starsapphire Gear
+item.gear_citrine.name=Citrine Gear
+item.gear_quartz.name=Nether Quartz Gear
+item.gear_starruby.name=Starruby Gear
+item.gear_amethyst.name=Ametyst Gear
+item.gear_lapis.name=Lapis Gear
+item.gear_garnet.name=Garnet Gear
+item.gear_opal.name=Opal Gear
+item.gear_tanzinite.name=Tanzinite Gear
+item.gear_amber.name=Amber Gear
+
+item.gear_gold.name=Gold Gear
+item.gear_diamond.name=Diamond Gear
+item.gear_wood.name=Wood Gear
+item.gear_flint.name=Flint Gear
+item.gear_cactus.name=Cactus Gear
+item.gear_bone.name=Bone Gear
+item.gear_prismarine.name=Prismarine Gear
+item.gear_paper.name=Paper Gear
+item.gear_sponge.name=Sponge Gear
+item.gear_firewood.name=Firewood Gear
+item.gear_knightslime.name=Knightslime Gear
+item.gear_slime.name=Slime Gear
+item.gear_blueslime.name=Blue Slime Gear
+item.gear_magmaslime.name=Magma Slime Gear
+item.gear_iron.name=Iron Gear
+item.gear_pigiron.name=Pigiron Gear
+item.gear_Netherrack.name=Netherrack Gear
+item.gear_ardite.name=Ardite Gear
+item.gear_cobalt.name=Cobalt Gear
+item.gear_Manyullyn.name=Manyullyn Gear
+
+item.rod_aeonsteel.name=Aeonsteel Rod
+item.rod_queensgold.name=Queensgold Rod
+item.rod_dogbearium.name=Dogbearium Rod
+item.rod_froststeel.name=Froststeel Rod
+item.rod_nihilite.name=Nihilite Rod
+item.rod_rosegold.name=Rosegold Rod
+item.rod_sinisterium.name=Sinisterium Rod
+item.rod_valyriansteel.name=Valyriansteel Rod
+item.rod_orichalcum.name=Orichalcum Rod
+item.rod_pandorium.name=Pandorium Rod
+item.rod_platinum.name=Platinum Rod
+item.rod_silver.name=Silver Rod
+item.rod_purifiedgold.name=Pure Gold Rod
+item.rod_purifiedsilver.name=Pure Silver Rod
+item.rod_obsidian.name=Obsidian Rod
+item.rod_endstone.name=Endstone Rod
+item.rod_copper.name=Copper Rod
+item.rod_bronze.name=Bronze Rod
+item.rod_lead.name=Lead Rod
+item.rod_electrum.name=Electrum Rod
+item.rod_steel.name=Steel Rod
+item.rod_ice.name=Ice Rod
+item.rod_stone.name=Stone Rod
+item.rod_sapphire.name=Sapphire Rod
+item.rod_emerald.name=Emerald Rod
+item.rod_ruby.name=Ruby Rod
+item.rod_starsapphire.name=Starsapphire Rod
+item.rod_citrine.name=Citrine Rod
+item.rod_quartz.name=Nether Quartz Rod
+item.rod_starruby.name=Starruby Rod
+item.rod_amethyst.name=Ametyst Rod
+item.rod_lapis.name=Lapis Rod
+item.rod_garnet.name=Garnet Rod
+item.rod_opal.name=Opal Rod
+item.rod_tanzinite.name=Tanzinite Rod
+item.rod_amber.name=Amber Rod
+
+item.rod_gold.name=Gold Rod
+item.rod_diamond.name=Diamond Rod
+item.rod_wood.name=Wood Rod
+item.rod_flint.name=Flint Rod
+item.rod_cactus.name=Cactus Rod
+item.rod_bone.name=Bone Rod
+item.rod_prismarine.name=Prismarine Rod
+item.rod_paper.name=Paper Rod
+item.rod_sponge.name=Sponge Rod
+item.rod_firewood.name=Firewood Rod
+item.rod_knightslime.name=Knightslime Rod
+item.rod_slime.name=Slime Rod
+item.rod_blueslime.name=Blue Slime Rod
+item.rod_magmaslime.name=Magma Slime Rod
+item.rod_iron.name=Iron Rod
+item.rod_pigiron.name=Pigiron Rod
+item.rod_Netherrack.name=Netherrack Rod
+item.rod_ardite.name=Ardite Rod
+item.rod_cobalt.name=Cobalt Rod
+item.rod_Manyullyn.name=Manyullyn Rod
+
+item.plate.name=Plate
+item.dust.name=Dust
+item.gear.name=Gear
+item.grain.name=Grains
+item.coin.name=Coin
+item.wire.name=Wire
+item.foil.name=Foil
+
+#New Blocks
+tile.stone_ore_silver.name=Silver Ore
+tile.stone_ore_copper.name=Copper Ore
+tile.stone_ore_platinum.name=Platinum Ore
+tile.stone_ore_lead.name=Lead Ore
+
+tile.stone_ore_opal.name=Opal Crystal Ore
+tile.stone_ore_amber.name=Amber Crystal Ore
+tile.stone_ore_tanzinite.name=Tanzinite Crystal Ore
+tile.stone_ore_garnet.name=Garnet Crystal Ore
+tile.stone_ore_citrine.name=Citrine Crystal Ore
+tile.stone_ore_amethyst.name=Amethyst Crystal Ore
+tile.stone_ore_sapphire.name=Sapphire Crystal Ore
+tile.stone_ore_ruby.name=Ruby Crystal Ore
+
+tile.crackedobsidian.name=Cracked Obsidian
+
+tile.roughspunblock.name=Roughspun Block
+
+tile.cotton.black.name=Black Cotton Block
+tile.cotton.red.name=Red Cotton Block
+tile.cotton.green.name=Green Cotton Block
+tile.cotton.blue.name=Blue Cotton Block
+tile.cotton.brown.name=Brown Cotton Block
+tile.cotton.purple.name=Purple Cotton Block
+tile.cotton.silver.name=Light Gray Cotton Block
+tile.cotton.cyan.name=Cyan Cotton Block
+tile.cotton.gray.name=Gray Cotton Block
+tile.cotton.pink.name=Pink Cotton Block
+tile.cotton.lime.name=Lime Cotton Block
+tile.cotton.yellow.name=Yellow Cotton Block
+tile.cotton.lightBlue.name=Light Blue Cotton Block
+tile.cotton.magenta.name=Magenta Cotton Block
+tile.cotton.orange.name=Orange Cotton Block
+tile.cotton.white.name=White Cotton Block
+
+tile.block_aeonsteel.name=Aeonsteel Block
+tile.block_queensgold.name=Queensgold Block
+tile.block_dogbearium.name=Dogbearium Block
+tile.block_froststeel.name=Froststeel Block
+tile.block_nihilite.name=Nihilite Block
+tile.block_rosegold.name=Rosegold Block
+tile.block_sinisterium.name=Sinisterium Block
+tile.block_valyriansteel.name=Valyriansteel Block
+tile.block_orichalcum.name=Orichalcum Block
+tile.block_pandorium.name=Pandorium Block
+tile.block_platinum.name=Platinum Block
+
+tile.stake_redcandy.name=Red Candy Stake
+tile.stake_greencandy.name=Green Candy Stake
+
+tile.stake_sapphire.name=Sapphire Stake
+tile.stake_emerald.name=Emerald Stake
+tile.stake_diamond.name=Diamond Stake
+tile.stake_ruby.name=Ruby Stake
+tile.stake_starsapphire.name=Star Saphire Stake
+tile.stake_citrine.name=Citrine Stake
+tile.stake_quartz.name=Nether Quartz Stake
+tile.stake_starruby.name=Star Ruby Stake
+tile.stake_amethyst.name=Amethyst Stake
+tile.stake_lapis.name=Lapis Stake
+tile.stake_garnet.name=Garnet Stake
+tile.stake_opal.name=Opal Stake
+tile.stake_tanzinite.name=Tanzinite Stake
+tile.stake_amber.name=Amber Stake
+
+tile.stake_aeonsteel.name=Aeonsteel Stake
+tile.stake_queensgold.name=Queensgold Stake
+tile.stake_dogbearium.name=Dogbearium Stake
+tile.stake_froststeel.name=Froststeel Stake
+tile.stake_ice.name=Ice Stake
+tile.stake_nihilite.name=Nihilite Stake
+tile.stake_purifiedgold.name=Purified Gold Stake
+tile.stake_purifiedsilver.name=Purified Silver Stake
+tile.stake_rosegold.name=Rosegold Stake
+tile.stake_silver.name=Silver Stake
+tile.stake_sinisterium.name=Sinisterium Stake
+tile.stake_valyriansteel.name=Valyriansteel Stake
+tile.stake_brass.name=Brass Stake
+tile.stake_orichalcum.name=Orichalcum Stake
+tile.stake_pandorium.name=Pandorium Stake
+tile.stake_platinum.name=Platinum Stake
+tile.stake_gold.name=Gold Stake
+tile.stake_wood.name=Wood Stake
+tile.stake_stone.name=Stone Stake
+tile.stake_flint.name=Flint Stake
+tile.stake_cactus.name=Cactus Stake
+tile.stake_bone.name=Bone Stake
+tile.stake_obsidian.name=Obsidian Stake
+tile.stake_prismarine.name=Prismarine Stake
+tile.stake_endstone.name=Endstone Stake
+tile.stake_paper.name=Paper Stake
+tile.stake_sponge.name=Sponge Stake
+tile.stake_firewood.name=Firewood Stake
+tile.stake_knightslime.name=Knightslime Stake
+tile.stake_slime.name=Slime Stake
+tile.stake_blueslime.name=Blue Slime Stake
+tile.stake_magmaslime.name=Magma Slime Stake
+tile.stake_iron.name=Iron Stake
+tile.stake_pigiron.name=Pigiron Stake
+tile.stake_netherrack.name=Netherrack Stake
+tile.stake_ardite.name=Ardite Stake
+tile.stake_cobalt.name=Cobalt Stake
+tile.stake_manyullyn.name=Manyullyn Stake
+tile.stake_copper.name=Copper Stake
+tile.stake_bronze.name=Bronze Stake
+tile.stake_electrum.name=Electrum Stake
+tile.stake_lead.name=Lead Stake
+tile.stake_steel.name=Steel Stake
+
+tile.bars_redcandy.name=Red Candy Bars
+tile.bars_greencandy.name=Green Candy Bars
+
+tile.bars_sapphire.name=Sapphire Bars
+tile.bars_emerald.name=Emerald Bars
+tile.bars_diamond.name=Diamond Bars
+tile.bars_ruby.name=Ruby Bars
+tile.bars_starsapphire.name=Star Saphire Bars
+tile.bars_citrine.name=Citrine Bars
+tile.bars_quartz.name=Nether Quartz Bars
+tile.bars_starruby.name=Star Ruby Bars
+tile.bars_amethyst.name=Amethyst Bars
+tile.bars_lapis.name=Lapis Bars
+tile.bars_garnet.name=Garnet Bars
+tile.bars_opal.name=Opal Bars
+tile.bars_tanzinite.name=Tanzinite Bars
+tile.bars_amber.name=Amber Bars
+
+tile.bars_aeonsteel.name=Aeonsteel Bars
+tile.bars_queensgold.name=Queensgold Bars
+tile.bars_dogbearium.name=Dogbearium Bars
+tile.bars_froststeel.name=Froststeel Bars
+tile.bars_ice.name=Ice Bars
+tile.bars_nihilite.name=Nihilite Bars
+tile.bars_purifiedgold.name=Purified Gold Bars
+tile.bars_purifiedsilver.name=Purified Silver Bars
+tile.bars_rosegold.name=Rosegold Bars
+tile.bars_silver.name=Silver Bars
+tile.bars_sinisterium.name=Sinisterium Bars
+tile.bars_valyriansteel.name=Valyriansteel Bars
+tile.bars_brass.name=Brass Bars
+tile.bars_orichalcum.name=Orichalcum Bars
+tile.bars_pandorium.name=Pandorium Bars
+tile.bars_platinum.name=Platinum Bars
+tile.bars_gold.name=Gold Bars
+tile.bars_wood.name=Wood Bars
+tile.bars_stone.name=Stone Bars
+tile.bars_flint.name=Flint Bars
+tile.bars_cactus.name=Cactus Bars
+tile.bars_bone.name=Bone Bars
+tile.bars_obsidian.name=Obsidian Bars
+tile.bars_prismarine.name=Prismarine Bars
+tile.bars_endstone.name=Endstone Bars
+tile.bars_paper.name=Paper Bars
+tile.bars_sponge.name=Sponge Bars
+tile.bars_firewood.name=Firewood Bars
+tile.bars_knightslime.name=Knightslime Bars
+tile.bars_slime.name=Slime Bars
+tile.bars_blueslime.name=Blue Slime Bars
+tile.bars_magmaslime.name=Magma Slime Bars
+tile.bars_iron.name=Iron Bars
+tile.bars_pigiron.name=Pigiron Bars
+tile.bars_netherrack.name=Netherrack Bars
+tile.bars_ardite.name=Ardite Bars
+tile.bars_cobalt.name=Cobalt Bars
+tile.bars_manyullyn.name=Manyullyn Bars
+tile.bars_copper.name=Copper Bars
+tile.bars_bronze.name=Bronze Bars
+tile.bars_electrum.name=Electrum Bars
+tile.bars_lead.name=Lead Bars
+tile.bars_steel.name=Steel Bars
+
+tile.door_redcandy.name=Red Candy Door
+tile.door_greencandy.name=Green Candy Door
+
+item.door_sapphire.name=Sapphire Door
+item.door_emerald.name=Emerald Door
+item.door_diamond.name=Diamond Door
+item.door_ruby.name=Ruby Door
+item.door_starsapphire.name=Star Saphire Door
+item.door_citrine.name=Citrine Door
+item.door_quartz.name=Nether Quartz Door
+item.door_starruby.name=Star Ruby Door
+item.door_amethyst.name=Amethyst Door
+item.door_lapis.name=Lapis Door
+item.door_garnet.name=Garnet Door
+item.door_opal.name=Opal Door
+item.door_tanzinite.name=Tanzinite Door
+item.door_amber.name=Amber Door
+
+item.door_aeonsteel.name=Aeonsteel Door
+item.door_queensgold.name=Queensgold Door
+item.door_dogbearium.name=Dogbearium Door
+item.door_froststeel.name=Froststeel Door
+item.door_ice.name=Ice Door
+item.door_nihilite.name=Nihilite Door
+item.door_purifiedgold.name=Purified Gold Door
+item.door_purifiedsilver.name=Purified Silver Door
+item.door_rosegold.name=Rosegold Door
+item.door_silver.name=Silver Door
+item.door_sinisterium.name=Sinisterium Door
+item.door_valyriansteel.name=Valyriansteel Door
+item.door_brass.name=Brass Door
+item.door_orichalcum.name=Orichalcum Door
+item.door_pandorium.name=Pandorium Door
+item.door_platinum.name=Platinum Door
+item.door_gold.name=Gold Door
+item.door_wood.name=Wood Door
+item.door_stone.name=Stone Door
+item.door_flint.name=Flint Door
+item.door_cactus.name=Cactus Door
+item.door_bone.name=Bone Door
+item.door_obsidian.name=Obsidian Door
+item.door_prismarine.name=Prismarine Door
+item.door_endstone.name=Endstone Door
+item.door_paper.name=Paper Door
+item.door_sponge.name=Sponge Door
+item.door_firewood.name=Firewood Door
+item.door_knightslime.name=Knightslime Door
+item.door_slime.name=Slime Door
+item.door_blueslime.name=Blue Slime Door
+item.door_magmaslime.name=Magma Slime Door
+item.door_iron.name=Iron Door
+item.door_pigiron.name=Pigiron Door
+item.door_netherrack.name=Netherrack Door
+item.door_ardite.name=Ardite Door
+item.door_cobalt.name=Cobalt Door
+item.door_manyullyn.name=Manyullyn Door
+item.door_copper.name=Copper Door
+item.door_bronze.name=Bronze Door
+item.door_electrum.name=Electrum Door
+item.door_lead.name=Lead Door
+item.door_steel.name=Steel Door
+
+tile.trapdoor_redcandy.name=Red Candy Trapdoor
+tile.trapdoor_greencandy.name=Green Candy Trapdoor
+
+tile.trapdoor_sapphire.name=Sapphire Trapdoor
+tile.trapdoor_emerald.name=Emerald Trapdoor
+tile.trapdoor_diamond.name=Diamond Trapdoor
+tile.trapdoor_ruby.name=Ruby Trapdoor
+tile.trapdoor_starsapphire.name=Star Saphire Trapdoor
+tile.trapdoor_citrine.name=Citrine Trapdoor
+tile.trapdoor_quartz.name=Nether Quartz Trapdoor
+tile.trapdoor_starruby.name=Star Ruby Trapdoor
+tile.trapdoor_amethyst.name=Amethyst Trapdoor
+tile.trapdoor_lapis.name=Lapis Trapdoor
+tile.trapdoor_garnet.name=Garnet Trapdoor
+tile.trapdoor_opal.name=Opal Trapdoor
+tile.trapdoor_tanzinite.name=Tanzinite Trapdoor
+tile.trapdoor_amber.name=Amber Trapdoor
+
+tile.trapdoor_aeonsteel.name=Aeonsteel Trapdoor
+tile.trapdoor_queensgold.name=Queensgold Trapdoor
+tile.trapdoor_dogbearium.name=Dogbearium Trapdoor
+tile.trapdoor_froststeel.name=Froststeel Trapdoor
+tile.trapdoor_ice.name=Ice Trapdoor
+tile.trapdoor_nihilite.name=Nihilite Trapdoor
+tile.trapdoor_purifiedgold.name=Purified Gold Trapdoor
+tile.trapdoor_purifiedsilver.name=Purified Silver Trapdoor
+tile.trapdoor_rosegold.name=Rosegold Trapdoor
+tile.trapdoor_silver.name=Silver Trapdoor
+tile.trapdoor_sinisterium.name=Sinisterium Trapdoor
+tile.trapdoor_valyriansteel.name=Valyriansteel Trapdoor
+tile.trapdoor_brass.name=Brass Trapdoor
+tile.trapdoor_orichalcum.name=Orichalcum Trapdoor
+tile.trapdoor_pandorium.name=Pandorium Trapdoor
+tile.trapdoor_platinum.name=Platinum Trapdoor
+tile.trapdoor_gold.name=Gold Trapdoor
+tile.trapdoor_wood.name=Wood Trapdoor
+tile.trapdoor_stone.name=Stone Trapdoor
+tile.trapdoor_flint.name=Flint Trapdoor
+tile.trapdoor_cactus.name=Cactus Trapdoor
+tile.trapdoor_bone.name=Bone Trapdoor
+tile.trapdoor_obsidian.name=Obsidian Trapdoor
+tile.trapdoor_prismarine.name=Prismarine Trapdoor
+tile.trapdoor_endstone.name=Endstone Trapdoor
+tile.trapdoor_paper.name=Paper Trapdoor
+tile.trapdoor_sponge.name=Sponge Trapdoor
+tile.trapdoor_firewood.name=Firewood Trapdoor
+tile.trapdoor_knightslime.name=Knightslime Trapdoor
+tile.trapdoor_slime.name=Slime Trapdoor
+tile.trapdoor_blueslime.name=Blue Slime Trapdoor
+tile.trapdoor_magmaslime.name=Magma Slime Trapdoor
+tile.trapdoor_iron.name=Iron Trapdoor
+tile.trapdoor_pigiron.name=Pigiron Trapdoor
+tile.trapdoor_netherrack.name=Netherrack Trapdoor
+tile.trapdoor_ardite.name=Ardite Trapdoor
+tile.trapdoor_cobalt.name=Cobalt Trapdoor
+tile.trapdoor_manyullyn.name=Manyullyn Trapdoor
+tile.trapdoor_copper.name=Copper Trapdoor
+tile.trapdoor_bronze.name=Bronze Trapdoor
+tile.trapdoor_electrum.name=Electrum Trapdoor
+tile.trapdoor_lead.name=Lead Trapdoor
+tile.trapdoor_steel.name=Steel Trapdoor
+
+#Tools, Armors, & Armorstation Descriptions
+item.fishingrod.desc=Fish big game or little, this modular fishing rod can do nearly everything except get that boot dropped into the water the other day.
+
+item.shears.desc=Shears are usefull to any farmer looking to have a steady flow of wool, wool for use in crafting or trade for profit.
+
+item.saw.name=Saw
+item.saw.desc=Not sure what to do with a your saw? \nGood neither am I . . .
+
+item.mallet.name=Mallet
+item.mallet.desc=When used in cunjunction with the hammering table you can process ores for more efficient smelting or alloying.
+
+item.firedrill.name=Fire Drill
+item.firedrill.desc=The Fire Drill is a useful tool for starting fires without Flint and Steel or other similar items by consuming Sticks in your inventory. The higher the durability, the higher the chance it has to successfully light a block on fire.
+
+item.roundshield.name=Buckler Shield
+item.roundshield.desc=A small shield with low protection but allows the user to maintain manuverablitly in combat.\n \nAbilities: \nCounter attacks - With a bish bash bosh of the shield, slowing down your oponenets is a breaze.\nSmall Stature - leaves little room for modifiers.
+
+item.kiteshield.name=Kite Shield
+item.kiteshield.desc=A standard shield designed to protect more incoming attacks while still being fairly mobile.\n \n
+
+item.towershield.name=Tower Shield
+item.towershield.desc=An oversized shield that protects from most attacks, however this is a cost for such protection.\n \nAbility: \nEncumbered - Its a heavy shield, next to imposible to wield and defend yourself without two hands.
+
+item.zweihander.name=Zweihander
+item.zweihander.desc=A great two handed sword designed to take down horse and rider or keep enemies back with its long reach.\n \nAbilies: VS Mounted - Does x2 Damage against mounted enemies \nGreat Swing - \n Hit all enemies close to you with a great arching slash. Leaves you slowed and weakened temporarily.
+
+item.tinkerhood.name=Hood
+item.tinkerhood.desc=Delicately stitched clothing for the head that offers little protection, is quite cozy for cold weather. \n \nAbility: \nEnchantable - is more accepting of magical modifiers.
+
+item.tinkershawl.name=Shawl
+item.tinkershawl.desc=Delicately stitched clothing for the chest that offers little protection, is quite cozy for cold weather. \n \nAbility: \nEnchantable - is more accepting of magical modifiers.
+
+item.tinkerrobe.name=Robe
+item.tinkerrobe.desc=Delicately stitched clothing for the legs that offers little protection, is quite cozy for cold weather. \n \nAbility: \nEnchantable - is more accepting of magical modifiers.
+
+item.tinkershoes.name=Shoes
+item.tinkershoes.desc=Delicately stitched clothing for the head that offers little protection, is quite cozy for cold weather. \n \nAbility: \nEnchantable - is more accepting of magical modifiers.
+
+item.tinkershelm.name=Helm
+item.tinkershelm.desc=A heavy set of interlocking plates to protect the head from most damage. \n \nAbilities: \nVisor - If protection isn't nessecary it can opened for better visibility. \n The hinge is loose that's all, may stay open ... or maybe not.
+
+
+item.tinkersbreastplate.name=Breastplate
+item.tinkersbreastplate.desc=A heavy set of interlocking plates to protect the chest from most damage.
+
+item.tinkersgrieves.name=Grieves
+item.tinkersgrieves.desc=A heavy set of interlocking plates to protect the legs from most damage.
+
+item.tinkerssabatons.name=Sabatons
+item.tinkerssabatons.desc=A heavy set of interlocking plates to protect the feet from most damage.
+
+item.tinkerscoif.name=Coif
+item.tinkerscoif.desc=Thickly woven loops linked with small plates and cloth to protect the head.
+
+item.tinkershauberk.name=Hauberk
+item.tinkershauberk.desc=Thickly woven loops linked with small plates and cloth to protect the body.
+
+item.tinkerschausses.name=Chausses
+item.tinkerschausses.desc=Thickly woven loops linked with small plates and cloth to protect the legs.
+
+item.tinkerschainboots.name=Chain Boots
+item.tinkerschainboots.desc=Thickly woven loops linked with small plates and cloth to protect the feet.
+
+item.tinkersring.name=Ring
+item.tinkersring.desc=A type of jewellery that can be equipped in your baubles slots.
+
+#Tooltips & Stats
+tooltip.armor.rating=Armor Rating
+tooltip.armor.toughness=Armor Toughness
+tooltip.armor.potency=Magic Potency
+
+
+stat.armor.durability.name=Durability
+stat.armor.durability.desc=Material's base durability.
+stat.armor.rating.name=Armor Level
+stat.armor.rating.desc=Determines quality of crafted armor.
+stat.armor.toughness.name=Toughness
+stat.armor.toughness.desc=Material's Toughness is taken into acount when determining overal durability.
+stat.armor.potency.name=Magic Potency
+stat.cloth.potency.desc=Magical Potency determines how acepting of magic the completed armor is.
+
+stat.shield.name=Shield
+stat.shield.durability.name=Durability
+stat.shield.durability.desc=Material's base durability
+stat.shield.percentblocked.desc=Percentage of all incoming blocked
+stat.shield.percentblocked.name=Percent Blocked
+
+stat.helm.name=Helm
+stat.chest.name=Chest
+stat.legs.name=Legs
+stat.feet.name=Feet
+
+stat.fabric.name=Fabric
+
+#Unsorted Traits
+modifier.td_workhardened.name=Work-Hardened
+modifier.td_workhardened.desc=Look at these Muscles! \nThe more damage you take, the more resistance is applied to you. \n- Effect time: 5 seconds \n- Durability cost: 3
+modifier.td_heroic.name=Heroic
+modifier.td_heroic.desc=Only bronze is worn by a hero!
+modifier.acknowledged.name=Acknowledged
+modifier.acknowledged.desc=Welucatation at its finest. \nbraking blocks may drop some XP \nKilled targets may also drop extra XP.
+modifier.td_tempered.name=Tempered
+modifier.td_tempered.desc=Very lean! \nThe more damage you take, the more resistance is applied to you. \n- Effect time: 2 seconds \n- Durability cost: 5
+modifier.td_rigid.name=Rigid
+modifier.td_rigid.desc=Naturally Tough! \nThe rigidity of your armor causes weakness to enemies that attack you.
+modifier.td_cornered.name=Cornered
+modifier.td_cornered.desc=Karma.
+modifier.td_stablestance.name=Stable Stance
+modifier.td_stablestance.desc=Assume the position. \nNegates levitating when sneaking.
+modifier.td_toothy.name=Toothy
+modifier.td_toothy.desk=Your armor becomes a healthy eater.
+modifier.td_ethereal.name=Ethereal
+modifier.td_ethereal.desc=Damage bypasses armor.
+
+######Armor Traits
+#Wood
+modifier.photosynthetic.name=Photosynthetic
+modifier.photosynthetic.desc=Tasty tasty sunshine. \nYou absorb nutrients from sunlight like a plant and restores hunger.
+modifier.td_rooted.name=Rooted
+modifier.td_rooted.desc=Like the mighty oak I stand strong. \nReduces knockback significantly when on dirt or grass.
+
+#Stone
+modifier.td_blockhead.name=Blockhead
+modifier.td_blockhead.desc=Someone put a block where your brains should be. \nGeneral damage: -0.5% \nMagic damage: +0.5%
+modifier.td_stoned.name=Stoned
+modifier.td_stoned.desc=Bearing a heavy weight. \nYou move slower, and sink faster in water.
+modifier.td_earthbound.name=Earthbound
+modifier.td_earthbound.desc=I am one with the rock and stone. It's strength is mine. /nArmor damage is reduced based on Y-depth.
+
+#Flint
+modifier.td_glassine.name=Glassine
+modifier.td_glassine.desc=High magical potential with a tendency to shatter.
+
+#Cactus
+modifier.td_peyote.name=Peyote
+modifier.td_peyote.desc=Cactus Juice, it's the quenchiest! \nApplies a short burst of a random effect from the following: \n- Regeneration \n- Resistance \n- Night Vision \n- Nausea \n- Blindness \n- Poison
+modifier.td_pricked.name=Prickly
+modifier.td_pricked.desc=Accupuncture for dummies. \nDeals armor-piercing damage to enemies hit and to player when mining and sprinting.
+modifier.td_spiny.name=Spiny
+modifier.td_spiny.desc=Don't touch me!
+
+#Bone
+modifier.td_thickheaded.name=Thickheaded
+modifier.td_thickheaded.desc=Skull so thick you can't even get a headache. \nBlindness and nausea resistance.
+modifier.td_calcium.name=Calcium
+modifier.td_calcium.desc=Sticks and stones won't break my bones. \nYou take less damage in general.
+modifier.td_collagen.name=Collagen
+modifier.td_collagen.desc=Keeps bones from breaking, especially when you hit the floor. \nYou take no damage from falling.
+modifier.td_bonespurs.name=Bonespurs
+modifier.td_bonespurs.desc=Onward my noble steed! \nIncreases horse movement speed.
+
+#Obsidian
+modifier.td_peleshair.name=Pele's hair
+modifier.td_peleshair.desc=A bad luck charm for some, a good luck charm for others. \nApplies luck or unluck randomly.
+modifier.td_pillarsoftitans.name=Pillars of Titans
+modifier.td_pillarsoftitans.desc=I will not be moved. \nReduces knockback.
+modifier.td_emberwalker.name=Emberwalker
+modifier.td_emberwalker.desc=No surface is too hot for me! ...Except liquids. \nYoure immune to damage from hot blocks, like magma. you also take half damage from fire.
+
+#Prismarine
+modifier.td_gills.name=Gills
+modifier.td_gills.desc=Breathing underwater just got easier.
+modifier.td_buoyant.name=Buoyant
+modifier.td_buoyant.desc=Sink or Swim? How about neither.
+modifier.td_currentrider.name=Currentrider
+modifier.td_currentrider.desc=Chanelling my inner leaping salmon. \nYou move faster in flowing water.
+modifier.td_finned.name=Finned
+modifier.td_finned.desc=Swimming comes naturally to me. \nYou swim faster.
+
+#Endstone
+modifier.td_warpedmind.name=Warped Mind
+modifier.td_warpedmind.desc=Reality tends to get twisted.
+modifier.td_td_warp.name=Enderperception
+modifier.td_td_warp.desc=Can this be reality? \nRandomly teleports attackers.
+modifier.td_hydrophobic.name=Hydrophobic
+modifier.td_hydrophobic.desc=Allergic to water.
+modifier.td_voidcall.name=Voidcall
+modifier.td_voidcall.desc=End to Aid! \nFalling into the void will significantly launch you upward, costing 10 durability.
+
+#Paper
+modifier.td_arrowcatcher.name=Arrowcatcher
+modifier.td_arrowcatcher.desc=This is my arrow now. 
+modifier.td_novel.name=Novel
+modifier.td_novel.desc=Weapons and armor all tell a story, some more literally than others.
+
+#Sponge
+modifier.td_soggy.name=Soggy
+modifier.td_soggy.desc=Retaining water has its benefits. \nYour armor soaks up water, filling buckets, bottles and watering soil.
+
+#Firewood
+modifier.td_hothead.name=Hothead
+modifier.td_hothead.desc=Getting hit makes me angry!
+modifier.td_toasty.name=Toasty
+modifier.td_toasty.desc=It feels like an oven in here... \nCooks food.
+modifier.td_incinerate.name=Incinerate
+modifier.td_incinerate.desc=I'll burn your petty tools to ash.
+modifier.td_hotfoot.name=Hotfoot
+modifier.td_hotfoot.desc=Too hot, gotta run! \nYou run faster when on fire.
+
+#Iron
+modifier.td_hardhat.name=Hardhat
+modifier.td_hardhat.desc=OSHA approved PPE. \nYou take no damage from falling anvils.
+modifier.td_magnetism.name=Magnetism
+modifier.td_magnetism.desc=Tends to grab onto metal things and holdfast.
+modifier.td_ironclad.name=Ironclad
+modifier.td_ironclad.desc=An arrow hit my armor, it wasn't very effective.
+modifier.td_maglock.name=Maglock
+modifier.td_maglock.desc=My feet have a magnetic personality.
+
+#Pig Iron
+modifier.td_piggy.name=Piggy
+modifier.td_piggy.desc=Open up your face and feed it!
+modifier.td_hog.name=Hog
+modifier.td_hog.desc=My armor ate my homework...
+modifier.td_sounder.name=Sounder
+modifier.td_sounder.desc=Oink!
+modifier.td_trotters.name=Trotters
+modifier.td_trotters.desc=Onward my oinky steed!
+
+#Knightslime
+modifier.td_shifting.name=Shifting
+modifier.td_shifting.desc=It apears to move on its own. \nApplies random traits.
+modifier.td_gumshoe2.name=Gumshoe II
+modifier.td_gumshoe2.desc=I am not moving from this spot! \nReduces knockbac by half.
+
+#Slime
+modifier.td_forestmask.name=Forest Mask
+modifier.td_forestmask.desc=This grass will be my outfit. \nInvisible when sneaking in grass.
+modifier.td_slick.name=Slick
+modifier.td_slick.desc=Do you think so? \nRemoves slowness and mining fatigue.
+modifier.td_greenthum.name=Green Thumb
+modifier.td_greenthum.desc=The Flora loves me. \nGrows plants, saplings and crops that you walk over.
+
+#Blueslime
+modifier.td_aqualung.name=Aqua Lung
+modifier.td_aqualung.desc=Wish you had gills? \nIncreases time underwater.
+
+#Magmaslime
+modifier.td_pyrosynthetic_1.name=Pyrosynthetic I
+modifier.td_pyrosynthetic_1.desc=Delicious Fire. \nBeing on fire restores hunger.
+modifier.td_pyrosynthetic_2.name=Pyrosynthetic II
+modifier.td_pyrosynthetic_2.desc=Delicious Fire. \nBeing on fire restores hunger.
+modifier.td_hellbound.name=Hellbound
+modifier.td_hellbound.desc=On the highway to HELL. \nDamage is reduced whilst in the Nether.
+
+#Netherrack
+modifier.td_demonic.name=Demonic
+modifier.td_demonic.desc=Sacrifices the first-born. \nNothing will attack you whilst in the Nether.
+modifier.td_damnation.name=Damnation
+modifier.td_damnation.desc=I have an urge to play in lava... \nMovement speed is increased whilst in lava.
+modifier.td_ignite.name=Ignite
+modifier.td_ignite.desc=BURRRNNNN!!!! \nSets netherrack on fire as you walk over it.
+
+#Cobalt
+modifier.td_windy.name=Windy
+modifier.td_windy.desc=Someone shut the door!
+modifier.td_aerodynamic.name=Aerodynamic
+modifier.td_aerodynamic.desc=Nothing can slow me down. \nRemoves slowness.
+modifier.td_flexible.name=Flexible
+modifier.td_flexible.desc=Blocks aren't too high for me anymore! \nYou can walk up full height blocks.
+modifier.td_supersonic.name=Sonic Boom
+modifier.td_supersonic.desc=Gotta go FAST! \nYou run extremely fast.
+
+#Ardite
+modifier.td_statuesque.name=Statuesque
+modifier.td_statuesque.desc=Balanced, as it should be. \nYou are invisible when standing still.
+modifier.td_heavyweight.name=Heavy Weight
+modifier.td_heavyweight.desc=I fell so hard that i hurt the ground. \nYou fall faster and hitting the ground hard will cause natural blocks to change.
+modifier.td_stonekin.name=Stonekin
+modifier.td_stonekin.desc=My armor is sucking up that stony goodness. \nWalking over stone will repair your armor, Turning it into cobblestone/gravel. Amount repaired is based on stone hardness.
+
+#Manyullyn
+modifier.td_combatadvantage.name=Combat Advantage
+modifier.td_combatadvantage.desc=Mob attacks will occasionally deal no damage.
+modifier.td_battlehardened.name=Battle Hardened
+modifier.td_battlehardened.desc=Ripped to the core! \nThe more damage you take, the more resistance is applied to you. \n- Effect time: 10 seconds \n- Durability cost: 1
+modifier.td_reflex.name=Reflex
+modifier.td_reflex.desc=One step ahead of you! \nDamage knockback direction is reversed.
+
+#Silver
+modifier.td_retribution1.name=Retribution I
+modifier.td_retribution1.desc=Justice will prevail. \nTaking damage from undead will deal heavy damage to the attacker.
+
+#iridium
+modifier.td_truesight.name=Truesight
+modifier.td_truesight.desc=HootHoot! \nRemoves blindness and grants night vision.
+modifier.intangible.name=Intangible
+modifier.intangible.desc=Is this real life? \nArrows have an 80% chance to pass through you.
+modifier.td_undo.name=Undo
+modifier.td_undo.desc=CTRL + Zap \nRapidy restores health and hunger for 10 second in a pinch.\nArmor is also repaired based on current XP Level * 4.\nCosts 1 XP Level \nXP Level must be greater than 1.
+modifier.ticktock.name=Tick-Tock
+modifier.ticktock.desc=Like clockwork! \nGives the tool bonus stats on crafting.\nThe bonus stats are distributed over time & the stats that will be rewarded are already designated on the first time the tool is crafted
+
+#nickel
+modifier.phasing.name=Phasing
+modifier.phasing.desc=§oWooosh. \nArrows fly right through blocks. \nNote: Regular arrows require you to be close to the block to fire through it.
+
+#aluminium
+modifier.td_light.name=Light
+modifier.td_light.desc=Where did my weight go? \nYou jump significantly higher.
+
+#lumium
+modifier.td_illuminating.name=Illuminating
+modifier.td_illuminating.desc=You're so bright! \nApplies glow to any living entity within 16 blocks.
+
+#refined glowtone
+modifier.td_photoabsorbant.name=Photo-Absorbant
+modifier.td_photoabsorbant.desc=Walking solar panel. \nYour armor slowly absorbs sunlight, reparing it.
+
+#Mithril Traits
+modifier.mythical.name=Mythical
+modifier.mythical.desc=§oStronger when Reforged! \nConverts XP into a modifier when used after it has been broken and repaired fully. The tool needs to have a good amount of max durability to gain more modifiers.
+modifier.mythical.voiceRing=A voice rings in your head...
+modifier.mythical.instructions="Repair me fully. Then, when wielding vast worldly knowledge, I shall bestow a gift when you use me again."
+modifier.mythical.modifier_up=Upon using the tool, new opportunities reveal themselves to you.
+
+modifier.td_dogtoy.name=Dog Toy
+modifier.td_dogtoy.desc=Sometimes summons a guard dog to aid you.
+modifier.td_firestarter.name=Firestarter
+modifier.td_firestarter.desc=Sometimes causes a fire to start in front of you.
+modifier.td_dulling.name=Dulling
+modifier.td_dulling.desc=Does extra durability damage to attackers weapon.
+modifier.td_barbed.name=Barbed
+modifier.td_barbed.desc=Causes damage to attacker and victim.
+
+#Aditional Modifiers
+modifier.td_deadmansswitch.name=Deadmans Switch
+modifier.td_deadmansswitch.desc=What comes around goes around.
+
+modifier.protection.name=Protection
+modifier.protection.desc=Protection
+modifier.fireprotection.name=Fire Protection
+modifier.fireprotection.desc=Flame ON! Wait no I mean OFF!
+modifier.projprotection.name=Projectile Protection
+modifier.projprotection.desc=Offers protection to the knee.
+modifier.blastprotection.name=Blast Protection
+modifier.blastprotection.desc=Can explosions get through this?
+
+modifier.antiblindness.name=Protective Goggles
+modifier.antiblindness.desc=Protection for blinding sunlight.
+modifier.nightvision.name=Night Vision Goggles
+modifier.nightvision.desc=See in the DARK!
+
+modifier.respiration1.name=Respiration I
+modifier.respiration1.desc=Pseudo Gills
+modifier.respiration2.name=Respiration I
+modifier.respiration2.name=Elder Gills
+
+modifier.frostwalker.name=Frostwalker
+modifier.frostwalker.desc=Water Walking!
+modifier.firewalker.name=Firewalker
+modifier.firewalker.desc=Lava Walking!
+
+#Armor Materials
+item.td_armor_plate.name=Armor Plate
+item.td_chainmail.name=Chainmail
+item.td_rivets.name=Rivets
+item.td_clasp.name=Clasp
+item.td_filigree.name=Filigree
+item.td_fabric.name=Fabric
+item.td_ringShank.name=Ring Shank
+item.td_setting.name=Ring Setting

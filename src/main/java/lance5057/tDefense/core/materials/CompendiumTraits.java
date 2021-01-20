@@ -1,5 +1,6 @@
 package lance5057.tDefense.core.materials;
 
+import c4.conarm.lib.materials.ArmorMaterialType;
 import lance5057.tDefense.core.materials.stats.ChestMaterialStats;
 import lance5057.tDefense.core.materials.stats.FeetMaterialStats;
 import lance5057.tDefense.core.materials.stats.HelmMaterialStats;
@@ -12,9 +13,6 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.DimensionType;
-import slimeknights.tconstruct.library.materials.ExtraMaterialStats;
-import slimeknights.tconstruct.library.materials.HandleMaterialStats;
-import slimeknights.tconstruct.library.materials.HeadMaterialStats;
 import slimeknights.tconstruct.library.traits.AbstractTrait;
 import slimeknights.tconstruct.tools.TinkerMaterials;
 import slimeknights.tconstruct.tools.TinkerTraits;
@@ -26,7 +24,6 @@ public class CompendiumTraits {
 	public TraitPhotosynthetic photosynth2 = new TraitPhotosynthetic(2);
 	public TraitReduceKnockback rooted = new TraitReduceKnockback("rooted", 0x875e21, 0.5f,
 			Blocks.DIRT.getDefaultState(), Blocks.GRASS.getDefaultState());
-	public TraitAxeLover axelover = new TraitAxeLover();
 
 	// Stone
 	public TraitDamageSourceAlteration blockhead = new TraitDamageSourceAlteration("blockhead", 0x875e21,
@@ -47,15 +44,14 @@ public class CompendiumTraits {
 	public TraitBarbed barbed = new TraitBarbed();
 
 	public TraitPotionRemoval thickheaded = new TraitPotionRemoval("thickheaded", TextFormatting.WHITE,
-			MobEffects.BLINDNESS, MobEffects.NAUSEA);
+			MobEffects.BLINDNESS,
+			MobEffects.NAUSEA);
 	public TraitDamageNegation calcium = new TraitDamageNegation("calcium", TextFormatting.WHITE, 1f);
 	public TraitDamageNegation collagen = new TraitDamageNegation("collagen", TextFormatting.WHITE, 1000f,
 			DamageSource.FALL);
 	public TraitBoneSpurs bonespurs = new TraitBoneSpurs();
-	public TraitDogToy dogtoy = new TraitDogToy();
 
-	public TraitApplyPotion peleshair = new TraitApplyPotion("peleshair", TextFormatting.DARK_PURPLE, true,
-			new PotionEffect(MobEffects.LUCK, 1, 10), new PotionEffect(MobEffects.UNLUCK, 1, 10));
+	public TraitPelesHair peleshair = new TraitPelesHair();
 	public TraitReduceKnockback pillarsoftitans = new TraitReduceKnockback("pillarsoftitans",
 			TextFormatting.DARK_PURPLE, 0.25f);
 	public TraitDamageSourceAlteration emberwalker = new TraitDamageSourceAlteration("emberwalker",
@@ -103,14 +99,12 @@ public class CompendiumTraits {
 			TextFormatting.DARK_RED, DimensionType.NETHER, 0.75f);
 	public TraitPyrosynthesis pyrosynthetic = new TraitPyrosynthesis(1);
 	public TraitPyrosynthesis pyrosynthetic2 = new TraitPyrosynthesis(2);
-	public TraitFirewalker firewalker = new TraitFirewalker(3);
 
 	public TraitForestMask forestmask = new TraitForestMask();
 	public TraitPotionRemoval slick = new TraitPotionRemoval("slick", TextFormatting.GREEN, MobEffects.SLOWNESS,
 			MobEffects.MINING_FATIGUE);
 	public TraitGreenthumb greenthumb = new TraitGreenthumb();
 
-	public TraitGoggles goggles = new TraitGoggles();
 	public TraitAqualung aqualung = new TraitAqualung();
 
 	public TraitDemonic demonic = new TraitDemonic();
@@ -128,34 +122,39 @@ public class CompendiumTraits {
 	public TraitHeavyweight heavyweight = new TraitHeavyweight();
 
 	public TraitCombatAdvantage combatadvantage = new TraitCombatAdvantage();
-	public TraitBattleHardened battlehardened = new TraitBattleHardened("battlehardened", TextFormatting.DARK_PURPLE,
-			1);
 	public TraitReflex reflex = new TraitReflex();
-	public TraitStableStance stablestance = new TraitStableStance();
+	public static TraitStableStance stablestance = new TraitStableStance();
 
-	public TraitAcknowledged acknowledged = new TraitAcknowledged();
-	public TraitBattleHardened workhardened = new TraitBattleHardened("workhardened", TextFormatting.RED, 5);
+	public static TraitAcknowledged acknowledged = new TraitAcknowledged();
+
+	public static TraitPhotoAbsorbant photoabsorbant = new TraitPhotoAbsorbant();
+
+	public static TraitBattleHardened tempered = new TraitBattleHardened("tempered", TextFormatting.RED, 0, 4);
+	public static TraitBattleHardened workhardened = new TraitBattleHardened("workhardened", TextFormatting.RED, 60, 2);
+	public TraitBattleHardened battlehardened = new TraitBattleHardened("battlehardened", TextFormatting.DARK_PURPLE, 160, 0);
 
 	public TraitHeroic heroic = new TraitHeroic();
 
 	public TraitApplyPotion slowing = new TraitApplyPotion("slowing", TextFormatting.LIGHT_PURPLE, false,
-			new PotionEffect(MobEffects.SLOWNESS, 5, 1));
+			new PotionEffect(MobEffects.SLOWNESS, 5, 1, true, false));
 
 	public TraitRetribution retribution_1 = new TraitRetribution(1);
 
-	public TraitRigid rigid = new TraitRigid();
-	public TraitTempered tempered = new TraitTempered();
+	public TraitRigid rigid = new TraitRigid(); //fix
 
 	public TraitDamageSourceAlteration ohm = new TraitDamageSourceAlteration("ohm", TextFormatting.YELLOW,
 			new TraitDamageSourceAlteration.DamagePercent(DamageSource.LIGHTNING_BOLT, -0.5f));
 
-	public TraitTickTock ticktock = new TraitTickTock();
+	public static TraitTickTock ticktock = new TraitTickTock();
 	public TraitEthereal ethereal = new TraitEthereal();
 	public TraitClockstopper clockstopper = new TraitClockstopper();
-	public TraitTrueSight truesight = new TraitTrueSight();
-	public TraitIntangible intangible = new TraitIntangible();
-	public TraitUndo undo = new TraitUndo();
-	public TraitTimewarp timewarp = new TraitTimewarp();
+	public static TraitTrueSight truesight = new TraitTrueSight();
+	public static TraitIntangible intangible = new TraitIntangible();
+	public static TraitUndo undo = new TraitUndo();
+	public static TraitTimewarp timewarp = new TraitTimewarp();
+	public static TraitPhasing phasing = new TraitPhasing();
+	public static TraitLight light = new TraitLight();
+	public static TraitIlluminating illuminating = new TraitIlluminating();
 
 	public TraitToothy toothy = new TraitToothy();
 	public TraitCornered cornered = new TraitCornered();
@@ -165,11 +164,11 @@ public class CompendiumTraits {
 	public TraitAlpha alpha = new TraitAlpha();
 	public TraitHunt hunt = new TraitHunt();
 
-	private AbstractTrait mythical1 = new TraitMythical(1);
-	private AbstractTrait mythical2 = new TraitMythical(2);
+	public static AbstractTrait mythical1 = new TraitMythical(1);
+	public static AbstractTrait mythical2 = new TraitMythical(2);
 	
 	public TraitRegal regal = new TraitRegal();
-	
+
 	//Froststeel
 	
 
@@ -182,7 +181,6 @@ public class CompendiumTraits {
 		TinkerMaterials.wood.addTrait(photosynth, ChestMaterialStats.TYPE);
 		TinkerMaterials.wood.addTrait(rooted, LegsMaterialStats.TYPE);
 		TinkerMaterials.wood.addTrait(rooted, FeetMaterialStats.TYPE);
-		TinkerMaterials.wood.addTrait(axelover, ShieldMaterialStats.TYPE);
 
 		TinkerMaterials.stone.addTrait(blockhead, HelmMaterialStats.TYPE);
 		TinkerMaterials.stone.addTrait(stoned, ChestMaterialStats.TYPE);
@@ -205,7 +203,6 @@ public class CompendiumTraits {
 		TinkerMaterials.bone.addTrait(calcium, ChestMaterialStats.TYPE);
 		TinkerMaterials.bone.addTrait(collagen, LegsMaterialStats.TYPE);
 		TinkerMaterials.bone.addTrait(bonespurs, FeetMaterialStats.TYPE);
-		TinkerMaterials.bone.addTrait(dogtoy, ShieldMaterialStats.TYPE);
 
 		TinkerMaterials.obsidian.addTrait(peleshair, HelmMaterialStats.TYPE);
 		TinkerMaterials.obsidian.addTrait(glassine, ChestMaterialStats.TYPE);
@@ -226,6 +223,7 @@ public class CompendiumTraits {
 		TinkerMaterials.paper.addTrait(arrowcatcher, ChestMaterialStats.TYPE);
 		TinkerMaterials.paper.addTrait(arrowcatcher, LegsMaterialStats.TYPE);
 		TinkerMaterials.paper.addTrait(arrowcatcher, FeetMaterialStats.TYPE);
+
 		TinkerMaterials.paper.addTrait(novel, HelmMaterialStats.TYPE);
 		TinkerMaterials.paper.addTrait(novel, ChestMaterialStats.TYPE);
 		TinkerMaterials.paper.addTrait(novel, LegsMaterialStats.TYPE);
@@ -261,7 +259,7 @@ public class CompendiumTraits {
 		TinkerMaterials.magmaslime.addTrait(pyrosynthetic, HelmMaterialStats.TYPE);
 		TinkerMaterials.magmaslime.addTrait(pyrosynthetic2, ChestMaterialStats.TYPE);
 		TinkerMaterials.magmaslime.addTrait(slick, LegsMaterialStats.TYPE);
-		TinkerMaterials.magmaslime.addTrait(firewalker, FeetMaterialStats.TYPE);
+		TinkerMaterials.magmaslime.addTrait(emberwalker, FeetMaterialStats.TYPE);
 		TinkerMaterials.magmaslime.addTrait(hellbound, HelmMaterialStats.TYPE);
 		TinkerMaterials.magmaslime.addTrait(hellbound, ChestMaterialStats.TYPE);
 		TinkerMaterials.magmaslime.addTrait(hellbound, LegsMaterialStats.TYPE);
@@ -272,7 +270,6 @@ public class CompendiumTraits {
 		TinkerMaterials.slime.addTrait(slick, LegsMaterialStats.TYPE);
 		TinkerMaterials.slime.addTrait(greenthumb, FeetMaterialStats.TYPE);
 
-		TinkerMaterials.blueslime.addTrait(goggles, HelmMaterialStats.TYPE);
 		TinkerMaterials.blueslime.addTrait(aqualung, ChestMaterialStats.TYPE);
 		TinkerMaterials.blueslime.addTrait(slick, LegsMaterialStats.TYPE);
 		TinkerMaterials.blueslime.addTrait(fins, FeetMaterialStats.TYPE);
@@ -289,9 +286,13 @@ public class CompendiumTraits {
 
 		TinkerMaterials.ardite.addTrait(hardhat, HelmMaterialStats.TYPE);
 		TinkerMaterials.ardite.addTrait(statuesque, ChestMaterialStats.TYPE);
-		TinkerMaterials.ardite.addTrait(stonekin, LegsMaterialStats.TYPE);
 		TinkerMaterials.ardite.addTrait(heavyweight, FeetMaterialStats.TYPE);
-		
+		TinkerMaterials.ardite.addTrait(stonekin, ArmorMaterialType.CORE);
+		TinkerMaterials.ardite.addTrait(stonekin, HelmMaterialStats.TYPE);
+		TinkerMaterials.ardite.addTrait(stonekin, ChestMaterialStats.TYPE);
+		TinkerMaterials.ardite.addTrait(stonekin, LegsMaterialStats.TYPE);
+		TinkerMaterials.ardite.addTrait(stonekin, FeetMaterialStats.TYPE);
+
 		TinkerMaterials.manyullyn.addTrait(this.combatadvantage, HelmMaterialStats.TYPE);
 		TinkerMaterials.manyullyn.addTrait(this.battlehardened, ChestMaterialStats.TYPE);
 		TinkerMaterials.manyullyn.addTrait(this.reflex, LegsMaterialStats.TYPE);
@@ -330,36 +331,8 @@ public class CompendiumTraits {
 		TinkerMaterials.electrum.addTrait(tempered, LegsMaterialStats.TYPE);
 		TinkerMaterials.electrum.addTrait(maglock, FeetMaterialStats.TYPE);
 
-		if (CompendiumMaterials.aeonsteel != null) {
-			CompendiumMaterials.aeonsteel.mat.addTrait(ticktock, HandleMaterialStats.TYPE);
-			CompendiumMaterials.aeonsteel.mat.addTrait(ticktock, ExtraMaterialStats.TYPE);
-			CompendiumMaterials.aeonsteel.mat.addTrait(ethereal, HeadMaterialStats.TYPE);
-			CompendiumMaterials.aeonsteel.mat.addTrait(clockstopper, ShieldMaterialStats.TYPE);
-			CompendiumMaterials.aeonsteel.mat.addTrait(truesight, HelmMaterialStats.TYPE);
-			CompendiumMaterials.aeonsteel.mat.addTrait(intangible, ChestMaterialStats.TYPE);
-			CompendiumMaterials.aeonsteel.mat.addTrait(undo, LegsMaterialStats.TYPE);
-			CompendiumMaterials.aeonsteel.mat.addTrait(timewarp, FeetMaterialStats.TYPE);
-		}
+		//moartinkers ==============================
 
-		if (CompendiumMaterials.dogbearium != null) {
-			CompendiumMaterials.dogbearium.mat.addTrait(toothy, HandleMaterialStats.TYPE);
-			CompendiumMaterials.dogbearium.mat.addTrait(toothy, ExtraMaterialStats.TYPE);
-			CompendiumMaterials.dogbearium.mat.addTrait(cornered, HeadMaterialStats.TYPE);
-			CompendiumMaterials.dogbearium.mat.addTrait(poundofflesh, ShieldMaterialStats.TYPE);
-			CompendiumMaterials.dogbearium.mat.addTrait(ihunger, HelmMaterialStats.TYPE);
-			CompendiumMaterials.dogbearium.mat.addTrait(hellbeast, ChestMaterialStats.TYPE);
-			CompendiumMaterials.dogbearium.mat.addTrait(alpha, LegsMaterialStats.TYPE);
-			CompendiumMaterials.dogbearium.mat.addTrait(hunt, FeetMaterialStats.TYPE);
-		}
-
-		if (CompendiumMaterials.mithril != null){
-			CompendiumMaterials.mithril.mat.addTrait(mythical1);
-			CompendiumMaterials.mithril.mat.addTrait(mythical2, HeadMaterialStats.TYPE);
-		}
-		
-		if(CompendiumMaterials.queensgold != null) {
-			CompendiumMaterials.queensgold.mat.addTrait(regal, HeadMaterialStats.TYPE);
-		}
 	}
 
 	public void postInit() {

@@ -73,18 +73,6 @@ public class CraftableMaterial implements MaterialBase {
 
 	@Override
 	public void setupPre(MaterialHelper mat) {
-		if (doIngot && ingot == null) {
-			ingot = TCItems.registerItem(type + "_" + mat.mat.identifier, TinkersCompendium.tab);
-		}
-
-		if (doNugget && nugget == null) {
-			nugget = TCItems.registerItem("nugget_" + mat.mat.identifier, TinkersCompendium.tab);
-		}
-
-		if (doBlock && block == null) {
-			block = TCBlocks.registerBlock("block_" + mat.mat.identifier, net.minecraft.block.material.Material.ROCK);
-			TCItems.registerItemBlock("block_" + mat.mat.identifier, block, TinkersCompendium.tab);
-		}
 
 		mat.mat.setCraftable(true).setCastable(false);
 

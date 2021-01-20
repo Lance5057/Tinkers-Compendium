@@ -1,7 +1,6 @@
 package lance5057.tDefense.core.modifiers;
 
 import lance5057.tDefense.core.library.modifiers.ModifierTDTrait;
-import lance5057.tDefense.core.tools.armor.cloth.TinkersHood;
 import lance5057.tDefense.core.tools.armor.heavy.TinkersHelm;
 import lance5057.tDefense.core.tools.bases.ArmorCore;
 import net.minecraft.client.Minecraft;
@@ -56,7 +55,7 @@ public class ModCompass extends ModifierTDTrait {
 
 	@Override
 	public boolean canApplyCustom(ItemStack stack) {
-		if (!(stack.getItem() instanceof TinkersHelm) && !(stack.getItem() instanceof TinkersHood)) {
+		if (!(stack.getItem() instanceof TinkersHelm)) {
 			return false;
 		}
 

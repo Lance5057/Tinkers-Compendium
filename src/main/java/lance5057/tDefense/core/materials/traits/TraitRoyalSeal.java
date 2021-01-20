@@ -21,9 +21,8 @@ public class TraitRoyalSeal extends AbstractTDTrait {
 			if (e.getEntityLiving() instanceof EntityPlayer) {
 				EntityPlayer p = (EntityPlayer) e.getEntityLiving();
 				p.getCooldownTracker().setCooldown(Items.SHIELD, 100);
-				p.getCooldownTracker().setCooldown(TDTools.heatershield, 100);
+				p.getCooldownTracker().setCooldown(TDTools.kiteshield, 100);
 				p.getCooldownTracker().setCooldown(TDTools.roundshield, 100);
-				p.getCooldownTracker().setCooldown(TDTools.towershield, 100);
 				p.getEntityWorld().setEntityState(p, (byte) 30);
 				
 				ToolHelper.damageTool(tool, (int) Math.ceil(e.getAmount() * 5), null);

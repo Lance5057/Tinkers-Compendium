@@ -2,6 +2,7 @@ package lance5057.tDefense.core.tools.armor.heavy;
 
 import java.util.List;
 
+import c4.conarm.common.ConstructsRegistry;
 import lance5057.tDefense.core.library.ArmorNBT;
 import lance5057.tDefense.core.library.ArmorTags;
 import lance5057.tDefense.core.library.ArmorTextureBuilder;
@@ -37,9 +38,11 @@ import slimeknights.tconstruct.library.utils.TagUtil;
 
 public class TinkersGrieves extends ArmorCore {
 	public TinkersGrieves() {
-		super(EntityEquipmentSlot.LEGS, new PartMaterialType(TDParts.armorPlate, LegsMaterialStats.TYPE),
+		super(EntityEquipmentSlot.LEGS,
+				new PartMaterialType(ConstructsRegistry.leggingsCore, LegsMaterialStats.TYPE),
 				new PartMaterialType(TDParts.chainmail, LegsMaterialStats.TYPE),
-				PartMaterialType.handle(TDParts.filigree), PartMaterialType.extra(TDParts.clasp),
+				PartMaterialType.handle(TDParts.filigree),
+				PartMaterialType.extra(ConstructsRegistry.armorTrim),
 				new PartMaterialType(TDParts.fabric, FabricMaterialStats.TYPE));
 		setUnlocalizedName("tinkersgrieves");
 	}
@@ -88,7 +91,7 @@ public class TinkersGrieves extends ArmorCore {
 	@Override
 	public float armorMultiplier() {
 		// TODO Auto-generated method stub
-		return 1f;
+		return 2f;
 	}
 
 	@Override

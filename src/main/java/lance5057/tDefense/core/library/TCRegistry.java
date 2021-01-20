@@ -37,7 +37,7 @@ public class TCRegistry {
 
 	/**
 	 * Adds a armor to the Crafting UI of both the armor Station as well as the
-	 * armor Forge
+	 * armor Forges
 	 */
 	public static void registerArmorCrafting(ArmorCore armor) {
 		registerArmorStationCrafting(armor);

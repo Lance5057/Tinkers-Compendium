@@ -11,9 +11,11 @@ import slimeknights.tconstruct.library.utils.ToolHelper;
 public class TraitBattleHardened extends AbstractTDTrait {
 
 	int level = 1;
-	public TraitBattleHardened(String name, TextFormatting color, int level) {
+	int time = 0;
+	public TraitBattleHardened(String name, TextFormatting color, int time, int level) {
 		super(name, color);
 		this.level = level;
+		this.time = time;
 	}
 
 	@Override
@@ -24,12 +26,12 @@ public class TraitBattleHardened extends AbstractTDTrait {
 			PotionEffect p = ent.getActivePotionEffect(MobEffects.RESISTANCE);
 
 			if (p.getAmplifier() < 3) {
-				ent.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, 20, p.getAmplifier() + 1));
-				ToolHelper.damageTool(tool, p.getAmplifier() * 3 * level, ent);
+				ent.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, 40 + time, p.getAmplifier() + 1));
+				ToolHelper.damageTool(tool, p.getAmplifier() * 1 * level, ent);
 			}
 		} else {
-			ent.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, 20, 1));
-			ToolHelper.damageTool(tool, 3 * level, ent);
+			ent.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, 40 + time, 1));
+			ToolHelper.damageTool(tool, 1 * level, ent);
 		}
 
 	}

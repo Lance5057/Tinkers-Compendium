@@ -35,28 +35,8 @@
     "data": "armor/light/chausses.json"
   },
   {
-    "name": "boots",
+    "name": "chainboots",
     "type": "td_armor",
-    "data": "armor/light/boots.json"
-  },
-  {
-    "name": "hood",
-    "type": "td_armor",
-    "data": "armor/cloth/hood.json"
-  },
-  {
-    "name": "shawl",
-    "type": "td_armor",
-    "data": "armor/cloth/shawl.json"
-  },
-  {
-    "name": "robe",
-    "type": "td_armor",
-    "data": "armor/cloth/robes.json"
-  },
-  {
-    "name": "shoes",
-    "type": "td_armor",
-    "data": "armor/cloth/shoes.json"
+    "data": "armor/light/chainboots.json"
   }
 ]

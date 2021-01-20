@@ -2,6 +2,7 @@ package lance5057.tDefense.core.tools.armor.heavy;
 
 import java.util.List;
 
+import c4.conarm.common.ConstructsRegistry;
 import lance5057.tDefense.core.library.ArmorNBT;
 import lance5057.tDefense.core.library.ArmorTags;
 import lance5057.tDefense.core.library.ArmorTextureBuilder;
@@ -32,9 +33,11 @@ import slimeknights.tconstruct.tools.TinkerTools;
 
 public class TinkersBreastplate extends ArmorCore {
 	public TinkersBreastplate() {
-		super(EntityEquipmentSlot.CHEST, new PartMaterialType(TinkerTools.largePlate, ChestMaterialStats.TYPE),
-				new PartMaterialType(TDParts.armorPlate, ChestMaterialStats.TYPE),
-				PartMaterialType.handle(TDParts.filigree), PartMaterialType.extra(TDParts.chainmail),
+		super(EntityEquipmentSlot.CHEST,
+				new PartMaterialType(ConstructsRegistry.chestCore, ChestMaterialStats.TYPE),
+				new PartMaterialType(TinkerTools.largePlate, ChestMaterialStats.TYPE),
+				PartMaterialType.handle(TDParts.filigree),
+				PartMaterialType.extra(TDParts.chainmail),
 				new PartMaterialType(TDParts.fabric, FabricMaterialStats.TYPE));
 		setUnlocalizedName("tinkersbreastplate");
 	}
@@ -53,7 +56,7 @@ public class TinkersBreastplate extends ArmorCore {
 		NBTTagCompound base = new NBTTagCompound();
 
 		ResourceLocation rc = ArmorTextureBuilder.createArmorTexture("breastplate",
-				new String[] { "plate", "smallplate", "trim", "chain", "cloth" }, materials, 128, 128);
+				new String[] { "smallplate", "plate", "trim", "chain", "cloth" }, materials, 128, 128);
 
 		if (rc != null) {
 			base.setString(ArmorTags.TexLoc, rc.toString());
@@ -84,7 +87,7 @@ public class TinkersBreastplate extends ArmorCore {
 	@Override
 	public float armorMultiplier() {
 		// TODO Auto-generated method stub
-		return 1f;
+		return 2f;
 	}
 
 	@Override

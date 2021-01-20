@@ -8,7 +8,6 @@ import lance5057.tDefense.Reference;
 import lance5057.tDefense.TCCommands;
 import lance5057.tDefense.TCConfig;
 import lance5057.tDefense.TinkersCompendium;
-import lance5057.tDefense.core.blocks.ColoredBlockMapper;
 import lance5057.tDefense.core.library.ArmorBuildGuiInfo;
 import lance5057.tDefense.core.library.ArmorPart;
 import lance5057.tDefense.core.library.CustomArmorTextureCreator;
@@ -20,7 +19,6 @@ import lance5057.tDefense.core.tools.TDTools;
 import lance5057.tDefense.core.tools.bases.ArmorCore;
 import lance5057.tDefense.renderers.deserializers.AlphaColorTextureDeserializer;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockColored;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
@@ -63,42 +61,24 @@ public class ClientProxy extends CommonProxy {
 	// public static final ModelSheath sheath = new ModelSheath();
 	// ModifierSoulHandler SoulHandler;
 
-	// public static ModelTinkersTabard sheath;
-
 	private static final TDModelLoader loader = new TDModelLoader();
 
 	ToolBuildGuiInfo roundshieldGUI;
-	ToolBuildGuiInfo heatershieldGUI;
-	ToolBuildGuiInfo towershieldGUI;
+	ToolBuildGuiInfo kiteshieldGUI;
 
-	ToolBuildGuiInfo zweihanderGUI;
 	ToolBuildGuiInfo shearsGUI;
-	ToolBuildGuiInfo fishingRodGUI;
-	ToolBuildGuiInfo malletGUI;
-	ToolBuildGuiInfo sawGUI;
-	ToolBuildGuiInfo fireDrillGUI;
-
-	ArmorBuildGuiInfo hoodGUI;
-	ArmorBuildGuiInfo shawlGUI;
-	ArmorBuildGuiInfo robeGUI;
-	ArmorBuildGuiInfo shoesGUI;
 
 	ArmorBuildGuiInfo coifGUI;
 	ArmorBuildGuiInfo hauberkGUI;
 	ArmorBuildGuiInfo chaussesGUI;
-	ArmorBuildGuiInfo bootsGUI;
+	ArmorBuildGuiInfo chainbootsGUI;
 
 	ArmorBuildGuiInfo helmGUI;
 	ArmorBuildGuiInfo breastplateGUI;
 	ArmorBuildGuiInfo grievesGUI;
 	ArmorBuildGuiInfo sabatonsGUI;
 
-	// ToolBuildGuiInfo sheatheGUI;
 	ToolBuildGuiInfo ringGUI;
-	// ToolBuildGuiInfo amuletGUI;
-	ToolBuildGuiInfo tabardGUI;
-
-	ToolBuildGuiInfo backpackGUI;
 
 	// public static SheatheModel sheathe;
 
@@ -114,32 +94,6 @@ public class ClientProxy extends CommonProxy {
 		MaterialRenderInfoLoader.addRenderInfo("alpha_color", AlphaColorTextureDeserializer.class);
 
 		MinecraftForge.EVENT_BUS.register(CustomArmorTextureCreator.INSTANCE);
-
-		if (TinkersCompendium.config.armor.enableClothArmor) {
-			CustomArmorTextureCreator.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/hood/_hood_cloth"));
-			CustomArmorTextureCreator.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/hood/_hood_trim"));
-			CustomArmorTextureCreator.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/hood/_hood_metal"));
-
-			CustomArmorTextureCreator
-					.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/shawl/_shawl_cloth"));
-			CustomArmorTextureCreator
-					.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/shawl/_shawl_trim"));
-			CustomArmorTextureCreator
-					.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/shawl/_shawl_metal"));
-
-			CustomArmorTextureCreator.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/robe/_robe_cloth"));
-			CustomArmorTextureCreator.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/robe/_robe_trim"));
-			CustomArmorTextureCreator.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/robe/_robe_metal"));
-
-			CustomArmorTextureCreator
-					.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/shoes/_shoes_cloth"));
-			CustomArmorTextureCreator
-					.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/shoes/_shoes_trim"));
-			CustomArmorTextureCreator
-					.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/shoes/_shoes_metal"));
-			CustomArmorTextureCreator
-					.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/shoes/_shoes_string"));
-		}
 
 		if (TinkersCompendium.config.armor.enableChainArmor) {
 			CustomArmorTextureCreator.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/coif/_coif_chain"));
@@ -168,13 +122,13 @@ public class ClientProxy extends CommonProxy {
 					.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/hauberk/_hauberk_rivet"));
 
 			CustomArmorTextureCreator
-					.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/boots/_boots_chain"));
+					.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/chainboots/_chainboots_chain"));
 			CustomArmorTextureCreator
-					.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/boots/_boots_plate"));
+					.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/chainboots/_chainboots_plate"));
 			CustomArmorTextureCreator
-					.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/boots/_boots_cloth"));
+					.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/chainboots/_chainboots_cloth"));
 			CustomArmorTextureCreator
-					.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/boots/_boots_string"));
+					.registerTexture(new ResourceLocation(Reference.MOD_ID, "armor/chainboots/_chainboots_string"));
 		}
 
 		if (TinkersCompendium.config.armor.enableHeavyArmor) {
@@ -235,44 +189,12 @@ public class ClientProxy extends CommonProxy {
 		bookRenderer.setUnicodeFlag(true);
 		CompendiumBook.INSTANCE.fontRenderer = bookRenderer;
 
-		for (ToolCore tc : TinkerRegistry.getTools()) {
-			for (String s : TCConfig.anvil.overrides) {
-				String[] info = s.split(" ");
-				if (info[0].equals(tc.getRegistryName().toString())) {
-					TDClientRegistry.addVarient(tc, Integer.valueOf(info[1]));
-				}
-			}
-		}
-
 		// ModelRegisterUtil.registerPartModel(TDMaterials.plate);
 	}
 
 	@Override
 	public void postInit() {
-		// registerItemColorHandler(new ColorHandler(0xa470e0),
-		// TDMaterials.aeonsteelIngot);
-		// registerItemColorHandler(new ColorHandler(0xa470e0),
-		// TDMaterials.aeonsteelNugget);
-		// registerItemColorHandler(new ColorHandler(0xa470e0),
-		// TDMaterials.aeonsteelDust);
-		// registerItemColorHandler(new ColorHandler(0xa470e0),
-		// TDMaterials.aeonsteelGrain);
-		// registerItemColorHandler(new ColorHandler(0xa470e0),
-		// TDMaterials.aeonsteelCoin);
-		// registerItemColorHandler(new ColorHandler(0xa470e0),
-		// TDMaterials.aeonsteelGear);
-		// registerItemColorHandler(new ColorHandler(0xa470e0),
-		// TDMaterials.aeonsteelPlate);
-		// registerItemColorHandler(new ColorHandler(0xa470e0),
-		// TDMaterials.aeonsteelRod);
 
-		// TDMaterials.queensgold.setupClient();
-
-		if (TinkersCompendium.config.shields.enableShields && TinkersCompendium.config.shields.enableHeaterShield) {
-			TinkersCompendium.tab.setDisplayIcon(TDTools.heatershield.buildItemForRendering(
-					ImmutableList.of(TinkerRegistry.getMaterial("iron"), TinkerRegistry.getMaterial("cobalt"),
-							TinkerRegistry.getMaterial("cobalt"), TinkerRegistry.getMaterial("iron"))));
-		}
 	}
 
 //	@SideOnly(Side.CLIENT)
@@ -346,41 +268,21 @@ public class ClientProxy extends CommonProxy {
 		if (TinkersCompendium.config.shields.enableShields) {
 			if (TinkersCompendium.config.shields.enableBuckler)
 				roundshieldGUI = new ToolBuildGuiInfo(TDTools.roundshield);
-			if (TinkersCompendium.config.shields.enableHeaterShield)
-				heatershieldGUI = new ToolBuildGuiInfo(TDTools.heatershield);
-			if (TinkersCompendium.config.shields.enableTowerShield)
-				towershieldGUI = new ToolBuildGuiInfo(TDTools.towershield);
+			if (TinkersCompendium.config.shields.enableKiteShield)
+				kiteshieldGUI = new ToolBuildGuiInfo(TDTools.kiteshield);
 		}
 
 		if (TinkersCompendium.config.tools.enableTools) {
-			if (TinkersCompendium.config.tools.enableZweihander)
-				zweihanderGUI = new ToolBuildGuiInfo(TDTools.zweihander);
 			if (TinkersCompendium.config.tools.enableShears)
 				shearsGUI = new ToolBuildGuiInfo(TDTools.shears);
-			if (TinkersCompendium.config.tools.enableFishingRod)
-				fishingRodGUI = new ToolBuildGuiInfo(TDTools.fishingRod);
-			if (TinkersCompendium.config.tools.enableMallet)
-				malletGUI = new ToolBuildGuiInfo(TDTools.mallet);
-			if (TinkersCompendium.config.tools.enableSaw)
-				sawGUI = new ToolBuildGuiInfo(TDTools.saw);
-			if (TinkersCompendium.config.tools.enableFireDrill)
-				fireDrillGUI = new ToolBuildGuiInfo(TDTools.fireDrill);
-			if (TinkersCompendium.config.tools.enableBackpack)
-				backpackGUI = new ToolBuildGuiInfo(TDTools.backpack);
+
 		}
 
-		if (TinkersCompendium.config.armor.enableClothArmor) {
-			hoodGUI = new ArmorBuildGuiInfo(TDTools.hood);
-			shawlGUI = new ArmorBuildGuiInfo(TDTools.shawl);
-			robeGUI = new ArmorBuildGuiInfo(TDTools.robe);
-			shoesGUI = new ArmorBuildGuiInfo(TDTools.shoes);
-		}
-
-		if (TinkersCompendium.config.armor.enableClothArmor) {
+		if (TinkersCompendium.config.armor.enableChainArmor) {
 			coifGUI = new ArmorBuildGuiInfo(TDTools.coif);
 			hauberkGUI = new ArmorBuildGuiInfo(TDTools.hauberk);
 			chaussesGUI = new ArmorBuildGuiInfo(TDTools.chausses);
-			bootsGUI = new ArmorBuildGuiInfo(TDTools.boots);
+			chainbootsGUI = new ArmorBuildGuiInfo(TDTools.chainboots);
 		}
 
 		if (TinkersCompendium.config.armor.enableHeavyArmor) {
@@ -391,9 +293,6 @@ public class ClientProxy extends CommonProxy {
 		}
 
 		if (TinkersCompendium.config.baubles.enableBaubles) {
-			if (TinkersCompendium.config.baubles.enableTabard) {
-				tabardGUI = new ToolBuildGuiInfo(TDTools.tabard);
-			}
 			if (TinkersCompendium.config.baubles.enableRing) {
 				ringGUI = new ToolBuildGuiInfo(TDTools.ring);
 			}
@@ -412,41 +311,20 @@ public class ClientProxy extends CommonProxy {
 		if (TinkersCompendium.config.shields.enableShields) {
 			if (TinkersCompendium.config.shields.enableBuckler)
 				TinkerRegistryClient.addToolBuilding(roundshieldGUI);
-			if (TinkersCompendium.config.shields.enableHeaterShield)
-				TinkerRegistryClient.addToolBuilding(heatershieldGUI);
-			if (TinkersCompendium.config.shields.enableTowerShield)
-				TinkerRegistryClient.addToolBuilding(towershieldGUI);
+			if (TinkersCompendium.config.shields.enableKiteShield)
+				TinkerRegistryClient.addToolBuilding(kiteshieldGUI);
 		}
 
 		if (TinkersCompendium.config.tools.enableTools) {
-			if (TinkersCompendium.config.tools.enableZweihander)
-				TinkerRegistryClient.addToolBuilding(zweihanderGUI);
 			if (TinkersCompendium.config.tools.enableShears)
 				TinkerRegistryClient.addToolBuilding(shearsGUI);
-			if (TinkersCompendium.config.tools.enableFishingRod)
-				TinkerRegistryClient.addToolBuilding(fishingRodGUI);
-			if (TinkersCompendium.config.tools.enableMallet)
-				TinkerRegistryClient.addToolBuilding(malletGUI);
-			if (TinkersCompendium.config.tools.enableSaw)
-				TinkerRegistryClient.addToolBuilding(sawGUI);
-			if (TinkersCompendium.config.tools.enableFireDrill)
-				TinkerRegistryClient.addToolBuilding(fireDrillGUI);
-			if (TinkersCompendium.config.tools.enableBackpack)
-				TinkerRegistryClient.addToolBuilding(backpackGUI);
-		}
-
-		if (TinkersCompendium.config.armor.enableClothArmor) {
-			TDClientRegistry.addArmorBuilding(hoodGUI);
-			TDClientRegistry.addArmorBuilding(shawlGUI);
-			TDClientRegistry.addArmorBuilding(robeGUI);
-			TDClientRegistry.addArmorBuilding(shoesGUI);
 		}
 
 		if (TinkersCompendium.config.armor.enableChainArmor) {
 			TDClientRegistry.addArmorBuilding(coifGUI);
 			TDClientRegistry.addArmorBuilding(hauberkGUI);
 			TDClientRegistry.addArmorBuilding(chaussesGUI);
-			TDClientRegistry.addArmorBuilding(bootsGUI);
+			TDClientRegistry.addArmorBuilding(chainbootsGUI);
 		}
 		// TinkerRegistryClient.addToolBuilding(bootsGUI);
 
@@ -462,9 +340,6 @@ public class ClientProxy extends CommonProxy {
 		}
 
 		if (TinkersCompendium.config.baubles.enableBaubles) {
-			if (TinkersCompendium.config.baubles.enableTabard) {
-				TinkerRegistryClient.addToolBuilding(tabardGUI);
-			}
 			if (TinkersCompendium.config.baubles.enableRing) {
 				TinkerRegistryClient.addToolBuilding(ringGUI);
 			}
@@ -485,93 +360,22 @@ public class ClientProxy extends CommonProxy {
 				roundshieldGUI.addSlotPosition(34, 51);
 			}
 
-			if (TinkersCompendium.config.shields.enableHeaterShield) {
-				heatershieldGUI.positions.clear();
-				heatershieldGUI.addSlotPosition(34, 15);
-				heatershieldGUI.addSlotPosition(25, 33);
-				heatershieldGUI.addSlotPosition(43, 33);
-				heatershieldGUI.addSlotPosition(34, 51);
-			}
-
-			if (TinkersCompendium.config.shields.enableTowerShield) {
-				towershieldGUI.positions.clear();
-				towershieldGUI.addSlotPosition(34, 15);
-				towershieldGUI.addSlotPosition(25, 33);
-				towershieldGUI.addSlotPosition(43, 33);
-				towershieldGUI.addSlotPosition(34, 51);
+			if (TinkersCompendium.config.shields.enableKiteShield) {
+				kiteshieldGUI.positions.clear();
+				kiteshieldGUI.addSlotPosition(34, 15);
+				kiteshieldGUI.addSlotPosition(25, 33);
+				kiteshieldGUI.addSlotPosition(43, 33);
+				kiteshieldGUI.addSlotPosition(34, 51);
 			}
 		}
 
 		if (TinkersCompendium.config.tools.enableTools) {
-			if (TinkersCompendium.config.tools.enableZweihander) {
-				zweihanderGUI.positions.clear();
-				zweihanderGUI.addSlotPosition(34, 15);
-				zweihanderGUI.addSlotPosition(25, 33);
-				zweihanderGUI.addSlotPosition(43, 33);
-				zweihanderGUI.addSlotPosition(34, 51);
-			}
-
 			if (TinkersCompendium.config.tools.enableShears) {
 				shearsGUI.positions.clear();
 				shearsGUI.addSlotPosition(34, 15 + 8);
 				shearsGUI.addSlotPosition(43, 33 + 8);
 				shearsGUI.addSlotPosition(34, 51 + 8);
 			}
-
-			if (TinkersCompendium.config.tools.enableFishingRod) {
-				fishingRodGUI.positions.clear();
-				fishingRodGUI.addSlotPosition(34, 15 + 8);
-				fishingRodGUI.addSlotPosition(43, 33 + 8);
-				fishingRodGUI.addSlotPosition(34, 51 + 8);
-			}
-			if (TinkersCompendium.config.tools.enableMallet) {
-				malletGUI.positions.clear();
-				malletGUI.addSlotPosition(34, 15 + 8);
-				malletGUI.addSlotPosition(43, 33 + 8);
-				malletGUI.addSlotPosition(34, 51 + 8);
-			}
-			if (TinkersCompendium.config.tools.enableSaw) {
-				sawGUI.positions.clear();
-				sawGUI.addSlotPosition(34, 15 + 8);
-				sawGUI.addSlotPosition(43, 33 + 8);
-				sawGUI.addSlotPosition(34, 51 + 8);
-			}
-			if (TinkersCompendium.config.tools.enableFireDrill) {
-				fireDrillGUI.positions.clear();
-				fireDrillGUI.addSlotPosition(34, 15 + 8);
-				fireDrillGUI.addSlotPosition(43, 33 + 8);
-				fireDrillGUI.addSlotPosition(34, 51 + 8);
-			}
-			if (TinkersCompendium.config.tools.enableBackpack) {
-				backpackGUI.positions.clear();
-				backpackGUI.addSlotPosition(34, 15);
-				backpackGUI.addSlotPosition(25, 33);
-				backpackGUI.addSlotPosition(43, 33);
-				backpackGUI.addSlotPosition(34, 51);
-			}
-		}
-
-		if (TinkersCompendium.config.armor.enableClothArmor) {
-			hoodGUI.positions.clear();
-			hoodGUI.addSlotPosition(25 - 6, 33 + 5);
-			hoodGUI.addSlotPosition(43 - 6, 33 + 5);
-			hoodGUI.addSlotPosition(34 - 6, 51 + 5);
-
-			shawlGUI.positions.clear();
-			shawlGUI.addSlotPosition(25 - 6, 33 + 5);
-			shawlGUI.addSlotPosition(43 - 6, 33 + 5);
-			shawlGUI.addSlotPosition(34 - 6, 51 + 5);
-
-			robeGUI.positions.clear();
-			robeGUI.addSlotPosition(25 - 6, 33 + 5);
-			robeGUI.addSlotPosition(43 - 6, 33 + 5);
-			robeGUI.addSlotPosition(34 - 6, 51 + 5);
-
-			shoesGUI.positions.clear();
-			shoesGUI.addSlotPosition(25 - 6, 33 + 5);
-			shoesGUI.addSlotPosition(34 - 6, 51 + 5);
-			shoesGUI.addSlotPosition(43 - 6, 33 + 5);
-			shoesGUI.addSlotPosition(34 - 6, 51 + 5 - 36);
 		}
 
 		if (TinkersCompendium.config.armor.enableChainArmor) {
@@ -593,11 +397,11 @@ public class ClientProxy extends CommonProxy {
 			chaussesGUI.addSlotPosition(34 - 6, 51 + 5);
 			chaussesGUI.addSlotPosition(34 - 6, 51 + 5 - 36);
 
-			bootsGUI.positions.clear();
-			bootsGUI.addSlotPosition(25 - 6, 33 + 5);
-			bootsGUI.addSlotPosition(34 - 6, 51 + 5);
-			bootsGUI.addSlotPosition(43 - 6, 33 + 5);
-			bootsGUI.addSlotPosition(34 - 6, 51 + 5 - 36);
+			chainbootsGUI.positions.clear();
+			chainbootsGUI.addSlotPosition(25 - 6, 33 + 5);
+			chainbootsGUI.addSlotPosition(34 - 6, 51 + 5);
+			chainbootsGUI.addSlotPosition(43 - 6, 33 + 5);
+			chainbootsGUI.addSlotPosition(34 - 6, 51 + 5 - 36);
 		}
 
 		if (TinkersCompendium.config.armor.enableHeavyArmor) {
@@ -637,11 +441,6 @@ public class ClientProxy extends CommonProxy {
 		//
 
 		if (TinkersCompendium.config.baubles.enableBaubles) {
-			if (TinkersCompendium.config.baubles.enableTabard) {
-				tabardGUI.positions.clear();
-				tabardGUI.addSlotPosition(34, 15);
-				tabardGUI.addSlotPosition(34, 33);
-			}
 			if (TinkersCompendium.config.baubles.enableRing) {
 				ringGUI.positions.clear();
 				ringGUI.addSlotPosition(34, 15);
@@ -672,11 +471,6 @@ public class ClientProxy extends CommonProxy {
 		Item b = Item.getItemFromBlock(block);
 		ModelLoader.setCustomModelResourceLocation(b, meta,
 				new ModelResourceLocation(Reference.MOD_ID + ":" + file, "inventory"));
-	}
-
-	@Override
-	public void registerBlockRenderer(Block block, String file) {
-		ModelLoader.setCustomStateMapper(block, new ColoredBlockMapper(file));
 	}
 
 	@Override

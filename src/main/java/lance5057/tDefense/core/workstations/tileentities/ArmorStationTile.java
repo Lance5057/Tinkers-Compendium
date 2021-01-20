@@ -28,7 +28,8 @@ import slimeknights.tconstruct.tools.common.inventory.ContainerToolStation;
 public class ArmorStationTile extends TileTable implements IInventoryGui {
 
   public ArmorStationTile() {
-    super("gui.toolstation.name", 6);
+    super("", 6);
+    inventoryTitle = "gui.armorstation.name";
     this.itemHandler = new ConfigurableInvWrapperCapability(this, false, false); 
   }
 

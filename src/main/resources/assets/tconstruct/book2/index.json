@@ -46,23 +46,5 @@
         "damage": 0
       }
     }
-  },
-  {
-    "name": "materials",
-    "module": "TinkerTools",
-    "icon": {
-      "item": {
-        "id": "minecraft:iron_ingot"
-      }
-    }
-  },
-  {
-    "name": "compendium_toolmodifier",
-    "data": "sections/compendium_toolmodifier.json",
-    "icon": {
-      "item": {
-        "id": "minecraft:redstone"
-      }
-    }
   }
 ]

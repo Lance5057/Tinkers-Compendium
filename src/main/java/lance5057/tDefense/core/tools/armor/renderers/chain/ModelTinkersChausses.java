@@ -76,6 +76,7 @@ public class ModelTinkersChausses extends ArmorRenderer {
 		this.bipedBody = this.Belt;
 
 		this.BeltR = new ModelRenderer(this, 10, 0);
+		this.BeltR.mirror = true;
 		this.BeltR.setRotationPoint(0.0F, 0.0F, 0.0F);
 		this.BeltR.addBox(-12.2F, 10.5F, -3.0F, 12, 2, 6, 0.01F);
 		this.setRotateAngle(BeltR, 0.0F, -0.0F, -0.4363323129985824F);

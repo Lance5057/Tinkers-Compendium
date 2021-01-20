@@ -28,8 +28,8 @@ public class TraitBannerman extends AbstractTDTrait {
 				
 				if(p.isOnSameTeam(player))
 				{
-					p.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, 10, 1));
-					p.addPotionEffect(new PotionEffect(MobEffects.STRENGTH, 10, 1));
+					p.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, 10, 1, false, false));
+					p.addPotionEffect(new PotionEffect(MobEffects.STRENGTH, 10, 1, false, false));
 				}
 			}
 		}

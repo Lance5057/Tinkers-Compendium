@@ -2,6 +2,7 @@ package lance5057.tDefense.core.tools.basic;
 
 import java.util.List;
 
+import c4.conarm.lib.armor.ArmorPart;
 import lance5057.tDefense.core.materials.stats.ChestMaterialStats;
 import lance5057.tDefense.core.materials.stats.FabricMaterialStats;
 import lance5057.tDefense.core.materials.stats.FeetMaterialStats;
@@ -14,6 +15,7 @@ import slimeknights.tconstruct.library.tinkering.PartMaterialType;
 import slimeknights.tconstruct.library.tools.ToolCore;
 import slimeknights.tconstruct.library.tools.ToolNBT;
 import slimeknights.tconstruct.tools.TinkerTools;
+import c4.conarm.common.ConstructsRegistry;
 
 //Till I figure out why Armor Parts wont register normally
 public class RegDummy extends ToolCore {
@@ -22,27 +24,25 @@ public class RegDummy extends ToolCore {
 
 	public RegDummy() {
 		super(new PartMaterialType(TinkerTools.largePlate, ChestMaterialStats.TYPE),
-				new PartMaterialType(TDParts.armorPlate, ChestMaterialStats.TYPE),
-				PartMaterialType.handle(TDParts.filigree), PartMaterialType.extra(TDParts.chainmail),
-				new PartMaterialType(TDParts.fabric, FabricMaterialStats.TYPE),
-				new PartMaterialType(TDParts.armorPlate, LegsMaterialStats.TYPE),
-				new PartMaterialType(TDParts.chainmail, LegsMaterialStats.TYPE), PartMaterialType.extra(TDParts.clasp),
-				new PartMaterialType(TDParts.fabric, FabricMaterialStats.TYPE),
-				new PartMaterialType(TinkerTools.panHead, HelmMaterialStats.TYPE),
+				PartMaterialType.handle(TDParts.filigree),
+				PartMaterialType.extra(TDParts.chainmail),
+				PartMaterialType.extra(ConstructsRegistry.bootsCore),
+				new PartMaterialType(TDParts.chainmail, LegsMaterialStats.TYPE),
+				new PartMaterialType(ConstructsRegistry.helmetCore, HelmMaterialStats.TYPE),
+				new PartMaterialType(ConstructsRegistry.chestCore, ChestMaterialStats.TYPE),
+				new PartMaterialType(ConstructsRegistry.leggingsCore, LegsMaterialStats.TYPE),
+				new PartMaterialType(ConstructsRegistry.bootsCore, FeetMaterialStats.TYPE),
+				new PartMaterialType(ConstructsRegistry.armorTrim, HelmMaterialStats.TYPE),
+				new PartMaterialType(ConstructsRegistry.armorTrim, ChestMaterialStats.TYPE),
+				new PartMaterialType(ConstructsRegistry.armorTrim, LegsMaterialStats.TYPE),
+				new PartMaterialType(ConstructsRegistry.armorTrim, FeetMaterialStats.TYPE),
+				new PartMaterialType(ConstructsRegistry.armorPlate, HelmMaterialStats.TYPE),
+				new PartMaterialType(ConstructsRegistry.armorPlate, ChestMaterialStats.TYPE),
+				new PartMaterialType(ConstructsRegistry.armorPlate, LegsMaterialStats.TYPE),
+				new PartMaterialType(ConstructsRegistry.armorPlate, FeetMaterialStats.TYPE),
 				new PartMaterialType(TDParts.chainmail, HelmMaterialStats.TYPE),
-				PartMaterialType.extra(TDParts.armorPlate),
-				new PartMaterialType(TDParts.fabric, FabricMaterialStats.TYPE),
-				new PartMaterialType(TDParts.armorPlate, FeetMaterialStats.TYPE),
-				new PartMaterialType(TDParts.armorPlate, FeetMaterialStats.TYPE),
-				PartMaterialType.extra(TDParts.rivets), new PartMaterialType(TDParts.fabric, FabricMaterialStats.TYPE));
-
-//		super(PartMaterialType.head(TinkerTools.swordBlade), 
-//				PartMaterialType.handle(TinkerTools.toolRod), 
-//				PartMaterialType.extra(TinkerTools.wideGuard),
-//				PartMaterialType.extra(TDParts.rivets),
-//				PartMaterialType.extra(TDParts.fabric),
-//				PartMaterialType.extra(TDParts.filigree),
-//				PartMaterialType.extra(TinkerTools.arrowHead));
+				PartMaterialType.extra(TDParts.rivets),
+				new PartMaterialType(TDParts.fabric, FabricMaterialStats.TYPE));
 
 		setUnlocalizedName("regdummy");
 	}

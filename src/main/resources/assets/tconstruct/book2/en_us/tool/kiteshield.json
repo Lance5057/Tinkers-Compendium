@@ -1,0 +1,21 @@
+{
+  "tool": "kiteshield",
+  "text": [
+    {
+      "text": "\n"
+    },
+    {
+      "text": "A standard Kiteshield with decent protection, equipment for a crusade."
+    },
+    {
+      "text": "\n"
+    },
+    {
+      "text": "Offers less mobility than a Buckler, but greater protection."
+    }
+  ],
+  "properties": [
+    "A middle of the road shield.",
+    "Blocks all projectiles and reduces incoming damage by a percentage.",
+  ]
+}

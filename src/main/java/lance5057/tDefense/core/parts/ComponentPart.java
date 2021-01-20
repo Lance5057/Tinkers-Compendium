@@ -33,12 +33,12 @@ public class ComponentPart extends ToolPart {
 
 	public ComponentPart(int cost) {
 		super(cost);
-		this.setCreativeTab(TinkersCompendium.tab);
+		this.setCreativeTab(TinkerRegistry.tabParts);
 	}
 
 	public ComponentPart(int cost, boolean craft, boolean cast) {
 		super(cost);
-		this.setCreativeTab(TinkersCompendium.tab);
+		this.setCreativeTab(TinkerRegistry.tabParts);
 		this.cast = cast;
 		this.craft = craft;
 	}

@@ -134,7 +134,7 @@ public class ContentModifier extends TinkerPage {
     if(effects.length > 0) {
       TextData head = new TextData(parent.translate("modifier.effect"));
       head.underlined = true;
-      list.add(new ElementText(10, 20 + h, GuiBook.PAGE_WIDTH / 2 - 5, GuiBook.PAGE_HEIGHT - h - 20, head));
+      list.add(new ElementText(10, 30 + h, GuiBook.PAGE_WIDTH / 2 - 5, GuiBook.PAGE_HEIGHT - h - 20, head));
 
       List<TextData> effectData = Lists.newArrayList();
       for(String e : effects) {
@@ -143,7 +143,7 @@ public class ContentModifier extends TinkerPage {
         effectData.add(new TextData("\n"));
       }
 
-      list.add(new ElementText(10, 30 + h, GuiBook.PAGE_WIDTH / 2 + 5, GuiBook.PAGE_HEIGHT - h - 20, effectData));
+      list.add(new ElementText(10, 40 + h, GuiBook.PAGE_WIDTH / 2 + 5, GuiBook.PAGE_HEIGHT - h - 20, effectData));
     }
 
     ImageData img;
@@ -161,7 +161,7 @@ public class ContentModifier extends TinkerPage {
         img = IMG_SLOT_5;
     }
 
-    int imgX = GuiBook.PAGE_WIDTH / 2 + 20;
+    int imgX = GuiBook.PAGE_WIDTH / 2 + 40;
     int imgY = GuiBook.PAGE_HEIGHT / 2 + 30;
 
     // move ot towards the center wher ewe want it, since image sice can differ

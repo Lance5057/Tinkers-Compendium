@@ -2,7 +2,11 @@ package lance5057.tDefense.core.parts;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
+import c4.conarm.lib.ArmoryRegistry;
+import com.google.common.collect.ImmutableSet;
+import gnu.trove.set.hash.TLinkedHashSet;
 import org.apache.commons.lang3.tuple.Pair;
 
 import com.google.common.collect.Lists;
@@ -41,26 +45,19 @@ public class TDParts extends ModuleBase
 {
 	private static final List<ToolPart> toolParts = new ArrayList<>();
 	private static final List<ArmorPart> armorParts = new ArrayList<>();
+	private static final List<IToolPart> allToolParts = new ArrayList<>();
 	static List<Pair<Item, ToolPart>> toolPartPatterns = Lists.newLinkedList();
 	static List<Pair<Item, ArmorPart>> armorPartPatterns = Lists.newLinkedList();
-	// public static PartMaterialType ShieldMat;
 
-	// public static PartMaterialType ArmorplateMat;
-	// public static PartMaterialType ChainmailMat;
-	// public static PartMaterialType RivetMat;
-	// public static PartMaterialType ClaspMat;
-	// public static PartMaterialType ClothMat;
 
-	public static ToolPart	armorPlate;
 	public static ArmorPart	chainmail;
 	public static ArmorPart	fabric;
 	public static ToolPart	rivets;
-	public static ToolPart	clasp;
 
 	public static ToolPart	ringShank;
-	public static ToolPart	setting;
-	public static ToolPart	wire;
 	public static ToolPart	filigree;
+
+
 
 	// public static ToolPart armor_hoodCloth;
 
@@ -69,38 +66,33 @@ public class TDParts extends ModuleBase
 	@Override
 	public void preInit(FMLPreInitializationEvent e)
 	{
-
 	}
 
 	@Override
 	public void init(FMLInitializationEvent e)
 	{
-		
+
 	}
 
 	@Override
 	public void postInit(FMLPostInitializationEvent e)
 	{
-		// TODO Auto-generated method stub
-		
+		allToolParts.addAll(TinkerRegistry.getToolParts());
+		allToolParts.addAll(ArmoryRegistry.armorParts);
 	}
 
 	public void registerItems(final RegistryEvent.Register<Item> event)
 	{
 		final IForgeRegistry registry = event.getRegistry();
 
-		armorPlate = regToolPart(Material.VALUE_Ingot * 4, "td_armor_plate", event);
-		chainmail = regArmorPart(Material.VALUE_Ingot * 3, "td_chainmail", event);
+		chainmail = regArmorPart(Material.VALUE_Ingot * 2, "td_chainmail", event);
 
 		fabric = regArmorPart(Material.VALUE_Ingot * 3, "td_fabric", event);
 
 		rivets = regToolPart(Material.VALUE_Ingot * 1, "td_rivets", event);
-		clasp = regToolPart(Material.VALUE_Ingot * 1, "td_clasp", event);
 //
 		ringShank = regToolPart(Material.VALUE_Ingot * 2, "td_ringShank", event);
-		setting = regToolPart(Material.VALUE_Ingot * 1, "td_setting", event);
-//		wire = regToolPart(Material.VALUE_Ingot * 1, "wire", event);
-		filigree = regToolPart(Material.VALUE_Ingot * 1, "td_filigree", event);
+		filigree = regToolPart(Material.VALUE_Ingot * 2, "td_filigree", event);
 
 		// ShieldMat = new PartMaterialType(TDParts.armorPlate,
 		// ShieldMaterialStats.TYPE);
@@ -216,7 +208,16 @@ public class TDParts extends ModuleBase
 	      }
 	    }
 	  }
-	
+
+	public static Set<IToolPart> getToolParts() {
+		return ImmutableSet.copyOf(toolParts);
+	}
+
+
+	public static Set<IToolPart> getAllToolParts() {
+		return ImmutableSet.copyOf(allToolParts);
+	}
+
 	@SideOnly(Side.CLIENT)
 	@SubscribeEvent
 	public static void registerModels(ModelRegistryEvent event)

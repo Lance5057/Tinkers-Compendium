@@ -1,18 +1,22 @@
 {
     "type": "minecraft:crafting_shaped",
     "pattern": [
-        "s",
-        "l",
-        "w"
+        "sls",
+        "iti",
+        "i i"
     ],
     "key": {
-        "s": {
-            "item": "tconstruct:pattern",
+        "s":  {
+			"type": "forge:ore_dict",
+			"ore": "blockSeared"
+		},
+		"t": {
+            "item": "conarm:armorstation",
             "data": 0
         },
-		"w": {
-            "item": "minecraft:log",
-            "data": 32767
+		"i": {
+            "item": "tconstruct:materials",
+            "data": 0
         },
 		"l": {
             "item": "minecraft:leather",

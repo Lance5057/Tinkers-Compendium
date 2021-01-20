@@ -2,12 +2,8 @@ package lance5057.tDefense.proxy;
 
 import lance5057.tDefense.Reference;
 import lance5057.tDefense.TinkersCompendium;
-import lance5057.tDefense.core.items.ItemCompendiumBook;
 import lance5057.tDefense.core.library.ArmorPart;
 import lance5057.tDefense.core.tools.bases.ArmorCore;
-import lance5057.tDefense.core.tools.basic.gui.BackpackContainer;
-import lance5057.tDefense.core.tools.basic.gui.BackpackGUI;
-import lance5057.tDefense.core.tools.basic.gui.BackpackInventory;
 import lance5057.tDefense.core.workstations.CompendiumWorkstations;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
@@ -17,7 +13,6 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.event.RegistryEvent.Register;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -81,8 +76,6 @@ public class CommonProxy implements IGuiHandler {
 		Object obj = CompendiumWorkstations.getServerGuiElement(ID, player, world, x, y, z);
 		if (obj == null)
 			switch (ID) {
-			case BackpackID:
-				return new BackpackContainer(player, new BackpackInventory(stack));
 			}
 		return obj;
 	}
@@ -95,8 +88,6 @@ public class CommonProxy implements IGuiHandler {
 		Object obj = CompendiumWorkstations.getClientGuiElement(ID, player, world, x, y, z);
 		if (obj == null)
 			switch (ID) {
-			case BackpackID:
-				return new BackpackGUI(player, new BackpackInventory(stack));
 			}
 		return obj;
 	}
@@ -118,8 +109,6 @@ public class CommonProxy implements IGuiHandler {
 
 		TinkersCompendium.parts.registerItems(event);
 		TinkersCompendium.tools.registerItems(event);
-		TinkersCompendium.workstations.registerItems(event);
-		TinkersCompendium.textiles.registerItems(event);
 
 //		if (TinkersCompendium.bloodmagic != null)
 //			TinkersCompendium.bloodmagic.registerItems(event);
@@ -137,10 +126,7 @@ public class CommonProxy implements IGuiHandler {
 
 	@SubscribeEvent
 	public static void registerBlocks(RegistryEvent.Register<Block> event) {
-		TinkersCompendium.mats.registerBlocks(event);
 		TinkersCompendium.tools.registerBlocks(event);
-		TinkersCompendium.workstations.registerBlocks(event);
-		TinkersCompendium.textiles.registerBlocks(event);
 
 //		if (TinkersCompendium.bloodmagic != null)
 //			TinkersCompendium.bloodmagic.registerBlocks(event);

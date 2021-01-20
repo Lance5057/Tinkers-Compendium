@@ -23,7 +23,7 @@ public class TraitBoneSpurs extends AbstractTDTrait {
 		Entity mount = player.getRidingEntity();
 		if (mount instanceof EntityLivingBase) {
 			EntityLivingBase lmount = (EntityLivingBase) mount;
-			lmount.addPotionEffect(new PotionEffect(MobEffects.SPEED, 10));
+			lmount.addPotionEffect(new PotionEffect(MobEffects.SPEED, 10, 0, true, false));
 		}
 	}
 }
