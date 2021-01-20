@@ -89,24 +89,24 @@ public class TraitWarpedMind extends AbstractTDTrait {
 			Entity entity = list.get(i);
 
 			if (entity instanceof EntityXPOrb) {
-				int rand = world.rand.nextInt(100);
-				int chance = world.rand.nextInt(100); // reduce how often it happens so its not just white noise
+				int rand = world.rand.nextInt(10);
+				int chance = world.rand.nextInt(10); // reduce how often it happens so its not just white noise
 				
-				if (chance < 10) {
-					if (rand < 50) {
+				if (chance < 1) {
+					if (rand < 5) {
 						if (!world.isRemote && !TCConfig.KiddyCoastersMakeMeRetch)
-							player.addPotionEffect(new PotionEffect(MobEffects.NAUSEA, 20, 1 * player.experienceLevel));
+							player.addPotionEffect(new PotionEffect(MobEffects.NAUSEA, 40, 1 * player.experienceLevel));
 					} 
-					else if (rand >= 50 && rand < 80) 
+					else if (rand >= 5 && rand < 8)
 					{
 						if (world.isRemote)
 						{
 							playRandomSound(player);
 						}
 					} 
-					else if (rand >= 80 && rand < 90)
+					else if (rand >= 8 && rand < 9)
 					{
-						TDToolEvents.overlayJumpTimer = world.rand.nextInt(30)+5;
+						TDToolEvents.overlayJumpTimer = world.rand.nextInt(3)+5;
 					}
 					else 
 					{

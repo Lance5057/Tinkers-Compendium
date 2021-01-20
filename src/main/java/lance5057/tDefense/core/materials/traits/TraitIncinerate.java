@@ -1,6 +1,7 @@
 package lance5057.tDefense.core.materials.traits;
 
 import lance5057.tDefense.TCConfig;
+import lance5057.tDefense.core.library.ArmorHelper;
 import lance5057.tDefense.core.tools.bases.ArmorCore;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -41,8 +42,8 @@ public class TraitIncinerate extends AbstractTDTrait {
 					isFlammable = true;
 			}
 			if (isFlammable) {
-				int dur = ToolHelper.getCurrentDurability(item);
-				ToolHelper.damageTool(item, (int) Math.floor(dur / 2), e.getEntityLiving());
+				int dur = ArmorHelper.getCurrentDurability(item);
+				ArmorHelper.damageTool(item, (int) Math.floor(dur / 2), e.getEntityLiving());
 			}
 		}
 	}

@@ -2,6 +2,7 @@ package lance5057.tDefense.core.tools.armor.heavy;
 
 import java.util.List;
 
+import c4.conarm.common.ConstructsRegistry;
 import lance5057.tDefense.Reference;
 import lance5057.tDefense.TCConfig;
 import lance5057.tDefense.TinkersCompendium;
@@ -24,13 +25,16 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.inventory.EntityEquipmentSlot;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import slimeknights.tconstruct.library.materials.ExtraMaterialStats;
@@ -38,13 +42,14 @@ import slimeknights.tconstruct.library.materials.HandleMaterialStats;
 import slimeknights.tconstruct.library.materials.Material;
 import slimeknights.tconstruct.library.materials.MaterialTypes;
 import slimeknights.tconstruct.library.tinkering.PartMaterialType;
-import slimeknights.tconstruct.tools.TinkerTools;
 
 public class TinkersHelm extends ArmorCore {
 	public TinkersHelm() {
-		super(EntityEquipmentSlot.HEAD, new PartMaterialType(TinkerTools.panHead, HelmMaterialStats.TYPE),
+		super(EntityEquipmentSlot.HEAD,
+				new PartMaterialType(ConstructsRegistry.helmetCore, HelmMaterialStats.TYPE),
 				new PartMaterialType(TDParts.chainmail, HelmMaterialStats.TYPE),
-				PartMaterialType.handle(TDParts.filigree), PartMaterialType.extra(TDParts.armorPlate),
+				PartMaterialType.handle(TDParts.filigree),
+				PartMaterialType.extra(ConstructsRegistry.armorPlate),
 				new PartMaterialType(TDParts.fabric, FabricMaterialStats.TYPE));
 		setUnlocalizedName("tinkershelm");
 	}
@@ -94,7 +99,7 @@ public class TinkersHelm extends ArmorCore {
 	@Override
 	public float armorMultiplier() {
 		// TODO Auto-generated method stub
-		return 1f;
+		return 2f;
 	}
 
 	@Override
@@ -160,6 +165,69 @@ public class TinkersHelm extends ArmorCore {
 				GlStateManager.enableDepth();
 				GlStateManager.enableAlpha();
 				GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+			}
+		}
+	}
+
+	public static boolean canTick(long time,int interval,int offset)
+	{
+		return time%interval==offset;
+	}
+	public static boolean canTick(World world,int interval,int offset)
+	{
+		return canTick(world.getTotalWorldTime(),interval,offset);
+	}
+
+	@Override
+	public void onUpdate(ItemStack tool, World world, Entity entity, int itemSlot, boolean isSelected)
+	{
+		if(canTick(world,5,1) && entity instanceof EntityLivingBase)
+		{
+			EntityLivingBase enlb=(EntityLivingBase)entity;
+			ItemStack hand = enlb.getHeldItemMainhand();
+			if(world.isRemote) return;
+			for (ItemStack s : enlb.getArmorInventoryList()) {
+				if (s != null && !s.isEmpty()) {
+					boolean found = false;
+					for (String itemName : TinkersCompendium.config.armor.visorItemWhitelist) {
+						if (hand.getItem().getRegistryName().toString().equals(itemName)) {
+							ArmorTagUtil.setVisor(s, true);
+							ArmorTagUtil.setVisorTime(s, 0.0f);
+							s.serializeNBT();
+							found = true;
+							break;
+						}
+						else if (hand.getItem() instanceof ItemSword) {
+							ArmorTagUtil.setVisor(s, true);
+							ArmorTagUtil.setVisorTime(s, 0.0f);
+							s.serializeNBT();
+							found = true;
+						}
+						else if (hand.getItem() instanceof ItemAxe) {
+							ArmorTagUtil.setVisor(s, true);
+							ArmorTagUtil.setVisorTime(s, 0.0f);
+							s.serializeNBT();
+							found = true;
+						}
+						else if (hand.getItem() instanceof ItemBow) {
+							ArmorTagUtil.setVisor(s, true);
+							ArmorTagUtil.setVisorTime(s, 0.0f);
+							s.serializeNBT();
+							found = true;
+						}
+						else if (enlb.isActiveItemStackBlocking()) {
+							ArmorTagUtil.setVisor(s, true);
+							ArmorTagUtil.setVisorTime(s, 0.0f);
+							s.serializeNBT();
+							found = true;
+						}
+					}
+					if (!found) {
+						ArmorTagUtil.setVisor(s, false);
+						ArmorTagUtil.setVisorTime(s, 0.0f);
+						s.serializeNBT();
+					}
+				}
 			}
 		}
 	}

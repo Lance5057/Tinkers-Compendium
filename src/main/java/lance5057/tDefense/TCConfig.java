@@ -8,14 +8,12 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 @Config(modid = Reference.MOD_ID)
 public class TCConfig {
+
 	@Config.Comment("Don't turn these on, you'll get a lot of weird files all over your pc")
 	public static boolean developerFeatures = false;
 	
 	@Config.Comment("Enable Debug Features")
 	public static boolean debug = false;
-
-	@Config.Comment("Enable Hardmode Features")
-	public static boolean hardmode = false;
 
 	@Config.Comment("Turn off scary things")
 	public static boolean IAmEasilyStartled = false;
@@ -25,9 +23,6 @@ public class TCConfig {
 
 	@Config.Comment("Stop filling my buckets!")
 	public static boolean DontTouchMyBucket = false;
-
-	@Config.Comment("Make all Compendium ores drop clumps instead of blocks")
-	public static boolean OreClumps = false;
 
 	@Config.Name("Shields")
 	public static Shields shields = new Shields();
@@ -39,16 +34,10 @@ public class TCConfig {
 	public static Bauble baubles = new Bauble();
 	@Config.Name("Materials")
 	public static Materials materials = new Materials();
-	@Config.Name("Components")
-	public static Components components = new Components();
 	@Config.Name("Addons")
 	public static Addons addons = new Addons();
 	@Config.Name("Traits")
 	public static Traits traits = new Traits();
-	@Config.Name("Textiles")
-	public static Textiles textiles = new Textiles();
-	@Config.Name("Finishing Anvil")
-	public static FinishingAnvil anvil = new FinishingAnvil();
 	
 	public static class Shields {
 		@Config.RequiresMcRestart()
@@ -56,13 +45,10 @@ public class TCConfig {
 		public boolean enableShields = true;
 
 		@Config.RequiresMcRestart()
-		public boolean enableHeaterShield = true;
+		public boolean enableKiteShield = true;
 
 		@Config.RequiresMcRestart()
 		public boolean enableBuckler = true;
-
-		@Config.RequiresMcRestart()
-		public boolean enableTowerShield = true;
 
 		@Config.Comment("How much damage should a shield block percentage wise if the material has no shield data built in?")
 		public int defaultShieldBlockPercentage = 33;
@@ -73,47 +59,10 @@ public class TCConfig {
 		public boolean enableTools = true;
 
 		@Config.RequiresMcRestart()
-		public boolean enableZweihander = true;
-
-		@Config.RequiresMcRestart()
 		public boolean enableShears = true;
-
-		@Config.RequiresMcRestart()
-		public boolean enableFishingRod = true;
-
-		@Config.RequiresMcRestart()
-		public boolean enableSaw = true;
-
-		@Config.RequiresMcRestart()
-		public boolean enableMallet = true;
-
-		@Config.RequiresMcRestart()
-		public boolean enableFireDrill = true;
-		
-		@Config.RequiresMcRestart()
-		public boolean enableBackpack = true;
 	}
 
 	public static class Materials {
-
-		public boolean generateOres = true;
-
-		public boolean aeonsteel = true;
-		public boolean queensgold = true;
-		public boolean dogbearium = true;
-		public boolean sinisterium = true;
-		public boolean nihilite = true;
-		public boolean orichalcum = true;
-		public boolean pandorium = true;
-		public boolean rosegold = true;
-		public boolean platinum = true;
-		public boolean valyriansteel = true;
-		public boolean froststeel = true;
-		public boolean gold = true;
-		public boolean silver = true;
-
-		public boolean mithril = true;
-
 		@Config.Comment("Enable/Disable all wool cloth materials?")
 		public boolean cloth = true;
 		public boolean black = true;
@@ -133,30 +82,6 @@ public class TCConfig {
 		public boolean orange = true;
 		public boolean white = true;
 
-		public boolean silky = true;
-		public boolean roughspun = true;
-
-		@Config.Comment("Enable/Disable all gem materials?")
-		public boolean gems;
-		
-		public boolean sapphire;
-		public boolean ruby;
-		public boolean emerald;
-		public boolean diamond;
-		public boolean starsapphire;
-		public boolean starruby;
-		public boolean citrine;
-		public boolean quartz;
-		public boolean amethyst;
-		public boolean lapis;
-		public boolean topaz;
-		public boolean garnet;
-		public boolean opal;
-		public boolean tanzinite;
-		public boolean amber;
-
-		public boolean ice;
-
 		@Config.Comment("Materials that will spawn in easy difficulty on the overworld")
 		public String[] easyoverworld = {"wood", "stone", "flint", "cactus", "bone", "paper"};
 		
@@ -165,46 +90,40 @@ public class TCConfig {
 	}
 
 	public static class Addons {
-		@Config.RequiresMcRestart()
-		public boolean Thaumcraft = true;
 
 		@Config.RequiresMcRestart()
-		public boolean BloodMagic = true;
+		public boolean BloodMagic = false;
 
 		@Config.RequiresMcRestart()
 		public boolean Botania = true;
-
-		@Config.RequiresMcRestart()
-		public boolean Evilcraft = true;
-
-		@Config.RequiresMcRestart()
-		public boolean ImmersiveEngineering = true;
-
-		@Config.RequiresMcRestart()
-		public boolean TwilightForest = true;
-
-		@Config.RequiresMcRestart()
-		public boolean Abyssalcraft = true;
-
-		@Config.RequiresMcRestart()
-		public boolean EnderIO = true;
 
 		@Config.RequiresMcRestart()
 		public boolean ToolLeveling = true;
 
 		@Config.RequiresMcRestart()
 		public boolean EBWizardry = true;
-		
-		@Config.RequiresMcRestart()
-		public boolean ActuallyAdditions = true;
 	}
 
 	public static class Armor {
 		@Config.Comment("Toggle Helm Overlay")
-		public boolean HelmOverlay = false;
+		public boolean HelmOverlay = true;
 
-		@Config.RequiresMcRestart()
-		public boolean enableClothArmor = true;
+		@Config.Comment("Items that will lower the heavy helmet visor")
+		public String[] visorItemWhitelist =
+				{
+						"tconstruct:broadsword",
+						"tconstruct:broadsword",
+						"tconstruct:longsword",
+						"tconstruct:cleaver",
+						"tconstruct:rapier",
+						"tconstruct:hammer",
+						"tconstruct:hatchet",
+						"tconstruct:scythe",
+						"tconstruct:shortbow",
+						"tconstruct:longbow",
+						"tconstruct:crossbow",
+						"tconstruct:shuriken"
+				};
 
 		@Config.RequiresMcRestart()
 		public boolean enableChainArmor = true;
@@ -213,15 +132,11 @@ public class TCConfig {
 		public boolean enableHeavyArmor = true;
 		
 		@Config.RequiresMcRestart()
-		public boolean mobsSpawnWithGear = true;
+		public boolean mobsSpawnWithGear = false;
 	}
 
 	public static class Bauble {
-
 		public boolean enableBaubles = true;
-
-		public boolean enableTabard = true;
-
 		public boolean enableRing = true;
 	}
 
@@ -251,59 +166,6 @@ public class TCConfig {
 		@Config.Comment("Max number of additional modifer slots per level.\nDefault: 2")
 
 		public int extraModifiers = 2;
-	}
-
-	public static class Components {
-		@Config.RequiresMcRestart()
-		public boolean enableComponents = true;
-
-		@Config.RequiresMcRestart()
-		public boolean enableDust = true;
-		@Config.RequiresMcRestart()
-		public boolean enableGrain = true;
-		@Config.RequiresMcRestart()
-		public boolean enablePlate = true;
-		@Config.RequiresMcRestart()
-		public boolean enableCoin = true;
-		@Config.RequiresMcRestart()
-		public boolean enableGear = true;
-		@Config.RequiresMcRestart()
-		public boolean enableRod = true;
-
-		@Config.RequiresMcRestart()
-		public boolean enableDoors = true;
-		@Config.RequiresMcRestart()
-		public boolean enableTrapDoors = true;
-		@Config.RequiresMcRestart()
-		public boolean enableBars = true;
-		@Config.RequiresMcRestart()
-		public boolean enableStake = true;
-		@Config.RequiresMcRestart()
-		public boolean enableCoil = true;
-		@Config.RequiresMcRestart()
-		public boolean enableSpring = true;
-		@Config.RequiresMcRestart()
-		public boolean enableWire = true;
-		@Config.RequiresMcRestart()
-		public boolean enableCasing = true;
-	}
-
-	public static class Textiles {
-		@Config.RequiresMcRestart()
-		public boolean enableTextiles = true;
-
-		public int grassFiberDropPercent = 50;
-		public int cottonSeedDropPercent = 10;
-	}
-	
-	public static class FinishingAnvil
-	{
-		public boolean enableFinishingAnvilTools = true;
-		
-		public String[] overrides = 
-			{
-					"tconstruct:broadsword 8"
-			};
 	}
 	// public int SoulBoundID;
 	// public int DazeID;
@@ -336,7 +198,6 @@ public class TCConfig {
 	// public int ArmorFeatherfallID;
 	// public int ArmorGlowstepID;
 	// public int ArmorFrostwalkerID;
-	// public int ArmorFirewalkerID;
 	// public int ArmorDepthstriderID;
 	// public int ArmorRebreatherID;
 	// public int ArmorNightvisionID;

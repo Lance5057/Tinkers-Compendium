@@ -14,7 +14,6 @@ import lance5057.tDefense.core.addons.bloodmagic.AddonBloodMagic;
 import lance5057.tDefense.core.addons.botania.AddonBotania;
 import lance5057.tDefense.core.addons.ebwizardry.AddonEBWizardry;
 import lance5057.tDefense.core.addons.toolleveling.AddonToolLeveling;
-import lance5057.tDefense.core.entities.CompendiumEntities;
 import lance5057.tDefense.core.events.TDEvents;
 import lance5057.tDefense.core.library.ModuleBase;
 import lance5057.tDefense.core.library.OutputWikiPages;
@@ -27,10 +26,7 @@ import lance5057.tDefense.core.tools.TDTools;
 import lance5057.tDefense.core.workstations.CompendiumWorkstations;
 import lance5057.tDefense.core.worldgen.SpawnArmorOnMobs;
 import lance5057.tDefense.proxy.CommonProxy;
-import lance5057.tDefense.textiles.CompendiumTextiles;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.FMLCommonHandler;
@@ -45,9 +41,12 @@ import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
 import scala.reflect.internal.Trees.Modifiers;
-import slimeknights.mantle.client.CreativeTab;
 
-@Mod(modid = Reference.MOD_ID, version = Reference.VERSION, name = Reference.MOD_NAME, dependencies = "required-after:tconstruct@[1.12-2.7.2.15,);")
+@Mod(modid = Reference.MOD_ID,
+		version = Reference.VERSION,
+		name = Reference.MOD_NAME,
+		dependencies = "required-after:tconstruct@[1.12-2.7.2.15,);" +
+						"required-after:conarm@[1.2.5.9-F,);")
 public class TinkersCompendium {
 
 	// public static int modGuiIndex = 0;
@@ -63,7 +62,6 @@ public class TinkersCompendium {
 
 	PacketHandler phandler = new PacketHandler();
 
-	public static CreativeTab tab = new CreativeTab("tinkerscompendium", new ItemStack(Items.SHIELD));
 	public static TCConfig config;
 
 	public static final SimpleNetworkWrapper networkInstance = NetworkRegistry.INSTANCE
@@ -80,11 +78,8 @@ public class TinkersCompendium {
 	public static CompendiumWorkstations workstations;
 	public static CompendiumModifiers modifiers;
 	public static TDEvents events;
-	public static CompendiumEntities entities;
 
 	SpawnArmorOnMobs mobs = new SpawnArmorOnMobs();
-
-	public static CompendiumTextiles textiles;
 
 	public static List<ModuleBase> addons = new ArrayList<ModuleBase>();
 
@@ -112,8 +107,6 @@ public class TinkersCompendium {
 		traits = new CompendiumTraits();
 		modifiers = new CompendiumModifiers();
 		workstations = new CompendiumWorkstations();
-		entities = new CompendiumEntities();
-		textiles = new CompendiumTextiles();
 		config = new TCConfig();
 
 		MinecraftForge.EVENT_BUS.register(mobs);
@@ -137,11 +130,7 @@ public class TinkersCompendium {
 		mats.preInit(e);
 		tools.preInit(e);
 		traits.preInit();
-		modifiers.preInit();
-		workstations.preInit(e);
-		textiles.preInit();
 		events.preInit();
-		entities.preInit(e);
 
 //		if(bloodmagic != null)
 //			bloodmagic.preInit(e);
@@ -150,7 +139,6 @@ public class TinkersCompendium {
 //		if(wizardry != null)
 //			wizardry.preInit(e);
 
-		items.preInit(e);
 		blocks.preInit(e);
 
 		proxy.preInit();
@@ -169,11 +157,8 @@ public class TinkersCompendium {
 		tools.init(e);
 		traits.init();
 		modifiers.init();
-		workstations.init(e);
-		textiles.init();
 		events.init();
 
-		entities.init(e);
 
 //		if(bloodmagic != null)
 //			bloodmagic.init(e);
@@ -204,11 +189,7 @@ public class TinkersCompendium {
 		tools.postInit(e);
 		traits.postInit();
 		modifiers.postInit();
-		workstations.postInit(e);
-		textiles.postInit();
 		events.postInit();
-
-		entities.postInit(e);
 
 //		if(bloodmagic != null)
 //			bloodmagic.postInit(e);		
@@ -235,6 +216,7 @@ public class TinkersCompendium {
 		if (TinkersCompendium.config.developerFeatures) {
 			OutputWikiPages.outputWikiSidebar(mats.materials);
 		}
+
 	}
 
 	// public static List<MaterialHelper.oreGen> biomeCheck = new

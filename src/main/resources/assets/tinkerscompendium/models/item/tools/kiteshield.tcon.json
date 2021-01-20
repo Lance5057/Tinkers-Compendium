@@ -1,0 +1,65 @@
+{
+    "textures": {
+        "layer0": "tinkerscompendium:items/kiteshield/edge",
+        "layer1": "tinkerscompendium:items/kiteshield/plate",
+		"layer2": "tinkerscompendium:items/kiteshield/face",
+		"layer3": "tinkerscompendium:items/kiteshield/binding",
+		"broken1": "tinkerscompendium:items/kiteshield/plate_broken"
+    },
+    "display": {
+        "thirdperson_righthand": {
+            "rotation": [ 0, 90, 0 ],
+            "translation": [ 2, 0, 2 ],
+            "scale": [ 1, 1, 1 ]
+        },
+        "thirdperson_lefthand": {
+            "rotation": [ 0, 90, 0 ],
+            "translation": [ 2, 0, 2 ],
+            "scale": [ 1, 1, 1 ]
+        },
+        "firstperson_righthand": {
+            "rotation": [ 0, 135, 5 ],
+            "translation": [ 10, -10, -10 ],
+            "scale": [ 2, 2, 2 ]
+        },
+        "firstperson_lefthand": {
+            "rotation": [ 0, 135, 5 ],
+            "translation": [ 10, -16, -10 ],
+            "scale": [ 2, 2, 2 ]
+        },
+        "fixed": {
+            "rotation": [ 0, 180, 0 ],
+            "translation": [ -2, 4, -5],
+            "scale":[ 0.5, 0.5, 0.5]
+        }
+	},
+    "overrides": [
+        {
+            "predicate": {
+                "block": 1
+            },
+            "display": {
+				"thirdperson_righthand": {
+					"rotation": [ 30, 145, 0 ],
+					"translation": [ 2, 0, -1 ],
+					"scale": [ 1, 1, 1 ]
+				},
+				"thirdperson_lefthand": {
+					"rotation": [ 30, 145, 0 ],
+					"translation": [ 2, 0, -1 ],
+					"scale": [ 1, 1, 1 ]
+				},
+				"firstperson_righthand": {
+					"rotation": [ 0, 180, 0 ],
+					"translation": [ 0, -8, -10 ],
+					"scale": [ 2, 2, 2 ]
+				},
+				"firstperson_lefthand": {
+					"rotation": [ 0, 180, 0 ],
+					"translation": [ 0, -8, -10 ],
+					"scale": [ 2, 2, 2 ]
+				}
+			}
+        }
+    ]
+}

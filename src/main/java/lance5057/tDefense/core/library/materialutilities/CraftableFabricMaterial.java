@@ -2,7 +2,6 @@ package lance5057.tDefense.core.library.materialutilities;
 
 import java.io.PrintWriter;
 
-import lance5057.tDefense.core.materials.stats.BackpackMaterialStats;
 import lance5057.tDefense.core.materials.stats.FabricMaterialStats;
 import net.minecraft.item.ItemStack;
 import slimeknights.tconstruct.library.MaterialIntegration;
@@ -14,22 +13,20 @@ public class CraftableFabricMaterial implements MaterialBase {
 	//public ExtraMaterialStats extra;
 	public FabricMaterialStats fabric;
 	public BowStringMaterialStats bowstring;
-	public BackpackMaterialStats backpack;
 
 	public ItemStack cord;
 	public ItemStack block;
 
 	public CraftableFabricMaterial( FabricMaterialStats fabric,
-			BowStringMaterialStats bowstring, BackpackMaterialStats backpack) {
+			BowStringMaterialStats bowstring) {
 		//this.extra = extra;
 		this.fabric = fabric;
 		this.bowstring = bowstring;
-		this.backpack = backpack;
 	}
 
 	public CraftableFabricMaterial(FabricMaterialStats fabric,
-			BowStringMaterialStats bowstring, BackpackMaterialStats backpack, ItemStack string, ItemStack block) {
-		this(fabric, bowstring, backpack);
+			BowStringMaterialStats bowstring, ItemStack string, ItemStack block) {
+		this(fabric, bowstring);
 		this.cord = string;
 		this.block = block;
 	}
@@ -43,8 +40,6 @@ public class CraftableFabricMaterial implements MaterialBase {
 			TinkerRegistry.addMaterialStats(mat.mat, fabric);
 		if (bowstring != null)
 			TinkerRegistry.addMaterialStats(mat.mat, bowstring);
-		if (backpack != null)
-			TinkerRegistry.addMaterialStats(mat.mat, backpack);
 
 		if (cord != null)
 			mat.mat.addItem(cord, 1, Material.VALUE_Ingot / 4);

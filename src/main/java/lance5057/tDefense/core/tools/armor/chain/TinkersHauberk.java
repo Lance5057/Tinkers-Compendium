@@ -2,6 +2,7 @@ package lance5057.tDefense.core.tools.armor.chain;
 
 import java.util.List;
 
+import c4.conarm.common.ConstructsRegistry;
 import lance5057.tDefense.core.library.ArmorNBT;
 import lance5057.tDefense.core.library.ArmorTags;
 import lance5057.tDefense.core.library.ArmorTextureBuilder;
@@ -31,9 +32,10 @@ import slimeknights.tconstruct.library.tinkering.PartMaterialType;
 
 public class TinkersHauberk extends ArmorCore {
 	public TinkersHauberk() {
-		super(EntityEquipmentSlot.CHEST, new PartMaterialType(TDParts.chainmail, ChestMaterialStats.TYPE),
-				 new PartMaterialType(TDParts.armorPlate, ChestMaterialStats.TYPE),
-				PartMaterialType.handle(TDParts.clasp),
+		super(EntityEquipmentSlot.CHEST,
+				new PartMaterialType(TDParts.chainmail, ChestMaterialStats.TYPE),
+				new PartMaterialType(ConstructsRegistry.armorPlate, ChestMaterialStats.TYPE),
+				PartMaterialType.handle(ConstructsRegistry.armorTrim),
 				new PartMaterialType(TDParts.fabric, FabricMaterialStats.TYPE),
 				PartMaterialType.extra(TDParts.rivets));
 		setUnlocalizedName("tinkershauberk");
@@ -52,7 +54,7 @@ public class TinkersHauberk extends ArmorCore {
 		NBTTagCompound base = new NBTTagCompound();
 
 		ResourceLocation rc = ArmorTextureBuilder.createArmorTexture("hauberk",
-				new String[] { "chain", "plate", "clasp","cloth", "rivet" }, materials, 48, 48);
+				new String[] { "chain", "plate", "clasp", "cloth", "rivet" }, materials, 48, 48);
 
 		if (rc != null) {
 			base.setString(ArmorTags.TexLoc, rc.toString());
@@ -105,11 +107,11 @@ public class TinkersHauberk extends ArmorCore {
 
 	@Override
 	public float armorMultiplier() {
-		return 0.75f;
+		return 1f;
 	}
 
 	@Override
 	public float potencyMultiplier() {
-		return 0.25f;
+		return 2.0f;
 	}
 }

@@ -1,6 +1,6 @@
 package lance5057.tDefense.core.library.book.sectiontransformer;
 
-import lance5057.tDefense.core.library.book.content.ContentArmorMaterial;
+import lance5057.tDefense.core.library.book.content.ContentArmorMaterial2;
 import lance5057.tDefense.core.materials.stats.ChestMaterialStats;
 import lance5057.tDefense.core.materials.stats.FeetMaterialStats;
 import lance5057.tDefense.core.materials.stats.HelmMaterialStats;
@@ -16,7 +16,7 @@ import slimeknights.tconstruct.library.materials.Material;
 public class ArmorMaterialSectionTransformer extends AbstractMaterialSectionTransformer {
 
   public ArmorMaterialSectionTransformer() {
-    super("armormaterials");
+    super("armormaterials2");
   }
 
   @Override
@@ -26,6 +26,6 @@ public class ArmorMaterialSectionTransformer extends AbstractMaterialSectionTran
 
   @Override
   protected PageContent getPageContent(Material material) {
-    return new ContentArmorMaterial(material);
+    return new ContentArmorMaterial2(material);
   }
 }

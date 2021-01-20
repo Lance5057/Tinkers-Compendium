@@ -1,7 +1,0 @@
-{
-    "textures": {
-        "layer0": "tinkerscompendium:items/baubles/tabard/_face",
-        "layer1": "tinkerscompendium:items/baubles/tabard/_trim",
-		"broken1": "tinkerscompendium:items/baubles/tabard/_broken"
-    }
-}

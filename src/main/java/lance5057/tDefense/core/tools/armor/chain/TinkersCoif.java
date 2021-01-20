@@ -32,7 +32,8 @@ import slimeknights.tconstruct.tools.TinkerTools;
 
 public class TinkersCoif extends ArmorCore {
 	public TinkersCoif() {
-		super(EntityEquipmentSlot.HEAD, new PartMaterialType(TDParts.chainmail, HelmMaterialStats.TYPE),
+		super(EntityEquipmentSlot.HEAD,
+				new PartMaterialType(TDParts.chainmail, HelmMaterialStats.TYPE),
 				PartMaterialType.handle(TinkerTools.toolRod),
 				new PartMaterialType(TDParts.fabric, FabricMaterialStats.TYPE));
 		setUnlocalizedName("tinkerscoif");
@@ -108,6 +109,6 @@ public class TinkersCoif extends ArmorCore {
 
 	@Override
 	public float potencyMultiplier() {
-		return 0.25f;
+		return 1.6f;
 	}
 }

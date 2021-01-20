@@ -16,8 +16,8 @@ public class ArmorStationGuiButtons extends GuiSideButtons {
 
   protected final ArmorStationGui parent;
 
-  public ArmorStationGuiButtons(ArmorStationGui parent, Container container) {
-    super(parent, container, ArmorStationGui.Column_Count);
+  public ArmorStationGuiButtons(ArmorStationGui parent, Container container, int columns) {
+    super(parent, container, columns);
 
     this.parent = parent;
   }

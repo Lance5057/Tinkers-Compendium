@@ -2,6 +2,7 @@ package lance5057.tDefense.core.tools.armor.heavy;
 
 import java.util.List;
 
+import c4.conarm.common.ConstructsRegistry;
 import lance5057.tDefense.core.library.ArmorNBT;
 import lance5057.tDefense.core.library.ArmorTags;
 import lance5057.tDefense.core.library.ArmorTextureBuilder;
@@ -37,9 +38,11 @@ import slimeknights.tconstruct.library.utils.TagUtil;
 
 public class TinkersSabatons extends ArmorCore {
 	public TinkersSabatons() {
-		super(EntityEquipmentSlot.FEET, new PartMaterialType(TDParts.armorPlate, FeetMaterialStats.TYPE),
-				new PartMaterialType(TDParts.armorPlate, FeetMaterialStats.TYPE),
-				PartMaterialType.handle(TDParts.filigree), PartMaterialType.extra(TDParts.rivets),
+		super(EntityEquipmentSlot.FEET,
+				new PartMaterialType(ConstructsRegistry.armorPlate, FeetMaterialStats.TYPE),
+				PartMaterialType.extra(TDParts.rivets),
+				PartMaterialType.handle(TDParts.filigree),
+				new PartMaterialType(ConstructsRegistry.bootsCore, FeetMaterialStats.TYPE),
 				new PartMaterialType(TDParts.fabric, FabricMaterialStats.TYPE));
 		setUnlocalizedName("tinkerssabatons");
 	}
@@ -57,7 +60,7 @@ public class TinkersSabatons extends ArmorCore {
 		NBTTagCompound base = new NBTTagCompound();
 
 		ResourceLocation rc = ArmorTextureBuilder.createArmorTexture("sabatons",
-				new String[] { "plates", "caps", "trim", "rivets", "soles" }, materials, 96, 96);
+				new String[] { "plates", "rivets", "trim", "caps", "soles" }, materials, 96, 96);
 
 		if (rc != null) {
 			base.setString(ArmorTags.TexLoc, rc.toString());
@@ -87,7 +90,7 @@ public class TinkersSabatons extends ArmorCore {
 	@Override
 	public float armorMultiplier() {
 		// TODO Auto-generated method stub
-		return 1f;
+		return 2f;
 	}
 
 	@Override

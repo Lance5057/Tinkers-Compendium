@@ -5,6 +5,7 @@ import lance5057.tDefense.core.parts.TDParts;
 import lance5057.tDefense.core.tools.bases.Shield;
 import slimeknights.tconstruct.library.tinkering.PartMaterialType;
 import slimeknights.tconstruct.tools.TinkerTools;
+import c4.conarm.common.ConstructsRegistry;
 
 public class RoundShield extends Shield
 {
@@ -13,8 +14,8 @@ public class RoundShield extends Shield
 	public RoundShield()
 	{
 	    super(PartMaterialType.handle(TinkerTools.toolRod),
-	    	new PartMaterialType(TDParts.armorPlate, ShieldMaterialStats.TYPE),
-	            PartMaterialType.head(TinkerTools.panHead));
+	    	new PartMaterialType(ConstructsRegistry.armorPlate, ShieldMaterialStats.TYPE),
+	            PartMaterialType.head(ConstructsRegistry.armorTrim));
 		setUnlocalizedName("roundshield");
 	}
 }

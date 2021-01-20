@@ -8,10 +8,6 @@ import lance5057.tDefense.TCConfig;
 import lance5057.tDefense.TinkersCompendium;
 import lance5057.tDefense.core.materials.stats.FabricMaterialStats;
 import lance5057.tDefense.core.tools.TDTools;
-import lance5057.tDefense.core.tools.armor.cloth.TinkersHood;
-import lance5057.tDefense.core.tools.armor.cloth.TinkersRobe;
-import lance5057.tDefense.core.tools.armor.cloth.TinkersShawl;
-import lance5057.tDefense.core.tools.armor.cloth.TinkersShoes;
 import net.minecraft.entity.monster.EntityHusk;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.EntityPigZombie;
@@ -75,26 +71,26 @@ public class SpawnArmorOnMobs {
 							int feetRoll = world.rand.nextInt(100);
 
 							if (headRoll > 50) {
-								ItemStack hoodStack = TDTools.hood.buildItem(tobuild);
+								ItemStack hoodStack = TDTools.coif.buildItem(tobuild);
 
 								mob.setItemStackToSlot(EntityEquipmentSlot.HEAD, hoodStack);
 							}
 
 							if (chestRoll > 50) {
-								ItemStack hoodStack = TDTools.shawl.buildItem(tobuild);
+								ItemStack hoodStack = TDTools.hauberk.buildItem(tobuild);
 
 								mob.setItemStackToSlot(EntityEquipmentSlot.CHEST, hoodStack);
 							}
 
 							if (legsRoll > 50) {
-								ItemStack hoodStack = TDTools.robe.buildItem(tobuild);
+								ItemStack hoodStack = TDTools.chausses.buildItem(tobuild);
 
 								mob.setItemStackToSlot(EntityEquipmentSlot.LEGS, hoodStack);
 							}
 
 							if (feetRoll > 50) {
 								tobuild.add(laces);
-								ItemStack hoodStack = TDTools.shoes.buildItem(tobuild);
+								ItemStack hoodStack = TDTools.chainboots.buildItem(tobuild);
 
 								mob.setItemStackToSlot(EntityEquipmentSlot.FEET, hoodStack);
 							}

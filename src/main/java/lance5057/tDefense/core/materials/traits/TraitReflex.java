@@ -13,13 +13,14 @@ public class TraitReflex extends AbstractTDTrait {
 	}
 
 	public void onDamageTaken(ItemStack tool, LivingHurtEvent e) {
-		if (e.getEntityLiving().world.rand.nextInt() % 100 == 0) {
+		if (e.getEntityLiving().world.rand.nextInt() % 1 == 0) {
 			Vec3d source = e.getSource().getTrueSource().getPositionVector();
 			Vec3d player = e.getEntityLiving().getPositionVector();
 
 			double dist = source.distanceTo(player);
 
 			if (dist < 2) {
+				System.out.println("yes");
 				Vec3d forward = e.getSource().getTrueSource().getForward();
 				e.getEntityLiving().posX = source.x - forward.x;
 				e.getEntityLiving().posY = source.y - forward.y;

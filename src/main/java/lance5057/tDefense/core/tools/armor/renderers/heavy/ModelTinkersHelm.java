@@ -41,32 +41,32 @@ public class ModelTinkersHelm extends ArmorRenderer {
         
         this.MouthGuard = new ModelRenderer(this, 30, 20);
         this.MouthGuard.setRotationPoint(0.0F, -2.0F, 0.0F);
-        this.MouthGuard.addBox(-4.5F, -3.0F, -5.4F, 9, 5, 8, 0.0F);
+        this.MouthGuard.addBox(-4.5F, -3.0F, -5.4F, 9, 5, 8, 0.1F);
         this.setRotateAngle(MouthGuard, 0.3490658503988659F, 0.0F, 0.0F);
         
         this.Visor = new ModelRenderer(this, 0, 0);
         this.Visor.setRotationPoint(0.0F, -6.7F, 0.1F);
-        this.Visor.addBox(-4.5F, 0.2F, -5.9F, 9, 4, 8, 0.0F);
+        this.Visor.addBox(-4.5F, 0.2F, -5.9F, 9, 4, 8, 0.2F);
         this.setRotateAngle(Visor, -0.08726646259971647F, 0.0F, 0.0F);
         
         this.MouthGuard_Closed = new ModelRenderer(this, 30, 20);
         this.MouthGuard_Closed.setRotationPoint(0.0F, -2.0F, 0.0F);
-        this.MouthGuard_Closed.addBox(-4.5F, -3.0F, -5.4F, 9, 5, 8, 0.0F);
+        this.MouthGuard_Closed.addBox(-4.5F, -3.0F, -5.4F, 9, 5, 8, 0.1F);
         this.setRotateAngle(MouthGuard_Closed, 0.3490658503988659F, 0.0F, 0.0F);
         
         this.Visor_Closed = new ModelRenderer(this, 0, 0);
         this.Visor_Closed.setRotationPoint(0.0F, -6.7F, 0.1F);
-        this.Visor_Closed.addBox(-4.5F, 0.2F, -5.9F, 9, 4, 8, 0.0F);
+        this.Visor_Closed.addBox(-4.5F, 0.2F, -5.9F, 9, 4, 8, 0.2F);
         this.setRotateAngle(Visor_Closed, -0.08726646259971647F, 0.0F, 0.0F);
         
         this.Visor_Open = new ModelRenderer(this, 0, 0);
         this.Visor_Open.setRotationPoint(0.0F, -6.7F, 0.1F);
-        this.Visor_Open.addBox(-4.5F, 0.2F, -5.9F, 9, 4, 8, 0.0F);
+        this.Visor_Open.addBox(-4.5F, 0.2F, -5.9F, 9, 4, 8, 0.2F);
         this.setRotateAngle(Visor_Open, -0.4363323129985824F, 0.0F, 0.0F);
         
         this.MouthGuard_Open = new ModelRenderer(this, 30, 20);
         this.MouthGuard_Open.setRotationPoint(0.0F, -2.0F, 0.0F);
-        this.MouthGuard_Open.addBox(-4.5F, -3.0F, -5.4F, 9, 5, 8, 0.0F);
+        this.MouthGuard_Open.addBox(-4.5F, -3.0F, -5.4F, 9, 5, 8, 0.1F);
         this.setRotateAngle(MouthGuard_Open, 0.8783138702885441F, 0.0F, 0.0F);
         
         this.Helm.addChild(this.Trim);

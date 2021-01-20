@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import lance5057.tDefense.core.library.ArmorTags;
 import lance5057.tDefense.util.ArmorTagUtil;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommand;
@@ -24,15 +25,15 @@ public class TCCommands extends CommandBase implements ICommand {
 	public TCCommands() {
 		aliases = new ArrayList();
 
-		aliases.add("TinkersDefense");
-		aliases.add("TDefense");
-		aliases.add("TD");
+		aliases.add("tinkersdefense");
+		aliases.add("tdefense");
+		aliases.add("td");
 
 		commands = new ArrayList();
 
-		commands.add("reloadRenderers");
-		commands.add("toggleTransparency");
-		commands.add("toggleDebugMode");
+		commands.add("reloadrenderers");
+		commands.add("toggletransparency");
+		commands.add("toggledebugmode");
 		commands.add("visor");
 	}
 
@@ -49,12 +50,12 @@ public class TCCommands extends CommandBase implements ICommand {
 
 	@Override
 	public String getName() {
-		return "TinkersDefense";
+		return "tinkersdefense";
 	}
 
 	@Override
 	public String getUsage(ICommandSender p_71518_1_) {
-		return "TinkersDefense <text>";
+		return "tinkersdefense <text>";
 	}
 
 	// @Override
@@ -88,15 +89,15 @@ public class TCCommands extends CommandBase implements ICommand {
 			// }
 			//
 			// }
-			if (commandIn[0].equals("toggleDebugMode")) {
+			if (commandIn[0].equals("toggledebugmode")) {
 				TinkersCompendium.config.debug = !TinkersCompendium.config.debug;
 				if (TinkersCompendium.config.debug) {
-					sender.sendMessage(new TextComponentString("§9[TDefense]§f - Debug Mode on."));
+					sender.sendMessage(new TextComponentString("[TDefense] - Debug Mode on."));
 				} else {
-					sender.sendMessage(new TextComponentString("§9[TDefense]§f - Debug Mode off."));
+					sender.sendMessage(new TextComponentString("[TDefense] - Debug Mode off."));
 				}
 
-			} else if (commandIn[0].equals("reloadRenderers")) {
+			} else if (commandIn[0].equals("reloadrenderers")) {
 				TinkersCompendium.proxy.reloadRenderers();
 			} else if (commandIn[0].equals("visor")) {
 				if (sender.getCommandSenderEntity() instanceof EntityPlayer) {
@@ -104,19 +105,22 @@ public class TCCommands extends CommandBase implements ICommand {
 					for (ItemStack s : p.getArmorInventoryList()) {
 						if (s != null && s.getItem() != Items.AIR) {
 							ArmorTagUtil.setVisor(s, !ArmorTagUtil.getVisor(s));
+							System.out.println(ArmorTagUtil.getVisor(s));
 							ArmorTagUtil.setVisorTime(s, 0.0f);
 							s.serializeNBT();
 							if (TinkersCompendium.config.debug) {
 								if (ArmorTagUtil.getVisor(s))
-									sender.sendMessage(new TextComponentString("§9[TDefense]§f - Visor closed."));
+									sender.sendMessage(new TextComponentString("[TDefense] - Visor closed."));
 								else
-									sender.sendMessage(new TextComponentString("§9[TDefense]§f - Visor opened."));
+									sender.sendMessage(new TextComponentString("[TDefense] - Visor opened."));
 							}
 						}
 					}
 				}
+				else
+					sender.sendMessage(new TextComponentString("You must wear a full set of armor to open your visor."));
 			} else {
-				sender.sendMessage(new TextComponentString("§c[TDefense]§f - Invalid Command"));
+				sender.sendMessage(new TextComponentString("[TDefense] - Invalid Command"));
 			}
 		}
 	}

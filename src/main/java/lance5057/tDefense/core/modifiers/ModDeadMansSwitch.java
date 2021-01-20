@@ -1,7 +1,6 @@
 package lance5057.tDefense.core.modifiers;
 
 import lance5057.tDefense.core.library.modifiers.ModifierTDTrait;
-import lance5057.tDefense.core.tools.armor.cloth.TinkersShawl;
 import lance5057.tDefense.core.tools.armor.heavy.TinkersBreastplate;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -29,7 +28,7 @@ public class ModDeadMansSwitch extends ModifierTDTrait {
 	@Override
 	public boolean canApplyCustom(ItemStack stack) {
 
-		if (stack.getItem() instanceof TinkersBreastplate || stack.getItem() instanceof TinkersShawl) {
+		if (stack.getItem() instanceof TinkersBreastplate) {
 			// not present yet, ok
 			if (super.canApplyCustom(stack)) {
 				return true;

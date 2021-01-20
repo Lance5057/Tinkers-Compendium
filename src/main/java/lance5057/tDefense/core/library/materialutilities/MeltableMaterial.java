@@ -70,19 +70,6 @@ public class MeltableMaterial implements MaterialBase {
 	@Override
 	public void setupPre(MaterialHelper mat) {
 
-		if (ingot == null) {
-			ingot = TCItems.registerItem("ingot_" + mat.mat.identifier, TinkersCompendium.tab);
-		}
-
-		if (nugget == null) {
-			nugget = TCItems.registerItem("nugget_" + mat.mat.identifier, TinkersCompendium.tab);
-		}
-
-		if (block == null) {
-			block = TCBlocks.registerBlock("block_" + mat.mat.identifier, net.minecraft.block.material.Material.IRON);
-			TCItems.registerItemBlock("block_" + mat.mat.identifier, block, TinkersCompendium.tab);
-		}
-
 		fluid = TCFluids.fluidMetal(mat.mat.getIdentifier(), mat.color, temp);
 
 		mat.mat.setCraftable(false).setCastable(true);

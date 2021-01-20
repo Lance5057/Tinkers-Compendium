@@ -37,7 +37,7 @@ public class TraitForestMask extends AbstractTDTrait {
 			}
 			
 			if(grass > 3)
-				player.addPotionEffect(new PotionEffect(MobEffects.INVISIBILITY, 10));
+				player.addPotionEffect(new PotionEffect(MobEffects.INVISIBILITY, 10, 5, false, false));
 		}
 	}
 }

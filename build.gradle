@@ -15,7 +15,6 @@ buildscript {
     }
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
-		classpath "com.wynprice.cursemaven:CurseMaven:2.1.1"
     }
 }
 
@@ -71,19 +70,21 @@ repositories {
 	maven {
 		url "http://maven.covers1624.net"
 	}
+
+    maven {
+        url = "https://www.cursemaven.com"
+    }
 }
 
 apply plugin: 'net.minecraftforge.gradle.forge'
 apply plugin: 'maven'
 apply plugin: 'maven-publish'
-apply plugin: "com.wynprice.cursemaven"
 
 
 /*
 // for people who want stable - not yet functional for MC 1.8.8 - we require the forgegradle 2.1 snapshot
 plugins {
     id "net.minecraftforge.gradle.forge" version "2.0.2"
-	id "com.wynprice.cursemaven" version "2.1.1"
 }
 */
 version = "${modVersion}"
@@ -96,7 +97,7 @@ targetCompat = JavaVersion.VERSION_1_8
 minecraft {
     version = "1.12.2-14.23.5.2847"
     runDir = "run"
-    
+
     // the mappings can be changed at any time, and must be in the following format.
     // snapshot_YYYYMMDD   snapshot are built nightly.
     // stable_#            stables are built at the discretion of the MCP team.
@@ -108,44 +109,54 @@ minecraft {
 
 dependencies {
 
-	deobfCompile "mezz.jei:jei_${minecraftVersion}:${jeiVersion}"
-	
+	implementation 'org.jetbrains:annotations:19.0.0'
+    deobfCompile "mezz.jei:jei_${minecraftVersion}:${jeiVersion}"
+
     deobfCompile ("slimeknights:TConstruct:${tinkersVersion}")  {
         exclude module: "jei_${minecraftVersion}"
     }
-	
+
     deobfCompile ("slimeknights.mantle:Mantle:${mantleVersion}")	{
         exclude module: "jei_${minecraftVersion}"
     }
-	
+
 	deobfCompile ("blusunrize:ImmersiveEngineering:${immersiveengineeringVersion}"){
         exclude module: "jei_${minecraftVersion}"
     }
-	
-	deobfCompile ("com.wayoftime.bloodmagic:BloodMagic:${bloodmagicVersion}"){
-        exclude module: "jei_${minecraftVersion}"
-    }
-	
+
 	deobfCompile ("com.github.Azanor:Baubles:-SNAPSHOT"){
         exclude module: "jei_${minecraftVersion}"
     }
-	
+
 	deobfCompile ("CraftTweaker2:CraftTweaker2-MC1120-Main:${crafttweakerVersion}")  {
         exclude module: "jei_${minecraftVersion}"
     }
-	
+
 	deobfCompile ("vazkii.botania:Botania:r1.10-362.88")  {
         exclude module: "jei_${minecraftVersion}"
     }
-	
+
 	deobfCompile "albedo:albedo:0.1.3"
+
+	deobfCompile "curse.maven:bloodmagic-224791:2822288"
+
+	deobfCompile "curse.maven:toolleveling-250957:2558689"
+
+	//deobfCompile 'constructs-armory:conarm:1.12.2:1.2.5.4'
+	compile files("E:/.minecraft/realmofstorms/source files/ConstructsArmory-master/build/libs/conarm-1.12.2-1.2.5.9.jar")
 	
-	deobfCompile "curse.maven:toolleveling:2558689"
+	compile files("E:/.minecraft/realmofstorms/source files/MoarTinkers-master/build/libs/moartinkers-0.6.0.jar")
+
+	deobfCompile "curse.maven:ebwizardry-265642:2886605"
+
+	deobfCompile "curse.maven:redstoneflux-270789:2920436"
+	deobfCompile "curse.maven:cofhcore-69162:2920433"
+	deobfCompile "curse.maven:cofhworld-271384:2920434"
+	deobfCompile "curse.maven:thermalfoundation-222880:2926428"
+	deobfCompile "curse.maven:armoryexpansion-293602:2925154"
 	
-	deobfCompile "curse.maven:ebwizardry:2886605"
-	
-	deobfCompile "cofh:RedstoneFlux:1.12-2.0.0.1:universal"
-	
+	deobfCompile "curse.maven:undergroundbiomes-293268:2925430"
+
 	deobfCompile "de.ellpeck.actuallyadditions:ActuallyAdditions:1.12.2-r143"
 	deobfCompile "net.darkhax.tesla:Tesla-1.12.2:1.0.63"
 	deobfCompile "mcp.mobius.waila:Hwyla:1.8.23-B38_1.12"

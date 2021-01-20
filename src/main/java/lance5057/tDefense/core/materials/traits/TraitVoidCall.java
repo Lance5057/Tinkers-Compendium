@@ -1,5 +1,7 @@
 package lance5057.tDefense.core.materials.traits;
 
+import lance5057.tDefense.TCConfig;
+import lance5057.tDefense.core.library.ArmorHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
@@ -17,8 +19,8 @@ public class TraitVoidCall extends AbstractTDTrait
 	  public void onArmorTick(ItemStack tool, World world, EntityPlayer player) {
 		if(player.posY <= 0)
 		{
-			player.motionY+=1.2;
-			ToolHelper.damageTool(tool, 10, player);
+			player.motionY+=3.0;
+			ArmorHelper.damageTool(tool, 10, player);
 		}
 	  }
 }

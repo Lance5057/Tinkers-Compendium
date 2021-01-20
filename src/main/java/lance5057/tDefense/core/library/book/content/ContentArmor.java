@@ -16,6 +16,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import slimeknights.mantle.client.book.data.BookData;
+import slimeknights.mantle.client.book.data.content.ContentText;
 import slimeknights.mantle.client.book.data.element.ImageData;
 import slimeknights.mantle.client.book.data.element.TextData;
 import slimeknights.mantle.client.gui.book.GuiBook;
@@ -43,6 +44,7 @@ public class ContentArmor extends TinkerPage {
   private transient ArmorCore tool;
   private transient List<Collection<IToolPart>> parts;
 
+  public String title = null;
   public TextData[] text = new TextData[0];
   public String[] properties = new String[0];
 
@@ -81,14 +83,14 @@ public class ContentArmor extends TinkerPage {
 
   @Override
   public void build(BookData book, ArrayList<BookElement> list, boolean rightSide) {
-    addTitle(list, tool.getLocalizedName());
+    addTitle(list, title + tool.getLocalizedName());
 
     int padding = 5;
 
     // description
     int h = GuiBook.PAGE_WIDTH / 3 - 10;
     int y = 16;
-    list.add(new ElementText(padding, y, GuiBook.PAGE_WIDTH - padding*2, h, text));
+    list.add(new ElementText(padding, y, GuiBook.PAGE_WIDTH - 40, h, text));
 
     ImageData img = IMG_SLOTS;
     int imgX = GuiBook.PAGE_WIDTH - img.width - 8;
@@ -112,7 +114,7 @@ public class ContentArmor extends TinkerPage {
       }
 
       y += 10;
-      list.add(new ElementText(padding, y, GuiBook.PAGE_WIDTH / 2 + 5, GuiBook.PAGE_HEIGHT - h - 20, effectData));
+      list.add(new ElementText(padding, y, GuiBook.PAGE_WIDTH -110, GuiBook.PAGE_HEIGHT - h - 20, effectData));
     }
 
 
