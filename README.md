@@ -11,8 +11,8 @@ What this fork changes from the original:
     * Buckler Shields
     * Heater Shields
     * Shears
-    * Rings
-  Have been removed.
+    * Rings  
+...Have been removed.
   
 - Updated Heavy Armour model and texture:
     * Helmet now has a leather mask under the visor.
