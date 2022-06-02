@@ -31,12 +31,12 @@ public class Zweihander extends SwordCore {
 
 	@Override
 	public float damagePotential() {
-		return 1.0f;
+		return 2.0f;
 	}
 
 	@Override
 	public double attackSpeed() {
-		return 1.0d;
+		return 0.8d;
 	}
 
 	// sword sweep attack
